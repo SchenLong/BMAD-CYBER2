@@ -1,0 +1,193 @@
+# Cyber-Ops Module Configuration
+# Module for cybersecurity operations workflows
+
+module_name: cyber-ops
+full_name: Cybersecurity Operations Module
+version: 1.0.0
+created_date: 2026-01-08
+status: production
+
+# Project Configuration
+project_name: BMAD-CYBER2
+output_folder: /Users/paultinp/BMAD-CYBER2/_output/cyber-ops
+bmb_creations_output_folder: /Users/paultinp/BMAD-CYBER2/_bmad-output/bmb-creations
+
+# User Configuration
+user_name: J
+communication_language: English
+document_output_language: English
+
+# Module Paths
+module_root: /Users/paultinp/BMAD-CYBER2/_bmad/cyber-ops
+workflows_path: /Users/paultinp/BMAD-CYBER2/_bmad/cyber-ops/workflows
+agents_path: /Users/paultinp/BMAD-CYBER2/_bmad/cyber-ops/agents
+
+# Workflow Registry
+workflows:
+  - name: incident-response-playbook
+    full_name: Incident Response Playbook
+    path: workflows/incident-response-playbook
+    type: dual-mode
+    status: production
+    version: 1.0.0
+    files: 19
+    modes:
+      - mode_a: playbook-creation
+      - mode_b: guided-execution
+    frameworks:
+      - NIST
+      - MITRE_ATTACK
+    compliance:
+      - GDPR
+      - PCI_DSS
+      - HIPAA
+      - SOC2
+      - ISO27001
+
+  - name: security-architecture-review
+    full_name: Security Architecture Review
+    path: workflows/security-architecture-review
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 8
+    frameworks:
+      - STRIDE
+      - NIST_CSF
+      - CIS_CONTROLS
+      - OWASP_ASVS
+      - ZERO_TRUST
+
+  - name: threat-modeling
+    full_name: STRIDE Threat Modeling
+    path: workflows/threat-modeling
+    type: iterative-linear
+    status: production
+    version: 1.0.0
+    files: 11
+    frameworks:
+      - STRIDE
+      - NIST_SP_800_30
+
+# Agent Registry (for future agent implementations)
+agents:
+  # Agents are available via Party Mode integration
+  # Future: dedicated cyber-ops agents could be added here
+  party_mode_agents:
+    - bastion    # Security Architect
+    - ghost      # Penetration Tester
+    - trace      # Digital Forensics
+    - cipher     # Cryptography/Secure Comms
+    - sentinel   # Compliance/Governance
+
+# Tool Integration
+tools:
+  core_bmad:
+    - party-mode
+    - advanced-elicitation
+    - brainstorming
+  llm_features:
+    - web-browsing
+    - file-io
+    - sidecar-file
+
+# Framework Versions
+frameworks:
+  NIST_CSF: v1.1
+  NIST_IR: SP_800-61_Rev2
+  NIST_ZERO_TRUST: SP_800-207
+  NIST_RISK: SP_800-30_Rev1
+  MITRE_ATTACK: v14
+  CIS_CONTROLS: v8
+  OWASP_ASVS: v4.0
+  ISO_27001: 2013
+  STRIDE: Microsoft_2018
+
+# Output Configuration
+output:
+  base_path: /Users/paultinp/BMAD-CYBER2/_output/cyber-ops
+  incident_response:
+    playbooks: playbooks
+    incident_reports: incidents
+  architecture_reviews: architecture
+  threat_models: threat-models
+
+  formats:
+    - markdown
+
+  include_metadata: true
+  include_timestamps: true
+  version_control: true
+
+# Continuation Support
+continuation:
+  enabled: true
+  state_tracking: frontmatter
+  sidecar_files: true
+  auto_resume: true
+
+# Compliance Settings
+compliance:
+  gdpr:
+    enabled: true
+    notification_deadline_hours: 72
+  pci_dss:
+    enabled: true
+    immediate_notification: true
+  hipaa:
+    enabled: true
+    notification_deadline_days: 60
+  sox:
+    enabled: false
+  state_breach_laws:
+    enabled: true
+
+# Security Settings
+security:
+  evidence_hashing: SHA256
+  chain_of_custody: true
+  access_control: true
+  sensitive_data_handling: strict
+
+# Quality Assurance
+quality:
+  min_threats_per_component: 3
+  require_specific_recommendations: true
+  require_risk_prioritization: true
+  require_implementation_roadmap: true
+  require_executive_summary: true
+
+# Performance Settings
+performance:
+  recommended_model: claude-sonnet-4-5
+  min_context_window: 200000
+  parallel_processing: true
+  caching: true
+
+# Feature Flags
+features:
+  multi_session_continuation: true
+  party_mode_integration: true
+  web_browsing: true
+  advanced_elicitation: true
+  brainstorming: true
+  sidecar_timeline: true
+  auto_incident_id: true
+  mitre_attack_mapping: true
+  zero_trust_validation: true
+
+# Module Metadata
+metadata:
+  author: BMAD Framework + Claude Sonnet 4.5
+  created_by: workflow-builder
+  total_workflows: 3
+  total_files: 38
+  total_lines: 25000
+  production_ready: true
+  tested: true
+  documented: true
+
+# Update Information
+last_updated: 2026-01-08
+update_notes: Initial production release with 3 workflows
+next_review_date: 2026-04-08  # Quarterly review
