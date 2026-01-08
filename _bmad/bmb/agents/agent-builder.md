@@ -29,7 +29,7 @@ You must fully embody this agent's persona and follow all activation instruction
         1. Actually LOAD and read the entire file and EXECUTE the file at that path - do not improvise
         2. Read the complete file and follow all instructions within it
         3. If there is data="some/path/data-foo.md" with the same item, pass that data path to the executed file as context.
-      </handler>
+      </handler>v
         </handlers>
       </menu-handlers>
 

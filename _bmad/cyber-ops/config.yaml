@@ -69,6 +69,57 @@ workflows:
       - STRIDE
       - NIST_SP_800_30
 
+  - name: compliance-audit-prep
+    full_name: Compliance Audit Preparation
+    path: workflows/compliance-audit-prep
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 10
+    frameworks:
+      - NIST_800_53
+      - ISO_27001
+      - CIS_CONTROLS
+      - SOC_2
+      - PCI_DSS
+      - HIPAA
+      - GDPR
+      - NIS2
+      - CRA
+      - CSA
+      - DORA
+      - AI_ACT
+      - FEDRAMP
+      - CMMC
+      - TISAX
+      - SWIFT_CSP
+      - NERC_CIP
+      - CSA_STAR
+      - ISO_27017
+      - ISO_27018
+
+  - name: virtual-ciso-consulting
+    full_name: Virtual CISO Consulting
+    path: workflows/virtual-ciso-consulting
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 10
+    description: Comprehensive vCISO engagement workflow covering strategic planning, budget optimization, assessment, governance, board reporting, vendor risk, and ongoing advisory
+    frameworks:
+      - NIST_CSF
+      - ISO_27001
+      - CIS_CONTROLS
+      - NIST_800_53
+    capabilities:
+      - strategic_security_planning
+      - budget_roi_framework
+      - security_maturity_assessment
+      - governance_framework_design
+      - board_executive_reporting
+      - vendor_risk_management
+      - ongoing_advisory_services
+
 # Agent Registry (for future agent implementations)
 agents:
   # Agents are available via Party Mode integration
@@ -111,6 +162,8 @@ output:
     incident_reports: incidents
   architecture_reviews: architecture
   threat_models: threat-models
+  compliance: compliance
+  vciso: vciso
 
   formats:
     - markdown
@@ -180,14 +233,14 @@ features:
 metadata:
   author: BMAD Framework + Claude Sonnet 4.5
   created_by: workflow-builder
-  total_workflows: 3
-  total_files: 38
-  total_lines: 25000
+  total_workflows: 5
+  total_files: 58
+  total_lines: 35000
   production_ready: true
   tested: true
   documented: true
 
 # Update Information
 last_updated: 2026-01-08
-update_notes: Initial production release with 3 workflows
+update_notes: Complete production release with 5 workflows - Added Compliance Audit Prep and Virtual CISO Consulting
 next_review_date: 2026-04-08  # Quarterly review
