@@ -4,6 +4,12 @@ Transform AI into a trusted executive advisory council that provides strategic c
 
 ## Version
 
+**v1.2.0** - Additional Workflows Release (2026-01-09)
+- Added 3 new workflows: Political Risk Assessment, Ethical Dilemma Resolution, Leadership Philosophy
+- Total: 12 executive workflows with 95+ step files
+- New output templates for risk, ethics, and leadership documents
+- Enhanced personal development capabilities
+
 **v1.1.0** - Workflows Release (2026-01-09)
 - Added 9 executive workflows with 73 step files
 - Created shared agent roster and output templates
@@ -112,9 +118,11 @@ Full preset documentation: `_bmad/exec-ops/workflows/_shared/party-mode-presets.
 - Counter-argument anticipation
 - Rhetorical strengthening
 
-## Workflows (9 Total)
+## Workflows (12 Total)
 
 Execute guided multi-step processes that orchestrate multiple agents for comprehensive executive deliverables.
+
+### Core Workflows (9)
 
 | Command | Workflow | Steps | Output |
 |---------|----------|-------|--------|
@@ -128,9 +136,18 @@ Execute guided multi-step processes that orchestrate multiple agents for compreh
 | `/competitive-warfare` | Competitive Warfare | 8 | Warfare Plan |
 | `/corporate-political-game` | Corporate Political Game | 8 | Political Playbook |
 
+### v1.2 Workflows (3) - NEW
+
+| Command | Workflow | Steps | Output |
+|---------|----------|-------|--------|
+| `/political-risk-assessment` | Political Risk Assessment | 6 | Risk Assessment |
+| `/ethical-dilemma-resolution` | Ethical Dilemma Resolution | 7 | Ethical Resolution |
+| `/leadership-philosophy` | Leadership Philosophy Development | 6 | Leadership Philosophy |
+
 ### Workflow Quick Start
 
 ```
+# Core Workflows
 /strategic-decision-workshop     # Multi-perspective decision analysis
 /stakeholder-negotiation-prep    # Prepare for high-stakes negotiations
 /board-presentation-prep         # Craft compelling board presentations
@@ -140,6 +157,11 @@ Execute guided multi-step processes that orchestrate multiple agents for compreh
 /conflict-resolution             # Navigate workplace conflicts
 /competitive-warfare             # Plan competitive business battles
 /corporate-political-game        # Navigate internal corporate politics
+
+# v1.2 Workflows (NEW)
+/political-risk-assessment       # Evaluate political risks in initiatives
+/ethical-dilemma-resolution      # Navigate complex ethical dilemmas
+/leadership-philosophy           # Develop personal leadership philosophy
 ```
 
 ### Workflow Architecture
@@ -215,11 +237,13 @@ The module uses `_bmad/exec-ops/config.yaml` for configuration including:
 
 ## Roadmap
 
-### v1.2 (Planned)
+### v1.3 (Planned)
 - M&A due diligence workflow
 - Leadership transition planning
 - Board relations management workflow
 - Performance review preparation workflow
+- Workflow chaining (one workflow leading into another)
+- Continue/Resume enhancements for all workflows
 
 ## Credits
 
