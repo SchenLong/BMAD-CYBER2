@@ -41,7 +41,16 @@ This uses **step-file architecture** for disciplined execution:
 - 💾 **ALWAYS** update frontmatter before next step
 - 🎯 **ALWAYS** follow exact step instructions
 - ⏸️ **ALWAYS** halt at menus and wait for input
-- ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
+- ✅ **ALWAYS** speak in your agent communication style with the config `{communication_language}`
+
+### Related Agents
+
+For specialized compliance consultations, consider engaging:
+
+- **Nimbus** (Cloud Security): For cloud compliance frameworks (CIS Benchmarks, CSA)
+- **Ledger** (Blockchain Security): For Web3 regulatory compliance
+- **Gateway** (API Security): For API security compliance requirements
+- **Oracle** (AI/ML Security): For AI Act and AI governance compliance
 
 ---
 

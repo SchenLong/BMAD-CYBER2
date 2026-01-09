@@ -3,7 +3,7 @@
 
 module_name: cyber-ops
 full_name: Cybersecurity Operations Module
-version: 1.0.0
+version: 1.3.0
 created_date: 2026-01-08
 status: production
 
@@ -120,16 +120,293 @@ workflows:
       - vendor_risk_management
       - ongoing_advisory_services
 
-# Agent Registry (for future agent implementations)
+  - name: vulnerability-management
+    full_name: Vulnerability Management Program
+    path: workflows/vulnerability-management
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 12
+    description: End-to-end vulnerability management from asset inventory through program maturity
+    frameworks:
+      - NIST_CSF
+      - CIS_CONTROLS
+      - ISO_27001
+      - PCI_DSS
+    capabilities:
+      - asset_inventory
+      - vulnerability_scanning
+      - risk_prioritization
+      - remediation_tracking
+      - program_maturity_assessment
+
+  - name: security-awareness-training
+    full_name: Security Awareness Training Program
+    path: workflows/security-awareness-training
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 11
+    description: Comprehensive security awareness program from risk assessment through continuous improvement
+    frameworks:
+      - NIST_CSF
+      - ISO_27001
+      - PCI_DSS
+      - HIPAA
+    capabilities:
+      - risk_assessment
+      - content_development
+      - phishing_simulation
+      - metrics_measurement
+      - continuous_improvement
+
+  - name: cloud-security-assessment
+    full_name: Cloud Security Assessment
+    path: workflows/cloud-security-assessment
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 13
+    description: Comprehensive cloud security assessment for AWS, Azure, and GCP environments
+    cloud_providers:
+      - AWS
+      - Azure
+      - GCP
+    frameworks:
+      - CIS_BENCHMARKS
+      - SOC_2
+      - PCI_DSS
+      - HIPAA
+      - NIST_CSF
+      - ISO_27001
+    capabilities:
+      - iam_assessment
+      - network_security
+      - data_protection
+      - logging_monitoring
+      - compute_security
+      - compliance_mapping
+      - remediation_roadmap
+
+  - name: blockchain-security-assessment
+    full_name: Blockchain Security Assessment
+    path: workflows/blockchain-security-assessment
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 11
+    description: Smart contract and blockchain protocol security auditing
+    platforms:
+      - Ethereum
+      - Solana
+      - BSC
+      - Polygon
+      - Avalanche
+    frameworks:
+      - OWASP_SMART_CONTRACT
+      - SWC_REGISTRY
+      - SCSVS
+    capabilities:
+      - smart_contract_review
+      - access_control_analysis
+      - economic_security
+      - defi_vulnerabilities
+      - infrastructure_security
+      - audit_reporting
+
+  - name: mobile-security-testing
+    full_name: Mobile Security Testing
+    path: workflows/mobile-security-testing
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 11
+    description: iOS and Android mobile application security testing following OWASP MSTG
+    platforms:
+      - iOS
+      - Android
+    frameworks:
+      - OWASP_MSTG
+      - OWASP_MOBILE_TOP_10
+    capabilities:
+      - static_analysis
+      - dynamic_analysis
+      - data_storage_security
+      - network_security
+      - authentication_testing
+      - platform_specific_testing
+
+  - name: web-app-security-testing
+    full_name: Web Application Security Testing
+    path: workflows/web-app-security-testing
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 11
+    description: Comprehensive web application penetration testing following OWASP Testing Guide
+    frameworks:
+      - OWASP_TOP_10
+      - OWASP_TESTING_GUIDE
+      - OWASP_ASVS
+    capabilities:
+      - reconnaissance
+      - authentication_testing
+      - authorization_testing
+      - input_validation
+      - session_management
+      - business_logic_testing
+
+  - name: network-assessment
+    full_name: Network Security Assessment
+    path: workflows/network-assessment
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 11
+    description: Network penetration testing covering reconnaissance, exploitation, and segmentation
+    frameworks:
+      - PTES
+      - OSSTMM
+      - NIST_CSF
+    capabilities:
+      - network_reconnaissance
+      - port_scanning
+      - vulnerability_assessment
+      - network_service_testing
+      - wireless_security
+      - segmentation_testing
+
+  - name: infrastructure-security-testing
+    full_name: Infrastructure Security Testing
+    path: workflows/infrastructure-security-testing
+    type: linear
+    status: production
+    version: 1.0.0
+    files: 11
+    description: Infrastructure security assessment for servers, containers, Kubernetes, and CI/CD
+    frameworks:
+      - CIS_BENCHMARKS
+      - NIST_CSF
+      - OWASP
+    capabilities:
+      - server_hardening
+      - container_security
+      - kubernetes_security
+      - cicd_security
+      - secrets_management
+      - iac_review
+
+# Agent Registry
 agents:
-  # Agents are available via Party Mode integration
-  # Future: dedicated cyber-ops agents could be added here
+  # Core cyber-ops agents with full persona definitions
+  core_agents:
+    - name: threat-analyst
+      codename: Cipher
+      icon: 🔍
+      file: agents/threat-analyst.md
+      expertise: Threat intelligence, APT analysis, MITRE ATT&CK
+
+    - name: security-architect
+      codename: Bastion
+      icon: 🏰
+      file: agents/security-architect.md
+      expertise: Security design, Zero Trust, defense-in-depth
+
+    - name: compliance-guardian
+      codename: Sentinel
+      icon: 📜
+      file: agents/compliance-guardian.md
+      expertise: Regulatory compliance, audits, governance
+
+    - name: forensic-investigator
+      codename: Trace
+      icon: 🔬
+      file: agents/forensic-investigator.md
+      expertise: Digital forensics, evidence handling, chain of custody
+
+    - name: incident-commander
+      codename: Phoenix
+      icon: 🚨
+      file: agents/incident-commander.md
+      expertise: Incident management, crisis coordination, NIST IR
+
+    - name: penetration-tester
+      codename: Spectre
+      icon: 👻
+      file: agents/penetration-tester.md
+      expertise: Ethical hacking, vulnerability assessment, red team
+
+    - name: soc-analyst
+      codename: Watchman
+      icon: 👁️
+      file: agents/soc-analyst.md
+      expertise: SIEM, EDR, alert triage, detection engineering
+
+    - name: cloud-security-specialist
+      codename: Nimbus
+      icon: ☁️
+      file: agents/cloud-security-specialist.md
+      expertise: AWS/Azure/GCP security, IAM, CSPM
+
+    - name: blockchain-security-expert
+      codename: Ledger
+      icon: ⛓️
+      file: agents/blockchain-security-expert.md
+      expertise: Smart contracts, DeFi security, Web3 auditing
+
+    - name: web-app-security-expert
+      codename: Weaver
+      icon: 🌐
+      file: agents/web-app-security-expert.md
+      expertise: OWASP Top 10, secure SDLC, application security
+
+    - name: api-security-expert
+      codename: Gateway
+      icon: 🔌
+      file: agents/api-security-expert.md
+      expertise: OAuth/OIDC, REST/GraphQL security, API gateways
+
+    - name: llm-ai-security-expert
+      codename: Oracle
+      icon: 🧠
+      file: agents/llm-ai-security-expert.md
+      expertise: AI/ML security, prompt injection, AI governance
+
+    - name: blue-team-lead
+      codename: Shield
+      icon: 🛡️
+      file: agents/blue-team-lead.md
+      expertise: Detection engineering, purple teaming, defensive ops
+
+    - name: mobile-security-expert
+      codename: Phantom
+      icon: 📱
+      file: agents/mobile-security-expert.md
+      expertise: iOS/Android security, mobile app penetration testing, OWASP MSTG
+
+    - name: social-engineer
+      codename: Ghost
+      icon: 🎭
+      file: agents/social-engineer.md
+      expertise: Social engineering, phishing simulation, security awareness
+
+  # Agents available for Party Mode collaboration
   party_mode_agents:
-    - bastion    # Security Architect
-    - ghost      # Penetration Tester
-    - trace      # Digital Forensics
-    - cipher     # Cryptography/Secure Comms
-    - sentinel   # Compliance/Governance
+    - cipher      # Threat Analyst
+    - bastion     # Security Architect
+    - sentinel    # Compliance Guardian
+    - trace       # Forensic Investigator
+    - phoenix     # Incident Commander
+    - spectre     # Penetration Tester
+    - watchman    # SOC Analyst
+    - nimbus      # Cloud Security Specialist
+    - ledger      # Blockchain Security Expert
+    - weaver      # Web App Security Expert
+    - gateway     # API Security Expert
+    - oracle      # LLM/AI Security Expert
+    - shield      # Blue Team Lead
+    - phantom     # Mobile Security Expert
+    - ghost       # Social Engineer
 
 # Tool Integration
 tools:
@@ -231,16 +508,17 @@ features:
 
 # Module Metadata
 metadata:
-  author: BMAD Framework + Claude Sonnet 4.5
+  author: BMAD Framework + Claude Opus 4.5
   created_by: workflow-builder
-  total_workflows: 5
-  total_files: 58
-  total_lines: 35000
+  total_workflows: 13
+  total_agents: 15
+  total_files: 149
+  total_lines: 75000
   production_ready: true
   tested: true
   documented: true
 
 # Update Information
-last_updated: 2026-01-08
-update_notes: Complete production release with 5 workflows - Added Compliance Audit Prep and Virtual CISO Consulting
-next_review_date: 2026-04-08  # Quarterly review
+last_updated: 2026-01-09
+update_notes: v1.3.0 - Added 2 new agents (Phantom Mobile Security, Ghost Social Engineer) and 5 new workflows (Blockchain Security Assessment, Mobile Security Testing, Web App Security Testing, Network Assessment, Infrastructure Security Testing)
+next_review_date: 2026-04-09  # Quarterly review

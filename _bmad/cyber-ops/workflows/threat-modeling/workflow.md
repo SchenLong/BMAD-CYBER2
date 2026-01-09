@@ -42,7 +42,17 @@ This uses **step-file architecture** for disciplined execution:
 - 🎯 **ALWAYS** follow the exact instructions in the step file
 - ⏸️ **ALWAYS** halt at menus and wait for user input
 - 📋 **NEVER** create mental todo lists from future steps
-- ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
+- ✅ **ALWAYS** speak in your agent communication style with the config `{communication_language}`
+
+### Related Agents
+
+For specialized threat modeling consultations, consider engaging:
+
+- **Weaver** (Web App Security): For OWASP Top 10 and web application threats
+- **Gateway** (API Security): For API threat patterns and OAuth/OIDC risks
+- **Ledger** (Blockchain Security): For smart contract and DeFi threat vectors
+- **Oracle** (AI/ML Security): For AI system threats including prompt injection
+- **Nimbus** (Cloud Security): For cloud-native threat patterns
 
 ---
 

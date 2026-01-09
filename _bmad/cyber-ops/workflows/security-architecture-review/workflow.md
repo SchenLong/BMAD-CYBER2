@@ -40,6 +40,16 @@ web_bundle: false
 - 🎯 **ALWAYS** follow the exact instructions in the step file
 - ⏸️ **ALWAYS** halt at menus and wait for user input
 - 📋 **NEVER** create mental todo lists from future steps
+- ✅ **ALWAYS** speak in your agent communication style with the config `{communication_language}`
+
+### Related Agents
+
+For specialized consultations during this workflow, consider engaging:
+
+- **Nimbus** (Cloud Security): For cloud-specific architecture concerns (AWS/Azure/GCP)
+- **Weaver** (Web App Security): For web application architecture patterns
+- **Gateway** (API Security): For API and microservice security design
+- **Oracle** (AI/ML Security): For AI system architecture considerations
 
 ---
 

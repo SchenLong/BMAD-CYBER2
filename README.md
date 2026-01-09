@@ -1,13 +1,25 @@
-# 🏰 BMAD Cyber-Ops Module
+# BMAD Module Collection
 
-[![Module Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/BMAD-CYBER2)
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
 
+**Professional-grade AI agent modules for cybersecurity and executive leadership**
+
+This repository contains two production BMAD modules delivering specialized AI capabilities:
+
+| Module | Version | Agents | Workflows | Focus |
+|--------|---------|--------|-----------|-------|
+| **cyber-ops** | v1.0.0 | 6 | 5 | Cybersecurity operations |
+| **exec-ops** | v1.2.0 | 14 | 12 | Executive leadership & strategy |
+
+---
+
+# 🏰 Cyber-Ops Module
+
 **Professional-grade cybersecurity workflows powered by specialized AI agents**
 
-A comprehensive BMAD module delivering enterprise-level security operations capabilities through 6 specialized agents and 5 battle-tested workflows covering the complete security lifecycle—from threat modeling to incident response to compliance audits.
+Enterprise-level security operations capabilities through 6 specialized agents and 5 battle-tested workflows covering the complete security lifecycle—from threat modeling to incident response to compliance audits.
 
 ---
 
@@ -401,7 +413,7 @@ Cyber-Ops Module Workflows
 ```
 BMAD-CYBER2/
 ├── _bmad/
-│   ├── cyber-ops/
+│   ├── cyber-ops/                     # Cybersecurity module
 │   │   ├── agents/                    # 6 agent definitions
 │   │   │   ├── security-architect.md
 │   │   │   ├── threat-analyst.md
@@ -416,9 +428,41 @@ BMAD-CYBER2/
 │   │   │   ├── compliance-audit-prep/
 │   │   │   └── virtual-ciso-consulting/
 │   │   ├── config.yaml               # Module configuration
-│   │   ├── module.yaml               # Module metadata
-│   │   ├── MODULE-CREATION-PLAYBOOK.md  # Build guide
-│   │   ├── TROUBLESHOOTING-GUIDE.md     # Support docs
+│   │   └── README.md                 # Module overview
+│   ├── exec-ops/                      # Executive leadership module
+│   │   ├── agents/                    # 14 advisor definitions
+│   │   │   ├── policy-analyst.md
+│   │   │   ├── political-strategist.md
+│   │   │   ├── debate-coach.md
+│   │   │   ├── stakeholder-mediator.md
+│   │   │   ├── ethics-advisor.md
+│   │   │   ├── communications-director.md
+│   │   │   ├── the-realist.md
+│   │   │   ├── the-liberator.md
+│   │   │   ├── the-revolutionary.md
+│   │   │   ├── the-conservative.md
+│   │   │   ├── the-technocrat.md
+│   │   │   ├── the-strategist-warrior.md
+│   │   │   ├── the-master-strategist.md
+│   │   │   └── the-principled-commander.md
+│   │   ├── workflows/                 # 12 executive workflows
+│   │   │   ├── _shared/               # Shared resources
+│   │   │   │   ├── agent-roster.md
+│   │   │   │   ├── party-mode-presets.md
+│   │   │   │   └── templates/         # Output templates
+│   │   │   ├── strategic-decision-workshop/
+│   │   │   ├── stakeholder-negotiation-prep/
+│   │   │   ├── board-presentation-prep/
+│   │   │   ├── crisis-response-planning/
+│   │   │   ├── strategic-planning-session/
+│   │   │   ├── policy-development/
+│   │   │   ├── conflict-resolution/
+│   │   │   ├── competitive-warfare/
+│   │   │   ├── corporate-political-game/
+│   │   │   ├── political-risk-assessment/
+│   │   │   ├── ethical-dilemma-resolution/
+│   │   │   └── leadership-philosophy/
+│   │   ├── config.yaml               # Module configuration
 │   │   └── README.md                 # Module overview
 │   └── _config/
 │       ├── agent-manifest.csv        # Agent registry
@@ -426,10 +470,14 @@ BMAD-CYBER2/
 ├── .claude/
 │   └── commands/
 │       └── bmad/
-│           └── cyber-ops/
-│               └── agents/           # Command wrappers
+│           ├── cyber-ops/
+│           │   └── agents/           # Command wrappers
+│           └── exec-ops/
+│               ├── agents/           # Command wrappers
+│               └── workflows/        # Workflow wrappers
 └── _output/
-    └── cyber-ops/                    # Generated documents
+    ├── cyber-ops/                    # Generated security documents
+    └── exec-ops/                     # Generated executive documents
 ```
 
 ---
@@ -662,9 +710,128 @@ If you find this module useful, please consider:
 
 ---
 
+# 👔 Exec-Ops Module
+
+**Transform AI into a trusted executive advisory council**
+
+Strategic counsel on high-stakes decisions, organizational politics navigation, and diverse leadership perspectives from realpolitik pragmatism to principled idealism.
+
+---
+
+## Executive Advisors (14 Total)
+
+### Modern Professional Advisors (6)
+
+| Agent | Name | Specialty |
+|-------|------|-----------|
+| `policy-analyst` | Augustus | Evidence-Based Policy Expert |
+| `political-strategist` | Magnus | Campaign & Political Strategy |
+| `debate-coach` | Cicero | Argumentation & Rhetoric Master |
+| `stakeholder-mediator` | Geneva | Negotiation & Consensus Builder |
+| `ethics-advisor` | Sophia | Political Ethics & Values Counsel |
+| `communications-director` | Joseph | Public Messaging & Media Strategy |
+
+### Historical Archetype Advisors (8)
+
+These agents channel historical figures to provide distinct ideological perspectives with documented inherent biases for self-awareness.
+
+| Agent | Name | Archetype |
+|-------|------|-----------|
+| `the-realist` | Niccolo | Master of Realpolitik (Machiavelli/Bismarck) |
+| `the-liberator` | Charles | Moral Transformer (Lincoln/de Gaulle) |
+| `the-revolutionary` | Maximilien | Agent of Change (Robespierre) |
+| `the-conservative` | Burke | Guardian of Tradition (Burke/Metternich) |
+| `the-technocrat` | Lee | Builder of Systems (Lee Kuan Yew/Deng) |
+| `the-strategist-warrior` | Musashi | Master of Timing (Miyamoto Musashi) |
+| `the-master-strategist` | Sun | Supreme Strategist (Sun Tzu) |
+| `the-principled-commander` | Jean-Luc | Diplomat Captain (Jean-Luc Picard) |
+
+---
+
+## Executive Workflows (12 Total)
+
+### Core Workflows (9)
+
+| Command | Workflow | Output |
+|---------|----------|--------|
+| `/strategic-decision-workshop` | Multi-perspective decision analysis | Decision Brief |
+| `/stakeholder-negotiation-prep` | High-stakes negotiation preparation | Negotiation Playbook |
+| `/board-presentation-prep` | Board presentation crafting | Presentation Outline |
+| `/crisis-response-planning` | Crisis communication strategy | Crisis Response Plan |
+| `/strategic-planning-session` | Long-term strategic planning | Strategic Plan |
+| `/policy-development` | Evidence-based policy creation | Policy Document |
+| `/conflict-resolution` | Workplace conflict navigation | Resolution Plan |
+| `/competitive-warfare` | Competitive business battles | Warfare Plan |
+| `/corporate-political-game` | Internal corporate politics | Political Playbook |
+
+### v1.2 Workflows (3)
+
+| Command | Workflow | Output |
+|---------|----------|--------|
+| `/political-risk-assessment` | Political risk evaluation | Risk Assessment |
+| `/ethical-dilemma-resolution` | Complex ethical navigation | Ethical Resolution |
+| `/leadership-philosophy` | Personal leadership development | Leadership Philosophy |
+
+---
+
+## Party Mode Presets (13)
+
+Pre-configured multi-agent combinations for common executive scenarios:
+
+| Preset | Agents | Use Case |
+|--------|--------|----------|
+| `strategic-council` | All 8 Archetypes | Major strategic decisions |
+| `ethics-review` | Sophia, Jean-Luc, Charles | Moral dimensions |
+| `power-analysis` | Magnus, Niccolo, Sun | Political landscape |
+| `comms-strategy` | Joseph, Cicero, Geneva | Messaging & announcements |
+| `risk-assessment` | Burke, Lee, Augustus | Risk identification |
+| `change-management` | Charles, Burke, Lee | Transformation balance |
+| `negotiation-prep` | Geneva, Magnus, Cicero | Negotiation readiness |
+| `crisis-response` | Joseph, Magnus, Jean-Luc, Musashi | Crisis situations |
+| `board-prep` | Augustus, Joseph, Cicero | Board presentations |
+| `strategic-planning` | Sun, Lee, Burke, Maximilien | Long-term strategy |
+| `conflict-resolution` | Geneva, Jean-Luc, Charles, Sophia | Internal conflicts |
+| `all-out-war` | Niccolo, Sun, Musashi, Magnus, Joseph | Competitive warfare |
+| `corporate-politics` | Magnus, Niccolo, Cicero, Geneva, Joseph | Internal politics |
+
+---
+
+## Exec-Ops Quick Start
+
+```bash
+# Launch an advisor
+/exec-ops:policy-analyst         # Augustus - Evidence-based policy
+/exec-ops:the-realist            # Niccolo - Realpolitik perspective
+/exec-ops:the-master-strategist  # Sun - Strategic wisdom
+/exec-ops:the-principled-commander # Jean-Luc - Principled leadership
+
+# Run a workflow
+/strategic-decision-workshop     # Multi-perspective decision analysis
+/leadership-philosophy           # Develop personal leadership philosophy
+/ethical-dilemma-resolution      # Navigate complex ethical dilemmas
+
+# Use Party Mode with preset
+/party-mode
+> "Use the strategic-council preset"
+```
+
+**Full Documentation:** [exec-ops README](_bmad/exec-ops/README.md)
+
+---
+
 ## 📋 Changelog
 
-### v1.0.0 (2026-01-09) - Initial Release
+### exec-ops v1.2.0 (2026-01-09)
+- ✨ 3 new workflows: Political Risk Assessment, Ethical Dilemma Resolution, Leadership Philosophy
+- ✨ 12 total executive workflows with 95+ step files
+- ✨ New output templates for risk, ethics, and leadership documents
+
+### exec-ops v1.1.0 (2026-01-09)
+- ✨ 9 executive workflows with 73 step files
+- ✨ 13 Party Mode presets for common scenarios
+- ✨ Shared agent roster and output templates
+
+### cyber-ops v1.0.0 (2026-01-09) - Initial Release
 - ✨ 6 specialized security agents with rich personas
 - ✨ 5 production-ready workflows
 - ✨ 20+ framework and compliance standard support
