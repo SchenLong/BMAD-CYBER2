@@ -2,7 +2,7 @@
 
 **Purpose:** Validate and potentially rename the 12 agents from the PDS (Political Decision Squad) source material before module creation.
 
-**Source:** `/Users/paultinp/BMAD-Extra/Agents/Customs/PDS/`
+**Source:** `Original PDS (Political Decision Squad) agent definitions`
 
 ---
 

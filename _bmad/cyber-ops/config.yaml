@@ -9,18 +9,18 @@ status: production
 
 # Project Configuration
 project_name: BMAD-CYBER2
-output_folder: /Users/paultinp/BMAD-CYBER2/_output/cyber-ops
-bmb_creations_output_folder: /Users/paultinp/BMAD-CYBER2/_bmad-output/bmb-creations
+output_folder: "{project-root}/_output/cyber-ops"
+bmb_creations_output_folder: "{project-root}/_bmad-output/bmb-creations"
 
 # User Configuration
-user_name: J
+user_name: User
 communication_language: English
 document_output_language: English
 
 # Module Paths
-module_root: /Users/paultinp/BMAD-CYBER2/_bmad/cyber-ops
-workflows_path: /Users/paultinp/BMAD-CYBER2/_bmad/cyber-ops/workflows
-agents_path: /Users/paultinp/BMAD-CYBER2/_bmad/cyber-ops/agents
+module_root: "{project-root}/_bmad/cyber-ops"
+workflows_path: "{project-root}/_bmad/cyber-ops/workflows"
+agents_path: "{project-root}/_bmad/cyber-ops/agents"
 
 # Workflow Registry
 workflows:
@@ -156,7 +156,7 @@ frameworks:
 
 # Output Configuration
 output:
-  base_path: /Users/paultinp/BMAD-CYBER2/_output/cyber-ops
+  base_path: "{project-root}/_output/cyber-ops"
   incident_response:
     playbooks: playbooks
     incident_reports: incidents
