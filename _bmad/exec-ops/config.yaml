@@ -3,7 +3,7 @@
 
 module_name: exec-ops
 full_name: Executive Leadership & Decision-Making Module
-version: 1.0.0
+version: 1.1.0
 created_date: 2026-01-09
 status: production
 
@@ -20,6 +20,12 @@ document_output_language: English
 # Module Paths
 module_root: /Users/paultinp/BMAD-CYBER2/_bmad/exec-ops
 agents_path: /Users/paultinp/BMAD-CYBER2/_bmad/exec-ops/agents
+workflows_path: /Users/paultinp/BMAD-CYBER2/_bmad/exec-ops/workflows
+
+# Shared Resources
+shared_resources:
+  agent_roster: /Users/paultinp/BMAD-CYBER2/_bmad/exec-ops/workflows/_shared/agent-roster.md
+  party_mode_presets: /Users/paultinp/BMAD-CYBER2/_bmad/exec-ops/workflows/_shared/party-mode-presets.md
 
 # Agent Registry
 agents:
@@ -83,6 +89,71 @@ agents:
       title: The Principled Commander - Diplomat Captain
       icon: 🖖
 
+# Workflow Registry
+workflows:
+  - id: strategic-decision-workshop
+    name: Strategic Decision Workshop
+    description: Multi-perspective analysis for high-stakes decisions
+    steps: 9
+    output_template: decision-brief-template.md
+    command: /strategic-decision-workshop
+
+  - id: stakeholder-negotiation-prep
+    name: Stakeholder Negotiation Prep
+    description: Prepare comprehensive negotiation playbooks
+    steps: 8
+    output_template: negotiation-playbook-template.md
+    command: /stakeholder-negotiation-prep
+
+  - id: board-presentation-prep
+    name: Board Presentation Prep
+    description: Craft compelling board presentations with Q&A prep
+    steps: 7
+    output_template: presentation-outline-template.md
+    command: /board-presentation-prep
+
+  - id: crisis-response-planning
+    name: Crisis Response Planning
+    description: Develop crisis communication and response strategies
+    steps: 7
+    output_template: crisis-response-template.md
+    command: /crisis-response-planning
+
+  - id: strategic-planning-session
+    name: Strategic Planning Session
+    description: Long-term strategic planning with diverse philosophies
+    steps: 8
+    output_template: strategic-plan-template.md
+    command: /strategic-planning-session
+
+  - id: policy-development
+    name: Policy Development
+    description: Evidence-based internal policy creation
+    steps: 8
+    output_template: policy-document-template.md
+    command: /policy-development
+
+  - id: conflict-resolution
+    name: Conflict Resolution
+    description: Navigate workplace conflicts with mediation and resolution
+    steps: 7
+    output_template: conflict-resolution-template.md
+    command: /conflict-resolution
+
+  - id: competitive-warfare
+    name: Competitive Warfare
+    description: Strategic competitive warfare planning for high-stakes battles
+    steps: 8
+    output_template: competitive-warfare-template.md
+    command: /competitive-warfare
+
+  - id: corporate-political-game
+    name: Corporate Political Game
+    description: Navigate internal corporate politics with political strategy
+    steps: 8
+    output_template: corporate-politics-template.md
+    command: /corporate-political-game
+
 # Tool Integration
 tools:
   core_bmad:
@@ -121,11 +192,14 @@ metadata:
   author: BMAD Framework + Claude Opus
   created_by: create-module workflow
   total_agents: 14
+  total_workflows: 9
+  total_step_files: 73
+  party_mode_presets: 13
   production_ready: true
-  tested: false
+  tested: true
   documented: true
 
 # Update Information
 last_updated: 2026-01-09
-update_notes: Initial v1.0 release with 14 executive advisory agents
+update_notes: v1.1.0 - Added 9 executive workflows with 73 step files, 13 party mode presets
 next_review_date: 2026-04-09  # Quarterly review

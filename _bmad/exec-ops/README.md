@@ -4,7 +4,11 @@ Transform AI into a trusted executive advisory council that provides strategic c
 
 ## Version
 
-**v1.0.0** - Initial Release (2026-01-09)
+**v1.1.0** - Workflows Release (2026-01-09)
+- Added 9 executive workflows with 73 step files
+- Created shared agent roster and output templates
+- Full step-file architecture for disciplined execution
+- Added 13 Party Mode presets for common executive scenarios
 
 ## Agents (14 Total)
 
@@ -45,19 +49,42 @@ Invoke any agent using their slash command:
 /exec-ops:the-principled-commander # Jean-Luc - Principled leadership
 ```
 
-## Party Mode
+## Party Mode & Presets
 
-For multi-advisor debates on complex decisions, use Party Mode to assemble your executive council:
+For multi-advisor debates on complex decisions, use Party Mode with pre-configured presets:
 
 ```
 /party-mode
 ```
 
-Suggested advisory panels:
-- **Strategic Council**: Sun + Niccolo + Magnus (grand strategy)
-- **Ethics Board**: Sophia + Charles + Jean-Luc (moral guidance)
-- **Crisis Team**: Joseph + Phoenix + Geneva (crisis management)
-- **Debate Prep**: Cicero + Maximilien + Burke (argument testing)
+### Available Presets (13)
+
+| Preset ID | Agents | Use Case |
+|-----------|--------|----------|
+| `strategic-council` | All 8 Archetypes | Major strategic decisions |
+| `ethics-review` | Sophia, Jean-Luc, Charles | Moral dimensions |
+| `power-analysis` | Magnus, Niccolo, Sun | Political landscape |
+| `comms-strategy` | Joseph, Cicero, Geneva | Messaging, announcements |
+| `risk-assessment` | Burke, Lee, Augustus | Risk identification |
+| `change-management` | Charles, Burke, Lee | Transformation balance |
+| `negotiation-prep` | Geneva, Magnus, Cicero | Negotiation readiness |
+| `crisis-response` | Joseph, Magnus, Jean-Luc, Musashi | Crisis situations |
+| `board-prep` | Augustus, Joseph, Cicero | Board presentations |
+| `strategic-planning` | Sun, Lee, Burke, Maximilien | Long-term strategy |
+| `conflict-resolution` | Geneva, Jean-Luc, Charles, Sophia | Internal conflicts |
+| `all-out-war` | Niccolo, Sun, Musashi, Magnus, Joseph | Competitive warfare |
+| `corporate-politics` | Magnus, Niccolo, Cicero, Geneva, Joseph | Internal politics |
+
+### Invoke a Preset
+
+During any workflow or Party Mode session:
+```
+"Use the strategic-council preset"
+"Let's run the ethics-review preset for this decision"
+"Invoke power-analysis for stakeholder mapping"
+```
+
+Full preset documentation: `_bmad/exec-ops/workflows/_shared/party-mode-presets.md`
 
 ## Use Cases
 
@@ -85,6 +112,45 @@ Suggested advisory panels:
 - Counter-argument anticipation
 - Rhetorical strengthening
 
+## Workflows (9 Total)
+
+Execute guided multi-step processes that orchestrate multiple agents for comprehensive executive deliverables.
+
+| Command | Workflow | Steps | Output |
+|---------|----------|-------|--------|
+| `/strategic-decision-workshop` | Strategic Decision Workshop | 9 | Decision Brief |
+| `/stakeholder-negotiation-prep` | Stakeholder Negotiation Prep | 8 | Negotiation Playbook |
+| `/board-presentation-prep` | Board Presentation Prep | 7 | Presentation Outline |
+| `/crisis-response-planning` | Crisis Response Planning | 7 | Crisis Response Plan |
+| `/strategic-planning-session` | Strategic Planning Session | 8 | Strategic Plan |
+| `/policy-development` | Policy Development | 8 | Policy Document |
+| `/conflict-resolution` | Conflict Resolution | 7 | Resolution Plan |
+| `/competitive-warfare` | Competitive Warfare | 8 | Warfare Plan |
+| `/corporate-political-game` | Corporate Political Game | 8 | Political Playbook |
+
+### Workflow Quick Start
+
+```
+/strategic-decision-workshop     # Multi-perspective decision analysis
+/stakeholder-negotiation-prep    # Prepare for high-stakes negotiations
+/board-presentation-prep         # Craft compelling board presentations
+/crisis-response-planning        # Develop crisis communication strategy
+/strategic-planning-session      # Long-term strategic planning
+/policy-development              # Evidence-based policy creation
+/conflict-resolution             # Navigate workplace conflicts
+/competitive-warfare             # Plan competitive business battles
+/corporate-political-game        # Navigate internal corporate politics
+```
+
+### Workflow Architecture
+
+All workflows use **step-file architecture** for disciplined execution:
+- **Micro-file Design**: Each step is a self-contained instruction file
+- **Just-In-Time Loading**: Only current step in memory
+- **Sequential Enforcement**: Complete steps in order
+- **State Tracking**: Progress tracked in frontmatter
+- **Append-Only Building**: Build outputs progressively
+
 ## Module Structure
 
 ```
@@ -104,6 +170,38 @@ _bmad/exec-ops/
 │   ├── the-strategist-warrior.md
 │   ├── the-master-strategist.md
 │   └── the-principled-commander.md
+├── workflows/              # 9 executive workflows
+│   ├── _shared/
+│   │   ├── agent-roster.md
+│   │   ├── party-mode-presets.md  # 13 preset configurations
+│   │   └── templates/      # 9 output templates
+│   ├── strategic-decision-workshop/
+│   │   ├── workflow.md
+│   │   └── steps/          # 9 step files
+│   ├── stakeholder-negotiation-prep/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── board-presentation-prep/
+│   │   ├── workflow.md
+│   │   └── steps/          # 7 step files
+│   ├── crisis-response-planning/
+│   │   ├── workflow.md
+│   │   └── steps/          # 7 step files
+│   ├── strategic-planning-session/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── policy-development/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── conflict-resolution/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── competitive-warfare/
+│   │   ├── workflow.md
+│   │   └── steps/          # 9 step files
+│   └── corporate-political-game/
+│       ├── workflow.md
+│       └── steps/          # 9 step files
 ├── config.yaml             # Module configuration
 └── README.md               # This file
 ```
@@ -117,11 +215,11 @@ The module uses `_bmad/exec-ops/config.yaml` for configuration including:
 
 ## Roadmap
 
-### v1.1 (Planned)
-- Guided workflows for strategic planning
-- Stakeholder analysis workflow
-- Decision documentation templates
-- Cross-agent orchestration
+### v1.2 (Planned)
+- M&A due diligence workflow
+- Leadership transition planning
+- Board relations management workflow
+- Performance review preparation workflow
 
 ## Credits
 
