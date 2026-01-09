@@ -44,6 +44,16 @@ This uses **step-file architecture** for disciplined execution:
 - 📋 **NEVER** create mental todo lists from future steps
 - ✅ **ALWAYS** speak in your agent communication style with the config `{communication_language}`
 
+### Related Agents
+
+For specialized vCISO consultations, consider engaging:
+
+- **Shield** (Blue Team Lead): For defensive operations strategy
+- **Sentinel** (Compliance Guardian): For regulatory and audit guidance
+- **Nimbus** (Cloud Security): For cloud security strategy
+- **Oracle** (AI/ML Security): For AI governance considerations
+- **Watchman** (SOC Analyst): For security operations center strategy
+
 ---
 
 ## INITIALIZATION SEQUENCE

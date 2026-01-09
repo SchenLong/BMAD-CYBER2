@@ -1,0 +1,226 @@
+# Exec-Ops Module Configuration
+# Module for executive leadership and decision-making
+
+module_name: exec-ops
+full_name: Executive Leadership & Decision-Making Module
+version: 1.2.0
+created_date: 2026-01-09
+status: production
+
+# Project Configuration
+project_name: BMAD-CYBER2
+output_folder: "{project-root}/_output/exec-ops"
+bmb_creations_output_folder: "{project-root}/_bmad-output/bmb-creations"
+
+# User Configuration
+user_name: User
+communication_language: English
+document_output_language: English
+
+# Module Paths
+module_root: "{project-root}/_bmad/exec-ops"
+agents_path: "{project-root}/_bmad/exec-ops/agents"
+workflows_path: "{project-root}/_bmad/exec-ops/workflows"
+
+# Shared Resources
+shared_resources:
+  agent_roster: "{project-root}/_bmad/exec-ops/workflows/_shared/agent-roster.md"
+  party_mode_presets: "{project-root}/_bmad/exec-ops/workflows/_shared/party-mode-presets.md"
+
+# Agent Registry
+agents:
+  modern_professional:
+    - id: policy-analyst
+      name: Augustus
+      title: Evidence-Based Policy Expert
+      icon: 📊
+    - id: political-strategist
+      name: Magnus
+      title: Campaign & Political Strategy
+      icon: ♟️
+    - id: debate-coach
+      name: Cicero
+      title: Argumentation & Rhetoric Master
+      icon: 🎭
+    - id: stakeholder-mediator
+      name: Geneva
+      title: Negotiation & Consensus Builder
+      icon: 🤝
+    - id: ethics-advisor
+      name: Sophia
+      title: Political Ethics & Values Counsel
+      icon: ⚖️
+    - id: communications-director
+      name: Joseph
+      title: Public Messaging & Media Strategy
+      icon: 📢
+
+  historical_archetype:
+    - id: the-realist
+      name: Niccolo
+      title: The Realist - Master of Realpolitik
+      icon: 🦊
+    - id: the-liberator
+      name: Charles
+      title: The Liberator - Moral Transformer
+      icon: 🕊️
+    - id: the-revolutionary
+      name: Maximilien
+      title: The Revolutionary - Agent of Change
+      icon: ✊
+    - id: the-conservative
+      name: Burke
+      title: The Conservative - Guardian of Tradition
+      icon: 🏛️
+    - id: the-technocrat
+      name: Lee
+      title: The Technocrat - Builder of Systems
+      icon: ⚙️
+    - id: the-strategist-warrior
+      name: Musashi
+      title: The Strategist-Warrior - Master of Timing
+      icon: ⚔️
+    - id: the-master-strategist
+      name: Sun
+      title: The Master Strategist - Supreme Strategist
+      icon: 🐉
+    - id: the-principled-commander
+      name: Jean-Luc
+      title: The Principled Commander - Diplomat Captain
+      icon: 🖖
+
+# Workflow Registry
+workflows:
+  - id: strategic-decision-workshop
+    name: Strategic Decision Workshop
+    description: Multi-perspective analysis for high-stakes decisions
+    steps: 9
+    output_template: decision-brief-template.md
+    command: /strategic-decision-workshop
+
+  - id: stakeholder-negotiation-prep
+    name: Stakeholder Negotiation Prep
+    description: Prepare comprehensive negotiation playbooks
+    steps: 8
+    output_template: negotiation-playbook-template.md
+    command: /stakeholder-negotiation-prep
+
+  - id: board-presentation-prep
+    name: Board Presentation Prep
+    description: Craft compelling board presentations with Q&A prep
+    steps: 7
+    output_template: presentation-outline-template.md
+    command: /board-presentation-prep
+
+  - id: crisis-response-planning
+    name: Crisis Response Planning
+    description: Develop crisis communication and response strategies
+    steps: 7
+    output_template: crisis-response-template.md
+    command: /crisis-response-planning
+
+  - id: strategic-planning-session
+    name: Strategic Planning Session
+    description: Long-term strategic planning with diverse philosophies
+    steps: 8
+    output_template: strategic-plan-template.md
+    command: /strategic-planning-session
+
+  - id: policy-development
+    name: Policy Development
+    description: Evidence-based internal policy creation
+    steps: 8
+    output_template: policy-document-template.md
+    command: /policy-development
+
+  - id: conflict-resolution
+    name: Conflict Resolution
+    description: Navigate workplace conflicts with mediation and resolution
+    steps: 7
+    output_template: conflict-resolution-template.md
+    command: /conflict-resolution
+
+  - id: competitive-warfare
+    name: Competitive Warfare
+    description: Strategic competitive warfare planning for high-stakes battles
+    steps: 8
+    output_template: competitive-warfare-template.md
+    command: /competitive-warfare
+
+  - id: corporate-political-game
+    name: Corporate Political Game
+    description: Navigate internal corporate politics with political strategy
+    steps: 8
+    output_template: corporate-politics-template.md
+    command: /corporate-political-game
+
+  - id: ethical-dilemma-resolution
+    name: Ethical Dilemma Resolution
+    description: Navigate complex ethical dilemmas with multi-perspective analysis
+    steps: 8
+    output_template: ethical-resolution-template.md
+    command: /ethical-dilemma-resolution
+
+  - id: leadership-philosophy
+    name: Leadership Philosophy Development
+    description: Develop personal leadership philosophy through historical dialogue
+    steps: 7
+    output_template: leadership-philosophy-template.md
+    command: /leadership-philosophy
+
+  - id: political-risk-assessment
+    name: Political Risk Assessment
+    description: Evaluate political risks in strategic decisions and initiatives
+    steps: 7
+    output_template: political-risk-template.md
+    command: /political-risk-assessment
+
+# Tool Integration
+tools:
+  core_bmad:
+    - party-mode
+    - advanced-elicitation
+    - brainstorming
+  llm_features:
+    - web-browsing
+    - file-io
+    - sidecar-file
+
+# Output Configuration
+output:
+  base_path: "{project-root}/_output/exec-ops"
+  planning: planning
+  decisions: decisions
+  documentation: docs
+
+  formats:
+    - markdown
+
+  include_metadata: true
+  include_timestamps: true
+  version_control: true
+
+# Feature Flags
+features:
+  multi_session_continuation: true
+  party_mode_integration: true
+  web_browsing: true
+  advanced_elicitation: true
+  brainstorming: true
+
+# Module Metadata
+metadata:
+  author: BMAD Framework + Claude Opus
+  created_by: create-module workflow
+  total_agents: 14
+  total_workflows: 12
+  total_step_files: 95
+  party_mode_presets: 13
+  production_ready: true
+  tested: true
+  documented: true
+
+# Update Information
+last_updated: 2026-01-10
+update_notes: v1.2.0 - Added 3 additional workflows (ethical-dilemma-resolution, leadership-philosophy, political-risk-assessment)
+next_review_date: 2026-04-10  # Quarterly review

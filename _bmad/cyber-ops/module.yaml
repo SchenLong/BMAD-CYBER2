@@ -9,14 +9,28 @@ default_selected: false
 prompt:
   - "🔒 Installing Cybersecurity Operations (Cyber-Ops) Module"
   - ""
-  - "This module provides 6 specialized security agents:"
-  - "  - Bastion (Security Architecture)"
-  - "  - Cipher (Threat Intelligence)"
-  - "  - Ghost (Penetration Testing)"
-  - "  - Phoenix (Incident Response)"
-  - "  - Sentinel (Compliance & Risk)"
-  - "  - Trace (Digital Forensics)"
+  - "This module provides 15 specialized security agents:"
   - ""
+  - "  Core Security Team:"
+  - "  - Cipher (Threat Intelligence & APT Analysis)"
+  - "  - Bastion (Security Architecture & Zero Trust)"
+  - "  - Sentinel (Compliance & Governance)"
+  - "  - Trace (Digital Forensics & Evidence)"
+  - "  - Phoenix (Incident Command & Crisis)"
+  - "  - Spectre (Penetration Testing & Red Team)"
+  - ""
+  - "  Extended Security Team:"
+  - "  - Watchman (SOC Analysis & Detection)"
+  - "  - Nimbus (Cloud Security - AWS/Azure/GCP)"
+  - "  - Ledger (Blockchain & Web3 Security)"
+  - "  - Weaver (Web Application Security)"
+  - "  - Gateway (API Security & OAuth)"
+  - "  - Oracle (AI/ML & LLM Security)"
+  - "  - Shield (Blue Team Lead & Purple Team)"
+  - "  - Phantom (Mobile App Security - iOS/Android)"
+  - "  - Ghost (Social Engineering & Awareness)"
+  - ""
+  - "13 comprehensive security workflows included."
   - "Expert cybersecurity guidance integrated into your BMAD workflow."
 
 # Core config values are automatically inherited from installer:
@@ -43,7 +57,7 @@ module_code:
   result: "cyber-ops"
 
 module_version:
-  result: "1.0.0"
+  result: "1.3.0"
 
 # STATIC: Module paths
 agents_path:

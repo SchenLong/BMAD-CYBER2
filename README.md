@@ -1,13 +1,25 @@
-# 🏰 BMAD Cyber-Ops Module
+# BMAD Module Collection
 
-[![Module Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/BMAD-CYBER2)
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
 
+**Professional-grade AI agent modules for cybersecurity and executive leadership**
+
+This repository contains two production BMAD modules delivering specialized AI capabilities:
+
+| Module | Version | Agents | Workflows | Focus |
+|--------|---------|--------|-----------|-------|
+| **cyber-ops** | v1.3.0 | 15 | 13 | Cybersecurity operations |
+| **exec-ops** | v1.2.0 | 14 | 12 | Executive leadership & strategy |
+
+---
+
+# 🏰 Cyber-Ops Module
+
 **Professional-grade cybersecurity workflows powered by specialized AI agents**
 
-A comprehensive BMAD module delivering enterprise-level security operations capabilities through 6 specialized agents and 5 battle-tested workflows covering the complete security lifecycle—from threat modeling to incident response to compliance audits.
+Enterprise-level security operations capabilities through 15 specialized agents and 13 battle-tested workflows covering the complete security lifecycle—from threat modeling to incident response to compliance audits, cloud security assessments, blockchain auditing, and infrastructure hardening.
 
 ---
 
@@ -25,11 +37,14 @@ The **Cyber-Ops Module** brings cybersecurity expertise to the BMAD ecosystem, e
 
 ---
 
-## ✨ What's New in v1.0.0
+## ✨ What's New in v1.3.0
 
-- **6 Elite Security Agents** with deep domain expertise and distinctive personas
-- **5 Production Workflows** covering the complete security operations lifecycle
-- **20+ Framework Support** including NIST, MITRE ATT&CK, STRIDE, ISO 27001, SOC 2, and more
+- **15 Elite Security Agents** with deep domain expertise and distinctive personas
+- **13 Production Workflows** covering the complete security operations lifecycle
+- **30+ Framework Support** including NIST, MITRE ATT&CK, STRIDE, OWASP, CIS Benchmarks, PTES, and more
+- **Cloud Security** with multi-cloud coverage (AWS, Azure, GCP)
+- **Web3/Blockchain** smart contract auditing and DeFi security
+- **API & LLM Security** modern application security testing
 - **Multi-Session Continuation** for long-running security engagements
 - **Party Mode Integration** for multi-agent collaboration on complex scenarios
 - **Professional Deliverables** generating 50-150 page documents ready for stakeholders
@@ -119,6 +134,132 @@ The **Cyber-Ops Module** brings cybersecurity expertise to the BMAD ecosystem, e
 - Chain of custody management
 
 **Persona:** Senior forensic examiner with 16+ years spanning law enforcement and corporate investigations. Former FBI cyber division special agent. EnCE, GCFE, GNFA certified.
+
+---
+
+### 👁️ Watchman - SOC Analyst
+> *"Alert correlation is telling us something... Let me tune that detection rule..."*
+
+**Security Operations Center Specialist**
+- SIEM management and alert triage
+- EDR/XDR operations
+- Detection engineering
+- Threat hunting
+- Incident escalation
+
+**Persona:** Senior SOC analyst with 12+ years in 24/7 security operations. Former security engineer who built detection pipelines from scratch. GCIA, GCIH, Splunk certified.
+
+---
+
+### ☁️ Nimbus - Cloud Security Specialist
+> *"That IAM policy is way too permissive... Let's check the cloud trail..."*
+
+**Cloud Security Architect**
+- Multi-cloud security (AWS, Azure, GCP)
+- IAM and identity governance
+- CSPM and cloud posture
+- Container and serverless security
+- Cloud-native security architecture
+
+**Persona:** Principal cloud security architect with 15+ years across all major cloud platforms. Former DevOps lead turned security architect. AWS Security Specialty, Azure Security Engineer, GCP Professional certified.
+
+---
+
+### ⛓️ Ledger - Blockchain Security Expert
+> *"That reentrancy pattern is classic... Show me the token approval flow..."*
+
+**Web3 Security Specialist**
+- Smart contract auditing (Solidity, Vyper, Rust)
+- DeFi protocol security
+- Bridge and cross-chain security
+- Token economics analysis
+- Web3 wallet security
+
+**Persona:** Senior blockchain security researcher with deep expertise in DeFi exploits and smart contract vulnerabilities. Former smart contract developer turned security auditor. Multiple critical vulnerability discoveries across top protocols.
+
+---
+
+### 🌐 Weaver - Web Application Security Expert
+> *"That input sanitization is incomplete... Let me check the authentication flow..."*
+
+**Web Application Security Specialist**
+- OWASP Top 10 assessment
+- Authentication and session security
+- API security testing
+- Client-side security
+- Secure SDLC integration
+
+**Persona:** Principal application security engineer with 16+ years securing web applications at scale. Former developer turned security expert. OSWE, GWAPT, CSSLP certified.
+
+---
+
+### 🔌 Gateway - API Security Expert
+> *"That authorization model needs work... Let me trace the data flow..."*
+
+**API Security Specialist**
+- REST, GraphQL, gRPC security
+- OAuth/OIDC implementation review
+- API gateway security
+- Rate limiting and abuse prevention
+- API inventory and discovery
+
+**Persona:** Senior API security architect with 14+ years designing secure API ecosystems. Former API platform engineer who understands both sides. OWASP API Security Project contributor.
+
+---
+
+### 🧠 Oracle - LLM/AI Security Expert
+> *"That prompt template is injectable... Let's review the guardrails..."*
+
+**AI/ML Security Specialist**
+- LLM security and prompt injection
+- AI model security
+- Training data security
+- AI governance and ethics
+- Adversarial ML defense
+
+**Persona:** AI security researcher at the frontier of LLM and ML security. Former ML engineer turned security specialist. Published researcher on adversarial attacks and AI safety. OWASP LLM Top 10 contributor.
+
+---
+
+### 🛡️ Shield - Blue Team Lead
+> *"Detection coverage has gaps... Let's run a purple team exercise..."*
+
+**Defensive Operations Lead**
+- Detection engineering
+- Purple team operations
+- Security automation
+- Threat hunting programs
+- Blue team mentorship
+
+**Persona:** Director of detection engineering with 18+ years building defensive security programs. Former red teamer turned blue team leader. GREM, GCTI, SANS instructor.
+
+---
+
+### 📱 Phantom - Mobile Security Expert
+> *"That certificate pinning is bypassable... Check the local storage encryption..."*
+
+**Mobile Application Security Specialist**
+- iOS and Android security testing
+- Mobile app reverse engineering
+- OWASP MSTG methodology
+- Mobile device management security
+- Mobile malware analysis
+
+**Persona:** Senior mobile security researcher with 13+ years across iOS and Android platforms. Former mobile developer turned security specialist. GMOB, OSCE3 certified.
+
+---
+
+### 🎭 Specter - Social Engineer
+> *"That pretext needs refinement... The authority trigger isn't strong enough..."*
+
+**Human-Centric Security Specialist**
+- Social engineering assessments
+- Phishing campaign design
+- Vishing and pretexting
+- Physical security testing
+- Security awareness program design
+
+**Persona:** Elite social engineer with 15+ years in authorized adversarial human testing. Former law enforcement background in interview techniques. SEPP certified, Chris Hadnagy trained.
 
 ---
 
@@ -232,6 +373,191 @@ The **Cyber-Ops Module** brings cybersecurity expertise to the BMAD ecosystem, e
 
 ---
 
+### 6. ⛓️ Blockchain Security Assessment
+**Type:** Linear
+**Complexity:** 9 steps
+**Output:** Smart contract audit report with vulnerability analysis
+
+**Coverage:**
+- Smart contract code review (Solidity, Vyper, Rust)
+- DeFi protocol security analysis
+- Token economics review
+- Access control and privilege analysis
+- Cross-chain bridge security
+- Oracle manipulation risks
+
+**Frameworks:** SWC Registry, DeFi Security Best Practices, Trail of Bits Guidelines
+
+**Perfect for:**
+- Pre-deployment smart contract audits
+- DeFi protocol security reviews
+- Token launch security validation
+- Bridge and cross-chain assessments
+
+---
+
+### 7. 📱 Mobile Security Testing
+**Type:** Linear
+**Complexity:** 9 steps
+**Output:** Mobile application security assessment report
+
+**Coverage:**
+- Static analysis (SAST)
+- Dynamic analysis (DAST)
+- Binary protection analysis
+- Local data storage security
+- Network communication security
+- Authentication and session management
+- Platform-specific security controls
+
+**Frameworks:** OWASP MSTG, MASVS, Platform Security Guides
+
+**Perfect for:**
+- Mobile app security assessments
+- Pre-release security validation
+- Regulatory compliance (PCI, HIPAA)
+- Third-party app security reviews
+
+---
+
+### 8. 🌐 Web Application Security Testing
+**Type:** Linear
+**Complexity:** 8 steps
+**Output:** Web application penetration test report
+
+**Coverage:**
+- OWASP Top 10 vulnerability assessment
+- Authentication and authorization testing
+- Session management analysis
+- Input validation and injection testing
+- Business logic testing
+- API security assessment
+
+**Frameworks:** OWASP Testing Guide, OWASP Top 10, ASVS, WSTG
+
+**Perfect for:**
+- Web application penetration tests
+- Pre-deployment security assessments
+- Compliance-driven testing
+- Bug bounty program support
+
+---
+
+### 9. 🔗 Network Assessment
+**Type:** Linear
+**Complexity:** 8 steps
+**Output:** Network penetration test report
+
+**Coverage:**
+- External and internal network testing
+- Active Directory security assessment
+- Network segmentation analysis
+- Vulnerability scanning and validation
+- Privilege escalation paths
+- Lateral movement analysis
+
+**Frameworks:** PTES, NIST SP 800-115, OSSTMM
+
+**Perfect for:**
+- Network penetration tests
+- Active Directory assessments
+- Segmentation validation
+- Red team engagements
+
+---
+
+### 10. 🏗️ Infrastructure Security Testing
+**Type:** Linear
+**Complexity:** 9 steps
+**Output:** Infrastructure security assessment report
+
+**Coverage:**
+- Server hardening assessment
+- Container security (Docker, Kubernetes)
+- CI/CD pipeline security
+- Secrets management review
+- Infrastructure as Code (IaC) analysis
+- Configuration management security
+
+**Frameworks:** CIS Benchmarks, NIST 800-123, Docker/K8s Security Guides
+
+**Perfect for:**
+- Infrastructure security assessments
+- DevSecOps maturity reviews
+- Container security audits
+- Cloud infrastructure hardening
+
+---
+
+### 11. ☁️ Cloud Security Assessment
+**Type:** Linear
+**Complexity:** 9 steps
+**Output:** Cloud security posture assessment report
+
+**Coverage:**
+- IAM and identity governance
+- Network security configuration
+- Data protection and encryption
+- Logging and monitoring
+- Compute security (VM, container, serverless)
+- Compliance mapping
+
+**Frameworks:** CIS Benchmarks (AWS/Azure/GCP), CSA CCM, Well-Architected
+
+**Perfect for:**
+- Cloud security assessments
+- Multi-cloud security reviews
+- Cloud migration security planning
+- Compliance validation
+
+---
+
+### 12. 🔧 Vulnerability Management
+**Type:** Linear
+**Complexity:** 8 steps
+**Output:** Vulnerability management program documentation
+
+**Coverage:**
+- Asset inventory and criticality
+- Scanning strategy and tooling
+- Vulnerability prioritization (CVSS, EPSS)
+- Remediation planning and tracking
+- Metrics and reporting
+- Program maturity assessment
+
+**Frameworks:** NIST, FIRST EPSS, ISO 27001 A.12.6
+
+**Perfect for:**
+- Vulnerability management program design
+- VM program maturity improvement
+- Compliance preparation
+- Risk-based prioritization
+
+---
+
+### 13. 🎓 Security Awareness Training
+**Type:** Linear
+**Complexity:** 7 steps
+**Output:** Security awareness program design document
+
+**Coverage:**
+- Risk assessment and threat analysis
+- Training content development
+- Phishing simulation design
+- Delivery strategy planning
+- Metrics and measurement
+- Continuous improvement roadmap
+
+**Frameworks:** NIST 800-50, SANS Security Awareness, ISO 27001 A.7.2.2
+
+**Perfect for:**
+- Security awareness program design
+- Phishing program development
+- Human risk management
+- Compliance training requirements
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -245,12 +571,25 @@ The **Cyber-Ops Module** brings cybersecurity expertise to the BMAD ecosystem, e
 
 ```bash
 # Open Claude Code CLI and invoke any agent:
+
+# Core Security Team (6)
 /security-architect    # Bastion - Architecture & Defense
 /threat-analyst        # Cipher - Threat Intelligence
 /penetration-tester    # Ghost - Offensive Security
 /incident-commander    # Phoenix - Incident Response
 /compliance-guardian   # Sentinel - Compliance & Risk
 /forensic-investigator # Trace - Digital Forensics
+
+# Extended Security Team (9)
+/soc-analyst           # Watchman - SOC Operations
+/cloud-security        # Nimbus - Cloud Security
+/blockchain-security   # Ledger - Web3 Security
+/webapp-security       # Weaver - Web App Security
+/api-security          # Gateway - API Security
+/llm-security          # Oracle - AI/LLM Security
+/blue-team-lead        # Shield - Blue Team Operations
+/mobile-security       # Phantom - Mobile Security
+/social-engineer       # Specter - Social Engineering
 ```
 
 #### 2. Run a Workflow
@@ -354,32 +693,59 @@ Load workflow: _bmad/cyber-ops/workflows/virtual-ciso-consulting/workflow.md
 ## 🎨 Workflow Visualization
 
 ```
-Cyber-Ops Module Workflows
+Cyber-Ops Module Workflows (13)
 │
 ├─── 🚨 Incident Response
 │    ├─ Mode A: Playbook Creation
 │    └─ Mode B: Guided Execution
-│         └─ PICERL Methodology
 │
 ├─── 🏗️ Architecture Review
 │    ├─ STRIDE Threat Modeling
-│    ├─ Zero-Trust Validation
-│    └─ Recommendations
+│    └─ Zero-Trust Validation
 │
 ├─── 🎯 Threat Modeling
-│    ├─ System Decomposition
 │    ├─ Per-Component STRIDE
 │    └─ Risk Prioritization
 │
 ├─── 📋 Compliance Audit
 │    ├─ Framework Selection (20+)
-│    ├─ Gap Assessment
 │    └─ Evidence Collection
 │
-└─── 💼 Virtual CISO
-     ├─ Strategic Planning
-     ├─ Maturity Assessment
-     └─ Governance Design
+├─── 💼 Virtual CISO
+│    ├─ Strategic Planning
+│    └─ Maturity Assessment
+│
+├─── ⛓️ Blockchain Security
+│    ├─ Smart Contract Audit
+│    └─ DeFi Protocol Review
+│
+├─── 📱 Mobile Security
+│    ├─ iOS/Android Testing
+│    └─ OWASP MSTG
+│
+├─── 🌐 Web App Security
+│    ├─ OWASP Top 10
+│    └─ Penetration Testing
+│
+├─── 🔗 Network Assessment
+│    ├─ PTES Methodology
+│    └─ AD Security
+│
+├─── 🏗️ Infrastructure Security
+│    ├─ Container/K8s
+│    └─ CI/CD Pipeline
+│
+├─── ☁️ Cloud Security
+│    ├─ Multi-Cloud (AWS/Azure/GCP)
+│    └─ IAM & Posture
+│
+├─── 🔧 Vulnerability Mgmt
+│    ├─ Program Design
+│    └─ Risk Prioritization
+│
+└─── 🎓 Security Awareness
+     ├─ Training Design
+     └─ Phishing Programs
 ```
 
 ---
@@ -389,24 +755,73 @@ Cyber-Ops Module Workflows
 ```
 BMAD-CYBER2/
 ├── _bmad/
-│   ├── cyber-ops/
-│   │   ├── agents/                    # 6 agent definitions
-│   │   │   ├── security-architect.md
-│   │   │   ├── threat-analyst.md
-│   │   │   ├── penetration-tester.md
-│   │   │   ├── incident-commander.md
-│   │   │   ├── compliance-guardian.md
-│   │   │   └── forensic-investigator.md
-│   │   ├── workflows/                 # 5 production workflows
+│   ├── cyber-ops/                     # Cybersecurity module (v1.3.0)
+│   │   ├── agents/                    # 15 agent definitions
+│   │   │   ├── security-architect.md       # Bastion
+│   │   │   ├── threat-analyst.md           # Cipher
+│   │   │   ├── penetration-tester.md       # Ghost
+│   │   │   ├── incident-commander.md       # Phoenix
+│   │   │   ├── compliance-guardian.md      # Sentinel
+│   │   │   ├── forensic-investigator.md    # Trace
+│   │   │   ├── soc-analyst.md              # Watchman
+│   │   │   ├── cloud-security-specialist.md # Nimbus
+│   │   │   ├── blockchain-security-expert.md # Ledger
+│   │   │   ├── web-app-security-expert.md  # Weaver
+│   │   │   ├── api-security-expert.md      # Gateway
+│   │   │   ├── llm-ai-security-expert.md   # Oracle
+│   │   │   ├── blue-team-lead.md           # Shield
+│   │   │   ├── mobile-security-expert.md   # Phantom
+│   │   │   └── social-engineer.md          # Specter
+│   │   ├── workflows/                 # 13 production workflows
 │   │   │   ├── incident-response-playbook/
 │   │   │   ├── security-architecture-review/
 │   │   │   ├── threat-modeling/
 │   │   │   ├── compliance-audit-prep/
-│   │   │   └── virtual-ciso-consulting/
+│   │   │   ├── virtual-ciso-consulting/
+│   │   │   ├── blockchain-security-assessment/
+│   │   │   ├── mobile-security-testing/
+│   │   │   ├── web-app-security-testing/
+│   │   │   ├── network-assessment/
+│   │   │   ├── infrastructure-security-testing/
+│   │   │   ├── cloud-security-assessment/
+│   │   │   ├── vulnerability-management/
+│   │   │   └── security-awareness-training/
 │   │   ├── config.yaml               # Module configuration
-│   │   ├── module.yaml               # Module metadata
-│   │   ├── MODULE-CREATION-PLAYBOOK.md  # Build guide
-│   │   ├── TROUBLESHOOTING-GUIDE.md     # Support docs
+│   │   └── README.md                 # Module overview
+│   ├── exec-ops/                      # Executive leadership module (v1.2.0)
+│   │   ├── agents/                    # 14 advisor definitions
+│   │   │   ├── policy-analyst.md
+│   │   │   ├── political-strategist.md
+│   │   │   ├── debate-coach.md
+│   │   │   ├── stakeholder-mediator.md
+│   │   │   ├── ethics-advisor.md
+│   │   │   ├── communications-director.md
+│   │   │   ├── the-realist.md
+│   │   │   ├── the-liberator.md
+│   │   │   ├── the-revolutionary.md
+│   │   │   ├── the-conservative.md
+│   │   │   ├── the-technocrat.md
+│   │   │   ├── the-strategist-warrior.md
+│   │   │   ├── the-master-strategist.md
+│   │   │   └── the-principled-commander.md
+│   │   ├── workflows/                 # 12 executive workflows
+│   │   │   ├── _shared/               # Shared resources
+│   │   │   │   ├── agent-roster.md
+│   │   │   │   ├── party-mode-presets.md
+│   │   │   │   └── templates/         # Output templates
+│   │   │   ├── strategic-decision-workshop/
+│   │   │   ├── stakeholder-negotiation-prep/
+│   │   │   ├── board-presentation-prep/
+│   │   │   ├── crisis-response-planning/
+│   │   │   ├── strategic-planning-session/
+│   │   │   ├── policy-development/
+│   │   │   ├── conflict-resolution/
+│   │   │   ├── competitive-warfare/
+│   │   │   ├── corporate-political-game/
+│   │   │   ├── political-risk-assessment/
+│   │   │   ├── ethical-dilemma-resolution/
+│   │   │   └── leadership-philosophy/
+│   │   ├── config.yaml               # Module configuration
 │   │   └── README.md                 # Module overview
 │   └── _config/
 │       ├── agent-manifest.csv        # Agent registry
@@ -414,10 +829,14 @@ BMAD-CYBER2/
 ├── .claude/
 │   └── commands/
 │       └── bmad/
-│           └── cyber-ops/
-│               └── agents/           # Command wrappers
+│           ├── cyber-ops/
+│           │   └── agents/           # Command wrappers
+│           └── exec-ops/
+│               ├── agents/           # Command wrappers
+│               └── workflows/        # Workflow wrappers
 └── _output/
-    └── cyber-ops/                    # Generated documents
+    ├── cyber-ops/                    # Generated security documents
+    └── exec-ops/                     # Generated executive documents
 ```
 
 ---
@@ -454,20 +873,38 @@ preferences:
 
 **Scenario 1: Architecture Security Review**
 ```
-Agents: Bastion + Ghost
-Purpose: Defensive design + offensive validation
+Agents: Bastion + Ghost + Nimbus
+Purpose: Defensive design + offensive validation + cloud security
 ```
 
 **Scenario 2: Incident Response**
 ```
-Agents: Phoenix + Trace + Cipher
-Purpose: Command + forensics + threat intel
+Agents: Phoenix + Trace + Cipher + Watchman
+Purpose: Command + forensics + threat intel + SOC operations
 ```
 
 **Scenario 3: Compliance Assessment**
 ```
-Agents: Sentinel + Bastion
-Purpose: Compliance + architecture validation
+Agents: Sentinel + Bastion + Nimbus
+Purpose: Compliance + architecture + cloud compliance
+```
+
+**Scenario 4: Web3/Blockchain Audit**
+```
+Agents: Ledger + Weaver + Gateway
+Purpose: Smart contracts + web app + API security
+```
+
+**Scenario 5: Full-Stack Application Security**
+```
+Agents: Weaver + Gateway + Oracle + Phantom
+Purpose: Web + API + AI + mobile security
+```
+
+**Scenario 6: Purple Team Exercise**
+```
+Agents: Shield + Ghost + Watchman + Cipher
+Purpose: Blue team + red team + SOC + threat intel
 ```
 
 ---
@@ -568,8 +1005,8 @@ We welcome contributions! Here's how you can help:
 
 ### For Module Developers
 - **[MODULE-CREATION-PLAYBOOK.md](./_bmad/cyber-ops/MODULE-CREATION-PLAYBOOK.md)** - Learn to build BMAD modules
-- **Agent Examples:** Study the 6 agent implementations
-- **Workflow Patterns:** Review the 5 production workflows
+- **Agent Examples:** Study the 15 agent implementations
+- **Workflow Patterns:** Review the 13 production workflows
 
 ### For BMAD Users
 - **Agent Personas:** Each agent has a unique personality and expertise
@@ -650,9 +1087,143 @@ If you find this module useful, please consider:
 
 ---
 
+# 👔 Exec-Ops Module
+
+**Transform AI into a trusted executive advisory council**
+
+Strategic counsel on high-stakes decisions, organizational politics navigation, and diverse leadership perspectives from realpolitik pragmatism to principled idealism.
+
+---
+
+## Executive Advisors (14 Total)
+
+### Modern Professional Advisors (6)
+
+| Agent | Name | Specialty |
+|-------|------|-----------|
+| `policy-analyst` | Augustus | Evidence-Based Policy Expert |
+| `political-strategist` | Magnus | Campaign & Political Strategy |
+| `debate-coach` | Cicero | Argumentation & Rhetoric Master |
+| `stakeholder-mediator` | Geneva | Negotiation & Consensus Builder |
+| `ethics-advisor` | Sophia | Political Ethics & Values Counsel |
+| `communications-director` | Joseph | Public Messaging & Media Strategy |
+
+### Historical Archetype Advisors (8)
+
+These agents channel historical figures to provide distinct ideological perspectives with documented inherent biases for self-awareness.
+
+| Agent | Name | Archetype |
+|-------|------|-----------|
+| `the-realist` | Niccolo | Master of Realpolitik (Machiavelli/Bismarck) |
+| `the-liberator` | Charles | Moral Transformer (Lincoln/de Gaulle) |
+| `the-revolutionary` | Maximilien | Agent of Change (Robespierre) |
+| `the-conservative` | Burke | Guardian of Tradition (Burke/Metternich) |
+| `the-technocrat` | Lee | Builder of Systems (Lee Kuan Yew/Deng) |
+| `the-strategist-warrior` | Musashi | Master of Timing (Miyamoto Musashi) |
+| `the-master-strategist` | Sun | Supreme Strategist (Sun Tzu) |
+| `the-principled-commander` | Jean-Luc | Diplomat Captain (Jean-Luc Picard) |
+
+---
+
+## Executive Workflows (12 Total)
+
+### Core Workflows (9)
+
+| Command | Workflow | Output |
+|---------|----------|--------|
+| `/strategic-decision-workshop` | Multi-perspective decision analysis | Decision Brief |
+| `/stakeholder-negotiation-prep` | High-stakes negotiation preparation | Negotiation Playbook |
+| `/board-presentation-prep` | Board presentation crafting | Presentation Outline |
+| `/crisis-response-planning` | Crisis communication strategy | Crisis Response Plan |
+| `/strategic-planning-session` | Long-term strategic planning | Strategic Plan |
+| `/policy-development` | Evidence-based policy creation | Policy Document |
+| `/conflict-resolution` | Workplace conflict navigation | Resolution Plan |
+| `/competitive-warfare` | Competitive business battles | Warfare Plan |
+| `/corporate-political-game` | Internal corporate politics | Political Playbook |
+
+### v1.2 Workflows (3)
+
+| Command | Workflow | Output |
+|---------|----------|--------|
+| `/political-risk-assessment` | Political risk evaluation | Risk Assessment |
+| `/ethical-dilemma-resolution` | Complex ethical navigation | Ethical Resolution |
+| `/leadership-philosophy` | Personal leadership development | Leadership Philosophy |
+
+---
+
+## Party Mode Presets (13)
+
+Pre-configured multi-agent combinations for common executive scenarios:
+
+| Preset | Agents | Use Case |
+|--------|--------|----------|
+| `strategic-council` | All 8 Archetypes | Major strategic decisions |
+| `ethics-review` | Sophia, Jean-Luc, Charles | Moral dimensions |
+| `power-analysis` | Magnus, Niccolo, Sun | Political landscape |
+| `comms-strategy` | Joseph, Cicero, Geneva | Messaging & announcements |
+| `risk-assessment` | Burke, Lee, Augustus | Risk identification |
+| `change-management` | Charles, Burke, Lee | Transformation balance |
+| `negotiation-prep` | Geneva, Magnus, Cicero | Negotiation readiness |
+| `crisis-response` | Joseph, Magnus, Jean-Luc, Musashi | Crisis situations |
+| `board-prep` | Augustus, Joseph, Cicero | Board presentations |
+| `strategic-planning` | Sun, Lee, Burke, Maximilien | Long-term strategy |
+| `conflict-resolution` | Geneva, Jean-Luc, Charles, Sophia | Internal conflicts |
+| `all-out-war` | Niccolo, Sun, Musashi, Magnus, Joseph | Competitive warfare |
+| `corporate-politics` | Magnus, Niccolo, Cicero, Geneva, Joseph | Internal politics |
+
+---
+
+## Exec-Ops Quick Start
+
+```bash
+# Launch an advisor
+/exec-ops:policy-analyst         # Augustus - Evidence-based policy
+/exec-ops:the-realist            # Niccolo - Realpolitik perspective
+/exec-ops:the-master-strategist  # Sun - Strategic wisdom
+/exec-ops:the-principled-commander # Jean-Luc - Principled leadership
+
+# Run a workflow
+/strategic-decision-workshop     # Multi-perspective decision analysis
+/leadership-philosophy           # Develop personal leadership philosophy
+/ethical-dilemma-resolution      # Navigate complex ethical dilemmas
+
+# Use Party Mode with preset
+/party-mode
+> "Use the strategic-council preset"
+```
+
+**Full Documentation:** [exec-ops README](_bmad/exec-ops/README.md)
+
+---
+
 ## 📋 Changelog
 
-### v1.0.0 (2026-01-09) - Initial Release
+### cyber-ops v1.3.0 (2026-01-10)
+- ✨ 9 new specialized agents: Watchman (SOC), Nimbus (Cloud), Ledger (Blockchain), Weaver (Web App), Gateway (API), Oracle (LLM/AI), Shield (Blue Team), Phantom (Mobile), Specter (Social Engineering)
+- ✨ 8 new production workflows: Blockchain Security Assessment, Mobile Security Testing, Web App Security Testing, Network Assessment, Infrastructure Security Testing, Cloud Security Assessment, Vulnerability Management, Security Awareness Training
+- ✨ 15 total agents and 13 total workflows
+- ✨ 120+ step files covering complete security operations lifecycle
+- ✨ Comprehensive README files for all workflows
+
+### cyber-ops v1.2.0 (2026-01-09)
+- ✨ 2 new agents: Phantom (Mobile Security), Specter (Social Engineering)
+- ✨ Enhanced agent personas and menu systems
+
+### cyber-ops v1.1.0 (2026-01-09)
+- ✨ 7 new agents: Watchman, Nimbus, Ledger, Weaver, Gateway, Oracle, Shield
+- ✨ 3 new workflows with continuation support
+
+### exec-ops v1.2.0 (2026-01-09)
+- ✨ 3 new workflows: Political Risk Assessment, Ethical Dilemma Resolution, Leadership Philosophy
+- ✨ 12 total executive workflows with 95+ step files
+- ✨ New output templates for risk, ethics, and leadership documents
+
+### exec-ops v1.1.0 (2026-01-09)
+- ✨ 9 executive workflows with 73 step files
+- ✨ 13 Party Mode presets for common scenarios
+- ✨ Shared agent roster and output templates
+
+### cyber-ops v1.0.0 (2026-01-09) - Initial Release
 - ✨ 6 specialized security agents with rich personas
 - ✨ 5 production-ready workflows
 - ✨ 20+ framework and compliance standard support

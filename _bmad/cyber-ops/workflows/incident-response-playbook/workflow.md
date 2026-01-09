@@ -43,6 +43,16 @@ This uses **step-file architecture** for disciplined execution:
 - 🎯 **ALWAYS** follow the exact instructions in the step file
 - ⏸️ **ALWAYS** halt at menus and wait for user input
 - 📋 **NEVER** create mental todo lists from future steps
+- ✅ **ALWAYS** speak in your agent communication style with the config `{communication_language}`
+
+### Related Agents
+
+For specialized consultations during incidents, consider engaging:
+
+- **Watchman** (SOC Analyst): For SIEM analysis, alert triage, detection rules
+- **Trace** (Forensic Investigator): For evidence collection and chain of custody
+- **Shield** (Blue Team Lead): For detection engineering and defensive coordination
+- **Nimbus** (Cloud Security): For cloud-specific incidents (AWS/Azure/GCP)
 
 ### Dual-Mode Architecture
 
