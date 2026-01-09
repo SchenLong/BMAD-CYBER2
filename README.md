@@ -237,19 +237,7 @@ The **Cyber-Ops Module** brings cybersecurity expertise to the BMAD ecosystem, e
 ### Prerequisites
 
 - [BMAD Framework](https://github.com/bmad-code-org/BMAD-METHOD) installed
-- Claude Code CLI (Sonnet 4.5+)
-- Git (for cloning)
 
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/BMAD-CYBER2.git
-cd BMAD-CYBER2
-
-# The module is ready to use!
-# Agents and workflows are pre-configured
-```
 
 ### Quick Start
 
