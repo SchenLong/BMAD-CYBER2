@@ -1,0 +1,131 @@
+# Exec-Ops Module Configuration
+# Module for executive leadership and decision-making
+
+module_name: exec-ops
+full_name: Executive Leadership & Decision-Making Module
+version: 1.0.0
+created_date: 2026-01-09
+status: production
+
+# Project Configuration
+project_name: BMAD-CYBER2
+output_folder: /Users/paultinp/BMAD-CYBER2/_output/exec-ops
+bmb_creations_output_folder: /Users/paultinp/BMAD-CYBER2/_bmad-output/bmb-creations
+
+# User Configuration
+user_name: J
+communication_language: English
+document_output_language: English
+
+# Module Paths
+module_root: /Users/paultinp/BMAD-CYBER2/_bmad/exec-ops
+agents_path: /Users/paultinp/BMAD-CYBER2/_bmad/exec-ops/agents
+
+# Agent Registry
+agents:
+  modern_professional:
+    - id: policy-analyst
+      name: Augustus
+      title: Evidence-Based Policy Expert
+      icon: 📊
+    - id: political-strategist
+      name: Magnus
+      title: Campaign & Political Strategy
+      icon: ♟️
+    - id: debate-coach
+      name: Cicero
+      title: Argumentation & Rhetoric Master
+      icon: 🎭
+    - id: stakeholder-mediator
+      name: Geneva
+      title: Negotiation & Consensus Builder
+      icon: 🤝
+    - id: ethics-advisor
+      name: Sophia
+      title: Political Ethics & Values Counsel
+      icon: ⚖️
+    - id: communications-director
+      name: Joseph
+      title: Public Messaging & Media Strategy
+      icon: 📢
+
+  historical_archetype:
+    - id: the-realist
+      name: Niccolo
+      title: The Realist - Master of Realpolitik
+      icon: 🦊
+    - id: the-liberator
+      name: Charles
+      title: The Liberator - Moral Transformer
+      icon: 🕊️
+    - id: the-revolutionary
+      name: Maximilien
+      title: The Revolutionary - Agent of Change
+      icon: ✊
+    - id: the-conservative
+      name: Burke
+      title: The Conservative - Guardian of Tradition
+      icon: 🏛️
+    - id: the-technocrat
+      name: Lee
+      title: The Technocrat - Builder of Systems
+      icon: ⚙️
+    - id: the-strategist-warrior
+      name: Musashi
+      title: The Strategist-Warrior - Master of Timing
+      icon: ⚔️
+    - id: the-master-strategist
+      name: Sun
+      title: The Master Strategist - Supreme Strategist
+      icon: 🐉
+    - id: the-principled-commander
+      name: Jean-Luc
+      title: The Principled Commander - Diplomat Captain
+      icon: 🖖
+
+# Tool Integration
+tools:
+  core_bmad:
+    - party-mode
+    - advanced-elicitation
+    - brainstorming
+  llm_features:
+    - web-browsing
+    - file-io
+    - sidecar-file
+
+# Output Configuration
+output:
+  base_path: /Users/paultinp/BMAD-CYBER2/_output/exec-ops
+  planning: planning
+  decisions: decisions
+  documentation: docs
+
+  formats:
+    - markdown
+
+  include_metadata: true
+  include_timestamps: true
+  version_control: true
+
+# Feature Flags
+features:
+  multi_session_continuation: true
+  party_mode_integration: true
+  web_browsing: true
+  advanced_elicitation: true
+  brainstorming: true
+
+# Module Metadata
+metadata:
+  author: BMAD Framework + Claude Opus
+  created_by: create-module workflow
+  total_agents: 14
+  production_ready: true
+  tested: false
+  documented: true
+
+# Update Information
+last_updated: 2026-01-09
+update_notes: Initial v1.0 release with 14 executive advisory agents
+next_review_date: 2026-04-09  # Quarterly review
