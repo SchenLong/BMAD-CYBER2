@@ -1,6 +1,6 @@
 # BMAD Module Creation Playbook
 
-**Document Purpose:** Complete operational procedure for creating and deploying a new BMAD module with agents and workflows
+**Document Purpose:** Complete operational procedure for creating and deploying a new BMAD module with agents and workflows - This DOC is intended for an AI Agent -
 
 **Created:** 2026-01-09
 **Based On:** Cyber-Ops module deployment experience
