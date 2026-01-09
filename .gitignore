@@ -1,0 +1,84 @@
+# BMAD Framework .gitignore
+# Generated for public GitHub release
+
+# ===================
+# Output Directories
+# ===================
+# User-generated outputs - these are created during workflow execution
+_output/
+_bmad-output/
+
+# ===================
+# Claude Code Settings
+# ===================
+# Local settings contain user-specific configurations
+.claude/settings.local.json
+.claude/audio/
+.claude/projects/
+
+# ===================
+# Planning Artifacts
+# ===================
+# Workflow planning documents (development artifacts)
+**/workflow-plan-*.md
+**/COMPLETE-*.md
+**/VERIFICATION-REPORT.md
+**/PRODUCTION-READY.md
+**/MODULE-CREATION-PLAYBOOK.md
+**/TROUBLESHOOTING-GUIDE.md
+
+# ===================
+# OS Generated Files
+# ===================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===================
+# Editor/IDE Files
+# ===================
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# ===================
+# Logs and Temp Files
+# ===================
+*.log
+*.tmp
+*.temp
+.cache/
+
+# ===================
+# Environment Files
+# ===================
+.env
+.env.local
+.env.*.local
+*.env
+
+# ===================
+# Node.js (if applicable)
+# ===================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===================
+# Python (if applicable)
+# ===================
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
