@@ -3,7 +3,7 @@
 
 module_name: exec-ops
 full_name: Executive Leadership & Decision-Making Module
-version: 1.1.0
+version: 1.2.0
 created_date: 2026-01-09
 status: production
 
@@ -154,6 +154,27 @@ workflows:
     output_template: corporate-politics-template.md
     command: /corporate-political-game
 
+  - id: ethical-dilemma-resolution
+    name: Ethical Dilemma Resolution
+    description: Navigate complex ethical dilemmas with multi-perspective analysis
+    steps: 8
+    output_template: ethical-resolution-template.md
+    command: /ethical-dilemma-resolution
+
+  - id: leadership-philosophy
+    name: Leadership Philosophy Development
+    description: Develop personal leadership philosophy through historical dialogue
+    steps: 7
+    output_template: leadership-philosophy-template.md
+    command: /leadership-philosophy
+
+  - id: political-risk-assessment
+    name: Political Risk Assessment
+    description: Evaluate political risks in strategic decisions and initiatives
+    steps: 7
+    output_template: political-risk-template.md
+    command: /political-risk-assessment
+
 # Tool Integration
 tools:
   core_bmad:
@@ -192,14 +213,14 @@ metadata:
   author: BMAD Framework + Claude Opus
   created_by: create-module workflow
   total_agents: 14
-  total_workflows: 9
-  total_step_files: 73
+  total_workflows: 12
+  total_step_files: 95
   party_mode_presets: 13
   production_ready: true
   tested: true
   documented: true
 
 # Update Information
-last_updated: 2026-01-09
-update_notes: v1.1.0 - Added 9 executive workflows with 73 step files, 13 party mode presets
-next_review_date: 2026-04-09  # Quarterly review
+last_updated: 2026-01-10
+update_notes: v1.2.0 - Added 3 additional workflows (ethical-dilemma-resolution, leadership-philosophy, political-risk-assessment)
+next_review_date: 2026-04-10  # Quarterly review
