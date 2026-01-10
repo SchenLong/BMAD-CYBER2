@@ -1,0 +1,198 @@
+---
+workflow_id: campaign-planner-person
+name: 'Campaign Planner: Person'
+description: 'Systematic OSINT campaign planning for investigating an individual'
+version: '1.0.0'
+
+# Path Definitions
+workflow_path: '{project-root}/_bmad/intel-team/workflows/campaign-planner-person'
+steps_path: '{workflow_path}/steps'
+
+# Agent Configuration
+primary_agent: osint-lead
+primary_codename: Vector
+
+# Step Files
+steps:
+  - name: 'Intelligence Requirements'
+    file: '{steps_path}/step-01-requirements.md'
+    agent: osint-lead
+    codename: Vector
+    description: 'Define PIRs, scope boundaries, and collection priorities'
+
+  - name: 'Identity Pivot Mapping'
+    file: '{steps_path}/step-02-pivot-mapping.md'
+    agent: social-media-analyst
+    codename: Echo
+    description: 'Map social footprint and identify pivot points'
+
+  - name: 'HUMINT Preparation'
+    file: '{steps_path}/step-03-humint-prep.md'
+    agent: humint-specialist
+    codename: Viper
+    description: 'Develop social engineering approaches and elicitation strategies'
+
+  - name: 'Collection Execution'
+    file: '{steps_path}/step-04-collection.md'
+    agent: osint-lead
+    codename: Vector
+    description: 'Execute coordinated multi-INT collection'
+
+  - name: 'Profile Synthesis'
+    file: '{steps_path}/step-05-synthesis.md'
+    agent: threat-actor-profiler
+    codename: Dossier
+    description: 'Create comprehensive intelligence dossier'
+
+# Output Configuration
+output_folder: '{output_folder}/intel-reports/campaign-person'
+output_format: 'markdown'
+---
+
+# Campaign Planner: Person
+
+## PURPOSE
+
+Provide a systematic, professional-grade approach to planning and executing an OSINT investigation focused on an individual person. This workflow ensures comprehensive coverage across all intelligence disciplines while maintaining operational security and legal compliance.
+
+## WHEN TO USE
+
+- Background investigation on individual
+- Pre-meeting intelligence preparation
+- Fraud investigation (subject identification)
+- Missing person research
+- Threat assessment on specific individual
+- Due diligence on business partner/investor
+- Security vetting support
+
+## AGENTS INVOLVED
+
+| Agent | Codename | Role in Workflow |
+|-------|----------|------------------|
+| osint-lead | Vector | Campaign planning, coordination, final synthesis |
+| social-media-analyst | Echo | Social footprint mapping, account correlation |
+| humint-specialist | Viper | Social engineering strategy, elicitation planning |
+| threat-actor-profiler | Dossier | Behavioral analysis, profile creation |
+| technical-researcher | Probe | Technical pivots (email, domains, infrastructure) |
+| geospatial-analyst | Atlas | Location intelligence, pattern analysis |
+| corporate-intel-specialist | Proxy | Business affiliations, directorships, corporate roles |
+
+## WORKFLOW STRUCTURE
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    CAMPAIGN PLANNER: PERSON                             │
+│                    Systematic Individual Investigation                  │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: INTELLIGENCE REQUIREMENTS                          ~15-20 min  │
+│ Agent: Vector (osint-lead)                                              │
+├─────────────────────────────────────────────────────────────────────────┤
+│ • Define Priority Intelligence Requirements (PIRs)                      │
+│ • Establish scope boundaries and constraints                            │
+│ • Identify starting selectors (name, email, handles)                    │
+│ • Set collection priorities and legal constraints                       │
+│ • Create collection management plan                                     │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 2: IDENTITY PIVOT MAPPING                             ~20-30 min  │
+│ Agent: Echo (social-media-analyst)                                      │
+├─────────────────────────────────────────────────────────────────────────┤
+│ • Map social media presence across platforms                            │
+│ • Identify username patterns and variations                             │
+│ • Discover linked accounts and pivot points                             │
+│ • Analyze network connections (friends, followers, mentions)            │
+│ • Timeline key activities and relationships                             │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 3: HUMINT PREPARATION                                 ~15-20 min  │
+│ Agent: Viper (humint-specialist)                                        │
+├─────────────────────────────────────────────────────────────────────────┤
+│ • Analyze target psychology and communication style                     │
+│ • Identify interests, vulnerabilities, and rapport hooks                │
+│ • Develop pretext scenarios (if active engagement authorized)           │
+│ • Create elicitation question frameworks                                │
+│ • Design social engineering approaches                                  │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 4: COLLECTION EXECUTION                               ~30-45 min  │
+│ Agent: Vector (osint-lead) coordinating all agents                      │
+├─────────────────────────────────────────────────────────────────────────┤
+│ • Execute multi-INT collection plan                                     │
+│ • Vector: Overall coordination and gap analysis                         │
+│ • Echo: Social media deep dive                                          │
+│ • Probe: Technical investigation (domains, emails, infrastructure)      │
+│ • Atlas: Location intelligence and pattern mapping                      │
+│ • Shadow: Dark web and breach exposure (if applicable)                  │
+│ • Proxy: Corporate affiliations, business roles, directorships          │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 5: PROFILE SYNTHESIS                                  ~20-30 min  │
+│ Agent: Dossier (threat-actor-profiler)                                  │
+├─────────────────────────────────────────────────────────────────────────┤
+│ • Synthesize all collected intelligence                                 │
+│ • Create comprehensive subject profile                                  │
+│ • Assess behavioral patterns and predictability                         │
+│ • Identify intelligence gaps and unknowns                               │
+│ • Generate final intelligence dossier                                   │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+                    ┌───────────────────────────────┐
+                    │   INTELLIGENCE DOSSIER        │
+                    │   • Subject Profile           │
+                    │   • Network Map               │
+                    │   • Timeline                  │
+                    │   • Risk Assessment           │
+                    │   • Collection Log            │
+                    └───────────────────────────────┘
+```
+
+## ESTIMATED DURATION
+
+| Step | Duration | Cumulative |
+|------|----------|------------|
+| Step 1: Requirements | 15-20 min | 15-20 min |
+| Step 2: Pivot Mapping | 20-30 min | 35-50 min |
+| Step 3: HUMINT Prep | 15-20 min | 50-70 min |
+| Step 4: Collection | 30-45 min | 80-115 min |
+| Step 5: Synthesis | 20-30 min | 100-145 min |
+
+**Total: 1.5 - 2.5 hours** (depending on scope and target complexity)
+
+## KEY DELIVERABLES
+
+1. **Collection Management Plan** - Structured intelligence requirements
+2. **Pivot Map** - Visual map of identity pivots and connections
+3. **HUMINT Playbook** - Social engineering strategies (if authorized)
+4. **Collection Log** - Sources checked and findings
+5. **Intelligence Dossier** - Comprehensive subject profile
+
+## LEGAL & ETHICAL NOTES
+
+- This workflow assumes legal authority to investigate the target
+- Active HUMINT engagement (Step 3) requires explicit authorization
+- Document all collection activities for legal defensibility
+- Respect platform ToS and applicable privacy laws
+- Maintain proper attribution of intelligence sources
+
+## INITIATION
+
+To begin this workflow, load and execute:
+`{workflow_path}/steps/step-01-requirements.md`
+
+---
+
+**Workflow Version:** 1.0.0
+**Created:** 2026-01-10
+**Module:** intel-team
