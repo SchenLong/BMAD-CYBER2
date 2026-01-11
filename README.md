@@ -29,7 +29,7 @@
 | 👔 **[strategy-team](#-strategy-team)** | v1.3.0 | 14 | 16 | Executive leadership & strategy |
 | ⚖️ **[legal-team](#️-legal-team)** | v1.1.0 | 13 | 8 | Legal support for other modules |
 
-### Development & Creative Modules
+### Development & Creative Modules (Original BMAD modules)
 
 | Module | Version | Agents | Workflows | Focus |
 |--------|---------|--------|-----------|-------|
