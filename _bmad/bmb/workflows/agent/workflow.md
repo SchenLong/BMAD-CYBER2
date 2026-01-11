@@ -66,6 +66,18 @@ Load and read full config from `{project-root}/_bmad/bmb/config.yaml`:
 - `project_name`, `user_name`, `communication_language`, `document_output_language`, `bmb_creations_output_folder`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
+### 1.5. Lessons Learned Check (MANDATORY)
+
+**Before creating or modifying any agent, you MUST:**
+
+1. Load and read `{project-root}/_bmad/bmb/ExperienceAcquired/LessonsLearned.md`
+2. Review all documented lessons to avoid repeating past mistakes
+3. Pay special attention to:
+   - Agent file format requirements (`.md` not `.yaml`)
+   - Checking for duplicate agent names across ALL modules
+   - Domain-specific mandatory rules (e.g., legal context for legal agents)
+4. Apply all relevant prevention measures from the lessons learned
+
 ### 2. Mode Determination
 
 **Check if mode was specified in the command invocation:**

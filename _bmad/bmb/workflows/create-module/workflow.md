@@ -51,6 +51,18 @@ Load and read full config from {project-root}/_bmad/bmb/config.yaml and resolve:
 - `project_name`, `output_folder`, `user_name`, `communication_language`, `document_output_language`, `bmb_creations_output_folder`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
+### 1.5. Lessons Learned Check (MANDATORY)
+
+**Before creating any module components, you MUST:**
+
+1. Load and read `{project-root}/_bmad/bmb/ExperienceAcquired/LessonsLearned.md`
+2. Review all documented lessons to avoid repeating past mistakes
+3. Pay special attention to:
+   - Agent file format requirements (`.md` not `.yaml`)
+   - Checking for duplicate agent names across ALL modules (bmm, bmgd, cyber-ops, intel-team, exec-ops, core)
+   - Domain-specific mandatory rules required for the module type
+4. Apply all relevant prevention measures throughout module creation
+
 ### 2. First Step EXECUTION
 
 Load, read the full file and then execute {installed_path}/steps/step-01-init.md to begin the workflow.

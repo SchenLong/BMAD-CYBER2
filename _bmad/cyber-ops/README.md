@@ -122,6 +122,249 @@ To provide structured, repeatable, and collaborative workflows that:
 
 ---
 
+### 4. Compliance Audit Preparation (10 files)
+
+**Path:** `workflows/compliance-audit-prep/`
+**Status:** ✅ Production Ready
+**Purpose:** Comprehensive compliance audit preparation across multiple frameworks
+
+**Key Features:**
+- Multi-framework support (NIST 800-53, ISO 27001, SOC 2, PCI-DSS, HIPAA, GDPR, NIS2, CRA, DORA, AI Act, FedRAMP, CMMC, TISAX, CSA STAR)
+- Gap analysis and remediation tracking
+- Evidence collection guidance
+- Audit readiness scoring
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:compliance-audit-prep
+```
+
+---
+
+### 5. Virtual CISO Consulting (10 files)
+
+**Path:** `workflows/virtual-ciso-consulting/`
+**Status:** ✅ Production Ready
+**Purpose:** Comprehensive vCISO engagement covering strategic planning, budget optimization, and governance
+
+**Key Features:**
+- Strategic security planning
+- Budget and ROI framework
+- Security maturity assessment
+- Governance framework design
+- Board/executive reporting
+- Vendor risk management
+- Ongoing advisory services
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:virtual-ciso-consulting
+```
+
+---
+
+### 6. Vulnerability Management (12 files)
+
+**Path:** `workflows/vulnerability-management/`
+**Status:** ✅ Production Ready
+**Purpose:** End-to-end vulnerability management from asset inventory through program maturity
+
+**Key Features:**
+- Asset inventory management
+- Vulnerability scanning guidance
+- Risk-based prioritization
+- Remediation tracking
+- Program maturity assessment
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:vulnerability-management
+```
+
+---
+
+### 7. Security Awareness Training (11 files)
+
+**Path:** `workflows/security-awareness-training/`
+**Status:** ✅ Production Ready
+**Purpose:** Comprehensive security awareness program from risk assessment through continuous improvement
+
+**Key Features:**
+- Risk assessment
+- Content development
+- Phishing simulation planning
+- Metrics and measurement
+- Continuous improvement cycle
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:security-awareness-training
+```
+
+---
+
+### 8. Cloud Security Assessment (13 files)
+
+**Path:** `workflows/cloud-security-assessment/`
+**Status:** ✅ Production Ready
+**Purpose:** Comprehensive cloud security assessment for AWS, Azure, and GCP environments
+
+**Key Features:**
+- Multi-cloud support (AWS, Azure, GCP)
+- IAM assessment
+- Network security review
+- Data protection analysis
+- Logging and monitoring evaluation
+- Compute security assessment
+- Compliance mapping (CIS Benchmarks, SOC 2, PCI-DSS, HIPAA)
+- Remediation roadmap
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:cloud-security-assessment
+```
+
+---
+
+### 9. Blockchain Security Assessment (11 files)
+
+**Path:** `workflows/blockchain-security-assessment/`
+**Status:** ✅ Production Ready
+**Purpose:** Smart contract and blockchain protocol security auditing
+
+**Key Features:**
+- Smart contract review
+- Access control analysis
+- Economic security assessment
+- DeFi vulnerability testing
+- Infrastructure security
+- Multi-platform support (Ethereum, Solana, BSC, Polygon, Avalanche)
+- OWASP Smart Contract and SWC Registry compliance
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:blockchain-security-assessment
+```
+
+---
+
+### 10. Mobile Security Testing (11 files)
+
+**Path:** `workflows/mobile-security-testing/`
+**Status:** ✅ Production Ready
+**Purpose:** iOS and Android mobile application security testing following OWASP MSTG
+
+**Key Features:**
+- Static analysis (binary protections, hardcoded secrets)
+- Dynamic analysis (runtime testing)
+- Data storage security
+- Network security testing
+- Authentication testing
+- Platform-specific testing (iOS/Android)
+- OWASP MSTG and Mobile Top 10 compliance
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:mobile-security-testing
+```
+
+---
+
+### 11. Web Application Security Testing (11 files)
+
+**Path:** `workflows/web-app-security-testing/`
+**Status:** ✅ Production Ready
+**Purpose:** Comprehensive web application penetration testing following OWASP Testing Guide
+
+**Key Features:**
+- Reconnaissance and enumeration
+- Authentication testing
+- Authorization testing
+- Input validation (SQL injection, XSS, SSRF)
+- Session management testing
+- Business logic testing
+- OWASP Top 10 and ASVS compliance
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:web-app-security-testing
+```
+
+---
+
+### 12. Network Security Assessment (11 files)
+
+**Path:** `workflows/network-assessment/`
+**Status:** ✅ Production Ready
+**Purpose:** Network penetration testing covering reconnaissance, exploitation, and segmentation
+
+**Key Features:**
+- Network reconnaissance
+- Port and service scanning
+- Vulnerability assessment
+- Network service testing
+- Wireless security testing
+- Segmentation testing
+- PTES and OSSTMM methodologies
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:network-assessment
+```
+
+---
+
+### 13. Infrastructure Security Testing (11 files)
+
+**Path:** `workflows/infrastructure-security-testing/`
+**Status:** ✅ Production Ready
+**Purpose:** Infrastructure security assessment for servers, containers, Kubernetes, and CI/CD
+
+**Key Features:**
+- Server hardening assessment
+- Container security testing
+- Kubernetes security review
+- CI/CD security assessment
+- Secrets management evaluation
+- Infrastructure as Code review
+- CIS Benchmarks compliance
+
+**Invocation:**
+```
+/bmad:cyber-ops:workflows:infrastructure-security-testing
+```
+
+---
+
+## Agents Included
+
+This module includes 15 specialized cybersecurity agents:
+
+| Codename | Agent Name | Icon | Expertise |
+|----------|-----------|------|-----------|
+| Cipher | Threat Analyst | 🔍 | Threat intelligence, APT analysis, MITRE ATT&CK |
+| Bastion | Security Architect | 🏰 | Security design, Zero Trust, defense-in-depth |
+| Sentinel | Compliance Guardian | 📜 | Regulatory compliance, audits, governance |
+| Trace | Forensic Investigator | 🔬 | Digital forensics, evidence handling, chain of custody |
+| Phoenix | Incident Commander | 🚨 | Incident management, crisis coordination, NIST IR |
+| Spectre | Penetration Tester | 👻 | Ethical hacking, vulnerability assessment, red team |
+| Watchman | SOC Analyst | 👁️ | SIEM, EDR, alert triage, detection engineering |
+| Nimbus | Cloud Security Specialist | ☁️ | AWS/Azure/GCP security, IAM, CSPM |
+| Ledger | Blockchain Security Expert | ⛓️ | Smart contracts, DeFi security, Web3 auditing |
+| Weaver | Web App Security Expert | 🌐 | OWASP Top 10, secure SDLC, application security |
+| Gateway | API Security Expert | 🔌 | OAuth/OIDC, REST/GraphQL security, API gateways |
+| Oracle | LLM/AI Security Expert | 🧠 | AI/ML security, prompt injection, AI governance |
+| Shield | Blue Team Lead | 🛡️ | Detection engineering, purple teaming, defensive ops |
+| Phantom | Mobile Security Expert | 📱 | iOS/Android security, OWASP MSTG |
+| Ghost | Social Engineer | 🎭 | Social engineering, phishing simulation |
+
+**Agent Invocation:**
+```
+/bmad:cyber-ops:agents:[agent-name]
+```
+
+---
+
 ## Module Architecture
 
 ### Directory Structure
@@ -130,20 +373,36 @@ To provide structured, repeatable, and collaborative workflows that:
 _bmad/cyber-ops/
 ├── README.md                           # This file
 ├── config.yaml                         # Module configuration
-├── workflows/
-│   ├── incident-response-playbook/
-│   │   ├── workflow.md
-│   │   ├── data/                       # 3 CSV files
-│   │   ├── templates/                  # 2 template files
-│   │   └── steps/                      # 14 step files
-│   ├── security-architecture-review/
-│   │   ├── workflow.md
-│   │   ├── templates/                  # 1 template file
-│   │   └── steps/                      # 8 step files
-│   └── threat-modeling/
-│       ├── workflow.md
-│       └── steps/                      # 9 step files
-└── agents/                             # (Future: cyber-specific agents)
+├── agents/                             # 15 specialized agents
+│   ├── threat-analyst.md
+│   ├── security-architect.md
+│   ├── compliance-guardian.md
+│   ├── forensic-investigator.md
+│   ├── incident-commander.md
+│   ├── penetration-tester.md
+│   ├── soc-analyst.md
+│   ├── cloud-security-specialist.md
+│   ├── blockchain-security-expert.md
+│   ├── web-app-security-expert.md
+│   ├── api-security-expert.md
+│   ├── llm-ai-security-expert.md
+│   ├── blue-team-lead.md
+│   ├── mobile-security-expert.md
+│   └── social-engineer.md
+└── workflows/                          # 13 security workflows
+    ├── incident-response-playbook/
+    ├── security-architecture-review/
+    ├── threat-modeling/
+    ├── compliance-audit-prep/
+    ├── virtual-ciso-consulting/
+    ├── vulnerability-management/
+    ├── security-awareness-training/
+    ├── cloud-security-assessment/
+    ├── blockchain-security-assessment/
+    ├── mobile-security-testing/
+    ├── web-app-security-testing/
+    ├── network-assessment/
+    └── infrastructure-security-testing/
 ```
 
 ### Workflow Architecture Standards
@@ -466,11 +725,17 @@ Part of the BMAD (BMAD Makes Amazing Development) Framework.
 
 ## Version History
 
+### v1.3.0 (2026-01-11)
+- ✅ Expanded to 13 production-ready workflows
+- ✅ Added 15 specialized cybersecurity agents
+- ✅ 150+ total files
+- ✅ Full OWASP, CIS Benchmarks, PTES framework integration
+- ✅ Added cloud, mobile, blockchain, and infrastructure security workflows
+
 ### v1.0.0 (2026-01-08)
 - ✅ Initial release
 - ✅ 3 production-ready workflows
 - ✅ 38 total workflow files
-- ✅ ~25,000 lines of workflow code
 - ✅ NIST, STRIDE, MITRE ATT&CK integration
 - ✅ Multi-session continuation support
 - ✅ Party Mode integration with 5 expert agents
@@ -478,10 +743,10 @@ Part of the BMAD (BMAD Makes Amazing Development) Framework.
 ---
 
 **Module Status:** Production Ready ✅
-**Total Workflows:** 3
-**Total Files:** 38
-**Total Lines:** ~25,000
-**Frameworks:** NIST, STRIDE, MITRE ATT&CK, Zero-Trust
-**Compliance:** GDPR, PCI-DSS, HIPAA, SOC 2, ISO 27001
+**Total Workflows:** 13
+**Total Agents:** 15
+**Total Files:** 150+
+**Frameworks:** NIST, STRIDE, MITRE ATT&CK, Zero-Trust, OWASP, CIS Benchmarks, PTES
+**Compliance:** GDPR, PCI-DSS, HIPAA, SOC 2, ISO 27001, NIS2, DORA, FedRAMP, CMMC
 
 **Ready for enterprise cybersecurity operations.**
