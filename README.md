@@ -42,7 +42,7 @@
 
 ## 🔐 Cybersec-Team
 
-[![Cybersec-Team](https://img.shields.io/badge/module-cyber--ops-red.svg)]()
+[![Cybersec-Team](https://img.shields.io/badge/module-cybersec--team-red.svg)]()
 [![Agents](https://img.shields.io/badge/agents-15-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-13-purple.svg)]()
 
@@ -82,7 +82,7 @@ Comprehensive intelligence collection, analysis, and reporting capabilities thro
 
 ## 👔 Strategy-Team
 
-[![Strategy-Team](https://img.shields.io/badge/module-exec--ops-gold.svg)]()
+[![Strategy-Team](https://img.shields.io/badge/module-strategy--team-gold.svg)]()
 [![Agents](https://img.shields.io/badge/agents-14-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-12-purple.svg)]()
 
