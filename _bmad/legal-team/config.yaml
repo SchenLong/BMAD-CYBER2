@@ -1,0 +1,292 @@
+# Legal Team Module Configuration
+# Multi-jurisdictional legal advisory module for corporate and civil matters
+
+module_name: legal-team
+full_name: Legal Team Advisory Module
+version: 1.0.0
+created_date: 2026-01-11
+status: beta
+
+# Project Configuration
+project_name: BMAD-CYBER2
+output_folder: "{project-root}/_output/legal-team"
+bmb_creations_output_folder: "{project-root}/_bmad-output/bmb-creations"
+
+# User Configuration
+user_name: User
+communication_language: English
+document_output_language: English
+
+# Legal-Specific Configuration
+primary_jurisdiction: USA
+detail_level: comprehensive
+
+# Jurisdictions Covered
+jurisdictions:
+  usa:
+    enabled: true
+    specialist: liberty
+    coverage:
+      - federal
+      - state
+    entity_types:
+      - LLC
+      - C-Corporation
+      - S-Corporation
+      - Limited Partnership
+      - Series LLC
+
+  eu:
+    enabled: true
+    specialist: europa
+    coverage:
+      - EU-wide
+      - Estonia (deep)
+    entity_types:
+      - Private Limited Company
+      - Branch registration
+      - Representative office
+      - Estonian OÜ
+      - Estonian AS
+      - e-Residency company
+
+  spain:
+    enabled: true
+    specialist: castile
+    coverage:
+      - National
+      - Autonomous communities
+    entity_types:
+      - Sociedad Limitada (SL)
+      - Sociedad Anónima (SA)
+      - SLNE
+      - Branch (Sucursal)
+
+# Module Paths
+module_root: "{project-root}/_bmad/legal-team"
+workflows_path: "{project-root}/_bmad/legal-team/workflows"
+agents_path: "{project-root}/_bmad/legal-team/agents"
+
+# Workflow Registry
+workflows:
+  - name: legal-matter-intake
+    full_name: Legal Matter Intake
+    path: workflows/legal-matter-intake
+    type: linear
+    status: beta
+    version: 1.0.0
+    files: 9
+    primary_agent: counsel
+    description: Entry point for all legal matters - case intake, jurisdiction analysis, and routing
+
+  - name: contract-review
+    full_name: Contract Review
+    path: workflows/contract-review
+    type: linear
+    status: beta
+    version: 1.0.0
+    files: 10
+    primary_agent: covenant
+    description: Comprehensive contract analysis covering risks, obligations, and recommendations
+
+  - name: contract-drafting
+    full_name: Contract Drafting
+    path: workflows/contract-drafting
+    type: linear
+    status: beta
+    version: 1.0.0
+    files: 10
+    primary_agent: covenant
+    description: Create jurisdiction-appropriate contracts from requirements through final draft
+
+  - name: corporate-formation
+    full_name: Corporate Formation
+    path: workflows/corporate-formation
+    type: multi-agent
+    status: beta
+    version: 1.0.0
+    files: 11
+    primary_agent: liberty
+    supporting_agents:
+      - europa
+      - castile
+      - tribute
+    description: Multi-jurisdictional corporate entity formation and structuring
+
+  - name: dispute-strategy
+    full_name: Dispute Strategy
+    path: workflows/dispute-strategy
+    type: linear
+    status: beta
+    version: 1.0.0
+    files: 11
+    primary_agent: advocate
+    description: Dispute analysis and resolution strategy development
+
+  - name: tax-planning
+    full_name: Tax Planning
+    path: workflows/tax-planning
+    type: linear
+    status: beta
+    version: 1.0.0
+    files: 11
+    primary_agent: tribute
+    description: Tax optimization and compliance planning across jurisdictions
+
+  - name: cross-border-matter
+    full_name: Cross-Border Matter
+    path: workflows/cross-border-matter
+    type: multi-agent
+    status: beta
+    version: 1.0.0
+    files: 11
+    primary_agent: europa
+    supporting_agents:
+      - liberty
+      - castile
+      - tribute
+    description: Multi-jurisdictional legal matter coordination and strategy
+
+# Agent Registry
+agents:
+  core_agents:
+    - name: counsel
+      codename: Counsel
+      icon: ⚖️
+      file: agents/counsel.md
+      expertise: General legal advisory, case intake, jurisdiction routing, team coordination
+
+    - name: liberty
+      codename: Liberty
+      icon: 🗽
+      file: agents/liberty.md
+      expertise: US corporate law, civil litigation, federal/state regulatory compliance
+
+    - name: europa
+      codename: Europa
+      icon: 🇪🇺
+      file: agents/europa.md
+      expertise: EU law, cross-border commerce, Estonia e-Residency, GDPR compliance
+
+    - name: castile
+      codename: Castile
+      icon: 🇪🇸
+      file: agents/castile.md
+      expertise: Spanish corporate law, civil code, autonomous community regulations
+
+    - name: covenant
+      codename: Covenant
+      icon: 📜
+      file: agents/covenant.md
+      expertise: Contract drafting, review, negotiation across all supported jurisdictions
+
+    - name: advocate
+      codename: Advocate
+      icon: ⚔️
+      file: agents/advocate.md
+      expertise: Litigation strategy, arbitration, mediation, dispute resolution
+
+    - name: tribute
+      codename: Tribute
+      icon: 💰
+      file: agents/tribute.md
+      expertise: Tax planning, compliance, cross-border taxation, entity structuring
+
+  # Agents available for Party Mode collaboration
+  party_mode_agents:
+    - counsel
+    - liberty
+    - europa
+    - castile
+    - covenant
+    - advocate
+    - tribute
+
+# Legal Disclaimers
+disclaimers:
+  english: |
+    DISCLAIMER: This information is provided for general informational purposes only and does not constitute legal advice. Every legal matter involves unique circumstances. Users should consult with qualified legal counsel licensed in the relevant jurisdiction before taking any legal action.
+
+  spanish: |
+    AVISO LEGAL: Esta información se proporciona únicamente con fines informativos generales y no constituye asesoramiento legal. Cada asunto legal involucra circunstancias únicas. Los usuarios deben consultar con abogados cualificados con licencia en la jurisdicción correspondiente antes de tomar cualquier acción legal.
+
+# Scope Limitations
+scope:
+  included:
+    - Corporate law (formation, governance, compliance)
+    - Contract law (drafting, review, negotiation)
+    - Civil litigation strategy
+    - Tax planning and compliance
+    - Cross-border transactions
+    - Employment law basics
+    - Intellectual property basics
+
+  excluded:
+    - Criminal law (all jurisdictions)
+    - Immigration law
+    - Family law
+    - Personal injury
+    - Bankruptcy/insolvency proceedings
+    - Court representation
+
+# Output Configuration
+output:
+  base_path: "{project-root}/_output/legal-team"
+  matter_briefs: matter-briefs
+  contracts: contracts
+  corporate_formation: corporate-formation
+  dispute_strategy: dispute-strategy
+  tax_planning: tax-planning
+
+  formats:
+    - markdown
+
+  include_metadata: true
+  include_timestamps: true
+  include_disclaimers: true
+  version_control: true
+
+# Continuation Support
+continuation:
+  enabled: true
+  state_tracking: frontmatter
+  sidecar_files: true
+  auto_resume: true
+
+# Quality Assurance
+quality:
+  require_jurisdiction_analysis: true
+  require_legal_citations: true
+  require_disclaimer: true
+  require_source_attribution: true
+  verify_law_currency: true
+
+# Performance Settings
+performance:
+  recommended_model: claude-sonnet-4-5
+  min_context_window: 200000
+  parallel_processing: true
+  caching: true
+
+# Feature Flags
+features:
+  multi_session_continuation: true
+  party_mode_integration: true
+  web_browsing: true
+  multi_agent_coordination: true
+
+# Module Metadata
+metadata:
+  author: BMAD Framework + Claude Opus 4.5
+  created_by: workflow-builder
+  total_workflows: 7
+  total_agents: 7
+  total_files: 80
+  production_ready: false
+  tested: false
+  documented: true
+
+# Update Information
+last_updated: 2026-01-11
+update_notes: v1.0.0 - Initial release with 7 agents and 7 workflows covering USA, EU, Spain jurisdictions
+next_review_date: 2026-04-11  # Quarterly review

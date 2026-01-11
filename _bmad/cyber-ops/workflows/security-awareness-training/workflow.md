@@ -33,13 +33,14 @@ web_bundle: false
 
 ### Critical Rules (NO EXCEPTIONS)
 
-- **NEVER** load multiple step files simultaneously
-- **ALWAYS** read entire step file before execution
-- **NEVER** skip steps or optimize the sequence
-- **ALWAYS** update frontmatter of output files when writing the final output for a specific step
-- **ALWAYS** follow the exact instructions in the step file
-- **ALWAYS** halt at menus and wait for user input
-- **NEVER** create mental todo lists from future steps
+- 🛑 **NEVER** load multiple step files simultaneously
+- 📖 **ALWAYS** read entire step file before execution
+- 🚫 **NEVER** skip steps or optimize the sequence
+- 💾 **ALWAYS** update frontmatter of output files when writing the final output for a specific step
+- 🎯 **ALWAYS** follow the exact instructions in the step file
+- ⏸️ **ALWAYS** halt at menus and wait for user input
+- 📋 **NEVER** create mental todo lists from future steps
+- ✅ **ALWAYS** speak in your agent communication style with the config `{communication_language}`
 
 ---
 
