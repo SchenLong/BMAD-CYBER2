@@ -4,6 +4,13 @@ Transform AI into a trusted executive advisory council that provides strategic c
 
 ## Version
 
+**v1.3.0** - Cross-Module Integration Release (2026-01-11)
+- Added 4 new workflows: M&A Due Diligence, Leadership Transition, Board Relations, Performance Review
+- Added cross-module integration steps for 8 workflows (cybersec, intel, legal)
+- Total: 16 executive workflows with 132 step files
+- Added 5 strategic party mode presets to cross-module-groups.yaml
+- Added module.yaml installation template
+
 **v1.2.0** - Additional Workflows Release (2026-01-09)
 - Added 3 new workflows: Political Risk Assessment, Ethical Dilemma Resolution, Leadership Philosophy
 - Total: 12 executive workflows with 95+ step files
@@ -63,7 +70,9 @@ For multi-advisor debates on complex decisions, use Party Mode with pre-configur
 /party-mode
 ```
 
-### Available Presets (13)
+### Available Presets (18)
+
+#### Strategy-Team Presets (13)
 
 | Preset ID | Agents | Use Case |
 |-----------|--------|----------|
@@ -80,6 +89,18 @@ For multi-advisor debates on complex decisions, use Party Mode with pre-configur
 | `conflict-resolution` | Geneva, Jean-Luc, Charles, Sophia | Internal conflicts |
 | `all-out-war` | Niccolo, Sun, Musashi, Magnus, Giuseppe | Competitive warfare |
 | `corporate-politics` | Magnus, Niccolo, Cicero, Geneva, Giuseppe | Internal politics |
+
+#### Cross-Module Presets (5) - NEW in v1.3
+
+Located in `_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml`:
+
+| Preset ID | Modules | Use Case |
+|-----------|---------|----------|
+| `strategic-intelligence-council` | Strategy + Intel + Legal | Intelligence-informed strategic decisions |
+| `ma-due-diligence-team` | Strategy + Intel + Legal + Cybersec | M&A investigation and assessment |
+| `crisis-response-party` | Strategy + Cybersec + Intel + Legal | Multi-dimensional crisis response |
+| `competitive-intelligence-war-room` | Strategy + Intel | Competitive analysis and strategy |
+| `executive-security-council` | Strategy + Cybersec + Legal | Security-aware executive decisions |
 
 ### Invoke a Preset
 
@@ -118,31 +139,53 @@ Full preset documentation: `_bmad/strategy-team/workflows/_shared/party-mode-pre
 - Counter-argument anticipation
 - Rhetorical strengthening
 
-## Workflows (12 Total)
+## Workflows (16 Total)
 
 Execute guided multi-step processes that orchestrate multiple agents for comprehensive executive deliverables.
 
 ### Core Workflows (9)
 
-| Command | Workflow | Steps | Output |
-|---------|----------|-------|--------|
-| `/strategic-decision-workshop` | Strategic Decision Workshop | 9 | Decision Brief |
-| `/stakeholder-negotiation-prep` | Stakeholder Negotiation Prep | 8 | Negotiation Playbook |
-| `/board-presentation-prep` | Board Presentation Prep | 7 | Presentation Outline |
-| `/crisis-response-planning` | Crisis Response Planning | 7 | Crisis Response Plan |
-| `/strategic-planning-session` | Strategic Planning Session | 8 | Strategic Plan |
-| `/policy-development` | Policy Development | 8 | Policy Document |
-| `/conflict-resolution` | Conflict Resolution | 7 | Resolution Plan |
-| `/competitive-warfare` | Competitive Warfare | 8 | Warfare Plan |
-| `/corporate-political-game` | Corporate Political Game | 8 | Political Playbook |
+| Command | Workflow | Steps | Cross-Module | Output |
+|---------|----------|-------|--------------|--------|
+| `/strategic-decision-workshop` | Strategic Decision Workshop | 9 | Yes | Decision Brief |
+| `/stakeholder-negotiation-prep` | Stakeholder Negotiation Prep | 8 | Yes | Negotiation Playbook |
+| `/board-presentation-prep` | Board Presentation Prep | 7 | - | Presentation Outline |
+| `/crisis-response-planning` | Crisis Response Planning | 7 | Yes | Crisis Response Plan |
+| `/strategic-planning-session` | Strategic Planning Session | 8 | Yes | Strategic Plan |
+| `/policy-development` | Policy Development | 8 | Yes | Policy Document |
+| `/conflict-resolution` | Conflict Resolution | 7 | - | Resolution Plan |
+| `/competitive-warfare` | Competitive Warfare | 8 | Yes | Warfare Plan |
+| `/corporate-political-game` | Corporate Political Game | 8 | Yes | Political Playbook |
 
-### v1.2 Workflows (3) - NEW
+### v1.2 Workflows (3)
 
-| Command | Workflow | Steps | Output |
-|---------|----------|-------|--------|
-| `/political-risk-assessment` | Political Risk Assessment | 6 | Risk Assessment |
-| `/ethical-dilemma-resolution` | Ethical Dilemma Resolution | 7 | Ethical Resolution |
-| `/leadership-philosophy` | Leadership Philosophy Development | 6 | Leadership Philosophy |
+| Command | Workflow | Steps | Cross-Module | Output |
+|---------|----------|-------|--------------|--------|
+| `/political-risk-assessment` | Political Risk Assessment | 6 | Yes | Risk Assessment |
+| `/ethical-dilemma-resolution` | Ethical Dilemma Resolution | 7 | - | Ethical Resolution |
+| `/leadership-philosophy` | Leadership Philosophy Development | 6 | - | Leadership Philosophy |
+
+### v1.3 Workflows (4) - NEW
+
+| Command | Workflow | Steps | Cross-Module | Output |
+|---------|----------|-------|--------------|--------|
+| `/ma-due-diligence` | M&A Due Diligence | 7 | Yes | Due Diligence Report |
+| `/leadership-transition-planning` | Leadership Transition Planning | 6 | - | Transition Plan |
+| `/board-relations-management` | Board Relations Management | 6 | - | Board Strategy |
+| `/performance-review-preparation` | Performance Review Preparation | 5 | - | Performance Review |
+
+### Cross-Module Integration (8 Workflows)
+
+The following workflows include optional cross-module steps that bring in expertise from cybersec-team, intel-team, and legal-team:
+
+- **strategic-decision-workshop** - Security risk assessment, competitive intelligence
+- **stakeholder-negotiation-prep** - Background intelligence, legal considerations
+- **crisis-response-planning** - Incident response, threat intelligence, legal compliance
+- **strategic-planning-session** - Security landscape, market intelligence
+- **policy-development** - Compliance review, security requirements
+- **competitive-warfare** - Competitive intelligence, security assessment
+- **corporate-political-game** - Corporate intelligence, legal boundaries
+- **political-risk-assessment** - Geopolitical intelligence, regulatory landscape
 
 ### Workflow Quick Start
 
@@ -158,10 +201,16 @@ Execute guided multi-step processes that orchestrate multiple agents for compreh
 /competitive-warfare             # Plan competitive business battles
 /corporate-political-game        # Navigate internal corporate politics
 
-# v1.2 Workflows (NEW)
+# v1.2 Workflows
 /political-risk-assessment       # Evaluate political risks in initiatives
 /ethical-dilemma-resolution      # Navigate complex ethical dilemmas
 /leadership-philosophy           # Develop personal leadership philosophy
+
+# v1.3 Workflows (NEW)
+/ma-due-diligence               # M&A investigation and assessment
+/leadership-transition-planning  # Succession and handover planning
+/board-relations-management     # Board engagement strategy
+/performance-review-preparation  # Executive performance reviews
 ```
 
 ### Workflow Architecture
@@ -192,48 +241,61 @@ _bmad/strategy-team/
 │   ├── the-strategist-warrior.md
 │   ├── the-master-strategist.md
 │   └── the-principled-commander.md
-├── workflows/              # 12 executive workflows
+├── workflows/              # 16 executive workflows (132 step files)
 │   ├── _shared/
 │   │   ├── agent-roster.md
 │   │   ├── party-mode-presets.md  # 13 preset configurations
-│   │   └── templates/      # 12 output templates
+│   │   └── templates/             # Output templates
 │   ├── board-presentation-prep/
 │   │   ├── workflow.md
-│   │   └── steps/          # 7 step files
+│   │   └── steps/
+│   ├── board-relations-management/     # NEW v1.3
+│   │   ├── workflow.md
+│   │   └── steps/
 │   ├── competitive-warfare/
 │   │   ├── workflow.md
-│   │   └── steps/          # 9 step files
+│   │   └── steps/
 │   ├── conflict-resolution/
 │   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
+│   │   └── steps/
 │   ├── corporate-political-game/
 │   │   ├── workflow.md
-│   │   └── steps/          # 9 step files
+│   │   └── steps/
 │   ├── crisis-response-planning/
 │   │   ├── workflow.md
-│   │   └── steps/          # 7 step files
+│   │   └── steps/         # Includes step-02a-cross-module.md
 │   ├── ethical-dilemma-resolution/
 │   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
+│   │   └── steps/
 │   ├── leadership-philosophy/
 │   │   ├── workflow.md
-│   │   └── steps/          # 7 step files
+│   │   └── steps/
+│   ├── leadership-transition-planning/  # NEW v1.3
+│   │   ├── workflow.md
+│   │   └── steps/
+│   ├── ma-due-diligence/               # NEW v1.3
+│   │   ├── workflow.md
+│   │   └── steps/
+│   ├── performance-review-preparation/  # NEW v1.3
+│   │   ├── workflow.md
+│   │   └── steps/
 │   ├── policy-development/
 │   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
+│   │   └── steps/         # Includes step-XXa-cross-module.md
 │   ├── political-risk-assessment/
 │   │   ├── workflow.md
-│   │   └── steps/          # 7 step files
+│   │   └── steps/         # Includes step-XXa-cross-module.md
 │   ├── stakeholder-negotiation-prep/
 │   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
+│   │   └── steps/         # Includes step-XXa-cross-module.md
 │   ├── strategic-decision-workshop/
 │   │   ├── workflow.md
-│   │   └── steps/          # 9 step files
+│   │   └── steps/         # Includes step-XXa-cross-module.md
 │   └── strategic-planning-session/
 │       ├── workflow.md
-│       └── steps/          # 8 step files
-├── config.yaml             # Module configuration
+│       └── steps/         # Includes step-XXa-cross-module.md
+├── module.yaml             # Installation template
+├── config.yaml             # Runtime configuration
 └── README.md               # This file
 ```
 
@@ -246,13 +308,19 @@ The module uses `_bmad/strategy-team/config.yaml` for configuration including:
 
 ## Roadmap
 
-### v1.3 (Planned)
-- M&A due diligence workflow
-- Leadership transition planning
-- Board relations management workflow
-- Performance review preparation workflow
+### v1.4 (Planned)
 - Workflow chaining (one workflow leading into another)
 - Continue/Resume enhancements for all workflows
+- Out-of-the-box thinking layer for creative problem-solving
+- Additional cross-module integration patterns
+
+### v1.3 (Current) ✓
+- ✅ M&A due diligence workflow
+- ✅ Leadership transition planning
+- ✅ Board relations management workflow
+- ✅ Performance review preparation workflow
+- ✅ Cross-module integration steps (8 workflows)
+- ✅ Strategic party mode presets (5 new presets)
 
 ## Credits
 
@@ -260,4 +328,5 @@ Created using the BMAD Framework Module Creator workflow.
 
 **Author:** J
 **Created:** 2026-01-09
+**Updated:** 2026-01-11 (v1.3.0)
 **Framework:** BMAD + Claude Opus
