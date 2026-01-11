@@ -287,23 +287,34 @@ These agents channel historical figures to provide distinct ideological perspect
 
 ---
 
-## Legal-Team Module (7 Agents)
+## Legal-Team Module (13 Agents)
 
 **Cross-jurisdictional legal coordination for team orchestration**
 
 > ⚠️ **IMPORTANT DISCLAIMER**: The Legal Team module is designed **exclusively for supporting other modules** in Party Mode / team orchestration scenarios. It provides legal perspective during multi-agent discussions but is **NOT intended as a standalone legal framework**. The module creator is not a legal professional. Always consult qualified legal counsel for actual legal matters.
 
-### Legal Specialists (7)
+### Core Legal Team (7)
 
 | Codename | Title | Specialty |
 |----------|-------|-----------|
 | **Counsel** | General Counsel | Legal team director, case intake, jurisdiction routing |
 | **Liberty** | US Law Specialist | Federal and state corporate/civil law, regulatory compliance |
-| **Europa** | EU Law Specialist | GDPR, cross-border commerce, Estonia e-Residency, EU regulations |
+| **Europa** | EU Law Specialist | GDPR, cross-border commerce, EU regulations |
 | **Castile** | Spanish Law Specialist | National and autonomous community law, mercantile matters |
 | **Covenant** | Contract Specialist | Contract drafting, review, negotiation across jurisdictions |
 | **Tribute** | Tax Counsel | Cross-border taxation, compliance, planning |
 | **Advocate** | Litigation Strategist | Dispute resolution, arbitration, mediation strategy |
+
+### Extended Legal Team (6)
+
+| Codename | Title | Specialty |
+|----------|-------|-----------|
+| **Iberia** | Spain Civil Law Counsel | Family law, property, inheritance, foral law variations |
+| **Gremio** | Spain Labor Law Counsel | Employment contracts, dismissals, collective labor |
+| **Baltic** | Estonia Corporate Counsel | e-Residency, OÜ formation, digital business |
+| **Charter** | Corporate Governance Counsel | Board matters, fiduciary duties, shareholder rights |
+| **Insignia** | IP Counsel | Trademarks, patents, copyrights, licensing |
+| **Deed** | Real Estate Counsel | Property transactions, leases, development |
 
 **Jurisdictions Covered:** USA, European Union, Spain, Estonia, Cross-Border Matters
 
@@ -366,9 +377,9 @@ Meta-module for creating new BMAD modules.
 | **cyber-ops** | 15 | Cybersecurity operations |
 | **intel-team** | 11 | Intelligence operations |
 | **exec-ops** | 14 | Executive leadership |
-| **legal-team** | 7 | Legal support (Party Mode) |
+| **legal-team** | 13 | Legal support (Party Mode) |
 | **bmm** | 8+ | Software development |
 | **bmgd** | 4+ | Game development |
 | **bmb** | 3 | Module creation |
 
-**Total: 62+ specialized AI agents**
+**Total: 68+ specialized AI agents**
