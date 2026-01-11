@@ -1,0 +1,46 @@
+# Strategic Decision Orchestration Template
+name: strategic-decision
+description: "Multi-perspective strategic decision making with legal risk assessment"
+author: "BMad"
+
+# Critical variables from config
+config_source: "{project-root}/_bmad/core/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Workflow components
+installed_path: "{project-root}/_bmad/core/workflows/team-orchestration/strategic-decision"
+instructions: "{installed_path}/instructions.md"
+
+# Party mode preset
+party_preset: "strategic-advisors"
+party_preset_file: "{project-root}/_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml"
+
+# Module workflows referenced
+bmm_workflows:
+  research: "{project-root}/_bmad/bmm/workflows/1-discovery/research/workflow.md"
+
+strategy_workflows:
+  decision_workshop: "{project-root}/_bmad/strategy-team/workflows/strategic-decision-workshop/workflow.md"
+  competitive_warfare: "{project-root}/_bmad/strategy-team/workflows/competitive-warfare/workflow.md"
+
+legal_workflows:
+  risk_assessment: "{project-root}/_bmad/legal-team/workflows/legal-matter-intake/workflow.md"
+
+# Expected artifacts
+artifacts:
+  research:
+    - market-analysis.md
+    - competitive-landscape.md
+  strategy:
+    - strategic-options.md
+    - decision-brief.md
+  legal:
+    - legal-risk-assessment.md
+    - risk-mitigation-plan.md
+  final:
+    - implementation-roadmap.md
+
+standalone: true

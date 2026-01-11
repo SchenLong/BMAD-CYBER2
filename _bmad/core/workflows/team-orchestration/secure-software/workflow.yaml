@@ -1,0 +1,51 @@
+# Secure Software Development Orchestration Template
+name: secure-software
+description: "Security-aware software development with integrated threat modeling, compliance checks, and security gates"
+author: "BMad"
+
+# Critical variables from config
+config_source: "{project-root}/_bmad/core/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Workflow components
+installed_path: "{project-root}/_bmad/core/workflows/team-orchestration/secure-software"
+instructions: "{installed_path}/instructions.md"
+
+# Phase gate definitions
+phase_gates: "{project-root}/_bmad/core/workflows/team-orchestration/phase-gate/phase-gates.yaml"
+
+# Module workflows referenced
+bmm_workflows:
+  prd: "{project-root}/_bmad/bmm/workflows/2-planning/create-prd/workflow.md"
+  architecture: "{project-root}/_bmad/bmm/workflows/3-solutioning/create-architecture/workflow.md"
+  epics: "{project-root}/_bmad/bmm/workflows/3-solutioning/create-epics-and-stories/workflow.md"
+
+cybersec_workflows:
+  threat_model: "{project-root}/_bmad/cybersec-team/workflows/stride-threat-model/workflow.md"
+  security_review: "{project-root}/_bmad/cybersec-team/workflows/security-architecture-review/workflow.md"
+
+legal_workflows:
+  compliance_audit: "{project-root}/_bmad/legal-team/workflows/compliance-audit-prep/workflow.md"
+
+# Expected artifacts at each phase
+artifacts:
+  planning:
+    - prd.md
+    - product-brief.md
+  threat_modeling:
+    - threat-model.yaml
+    - threat-model.md
+  compliance:
+    - compliance-requirements.yaml
+    - compliance-checklist.md
+  architecture:
+    - architecture.md
+    - security-review-findings.md
+  implementation:
+    - epics-and-stories.md
+    - sprint-status.yaml
+
+standalone: true

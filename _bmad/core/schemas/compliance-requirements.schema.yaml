@@ -1,0 +1,276 @@
+# Compliance Requirements Schema
+# Standard format for legal/cybersec/BMM handoff
+# Used by: Legal-Team → BMM, Cybersec-Team
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "bmad://schemas/compliance-requirements/1.0"
+title: "BMAD Compliance Requirements"
+description: "Standard compliance requirements format for cross-module consumption"
+
+type: object
+required:
+  - metadata
+  - frameworks
+  - controls
+
+properties:
+
+  metadata:
+    type: object
+    required:
+      - project_id
+      - created_by
+      - created_at
+    properties:
+      project_id:
+        type: string
+      created_by:
+        type: string
+        description: "Agent that defined these requirements"
+      created_at:
+        type: string
+        format: date-time
+      version:
+        type: string
+        default: "1.0"
+      status:
+        type: string
+        enum: ["draft", "review", "approved", "superseded"]
+      review_date:
+        type: string
+        format: date
+        description: "When compliance requirements should be reviewed"
+
+  frameworks:
+    type: array
+    description: "Applicable compliance frameworks"
+    items:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          enum: ["GDPR", "HIPAA", "PCI-DSS", "SOC2", "ISO27001", "CCPA", "SOX", "NIST-CSF", "FedRAMP"]
+        name:
+          type: string
+        version:
+          type: string
+        applicability:
+          type: string
+          description: "Why this framework applies to the project"
+        certification_required:
+          type: boolean
+          default: false
+        audit_frequency:
+          type: string
+          enum: ["annual", "bi-annual", "quarterly", "continuous"]
+
+  data_classification:
+    type: object
+    description: "Data types and their classifications"
+    properties:
+      categories:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              description: "Data category name (e.g., 'PII', 'PHI', 'PCI')"
+            description:
+              type: string
+            sensitivity:
+              type: string
+              enum: ["Public", "Internal", "Confidential", "Restricted"]
+            examples:
+              type: array
+              items:
+                type: string
+            applicable_frameworks:
+              type: array
+              items:
+                type: string
+            retention_period:
+              type: string
+              description: "How long data must be retained"
+            deletion_requirements:
+              type: string
+              description: "How data must be deleted"
+
+  controls:
+    type: array
+    description: "Required compliance controls"
+    items:
+      type: object
+      required:
+        - id
+        - framework
+        - requirement
+        - priority
+      properties:
+        id:
+          type: string
+          pattern: "^C-[0-9]{3}$"
+          description: "Control ID (e.g., C-001)"
+        framework:
+          type: string
+          description: "Source framework"
+        framework_control_id:
+          type: string
+          description: "Original control ID from framework (e.g., GDPR Art. 17)"
+        requirement:
+          type: string
+          description: "What must be implemented"
+        description:
+          type: string
+          description: "Detailed explanation"
+        applies_to:
+          type: array
+          items:
+            type: string
+          description: "Components or data types this applies to"
+        priority:
+          type: string
+          enum: ["Mandatory", "Recommended", "Optional"]
+        control_type:
+          type: string
+          enum: ["Technical", "Administrative", "Physical"]
+        implementation_guidance:
+          type: string
+          description: "How to implement this control"
+        evidence_needed:
+          type: string
+          description: "What evidence is needed for audit"
+        testing_approach:
+          type: string
+          description: "How to test this control"
+        implementation_status:
+          type: string
+          enum: ["NotStarted", "InProgress", "Implemented", "Verified", "NotApplicable"]
+          default: "NotStarted"
+        story_reference:
+          type: string
+          description: "Reference to implementation story"
+        verification_date:
+          type: string
+          format: date
+
+  notification_requirements:
+    type: object
+    description: "Breach notification requirements"
+    properties:
+      authorities:
+        type: array
+        items:
+          type: object
+          properties:
+            framework:
+              type: string
+            authority:
+              type: string
+            deadline:
+              type: string
+              description: "Notification deadline (e.g., '72 hours')"
+            method:
+              type: string
+              description: "How to notify"
+            template_available:
+              type: boolean
+      data_subjects:
+        type: array
+        items:
+          type: object
+          properties:
+            framework:
+              type: string
+            requirement:
+              type: string
+            deadline:
+              type: string
+            exceptions:
+              type: array
+              items:
+                type: string
+
+  audit_requirements:
+    type: object
+    properties:
+      internal_audit:
+        type: object
+        properties:
+          frequency:
+            type: string
+          scope:
+            type: string
+          responsible_team:
+            type: string
+      external_audit:
+        type: object
+        properties:
+          required:
+            type: boolean
+          frequency:
+            type: string
+          auditor_requirements:
+            type: string
+      evidence_retention:
+        type: string
+        description: "How long to retain audit evidence"
+
+  summary:
+    type: object
+    properties:
+      total_controls:
+        type: integer
+      by_priority:
+        type: object
+        properties:
+          mandatory:
+            type: integer
+          recommended:
+            type: integer
+          optional:
+            type: integer
+      by_status:
+        type: object
+        properties:
+          not_started:
+            type: integer
+          in_progress:
+            type: integer
+          implemented:
+            type: integer
+          verified:
+            type: integer
+      frameworks_count:
+        type: integer
+      next_audit_date:
+        type: string
+        format: date
+
+  _bmad_metadata:
+    type: object
+    properties:
+      source_workflow:
+        type: string
+      source_module:
+        type: string
+      source_agent:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      project_id:
+        type: string
+      links:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              enum: ["derives_from", "implements", "validates", "supersedes"]
+            target_artifact:
+              type: string

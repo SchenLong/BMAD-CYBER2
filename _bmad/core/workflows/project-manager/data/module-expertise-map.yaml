@@ -1,0 +1,330 @@
+# Module Expertise Map
+# Maps topics, keywords, and scenarios to appropriate modules and agents
+# Used by Abdul for intelligent cross-module recommendations
+
+expertise_areas:
+
+  # Security & Compliance
+  security:
+    primary_module: "cybersec-team"
+    triggers:
+      - security
+      - vulnerability
+      - threat
+      - penetration
+      - attack
+      - exploit
+      - breach
+      - malware
+      - ransomware
+      - phishing
+      - encryption
+      - authentication
+      - authorization
+    suggested_agents:
+      - name: security-architect
+        display: "Bastion"
+        use_case: "Architecture review, defense design"
+      - name: threat-analyst
+        display: "Cipher"
+        use_case: "Threat intelligence, adversary analysis"
+      - name: penetration-tester
+        display: "Ghost"
+        use_case: "Offensive testing, vulnerability assessment"
+    suggested_workflows:
+      - security-architecture-review
+      - stride-threat-model
+      - vulnerability-management
+
+  compliance:
+    primary_module: "legal-team"
+    secondary_module: "cybersec-team"
+    triggers:
+      - gdpr
+      - hipaa
+      - pci
+      - sox
+      - compliance
+      - regulatory
+      - audit
+      - privacy
+      - data protection
+    suggested_agents:
+      - name: compliance-guardian
+        display: "Sentinel"
+        module: "cybersec-team"
+        use_case: "Security compliance, technical controls"
+      - name: counsel
+        display: "Counsel"
+        module: "legal-team"
+        use_case: "Legal compliance guidance"
+      - name: europa
+        display: "Europa"
+        module: "legal-team"
+        use_case: "EU/GDPR compliance"
+    suggested_workflows:
+      - compliance-audit-prep
+      - legal-matter-intake
+
+  # Strategic & Executive
+  strategy:
+    primary_module: "strategy-team"
+    triggers:
+      - strategy
+      - stakeholder
+      - executive
+      - board
+      - leadership
+      - decision
+      - politics
+      - organizational
+    suggested_agents:
+      - name: the-master-strategist
+        display: "Sun Tzu"
+        use_case: "Strategic planning, competitive positioning"
+      - name: political-strategist
+        display: "Magnus"
+        use_case: "Political landscape, coalition building"
+      - name: stakeholder-mediator
+        display: "Geneva"
+        use_case: "Negotiation, consensus building"
+    suggested_workflows:
+      - strategic-decision-workshop
+      - stakeholder-negotiation-prep
+      - board-presentation-prep
+
+  ethics:
+    primary_module: "strategy-team"
+    triggers:
+      - ethics
+      - moral
+      - values
+      - dilemma
+      - principle
+      - integrity
+    suggested_agents:
+      - name: ethics-advisor
+        display: "Sophia"
+        use_case: "Ethical analysis, values alignment"
+      - name: the-principled-commander
+        display: "Jean-Luc"
+        use_case: "Principled leadership, diplomatic resolution"
+    suggested_workflows:
+      - ethical-dilemma-resolution
+
+  crisis:
+    primary_module: "strategy-team"
+    secondary_module: "cybersec-team"
+    triggers:
+      - crisis
+      - incident
+      - emergency
+      - breach
+      - response
+      - communication
+    suggested_agents:
+      - name: communications-director
+        display: "Giuseppe"
+        module: "strategy-team"
+        use_case: "Crisis communications, messaging"
+      - name: incident-commander
+        display: "Phoenix"
+        module: "cybersec-team"
+        use_case: "Incident response, containment"
+    suggested_workflows:
+      - crisis-response-planning
+      - incident-response
+
+  # Intelligence & Investigation
+  intelligence:
+    primary_module: "intel-team"
+    triggers:
+      - osint
+      - threat actor
+      - attribution
+      - reconnaissance
+      - investigation
+      - surveillance
+      - intelligence
+      - profiling
+    suggested_agents:
+      - name: osint-lead
+        display: "Vector"
+        use_case: "Intelligence operations, all-source fusion"
+      - name: threat-actor-profiler
+        display: "Dossier"
+        use_case: "Adversary profiling, attribution"
+      - name: dark-web-analyst
+        display: "Shadow"
+        use_case: "Dark web intelligence"
+    suggested_workflows:
+      - flash-assessment
+      - campaign-planner
+      - threat-constellation
+
+  # Legal
+  legal:
+    primary_module: "legal-team"
+    triggers:
+      - contract
+      - agreement
+      - liability
+      - litigation
+      - intellectual property
+      - trademark
+      - patent
+      - dispute
+      - lawsuit
+    suggested_agents:
+      - name: counsel
+        display: "Counsel"
+        use_case: "General legal guidance, matter intake"
+      - name: covenant
+        display: "Covenant"
+        use_case: "Contract drafting, review"
+      - name: advocate
+        display: "Advocate"
+        use_case: "Dispute resolution, litigation strategy"
+    suggested_workflows:
+      - contract-review
+      - dispute-strategy
+
+  tax:
+    primary_module: "legal-team"
+    triggers:
+      - tax
+      - fiscal
+      - irs
+      - vat
+      - corporate tax
+    suggested_agents:
+      - name: tribute
+        display: "Tribute"
+        use_case: "Tax planning, compliance"
+    suggested_workflows:
+      - tax-planning
+
+  # Software Development
+  software_architecture:
+    primary_module: "bmm"
+    triggers:
+      - architecture
+      - system design
+      - api design
+      - database
+      - scalability
+      - microservices
+    suggested_agents:
+      - name: architect
+        display: "Winston"
+        use_case: "System architecture, technical design"
+    suggested_workflows:
+      - create-architecture
+
+  product:
+    primary_module: "bmm"
+    triggers:
+      - product
+      - requirements
+      - features
+      - user stories
+      - prd
+      - roadmap
+    suggested_agents:
+      - name: pm
+        display: "John"
+        use_case: "Product requirements, stakeholder alignment"
+      - name: analyst
+        display: "Mary"
+        use_case: "Market research, requirements analysis"
+    suggested_workflows:
+      - create-prd
+      - create-epics-and-stories
+
+  ux:
+    primary_module: "bmm"
+    triggers:
+      - ux
+      - user experience
+      - wireframe
+      - design
+      - usability
+      - interface
+    suggested_agents:
+      - name: ux-designer
+        display: "Sally"
+        use_case: "UX design, user research"
+    suggested_workflows:
+      - create-ux-design
+
+  testing:
+    primary_module: "bmm"
+    triggers:
+      - test
+      - qa
+      - quality
+      - automation
+      - coverage
+    suggested_agents:
+      - name: tea
+        display: "Murat"
+        use_case: "Test architecture, quality strategy"
+    suggested_workflows:
+      - testarch-test-design
+      - testarch-framework
+
+  # Game Development
+  game_design:
+    primary_module: "bmgd"
+    triggers:
+      - game
+      - gameplay
+      - mechanics
+      - level design
+      - narrative
+      - gdd
+    suggested_agents:
+      - name: game-designer
+        display: "Samus Shepard"
+        use_case: "Game design, mechanics, player experience"
+      - name: game-architect
+        display: "Cloud Dragonborn"
+        use_case: "Game systems architecture"
+    suggested_workflows:
+      - create-gdd
+      - game-architecture
+
+# Cross-module recommendation triggers
+# When to suggest involving additional modules
+cross_module_triggers:
+
+  - scenario: "Architecture phase of software project"
+    trigger_phase: "solutioning"
+    trigger_artifact: "architecture.md"
+    recommend_modules: ["cybersec-team"]
+    reason: "Security review should happen during architecture design"
+    suggested_action: "Security architecture review"
+
+  - scenario: "Before implementation phase"
+    trigger_phase: "implementation"
+    recommend_modules: ["legal-team"]
+    reason: "Compliance check before development starts"
+    suggested_action: "Compliance requirements review"
+
+  - scenario: "High-stakes product decisions"
+    trigger_keywords: ["enterprise", "b2b", "regulated", "healthcare", "finance"]
+    recommend_modules: ["strategy-team", "legal-team"]
+    reason: "Strategic and legal counsel for high-stakes decisions"
+    suggested_action: "Strategic decision workshop with legal input"
+
+  - scenario: "Threat modeling"
+    trigger_workflow: "stride-threat-model"
+    recommend_modules: ["intel-team"]
+    reason: "Threat intelligence can inform threat modeling"
+    suggested_action: "Threat actor profiling for realistic threat scenarios"
+
+  - scenario: "Incident occurred"
+    trigger_keywords: ["incident", "breach", "attack", "compromised"]
+    recommend_modules: ["cybersec-team", "legal-team", "strategy-team"]
+    reason: "Coordinated response across technical, legal, and communications"
+    suggested_action: "Incident response with legal and comms support"

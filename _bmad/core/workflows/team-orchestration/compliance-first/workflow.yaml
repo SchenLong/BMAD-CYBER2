@@ -1,0 +1,67 @@
+# Compliance-First Software Development Orchestration Template
+name: compliance-first
+description: "Regulated industry software development with compliance-driven architecture"
+author: "BMad"
+
+# Critical variables from config
+config_source: "{project-root}/_bmad/core/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Workflow components
+installed_path: "{project-root}/_bmad/core/workflows/team-orchestration/compliance-first"
+instructions: "{installed_path}/instructions.md"
+
+# Party mode preset
+party_preset: "compliance-audit-team"
+party_preset_file: "{project-root}/_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml"
+
+# Module workflows referenced
+legal_workflows:
+  compliance_requirements: "{project-root}/_bmad/legal-team/workflows/compliance-audit-prep/workflow.md"
+
+bmm_workflows:
+  architecture: "{project-root}/_bmad/bmm/workflows/3-solutioning/create-architecture/workflow.md"
+  implementation: "{project-root}/_bmad/bmm/workflows/4-implementation/dev-story/workflow.md"
+
+cybersec_workflows:
+  controls_mapping: "{project-root}/_bmad/cybersec-team/workflows/security-architecture-review/workflow.md"
+  penetration_test: "{project-root}/_bmad/cybersec-team/workflows/penetration-test/workflow.md"
+
+# Compliance frameworks supported
+frameworks:
+  - id: gdpr
+    name: "GDPR"
+    focus: "EU personal data protection"
+    key_controls: ["Data minimization", "Consent management", "Right to erasure", "Data portability"]
+  - id: hipaa
+    name: "HIPAA"
+    focus: "US healthcare data protection"
+    key_controls: ["Access controls", "Audit trails", "Encryption", "BAA requirements"]
+  - id: pci_dss
+    name: "PCI-DSS"
+    focus: "Payment card data security"
+    key_controls: ["Network segmentation", "Encryption", "Access control", "Monitoring"]
+  - id: soc2
+    name: "SOC 2"
+    focus: "Service organization controls"
+    key_controls: ["Security", "Availability", "Processing integrity", "Confidentiality", "Privacy"]
+
+# Expected artifacts
+artifacts:
+  compliance:
+    - compliance-requirements.yaml
+    - control-mapping.md
+  architecture:
+    - architecture.md (with compliance annotations)
+    - data-flow-diagram.md
+  implementation:
+    - compliance-stories.md
+    - evidence-collection-plan.md
+  audit:
+    - audit-readiness-report.md
+    - control-evidence/
+
+standalone: true
