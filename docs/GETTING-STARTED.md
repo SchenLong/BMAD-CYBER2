@@ -61,6 +61,15 @@ cd BMAD-CYBER2
 /intel-team:domain-intel-specialist # Resolver - Domain Intelligence
 /intel-team:social-media-analyst # Echo - SOCMINT
 /intel-team:dark-web-analyst     # Shadow - DARKINT
+
+# Legal-Team Agents (Party Mode support only)
+/legal-team:counsel              # General Counsel - Team Director
+/legal-team:liberty              # US Law Specialist
+/legal-team:europa               # EU Law Specialist
+/legal-team:castile              # Spanish Law Specialist
+/legal-team:covenant             # Contract Specialist
+/legal-team:tribute              # Tax Counsel
+/legal-team:advocate             # Litigation Strategist
 ```
 
 ### 2. Run a Workflow
@@ -279,6 +288,20 @@ Agents: Vector + Resolver + Echo + Shadow + Atlas + Probe
 Purpose: All-source intelligence coordination
 ```
 
+**Scenario 8: Cross-Module with Legal Support**
+```
+Agents: Bastion + Sentinel + Counsel + Covenant
+Purpose: Security architecture with compliance and legal review
+```
+
+**Scenario 9: Executive Decision with Legal**
+```
+Agents: Sun + Augustus + Counsel + Europa
+Purpose: Strategic planning with legal and regulatory input
+```
+
+> ⚠️ **Note:** Legal-Team agents are designed for Party Mode support only. See the Legal-Team disclaimer in [AGENTS.md](./AGENTS.md).
+
 ---
 
 ## Troubleshooting
@@ -333,6 +356,7 @@ Load workflow: _bmad/cyber-ops/workflows/[workflow-name]/workflow.md
 - **Cyber-Ops:** [_bmad/cyber-ops/README.md](../_bmad/cyber-ops/README.md)
 - **Intel-Team:** [_bmad/intel-team/README.md](../_bmad/intel-team/README.md)
 - **Exec-Ops:** [_bmad/exec-ops/README.md](../_bmad/exec-ops/README.md)
+- **Legal-Team:** [_bmad/legal-team/README.md](../_bmad/legal-team/README.md) ⚠️ Party Mode support only
 
 ---
 
