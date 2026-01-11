@@ -1,4 +1,4 @@
-# 🛡️ BMAD Module Collection
+# 🛡️ BMAD CYBERSEC Module Collection
 
 <div align="center">
 
