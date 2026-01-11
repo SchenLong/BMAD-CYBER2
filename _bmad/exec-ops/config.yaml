@@ -3,7 +3,7 @@
 
 module_name: exec-ops
 full_name: Executive Leadership & Decision-Making Module
-version: 1.2.0
+version: 1.3.0
 created_date: 2026-01-09
 status: production
 
@@ -175,6 +175,34 @@ workflows:
     output_template: political-risk-template.md
     command: /political-risk-assessment
 
+  - id: ma-due-diligence
+    name: M&A Due Diligence
+    description: Comprehensive merger and acquisition evaluation and integration planning
+    steps: 8
+    output_template: ma-due-diligence-template.md
+    command: /ma-due-diligence
+
+  - id: leadership-transition-planning
+    name: Leadership Transition Planning
+    description: Succession and leadership handover planning
+    steps: 7
+    output_template: leadership-transition-template.md
+    command: /leadership-transition-planning
+
+  - id: board-relations-management
+    name: Board Relations Management
+    description: Board engagement strategy and relationship management
+    steps: 6
+    output_template: board-relations-template.md
+    command: /board-relations-management
+
+  - id: performance-review-preparation
+    name: Performance Review Preparation
+    description: Executive performance review preparation and feedback calibration
+    steps: 6
+    output_template: performance-review-template.md
+    command: /performance-review-preparation
+
 # Tool Integration
 tools:
   core_bmad:
@@ -213,14 +241,14 @@ metadata:
   author: BMAD Framework + Claude Opus
   created_by: create-module workflow
   total_agents: 14
-  total_workflows: 12
-  total_step_files: 95
-  party_mode_presets: 13
+  total_workflows: 16
+  total_step_files: 122
+  party_mode_presets: 17
   production_ready: true
   tested: true
   documented: true
 
 # Update Information
-last_updated: 2026-01-10
-update_notes: v1.2.0 - Added 3 additional workflows (ethical-dilemma-resolution, leadership-philosophy, political-risk-assessment)
-next_review_date: 2026-04-10  # Quarterly review
+last_updated: 2026-01-11
+update_notes: v1.3.0 - Added 4 new workflows (ma-due-diligence, leadership-transition-planning, board-relations-management, performance-review-preparation)
+next_review_date: 2026-04-11  # Quarterly review

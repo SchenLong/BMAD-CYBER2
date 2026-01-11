@@ -23,10 +23,10 @@
 |--------|---------|--------|-----------|-------|
 | 🔐 **[cyber-ops](#-cyber-ops)** | v1.3.1 | 15 | 13 | Cybersecurity operations |
 | 🕵️ **[intel-team](#️-intel-team)** | v1.1.1 | 11 | 19 | Intelligence operations |
-| 👔 **[exec-ops](#-exec-ops)** | v1.2.1 | 14 | 12 | Executive leadership & strategy |
+| 👔 **[exec-ops](#-exec-ops)** | v1.3.0 | 14 | 16 | Executive leadership & strategy |
 | ⚖️ **[legal-team](#️-legal-team)** | v1.1.0 | 13 | 7 | Legal support for other modules |
 
-**Total: 53 specialized agents, 51 production workflows**
+**Total: 53 specialized agents, 55 production workflows**
 
 ---
 
@@ -161,7 +161,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 │    ├─ 🤖 Campaign AI
 │    └─ ⏰ Tripwire
 │
-├─── 👔 Exec-Ops (12 workflows)
+├─── 👔 Exec-Ops (16 workflows)
 │    ├─ 🎯 Strategic Decision Workshop
 │    ├─ 🤝 Stakeholder Negotiation Prep
 │    ├─ 📊 Board Presentation Prep
@@ -205,9 +205,9 @@ BMAD-CYBER2/
 │   │   ├── data/                      # OSINT knowledgebase
 │   │   └── README.md
 │   │
-│   ├── exec-ops/                      # 👔 Executive module (v1.2.1)
+│   ├── exec-ops/                      # 👔 Executive module (v1.3.0)
 │   │   ├── agents/                    # 14 advisor definitions
-│   │   ├── workflows/                 # 12 executive workflows
+│   │   ├── workflows/                 # 16 executive workflows
 │   │   └── README.md
 │   │
 │   ├── legal-team/                    # ⚖️ Legal module (v1.1.0)
@@ -374,11 +374,12 @@ preferences:
 - 120+ step files covering complete security operations lifecycle
 - New: Blockchain, Mobile, Web App, Network, Infrastructure, Cloud, Vulnerability, Awareness
 
-### 👔 exec-ops v1.2.1 (2026-01-11)
-- Added dual security rules (prompt injection + manipulation protection)
+### 👔 exec-ops v1.3.0 (2026-01-11)
+- Added 4 new workflows: M&A Due Diligence, Leadership Transition, Board Relations, Performance Review
 - 14 executive advisors (6 modern + 8 historical archetypes)
-- 12 executive workflows with 95+ step files
-- 13 Party Mode presets for common scenarios
+- 16 executive workflows with 122 step files
+- 17 Party Mode presets for common scenarios
+- Added dual security rules (prompt injection + manipulation protection)
 
 ---
 

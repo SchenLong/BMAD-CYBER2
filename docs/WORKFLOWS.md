@@ -366,7 +366,7 @@ Complete reference for all workflows across BMAD modules.
 
 ---
 
-## Exec-Ops Workflows (12)
+## Exec-Ops Workflows (16)
 
 ### Core Workflows (9)
 
@@ -390,7 +390,16 @@ Complete reference for all workflows across BMAD modules.
 | `/ethical-dilemma-resolution` | Complex ethical navigation | Ethical Resolution |
 | `/leadership-philosophy` | Personal leadership development | Leadership Philosophy |
 
-### Party Mode Presets (13)
+### v1.3 Workflows (4) - NEW
+
+| Command | Workflow | Output |
+|---------|----------|--------|
+| `/ma-due-diligence` | M&A target evaluation and integration planning | Due Diligence Report |
+| `/leadership-transition-planning` | Succession and leadership handover | Transition Plan |
+| `/board-relations-management` | Board engagement strategy | Board Relations Plan |
+| `/performance-review-preparation` | Executive performance review prep | Performance Review |
+
+### Party Mode Presets (17)
 
 Pre-configured multi-agent combinations for common executive scenarios:
 
@@ -409,6 +418,10 @@ Pre-configured multi-agent combinations for common executive scenarios:
 | `conflict-resolution` | Geneva, Jean-Luc, Charles, Sophia | Internal conflicts |
 | `all-out-war` | Niccolo, Sun, Musashi, Magnus, Joseph | Competitive warfare |
 | `corporate-politics` | Magnus, Niccolo, Cicero, Geneva, Joseph | Internal politics |
+| `ma-due-diligence` | Sun, Lee, Augustus, Burke | M&A evaluation |
+| `leadership-transition` | Jean-Luc, Burke, Geneva, Joseph | Succession planning |
+| `board-relations` | Magnus, Joseph, Geneva, Niccolo | Board engagement |
+| `performance-review` | Sophia, Augustus, Geneva, Charles | Performance assessment |
 
 ---
 
@@ -527,10 +540,10 @@ These workflows provide legal perspective when other modules require legal input
 |--------|-----------|-------|
 | **cyber-ops** | 13 | Security operations |
 | **intel-team** | 19 | Intelligence operations |
-| **exec-ops** | 12 | Executive leadership |
+| **exec-ops** | 16 | Executive leadership |
 | **legal-team** | 7 | Legal support (Party Mode - 13 agents) |
 | **bmm** | 20+ | Software development |
 | **bmgd** | 15+ | Game development |
 | **bmb** | 5 | Module creation |
 
-**Total: 90+ specialized workflows**
+**Total: 95+ specialized workflows**

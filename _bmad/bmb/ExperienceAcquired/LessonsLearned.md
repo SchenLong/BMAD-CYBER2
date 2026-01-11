@@ -405,13 +405,20 @@ Verify the module is fully documented for users and contributors:
 
 **File naming convention:**
 ```
-{module-name}-validation-{YYYY-MM-DD}.md
+{module-name}-v{version}-validation-{YYYY-MM-DD}.md
 ```
 
 **Example:**
 ```
-docs/ValidationLog/legal-team-validation-2026-01-11.md
+docs/ValidationLog/legal-team-v1.0-validation-2026-01-11.md
+docs/ValidationLog/exec-ops-v1.3-validation-2026-01-11.md
 ```
+
+**IMPORTANT:** Always include the module version number in the validation log filename. This ensures:
+- Clear association between validation results and specific module versions
+- Easy tracking of validation history across version updates
+- Ability to compare validation results between versions
+- Audit trail for when specific versions were validated
 
 **Log retention:**
 - Keep all validation logs for audit trail
@@ -1128,6 +1135,235 @@ echo "Implemented:" && ls _bmad/{module}/agents/*.md 2>/dev/null | wc -l
 
 ---
 
+### Lesson 13: Mandatory Roadmap Synchronization
+
+**Error:** Making changes to modules without updating the corresponding roadmap documents, leading to drift between actual state and documented plans.
+
+**Impact:**
+- Roadmaps become stale and unreliable
+- Team members work from outdated information
+- Completed work not tracked, creating false impression of pending tasks
+- New features added without documented rationale
+- Progress invisible to stakeholders
+- Planning becomes disconnected from reality
+
+**Prevention:** ALWAYS update roadmaps when committing changes or saving progress.
+
+---
+
+#### **Roadmap Synchronization Protocol**
+
+**When to Update Roadmaps:**
+
+1. **After completing any planned feature:**
+   - Mark item as complete in module roadmap
+   - Update completion percentage
+   - Add to version history
+
+2. **After adding new components:**
+   - Add to "Current State" section
+   - Update agent/workflow counts
+   - Document in version history
+
+3. **After identifying new gaps:**
+   - Add to "Known Gaps" section
+   - Prioritize in roadmap phases
+   - Estimate timeline if possible
+
+4. **At milestone completions:**
+   - Update phase status in framework roadmap
+   - Review and adjust upcoming phases
+   - Validate success metrics
+
+---
+
+#### **Roadmap Files to Update**
+
+| Change Type | Files to Update |
+|-------------|-----------------|
+| Module component added | `docs/roadmaps/{module}-roadmap.md` |
+| Module version bump | `docs/roadmaps/{module}-roadmap.md`, `README.md` |
+| Cross-module feature | `docs/roadmaps/framework-roadmap.md` |
+| Phase completion | `docs/roadmaps/framework-roadmap.md` |
+| New gap identified | `docs/roadmaps/{module}-roadmap.md` |
+
+---
+
+#### **Roadmap Update Checklist**
+
+Before committing changes, verify:
+
+```markdown
+## Roadmap Sync Check
+- [ ] Module roadmap updated with changes
+- [ ] Completion percentage recalculated
+- [ ] Version history entry added (if version bump)
+- [ ] Known gaps updated (if applicable)
+- [ ] Framework roadmap updated (if cross-module)
+- [ ] Success metrics current
+- [ ] Validation status current
+```
+
+---
+
+#### **Roadmap File Locations**
+
+```
+docs/roadmaps/
+├── framework-roadmap.md     # Overall framework status and phases
+├── cyber-ops-roadmap.md     # Cyber-ops module roadmap
+├── intel-team-roadmap.md    # Intel-team module roadmap
+├── exec-ops-roadmap.md      # Exec-ops module roadmap
+└── legal-team-roadmap.md    # Legal-team module roadmap
+```
+
+---
+
+#### **Quick Reference Commands**
+
+```bash
+# View all roadmaps
+ls docs/roadmaps/
+
+# Check last update dates
+head -10 docs/roadmaps/*.md | grep "Last Updated"
+
+# Verify completion percentages match actual counts
+for module in cyber-ops intel-team exec-ops legal-team; do
+  echo "=== $module ==="
+  echo "Agents: $(ls _bmad/$module/agents/*.md 2>/dev/null | wc -l)"
+  echo "Workflows: $(ls _bmad/$module/workflows/*/workflow.md 2>/dev/null | wc -l)"
+done
+```
+
+---
+
+#### **Integration with Commit Process**
+
+When preparing a commit that changes module components:
+
+1. **Before commit:** Review roadmap for current state
+2. **After changes:** Update roadmap to reflect new state
+3. **In commit message:** Reference roadmap if significant milestone
+4. **Post-commit:** Verify roadmap sync in next session
+
+---
+
+**DO NOT:** Commit module changes without updating the corresponding roadmap. Stale roadmaps cause planning errors and wasted effort.
+
+---
+
+### Lesson 14: Complete Documentation Update on Module Changes
+
+**Error:** Updating module components (agents, workflows, config) without updating all related documentation files in both the module and the repository.
+
+**Impact:**
+- Documentation counts become incorrect (e.g., README shows 12 workflows when module has 16)
+- Users find inconsistent information across different docs
+- Version numbers mismatch between config.yaml and README
+- New features undiscoverable because they're not documented
+- Repository appears unmaintained or poorly organized
+
+**Prevention:** When updating ANY module, ALWAYS update ALL related documentation in this order:
+
+---
+
+#### **Required Documentation Updates**
+
+**1. Module-Level Documentation:**
+- [ ] `_bmad/{module}/config.yaml` - Version, workflow count, metadata
+- [ ] `_bmad/{module}/README.md` - Module overview and capabilities
+- [ ] `_bmad/{module}/workflows/_shared/` - Party mode presets, templates
+
+**2. Repository-Level Documentation (docs/):**
+- [ ] `docs/WORKFLOWS.md` - Workflow list, counts, commands
+- [ ] `docs/AGENTS.md` - Agent counts if changed
+- [ ] `docs/GETTING-STARTED.md` - Usage examples if new commands
+
+**3. Root README.md (ALWAYS LAST):**
+- [ ] Module version in overview table
+- [ ] Workflow/agent counts in table
+- [ ] Total counts in summary
+- [ ] Directory structure comments
+- [ ] Version history section
+
+**4. Roadmap Documentation:**
+- [ ] `docs/roadmaps/{module}-roadmap.md` - Current state, version history
+
+---
+
+#### **README.md Structure Preservation**
+
+**CRITICAL:** Always preserve the existing README.md structure and design. Do NOT:
+- Change the layout or section order
+- Remove or reorganize existing sections
+- Change formatting conventions (badges, tables, emoji usage)
+- Alter the visual hierarchy
+
+**DO:** Only update the specific values that changed:
+- Version numbers
+- Counts (agents, workflows)
+- Version history entries
+- Date stamps
+
+---
+
+#### **Update Sequence Checklist**
+
+When adding/modifying module components:
+
+```markdown
+## Documentation Update Checklist
+
+### Module Updated: {module-name}
+### Change Type: [New Workflows / New Agents / Version Bump / Bug Fix]
+
+#### 1. Module Documentation
+- [ ] config.yaml version updated
+- [ ] config.yaml counts updated
+- [ ] Module README updated
+
+#### 2. docs/ Files
+- [ ] WORKFLOWS.md updated with new workflows
+- [ ] WORKFLOWS.md counts updated
+- [ ] AGENTS.md updated (if agent changes)
+- [ ] GETTING-STARTED.md updated (if new commands)
+
+#### 3. README.md (Root)
+- [ ] Overview table: version, counts
+- [ ] Directory structure: version, counts
+- [ ] Version history: new entry
+- [ ] Total counts updated
+
+#### 4. Roadmap
+- [ ] Module roadmap updated
+- [ ] Framework roadmap updated (if applicable)
+
+#### 5. Validation Log
+- [ ] Validation log created: {module}-v{version}-validation-{date}.md
+```
+
+---
+
+#### **Quick Verification Commands**
+
+```bash
+# Check all docs reference same workflow count for a module
+grep -r "exec-ops.*workflows\|workflows.*exec-ops" docs/ README.md | grep -E "[0-9]+"
+
+# Verify version consistency
+grep -E "v[0-9]+\.[0-9]+\.[0-9]+" README.md docs/WORKFLOWS.md _bmad/exec-ops/config.yaml
+
+# Find any stale references
+grep -r "v1.2" README.md docs/ # Should not find old versions after update to v1.3
+```
+
+---
+
+**DO NOT:** Commit module changes without verifying ALL documentation is synchronized. Partial updates create confusion and undermine user trust.
+
+---
+
 ## Template for Future Lessons
 
 ### Lesson N: [Short Title]
@@ -1143,6 +1379,8 @@ echo "Implemented:" && ls _bmad/{module}/agents/*.md 2>/dev/null | wc -l
 ---
 
 *Last Updated: 2026-01-11*
+*Lesson 14 (Complete Documentation Update on Module Changes) Added: 2026-01-11*
+*Lesson 13 (Mandatory Roadmap Synchronization) Added: 2026-01-11*
 *Lesson 12 (Complete All Roadmap Phases) Added: 2026-01-11*
 *Lesson 11 (Documentation Synchronization) Added: 2026-01-11*
 *Lesson 10 (Security Rule Testing Protocol) Added: 2026-01-11*

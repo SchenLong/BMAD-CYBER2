@@ -389,6 +389,106 @@ Magnus leads strategic analysis of the political landscape - who has power, who 
 
 ---
 
+### 14. M&A Due Diligence
+
+**ID:** `ma-due-diligence`
+**Purpose:** Comprehensive evaluation of acquisition targets and deal assessment
+**Best For:** Mergers, acquisitions, strategic investments, joint ventures
+
+**Agents (4):**
+| Icon | Name | Role in Due Diligence |
+|------|------|----------------------|
+| 🐉 | Sun | Strategic fit, competitive positioning |
+| ⚙️ | Lee | Operational assessment, integration planning |
+| 📊 | Augustus | Financial analysis, evidence-based evaluation |
+| 🏛️ | Burke | Risk identification, value preservation |
+
+**Discussion Format:**
+Sun evaluates strategic positioning and competitive advantage. Lee assesses operational capabilities and integration complexity. Augustus provides rigorous financial analysis. Burke identifies risks and warns of potential pitfalls.
+
+**Due Diligence Focus:**
+- Strategic fit and value creation thesis
+- Operational readiness and integration complexity
+- Financial health and synergy realization
+- Risk identification and deal breakers
+
+---
+
+### 15. Leadership Transition
+
+**ID:** `leadership-transition`
+**Purpose:** Plan and execute smooth leadership handovers
+**Best For:** Succession planning, executive departures, organizational restructuring
+
+**Agents (4):**
+| Icon | Name | Role in Transition |
+|------|------|-------------------|
+| 🖖 | Jean-Luc | Leadership principles, legacy, dignity |
+| 🏛️ | Burke | Institutional knowledge, continuity |
+| 🤝 | Geneva | Stakeholder relationships, culture |
+| 📢 | Joseph | Transition communications |
+
+**Discussion Format:**
+Jean-Luc ensures the transition honors leadership principles and legacy. Burke focuses on preserving institutional knowledge. Geneva manages stakeholder relationships and cultural continuity. Joseph handles transition communications.
+
+**Transition Protocol:**
+- Knowledge transfer and preservation
+- Stakeholder relationship management
+- Communication sequencing
+- Operational continuity
+
+---
+
+### 16. Board Relations
+
+**ID:** `board-relations`
+**Purpose:** Strengthen board relationships and improve governance
+**Best For:** Board engagement strategy, director relationships, governance improvement
+
+**Agents (4):**
+| Icon | Name | Role in Board Relations |
+|------|------|------------------------|
+| ♟️ | Magnus | Board politics, director dynamics |
+| 📢 | Joseph | Board communications, information flow |
+| 🤝 | Geneva | Relationship building, consensus |
+| 🦊 | Niccolo | Director motivations, power dynamics |
+
+**Discussion Format:**
+Magnus maps board political landscape and dynamics. Joseph plans communications and information presentation. Geneva focuses on relationship building and consensus. Niccolo provides insight into director motivations and power.
+
+**Board Strategy Focus:**
+- Director relationship mapping
+- Communication optimization
+- Engagement strategy
+- Issue navigation
+
+---
+
+### 17. Performance Review
+
+**ID:** `performance-review`
+**Purpose:** Fair, developmental performance assessment and feedback
+**Best For:** Annual reviews, feedback calibration, difficult conversations
+
+**Agents (4):**
+| Icon | Name | Role in Review |
+|------|------|----------------|
+| ⚖️ | Sophia | Fairness, bias checking, ethics |
+| 📊 | Augustus | Evidence-based assessment |
+| 🤝 | Geneva | Conversation design, relationship |
+| 🕊️ | Charles | Growth mindset, development focus |
+
+**Discussion Format:**
+Sophia ensures fair, unbiased assessment. Augustus provides evidence-based rigor. Geneva prepares for the conversation and relationship preservation. Charles brings growth mindset and developmental focus.
+
+**Review Focus:**
+- Bias identification and calibration
+- Evidence-based assessment
+- Difficult feedback delivery
+- Development planning
+
+---
+
 ## Custom Preset Creation
 
 You can create ad-hoc presets during any Party Mode session:
@@ -422,6 +522,10 @@ Or combine elements from existing presets:
 | `conflict-resolution` | Geneva, Jean-Luc, Charles, Sophia | Internal conflicts, disputes |
 | `all-out-war` | Niccolo, Sun, Musashi, Magnus, Joseph | Competitive warfare |
 | `corporate-politics` | Magnus, Niccolo, Cicero, Geneva, Joseph | Internal politics |
+| `ma-due-diligence` | Sun, Lee, Augustus, Burke | M&A evaluation |
+| `leadership-transition` | Jean-Luc, Burke, Geneva, Joseph | Succession planning |
+| `board-relations` | Magnus, Joseph, Geneva, Niccolo | Board engagement |
+| `performance-review` | Sophia, Augustus, Geneva, Charles | Performance assessment |
 
 ---
 
@@ -437,3 +541,13 @@ Each exec-ops workflow has suggested presets at key steps:
 | crisis-response-planning | `crisis-response`, `comms-strategy` |
 | strategic-planning-session | `strategic-planning`, `change-management` |
 | policy-development | `ethics-review`, `risk-assessment` |
+| competitive-warfare | `all-out-war`, `power-analysis` |
+| corporate-political-game | `corporate-politics`, `power-analysis` |
+| conflict-resolution | `conflict-resolution`, `ethics-review` |
+| ethical-dilemma-resolution | `ethics-review`, `strategic-council` |
+| leadership-philosophy | `strategic-council`, `ethics-review` |
+| political-risk-assessment | `risk-assessment`, `power-analysis` |
+| ma-due-diligence | `ma-due-diligence`, `risk-assessment` |
+| leadership-transition-planning | `leadership-transition`, `comms-strategy` |
+| board-relations-management | `board-relations`, `comms-strategy` |
+| performance-review-preparation | `performance-review`, `ethics-review` |
