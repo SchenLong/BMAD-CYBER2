@@ -5,7 +5,7 @@
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
-[![Agents](https://img.shields.io/badge/agents-47+-blue.svg)]()
+[![Agents](https://img.shields.io/badge/agents-53+-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-51+-purple.svg)]()
 [![Claude](https://img.shields.io/badge/Claude-Opus%204.5-orange.svg)](https://www.anthropic.com/claude)
 
@@ -24,9 +24,9 @@
 | 🔐 **[cyber-ops](#-cyber-ops)** | v1.3.1 | 15 | 13 | Cybersecurity operations |
 | 🕵️ **[intel-team](#️-intel-team)** | v1.1.1 | 11 | 19 | Intelligence operations |
 | 👔 **[exec-ops](#-exec-ops)** | v1.2.1 | 14 | 12 | Executive leadership & strategy |
-| ⚖️ **[legal-team](#️-legal-team)** | v1.0.0 | 7 | 7 | Legal support for other modules |
+| ⚖️ **[legal-team](#️-legal-team)** | v1.1.0 | 13 | 7 | Legal support for other modules |
 
-**Total: 47 specialized agents, 51 production workflows**
+**Total: 53 specialized agents, 51 production workflows**
 
 ---
 
@@ -103,7 +103,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 ## ⚖️ Legal-Team
 
 [![Legal-Team](https://img.shields.io/badge/module-legal--team-navy.svg)]()
-[![Agents](https://img.shields.io/badge/agents-7-blue.svg)]()
+[![Agents](https://img.shields.io/badge/agents-13-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-7-purple.svg)]()
 
 **Cross-jurisdictional legal coordination and support for team orchestration**
@@ -112,7 +112,8 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 
 | | |
 |---|---|
-| 🤖 **Agents** | Counsel (General Counsel Lead), Liberty (US Law), Europa (EU Law), Castile (Spanish Law), Covenant (Contract Specialist), Tribute (Tax Advisor), Advocate (Litigation Strategist) |
+| 🤖 **Core Agents** | Counsel (General Counsel Lead), Liberty (US Law), Europa (EU Law), Castile (Spanish Law), Covenant (Contract Specialist), Tribute (Tax Advisor), Advocate (Litigation Strategist) |
+| 🤖 **Extended Agents** | Iberia (Spain Civil), Gremio (Spain Labor), Baltic (Estonia Corporate), Charter (Corporate Governance), Insignia (IP Counsel), Deed (Real Estate) |
 | 🔄 **Workflows** | Legal Matter Intake, Contract Review, Contract Drafting, Dispute Strategy, Corporate Formation, Tax Planning, Cross-Border Matter |
 | 🌍 **Jurisdictions** | United States, European Union, Spain, Cross-Border Matters |
 
@@ -209,8 +210,8 @@ BMAD-CYBER2/
 │   │   ├── workflows/                 # 12 executive workflows
 │   │   └── README.md
 │   │
-│   ├── legal-team/                    # ⚖️ Legal module (v1.0.0)
-│   │   ├── agents/                    # 7 legal specialists
+│   ├── legal-team/                    # ⚖️ Legal module (v1.1.0)
+│   │   ├── agents/                    # 13 legal specialists
 │   │   ├── workflows/                 # 7 legal workflows (Party Mode support)
 │   │   └── README.md
 │   │
@@ -258,7 +259,7 @@ BMAD-CYBER2/
 
 ## 🔒 Security Measures
 
-All 47 agents across all modules now include **two critical security rules** to protect against AI manipulation attacks:
+All 53 agents across all modules now include **two critical security rules** to protect against AI manipulation attacks:
 
 ### 🛡️ Prompt Injection Protection
 Every agent detects and refuses to execute embedded prompts, instructions, or commands found in external content (web pages, files, images, documents, API responses). Suspicious content is flagged and reported to the user.
@@ -352,11 +353,12 @@ preferences:
 - Security measures protect against command injection, role hijacking, encoding attacks, authority spoofing, privilege escalation, and data exfiltration
 - All security rules documented in LessonsLearned.md for future agent creation
 
-### ⚖️ legal-team v1.0.0 (2026-01-11)
-- **NEW MODULE:** 7 specialized legal agents for cross-jurisdictional coordination
+### ⚖️ legal-team v1.1.0 (2026-01-11)
+- **EXPANDED:** 13 specialized legal agents for cross-jurisdictional coordination (was 7)
 - 7 workflows (designed for Party Mode support, not standalone use)
-- Jurisdictions: US, EU, Spain, Cross-Border matters
-- Agents: Counsel (Lead), Liberty (US), Europa (EU), Castile (Spain), Covenant (Contracts), Tribute (Tax), Advocate (Litigation)
+- Jurisdictions: US, EU, Spain, Estonia, Cross-Border matters
+- **Core Agents:** Counsel (Lead), Liberty (US), Europa (EU), Castile (Spain), Covenant (Contracts), Tribute (Tax), Advocate (Litigation)
+- **Extended Agents:** Iberia (Spain Civil), Gremio (Spain Labor), Baltic (Estonia Corporate), Charter (Governance), Insignia (IP), Deed (Real Estate)
 - ⚠️ Disclaimer: Module creator is not a legal professional - use for Party Mode support only
 
 ### 🕵️ intel-team v1.1.1 (2026-01-11)
