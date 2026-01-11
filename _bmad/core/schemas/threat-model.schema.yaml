@@ -1,0 +1,214 @@
+# Threat Model Schema
+# Standard format for cross-module threat model exchange
+# Used by: Cybersec-Team → BMM, Intel-Team, Legal-Team
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "bmad://schemas/threat-model/1.0"
+title: "BMAD Threat Model"
+description: "Standard threat model format for cross-module consumption"
+
+type: object
+required:
+  - metadata
+  - threats
+
+properties:
+
+  metadata:
+    type: object
+    description: "Document metadata for traceability"
+    required:
+      - project_id
+      - created_by
+      - created_at
+      - methodology
+    properties:
+      project_id:
+        type: string
+        description: "Project identifier from registry"
+      created_by:
+        type: string
+        description: "Agent name that created this model"
+      created_at:
+        type: string
+        format: date-time
+      methodology:
+        type: string
+        enum: ["STRIDE", "DREAD", "PASTA", "LINDDUN", "ATTACK_TREES", "custom"]
+        description: "Threat modeling methodology used"
+      version:
+        type: string
+        default: "1.0"
+      status:
+        type: string
+        enum: ["draft", "review", "approved", "superseded"]
+        default: "draft"
+      source_artifacts:
+        type: array
+        items:
+          type: string
+        description: "Artifacts used as input (e.g., architecture.md, prd.md)"
+
+  scope:
+    type: object
+    description: "What is being threat modeled"
+    properties:
+      system_name:
+        type: string
+      components:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+              enum: ["service", "database", "api", "frontend", "external", "user"]
+            data_classification:
+              type: string
+              enum: ["public", "internal", "confidential", "restricted"]
+      data_flows:
+        type: array
+        items:
+          type: object
+          properties:
+            from:
+              type: string
+            to:
+              type: string
+            data_type:
+              type: string
+            protocol:
+              type: string
+
+  threats:
+    type: array
+    description: "Identified threats"
+    items:
+      type: object
+      required:
+        - id
+        - category
+        - title
+        - severity
+      properties:
+        id:
+          type: string
+          pattern: "^T-[0-9]{3}$"
+          description: "Threat ID (e.g., T-001)"
+        category:
+          type: string
+          enum:
+            - "Spoofing"
+            - "Tampering"
+            - "Repudiation"
+            - "InformationDisclosure"
+            - "DenialOfService"
+            - "ElevationOfPrivilege"
+          description: "STRIDE category"
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        affected_components:
+          type: array
+          items:
+            type: string
+        attack_vector:
+          type: string
+          description: "How the attack would be executed"
+        mitre_attack_techniques:
+          type: array
+          items:
+            type: string
+            pattern: "^T[0-9]{4}(\\.[0-9]{3})?$"
+          description: "MITRE ATT&CK technique IDs"
+        severity:
+          type: string
+          enum: ["Critical", "High", "Medium", "Low", "Informational"]
+        likelihood:
+          type: string
+          enum: ["High", "Medium", "Low"]
+        risk_score:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: "Calculated risk score (severity × likelihood)"
+        mitigations:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: "^M-[0-9]{3}$"
+              description:
+                type: string
+              control_type:
+                type: string
+                enum: ["Preventive", "Detective", "Corrective", "Compensating"]
+              implementation_status:
+                type: string
+                enum: ["NotStarted", "InProgress", "Complete", "NotApplicable"]
+              assigned_to:
+                type: string
+                description: "Story ID or team responsible"
+
+  summary:
+    type: object
+    description: "Threat model summary statistics"
+    properties:
+      total_threats:
+        type: integer
+      by_severity:
+        type: object
+        properties:
+          critical:
+            type: integer
+          high:
+            type: integer
+          medium:
+            type: integer
+          low:
+            type: integer
+      by_category:
+        type: object
+        additionalProperties:
+          type: integer
+      mitigations_complete:
+        type: integer
+      mitigations_pending:
+        type: integer
+
+  _bmad_metadata:
+    $ref: "#/$defs/bmad_metadata"
+
+$defs:
+  bmad_metadata:
+    type: object
+    description: "Standard BMAD artifact metadata for cross-module linking"
+    properties:
+      source_workflow:
+        type: string
+      source_module:
+        type: string
+      source_agent:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      project_id:
+        type: string
+      links:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              enum: ["derives_from", "implements", "validates", "supersedes", "relates_to"]
+            target_artifact:
+              type: string
+              description: "Path or ID of related artifact"

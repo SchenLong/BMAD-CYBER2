@@ -1,0 +1,42 @@
+# Create Project Workflow - Initialize a new project under Abdul's management
+name: create-project
+description: "Initialize a new project under Abdul's management with module selection and folder structure"
+author: "BMad"
+
+# Critical variables from config
+config_source: "{project-root}/_bmad/core/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Workflow components
+installed_path: "{project-root}/_bmad/core/workflows/project-manager/create-project"
+instructions: "{installed_path}/instructions.md"
+template: "{project-root}/_bmad/core/workflows/project-manager/templates/project-registry.yaml"
+
+# Output configuration
+default_output_file: "{output_folder}/project-registry.yaml"
+
+# Available modules for selection
+available_modules:
+  - id: bmm
+    name: "BMM (Software Development)"
+    description: "Full BMAD Method for software projects - PRD, architecture, epics, stories"
+  - id: bmgd
+    name: "BMGD (Game Development)"
+    description: "Game design documents, game architecture, playtesting workflows"
+  - id: cybersec-team
+    name: "Cybersec Team"
+    description: "Security assessments, threat modeling, incident response, compliance"
+  - id: intel-team
+    name: "Intel Team"
+    description: "OSINT, threat intelligence, reconnaissance, investigation workflows"
+  - id: strategy-team
+    name: "Strategy Team"
+    description: "Executive advisors, strategic planning, stakeholder management"
+  - id: legal-team
+    name: "Legal Team"
+    description: "Legal consultation for compliance, contracts, regulatory matters"
+
+standalone: true

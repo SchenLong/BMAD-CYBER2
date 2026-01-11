@@ -1,0 +1,80 @@
+# Strategy Team Module Configuration
+# This file defines installation questions and module configuration values
+
+code: "strategy-team"
+name: "Strategic Advisory Team"
+default_selected: false
+
+# Welcome message shown during installation
+prompt:
+  - "Strategic Advisory Team Module Installation"
+  - ""
+  - "This module provides 14 specialized strategic advisors:"
+  - ""
+  - "  Strategic Leadership:"
+  - "  - Sun Tzu (The Master Strategist - Competitive Strategy)"
+  - "  - Cicero (Debate Coach - Rigorous Analysis)"
+  - "  - Sophia (Ethics Advisor - Principled Decisions)"
+  - "  - Augustus (Policy Analyst - Evidence-Based Policy)"
+  - ""
+  - "  Political & Stakeholder Strategy:"
+  - "  - Magnus (Political Strategist - Power Dynamics)"
+  - "  - Geneva (Stakeholder Mediator - Conflict Resolution)"
+  - "  - Giuseppe (Communications Director - Crisis Comms)"
+  - ""
+  - "  Strategic Archetypes (Board-Level Advisors):"
+  - "  - Edmund Burke (The Conservative)"
+  - "  - Maximilien (The Revolutionary)"
+  - "  - Lee (The Strategist-Warrior)"
+  - "  - Otto (The Realist)"
+  - "  - Dwight (The Principled Commander)"
+  - "  - Ataturk (The Liberator)"
+  - "  - Herbert (The Technocrat)"
+  - ""
+  - "16 strategic workflows for decisions, crises, negotiations, and board prep."
+
+# Core config values are automatically inherited from installer:
+## user_name
+## communication_language
+## document_output_language
+
+# ============================================================================
+# CONFIGURATION FIELDS
+# ============================================================================
+# Each field can be:
+# 1. INTERACTIVE (has 'prompt' - asks user during installation)
+# 2. STATIC (no 'prompt' - just uses 'result' value)
+# ============================================================================
+
+# INTERACTIVE: Primary output location
+output_folder:
+  prompt: "Where should Strategy Team save strategic documents and analyses?"
+  default: "_bmad-output/strategy"
+  result: "{project-root}/{value}"
+
+# STATIC: Module identification
+module_code:
+  result: "strategy-team"
+
+module_version:
+  result: "1.0.0"
+
+# STATIC: Module paths
+agents_path:
+  result: "{project-root}/_bmad/strategy-team/agents"
+
+workflows_path:
+  result: "{project-root}/_bmad/strategy-team/workflows"
+
+# STATIC: Automatic subdirectory configuration
+decisions:
+  result: "{output_folder}/decisions"
+
+presentations:
+  result: "{output_folder}/presentations"
+
+policies:
+  result: "{output_folder}/policies"
+
+warfare:
+  result: "{output_folder}/warfare"

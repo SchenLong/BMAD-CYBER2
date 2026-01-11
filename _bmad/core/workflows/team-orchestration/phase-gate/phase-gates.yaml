@@ -1,0 +1,319 @@
+# Phase Gate Definitions
+# Defines requirements for transitioning between project phases
+
+version: "1.0"
+description: "Phase gate requirements for controlled project progression"
+
+# Standard project phases (aligned with BMM/BMGD)
+phases:
+  - id: discovery
+    name: "Discovery"
+    description: "Understanding requirements and market"
+  - id: planning
+    name: "Planning"
+    description: "Product definition and prioritization"
+  - id: solutioning
+    name: "Solutioning"
+    description: "Architecture and technical design"
+  - id: implementation
+    name: "Implementation"
+    description: "Development and testing"
+  - id: release
+    name: "Release"
+    description: "Deployment and go-live"
+
+# Gate definitions
+gates:
+
+  # Discovery → Planning
+  pre-planning:
+    id: "pre-planning"
+    name: "Pre-Planning Gate"
+    description: "Validates readiness to begin detailed product planning"
+    from_phase: "discovery"
+    to_phase: "planning"
+
+    required_artifacts:
+      - pattern: "product-brief.md OR research-*.md"
+        description: "Initial product concept or research documentation"
+        required: true
+
+    required_signoffs: []
+
+    blocking_conditions: []
+
+    recommendations:
+      - "Market research completed"
+      - "Stakeholder alignment on vision"
+
+  # Planning → Solutioning
+  pre-architecture:
+    id: "pre-architecture"
+    name: "Pre-Architecture Gate"
+    description: "Validates readiness to begin architecture design"
+    from_phase: "planning"
+    to_phase: "solutioning"
+
+    required_artifacts:
+      - pattern: "prd.md OR product-brief.md"
+        description: "Product requirements or brief"
+        required: true
+      - pattern: "epics-and-stories.md OR gdd.md"
+        description: "Epics/stories or game design document"
+        required: false
+
+    required_signoffs:
+      - role: "pm"
+        condition: "always"
+        description: "Product manager approval of requirements"
+
+    blocking_conditions: []
+
+    recommendations:
+      - "Requirements are complete and prioritized"
+      - "Stakeholders have reviewed PRD"
+
+  # Solutioning → Implementation (Standard)
+  pre-implementation:
+    id: "pre-implementation"
+    name: "Pre-Implementation Gate"
+    description: "Validates readiness to begin development"
+    from_phase: "solutioning"
+    to_phase: "implementation"
+
+    required_artifacts:
+      - pattern: "architecture.md"
+        description: "Architecture design document"
+        required: true
+      - pattern: "epics-and-stories.md OR epic-*.md"
+        description: "Implementation stories"
+        required: true
+
+    required_signoffs:
+      - role: "architect"
+        condition: "always"
+        description: "Architecture approval"
+
+    blocking_conditions: []
+
+    recommendations:
+      - "Architecture reviewed by team"
+      - "Stories are implementation-ready"
+      - "Technical risks identified and mitigated"
+
+  # Solutioning → Implementation (Security-Enhanced)
+  pre-implementation-secure:
+    id: "pre-implementation-secure"
+    name: "Pre-Implementation Gate (Security)"
+    description: "Enhanced gate for security-sensitive projects"
+    from_phase: "solutioning"
+    to_phase: "implementation"
+    applies_when: "project.modules includes cybersec-team"
+
+    required_artifacts:
+      - pattern: "architecture.md"
+        description: "Architecture design document"
+        required: true
+      - pattern: "epics-and-stories.md OR epic-*.md"
+        description: "Implementation stories"
+        required: true
+      - pattern: "threat-model.md OR threat-model.yaml"
+        description: "Threat model"
+        required: true
+      - pattern: "security-review-*.md"
+        description: "Security architecture review"
+        required: true
+
+    required_signoffs:
+      - role: "architect"
+        condition: "always"
+        description: "Architecture approval"
+      - role: "security-architect"
+        condition: "always"
+        description: "Security architecture approval"
+
+    blocking_conditions:
+      - condition: "security_findings.critical > 0"
+        description: "Critical security findings must be resolved"
+      - condition: "security_findings.high > 3"
+        description: "No more than 3 high-severity findings allowed"
+
+    recommendations:
+      - "All threat model mitigations addressed in architecture"
+      - "Security acceptance criteria in stories"
+
+  # Solutioning → Implementation (Compliance-Enhanced)
+  pre-implementation-compliance:
+    id: "pre-implementation-compliance"
+    name: "Pre-Implementation Gate (Compliance)"
+    description: "Enhanced gate for compliance-regulated projects"
+    from_phase: "solutioning"
+    to_phase: "implementation"
+    applies_when: "project.modules includes legal-team"
+
+    required_artifacts:
+      - pattern: "architecture.md"
+        description: "Architecture design document"
+        required: true
+      - pattern: "compliance-requirements.yaml OR compliance-requirements.md"
+        description: "Compliance requirements"
+        required: true
+      - pattern: "control-mapping.md"
+        description: "Controls mapped to architecture"
+        required: true
+
+    required_signoffs:
+      - role: "architect"
+        condition: "always"
+        description: "Architecture approval"
+      - role: "counsel"
+        condition: "always"
+        description: "Legal/compliance approval"
+
+    blocking_conditions:
+      - condition: "compliance_gaps.mandatory > 0"
+        description: "All mandatory compliance controls must be addressed"
+
+    recommendations:
+      - "All compliance controls have implementation stories"
+      - "Evidence collection plan in place"
+
+  # Implementation → Release (Standard)
+  pre-release:
+    id: "pre-release"
+    name: "Pre-Release Gate"
+    description: "Validates readiness for production deployment"
+    from_phase: "implementation"
+    to_phase: "release"
+
+    required_artifacts:
+      - pattern: "sprint-status.yaml"
+        description: "Sprint status tracking"
+        required: true
+
+    required_signoffs:
+      - role: "pm"
+        condition: "always"
+        description: "Product manager release approval"
+      - role: "tea"
+        condition: "always"
+        description: "QA lead test approval"
+
+    blocking_conditions:
+      - condition: "stories.status != 'complete' for all stories"
+        description: "All stories must be complete"
+      - condition: "bugs.critical > 0"
+        description: "No critical bugs"
+      - condition: "bugs.high > 5"
+        description: "No more than 5 high-priority bugs"
+
+    recommendations:
+      - "All acceptance criteria verified"
+      - "Performance testing completed"
+      - "Documentation updated"
+
+  # Implementation → Release (Security-Enhanced)
+  pre-release-secure:
+    id: "pre-release-secure"
+    name: "Pre-Release Gate (Security)"
+    description: "Enhanced release gate for security-sensitive projects"
+    from_phase: "implementation"
+    to_phase: "release"
+    applies_when: "project.modules includes cybersec-team"
+
+    required_artifacts:
+      - pattern: "sprint-status.yaml"
+        description: "Sprint status tracking"
+        required: true
+      - pattern: "pentest-report.md OR penetration-test-*.md"
+        description: "Penetration test results"
+        required: true
+      - pattern: "security-scan-*.md"
+        description: "Security scan results"
+        required: true
+
+    required_signoffs:
+      - role: "pm"
+        condition: "always"
+        description: "Product manager release approval"
+      - role: "tea"
+        condition: "always"
+        description: "QA lead test approval"
+      - role: "security-architect"
+        condition: "always"
+        description: "Security release approval"
+
+    blocking_conditions:
+      - condition: "pentest.critical > 0"
+        description: "No critical penetration test findings"
+      - condition: "pentest.high > 0"
+        description: "No high-severity penetration test findings"
+      - condition: "security_scan.critical > 0"
+        description: "No critical security scan findings"
+
+    recommendations:
+      - "All security stories complete"
+      - "Security monitoring configured"
+      - "Incident response playbook updated"
+
+  # Implementation → Release (Compliance-Enhanced)
+  pre-release-compliance:
+    id: "pre-release-compliance"
+    name: "Pre-Release Gate (Compliance)"
+    description: "Enhanced release gate for compliance-regulated projects"
+    from_phase: "implementation"
+    to_phase: "release"
+    applies_when: "project.modules includes legal-team"
+
+    required_artifacts:
+      - pattern: "sprint-status.yaml"
+        description: "Sprint status tracking"
+        required: true
+      - pattern: "audit-readiness-*.md"
+        description: "Audit readiness report"
+        required: true
+      - pattern: "control-evidence/*"
+        description: "Control implementation evidence"
+        required: true
+
+    required_signoffs:
+      - role: "pm"
+        condition: "always"
+        description: "Product manager release approval"
+      - role: "counsel"
+        condition: "always"
+        description: "Legal/compliance release approval"
+      - role: "compliance-guardian"
+        condition: "always"
+        description: "Compliance guardian approval"
+
+    blocking_conditions:
+      - condition: "compliance_controls.not_implemented > 0"
+        description: "All mandatory controls must be implemented"
+      - condition: "audit_readiness.status != 'ready'"
+        description: "Audit readiness must be confirmed"
+
+    recommendations:
+      - "Evidence collection automated"
+      - "Compliance documentation complete"
+      - "Audit trail operational"
+
+# Gate selection logic
+gate_selection:
+  rules:
+    - condition: "project.modules includes cybersec-team AND project.modules includes legal-team"
+      pre_implementation_gate: "pre-implementation-secure"
+      pre_release_gate: "pre-release-compliance"
+      note: "When both security and compliance modules, use strictest gates"
+
+    - condition: "project.modules includes cybersec-team"
+      pre_implementation_gate: "pre-implementation-secure"
+      pre_release_gate: "pre-release-secure"
+
+    - condition: "project.modules includes legal-team"
+      pre_implementation_gate: "pre-implementation-compliance"
+      pre_release_gate: "pre-release-compliance"
+
+    - condition: "default"
+      pre_implementation_gate: "pre-implementation"
+      pre_release_gate: "pre-release"
