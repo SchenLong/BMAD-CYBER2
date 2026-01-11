@@ -33,7 +33,7 @@ cd BMAD-CYBER2
 ```bash
 # Open Claude Code CLI and invoke any agent:
 
-# Cyber-Ops Agents
+# Cybersec-Team Agents
 /security-architect    # Bastion - Architecture & Defense
 /threat-analyst        # Cipher - Threat Intelligence
 /penetration-tester    # Ghost - Offensive Security
@@ -50,11 +50,11 @@ cd BMAD-CYBER2
 /mobile-security       # Phantom - Mobile Security
 /social-engineer       # Specter - Social Engineering
 
-# Exec-Ops Agents
-/exec-ops:policy-analyst         # Augustus - Evidence-based policy
-/exec-ops:the-realist            # Niccolo - Realpolitik perspective
-/exec-ops:the-master-strategist  # Sun - Strategic wisdom
-/exec-ops:the-principled-commander # Jean-Luc - Principled leadership
+# Strategy-Team Agents
+/strategy-team:policy-analyst         # Augustus - Evidence-based policy
+/strategy-team:the-realist            # Niccolo - Realpolitik perspective
+/strategy-team:the-master-strategist  # Sun - Strategic wisdom
+/strategy-team:the-principled-commander # Jean-Luc - Principled leadership
 
 # Intel-Team Agents
 /intel-team:osint-lead           # Vector - Intelligence Director
@@ -90,7 +90,7 @@ cd BMAD-CYBER2
 
 **Direct workflow loading:**
 ```
-Load workflow: _bmad/cyber-ops/workflows/virtual-ciso-consulting/workflow.md
+Load workflow: _bmad/cybersec-team/workflows/virtual-ciso-consulting/workflow.md
 ```
 
 ### 3. Multi-Agent Collaboration (Party Mode)
@@ -207,7 +207,7 @@ Load workflow: _bmad/cyber-ops/workflows/virtual-ciso-consulting/workflow.md
 
 ```bash
 # Strategic decision with multiple perspectives
-/exec-ops:the-master-strategist
+/strategy-team:the-master-strategist
 
 # Use Party Mode for full council
 > PM
@@ -245,7 +245,7 @@ All workflows support pausing and resuming:
 Customize agent behavior via customize files:
 
 ```yaml
-# _bmad/_config/agents/cyber-ops-security-architect.customize.yaml
+# _bmad/_config/agents/cybersec-team-security-architect.customize.yaml
 preferences:
   verbosity: high              # low | medium | high
   output_format: markdown      # markdown | json
@@ -319,19 +319,19 @@ Purpose: Strategic planning with legal and regulatory input
 **Agent not loading:**
 ```bash
 # Check agent path
-ls _bmad/cyber-ops/agents/
+ls _bmad/cybersec-team/agents/
 
 # Verify Claude commands exist
-ls .claude/commands/bmad/cyber-ops/agents/
+ls .claude/commands/bmad/cybersec-team/agents/
 ```
 
 **Workflow not found:**
 ```bash
 # Check workflow path
-ls _bmad/cyber-ops/workflows/
+ls _bmad/cybersec-team/workflows/
 
 # Load directly
-Load workflow: _bmad/cyber-ops/workflows/[workflow-name]/workflow.md
+Load workflow: _bmad/cybersec-team/workflows/[workflow-name]/workflow.md
 ```
 
 **Party Mode issues:**
@@ -361,9 +361,9 @@ Load workflow: _bmad/cyber-ops/workflows/[workflow-name]/workflow.md
 
 ## Module-Specific Documentation
 
-- **Cyber-Ops:** [_bmad/cyber-ops/README.md](../_bmad/cyber-ops/README.md)
+- **Cybersec-Team:** [_bmad/cybersec-team/README.md](../_bmad/cybersec-team/README.md)
 - **Intel-Team:** [_bmad/intel-team/README.md](../_bmad/intel-team/README.md)
-- **Exec-Ops:** [_bmad/exec-ops/README.md](../_bmad/exec-ops/README.md)
+- **Strategy-Team:** [_bmad/strategy-team/README.md](../_bmad/strategy-team/README.md)
 - **Legal-Team:** [_bmad/legal-team/README.md](../_bmad/legal-team/README.md) ⚠️ Party Mode support only
 
 ---
