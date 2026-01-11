@@ -1,0 +1,1083 @@
+# Cross-Module Party Mode Presets
+# Pre-configured agent groups for common multi-module scenarios
+# Used by Abdul for quick team assembly and Party Mode for preset invocation
+
+version: "1.0"
+description: "Cross-module agent groups for structured team collaboration"
+
+presets:
+
+  # Security & Architecture Review
+  security-review-team:
+    name: "Security Review Team"
+    description: "Architecture and security assessment - review system design for security posture"
+    use_when: "Reviewing system architecture for security vulnerabilities and design flaws"
+    recommended_for:
+      - "Architecture review before implementation"
+      - "Security assessment of existing systems"
+      - "Threat modeling sessions"
+    agents:
+      - module: bmm
+        agent: architect
+        name: "Winston"
+        role: "Technical architecture owner - presents the design"
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security design review - identifies vulnerabilities"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: "Cipher"
+        role: "Threat intelligence context - maps to real-world threats"
+    artifacts_needed:
+      - "architecture.md"
+      - "prd.md (optional)"
+    expected_outputs:
+      - "security-review-findings.md"
+      - "threat-model.yaml"
+
+  # Incident Response War Room
+  incident-war-room:
+    name: "Incident Response War Room"
+    description: "Coordinated incident response team for security incidents requiring multi-domain expertise"
+    use_when: "Active security incident requiring coordinated response across technical, legal, and communications"
+    recommended_for:
+      - "Data breaches"
+      - "Ransomware attacks"
+      - "Significant security incidents"
+      - "Any incident with regulatory implications"
+    agents:
+      - module: cybersec-team
+        agent: incident-commander
+        name: "Phoenix"
+        role: "Lead incident response - coordinates technical containment"
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Attribution and intelligence - identifies threat actors"
+      - module: strategy-team
+        agent: communications-director
+        name: "Giuseppe"
+        role: "External communications - manages stakeholder messaging"
+      - module: legal-team
+        agent: counsel
+        name: "Counsel"
+        role: "Legal obligations - ensures regulatory compliance"
+    artifacts_needed:
+      - "incident-summary.md (created during session)"
+      - "iocs.yaml (if available)"
+    expected_outputs:
+      - "incident-response-plan.md"
+      - "attribution-report.md"
+      - "notification-timeline.md"
+      - "communications-plan.md"
+    timeline_constraints:
+      - "GDPR: 72-hour notification deadline"
+      - "HIPAA: 60-day notification deadline"
+      - "PCI-DSS: Immediate card brand notification"
+
+  # Compliance Audit Team
+  compliance-audit-team:
+    name: "Compliance Audit Team"
+    description: "Multi-domain compliance review for audit preparation or regulatory assessment"
+    use_when: "Preparing for compliance audit or assessing regulatory posture"
+    recommended_for:
+      - "SOC 2 audit preparation"
+      - "GDPR compliance assessment"
+      - "PCI-DSS certification"
+      - "HIPAA compliance review"
+    agents:
+      - module: legal-team
+        agent: europa
+        name: "Europa"
+        role: "GDPR/privacy compliance - EU regulatory expertise"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: "Sentinel"
+        role: "Security controls - technical compliance verification"
+      - module: bmm
+        agent: tea
+        name: "Murat"
+        role: "Testing/evidence - validates control implementation"
+    artifacts_needed:
+      - "architecture.md"
+      - "security-controls.yaml (if exists)"
+    expected_outputs:
+      - "compliance-gap-analysis.md"
+      - "control-mapping.yaml"
+      - "audit-readiness-report.md"
+
+  # Strategic Advisory Board
+  strategic-advisors:
+    name: "Strategic Advisory Board"
+    description: "High-stakes decision making with multi-perspective analysis"
+    use_when: "Major strategic decisions requiring executive-level analysis"
+    recommended_for:
+      - "Build vs Buy decisions"
+      - "M&A evaluation"
+      - "Market entry decisions"
+      - "Major product pivots"
+      - "Organizational restructuring"
+    agents:
+      - module: strategy-team
+        agent: the-master-strategist
+        name: "Sun Tzu"
+        role: "Strategic framework - competitive positioning and long-term strategy"
+      - module: strategy-team
+        agent: political-strategist
+        name: "Magnus"
+        role: "Stakeholder dynamics - political landscape and coalition building"
+      - module: legal-team
+        agent: counsel
+        name: "Counsel"
+        role: "Legal guardrails - risk assessment and liability"
+      - module: bmm
+        agent: pm
+        name: "John"
+        role: "Product perspective - market fit and execution feasibility"
+    artifacts_needed:
+      - "market-research.md (if available)"
+      - "strategic-options.md (if available)"
+    expected_outputs:
+      - "decision-brief.md"
+      - "risk-assessment.md"
+      - "implementation-roadmap.md"
+
+  # Game Launch Team
+  game-launch-team:
+    name: "Game Launch Team"
+    description: "Multiplayer/monetization launch review for game releases"
+    use_when: "Preparing for game launch with monetization or multiplayer features"
+    recommended_for:
+      - "Games with in-app purchases"
+      - "Multiplayer game launches"
+      - "Games with user-generated content"
+      - "Cross-platform releases"
+    agents:
+      - module: bmgd
+        agent: game-designer
+        name: "Samus Shepard"
+        role: "Gameplay experience - player journey and engagement"
+      - module: legal-team
+        agent: counsel
+        name: "Counsel"
+        role: "ToS and regulatory - EULA, age ratings, loot box compliance"
+      - module: strategy-team
+        agent: communications-director
+        name: "Giuseppe"
+        role: "Launch messaging - marketing and community management"
+    artifacts_needed:
+      - "gdd.md"
+      - "monetization-strategy.md (if exists)"
+    expected_outputs:
+      - "launch-readiness-checklist.md"
+      - "legal-compliance-review.md"
+      - "launch-communications-plan.md"
+
+  # Threat Intelligence Fusion
+  threat-intel-fusion:
+    name: "Threat Intelligence Fusion"
+    description: "Multi-source intelligence analysis for threat actor profiling"
+    use_when: "Deep threat actor investigation requiring intelligence fusion"
+    recommended_for:
+      - "APT campaign analysis"
+      - "Threat actor attribution"
+      - "Post-incident forensic investigation"
+      - "Proactive threat hunting"
+    agents:
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Intelligence fusion - coordinates multi-source analysis"
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: "Dossier"
+        role: "Actor profiling - behavioral patterns and attribution"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: "Cipher"
+        role: "Technical threat analysis - malware and TTP mapping"
+      - module: cybersec-team
+        agent: forensic-investigator
+        name: "Trace"
+        role: "Digital forensics - evidence collection and chain of custody"
+    artifacts_needed:
+      - "iocs.yaml"
+      - "incident-summary.md (if post-incident)"
+    expected_outputs:
+      - "threat-actor-profile.md"
+      - "attribution-assessment.md"
+      - "threat-constellation.yaml"
+
+  # Product Security Launch
+  product-security-launch:
+    name: "Product Security Launch"
+    description: "Security validation for product release readiness"
+    use_when: "Final security validation before product launch"
+    recommended_for:
+      - "Pre-release security review"
+      - "Security certification preparation"
+      - "Customer-facing product launches"
+    agents:
+      - module: bmm
+        agent: pm
+        name: "John"
+        role: "Product owner - feature completeness and customer impact"
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security architecture - validates security design"
+      - module: cybersec-team
+        agent: penetration-tester
+        name: "Ghost"
+        role: "Offensive security - validates through testing"
+      - module: bmm
+        agent: tea
+        name: "Murat"
+        role: "Quality assurance - test coverage validation"
+    artifacts_needed:
+      - "architecture.md"
+      - "security-review-findings.md"
+      - "test-reports/"
+    expected_outputs:
+      - "security-launch-approval.md"
+      - "known-issues.md"
+      - "security-recommendations.md"
+
+  # Legal Risk Assessment
+  legal-risk-team:
+    name: "Legal Risk Assessment Team"
+    description: "Multi-jurisdiction legal risk analysis"
+    use_when: "Evaluating legal risks for new initiatives or markets"
+    recommended_for:
+      - "International expansion"
+      - "New product categories"
+      - "Partnership agreements"
+      - "Regulatory changes impact"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: "Counsel"
+        role: "General counsel - overall legal strategy"
+      - module: legal-team
+        agent: europa
+        name: "Europa"
+        role: "EU/GDPR - European regulatory requirements"
+      - module: legal-team
+        agent: advocate
+        name: "Advocate"
+        role: "Dispute risk - litigation and liability assessment"
+      - module: strategy-team
+        agent: policy-analyst
+        name: "Augustus"
+        role: "Policy analysis - regulatory landscape and trends"
+    artifacts_needed:
+      - "initiative-brief.md"
+      - "market-analysis.md (if available)"
+    expected_outputs:
+      - "legal-risk-assessment.md"
+      - "jurisdiction-analysis.md"
+      - "risk-mitigation-plan.md"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # NEW PRESETS FROM SYNERGY ANALYSIS (Jan 2024)
+  # Cross-module integration opportunities identified across Strategy, Cyber, Intel, Legal
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # Strategic Decision with Full Risk Validation
+  strategic-decision-validated:
+    name: "Strategic Decision with Risk Validation"
+    description: "Full strategic decision workshop with security, legal, and intelligence validation"
+    use_when: "Major strategic decisions with board-level impact requiring comprehensive risk assessment"
+    recommended_for:
+      - "Board presentations requiring risk sign-off"
+      - "Strategic initiatives with security implications"
+      - "Decisions requiring regulatory compliance validation"
+      - "High-stakes choices with external stakeholder impact"
+    agents:
+      - module: strategy-team
+        agent: the-master-strategist
+        name: "Sun Tzu"
+        role: "Strategic framework - competitive positioning"
+      - module: strategy-team
+        agent: debate-coach
+        name: "Cicero"
+        role: "Challenge and validate - rigorous analysis"
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security implications - risk assessment"
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal compliance - regulatory requirements"
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "External intelligence - market/threat context"
+    artifacts_needed:
+      - "strategic-options.md"
+      - "market-research.md (if available)"
+    expected_outputs:
+      - "decision-brief.md"
+      - "risk-validation-report.md"
+      - "implementation-roadmap.md"
+
+  # Crisis Response Coordination
+  crisis-response-party:
+    name: "Crisis Response Coordination"
+    description: "Cross-functional crisis response team for comprehensive crisis management"
+    use_when: "Active crisis requiring multi-domain coordination"
+    recommended_for:
+      - "PR crises with legal implications"
+      - "Security incidents requiring public communication"
+      - "Regulatory enforcement actions"
+      - "Any situation with media/stakeholder scrutiny"
+    agents:
+      - module: strategy-team
+        agent: communications-director
+        name: "Giuseppe"
+        role: "Crisis communications lead - manages external messaging"
+      - module: strategy-team
+        agent: political-strategist
+        name: "Niccolo"
+        role: "Stakeholder dynamics - political/relationship navigation"
+      - module: cybersec-team
+        agent: incident-commander
+        name: "Phoenix"
+        role: "Security incident lead - technical coordination"
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal obligations - liability and compliance"
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "External narrative monitoring - public information threats"
+    artifacts_needed:
+      - "crisis-summary.md (created during session)"
+    expected_outputs:
+      - "crisis-response-plan.md"
+      - "stakeholder-communications.md"
+      - "regulatory-notification-timeline.md"
+    timeline_constraints:
+      - "Media response: Within hours"
+      - "Regulatory: Per framework requirements"
+
+  # Negotiation Intelligence Team
+  negotiation-intelligence-party:
+    name: "Negotiation Intelligence Team"
+    description: "Comprehensive intelligence and strategy support for high-stakes negotiations"
+    use_when: "Major negotiations requiring comprehensive stakeholder intelligence"
+    recommended_for:
+      - "M&A negotiations"
+      - "Major contract negotiations"
+      - "Partnership discussions"
+      - "Vendor selection/negotiation"
+      - "Labor/union negotiations"
+    agents:
+      - module: strategy-team
+        agent: stakeholder-mediator
+        name: "Geneva"
+        role: "Negotiation strategy - relationship and process"
+      - module: strategy-team
+        agent: political-strategist
+        name: "Niccolo"
+        role: "Power dynamics analysis - leverage and positioning"
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Counterpart intelligence - organization research"
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: "Dossier"
+        role: "Key person profiling - behavioral patterns"
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Contract and legal boundaries - walkaway points"
+    artifacts_needed:
+      - "negotiation-brief.md"
+      - "counterpart-research.md (created during session)"
+    expected_outputs:
+      - "negotiation-strategy.md"
+      - "counterpart-profile.md"
+      - "batna-analysis.md"
+
+  # vCISO Advisory Board
+  vciso-advisory-party:
+    name: "vCISO Advisory Board"
+    description: "Cross-functional advisory team for virtual CISO engagements"
+    use_when: "Virtual CISO engagements requiring comprehensive governance advice"
+    recommended_for:
+      - "Security program development"
+      - "Governance framework design"
+      - "Security strategy roadmapping"
+      - "Board-level security presentations"
+    agents:
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security program lead - technical architecture"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: "Sentinel"
+        role: "Compliance framework - regulatory alignment"
+      - module: strategy-team
+        agent: policy-analyst
+        name: "Augustus"
+        role: "Policy development - governance structure"
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal requirements - liability and contracts"
+    artifacts_needed:
+      - "current-security-state.md"
+      - "business-context.md"
+    expected_outputs:
+      - "security-program-roadmap.md"
+      - "governance-framework.md"
+      - "compliance-gap-analysis.md"
+
+  # Intelligence Validation Board
+  intel-validation-party:
+    name: "Intelligence Validation Board"
+    description: "Cross-domain validation team for intelligence products"
+    use_when: "High-stakes intelligence products requiring external validation"
+    recommended_for:
+      - "Final review of intelligence assessments"
+      - "Attribution reports before publication"
+      - "Strategic intelligence for decision-makers"
+      - "Intelligence briefings for external parties"
+    agents:
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Intelligence synthesis - primary analyst"
+      - module: strategy-team
+        agent: debate-coach
+        name: "Cicero"
+        role: "Challenge conclusions - rigorous validation"
+      - module: strategy-team
+        agent: political-strategist
+        name: "Niccolo"
+        role: "Geopolitical plausibility - context check"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: "Cipher"
+        role: "Technical validation - TTP verification"
+    artifacts_needed:
+      - "intelligence-draft.md"
+      - "source-documentation.md"
+    expected_outputs:
+      - "validated-intelligence-report.md"
+      - "confidence-assessment.md"
+      - "dissenting-views.md (if any)"
+
+  # Threat Ecosystem Analysis Team
+  threat-ecosystem-party:
+    name: "Threat Ecosystem Analysis Team"
+    description: "Comprehensive team for threat actor ecosystem mapping"
+    use_when: "Comprehensive threat actor ecosystem analysis"
+    recommended_for:
+      - "Threat landscape assessments"
+      - "Industry-specific threat analysis"
+      - "Post-incident ecosystem mapping"
+      - "Strategic threat briefings"
+    agents:
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: "Dossier"
+        role: "Threat actor analysis - behavioral patterns"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: "Cipher"
+        role: "TTP validation - technical analysis"
+      - module: cybersec-team
+        agent: incident-commander
+        name: "Phoenix"
+        role: "Operational defense implications - actionable intel"
+      - module: strategy-team
+        agent: political-strategist
+        name: "Niccolo"
+        role: "Geopolitical context - state actor motivations"
+    artifacts_needed:
+      - "threat-data.yaml"
+      - "iocs.yaml (if available)"
+    expected_outputs:
+      - "threat-constellation.yaml"
+      - "threat-actor-profiles.md"
+      - "defensive-recommendations.md"
+
+  # Attribution Review Board
+  attribution-validation-party:
+    name: "Attribution Review Board"
+    description: "Multi-perspective validation team for attribution analysis"
+    use_when: "Attribution analysis requiring rigorous multi-perspective validation"
+    recommended_for:
+      - "High-confidence attribution before public statement"
+      - "Law enforcement coordination"
+      - "Insurance claim support"
+      - "Board/executive attribution briefings"
+    agents:
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: "Dossier"
+        role: "Attribution analysis - primary investigator"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: "Cipher"
+        role: "Technical TTPs validation - evidence review"
+      - module: strategy-team
+        agent: debate-coach
+        name: "Cicero"
+        role: "Challenge attribution logic - devil's advocate"
+      - module: strategy-team
+        agent: political-strategist
+        name: "Niccolo"
+        role: "Geopolitical plausibility - motive analysis"
+    artifacts_needed:
+      - "attribution-draft.md"
+      - "evidence-chain.md"
+      - "iocs.yaml"
+    expected_outputs:
+      - "validated-attribution.md"
+      - "confidence-levels.md"
+      - "alternative-hypotheses.md"
+
+  # Legal Matter Assessment Team
+  legal-intake-party:
+    name: "Legal Matter Assessment Team"
+    description: "Cross-functional team for complex legal matter intake and routing"
+    use_when: "Complex legal matters requiring multi-domain assessment"
+    recommended_for:
+      - "Matters with technical complexity"
+      - "Disputes with security implications"
+      - "Regulatory investigations"
+      - "Cross-functional legal issues"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal assessment - matter classification"
+      - module: strategy-team
+        agent: stakeholder-mediator
+        name: "Geneva"
+        role: "Dispute likelihood assessment - relationship impact"
+      - module: cybersec-team
+        agent: incident-commander
+        name: "Phoenix"
+        role: "Cyber incident assessment - technical triage"
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Party due diligence - background research"
+    artifacts_needed:
+      - "matter-intake-form.md"
+    expected_outputs:
+      - "matter-assessment.md"
+      - "routing-recommendation.md"
+      - "initial-due-diligence.md"
+
+  # Contract Review Board
+  contract-review-party:
+    name: "Contract Review Board"
+    description: "Comprehensive team for critical contract review"
+    use_when: "Critical contracts requiring multi-domain review"
+    recommended_for:
+      - "High-value contracts"
+      - "Contracts with security/data requirements"
+      - "Strategic partnerships"
+      - "Vendor agreements with compliance implications"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal analysis - terms and conditions"
+      - module: strategy-team
+        agent: policy-analyst
+        name: "Augustus"
+        role: "Policy alignment - organizational standards"
+      - module: strategy-team
+        agent: political-strategist
+        name: "Niccolo"
+        role: "Negotiation dynamics - leverage assessment"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: "Sentinel"
+        role: "Compliance requirements - regulatory alignment"
+    artifacts_needed:
+      - "contract-draft.pdf or .md"
+      - "deal-context.md"
+    expected_outputs:
+      - "contract-review.md"
+      - "risk-assessment.md"
+      - "negotiation-points.md"
+
+  # Litigation War Room
+  litigation-war-room:
+    name: "Litigation War Room"
+    description: "Comprehensive team for dispute and litigation strategy"
+    use_when: "High-stakes litigation or disputes"
+    recommended_for:
+      - "Major litigation"
+      - "Regulatory enforcement defense"
+      - "Complex disputes"
+      - "Class action response"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Lead counsel - legal strategy"
+      - module: strategy-team
+        agent: the-master-strategist
+        name: "Sun Tzu"
+        role: "Litigation strategy - positioning and timing"
+      - module: strategy-team
+        agent: debate-coach
+        name: "Cicero"
+        role: "Argument preparation - persuasion and rhetoric"
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Opposing party intelligence - research"
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: "Dossier"
+        role: "Opposing counsel profiling - behavioral patterns"
+    artifacts_needed:
+      - "matter-brief.md"
+      - "evidence-inventory.md"
+    expected_outputs:
+      - "litigation-strategy.md"
+      - "opposing-party-profile.md"
+      - "argument-framework.md"
+
+# ═══════════════════════════════════════════════════════════════════════════
+  # NEW PRESETS FROM PARTY MODE DISCUSSION (Jan 2025)
+  # Identified through structured debate: Abdul, Bastion, Winston, Covenant, Cicero
+  # Criteria: Documented failure mode + 3+ domains + ad-hoc would miss key perspective
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # Security-Aware Architecture Workshop
+  secure-architecture-workshop:
+    name: "Security-Aware Architecture Workshop"
+    description: "Multi-perspective security and architecture design review - shift-left security"
+    use_when: "New system architecture, major refactoring, or security-critical design decisions"
+    recommended_for:
+      - "Greenfield architecture design"
+      - "Major system refactoring"
+      - "Security-critical feature design"
+      - "Cloud migration architecture"
+      - "Integration architecture with external systems"
+    failure_mode_addressed: "Security vulnerabilities discovered late in development when costly to fix"
+    agents:
+      - module: bmm
+        agent: architect
+        name: "Winston"
+        role: "Technical architecture ownership - design presentation and trade-offs"
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security design validation - defense-in-depth review"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: "Cipher"
+        role: "Threat landscape context - real-world attack mapping"
+      - module: strategy-team
+        agent: debate-coach
+        name: "Cicero"
+        role: "Challenge assumptions - rigorous design validation"
+    artifacts_needed:
+      - "architecture.md (draft or initial)"
+      - "prd.md (for context)"
+    expected_outputs:
+      - "security-validated-architecture.md"
+      - "threat-model.yaml"
+      - "security-requirements.md"
+      - "design-assumptions-challenged.md"
+
+  # Technology Stack Evaluation Board
+  tech-stack-evaluation-board:
+    name: "Technology Stack Evaluation Board"
+    description: "Multi-domain technology selection review - prevent technology regret"
+    use_when: "Technology selection, framework adoption, infrastructure decisions, or major dependency additions"
+    recommended_for:
+      - "Framework or language selection"
+      - "Database technology decisions"
+      - "Cloud provider evaluation"
+      - "Major library or SDK adoption"
+      - "Build vs buy evaluations"
+      - "Open source adoption with licensing implications"
+    failure_mode_addressed: "Technology choices that optimize for features but miss security, legal, or long-term implications"
+    agents:
+      - module: bmm
+        agent: architect
+        name: "Winston"
+        role: "Architecture fit and long-term maintainability assessment"
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security implications - vulnerability history, security model"
+      - module: legal-team
+        agent: covenant
+        name: "Covenant"
+        role: "Licensing and compliance - GPL, AGPL contamination, export controls"
+      - module: strategy-team
+        agent: debate-coach
+        name: "Cicero"
+        role: "Challenge assumptions - vendor lock-in, hidden costs"
+    artifacts_needed:
+      - "tech-options.md (candidates being evaluated)"
+      - "requirements.md (what you need)"
+    expected_outputs:
+      - "tech-selection-decision.md"
+      - "license-compliance-review.md"
+      - "security-assessment.md"
+      - "total-cost-analysis.md"
+
+  # Production Readiness Review (Generalized)
+  production-readiness-review:
+    name: "Production Readiness Review"
+    description: "Cross-functional launch readiness validation for any product or service"
+    use_when: "Product launch, major release, or public-facing deployment"
+    recommended_for:
+      - "SaaS product launches"
+      - "API public release"
+      - "Mobile app store submission"
+      - "Major feature releases"
+      - "Customer-facing service deployments"
+    failure_mode_addressed: "Launches that miss legal, compliance, or quality gates causing post-launch crises"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: "Counsel"
+        role: "Legal and compliance clearance - ToS, privacy policy, regulatory"
+      - module: strategy-team
+        agent: communications-director
+        name: "Giuseppe"
+        role: "Launch messaging and crisis prep - communications readiness"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: "Sentinel"
+        role: "Security and compliance verification - control validation"
+      - module: bmm
+        agent: tea
+        name: "Murat"
+        role: "Quality and testing validation - release criteria"
+    artifacts_needed:
+      - "release-notes.md"
+      - "test-reports/"
+      - "security-review.md"
+    expected_outputs:
+      - "launch-approval.md"
+      - "known-issues.md"
+      - "rollback-plan.md"
+      - "post-launch-monitoring.md"
+
+  # Game Launch Review (Specialized)
+  game-launch-review:
+    name: "Game Launch Review"
+    description: "Game-specific production readiness with regulatory and monetization focus"
+    use_when: "Game launch preparation, especially with monetization, multiplayer, or UGC features"
+    recommended_for:
+      - "Mobile games with in-app purchases"
+      - "Games with loot box mechanics"
+      - "Multiplayer game launches"
+      - "Games with user-generated content"
+      - "Cross-platform game releases"
+      - "Games targeting regulated markets (EU, China, etc.)"
+    failure_mode_addressed: "Game launches that violate regional regulations or miss age rating requirements"
+    agents:
+      - module: bmgd
+        agent: game-qa
+        name: "GLaDOS"
+        role: "Gameplay quality and stability - certification readiness"
+      - module: legal-team
+        agent: counsel
+        name: "Counsel"
+        role: "ToS, age ratings, regional compliance - PEGI, ESRB, regulatory"
+      - module: strategy-team
+        agent: communications-director
+        name: "Giuseppe"
+        role: "Launch messaging strategy - community and press"
+      - module: bmgd
+        agent: game-scrum-master
+        name: "Max"
+        role: "Release coordination - milestone tracking"
+    artifacts_needed:
+      - "gdd.md"
+      - "monetization-design.md (if applicable)"
+      - "test-reports/"
+    expected_outputs:
+      - "game-launch-checklist.md"
+      - "regulatory-compliance-review.md"
+      - "launch-communications-plan.md"
+      - "post-launch-monitoring.md"
+
+# ═══════════════════════════════════════════════════════════════════════════
+  # STRATEGIC WORKFLOW CROSS-MODULE PRESETS (Jan 2025)
+  # Identified through Creative Council analysis of strategy-team workflows
+  # These presets support the new cross-module optional steps in strategy workflows
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # Strategic Intelligence Council - For Competitive Warfare workflow
+  strategic-intelligence-council:
+    name: "Strategic Intelligence Council"
+    description: "Cross-module intelligence integration for strategic warfare and competitive analysis"
+    use_when: "Deep competitor analysis requiring professional intelligence capabilities"
+    recommended_for:
+      - "Competitive warfare campaigns"
+      - "Major competitor threat assessment"
+      - "Market intelligence synthesis"
+      - "Strategic positioning decisions"
+    failure_mode_addressed: "Strategic assumptions not verified, competitor blind spots leading to failed campaigns"
+    agents:
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Intelligence synthesis - coordinate overall intelligence picture"
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: "Dossier"
+        role: "Leadership profiling - behavioral patterns and decision-making analysis"
+      - module: intel-team
+        agent: corporate-intel-specialist
+        name: "Proxy"
+        role: "Corporate intelligence - financial, ownership, and organizational mapping"
+      - module: intel-team
+        agent: social-media-analyst
+        name: "Echo"
+        role: "Communications analysis - public messaging and sentiment"
+      - module: strategy-team
+        agent: the-master-strategist
+        name: "Sun Tzu"
+        role: "Strategic integration - translate intelligence into strategic action"
+    artifacts_needed:
+      - "competitive-warfare-{campaign}.md (in progress)"
+      - "enemy-analysis.md (from Step 2)"
+    expected_outputs:
+      - "osint-assessment.md"
+      - "leadership-profiles.md"
+      - "corporate-intelligence.md"
+      - "intelligence-synthesis.md"
+
+  # M&A Diligence Board - For M&A Due Diligence workflow
+  m-and-a-diligence-board:
+    name: "M&A Due Diligence Board"
+    description: "Multi-domain due diligence for acquisition evaluation - security, legal, and strategic"
+    use_when: "M&A due diligence requiring comprehensive risk assessment across domains"
+    recommended_for:
+      - "Technology company acquisitions"
+      - "Companies with significant IP or data assets"
+      - "Acquisitions with regulatory implications"
+      - "Targets in cybersecurity or sensitive industries"
+    failure_mode_addressed: "M&A blind spots in security, compliance, or legal leading to value destruction post-acquisition"
+    agents:
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security due diligence - architecture, vulnerabilities, incident history"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: "Sentinel"
+        role: "Compliance due diligence - framework alignment, audit findings"
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal due diligence - contracts, IP, litigation, regulatory"
+      - module: strategy-team
+        agent: the-master-strategist
+        name: "Sun Tzu"
+        role: "Strategic synthesis - integrate findings into deal recommendations"
+    artifacts_needed:
+      - "due-diligence-{target}.md (in progress)"
+      - "operational-diligence.md (from Step 4)"
+    expected_outputs:
+      - "security-diligence-report.md"
+      - "compliance-diligence-report.md"
+      - "legal-diligence-report.md"
+      - "value-at-risk-assessment.md"
+      - "deal-recommendations.md"
+
+  # Board Presentation Validation - For Board Presentation Prep workflow
+  board-presentation-validation:
+    name: "Board Presentation Validation"
+    description: "Cross-module validation of board presentation content before delivery"
+    use_when: "Board presentations requiring validation to avoid embarrassment or legal exposure"
+    recommended_for:
+      - "Presentations with technology or security claims"
+      - "Presentations involving market analysis or competitive intelligence"
+      - "Presentations with financial projections or commitments"
+      - "Presentations discussing regulatory or compliance matters"
+    failure_mode_addressed: "Board presentations with indefensible claims, legal exposure, or security misrepresentations"
+    agents:
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security claims review - validate accuracy of security statements"
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal exposure review - identify liability and compliance issues"
+      - module: strategy-team
+        agent: policy-analyst
+        name: "Augustus"
+        role: "Evidence quality review - assess defensibility of claims"
+      - module: intel-team
+        agent: osint-lead
+        name: "Vector"
+        role: "Intelligence validation - verify market and competitive claims"
+    artifacts_needed:
+      - "presentation-outline-{topic}.md (in progress)"
+      - "archetype-review.md (from Step 5)"
+    expected_outputs:
+      - "validation-summary.md"
+      - "required-adjustments.md"
+      - "additional-qa-prep.md"
+      - "risk-score.md"
+
+  # Policy Validation Board - For Policy Development workflow
+  policy-validation-board:
+    name: "Policy Validation Board"
+    description: "Cross-module security and legal validation for policy enforceability and compliance"
+    use_when: "Policy development requiring validation before final drafting"
+    recommended_for:
+      - "Policies affecting data handling, privacy, or information security"
+      - "Policies creating compliance or regulatory obligations"
+      - "Policies involving access controls, authentication, or authorization"
+      - "Policies with employment law implications"
+    failure_mode_addressed: "Policies that are unenforceable, create legal exposure, or have security gaps"
+    agents:
+      - module: cybersec-team
+        agent: security-architect
+        name: "Bastion"
+        role: "Security impact assessment - enforcement and vulnerability review"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: "Sentinel"
+        role: "Compliance framework mapping - audit and regulatory alignment"
+      - module: legal-team
+        agent: counsel
+        name: "Covenant"
+        role: "Legal enforceability review - employment law and liability"
+      - module: strategy-team
+        agent: ethics-advisor
+        name: "Sophia"
+        role: "Ethics-legal synthesis - balance compliance with fairness"
+    artifacts_needed:
+      - "policy-{name}.md (in progress)"
+      - "reform-perspective.md (from Step 5)"
+    expected_outputs:
+      - "security-review.md"
+      - "compliance-mapping.md"
+      - "legal-enforceability.md"
+      - "ethics-legal-alignment.md"
+      - "policy-readiness-assessment.md"
+
+  # Decision Retrospective Board - For learning from past decisions
+  decision-retrospective-board:
+    name: "Decision Retrospective Board"
+    description: "Multi-perspective review of past strategic decisions for organizational learning"
+    use_when: "Reviewing past decisions to extract lessons and improve future decision-making"
+    recommended_for:
+      - "Post-project retrospectives"
+      - "Annual strategic reviews"
+      - "After major initiatives succeed or fail"
+      - "Leadership development and coaching"
+    failure_mode_addressed: "Organizations repeating strategic mistakes due to lack of structured learning"
+    agents:
+      - module: strategy-team
+        agent: the-master-strategist
+        name: "Sun Tzu"
+        role: "Strategic analysis - evaluate decision quality and alternatives not taken"
+      - module: strategy-team
+        agent: debate-coach
+        name: "Cicero"
+        role: "Argument reconstruction - challenge original reasoning"
+      - module: strategy-team
+        agent: ethics-advisor
+        name: "Sophia"
+        role: "Values alignment - assess ethical dimensions of decisions"
+      - module: strategy-team
+        agent: policy-analyst
+        name: "Augustus"
+        role: "Evidence review - what was known vs. what should have been known"
+    artifacts_needed:
+      - "decision-brief.md (original decision)"
+      - "outcomes-summary.md (what actually happened)"
+    expected_outputs:
+      - "decision-retrospective.md"
+      - "lessons-learned.md"
+      - "decision-framework-improvements.md"
+
+# Quick reference for Abdul
+preset_index:
+  by_scenario:
+    security_review: "security-review-team"
+    incident: "incident-war-room"
+    compliance: "compliance-audit-team"
+    strategic_decision: "strategic-advisors"
+    game_launch: "game-launch-team"
+    threat_investigation: "threat-intel-fusion"
+    product_launch: "product-security-launch"
+    legal_risk: "legal-risk-team"
+    # New scenarios from synergy analysis
+    strategic_validation: "strategic-decision-validated"
+    crisis: "crisis-response-party"
+    negotiation: "negotiation-intelligence-party"
+    vciso: "vciso-advisory-party"
+    intel_validation: "intel-validation-party"
+    threat_ecosystem: "threat-ecosystem-party"
+    attribution: "attribution-validation-party"
+    legal_intake: "legal-intake-party"
+    contract: "contract-review-party"
+    litigation: "litigation-war-room"
+    # New scenarios from party mode discussion (Jan 2025)
+    architecture_security: "secure-architecture-workshop"
+    tech_selection: "tech-stack-evaluation-board"
+    launch_readiness: "production-readiness-review"
+    game_launch_regulatory: "game-launch-review"
+    # Strategy workflow cross-module presets (Jan 2025)
+    competitive_warfare: "strategic-intelligence-council"
+    ma_due_diligence: "m-and-a-diligence-board"
+    board_presentation: "board-presentation-validation"
+    policy_development: "policy-validation-board"
+    decision_retrospective: "decision-retrospective-board"
+
+  by_module_combination:
+    bmm_cybersec: ["security-review-team", "product-security-launch", "secure-architecture-workshop"]
+    bmm_cybersec_strategy: ["secure-architecture-workshop", "tech-stack-evaluation-board"]
+    bmm_cybersec_legal: ["tech-stack-evaluation-board"]
+    cybersec_intel: ["threat-intel-fusion", "incident-war-room", "threat-ecosystem-party", "attribution-validation-party"]
+    cybersec_legal: ["compliance-audit-team", "incident-war-room", "contract-review-party"]
+    cybersec_legal_strategy: ["production-readiness-review", "policy-validation-board"]
+    strategy_legal: ["strategic-advisors", "legal-risk-team", "litigation-war-room", "crisis-response-party"]
+    strategy_cybersec: ["strategic-decision-validated", "vciso-advisory-party"]
+    strategy_intel: ["negotiation-intelligence-party", "intel-validation-party", "strategic-intelligence-council"]
+    intel_legal: ["legal-intake-party"]
+    bmgd_legal: ["game-launch-team", "game-launch-review"]
+    bmgd_legal_strategy: ["game-launch-review"]
+    # Multi-module combinations
+    strategy_cybersec_legal: ["strategic-decision-validated", "crisis-response-party", "tech-stack-evaluation-board", "m-and-a-diligence-board", "board-presentation-validation"]
+    cybersec_intel_legal: ["incident-war-room"]
+    strategy_intel_legal: ["negotiation-intelligence-party", "litigation-war-room"]
+    strategy_only: ["decision-retrospective-board"]
+
+  by_urgency:
+    immediate: ["incident-war-room", "crisis-response-party"]
+    high: ["litigation-war-room", "attribution-validation-party", "legal-intake-party", "production-readiness-review", "game-launch-review", "board-presentation-validation"]
+    normal: ["strategic-decision-validated", "contract-review-party", "negotiation-intelligence-party", "compliance-audit-team", "tech-stack-evaluation-board", "m-and-a-diligence-board", "policy-validation-board", "strategic-intelligence-council"]
+    planned: ["vciso-advisory-party", "intel-validation-party", "threat-ecosystem-party", "security-review-team", "secure-architecture-workshop", "decision-retrospective-board"]
+
+  by_failure_mode:
+    late_security_discovery: "secure-architecture-workshop"
+    technology_regret: "tech-stack-evaluation-board"
+    launch_crisis: "production-readiness-review"
+    game_regulatory_violation: "game-launch-review"
+    incident_coordination: "incident-war-room"
+    compliance_gap: "compliance-audit-team"
+    strategy_uninformed: "strategic-intelligence-council"
+    ma_blind_spots: "m-and-a-diligence-board"
+    board_exposure: "board-presentation-validation"
+    policy_unenforceable: "policy-validation-board"

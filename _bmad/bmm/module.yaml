@@ -1,0 +1,75 @@
+# BMM (Business/Product Management) Module Configuration
+# This file defines installation questions and module configuration values
+
+code: "bmm"
+name: "BMAD Method - Business & Product Development"
+default_selected: true
+
+# Welcome message shown during installation
+prompt:
+  - "BMAD Method (BMM) Module Installation"
+  - ""
+  - "This is the core product development module with 9 agents:"
+  - ""
+  - "  Product & Business:"
+  - "  - John (Product Manager - PRD & Vision)"
+  - "  - Sarah (Business Analyst - Discovery & Requirements)"
+  - "  - Emma (UX Designer - User Experience)"
+  - ""
+  - "  Technical:"
+  - "  - Winston (Architect - System Design)"
+  - "  - Devon (Developer - Implementation)"
+  - "  - Murat (Test Engineer - Quality Assurance)"
+  - ""
+  - "  Delivery:"
+  - "  - Alex (Scrum Master - Sprint Management)"
+  - "  - Clara (Tech Writer - Documentation)"
+  - "  - Solo Dev (Quick Flow - Fast Prototyping)"
+  - ""
+  - "12 workflows covering the full development lifecycle."
+  - "From product brief to production deployment."
+
+# Core config values are automatically inherited from installer:
+## user_name
+## communication_language
+## document_output_language
+
+# ============================================================================
+# CONFIGURATION FIELDS
+# ============================================================================
+
+# INTERACTIVE: Primary output location
+output_folder:
+  prompt: "Where should BMM save project artifacts?"
+  default: "_bmad-output/bmm"
+  result: "{project-root}/{value}"
+
+# STATIC: Module identification
+module_code:
+  result: "bmm"
+
+module_version:
+  result: "6.0.0"
+
+# STATIC: Module paths
+agents_path:
+  result: "{project-root}/_bmad/bmm/agents"
+
+workflows_path:
+  result: "{project-root}/_bmad/bmm/workflows"
+
+# STATIC: Automatic subdirectory configuration
+discovery:
+  result: "{output_folder}/discovery"
+
+planning:
+  result: "{output_folder}/planning"
+
+architecture:
+  result: "{output_folder}/architecture"
+
+implementation:
+  result: "{output_folder}/implementation"
+
+testing:
+  result: "{output_folder}/testing"
