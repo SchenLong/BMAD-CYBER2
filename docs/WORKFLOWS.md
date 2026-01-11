@@ -412,6 +412,39 @@ Pre-configured multi-agent combinations for common executive scenarios:
 
 ---
 
+## Legal-Team Workflows (7)
+
+> ⚠️ **IMPORTANT DISCLAIMER**: Legal-Team workflows are designed **exclusively for supporting other modules** in Party Mode / team orchestration scenarios. **Their standalone use is not recommended** as the module creator is not a legal professional. Always consult qualified legal counsel for actual legal matters.
+
+### Core Legal Workflows
+
+| Workflow | Steps | Purpose |
+|----------|-------|---------|
+| **legal-matter-intake** | 8 | Entry point for all legal matters with jurisdiction analysis and routing |
+| **contract-review** | 9 | Comprehensive contract analysis covering risks, obligations, and recommendations |
+| **contract-drafting** | 9 | Create jurisdiction-appropriate contracts from requirements through final draft |
+| **corporate-formation** | 10 | Multi-jurisdictional entity formation (USA, EU, Spain, Estonia) |
+| **dispute-strategy** | 10 | Dispute analysis and resolution strategy development |
+| **tax-planning** | 10 | Tax optimization and compliance planning across jurisdictions |
+| **cross-border-matter** | 10 | Multi-jurisdictional legal matter coordination |
+
+### Jurisdictions Covered
+
+- **USA:** Federal and state corporate/civil law
+- **EU:** EU-wide regulations and directives, GDPR
+- **Spain:** National and autonomous community law
+- **Estonia:** e-Residency and corporate law
+- **Cross-Border:** International transactions and multi-jurisdictional matters
+
+### Primary Use Case
+
+These workflows provide legal perspective when other modules require legal input:
+- **Cyber-Ops:** Compliance considerations during security assessments
+- **Intel-Team:** Contractual implications in corporate intelligence
+- **Exec-Ops:** Regulatory concerns in executive strategy sessions
+
+---
+
 ## Development Modules
 
 ---
@@ -495,8 +528,9 @@ Pre-configured multi-agent combinations for common executive scenarios:
 | **cyber-ops** | 13 | Security operations |
 | **intel-team** | 19 | Intelligence operations |
 | **exec-ops** | 12 | Executive leadership |
+| **legal-team** | 7 | Legal support (Party Mode) |
 | **bmm** | 20+ | Software development |
 | **bmgd** | 15+ | Game development |
 | **bmb** | 5 | Module creation |
 
-**Total: 80+ specialized workflows**
+**Total: 90+ specialized workflows**

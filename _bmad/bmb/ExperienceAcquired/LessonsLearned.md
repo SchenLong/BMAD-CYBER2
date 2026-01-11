@@ -986,6 +986,68 @@ During module validation, verify:
 
 ---
 
+### Lesson 11: Documentation Synchronization
+
+**Error:** Updating the main README.md when adding a new module but forgetting to update the related documentation files (AGENTS.md, WORKFLOWS.md, GETTING-STARTED.md).
+
+**Impact:**
+- Documentation becomes inconsistent across files
+- Users may find incomplete information in detailed docs
+- New modules appear in README but not in reference guides
+- Agent/workflow counts become incorrect
+- Links and references may be missing
+
+**Resolution:** Updated all three documentation files (AGENTS.md, WORKFLOWS.md, GETTING-STARTED.md) to include the legal-team module with proper disclaimers and cross-references.
+
+**Prevention:** When adding a new module or making major changes, ALWAYS update documentation in this order:
+
+#### **Correct Update Order**
+
+1. **FIRST: Update docs/ files** (detailed reference docs)
+   - `docs/AGENTS.md` - Full agent list with descriptions
+   - `docs/WORKFLOWS.md` - Workflow list with step counts and purposes
+   - `docs/GETTING-STARTED.md` - Agent commands, usage examples, module links
+
+2. **THEN: Update README.md** (summary/overview)
+   - Module overview and badges
+   - Summary table with counts
+   - Verify counts match docs/ files
+
+**Why this order?** The docs/ files are the source of truth for detailed information. Updating them first ensures you have accurate counts and content to summarize in README.md.
+
+#### **Documentation Synchronization Checklist**
+
+When adding a new module:
+- [ ] **docs/AGENTS.md** - Full agent list with descriptions
+- [ ] **docs/WORKFLOWS.md** - Workflow list with step counts and purposes
+- [ ] **docs/GETTING-STARTED.md** - Agent commands, usage examples, module links
+- [ ] **README.md** - Module overview, badges, summary table (LAST)
+
+When updating agent/workflow counts:
+- [ ] Update summary tables in all docs FIRST
+- [ ] Update total counts at bottom of AGENTS.md and WORKFLOWS.md
+- [ ] Update badge counts in README.md LAST
+
+When adding disclaimers or warnings:
+- [ ] Add to AGENTS.md module section
+- [ ] Add to WORKFLOWS.md module section
+- [ ] Add note in GETTING-STARTED.md
+- [ ] Add to README.md module section (LAST)
+
+#### **Count Consistency Note**
+
+Be aware of different counting methods:
+- **README.md** counts operational modules only (cyber-ops, intel-team, exec-ops, legal-team)
+- **docs/AGENTS.md & WORKFLOWS.md** count ALL modules including development (bmm, bmgd, bmb)
+
+This is intentional: README is the marketing overview, docs are the complete technical reference.
+
+---
+
+**DO NOT:** Update README.md before updating the docs/ files. Always update docs first, then summarize in README.
+
+---
+
 ## Template for Future Lessons
 
 ### Lesson N: [Short Title]
@@ -1001,6 +1063,7 @@ During module validation, verify:
 ---
 
 *Last Updated: 2026-01-11*
+*Lesson 11 (Documentation Synchronization) Added: 2026-01-11*
 *Lesson 10 (Security Rule Testing Protocol) Added: 2026-01-11*
 *Lesson 9 (External Content Manipulation Protection) Added: 2026-01-11*
 *Lesson 8 (Prompt Injection Protection) Added: 2026-01-11*

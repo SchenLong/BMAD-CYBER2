@@ -287,6 +287,30 @@ These agents channel historical figures to provide distinct ideological perspect
 
 ---
 
+## Legal-Team Module (7 Agents)
+
+**Cross-jurisdictional legal coordination for team orchestration**
+
+> ⚠️ **IMPORTANT DISCLAIMER**: The Legal Team module is designed **exclusively for supporting other modules** in Party Mode / team orchestration scenarios. It provides legal perspective during multi-agent discussions but is **NOT intended as a standalone legal framework**. The module creator is not a legal professional. Always consult qualified legal counsel for actual legal matters.
+
+### Legal Specialists (7)
+
+| Codename | Title | Specialty |
+|----------|-------|-----------|
+| **Counsel** | General Counsel | Legal team director, case intake, jurisdiction routing |
+| **Liberty** | US Law Specialist | Federal and state corporate/civil law, regulatory compliance |
+| **Europa** | EU Law Specialist | GDPR, cross-border commerce, Estonia e-Residency, EU regulations |
+| **Castile** | Spanish Law Specialist | National and autonomous community law, mercantile matters |
+| **Covenant** | Contract Specialist | Contract drafting, review, negotiation across jurisdictions |
+| **Tribute** | Tax Counsel | Cross-border taxation, compliance, planning |
+| **Advocate** | Litigation Strategist | Dispute resolution, arbitration, mediation strategy |
+
+**Jurisdictions Covered:** USA, European Union, Spain, Estonia, Cross-Border Matters
+
+**Primary Use Case:** Providing legal perspective in Party Mode when other modules require legal input (compliance in security assessments, contractual implications in intelligence, regulatory concerns in executive strategy).
+
+---
+
 ## Development Modules
 
 These modules support BMAD development and software engineering workflows.
@@ -342,8 +366,9 @@ Meta-module for creating new BMAD modules.
 | **cyber-ops** | 15 | Cybersecurity operations |
 | **intel-team** | 11 | Intelligence operations |
 | **exec-ops** | 14 | Executive leadership |
+| **legal-team** | 7 | Legal support (Party Mode) |
 | **bmm** | 8+ | Software development |
 | **bmgd** | 4+ | Game development |
 | **bmb** | 3 | Module creation |
 
-**Total: 55+ specialized AI agents**
+**Total: 62+ specialized AI agents**
