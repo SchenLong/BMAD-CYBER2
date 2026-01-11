@@ -8,8 +8,8 @@ modules:
   - bmgd
   - bmm
   - cis
-  - cyber-ops
-  - exec-ops
+  - cybersec-team
+  - strategy-team
   - intel-team
   - legal-team
 ides:

@@ -10,7 +10,7 @@ These modules provide specialized agents for professional operations.
 
 ---
 
-## Cyber-Ops Module (15 Agents)
+## Cybersec-Team Module (15 Agents)
 
 **Professional-grade cybersecurity operations**
 
@@ -255,7 +255,7 @@ These modules provide specialized agents for professional operations.
 
 ---
 
-## Exec-Ops Module (14 Agents)
+## Strategy-Team Module (14 Agents)
 
 **Executive leadership and strategic decision-making**
 
@@ -268,7 +268,7 @@ These modules provide specialized agents for professional operations.
 | `debate-coach` | Cicero | Argumentation & Rhetoric Master |
 | `stakeholder-mediator` | Geneva | Negotiation & Consensus Builder |
 | `ethics-advisor` | Sophia | Political Ethics & Values Counsel |
-| `communications-director` | Joseph | Public Messaging & Media Strategy |
+| `communications-director` | Giuseppe | Public Messaging & Media Strategy |
 
 ### Historical Archetype Advisors (8)
 
@@ -374,9 +374,9 @@ Meta-module for creating new BMAD modules.
 
 | Module | Agents | Focus |
 |--------|--------|-------|
-| **cyber-ops** | 15 | Cybersecurity operations |
+| **cybersec-team** | 15 | Cybersecurity operations |
 | **intel-team** | 11 | Intelligence operations |
-| **exec-ops** | 14 | Executive leadership |
+| **strategy-team** | 14 | Executive leadership |
 | **legal-team** | 13 | Legal support (Party Mode) |
 | **bmm** | 8+ | Software development |
 | **bmgd** | 4+ | Game development |

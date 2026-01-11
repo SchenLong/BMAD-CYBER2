@@ -59,7 +59,7 @@ Load and read full config from {project-root}/_bmad/bmb/config.yaml and resolve:
 2. Review all documented lessons to avoid repeating past mistakes
 3. Pay special attention to:
    - Agent file format requirements (`.md` not `.yaml`)
-   - Checking for duplicate agent names across ALL modules (bmm, bmgd, cyber-ops, intel-team, exec-ops, core)
+   - Checking for duplicate agent names across ALL modules (bmm, bmgd, cybersec-team, intel-team, strategy-team, core)
    - Domain-specific mandatory rules required for the module type
 4. Apply all relevant prevention measures throughout module creation
 

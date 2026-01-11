@@ -21,12 +21,12 @@
 
 | Module | Version | Agents | Workflows | Focus |
 |--------|---------|--------|-----------|-------|
-| 🔐 **[cyber-ops](#-cyber-ops)** | v1.3.1 | 15 | 13 | Cybersecurity operations |
+| 🔐 **[cybersec-team](#-cybersec-team)** | v1.3.1 | 15 | 13 | Cybersecurity operations |
 | 🕵️ **[intel-team](#️-intel-team)** | v1.1.1 | 11 | 19 | Intelligence operations |
-| 👔 **[exec-ops](#-exec-ops)** | v1.2.1 | 14 | 12 | Executive leadership & strategy |
+| 👔 **[strategy-team](#-strategy-team)** | v1.3.0 | 14 | 16 | Executive leadership & strategy |
 | ⚖️ **[legal-team](#️-legal-team)** | v1.1.0 | 13 | 7 | Legal support for other modules |
 
-**Total: 53 specialized agents, 51 production workflows**
+**Total: 53 specialized agents, 55 production workflows**
 
 ---
 
@@ -40,9 +40,9 @@
 
 ---
 
-## 🔐 Cyber-Ops
+## 🔐 Cybersec-Team
 
-[![Cyber-Ops](https://img.shields.io/badge/module-cyber--ops-red.svg)]()
+[![Cybersec-Team](https://img.shields.io/badge/module-cyber--ops-red.svg)]()
 [![Agents](https://img.shields.io/badge/agents-15-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-13-purple.svg)]()
 
@@ -80,9 +80,9 @@ Comprehensive intelligence collection, analysis, and reporting capabilities thro
 
 ---
 
-## 👔 Exec-Ops
+## 👔 Strategy-Team
 
-[![Exec-Ops](https://img.shields.io/badge/module-exec--ops-gold.svg)]()
+[![Strategy-Team](https://img.shields.io/badge/module-exec--ops-gold.svg)]()
 [![Agents](https://img.shields.io/badge/agents-14-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-12-purple.svg)]()
 
@@ -92,7 +92,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 
 | | |
 |---|---|
-| 🎯 **Modern Advisors** | Augustus (Policy), Magnus (Political Strategy), Cicero (Debate), Geneva (Mediation), Sophia (Ethics), Joseph (Communications) |
+| 🎯 **Modern Advisors** | Augustus (Policy), Magnus (Political Strategy), Cicero (Debate), Geneva (Mediation), Sophia (Ethics), Giuseppe (Communications) |
 | 📜 **Historical Archetypes** | Niccolo/Machiavelli (Realist), Charles/Lincoln (Liberator), Maximilien/Robespierre (Revolutionary), Burke (Conservative), Lee Kuan Yew (Technocrat), Musashi (Warrior-Strategist), Sun Tzu (Master Strategist), Jean-Luc/Picard (Principled Commander) |
 | 🔄 **Workflows** | Strategic Decision Workshop, Stakeholder Negotiation, Board Presentation, Crisis Response, Strategic Planning, Policy Development, Conflict Resolution, Competitive Warfare, Corporate Politics, Political Risk, Ethical Dilemma, Leadership Philosophy |
 
@@ -117,7 +117,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 | 🔄 **Workflows** | Legal Matter Intake, Contract Review, Contract Drafting, Dispute Strategy, Corporate Formation, Tax Planning, Cross-Border Matter |
 | 🌍 **Jurisdictions** | United States, European Union, Spain, Cross-Border Matters |
 
-**Primary Use Case:** Providing legal perspective in Party Mode when cyber-ops, intel-team, or exec-ops workflows require legal input. For example: compliance considerations during security assessments, contractual implications in corporate intelligence, or regulatory concerns in executive strategy sessions.
+**Primary Use Case:** Providing legal perspective in Party Mode when cybersec-team, intel-team, or strategy-team workflows require legal input. For example: compliance considerations during security assessments, contractual implications in corporate intelligence, or regulatory concerns in executive strategy sessions.
 
 ---
 
@@ -126,7 +126,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 ```
 🛡️ BMAD Module Collection
 │
-├─── 🔐 Cyber-Ops (13 workflows)
+├─── 🔐 Cybersec-Team (13 workflows)
 │    ├─ 🚨 Incident Response Playbook
 │    ├─ 🏗️ Security Architecture Review
 │    ├─ ⚠️ STRIDE Threat Modeling
@@ -161,7 +161,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 │    ├─ 🤖 Campaign AI
 │    └─ ⏰ Tripwire
 │
-├─── 👔 Exec-Ops (12 workflows)
+├─── 👔 Strategy-Team (16 workflows)
 │    ├─ 🎯 Strategic Decision Workshop
 │    ├─ 🤝 Stakeholder Negotiation Prep
 │    ├─ 📊 Board Presentation Prep
@@ -194,7 +194,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 ```
 BMAD-CYBER2/
 ├── _bmad/
-│   ├── cyber-ops/                     # 🔐 Cybersecurity module (v1.3.0)
+│   ├── cybersec-team/                     # 🔐 Cybersecurity module (v1.3.0)
 │   │   ├── agents/                    # 15 agent definitions
 │   │   ├── workflows/                 # 13 production workflows
 │   │   └── README.md
@@ -205,9 +205,9 @@ BMAD-CYBER2/
 │   │   ├── data/                      # OSINT knowledgebase
 │   │   └── README.md
 │   │
-│   ├── exec-ops/                      # 👔 Executive module (v1.2.1)
+│   ├── strategy-team/                      # 👔 Executive module (v1.3.0)
 │   │   ├── agents/                    # 14 advisor definitions
-│   │   ├── workflows/                 # 12 executive workflows
+│   │   ├── workflows/                 # 16 executive workflows
 │   │   └── README.md
 │   │
 │   ├── legal-team/                    # ⚖️ Legal module (v1.1.0)
@@ -317,12 +317,12 @@ preferences:
 
 ## 🗺️ Roadmap
 
-### 🔐 Cyber-Ops
+### 🔐 Cybersec-Team
 - [ ] Manual simulation and fine-tuning of workflows
 - [ ] API integrations for security tools
 - [ ] MCP (Model Context Protocol) server integrations
 
-### 👔 Exec-Ops
+### 👔 Strategy-Team
 - [ ] Manual simulation of workflows
 - [ ] Add "out of the box thinking" layer for creative problem-solving
 
@@ -337,7 +337,7 @@ preferences:
 - [ ] Template library for common contract types
 
 ### ⚙️ Framework
-- [ ] Module interoperability between cyber-ops, intel-team, and exec-ops
+- [ ] Module interoperability between cybersec-team, intel-team, and strategy-team
 - [ ] Project manager agent for cross-module orchestration
 - [ ] Project folder structure auto-creation
 - [ ] API configuration file management
@@ -368,17 +368,18 @@ preferences:
 - Multi-INT coordination via Party Mode
 - Comprehensive OSINT knowledgebase
 
-### 🔐 cyber-ops v1.3.1 (2026-01-11)
+### 🔐 cybersec-team v1.3.1 (2026-01-11)
 - Added dual security rules (prompt injection + manipulation protection)
 - 15 total agents and 13 total workflows
 - 120+ step files covering complete security operations lifecycle
 - New: Blockchain, Mobile, Web App, Network, Infrastructure, Cloud, Vulnerability, Awareness
 
-### 👔 exec-ops v1.2.1 (2026-01-11)
-- Added dual security rules (prompt injection + manipulation protection)
+### 👔 strategy-team v1.3.0 (2026-01-11)
+- Added 4 new workflows: M&A Due Diligence, Leadership Transition, Board Relations, Performance Review
 - 14 executive advisors (6 modern + 8 historical archetypes)
-- 12 executive workflows with 95+ step files
-- 13 Party Mode presets for common scenarios
+- 16 executive workflows with 122 step files
+- 17 Party Mode presets for common scenarios
+- Added dual security rules (prompt injection + manipulation protection)
 
 ---
 
