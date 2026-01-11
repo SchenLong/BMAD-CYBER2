@@ -26,12 +26,12 @@ This uses **step-file architecture** for disciplined execution:
 
 ### Critical Rules (NO EXCEPTIONS)
 
-- NEVER load multiple step files simultaneously
-- ALWAYS read entire step file before execution
-- NEVER skip steps or optimize the sequence
-- ALWAYS update frontmatter before next step
-- ALWAYS halt at menus and wait for user input
-- ALWAYS speak in your agent communication style with the config `{communication_language}`
+- 🛑 **NEVER** load multiple step files simultaneously
+- 📖 **ALWAYS** read entire step file before execution
+- 🚫 **NEVER** skip steps or optimize the sequence
+- 💾 **ALWAYS** update frontmatter before next step
+- ⏸️ **ALWAYS** halt at menus and wait for user input
+- ✅ **ALWAYS** speak in your agent communication style with the config `{communication_language}`
 
 ---
 

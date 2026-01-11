@@ -192,38 +192,47 @@ _bmad/exec-ops/
 │   ├── the-strategist-warrior.md
 │   ├── the-master-strategist.md
 │   └── the-principled-commander.md
-├── workflows/              # 9 executive workflows
+├── workflows/              # 12 executive workflows
 │   ├── _shared/
 │   │   ├── agent-roster.md
 │   │   ├── party-mode-presets.md  # 13 preset configurations
-│   │   └── templates/      # 9 output templates
-│   ├── strategic-decision-workshop/
-│   │   ├── workflow.md
-│   │   └── steps/          # 9 step files
-│   ├── stakeholder-negotiation-prep/
-│   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
+│   │   └── templates/      # 12 output templates
 │   ├── board-presentation-prep/
 │   │   ├── workflow.md
 │   │   └── steps/          # 7 step files
-│   ├── crisis-response-planning/
-│   │   ├── workflow.md
-│   │   └── steps/          # 7 step files
-│   ├── strategic-planning-session/
-│   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
-│   ├── policy-development/
-│   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
-│   ├── conflict-resolution/
-│   │   ├── workflow.md
-│   │   └── steps/          # 8 step files
 │   ├── competitive-warfare/
 │   │   ├── workflow.md
 │   │   └── steps/          # 9 step files
-│   └── corporate-political-game/
+│   ├── conflict-resolution/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── corporate-political-game/
+│   │   ├── workflow.md
+│   │   └── steps/          # 9 step files
+│   ├── crisis-response-planning/
+│   │   ├── workflow.md
+│   │   └── steps/          # 7 step files
+│   ├── ethical-dilemma-resolution/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── leadership-philosophy/
+│   │   ├── workflow.md
+│   │   └── steps/          # 7 step files
+│   ├── policy-development/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── political-risk-assessment/
+│   │   ├── workflow.md
+│   │   └── steps/          # 7 step files
+│   ├── stakeholder-negotiation-prep/
+│   │   ├── workflow.md
+│   │   └── steps/          # 8 step files
+│   ├── strategic-decision-workshop/
+│   │   ├── workflow.md
+│   │   └── steps/          # 9 step files
+│   └── strategic-planning-session/
 │       ├── workflow.md
-│       └── steps/          # 9 step files
+│       └── steps/          # 8 step files
 ├── config.yaml             # Module configuration
 └── README.md               # This file
 ```
