@@ -528,7 +528,7 @@ These workflows provide legal perspective when other modules require legal input
 | **cyber-ops** | 13 | Security operations |
 | **intel-team** | 19 | Intelligence operations |
 | **exec-ops** | 12 | Executive leadership |
-| **legal-team** | 7 | Legal support (Party Mode) |
+| **legal-team** | 7 | Legal support (Party Mode - 13 agents) |
 | **bmm** | 20+ | Software development |
 | **bmgd** | 15+ | Game development |
 | **bmb** | 5 | Module creation |

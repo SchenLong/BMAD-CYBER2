@@ -63,6 +63,7 @@ cd BMAD-CYBER2
 /intel-team:dark-web-analyst     # Shadow - DARKINT
 
 # Legal-Team Agents (Party Mode support only)
+# Core Team
 /legal-team:counsel              # General Counsel - Team Director
 /legal-team:liberty              # US Law Specialist
 /legal-team:europa               # EU Law Specialist
@@ -70,6 +71,13 @@ cd BMAD-CYBER2
 /legal-team:covenant             # Contract Specialist
 /legal-team:tribute              # Tax Counsel
 /legal-team:advocate             # Litigation Strategist
+# Extended Team
+/legal-team:iberia               # Spain Civil Law
+/legal-team:gremio               # Spain Labor Law
+/legal-team:baltic               # Estonia Corporate
+/legal-team:charter              # Corporate Governance
+/legal-team:insignia             # IP Counsel
+/legal-team:deed                 # Real Estate Counsel
 ```
 
 ### 2. Run a Workflow

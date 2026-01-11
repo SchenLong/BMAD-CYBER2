@@ -1048,6 +1048,86 @@ This is intentional: README is the marketing overview, docs are the complete tec
 
 ---
 
+### Lesson 12: Complete All Roadmap Phases Before Publication
+
+**Error:** Publishing the legal-team module with only 7 of the planned 13 agents. The module roadmap specified a Phase 1 (7 MVP agents) and Phase 2 (6 enhancement agents), but only Phase 1 was implemented before the module was marked as production-ready and documentation was updated.
+
+**Impact:**
+- Module published as "7 agents" when roadmap promised 13
+- Documentation (AGENTS.md, WORKFLOWS.md, GETTING-STARTED.md) all showed incomplete counts
+- Users expecting full functionality found missing capabilities
+- Credibility gap between promised and delivered features
+- Required post-publication remediation to add missing agents
+
+**Missing Components (Phase 2):**
+- Iberia (Spain Civil Law)
+- Gremio (Spain Labor Law)
+- Baltic (Estonia Corporate)
+- Charter (Corporate Governance)
+- Insignia (IP Counsel)
+- Deed (Real Estate)
+
+**Resolution:** Created all 6 missing Phase 2 agents and updated documentation to reflect accurate 13-agent count.
+
+**Prevention:** Before marking ANY module as production-ready:
+
+#### **Roadmap Verification Checklist**
+
+1. **Locate the module roadmap/plan:**
+   - Check `module-plan-*.md` or equivalent planning document
+   - Identify ALL planned phases and components
+
+2. **Verify component counts match:**
+   ```
+   Planned agents:    [X]
+   Implemented agents: [Y]
+   Missing:           [X-Y]
+   ```
+
+3. **Check each phase:**
+   - [ ] Phase 1 components: All implemented?
+   - [ ] Phase 2 components: All implemented?
+   - [ ] Phase N components: All implemented?
+
+4. **Decision point if phases incomplete:**
+   - **Option A:** Complete all phases before publication
+   - **Option B:** Explicitly mark as "Phase 1 Release" in documentation
+   - **Option C:** Update roadmap to reflect reduced scope
+
+   **DO NOT:** Publish without acknowledging incomplete phases.
+
+5. **Documentation must reflect reality:**
+   - If publishing Phase 1 only, say "7 agents (Phase 1)"
+   - Include roadmap reference for planned additions
+   - Set clear expectations for users
+
+#### **Integration with 7-Phase Validation**
+
+Add to **Phase 1: Automated Checks**:
+
+```markdown
+## Phase 1a: Roadmap Verification (NEW)
+- [ ] Module roadmap/plan document located
+- [ ] All planned phases identified
+- [ ] Component counts verified against plan
+- [ ] All phases implemented OR scope explicitly reduced
+- [ ] Documentation reflects actual scope
+```
+
+#### **Quick Verification Command:**
+
+```bash
+# Count agents in plan vs implementation
+echo "Planned:" && grep -c "agent\|Agent" _bmad/{module}/module-plan-*.md 2>/dev/null || echo "No plan found"
+echo "Implemented:" && ls _bmad/{module}/agents/*.md 2>/dev/null | wc -l
+```
+
+---
+
+**DO NOT:** Publish a module as complete when roadmap phases are still pending. Either complete all phases or explicitly document the limited scope.
+
+---
+
 ## Template for Future Lessons
 
 ### Lesson N: [Short Title]
@@ -1063,6 +1143,7 @@ This is intentional: README is the marketing overview, docs are the complete tec
 ---
 
 *Last Updated: 2026-01-11*
+*Lesson 12 (Complete All Roadmap Phases) Added: 2026-01-11*
 *Lesson 11 (Documentation Synchronization) Added: 2026-01-11*
 *Lesson 10 (Security Rule Testing Protocol) Added: 2026-01-11*
 *Lesson 9 (External Content Manipulation Protection) Added: 2026-01-11*
