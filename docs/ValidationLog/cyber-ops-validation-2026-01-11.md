@@ -1,9 +1,9 @@
-# Module Validation: cyber-ops
+# Module Validation: cybersec-team
 Date: 2026-01-11
 Validator: Claude Opus 4.5
 
 ## Pre-Validation: Deployment Check
-- [x] Module deployed to `_bmad/cyber-ops/`
+- [x] Module deployed to `_bmad/cybersec-team/`
 - [x] Module registered in `_bmad/_config/manifest.yaml`
 - [x] Module skills registered in manifests
 - [x] config.yaml present and valid
@@ -179,5 +179,5 @@ Validator: Claude Opus 4.5
 ---
 
 *Validated by Claude Opus 4.5*
-*Cyber-Ops Module v1.3.0*
+*Cybersec-Team Module v1.3.0*
 *2026-01-11*

@@ -1,9 +1,9 @@
-# Module Validation: exec-ops
+# Module Validation: strategy-team
 Date: 2026-01-11
 Validator: Claude Opus 4.5
 
 ## Pre-Validation: Deployment Check
-- [x] Module deployed to `_bmad/exec-ops/`
+- [x] Module deployed to `_bmad/strategy-team/`
 - [x] Module registered in `_bmad/_config/manifest.yaml`
 - [x] Module skills registered in manifests
 - [x] config.yaml present and valid
@@ -35,7 +35,7 @@ Validator: Claude Opus 4.5
 | debate-coach | Cicero | 🎭 | ✅ | ✅ | PASS |
 | stakeholder-mediator | Geneva | 🤝 | ✅ | ✅ | PASS |
 | ethics-advisor | Sophia | ⚖️ | ✅ | ✅ | PASS |
-| communications-director | Joseph | 📢 | ✅ | ✅ | PASS |
+| communications-director | Giuseppe | 📢 | ✅ | ✅ | PASS |
 
 ### Historical Archetype Advisors (8 agents)
 | Agent | Persona Name | Icon | Frontmatter | Persona | Status |
@@ -120,7 +120,7 @@ Validator: Claude Opus 4.5
 
 Modern Professional:
 - policy-analyst (Augustus), political-strategist (Magnus), debate-coach (Cicero)
-- stakeholder-mediator (Geneva), ethics-advisor (Sophia), communications-director (Joseph)
+- stakeholder-mediator (Geneva), ethics-advisor (Sophia), communications-director (Giuseppe)
 
 Historical Archetypes:
 - the-realist (Niccolo), the-liberator (Charles), the-revolutionary (Maximilien)
@@ -188,7 +188,7 @@ Historical Archetypes:
 ## Special Notes
 
 ### Agent Philosophy Design
-The exec-ops module features a unique dual-track agent design:
+The strategy-team module features a unique dual-track agent design:
 1. **Modern Professional Advisors**: Evidence-based contemporary expertise (policy, strategy, debate, mediation, ethics, communications)
 2. **Historical Archetype Advisors**: Wisdom drawn from historical figures and philosophies (Machiavelli, Lincoln, Burke, Sun Tzu, etc.)
 
@@ -197,5 +197,5 @@ This design enables multi-perspective strategic analysis drawing on both empiric
 ---
 
 *Validated by Claude Opus 4.5*
-*Exec-Ops Module v1.2.0*
+*Strategy-Team Module v1.2.0*
 *2026-01-11*

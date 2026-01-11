@@ -294,7 +294,7 @@ This module is currently at v1.1:
 | **v1.1** | **20 Workflows** | ✅ **Current** |
 | v1.2 | osint.industries API, WhatsMyName | Planned |
 | v1.3 | MCP architecture | Planned |
-| v1.4 | cyber-ops integration | Planned |
+| v1.4 | cybersec-team integration | Planned |
 
 ## Contributing
 

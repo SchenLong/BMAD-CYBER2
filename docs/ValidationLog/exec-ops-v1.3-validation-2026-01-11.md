@@ -1,4 +1,4 @@
-# Exec-Ops v1.3.0 Validation Report
+# Strategy-Team v1.3.0 Validation Report
 
 **Date:** 2026-01-11
 **Version:** v1.3.0
@@ -22,7 +22,7 @@
 
 ## Workflow 1: M&A Due Diligence
 
-**Path:** `_bmad/exec-ops/workflows/ma-due-diligence/`
+**Path:** `_bmad/strategy-team/workflows/ma-due-diligence/`
 
 ### File Structure
 | File | Status |
@@ -64,7 +64,7 @@
 
 ## Workflow 2: Leadership Transition Planning
 
-**Path:** `_bmad/exec-ops/workflows/leadership-transition-planning/`
+**Path:** `_bmad/strategy-team/workflows/leadership-transition-planning/`
 
 ### File Structure
 | File | Status |
@@ -98,14 +98,14 @@
 
 ### Party Mode Preset
 - ID: `leadership-transition`
-- Agents: Jean-Luc, Burke, Geneva, Joseph
+- Agents: Jean-Luc, Burke, Geneva, Giuseppe
 - Use Case: Succession planning
 
 ---
 
 ## Workflow 3: Board Relations Management
 
-**Path:** `_bmad/exec-ops/workflows/board-relations-management/`
+**Path:** `_bmad/strategy-team/workflows/board-relations-management/`
 
 ### File Structure
 | File | Status |
@@ -138,14 +138,14 @@
 
 ### Party Mode Preset
 - ID: `board-relations`
-- Agents: Magnus, Joseph, Geneva, Niccolo
+- Agents: Magnus, Giuseppe, Geneva, Niccolo
 - Use Case: Board engagement
 
 ---
 
 ## Workflow 4: Performance Review Preparation
 
-**Path:** `_bmad/exec-ops/workflows/performance-review-preparation/`
+**Path:** `_bmad/strategy-team/workflows/performance-review-preparation/`
 
 ### File Structure
 | File | Status |
@@ -226,4 +226,4 @@ All workflows follow BMAD Framework standards:
 
 ---
 
-*Validated as part of BMAD-CYBER framework exec-ops module v1.3.0 release.*
+*Validated as part of BMAD-CYBER framework strategy-team module v1.3.0 release.*

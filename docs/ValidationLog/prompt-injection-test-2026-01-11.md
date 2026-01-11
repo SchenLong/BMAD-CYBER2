@@ -2,7 +2,7 @@
 
 **Date:** 2026-01-11
 **Tester:** Cipher (Threat Analyst Agent)
-**Module Tested:** All BMAD Modules (cyber-ops, exec-ops, intel-team, legal-team)
+**Module Tested:** All BMAD Modules (cybersec-team, strategy-team, intel-team, legal-team)
 **Test File:** `_output/security-test-payloads.md`
 
 ---

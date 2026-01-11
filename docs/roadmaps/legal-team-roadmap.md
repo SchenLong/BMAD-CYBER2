@@ -131,7 +131,7 @@
 |---------|----------|-------------|
 | Legal Reference Data | Medium | Jurisdiction-specific legal databases |
 | Template Library Expansion | Medium | Additional document templates |
-| Cross-Module Integration | Low | cyber-ops compliance workflows |
+| Cross-Module Integration | Low | cybersec-team compliance workflows |
 
 ---
 
@@ -142,8 +142,8 @@
 - Legal Team coordination via Counsel
 
 ### Planned Integrations
-- **cyber-ops:** Compliance audit integration (v1.5)
-- **exec-ops:** Legal input for strategic decisions (v1.5)
+- **cybersec-team:** Compliance audit integration (v1.5)
+- **strategy-team:** Legal input for strategic decisions (v1.5)
 - **intel-team:** Due diligence support (v1.5)
 
 ---

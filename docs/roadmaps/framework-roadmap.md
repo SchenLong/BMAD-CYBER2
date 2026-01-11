@@ -11,9 +11,9 @@
 
 | Module | Version | Agents | Workflows | Completion |
 |--------|---------|--------|-----------|------------|
-| cyber-ops | v1.3.1 | 15 | 13 | 100% |
+| cybersec-team | v1.3.1 | 15 | 13 | 100% |
 | intel-team | v1.1.1 | 11 | 19 | 85% |
-| exec-ops | v1.2.1 | 14 | 12 | 90% |
+| strategy-team | v1.2.1 | 14 | 12 | 90% |
 | legal-team | v1.1.0 | 13 | 7 | 65% |
 | **Total** | - | **53** | **51** | **85%** |
 
@@ -24,9 +24,9 @@
 ```
 BMAD-CYBER Framework
 ├── Operational Modules (4)
-│   ├── cyber-ops      # Cybersecurity operations
+│   ├── cybersec-team      # Cybersecurity operations
 │   ├── intel-team     # Intelligence operations
-│   ├── exec-ops       # Executive leadership
+│   ├── strategy-team       # Executive leadership
 │   └── legal-team     # Legal support
 ├── Development Modules (3)
 │   ├── bmm            # Software development
@@ -56,9 +56,9 @@ BMAD-CYBER Framework
 - [x] Party Mode collaboration framework
 
 ### Deliverables
-- cyber-ops: 15 agents, 13 workflows
+- cybersec-team: 15 agents, 13 workflows
 - intel-team: 11 agents, 19 workflows
-- exec-ops: 14 agents, 12 workflows
+- strategy-team: 14 agents, 12 workflows
 - legal-team: 13 agents, 7 workflows
 
 ---
@@ -83,7 +83,7 @@ Complete all planned components across modules.
 - [ ] legal-research workflow
 - [ ] Task utilities (Jurisdiction Checker, Deadline Calculator)
 
-#### exec-ops Completion (Medium Priority)
+#### strategy-team Completion (Medium Priority)
 - [ ] M&A due diligence workflow
 - [ ] Leadership transition planning workflow
 - [ ] Board relations management workflow
@@ -111,9 +111,9 @@ Enable cross-module collaboration and data sharing.
 ### Tasks
 
 #### Cross-Module Workflows
-- [ ] cyber-ops ↔ intel-team threat intel sharing
-- [ ] cyber-ops ↔ legal-team compliance integration
-- [ ] exec-ops ↔ legal-team decision support
+- [ ] cybersec-team ↔ intel-team threat intel sharing
+- [ ] cybersec-team ↔ legal-team compliance integration
+- [ ] strategy-team ↔ legal-team decision support
 - [ ] intel-team ↔ legal-team due diligence
 
 #### Shared Infrastructure
@@ -153,8 +153,8 @@ Connect framework to external tools and services.
 - [ ] osint.industries (intel-team)
 - [ ] WhatsMyName (intel-team)
 - [ ] Shodan/Censys (intel-team)
-- [ ] SIEM platforms (cyber-ops)
-- [ ] Ticketing systems (cyber-ops)
+- [ ] SIEM platforms (cybersec-team)
+- [ ] Ticketing systems (cybersec-team)
 
 #### Data Feeds
 - [ ] Threat intelligence feeds
@@ -249,7 +249,7 @@ Maintain quality and continuous improvement.
 ### Medium-term (This Quarter)
 1. [ ] Complete all legal-team planned workflows
 2. [ ] Implement intel-team service integrations
-3. [ ] Add exec-ops v1.3 workflows
+3. [ ] Add strategy-team v1.3 workflows
 4. [ ] Establish cross-module threat intel sharing
 
 ### Long-term (This Year)
@@ -266,7 +266,7 @@ Maintain quality and continuous improvement.
 |------|--------|------------|------------|
 | Scope creep in legal workflows | Medium | High | Strict phase boundaries |
 | API integration complexity | High | Medium | MCP architecture standardization |
-| Cross-module state management | High | Medium | Design patterns from exec-ops |
+| Cross-module state management | High | Medium | Design patterns from strategy-team |
 | Security rule maintenance | High | Low | Automated validation checks |
 
 ---
@@ -311,9 +311,9 @@ Maintain quality and continuous improvement.
 
 ## Module Roadmap Links
 
-- [cyber-ops-roadmap.md](./cyber-ops-roadmap.md)
+- [cybersec-team-roadmap.md](./cybersec-team-roadmap.md)
 - [intel-team-roadmap.md](./intel-team-roadmap.md)
-- [exec-ops-roadmap.md](./exec-ops-roadmap.md)
+- [strategy-team-roadmap.md](./strategy-team-roadmap.md)
 - [legal-team-roadmap.md](./legal-team-roadmap.md)
 
 ---

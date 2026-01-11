@@ -131,7 +131,7 @@
 
 | Feature | Priority | Description |
 |---------|----------|-------------|
-| cyber-ops Integration | High | Threat intel sharing with security team |
+| cybersec-team Integration | High | Threat intel sharing with security team |
 | Shared IOC Format | Medium | Standardized indicator exchange |
 | Joint Workflows | Medium | Cross-module investigation workflows |
 
@@ -152,7 +152,7 @@
 - Intel Team Roundtable preset
 
 ### Planned Integrations
-- **cyber-ops:** Threat intelligence sharing (v1.4)
+- **cybersec-team:** Threat intelligence sharing (v1.4)
 - **legal-team:** Due diligence support (v1.5)
 - **External APIs:** osint.industries, WhatsMyName (v1.2)
 
