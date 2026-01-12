@@ -211,13 +211,10 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 | Provider | Type | Tool Use |
 |----------|------|----------|
 | Claude | Cloud | ✅ |
-| OpenAI | Cloud | ✅ |
-| Groq | Cloud | ✅ |
-| Together | Cloud | ✅ |
-| Ollama | Local | Partial |
-| LM Studio | Local | — |
+| Ollama | Local | ✅ |
+| LM Studio | Local | ✅ |
 | vLLM | Local | ✅ |
-| llama.cpp | Local | — |
+| llama.cpp | Local | to be tested |
 
 ---
 
