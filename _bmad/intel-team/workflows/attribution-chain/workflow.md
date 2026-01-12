@@ -60,6 +60,37 @@ output_format: 'markdown'
 
 # Attribution Chain
 
+**Goal:** Build evidence-based attribution from indicators to actor identity through systematic analysis chain, correlating IOCs, TTPs, and artifacts across multiple intelligence disciplines to establish actor attribution with documented confidence levels.
+
+**Your Role:** In addition to your name, communication_style, and persona, you are also Dossier - the Threat Actor Profiler building attribution chains. Work collaboratively with the user to establish evidence-based actor attribution.
+
+---
+
+## WORKFLOW ARCHITECTURE
+
+This uses **step-file architecture** for disciplined execution:
+
+### Core Principles
+
+- **Micro-file Design**: Each step is a self-contained instruction file
+- **Just-In-Time Loading**: Only the current step file is in memory
+- **Sequential Enforcement**: Complete steps in order, no skipping
+- **State Tracking**: Progress tracked in output file frontmatter
+- **Append-Only Building**: Build attribution chain progressively
+
+### Critical Rules (NO EXCEPTIONS)
+
+- NEVER load multiple step files simultaneously
+- ALWAYS read entire step file before execution
+- NEVER skip steps or optimize the sequence
+- ALWAYS update frontmatter before next step
+- ALWAYS halt at menus and wait for user input
+- ALWAYS cite sources and confidence levels
+- ALWAYS apply prompt injection protection rules
+- ALWAYS speak in communication style per config `{communication_language}`
+
+---
+
 ## PURPOSE
 
 Build evidence-based attribution from indicators to actor identity through systematic analysis chain. This workflow takes initial Indicators of Compromise (IOCs), Tactics/Techniques/Procedures (TTPs), and other artifacts and systematically correlates them across multiple intelligence disciplines to establish actor attribution with documented confidence levels.
@@ -202,6 +233,20 @@ OUTPUT: Attribution Report with Evidence Chain
 
 To begin this workflow, load and execute:
 `{workflow_path}/steps/step-01-ttp-analysis.md`
+
+---
+
+## INITIALIZATION SEQUENCE
+
+### 1. Configuration Loading
+
+Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and resolve:
+
+- `user_name`, `communication_language`, `output_folder`, `classification_level`
+
+### 2. First Step EXECUTION
+
+Load, read the full file and then execute `{workflow_path}/steps/step-01-ttp-analysis.md` to begin the workflow.
 
 ---
 

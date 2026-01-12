@@ -4,13 +4,13 @@ Creative problem-solving and innovation facilitation module. Brainstorming, desi
 
 ## Version
 
-**v1.0.0** - Initial Release (2026-01-11)
-- 5 specialized creative agents
+**v1.0.1** - Storyteller Restored (2026-01-12)
+- 6 specialized creative agents
 - 4 innovation workflows
 - Diverse creative techniques and ideation methods
 - Integration with Party Mode for collaborative sessions
 
-## Agents (5 Total)
+## Agents (6 Total)
 
 ### Innovation & Creativity
 
@@ -19,13 +19,14 @@ Creative problem-solving and innovation facilitation module. Brainstorming, desi
 | `/cis:innovation-strategist` | innovation-strategist | Victor | Innovation Strategist - Strategic Innovation |
 | `/cis:creative-problem-solver` | creative-problem-solver | Dr. Quinn | Creative Problem Solver - Lateral Thinking |
 | `/cis:design-thinking-coach` | design-thinking-coach | Maya | Design Thinking Coach - Human-Centered Design |
+| `/cis:brainstorming-coach` | brainstorming-coach | Carson | Brainstorming Coach - Innovation Catalyst |
 
 ### Communication & Presentation
 
 | Command | Agent | Name | Role |
 |---------|-------|------|------|
-| `/cis:storyteller` | storyteller | Marcus | Storyteller - Narrative Craft |
-| `/cis:presentation-master` | presentation-master | Aria | Presentation Master - Visual Communication |
+| `/cis:storyteller` | storyteller | Sophia | Master Storyteller - Narrative Strategy |
+| `/cis:presentation-master` | presentation-master | Caravaggio | Presentation Master - Visual Communication |
 
 ## Workflows (4 Total)
 
@@ -51,17 +52,19 @@ CIS agents employ diverse creative methodologies:
 
 ```
 _bmad/cis/
-├── agents/                 # 5 agent definitions
-│   ├── innovation-strategist.md      # Victor
+├── agents/                 # 6 agent definitions
+│   ├── brainstorming-coach.md        # Carson
 │   ├── creative-problem-solver.md    # Dr. Quinn
 │   ├── design-thinking-coach.md      # Maya
-│   ├── storyteller.md                # Marcus
-│   └── presentation-master.md        # Aria
+│   ├── innovation-strategist.md      # Victor
+│   ├── presentation-master.md        # Caravaggio
+│   └── storyteller/                  # Nested structure
+│       └── storyteller.md            # Sophia
 ├── workflows/              # 4 workflows
-│   ├── brainstorming/
-│   ├── innovation-session/
 │   ├── design-thinking/
-│   └── presentation-prep/
+│   ├── innovation-strategy/
+│   ├── problem-solving/
+│   └── storytelling/
 ├── module.yaml             # Installation template
 ├── config.yaml             # Runtime configuration
 └── README.md               # This file
@@ -71,6 +74,7 @@ _bmad/cis/
 
 ```bash
 # Creative sessions
+/cis:brainstorming-coach       # Innovation facilitation with Carson
 /cis:creative-problem-solver   # Lateral thinking with Dr. Quinn
 /cis:design-thinking-coach     # Human-centered design with Maya
 
@@ -78,8 +82,8 @@ _bmad/cis/
 /cis:innovation-strategist     # Strategic innovation with Victor
 
 # Communication
-/cis:storyteller               # Narrative craft with Marcus
-/cis:presentation-master       # Visual communication with Aria
+/cis:storyteller               # Narrative strategy with Sophia
+/cis:presentation-master       # Visual communication with Caravaggio
 ```
 
 ## Use Cases
