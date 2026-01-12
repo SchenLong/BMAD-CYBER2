@@ -829,36 +829,6 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 | 🔴 **High** | Do not process sensitive data | Safe if properly isolated; apply compliance controls |
 | 🔴 **Critical** | Absolutely prohibited | Prohibited - not appropriate for any LLM processing |
 
-### ✅ Green Light For:
-
-| Use Case | Notes |
-|----------|-------|
-| Development/testing with synthetic data | Safe for all modules |
-| Security training and methodology development | No real data needed |
-| Baseline security assessments (non-sensitive) | Use anonymized info |
-| Best practices research and documentation | No restrictions |
-
-### ⚠️ Conditional Approval For:
-
-| Use Case | Required Safeguards |
-|----------|---------------------|
-| Active cybersecurity operations | Data minimization required; prefer local LLM |
-| Incident response | Anonymization required; prefer local LLM |
-| Vulnerability management | Masking required; prefer local LLM |
-| Strategy development | Legal review recommended; prefer local LLM |
-
-### ❌ Hard Stop For:
-
-| Use Case | Reason |
-|----------|--------|
-| Real breach response with victim data | PII/sensitive data exposure risk |
-| Competitive intelligence with actual market data | Business confidentiality risk |
-| Legal work with attorney-client privilege | Privilege waiver risk |
-| Intelligence operations with PII | Privacy violation risk |
-| Any classified/export-controlled information | Legal/regulatory violation |
-| Patient health information without BAA | HIPAA violation risk |
-| Real customer data without anonymization | Privacy/compliance risk |
-
 ---
 
 ## ⚡ Advanced Features
