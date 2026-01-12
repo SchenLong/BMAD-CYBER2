@@ -126,9 +126,9 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 | Stakeholder Mediation | — | ✅ Geneva |
 | Ethics Advisory | — | ✅ Sophia |
 | Communications | — | ✅ Giuseppe |
-| Realpolitik Counsel | — | ✅ Niccolo (Machiavelli) |
+| Realpolitik Counsel | — | ✅ Niccolo |
 | Principled Leadership | — | ✅ Charles (Lincoln) |
-| Revolutionary Strategy | — | ✅ Maximilien (Robespierre) |
+| Revolutionary Strategy | — | ✅ Maximilien |
 | Conservative Counsel | — | ✅ Burke |
 | Systems Thinking | — | ✅ Lee Kuan Yew |
 | Warrior Strategy | — | ✅ Musashi |
