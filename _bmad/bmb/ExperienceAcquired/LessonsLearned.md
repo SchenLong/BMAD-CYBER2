@@ -283,6 +283,58 @@ Run `/bmad:bmb:workflows:workflow-compliance-check` for EVERY workflow in the mo
 
 ---
 
+#### **Phase 3b: Comprehensive Compliance Check**
+
+Run `/bmad:bmb:workflows:workflow-compliance-check` at the MODULE level to validate ALL workflows against BMAD standards in a single pass.
+
+**When to Use:**
+- Pre-publication validation of entire modules
+- Periodic module health checks
+- After major refactoring or template updates
+- When validating framework-wide compliance
+
+**Validation Scope:**
+| Check | Description |
+|-------|-------------|
+| **Workflow.md Structure** | Frontmatter, Goal, Your Role, Architecture, Critical Rules, Init Sequence |
+| **Step File Structure** | Frontmatter, Step Goal, Mandatory Rules, Protocols, Boundaries, Metrics |
+| **Cross-Workflow Consistency** | Naming conventions, path variables, template references |
+| **Module-Level Patterns** | Config integration, agent references, shared templates |
+
+**Execution:**
+```bash
+# Run compliance check on specific module
+/bmad:bmb:workflows:workflow-compliance-check
+# Provide path: _bmad/{module-name}/workflows/
+
+# Or run comprehensive check on ALL modules (generates consolidated report)
+# This validates: core, bmb, bmm, bmgd, cybersec-team, strategy-team, legal-team, intel-team, cis
+```
+
+**Output Location:**
+```
+{project-root}/_bmad-output/bmad-framework-compliance-report-{YYYY-MM-DD}.md
+```
+
+**Report Contents:**
+- Executive summary with module scores
+- Critical/Major/Minor issue breakdown by module
+- Detailed findings for each workflow
+- Remediation priority matrix
+- Best practice references
+
+**Compliance Score Thresholds:**
+| Score | Status | Action Required |
+|-------|--------|-----------------|
+| 90%+ | Excellent | Production ready |
+| 75-89% | Good | Minor fixes before publication |
+| 60-74% | Below Standard | Major remediation needed |
+| <60% | Critical | Block publication until fixed |
+
+**Pass criteria:** Module achieves 75%+ compliance score with no Critical violations. All Major violations have documented remediation plans.
+
+---
+
 #### **Phase 4: Quick Workflow Simulations**
 
 Run a quick simulation for EVERY workflow to verify runtime behavior:
@@ -532,6 +584,61 @@ ls _bmad/{module-name}/workflows/*/workflow.md 2>/dev/null | wc -l
 
 ---
 
+#### **Phase 7b: Command Stub Verification**
+
+Verify Claude Code command stubs exist for all module components:
+
+| Check | Description | File Location |
+|-------|-------------|---------------|
+| **Command Directory** | Module has command stub directory | `.claude/commands/bmad/{module}/` |
+| **Agent Stubs** | All agents have corresponding stubs | `.claude/commands/bmad/{module}/agents/*.md` |
+| **Workflow Stubs** | All workflows have corresponding stubs | `.claude/commands/bmad/{module}/workflows/*.md` |
+| **Stub Content** | Stubs properly reference source files | Check `@_bmad/{module}/...` paths |
+
+**Command Stub Verification Checklist:**
+
+**Directory Structure:**
+- [ ] `.claude/commands/bmad/{module}/` directory exists
+- [ ] `agents/` subdirectory exists (if module has agents)
+- [ ] `workflows/` subdirectory exists (if module has workflows)
+
+**Agent Stub Count:**
+```bash
+# These counts must match
+ls _bmad/{module}/agents/*.md 2>/dev/null | wc -l
+ls .claude/commands/bmad/{module}/agents/*.md 2>/dev/null | wc -l
+```
+- [ ] Agent count in `_bmad/` matches count in `.claude/commands/`
+
+**Workflow Stub Count:**
+```bash
+# These counts must match
+ls _bmad/{module}/workflows/*/workflow.md 2>/dev/null | wc -l
+ls .claude/commands/bmad/{module}/workflows/*.md 2>/dev/null | wc -l
+```
+- [ ] Workflow count in `_bmad/` matches count in `.claude/commands/`
+
+**Stub Content Validation:**
+- [ ] Each stub has valid YAML frontmatter with `description`
+- [ ] Each stub references correct `@_bmad/` path
+- [ ] At least one agent stub test: invoke `/bmad:{module}:agents:{agent}`
+- [ ] At least one workflow stub test: invoke `/bmad:{module}:workflows:{workflow}`
+
+**Quick All-Module Verification:**
+```bash
+for module in $(ls -d _bmad/*/ | grep -v "_config\|_memory\|_output" | xargs -I{} basename {}); do
+  bmad_agents=$(ls _bmad/$module/agents/*.md 2>/dev/null | wc -l)
+  cmd_agents=$(ls .claude/commands/bmad/$module/agents/*.md 2>/dev/null | wc -l)
+  bmad_wf=$(ls _bmad/$module/workflows/*/workflow.md 2>/dev/null | wc -l)
+  cmd_wf=$(ls .claude/commands/bmad/$module/workflows/*.md 2>/dev/null | wc -l)
+  echo "$module: agents($bmad_agents/$cmd_agents) workflows($bmad_wf/$cmd_wf)"
+done
+```
+
+**Pass criteria:** All agents and workflows have corresponding command stubs, stub counts match source counts, at least one stub per type tested successfully.
+
+---
+
 #### **Validation Tracking Template**
 
 Use this template to track validation progress:
@@ -570,6 +677,17 @@ Validator: [name]
 | workflow-1 | 0 | 0 | 2 | PASS |
 | workflow-2 | 0 | 1 | 0 | NEEDS FIX |
 
+## Phase 3b: Comprehensive Compliance Check
+| Metric | Value | Status |
+|--------|-------|--------|
+| Module Compliance Score | __% | PASS/FAIL |
+| Critical Violations | N | |
+| Major Violations | N | |
+| Minor Violations | N | |
+| Report Location | `_bmad-output/bmad-framework-compliance-report-YYYY-MM-DD.md` | |
+
+**Compliance Threshold:** 75%+ with zero Critical violations
+
 ## Phase 4: Workflow Simulations (N workflows)
 | Workflow | Init | Config | Steps | Templates | Status |
 |----------|------|--------|-------|-----------|--------|
@@ -605,6 +723,15 @@ Validator: [name]
 | Workflow count (manifest vs folder) | 13 | 13 | PASS |
 | Skill invocations work | ✅ | ✅ | PASS |
 
+## Phase 7b: Command Stub Verification
+| Check | Expected | Actual | Status |
+|-------|----------|--------|--------|
+| Command directory exists | ✅ | | |
+| Agent stub count (_bmad vs .claude/commands) | N/N | | |
+| Workflow stub count (_bmad vs .claude/commands) | N/N | | |
+| Agent stub test | ✅ | | |
+| Workflow stub test | ✅ | | |
+
 ## Summary
 - Total Issues Found: X
 - Critical: X (must fix)
@@ -621,12 +748,14 @@ A module is **production-ready** when:
 1. ✅ Phase 1: All automated checks pass
 2. ✅ Phase 2: All agents pass validation
 3. ✅ Phase 3: Zero Critical/Major workflow violations
-4. ✅ Phase 4: All workflows successfully simulate
-5. ✅ Phase 5: Zero security issues, zero PII, zero artifacts
-6. ✅ Phase 6: All required documentation complete and accurate
-7. ✅ Phase 7: All agents/workflows properly registered in framework manifests
-8. ✅ All issues documented and tracked for resolution
-9. ✅ Validation log saved to `docs/ValidationLog/`
+4. ✅ Phase 3b: Comprehensive compliance check passes (75%+ score, no Critical violations)
+5. ✅ Phase 4: All workflows successfully simulate
+6. ✅ Phase 5: Zero security issues, zero PII, zero artifacts
+7. ✅ Phase 6: All required documentation complete and accurate
+8. ✅ Phase 7: All agents/workflows properly registered in framework manifests
+9. ✅ Phase 7b: All command stubs generated and verified in `.claude/commands/bmad/`
+10. ✅ All issues documented and tracked for resolution
+11. ✅ Validation log saved to `docs/ValidationLog/`
 
 **DO NOT** mark a module as `status: production` in config.yaml until all phases pass.
 
@@ -1364,6 +1493,460 @@ grep -r "v1.2" README.md docs/ # Should not find old versions after update to v1
 
 ---
 
+### Lesson 15: Mandatory Command Stub Generation Verification
+
+**Error:** Deploying modules to `_bmad/` without verifying that corresponding Claude Code command stubs were generated in `.claude/commands/bmad/`.
+
+**Impact:**
+- Modules exist and are functional but are not invocable via slash commands
+- Users cannot access agents/workflows through the standard `/bmad:module:...` interface
+- Some modules work (cybersec-team, strategy-team) while others don't (intel-team, legal-team)
+- Inconsistent user experience across modules
+- Features appear missing when they're actually just not registered
+
+**Evidence:**
+- `intel-team` and `legal-team` modules fully deployed to `_bmad/` with agents and workflows
+- `.claude/commands/bmad/` only contained: core, bmm, bmb, bmgd, cis, cybersec-team, strategy-team
+- Missing: `intel-team/` and `legal-team/` command stub directories
+
+**Resolution:** Generated missing command stub directories and files for intel-team and legal-team modules.
+
+**Prevention:** Add command stub verification to the validation process.
+
+---
+
+#### **Command Stub Architecture**
+
+Claude Code uses `.claude/commands/` as the registration layer for skills. Each BMAD module needs:
+
+```
+.claude/commands/bmad/{module-name}/
+├── agents/
+│   └── {agent-name}.md      # Stub pointing to _bmad/{module}/agents/{agent}.md
+└── workflows/
+    └── {workflow-name}.md   # Stub pointing to _bmad/{module}/workflows/{workflow}/workflow.md
+```
+
+**Stub File Format:**
+```markdown
+---
+description: '{Brief description from agent/workflow}'
+---
+
+IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL @_bmad/{module}/{type}/{name}, READ its entire contents and follow its directions exactly!
+```
+
+---
+
+#### **Quick Verification Commands**
+
+```bash
+# List all modules in _bmad/
+ls -d _bmad/*/ | grep -v "_config\|_memory\|_output" | xargs -I{} basename {}
+
+# List all registered command modules
+ls -d .claude/commands/bmad/*/ 2>/dev/null | xargs -I{} basename {}
+
+# Find modules missing command stubs
+comm -23 <(ls -d _bmad/*/ 2>/dev/null | grep -v "_config\|_memory\|_output" | xargs -I{} basename {} | sort) <(ls -d .claude/commands/bmad/*/ 2>/dev/null | xargs -I{} basename {} | sort)
+
+# Verify agent count matches
+for module in $(ls -d _bmad/*/ | grep -v "_config\|_memory\|_output" | xargs -I{} basename {}); do
+  bmad_count=$(ls _bmad/$module/agents/*.md 2>/dev/null | wc -l)
+  cmd_count=$(ls .claude/commands/bmad/$module/agents/*.md 2>/dev/null | wc -l)
+  echo "$module: _bmad=$bmad_count, commands=$cmd_count"
+done
+```
+
+---
+
+#### **Integration with 7-Phase Validation**
+
+Add to **Phase 7: Framework Registration Verification** as new section 7b:
+
+```markdown
+### 7b. Command Stub Verification (NEW)
+
+| Check | Expected | Actual | Status |
+|-------|----------|--------|--------|
+| Command directory exists | ✅ | | |
+| Agent stub count matches | N | | |
+| Workflow stub count matches | N | | |
+| Stubs load correctly | ✅ | | |
+
+**Verification Steps:**
+1. [ ] `.claude/commands/bmad/{module}/` directory exists
+2. [ ] All agents have corresponding stubs in `agents/` subdirectory
+3. [ ] All workflows have corresponding stubs in `workflows/` subdirectory
+4. [ ] At least one agent stub tested: `/bmad:{module}:agents:{agent-name}`
+5. [ ] At least one workflow stub tested: `/bmad:{module}:workflows:{workflow-name}`
+```
+
+---
+
+#### **Command Stub Generation Protocol**
+
+When deploying a new module:
+
+1. **Create directory structure:**
+   ```bash
+   mkdir -p .claude/commands/bmad/{module}/agents
+   mkdir -p .claude/commands/bmad/{module}/workflows
+   ```
+
+2. **Generate agent stubs:**
+   For each `_bmad/{module}/agents/{agent}.md`, create `.claude/commands/bmad/{module}/agents/{agent}.md`
+
+3. **Generate workflow stubs:**
+   For each `_bmad/{module}/workflows/{workflow}/workflow.md`, create `.claude/commands/bmad/{module}/workflows/{workflow}.md`
+
+4. **Verify registration:**
+   Test skill invocation to confirm stubs work
+
+---
+
+**DO NOT:** Mark a module as production-ready without verifying command stubs exist and function correctly.
+
+---
+
+### Lesson 16: Dual Workflow Format Awareness
+
+**Error:** Validation scripts only counting `workflow.md` files when the BMAD framework uses TWO distinct workflow formats, leading to false mismatch reports.
+
+**Impact:**
+- False alarm reports showing massive workflow count mismatches
+- Confusion about module integrity
+- Wasted investigation time
+- Risk of "fixing" things that aren't broken
+
+**Evidence:**
+- BMM module: 10 `workflow.md` + 22 `workflow.yaml` = 32 total (matches 32 stubs)
+- Initial validation incorrectly reported "1/32 mismatch"
+
+**Resolution:** Updated validation commands to count BOTH workflow formats.
+
+**The Two Workflow Formats:**
+
+| Format | Extension | Executor | Used By |
+|--------|-----------|----------|---------|
+| **Step-based Markdown** | `workflow.md` | Self-contained steps in `steps/` directory | Newer modules (legal-team, intel-team, cybersec-team, strategy-team) |
+| **YAML Config** | `workflow.yaml` | `_bmad/core/tasks/workflow.xml` executor | Original framework (BMM, BMGD, CIS) |
+
+**Corrected Validation Commands:**
+
+```bash
+# Count ALL workflows (both formats)
+md_count=$(find _bmad/{module}/workflows -name "workflow.md" 2>/dev/null | wc -l)
+yaml_count=$(find _bmad/{module}/workflows -name "workflow.yaml" 2>/dev/null | wc -l)
+total=$((md_count + yaml_count))
+stub_count=$(ls .claude/commands/bmad/{module}/workflows/*.md 2>/dev/null | wc -l)
+
+echo "workflow.md: $md_count"
+echo "workflow.yaml: $yaml_count"
+echo "Total workflows: $total"
+echo "Command stubs: $stub_count"
+```
+
+**When Creating Stubs:**
+- For `workflow.md` workflows: Reference the `workflow.md` path directly
+- For `workflow.yaml` workflows: Reference the `workflow.yaml` path via `workflow.xml` executor
+
+**Prevention:**
+1. Always check for BOTH `.md` and `.yaml` workflow files
+2. Understand the module's workflow architecture before validating
+3. Original framework modules (BMM, BMGD, CIS, BMB) may use mixed formats
+4. Cyberops modules (cybersec-team, intel-team, legal-team, strategy-team) typically use `.md` only
+
+---
+
+### Lesson 17: Orphan Stub Cleanup (CORRECTED)
+
+**Error:** Command stubs existing for agents/workflows that no longer exist in the source module.
+
+**Impact:**
+- Users invoke skills that fail to load
+- Confusion when skill appears available but doesn't work
+- Cluttered skill list with non-functional entries
+- False sense of module completeness
+
+**Original Evidence (INCORRECT):**
+- CIS module had stub for `storyteller.md` but no corresponding agent file
+
+**Root Cause Analysis (2026-01-12 Correction):**
+The original validation was a FALSE POSITIVE. The storyteller agent source file DOES exist, but uses a **nested directory structure**:
+- Validation checked: `_bmad/cis/agents/storyteller.md` (does not exist)
+- Actual location: `_bmad/cis/agents/storyteller/storyteller.md` (EXISTS - 4,637 bytes)
+
+The manifest correctly referenced the nested path: `_bmad/cis/agents/storyteller/storyteller.md`
+
+**Resolution:**
+1. ~~Removed orphan stub~~ REVERTED - Storyteller agent restored to manifest and command stub recreated
+2. Updated validation script to handle BOTH flat and nested directory structures
+
+**Prevention:** Validation must check BOTH directions AND handle nested structures:
+
+```bash
+# Check for missing stubs (source exists, stub missing)
+# Handle BOTH flat files AND nested directories
+for agent in _bmad/{module}/agents/*.md _bmad/{module}/agents/*/*.md; do
+  [ -f "$agent" ] || continue
+  name=$(basename "$agent" .md)
+  if [ ! -f ".claude/commands/bmad/{module}/agents/$name.md" ]; then
+    echo "MISSING STUB: $name"
+  fi
+done
+
+# Check for orphan stubs (stub exists, source missing)
+# Must check BOTH flat and nested locations
+for stub in .claude/commands/bmad/{module}/agents/*.md; do
+  [ -f "$stub" ] || continue
+  name=$(basename "$stub" .md)
+  # Check flat structure first, then nested
+  if [ ! -f "_bmad/{module}/agents/$name.md" ] && \
+     [ ! -f "_bmad/{module}/agents/$name/$name.md" ]; then
+    echo "ORPHAN STUB: $name"
+  fi
+done
+```
+
+**Add to Phase 7b Validation:**
+- [ ] No orphan stubs (stubs without source files)
+- [ ] No missing stubs (source files without stubs)
+- [ ] Validation handles both flat (`agent.md`) and nested (`agent/agent.md`) structures
+
+---
+
+### Lesson 18: Dual Workflow Architecture Recognition in Compliance Checks
+
+**Error:** Running compliance checks against all modules using a single template standard (step-file architecture) when the BMAD framework actually uses TWO distinct, equally valid workflow architectures.
+
+**Impact:**
+- False compliance failures reported for CIS, BMM, BMGD, and Core modules
+- Overall framework compliance score artificially low (56% vs actual ~85%)
+- Risk of "fixing" architecturally correct workflows that use the YAML+XML engine
+- Wasted remediation effort on non-issues
+- Confusion about what constitutes a compliant workflow
+
+**Root Cause:**
+The compliance check templates (`_bmad/bmb/docs/workflows/templates/`) define standards for the **Step-File Architecture** only. However, the framework supports TWO valid architectures:
+
+**Architecture 1: Step-File (workflow.md + steps/*.md)**
+- Used by: cybersec-team, legal-team, strategy-team, intel-team (newer modules)
+- Template compliant: Yes
+- Structure: `workflow.md` with Goal, Your Role, WORKFLOW ARCHITECTURE, Critical Rules, INITIALIZATION SEQUENCE
+- Steps in: `steps/step-01-init.md`, `step-02-xxx.md`, etc.
+
+**Architecture 2: YAML+XML Engine (workflow.yaml + instructions.md + workflow.xml)**
+- Used by: CIS, BMM, BMGD, Core (original framework modules)
+- Template compliant: NO - uses different architecture intentionally
+- Structure: `workflow.yaml` (config) + `instructions.md` (logic)
+- Executed by: `_bmad/core/tasks/workflow.xml` engine
+- Features: `<step n="X">` tags, `<template-output>` tags, energy checkpoints
+
+**Evidence:**
+```
+# CIS workflows use YAML+XML architecture
+_bmad/cis/workflows/design-thinking/
+├── workflow.yaml          # Configuration
+└── instructions.md        # Step logic in <step n="X"> XML format
+
+# Strategy-team workflows use Step-File architecture
+_bmad/strategy-team/workflows/crisis-response-planning/
+├── workflow.md            # Main workflow file
+└── steps/
+    ├── step-01-init.md
+    ├── step-02-context.md
+    └── ...
+```
+
+**Resolution:**
+1. Added this lesson to document the dual architecture
+2. Updated Phase 3b compliance check guidance to recognize both architectures
+3. Re-classified "compliance failures" in vanilla modules as false positives
+
+**Prevention:** Before running compliance checks:
+
+#### **Architecture Detection Protocol**
+
+1. **Identify the workflow format:**
+   ```bash
+   # Check if workflow uses YAML+XML engine
+   if [ -f "{workflow_path}/workflow.yaml" ]; then
+     echo "YAML+XML Architecture (validated against workflow.xml)"
+   elif [ -f "{workflow_path}/workflow.md" ]; then
+     echo "Step-File Architecture (validated against templates)"
+   fi
+   ```
+
+2. **Apply correct validation standard:**
+
+   | Architecture | Validation Source | Valid Elements |
+   |--------------|-------------------|----------------|
+   | Step-File | `bmb/docs/workflows/templates/*.md` | workflow.md frontmatter, Critical Rules, step-*.md files |
+   | YAML+XML | `core/tasks/workflow.xml` | workflow.yaml config, instructions.md with `<step>` tags |
+
+3. **Module architecture mapping:**
+
+   | Module | Primary Architecture | Notes |
+   |--------|---------------------|-------|
+   | CIS | YAML+XML | All workflows use engine |
+   | BMM | YAML+XML | Mixed (some have workflow.md wrappers) |
+   | BMGD | YAML+XML | Game development workflows |
+   | Core | Mixed | party-mode is simplified, others use engine |
+   | BMB | Step-File | Meta-workflows for building |
+   | cybersec-team | Step-File | Fully step-file compliant |
+   | strategy-team | Step-File | Fully step-file compliant |
+   | legal-team | Step-File | Fully step-file compliant |
+   | intel-team | Step-File | Fully step-file compliant |
+
+#### **Updated Compliance Check Guidance**
+
+When running `/bmad:bmb:workflows:workflow-compliance-check`:
+
+1. **For Step-File modules** (cybersec-team, legal-team, strategy-team, intel-team, BMB):
+   - Full template compliance expected
+   - Use standard compliance thresholds (90%+ Excellent, etc.)
+
+2. **For YAML+XML modules** (CIS, BMM, BMGD, Core):
+   - Validate against `workflow.xml` execution rules instead
+   - Check: workflow.yaml has required fields, instructions.md uses valid tags
+   - Do NOT apply step-file template standards
+
+3. **For mixed modules:**
+   - Identify each workflow's architecture individually
+   - Apply appropriate validation standard per workflow
+
+---
+
+**DO NOT:** Apply step-file template compliance to YAML+XML engine workflows. They are architecturally different and valid.
+
+---
+
+### Lesson 19: Mandatory False Positive Verification Before Remediation
+
+**Error:** Proposing fixes or mitigations for compliance issues without first verifying whether the finding is a genuine issue or a false positive caused by incorrect assumptions, different architectures, or intentional design decisions.
+
+**Impact:**
+- Wasted effort "fixing" things that aren't broken
+- Risk of breaking intentionally different architectures
+- False compliance reports leading to incorrect prioritization
+- User confusion when "issues" are actually features
+- Damage to components that were functioning correctly
+- Erosion of trust in validation processes
+
+**Evidence (from this session):**
+- Initial compliance check reported 56% overall score
+- CIS, BMM, BMGD, Core flagged as non-compliant
+- Investigation revealed these use YAML+XML architecture (valid alternative)
+- Actual Step-File module compliance was much higher
+- Lesson 17 (Orphan Stub) initially flagged storyteller as orphan - was false positive due to nested directory structure
+
+**Resolution:** Established mandatory false positive verification protocol.
+
+**Prevention:** Before proposing ANY fix or mitigation, you MUST:
+
+#### **False Positive Verification Protocol**
+
+For EVERY compliance finding, complete this checklist BEFORE proposing a fix:
+
+```markdown
+## False Positive Check: [Finding Description]
+
+### 1. Architecture Verification
+- [ ] Identified the component's intended architecture
+- [ ] Verified which template/standard should apply
+- [ ] Confirmed the finding uses the CORRECT validation standard
+
+### 2. Intentional Design Check
+- [ ] Checked if the "issue" is an intentional design decision
+- [ ] Reviewed similar components for consistent patterns
+- [ ] Consulted existing documentation or comments
+
+### 3. Evidence Collection
+- [ ] Documented concrete evidence the issue is REAL
+- [ ] Listed specific files/lines showing the gap
+- [ ] Compared against compliant examples in same module
+
+### 4. Root Cause Analysis
+- [ ] Determined WHY the gap exists
+- [ ] Ruled out: different architecture, intentional variation, validation error
+
+### 5. False Positive Ruling
+- [ ] **VERDICT:** TRUE POSITIVE / FALSE POSITIVE
+- [ ] **REASON:** [Specific justification]
+- [ ] **EVIDENCE:** [File paths, line numbers, comparisons]
+```
+
+#### **Mandatory Disclosure Format**
+
+When presenting ANY finding to the user, include:
+
+```markdown
+**Finding:** [Description of the issue]
+
+**False Positive Check:**
+- Architecture: [Which architecture this component uses]
+- Validation Standard: [Which template/rules were applied]
+- Comparison: [Similar compliant component for reference]
+- Evidence: [Specific file:line showing the gap]
+
+**Verdict:** TRUE POSITIVE - This is a real issue because [specific reason]
+
+**Proposed Fix:** [The remediation]
+```
+
+#### **Example - True Positive**
+
+```markdown
+**Finding:** legal-team/corporate-formation/workflow.md missing INITIALIZATION SEQUENCE
+
+**False Positive Check:**
+- Architecture: Step-File (has workflow.md, no workflow.yaml)
+- Validation Standard: bmb/docs/workflows/templates/workflow-template.md
+- Comparison: legal-team/contract-review/workflow.md HAS this section
+- Evidence: corporate-formation/workflow.md ends at line 93, no INITIALIZATION SEQUENCE
+
+**Verdict:** TRUE POSITIVE - This is a real issue because:
+1. Same module (legal-team) has compliant workflows (contract-review)
+2. Step-File architecture REQUIRES INITIALIZATION SEQUENCE
+3. Missing section means workflow cannot load config or first step correctly
+
+**Proposed Fix:** Add INITIALIZATION SEQUENCE section with config loading and first step reference
+```
+
+#### **Example - False Positive**
+
+```markdown
+**Finding:** CIS/design-thinking/workflow.md missing Critical Rules section
+
+**False Positive Check:**
+- Architecture: YAML+XML Engine (has workflow.yaml + instructions.md)
+- Validation Standard: Should use core/tasks/workflow.xml rules, NOT Step-File template
+- Comparison: N/A - different architecture
+- Evidence: workflow.yaml exists, instructions.md has <step> tags
+
+**Verdict:** FALSE POSITIVE - This is NOT an issue because:
+1. CIS uses YAML+XML architecture, not Step-File
+2. Critical Rules are defined in workflow.xml engine, not in workflow.md
+3. The compliance check incorrectly applied Step-File standards
+
+**Action:** No fix needed. Document in Lesson 18 (Dual Architecture).
+```
+
+#### **Integration with Remediation Plans**
+
+EVERY remediation plan MUST include:
+1. Summary of findings with FALSE POSITIVE status for each
+2. Only TRUE POSITIVE findings proceed to fix phase
+3. FALSE POSITIVE findings documented but not remediated
+4. User informed of both categories before execution
+
+---
+
+**DO NOT:** Propose fixes without completing false positive verification. Every finding needs explicit justification that it is a real issue.
+
+---
+
 ## Template for Future Lessons
 
 ### Lesson N: [Short Title]
@@ -1378,7 +1961,13 @@ grep -r "v1.2" README.md docs/ # Should not find old versions after update to v1
 
 ---
 
-*Last Updated: 2026-01-11*
+*Last Updated: 2026-01-12*
+*Lesson 19 (Mandatory False Positive Verification) Added: 2026-01-12*
+*Lesson 18 (Dual Workflow Architecture Recognition) Added: 2026-01-12*
+*Phase 3b (Comprehensive Compliance Check) Added: 2026-01-12*
+*Lesson 17 (Orphan Stub Cleanup) Added: 2026-01-12*
+*Lesson 16 (Dual Workflow Format Awareness) Added: 2026-01-12*
+*Lesson 15 (Mandatory Command Stub Generation Verification) Added: 2026-01-12*
 *Lesson 14 (Complete Documentation Update on Module Changes) Added: 2026-01-11*
 *Lesson 13 (Mandatory Roadmap Synchronization) Added: 2026-01-11*
 *Lesson 12 (Complete All Roadmap Phases) Added: 2026-01-11*

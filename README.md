@@ -5,8 +5,8 @@
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
-[![Agents](https://img.shields.io/badge/agents-78+-blue.svg)]()
-[![Workflows](https://img.shields.io/badge/workflows-88+-purple.svg)]()
+[![Agents](https://img.shields.io/badge/agents-79-blue.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-141-purple.svg)]()
 [![Party Presets](https://img.shields.io/badge/presets-27-teal.svg)]()
 [![Claude](https://img.shields.io/badge/Claude-Opus%204.5-orange.svg)](https://www.anthropic.com/claude)
 
@@ -27,24 +27,24 @@
 | 🔐 **[cybersec-team](#-cybersec-team)** | v1.3.1 | 15 | 13 | Cybersecurity operations |
 | 🕵️ **[intel-team](#️-intel-team)** | v1.1.1 | 11 | 19 | Intelligence operations |
 | 👔 **[strategy-team](#-strategy-team)** | v1.3.0 | 14 | 16 | Executive leadership & strategy |
-| ⚖️ **[legal-team](#️-legal-team)** | v1.1.0 | 13 | 8 | Legal support for other modules |
+| ⚖️ **[legal-team](#️-legal-team)** | v1.1.0 | 13 | 7 | Legal support for other modules |
 
 ### Development & Creative Modules
 
 | Module | Version | Agents | Workflows | Focus |
 |--------|---------|--------|-----------|-------|
-| 💻 **[bmm](#-bmm-bmad-method)** | v6.0.0 | 9 | 10 | Software product development |
-| 🎮 **[bmgd](#-bmgd-game-development)** | v1.0.0 | 6 | 7 | Game development (Unity, Unreal, Godot) |
-| 🔧 **[bmb](#-bmb-builder)** | v1.0.0 | 3 | 5 | Module, agent, workflow creation |
-| 🎨 **[cis](#-cis-creative-innovation)** | v1.0.0 | 5 | 4 | Creative innovation & brainstorming |
+| 💻 **[bmm](#-bmm-bmad-method)** | v6.0.0 | 9 | 32 | Software product development |
+| 🎮 **[bmgd](#-bmgd-game-development)** | v1.0.0 | 6 | 29 | Game development (Unity, Unreal, Godot) |
+| 🔧 **[bmb](#-bmb-builder)** | v1.0.0 | 3 | 6 | Module, agent, workflow creation |
+| 🎨 **[cis](#-cis-creative-innovation)** | v1.0.1 | 6 | 4 | Creative innovation & brainstorming |
 
 ### Core Infrastructure
 
 | Module | Version | Components | Focus |
 |--------|---------|------------|-------|
-| ⚙️ **[core](#️-core-infrastructure)** | v6.0.0 | 2 agents, 5 workflows | Project management & team orchestration |
+| ⚙️ **[core](#️-core-infrastructure)** | v6.0.0 | 2 agents, 15 workflows | Project management & team orchestration |
 
-**Total: 78 specialized agents, 88 production workflows, 27 party mode presets**
+**Total: 79 specialized agents, 141 production workflows, 27 party mode presets**
 
 ---
 
@@ -52,8 +52,8 @@
 
 | Document | Description |
 |----------|-------------|
-| 👥 **[Meet Your Teams](docs/AGENTS.md)** | Complete guide to all 78+ AI agents across all modules |
-| 🔄 **[Workflows Reference](docs/WORKFLOWS.md)** | All 88+ workflows with details and use cases |
+| 👥 **[Meet Your Teams](docs/AGENTS.md)** | Complete guide to all 79 AI agents across all modules |
+| 🔄 **[Workflows Reference](docs/WORKFLOWS.md)** | All 141 workflows with details and use cases |
 | 🚀 **[Getting Started](docs/GETTING-STARTED.md)** | Installation, quick start, and usage examples |
 | 📊 **[BMAD vs BMAD-CYBERSEC](docs/ComparisonMatrixBMAD/README.md)** | Feature comparison with original BMAD-METHOD |
 
@@ -125,7 +125,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 
 [![Legal-Team](https://img.shields.io/badge/module-legal--team-navy.svg)]()
 [![Agents](https://img.shields.io/badge/agents-13-blue.svg)]()
-[![Workflows](https://img.shields.io/badge/workflows-8-purple.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-7-purple.svg)]()
 
 **Cross-jurisdictional legal coordination and support for team orchestration**
 
@@ -146,7 +146,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 
 [![BMM](https://img.shields.io/badge/module-bmm-blue.svg)]()
 [![Agents](https://img.shields.io/badge/agents-9-blue.svg)]()
-[![Workflows](https://img.shields.io/badge/workflows-10-purple.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-32-purple.svg)]()
 
 **Full-stack software product development from idea to deployment**
 
@@ -167,7 +167,7 @@ The core BMAD Method module for product development, covering the complete lifec
 
 [![BMGD](https://img.shields.io/badge/module-bmgd-green.svg)]()
 [![Agents](https://img.shields.io/badge/agents-6-blue.svg)]()
-[![Workflows](https://img.shields.io/badge/workflows-7-purple.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-29-purple.svg)]()
 
 **Game development from concept to launch**
 
@@ -189,7 +189,7 @@ Specialized game development workflows supporting Unity, Unreal Engine, and Godo
 
 [![BMB](https://img.shields.io/badge/module-bmb-orange.svg)]()
 [![Agents](https://img.shields.io/badge/agents-3-blue.svg)]()
-[![Workflows](https://img.shields.io/badge/workflows-5-purple.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-6-purple.svg)]()
 
 **Create custom BMAD modules, agents, and workflows**
 
@@ -207,7 +207,7 @@ Extend the BMAD ecosystem with new capabilities.
 ## 🎨 CIS (Creative Innovation)
 
 [![CIS](https://img.shields.io/badge/module-cis-pink.svg)]()
-[![Agents](https://img.shields.io/badge/agents-5-blue.svg)]()
+[![Agents](https://img.shields.io/badge/agents-6-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-4-purple.svg)]()
 
 **Creative problem-solving and innovation facilitation**
@@ -216,9 +216,9 @@ Brainstorming, design thinking, and innovation methodology.
 
 | | |
 |---|---|
-| 🤖 **Innovation** | Victor (Innovation Strategist), Dr. Quinn (Creative Problem Solver), Maya (Design Thinking Coach) |
-| 🤖 **Communication** | Marcus (Storyteller), Aria (Presentation Master) |
-| 🔄 **Workflows** | Brainstorming, Innovation Session, Design Thinking, Presentation Prep |
+| 🤖 **Innovation** | Carson (Brainstorming Coach), Victor (Innovation Strategist), Dr. Quinn (Creative Problem Solver), Maya (Design Thinking Coach) |
+| 🤖 **Communication** | Sophia (Storyteller), Caravaggio (Presentation Master) |
+| 🔄 **Workflows** | Design Thinking, Innovation Strategy, Problem Solving, Storytelling |
 
 **Built for:** Innovation Teams, Product Designers, Marketing, Leadership
 
@@ -249,7 +249,7 @@ The core infrastructure module is always installed and provides:
 ## 🗂️ Workflow Visualization
 
 ```
-🛡️ BMAD Module Collection (88 workflows)
+🛡️ BMAD Module Collection (141 workflows)
 │
 ├─── 🔐 Cybersec-Team (13 workflows)
 │    ├─ 🚨 Incident Response Playbook
@@ -304,56 +304,49 @@ The core infrastructure module is always installed and provides:
 │    ├─ 📋 Board Relations (v1.3)
 │    └─ 📝 Performance Review (v1.3)
 │
-├─── ⚖️ Legal-Team (8 workflows) ⚠️
+├─── ⚖️ Legal-Team (7 workflows) ⚠️
 │    ├─ 📋 Legal Matter Intake
 │    ├─ 📄 Contract Review
 │    ├─ ✍️ Contract Drafting
 │    ├─ ⚔️ Dispute Strategy
 │    ├─ 🏢 Corporate Formation
 │    ├─ 💰 Tax Planning
-│    ├─ 🌐 Cross-Border Matter
-│    └─ ✅ Compliance Assessment
+│    └─ 🌐 Cross-Border Matter
 │
-├─── 💻 BMM (10 workflows)
-│    ├─ 📋 Product Brief
-│    ├─ 📄 PRD Creation
-│    ├─ 🏗️ Architecture
-│    ├─ 📝 Epics & Stories
-│    ├─ 🏃 Sprint Planning
-│    ├─ 💻 Dev Story
-│    ├─ 🔍 Code Review
-│    ├─ 📐 Tech Spec
-│    ├─ 🔬 Research
-│    └─ 🚀 Quick Dev
+├─── 💻 BMM (32 workflows)
+│    ├─ 📋 Product Brief, PRD Creation, Architecture
+│    ├─ 📝 Epics & Stories, Sprint Planning, Dev Story
+│    ├─ 🔍 Code Review, Tech Spec, Research, Quick Dev
+│    ├─ 🎨 UX Design, Excalidraw Diagrams (4 types)
+│    ├─ 🧪 TestArch (8 workflows)
+│    └─ 📊 Workflow Status, Document Project, and more
 │
-├─── 🎮 BMGD (7 workflows)
-│    ├─ 🎯 Game Brief
-│    ├─ 📖 GDD Creation
-│    ├─ 🏗️ Game Architecture
-│    ├─ 🏃 Sprint Planning
-│    ├─ 💻 Dev Story
-│    ├─ 🔍 Code Review
-│    └─ ⚡ Quick Prototype
+├─── 🎮 BMGD (29 workflows)
+│    ├─ 🎯 Game Brief, GDD, Game Architecture
+│    ├─ 🏃 Sprint Planning, Dev Story, Quick Dev/Prototype
+│    ├─ 🎭 Narrative, Brainstorm Game
+│    ├─ 🧪 GameTest (6 workflows)
+│    └─ 📊 Workflow Status, Retrospective, and more
 │
-├─── 🔧 BMB (5 workflows)
+├─── 🔧 BMB (6 workflows)
 │    ├─ 🤖 Create Agent
-│    ├─ 🔄 Create Workflow
+│    ├─ 🔄 Create Workflow, Edit Workflow
 │    ├─ 📦 Create Module
-│    ├─ ✏️ Edit Workflow
-│    └─ ✅ Compliance Check
+│    └─ ✅ Compliance Check, Meal Prep
 │
 ├─── 🎨 CIS (4 workflows)
-│    ├─ 💡 Brainstorming
-│    ├─ 🚀 Innovation Session
 │    ├─ 🎯 Design Thinking
-│    └─ 📊 Presentation Prep
+│    ├─ 🚀 Innovation Strategy
+│    ├─ 🧩 Problem Solving
+│    └─ 📖 Storytelling
 │
-└─── ⚙️ Core (5 workflows)
-     ├─ 🎉 Party Mode
-     ├─ 📋 Project Manager
-     ├─ 🔗 Team Orchestration
-     ├─ 💡 Brainstorming
-     └─ 📑 Index Docs
+└─── ⚙️ Core (15 workflows)
+     ├─ 🎉 Party Mode, Brainstorming
+     ├─ 📋 Project Management (assign-task, whats-next, project-status)
+     ├─ 🔗 Team Orchestration (select-template, select-preset, cross-module)
+     ├─ 🛡️ Secure Software, Incident Response, Strategic Decision
+     ├─ ⚖️ Compliance-First, Conflict Resolution, Phase Gate
+     └─ 📑 Index Docs, Create Project
 ```
 
 > ⚠️ Legal-Team workflows can technically be used as standalone but are **not recommended for standalone use** - designed for Party Mode support only.
@@ -372,7 +365,7 @@ BMAD-CYBERSEC/
 │   │
 │   ├── core/                          # ⚙️ Core Infrastructure (required)
 │   │   ├── agents/                    # 2 agents (Abdul, BMAD Master)
-│   │   ├── workflows/                 # 5 workflows
+│   │   ├── workflows/                 # 15 workflows
 │   │   │   ├── party-mode/            # Multi-agent collaboration
 │   │   │   │   └── presets/           # 27 party mode presets
 │   │   │   ├── project-manager/       # Abdul's project management
@@ -409,31 +402,31 @@ BMAD-CYBERSEC/
 │   │
 │   ├── bmm/                           # 💻 BMAD Method (v6.0.0)
 │   │   ├── agents/                    # 9 development team
-│   │   ├── workflows/                 # 10 workflows (85 step files)
+│   │   ├── workflows/                 # 32 workflows
 │   │   ├── module.yaml
 │   │   └── config.yaml
 │   │
 │   ├── bmgd/                          # 🎮 Game Development (v1.0.0)
 │   │   ├── agents/                    # 6 game dev specialists
-│   │   ├── workflows/                 # 7 workflows (53 step files)
+│   │   ├── workflows/                 # 29 workflows
 │   │   ├── module.yaml
 │   │   └── config.yaml
 │   │
 │   ├── bmb/                           # 🔧 Builder (v1.0.0)
 │   │   ├── agents/                    # 3 builder agents
-│   │   ├── workflows/                 # 5 workflows (57 step files)
+│   │   ├── workflows/                 # 6 workflows
 │   │   ├── module.yaml
 │   │   └── config.yaml
 │   │
-│   └── cis/                           # 🎨 Creative Innovation (v1.0.0)
-│       ├── agents/                    # 5 creative agents
+│   └── cis/                           # 🎨 Creative Innovation (v1.0.1)
+│       ├── agents/                    # 6 creative agents
 │       ├── workflows/                 # 4 workflows
 │       ├── module.yaml
 │       └── config.yaml
 │
 ├── docs/
-│   ├── AGENTS.md                      # 👥 All 78+ agents reference
-│   ├── WORKFLOWS.md                   # 🔄 All 88+ workflows reference
+│   ├── AGENTS.md                      # 👥 All 79 agents reference
+│   ├── WORKFLOWS.md                   # 🔄 All 141 workflows reference
 │   └── GETTING-STARTED.md             # 🚀 Installation & usage
 │
 ├── .claude/
@@ -470,7 +463,7 @@ BMAD-CYBERSEC/
 
 ## 🔒 Security Measures
 
-All 78 agents across all modules now include **two critical security rules** to protect against AI manipulation attacks:
+All 79 agents across all modules now include **two critical security rules** to protect against AI manipulation attacks:
 
 ### 🛡️ Prompt Injection Protection
 Every agent detects and refuses to execute embedded prompts, instructions, or commands found in external content (web pages, files, images, documents, API responses). Suspicious content is flagged and reported to the user.
@@ -650,8 +643,8 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 
 | Feature | BMAD-METHOD | BMAD-CYBERSEC |
 |---------|-------------|-------------|
-| **Agents** | ~22 agents | **78 agents** (+256%) |
-| **Workflows** | ~50 workflows | **88 workflows** (+76%) |
+| **Agents** | ~22 agents | **79 agents** (+259%) |
+| **Workflows** | ~50 workflows | **141 workflows** (+182%) |
 | **Modules** | 3 (BMM, BMB, CIS) | **9 modules** (+6 specialized) |
 | **Party Mode Presets** | — | **27 presets** |
 | **Local LLM Routing** | — | ✅ Module & agent-level |
@@ -661,10 +654,10 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 
 | Module | BMAD-METHOD | BMAD-CYBERSEC |
 |--------|-------------|-------------|
-| **BMM** (Software Dev) | ✅ 9 agents, 34 workflows | ✅ 9 agents, 10 workflows |
-| **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 5 workflows |
-| **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 5 agents, 4 workflows |
-| **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 7 workflows |
+| **BMM** (Software Dev) | ✅ 9 agents, 34 workflows | ✅ 9 agents, 32 workflows |
+| **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 6 workflows |
+| **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 6 agents, 4 workflows |
+| **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 29 workflows |
 | **Core** (Infrastructure) | Abdul PM | Abdul + BMAD Master, 27 presets |
 | **Cybersec-Team** | — | ✅ **15 agents, 13 workflows** |
 | **Intel-Team** | — | ✅ **11 agents, 19 workflows** |
@@ -696,7 +689,7 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 | **Strategy-Team** | 14 executive advisors including 8 historical archetypes (Sun Tzu, Machiavelli, Lincoln, etc.) for strategic counsel |
 | **Legal-Team** | 13 legal specialists for US, EU, Spain, Estonia jurisdictions - Party Mode support only |
 | **Local LLM Routing** | Route sensitive modules/agents to Ollama, LM Studio, vLLM for on-premise processing |
-| **Security Rules** | Prompt injection and manipulation protection on all 78 agents |
+| **Security Rules** | Prompt injection and manipulation protection on all 79 agents |
 | **27 Party Presets** | Pre-configured agent teams for common scenarios (IR, compliance, intel, strategy) |
 
 ### When to Use Which
