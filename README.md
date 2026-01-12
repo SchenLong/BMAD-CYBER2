@@ -142,7 +142,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 
 ---
 
-## 💻 BMM (BMAD Method)
+## 💻 BMM (BMAD Method - Original Module)
 
 [![BMM](https://img.shields.io/badge/module-bmm-blue.svg)]()
 [![Agents](https://img.shields.io/badge/agents-9-blue.svg)]()
@@ -163,7 +163,7 @@ The core BMAD Method module for product development, covering the complete lifec
 
 ---
 
-## 🎮 BMGD (Game Development)
+## 🎮 BMGD (Game Development - Original Module)
 
 [![BMGD](https://img.shields.io/badge/module-bmgd-green.svg)]()
 [![Agents](https://img.shields.io/badge/agents-6-blue.svg)]()
@@ -185,7 +185,7 @@ Specialized game development workflows supporting Unity, Unreal Engine, and Godo
 
 ---
 
-## 🔧 BMB (Builder)
+## 🔧 BMB (Builder - Modified Original Module)
 
 [![BMB](https://img.shields.io/badge/module-bmb-orange.svg)]()
 [![Agents](https://img.shields.io/badge/agents-3-blue.svg)]()
@@ -204,7 +204,7 @@ Extend the BMAD ecosystem with new capabilities.
 
 ---
 
-## 🎨 CIS (Creative Innovation)
+## 🎨 CIS (Creative Innovation - Original Module)
 
 [![CIS](https://img.shields.io/badge/module-cis-pink.svg)]()
 [![Agents](https://img.shields.io/badge/agents-5-blue.svg)]()
@@ -224,7 +224,7 @@ Brainstorming, design thinking, and innovation methodology.
 
 ---
 
-## ⚙️ Core Infrastructure
+## ⚙️ Core Infrastructure (Modified Original Module)
 
 [![Core](https://img.shields.io/badge/module-core-gray.svg)]()
 [![Required](https://img.shields.io/badge/required-yes-red.svg)]()
@@ -496,8 +496,8 @@ BMAD-CYBERSEC supports multiple LLM providers with **granular routing** at modul
 
 | Provider Type | Data Location | Best For |
 |---------------|---------------|----------|
-| **Local** (Ollama, LM Studio, vLLM) | Your machine (127.0.0.1) | Sensitive data, compliance, air-gapped |
-| **Cloud** (Claude, OpenAI, Groq) | External API | Quality, general use |
+| **Local** (Ollama, LM Studio, vLLM) | Your machine or network  | Sensitive data, compliance, air-gapped |
+| **Cloud** (Claude) | External API | Quality, general use |
 
 ### Quick Commands
 
