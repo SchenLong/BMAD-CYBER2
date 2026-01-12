@@ -10,8 +10,8 @@
 [![Party Presets](https://img.shields.io/badge/presets-27-teal.svg)]()
 
 **LLM Providers:**
-[![Claude](https://img.shields.io/badge/API-Claude_Opus_4.5-orange.svg)](https://www.anthropic.com/claude)
-[![OpenAI](https://img.shields.io/badge/API-OpenAI_GPT--4-412991.svg)](https://openai.com)
+[![Claude](https://img.shields.io/badge/API-Claude_-orange.svg)](https://www.anthropic.com/claude)
+[![OpenAI](https://img.shields.io/badge/API-OpenAI_-412991.svg)](https://openai.com)
 [![Groq](https://img.shields.io/badge/API-Groq-F55036.svg)](https://groq.com)
 [![Ollama](https://img.shields.io/badge/Local-Ollama-white.svg)](https://ollama.ai)
 [![LM Studio](https://img.shields.io/badge/Local-LM_Studio-6366F1.svg)](https://lmstudio.ai)
