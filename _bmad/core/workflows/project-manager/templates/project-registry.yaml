@@ -16,6 +16,7 @@ projects: []
 #   modules_used:
 #     - bmm
 #     - cybersec-team
+#   llm_provider: "claude"  # claude | ollama | vllm | lmstudio | llamacpp
 #   status: "new"  # new | planning | development | maintenance | archived
 #   current_phase: "discovery"  # discovery | planning | solutioning | implementation | review
 #   created: "2026-01-11T10:00:00Z"

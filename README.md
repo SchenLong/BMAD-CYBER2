@@ -55,6 +55,7 @@
 | 👥 **[Meet Your Teams](docs/AGENTS.md)** | Complete guide to all 78+ AI agents across all modules |
 | 🔄 **[Workflows Reference](docs/WORKFLOWS.md)** | All 88+ workflows with details and use cases |
 | 🚀 **[Getting Started](docs/GETTING-STARTED.md)** | Installation, quick start, and usage examples |
+| 📊 **[BMAD vs BMAD-CYBERSEC](docs/ComparisonMatrixBMAD/README.md)** | Feature comparison with original BMAD-METHOD |
 
 ---
 
@@ -362,7 +363,7 @@ The core infrastructure module is always installed and provides:
 ## 📁 Module Structure
 
 ```
-BMAD-CYBER2/
+BMAD-CYBERSEC/
 ├── _bmad/
 │   │
 │   ├── _config/                       # ⚙️ Global configuration
@@ -487,29 +488,240 @@ These security measures are documented in the framework's [LessonsLearned.md](_b
 
 ---
 
-## ⚠️ Data Governance & Liability Warning
+## 🔐 LLM Provider System
 
-> **IMPORTANT:** Read this section carefully before using BMAD-CYBERSEC modules with any real or sensitive data.
+BMAD-CYBERSEC supports multiple LLM providers with **granular routing** at module or agent level.
 
-### You're Responsible for Data Governance
+### Provider Options
 
-- **The framework provides no guidance on how to safely handle sensitive data**
-- **User is fully liable if data is exposed**
+| Provider Type | Data Location | Best For |
+|---------------|---------------|----------|
+| **Local** (Ollama, LM Studio, vLLM) | Your machine (127.0.0.1) | Sensitive data, compliance, air-gapped |
+| **Cloud** (Claude, OpenAI, Groq) | External API | Quality, general use |
 
-### Anthropic's Terms Apply
+### Quick Commands
 
-- You must comply with [Anthropic's API terms of service](https://www.anthropic.com/legal/terms)
-- You may need to notify Anthropic of data classification
+```bash
+# Check current provider
+.claude/hooks/llm-provider-manager.sh get
 
-### No Warranty on Sensitivity Handling
+# Switch providers
+.claude/hooks/llm-provider-manager.sh set ollama   # Local
+.claude/hooks/llm-provider-manager.sh set claude   # Cloud
 
-- If a workflow leaks data, BMAD does not accept liability
-- Open source = no support for compliance incidents
+# Check provider for specific agent
+.claude/hooks/llm-provider-manager.sh get cybersec-team forensic-investigator
+```
 
-### Data Retention is Unclear
+### Module & Agent Routing
 
-- Defined by Anthropic's current data retention policy
-- This policy may change
+Route high-risk modules or specific agents to local LLMs in `_bmad/_config/llm-config.yaml`:
+
+```yaml
+# Route entire modules to local LLM
+module_overrides:
+  cybersec-team: ollama    # Security data stays on-premise
+  intel-team: ollama       # Intelligence data stays on-premise
+  legal-team: ollama       # Attorney-client privilege protected
+
+# Route specific agents (overrides module setting)
+agent_overrides:
+  cybersec-team/forensic-investigator: ollama   # Forensics always local
+  intel-team/humint-specialist: ollama          # HUMINT always local
+  legal-team/counsel: ollama                    # General counsel local
+```
+
+### Real-World Routing Examples
+
+<details>
+<summary><b>Example 1: Incident Response Team (Data Never Leaves Premises)</b></summary>
+
+```yaml
+# Route IR-related agents to local LLM for breach data protection
+agent_overrides:
+  cybersec-team/incident-commander: ollama    # Phoenix - IR coordination
+  cybersec-team/forensic-investigator: ollama # Trace - Evidence analysis
+  cybersec-team/threat-analyst: ollama        # Cipher - Threat intel
+  cybersec-team/soc-analyst: ollama           # Watchman - SOC operations
+```
+
+**Use case:** Active breach response where victim data, IOCs, and forensic artifacts must never leave your infrastructure.
+
+</details>
+
+<details>
+<summary><b>Example 2: Intelligence Operations (OSINT + HUMINT)</b></summary>
+
+```yaml
+# Intelligence agents handle PII and sensitive target data
+module_overrides:
+  intel-team: ollama    # All 11 intel agents use local
+
+# Exception: public research can use cloud for quality
+agent_overrides:
+  intel-team/technical-researcher: claude     # Probe - public tech research OK
+```
+
+**Use case:** OSINT/HUMINT operations where target identities, patterns of life, and operational data require air-gapped processing.
+
+</details>
+
+<details>
+<summary><b>Example 3: Legal Team with Domain-Trained Model</b></summary>
+
+```yaml
+providers:
+  legal-llm:
+    type: ollama
+    description: "Fine-tuned legal reasoning model"
+    base_url: "http://localhost:11434"
+    model: "legallama:13b"       # or saul-7b, lawma-70b
+
+agent_overrides:
+  legal-team/counsel: legal-llm      # General counsel - privileged communications
+  legal-team/liberty: legal-llm      # US law - jurisdiction-specific reasoning
+  legal-team/europa: legal-llm       # EU law - GDPR expertise
+  legal-team/covenant: legal-llm     # Contracts - clause analysis
+  legal-team/advocate: legal-llm     # Litigation - case strategy
+```
+
+**Use case:** Legal practice where attorney-client privilege must be protected and domain-specific LLM improves contract/case analysis accuracy.
+
+</details>
+
+<details>
+<summary><b>Example 4: Executive Strategy (Hybrid Approach)</b></summary>
+
+```yaml
+# Strategic advisors: sensitive M&A data local, general strategy cloud
+module_overrides:
+  strategy-team: ollama    # Default: trade secrets protected
+
+agent_overrides:
+  # These need Claude's reasoning quality for complex decisions
+  strategy-team/the-master-strategist: claude  # Sun Tzu - strategic planning
+  strategy-team/ethics-advisor: claude         # Sophia - ethical analysis
+  strategy-team/the-principled-commander: claude # Jean-Luc - principled leadership
+```
+
+**Use case:** M&A due diligence where deal data stays local, but high-stakes strategic decisions leverage Claude's superior reasoning.
+
+</details>
+
+<details>
+<summary><b>Example 5: Security Assessment with Specialized Models</b></summary>
+
+```yaml
+providers:
+  security-llm:
+    type: ollama
+    model: "deepseek-coder-v2:latest"  # Code-focused model for vuln analysis
+
+agent_overrides:
+  cybersec-team/penetration-tester: security-llm   # Ghost - exploit analysis
+  cybersec-team/web-app-security-expert: security-llm  # Weaver - code review
+  cybersec-team/api-security-expert: security-llm  # Gateway - API security
+  cybersec-team/security-architect: claude         # Bastion - needs broad reasoning
+```
+
+**Use case:** Vulnerability assessments where code analysis benefits from a code-trained model, while architecture review needs Claude's breadth.
+
+</details>
+
+### Benefits of Agent Routing
+
+| Benefit | Description |
+|---------|-------------|
+| **Data Privacy** | Sensitive data never leaves your infrastructure |
+| **Specialized Models** | Domain-trained LLMs for legal, security, code analysis |
+| **Cost Optimization** | Local models for frequent queries, cloud for complex tasks |
+| **Compliance** | Meet GDPR, HIPAA, SOX, attorney-client privilege requirements |
+| **Hybrid Approach** | Mix providers based on task sensitivity and quality needs |
+
+See [LLM Provider System](docs/LLM-PROVIDER-SYSTEM.md) and [Data Sensitivity Guide](docs/DATA-SENSITIVITY-GUIDE.md).
+
+---
+
+## 📊 BMAD-METHOD vs BMAD-CYBERSEC Comparison
+
+This module collection extends the [original BMAD-METHOD framework](https://github.com/bmad-code-org/BMAD-METHOD) with specialized teams for security, intelligence, strategy, and legal domains.
+
+### Feature Matrix
+
+| Feature | BMAD-METHOD | BMAD-CYBERSEC |
+|---------|-------------|-------------|
+| **Agents** | ~22 agents | **78 agents** (+256%) |
+| **Workflows** | ~50 workflows | **88 workflows** (+76%) |
+| **Modules** | 3 (BMM, BMB, CIS) | **9 modules** (+6 specialized) |
+| **Party Mode Presets** | — | **27 presets** |
+| **Local LLM Routing** | — | ✅ Module & agent-level |
+| **Domain-Trained Model Support** | — | ✅ (legal-llm, security-llm) |
+
+### Module Comparison
+
+| Module | BMAD-METHOD | BMAD-CYBERSEC |
+|--------|-------------|-------------|
+| **BMM** (Software Dev) | ✅ 9 agents, 34 workflows | ✅ 9 agents, 10 workflows |
+| **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 5 workflows |
+| **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 5 agents, 4 workflows |
+| **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 7 workflows |
+| **Core** (Infrastructure) | Abdul PM | Abdul + BMAD Master, 27 presets |
+| **Cybersec-Team** | — | ✅ **15 agents, 13 workflows** |
+| **Intel-Team** | — | ✅ **11 agents, 19 workflows** |
+| **Strategy-Team** | — | ✅ **14 agents, 16 workflows** |
+| **Legal-Team** | — | ✅ **13 agents, 8 workflows** |
+
+### Capability Comparison
+
+| Capability | BMAD-METHOD | BMAD-CYBERSEC |
+|------------|-------------|-------------|
+| Software Development | ✅ Full lifecycle | ✅ Full lifecycle |
+| Game Development | ✅ Unity/Unreal/Godot | ✅ Unity/Unreal/Godot |
+| Agent/Workflow Creation | ✅ BMB module | ✅ BMB module |
+| Creative Innovation | ✅ CIS module | ✅ CIS module |
+| **Cybersecurity Operations** | — | ✅ IR, Pentest, Compliance, VCISO |
+| **Intelligence Operations** | — | ✅ OSINT, HUMINT, SIGINT, DARKINT |
+| **Executive Strategy** | — | ✅ 14 advisors, 8 historical archetypes |
+| **Legal Coordination** | — | ✅ 4 jurisdictions, Party Mode |
+| **Security Frameworks** | — | ✅ NIST, MITRE, ISO, 20+ frameworks |
+| **Cross-Module Orchestration** | Party Mode | ✅ Party Mode + 27 presets |
+| **Privacy Controls** | — | ✅ Module/agent-level LLM routing |
+
+### What BMAD-CYBERSEC Adds
+
+| Addition | Description |
+|----------|-------------|
+| **Cybersec-Team** | 15 security specialists covering architecture, IR, compliance, pentest, forensics, SOC, cloud, blockchain, mobile, web, API, AI/LLM security |
+| **Intel-Team** | 11 intelligence officers spanning OSINT, SOCMINT, DARKINT, TECHINT, GEOINT, HUMINT, SIGINT, CORPINT, field operations |
+| **Strategy-Team** | 14 executive advisors including 8 historical archetypes (Sun Tzu, Machiavelli, Lincoln, etc.) for strategic counsel |
+| **Legal-Team** | 13 legal specialists for US, EU, Spain, Estonia jurisdictions - Party Mode support only |
+| **Local LLM Routing** | Route sensitive modules/agents to Ollama, LM Studio, vLLM for on-premise processing |
+| **Security Rules** | Prompt injection and manipulation protection on all 78 agents |
+| **27 Party Presets** | Pre-configured agent teams for common scenarios (IR, compliance, intel, strategy) |
+
+### When to Use Which
+
+| Scenario | Recommendation |
+|----------|----------------|
+| Pure software development | Either works; BMAD-METHOD for simplicity |
+| Game development | Either works; BMAD-METHOD for simplicity |
+| Need security capabilities | **BMAD-CYBERSEC** (15 security agents) |
+| Need intelligence operations | **BMAD-CYBERSEC** (11 intel agents) |
+| Need executive strategy support | **BMAD-CYBERSEC** (14 strategy advisors) |
+| Need legal coordination | **BMAD-CYBERSEC** (13 legal specialists) |
+| Need cross-module collaboration | **BMAD-CYBERSEC** (27 party presets) |
+| Privacy-sensitive workloads | **BMAD-CYBERSEC** (local LLM routing) |
+| Simple agent/workflow creation | Either works |
+
+---
+
+## ⚠️ Data Governance & Liability
+
+> **You are responsible for data governance.** If you process sensitive data with a cloud provider, you accept that risk.
+
+- Comply with [Anthropic's API terms](https://www.anthropic.com/legal/terms) when using Claude
+- No warranty on data handling - open source = no compliance support
+- Consider local LLM for sensitive workloads
 
 ---
 
