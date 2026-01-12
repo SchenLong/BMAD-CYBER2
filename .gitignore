@@ -9,6 +9,12 @@ _output/
 _bmad-output/
 
 # ===================
+# Private Projects
+# ===================
+# Internal security investigations and private project documentation
+docs/projects/
+
+# ===================
 # Claude Code Settings
 # ===================
 # Local settings contain user-specific configurations
