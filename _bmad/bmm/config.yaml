@@ -3,7 +3,7 @@
 # Version: 6.0.0-alpha.22
 # Date: 2026-01-08T17:39:34.299Z
 
-project_name: BMAD-CYBER2
+project_name: BMAD-CYBERSEC
 user_skill_level: intermediate
 planning_artifacts: "{project-root}/_bmad-output/planning-artifacts"
 implementation_artifacts: "{project-root}/_bmad-output/implementation-artifacts"

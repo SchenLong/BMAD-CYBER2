@@ -14,3 +14,9 @@ modules:
   - legal-team
 ides:
   - claude-code
+config_files:
+  - llm-config.yaml
+  - agent-manifest.csv
+  - workflow-manifest.csv
+  - files-manifest.csv
+  - task-manifest.csv
