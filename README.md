@@ -8,7 +8,14 @@
 [![Agents](https://img.shields.io/badge/agents-79-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-141-purple.svg)]()
 [![Party Presets](https://img.shields.io/badge/presets-27-teal.svg)]()
-[![Claude](https://img.shields.io/badge/Claude-Opus%204.5-orange.svg)](https://www.anthropic.com/claude)
+
+**LLM Providers:**
+[![Claude](https://img.shields.io/badge/API-Claude_Opus_4.5-orange.svg)](https://www.anthropic.com/claude)
+[![OpenAI](https://img.shields.io/badge/API-OpenAI_GPT--4-412991.svg)](https://openai.com)
+[![Groq](https://img.shields.io/badge/API-Groq-F55036.svg)](https://groq.com)
+[![Ollama](https://img.shields.io/badge/Local-Ollama-white.svg)](https://ollama.ai)
+[![LM Studio](https://img.shields.io/badge/Local-LM_Studio-6366F1.svg)](https://lmstudio.ai)
+[![vLLM](https://img.shields.io/badge/Local-vLLM-00ADD8.svg)](https://github.com/vllm-project/vllm)
 
 **Professional-grade AI agent modules for cybersecurity, intelligence operations, executive leadership, legal support, software development, and game development**
 
@@ -114,7 +121,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 | 🎯 **Modern Advisors** | Augustus (Policy), Magnus (Political Strategy), Cicero (Debate), Geneva (Mediation), Sophia (Ethics), Giuseppe (Communications) |
 | 📜 **Historical Archetypes** | Niccolo/Machiavelli (Realist), Charles/Lincoln (Liberator), Maximilien/Robespierre (Revolutionary), Burke (Conservative), Lee Kuan Yew (Technocrat), Musashi (Warrior-Strategist), Sun Tzu (Master Strategist), Jean-Luc/Picard (Principled Commander) |
 | 🔄 **Core Workflows** | Strategic Decision Workshop, Stakeholder Negotiation, Board Presentation, Crisis Response, Strategic Planning, Policy Development, Conflict Resolution, Competitive Warfare, Corporate Politics, Political Risk, Ethical Dilemma, Leadership Philosophy |
-| 🔄 **v1.3 Workflows** | M&A Due Diligence, Leadership Transition Planning, Board Relations Management, Performance Review Preparation |
+| 🔄 **Executive Operations** | M&A Due Diligence, Leadership Transition Planning, Board Relations Management, Performance Review Preparation |
 | 🔗 **Cross-Module** | 8 workflows support cross-module collaboration (cybersec, intel, legal) |
 
 **Built for:** C-Suite Executives, Board Members, Strategic Planners, Policy Makers, Crisis Managers, Leadership Development
@@ -135,7 +142,7 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 |---|---|
 | 🤖 **Core Agents** | Counsel (General Counsel Lead), Liberty (US Law), Europa (EU Law), Castile (Spanish Law), Covenant (Contract Specialist), Tribute (Tax Advisor), Advocate (Litigation Strategist) |
 | 🤖 **Extended Agents** | Iberia (Spain Civil), Gremio (Spain Labor), Baltic (Estonia Corporate), Charter (Corporate Governance), Insignia (IP Counsel), Deed (Real Estate) |
-| 🔄 **Workflows** | Legal Matter Intake, Contract Review, Contract Drafting, Dispute Strategy, Corporate Formation, Tax Planning, Cross-Border Matter, Compliance Assessment |
+| 🔄 **Workflows** | Legal Matter Intake, Contract Review, Contract Drafting, Dispute Strategy, Corporate Formation, Tax Planning, Cross-Border Matter |
 | 🌍 **Jurisdictions** | United States, European Union, Spain, Estonia, Cross-Border Matters |
 
 **Primary Use Case:** Providing legal perspective in Party Mode when cybersec-team, intel-team, or strategy-team workflows require legal input. For example: compliance considerations during security assessments, contractual implications in corporate intelligence, or regulatory concerns in executive strategy sessions.
@@ -147,10 +154,14 @@ Strategic counsel on high-stakes decisions, organizational politics navigation, 
 [![BMM](https://img.shields.io/badge/module-bmm-blue.svg)]()
 [![Agents](https://img.shields.io/badge/agents-9-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-32-purple.svg)]()
+[![Origin](https://img.shields.io/badge/origin-BMAD--METHOD-brightgreen.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
+[![Modified](https://img.shields.io/badge/modified-minimal-lightgrey.svg)]()
 
 **Full-stack software product development from idea to deployment**
 
 The core BMAD Method module for product development, covering the complete lifecycle from discovery through implementation.
+
+> 📦 **Module Origin:** This module is from the **original [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) framework**. Modifications in BMAD-CYBERSEC are minimal: added dual security rules (prompt injection + manipulation protection) to all agents, and minor workflow count adjustments for framework consistency.
 
 | | |
 |---|---|
@@ -168,10 +179,14 @@ The core BMAD Method module for product development, covering the complete lifec
 [![BMGD](https://img.shields.io/badge/module-bmgd-green.svg)]()
 [![Agents](https://img.shields.io/badge/agents-6-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-29-purple.svg)]()
+[![Origin](https://img.shields.io/badge/origin-BMAD--METHOD-brightgreen.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
+[![Modified](https://img.shields.io/badge/modified-minimal-lightgrey.svg)]()
 
 **Game development from concept to launch**
 
 Specialized game development workflows supporting Unity, Unreal Engine, and Godot.
+
+> 📦 **Module Origin:** This module is from the **original [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) framework**. Modifications in BMAD-CYBERSEC are minimal: added dual security rules to all agents and expanded workflow count from 8+ to 29 for comprehensive game development coverage.
 
 | | |
 |---|---|
@@ -190,10 +205,14 @@ Specialized game development workflows supporting Unity, Unreal Engine, and Godo
 [![BMB](https://img.shields.io/badge/module-bmb-orange.svg)]()
 [![Agents](https://img.shields.io/badge/agents-3-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-6-purple.svg)]()
+[![Origin](https://img.shields.io/badge/origin-BMAD--METHOD-brightgreen.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
+[![Modified](https://img.shields.io/badge/modified-enhanced-blue.svg)]()
 
 **Create custom BMAD modules, agents, and workflows**
 
 Extend the BMAD ecosystem with new capabilities.
+
+> 📦 **Module Origin:** This module is from the **original [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) framework**. Modifications in BMAD-CYBERSEC: added dual security rules to agents, expanded workflows from 4 to 6, and added LessonsLearned.md for capturing framework best practices and security patterns.
 
 | | |
 |---|---|
@@ -209,10 +228,14 @@ Extend the BMAD ecosystem with new capabilities.
 [![CIS](https://img.shields.io/badge/module-cis-pink.svg)]()
 [![Agents](https://img.shields.io/badge/agents-6-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-4-purple.svg)]()
+[![Origin](https://img.shields.io/badge/origin-BMAD--METHOD-brightgreen.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
+[![Modified](https://img.shields.io/badge/modified-minimal-lightgrey.svg)]()
 
 **Creative problem-solving and innovation facilitation**
 
 Brainstorming, design thinking, and innovation methodology.
+
+> 📦 **Module Origin:** This module is from the **original [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) framework**. Modifications in BMAD-CYBERSEC are minimal: added dual security rules to all agents, workflow count adjusted from 6+ to 4 focused workflows.
 
 | | |
 |---|---|
@@ -228,10 +251,14 @@ Brainstorming, design thinking, and innovation methodology.
 
 [![Core](https://img.shields.io/badge/module-core-gray.svg)]()
 [![Required](https://img.shields.io/badge/required-yes-red.svg)]()
+[![Origin](https://img.shields.io/badge/origin-BMAD--METHOD-brightgreen.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
+[![Modified](https://img.shields.io/badge/modified-significantly_extended-red.svg)]()
 
 **Project management and cross-module orchestration**
 
 The core infrastructure module is always installed and provides:
+
+> 📦 **Module Origin:** This module is based on the **original [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) framework** core. **Significant extensions in BMAD-CYBERSEC:** Added BMAD Master orchestrator, expanded from basic Abdul PM to full cross-module orchestration, added 27 party mode presets, 15 workflows (up from ~5), phase gates, team orchestration templates, and cross-module expertise mapping.
 
 | | |
 |---|---|
@@ -299,10 +326,10 @@ The core infrastructure module is always installed and provides:
 │    ├─ 🌍 Political Risk Assessment
 │    ├─ 🧭 Ethical Dilemma Resolution
 │    ├─ 🏛️ Leadership Philosophy
-│    ├─ 💼 M&A Due Diligence (v1.3)
-│    ├─ 👥 Leadership Transition (v1.3)
-│    ├─ 📋 Board Relations (v1.3)
-│    └─ 📝 Performance Review (v1.3)
+│    ├─ 💼 M&A Due Diligence
+│    ├─ 👥 Leadership Transition Planning
+│    ├─ 📋 Board Relations Management
+│    └─ 📝 Performance Review Preparation
 │
 ├─── ⚖️ Legal-Team (7 workflows) ⚠️
 │    ├─ 📋 Legal Matter Intake
@@ -349,7 +376,7 @@ The core infrastructure module is always installed and provides:
      └─ 📑 Index Docs, Create Project
 ```
 
-> ⚠️ Legal-Team workflows can technically be used as standalone but are **not recommended for standalone use** - designed for Party Mode support only.
+> ⚠️ **Legal-Team Note:** While Legal-Team workflows are technically functional as standalone operations, they are architected primarily to provide legal perspective during multi-agent Party Mode sessions. For actual legal matters, always consult qualified legal counsel in the relevant jurisdiction.
 
 ---
 
@@ -396,7 +423,7 @@ BMAD-CYBERSEC/
 │   │
 │   ├── legal-team/                    # ⚖️ Legal (v1.1.0)
 │   │   ├── agents/                    # 13 legal specialists
-│   │   ├── workflows/                 # 8 workflows (68 step files)
+│   │   ├── workflows/                 # 7 workflows (68 step files)
 │   │   ├── module.yaml
 │   │   └── config.yaml
 │   │
@@ -489,8 +516,8 @@ BMAD-CYBERSEC supports multiple LLM providers with **granular routing** at modul
 
 | Provider Type | Data Location | Best For |
 |---------------|---------------|----------|
-| **Local** (Ollama, LM Studio, vLLM) | Your machine (127.0.0.1) | Sensitive data, compliance, air-gapped |
-| **Cloud** (Claude, OpenAI, Groq) | External API | Quality, general use |
+| **Local** (Ollama, LM Studio, vLLM) | Your localhost / On-premise network | Sensitive data, compliance, air-gapped |
+| **Cloud** (Claude, OpenAI, Groq) | External API servers | Quality, general use |
 
 ### Quick Commands
 
@@ -560,25 +587,46 @@ agent_overrides:
 </details>
 
 <details>
-<summary><b>Example 3: Legal Team with Domain-Trained Model</b></summary>
+<summary><b>Example 3: Legal Team with Domain-Trained Models</b></summary>
 
 ```yaml
 providers:
-  legal-llm:
+  # SaulLM-7B: First LLM designed explicitly for legal text (30B+ token legal corpus)
+  # https://huggingface.co/papers/2403.03883
+  legal-general:
     type: ollama
-    description: "Fine-tuned legal reasoning model"
+    description: "SaulLM for general legal reasoning"
     base_url: "http://localhost:11434"
-    model: "legallama:13b"       # or saul-7b, lawma-70b
+    model: "saullm:7b"
+
+  # MEL (Modelo de Español Legal): Spanish legal texts specialist
+  # Trained on BOE, parliamentary transcripts, court rulings
+  # https://huggingface.co/IIC/MEL
+  legal-spanish:
+    type: ollama
+    description: "Spanish law specialist - BOE, court rulings"
+    base_url: "http://localhost:11434"
+    model: "mel-spanish-legal:latest"
+
+  # LEGAL-BERT: EU legislation, ECJ cases, ECHR rulings
+  # https://huggingface.co/nlpaueb/legal-bert-base-uncased
+  legal-eu:
+    type: ollama
+    description: "EU law specialist - EURLEX, ECJ, ECHR"
+    base_url: "http://localhost:11434"
+    model: "legal-bert-eu:latest"
 
 agent_overrides:
-  legal-team/counsel: legal-llm      # General counsel - privileged communications
-  legal-team/liberty: legal-llm      # US law - jurisdiction-specific reasoning
-  legal-team/europa: legal-llm       # EU law - GDPR expertise
-  legal-team/covenant: legal-llm     # Contracts - clause analysis
-  legal-team/advocate: legal-llm     # Litigation - case strategy
+  legal-team/counsel: legal-general     # General counsel - SaulLM reasoning
+  legal-team/liberty: legal-general     # US law - SaulLM (US-trained corpus)
+  legal-team/europa: legal-eu           # EU law - LEGAL-BERT (EURLEX trained)
+  legal-team/castile: legal-spanish     # Spanish law - MEL (BOE trained)
+  legal-team/iberia: legal-spanish      # Spain civil - MEL specialist
+  legal-team/covenant: legal-general    # Contracts - clause analysis
+  legal-team/advocate: legal-general    # Litigation - case strategy
 ```
 
-**Use case:** Legal practice where attorney-client privilege must be protected and domain-specific LLM improves contract/case analysis accuracy.
+**Use case:** Legal practice where attorney-client privilege must be protected and jurisdiction-specific LLMs improve accuracy. Spanish matters use MEL (trained on Boletín Oficial del Estado), EU matters use LEGAL-BERT (trained on EURLEX/ECJ/ECHR), US/general use SaulLM.
 
 </details>
 
@@ -606,18 +654,51 @@ agent_overrides:
 
 ```yaml
 providers:
-  security-llm:
+  # Foundation-Sec-8B: Cisco's cybersecurity-specialized LLM (April 2025)
+  # Trained on threat intel, CVE databases, IR docs, security standards
+  # https://huggingface.co/fdtn-ai/Foundation-Sec-8B
+  security-threat:
     type: ollama
-    model: "deepseek-coder-v2:latest"  # Code-focused model for vuln analysis
+    description: "Cisco Foundation-Sec for threat modeling & IR"
+    base_url: "http://localhost:11434"
+    model: "foundation-sec:8b"
+
+  # ZySec-7B: DPO-trained on ATT&CK, CIS Controls, incident handling
+  # https://huggingface.co/ZySec-AI/SecurityLLM
+  security-compliance:
+    type: ollama
+    description: "ZySec for compliance frameworks & SOC ops"
+    base_url: "http://localhost:11434"
+    model: "zysec:7b"
+
+  # Qwen2.5-Coder: 92 languages, 88.4% HumanEval, security code review
+  # https://huggingface.co/Qwen/Qwen2.5-Coder-32B
+  security-code:
+    type: ollama
+    description: "Qwen Coder for vulnerability code analysis"
+    base_url: "http://localhost:11434"
+    model: "qwen2.5-coder:32b"
 
 agent_overrides:
-  cybersec-team/penetration-tester: security-llm   # Ghost - exploit analysis
-  cybersec-team/web-app-security-expert: security-llm  # Weaver - code review
-  cybersec-team/api-security-expert: security-llm  # Gateway - API security
-  cybersec-team/security-architect: claude         # Bastion - needs broad reasoning
+  # Threat-focused agents use Foundation-Sec (threat intel trained)
+  cybersec-team/threat-analyst: security-threat      # Cipher - threat intel
+  cybersec-team/incident-commander: security-threat  # Phoenix - IR coordination
+  cybersec-team/forensic-investigator: security-threat # Trace - forensics
+
+  # Compliance agents use ZySec (framework trained)
+  cybersec-team/compliance-guardian: security-compliance  # Sentinel - audits
+  cybersec-team/soc-analyst: security-compliance     # Watchman - SOC operations
+
+  # Code analysis agents use Qwen Coder (code-specialized)
+  cybersec-team/penetration-tester: security-code    # Ghost - exploit analysis
+  cybersec-team/web-app-security-expert: security-code   # Weaver - SAST/DAST
+  cybersec-team/api-security-expert: security-code   # Gateway - API security
+
+  # Architecture needs broad reasoning
+  cybersec-team/security-architect: claude           # Bastion - design review
 ```
 
-**Use case:** Vulnerability assessments where code analysis benefits from a code-trained model, while architecture review needs Claude's breadth.
+**Use case:** Multi-model security operations where threat intel uses Foundation-Sec (Cisco's security LLM), compliance uses ZySec (framework-trained), and code review uses Qwen Coder (92-language support, 88% HumanEval).
 
 </details>
 
@@ -648,7 +729,7 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 | **Modules** | 3 (BMM, BMB, CIS) | **9 modules** (+6 specialized) |
 | **Party Mode Presets** | — | **27 presets** |
 | **Local LLM Routing** | — | ✅ Module & agent-level |
-| **Domain-Trained Model Support** | — | ✅ (legal-llm, security-llm) |
+| **Domain-Trained Model Support** | — | ✅ ([SaulLM](https://huggingface.co/papers/2403.03883), [Foundation-Sec](https://huggingface.co/fdtn-ai/Foundation-Sec-8B), [MEL](https://huggingface.co/IIC/MEL), [Qwen-Coder](https://huggingface.co/Qwen/Qwen2.5-Coder-32B)) |
 
 ### Module Comparison
 
@@ -662,7 +743,7 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 | **Cybersec-Team** | — | ✅ **15 agents, 13 workflows** |
 | **Intel-Team** | — | ✅ **11 agents, 19 workflows** |
 | **Strategy-Team** | — | ✅ **14 agents, 16 workflows** |
-| **Legal-Team** | — | ✅ **13 agents, 8 workflows** |
+| **Legal-Team** | — | ✅ **13 agents, 7 workflows** |
 
 ### Capability Comparison
 
@@ -720,6 +801,34 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 
 ## 🚦 Usage Recommendations
 
+### Provider Risk Matrix
+
+| Use Case | Cloud API | Local LLM | Risk Level | Recommendation |
+|----------|:---------:|:---------:|:----------:|----------------|
+| **Development with synthetic data** | ✅ Safe | ✅ Safe | 🟢 Low | Either provider |
+| **Security training & methodology** | ✅ Safe | ✅ Safe | 🟢 Low | Either provider |
+| **Best practices documentation** | ✅ Safe | ✅ Safe | 🟢 Low | Either provider |
+| **Non-sensitive assessments** | ✅ Safe | ✅ Safe | 🟢 Low | Either provider |
+| **Active security operations** | ⚠️ Caution | ✅ Safe | 🟡 Medium | Prefer Local |
+| **Vulnerability management** | ⚠️ Caution | ✅ Safe | 🟡 Medium | Prefer Local |
+| **Strategy development** | ⚠️ Caution | ✅ Safe | 🟡 Medium | Prefer Local |
+| **Incident response (anonymized)** | ⚠️ Caution | ✅ Safe | 🟡 Medium | Prefer Local |
+| **Breach response with real data** | ❌ Avoid | ✅ Safe | 🔴 High | **Local Only** |
+| **Intelligence ops with PII** | ❌ Avoid | ✅ Safe | 🔴 High | **Local Only** |
+| **Legal work (privileged)** | ❌ Avoid | ✅ Safe | 🔴 High | **Local Only** |
+| **Competitive intel (real data)** | ❌ Avoid | ✅ Safe | 🔴 High | **Local Only** |
+| **Patient health information** | ❌ Avoid | ⚠️ BAA Required | 🔴 High | **Local + Compliance** |
+| **Classified/export-controlled** | ❌ Never | ❌ Never | 🔴 Critical | **Not Supported** |
+
+### Risk Definitions
+
+| Risk Level | Cloud API Guidance | Local LLM Guidance |
+|------------|--------------------|--------------------|
+| 🟢 **Low** | Safe to use | Safe to use |
+| 🟡 **Medium** | Apply data minimization, anonymization | Safe with standard security controls |
+| 🔴 **High** | Do not process sensitive data | Safe if properly isolated; apply compliance controls |
+| 🔴 **Critical** | Absolutely prohibited | Prohibited - not appropriate for any LLM processing |
+
 ### ✅ Green Light For:
 
 | Use Case | Notes |
@@ -733,10 +842,10 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 
 | Use Case | Required Safeguards |
 |----------|---------------------|
-| Active cybersecurity operations | Data minimization required |
-| Incident response | Anonymization required |
-| Vulnerability management | Masking required |
-| Strategy development | Legal review recommended |
+| Active cybersecurity operations | Data minimization required; prefer local LLM |
+| Incident response | Anonymization required; prefer local LLM |
+| Vulnerability management | Masking required; prefer local LLM |
+| Strategy development | Legal review recommended; prefer local LLM |
 
 ### ❌ Hard Stop For:
 
@@ -839,6 +948,18 @@ preferences:
 
 ## 📝 Changelog
 
+### 📚 Documentation Update (2026-01-12)
+- **NEW:** LLM provider badges (Claude, OpenAI, Groq, Ollama, LM Studio, vLLM)
+- **NEW:** Module origin annotations indicating BMAD-METHOD heritage and modifications
+- **NEW:** Provider Risk Matrix for API vs Local LLM usage guidance
+- **IMPROVED:** Domain-trained model examples with real HuggingFace models:
+  - Legal: [SaulLM-7B](https://huggingface.co/papers/2403.03883), [MEL](https://huggingface.co/IIC/MEL) (Spanish), [LEGAL-BERT](https://huggingface.co/nlpaueb/legal-bert-base-uncased) (EU)
+  - Security: [Foundation-Sec-8B](https://huggingface.co/fdtn-ai/Foundation-Sec-8B) (Cisco), [ZySec-7B](https://huggingface.co/ZySec-AI/SecurityLLM)
+  - Code: [Qwen2.5-Coder](https://huggingface.co/Qwen/Qwen2.5-Coder-32B)
+- **IMPROVED:** Legal-Team standalone usage disclaimer reformulated
+- **IMPROVED:** Strategy-Team workflow categorization (Executive Operations vs v1.3)
+- **IMPROVED:** Localhost terminology updated throughout
+
 ### ⚙️ Core Infrastructure v6.0.0 (2026-01-11)
 - **NEW:** Abdul Project Manager agent for cross-module orchestration
 - **NEW:** 27 party mode presets (security, intel, strategic, cross-module)
@@ -864,7 +985,7 @@ preferences:
 
 ### ⚖️ legal-team v1.1.0 (2026-01-11)
 - **EXPANDED:** 13 specialized legal agents for cross-jurisdictional coordination (was 7)
-- 8 workflows (designed for Party Mode support, not standalone use)
+- 7 workflows (designed for Party Mode support, not standalone use)
 - Jurisdictions: US, EU, Spain, Estonia, Cross-Border matters
 - **Core Agents:** Counsel (Lead), Liberty (US), Europa (EU), Castile (Spain), Covenant (Contracts), Tribute (Tax), Advocate (Litigation)
 - **Extended Agents:** Iberia (Spain Civil), Gremio (Spain Labor), Baltic (Estonia Corporate), Charter (Governance), Insignia (IP), Deed (Real Estate)
