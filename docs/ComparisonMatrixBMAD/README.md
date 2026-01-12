@@ -127,7 +127,7 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 | Ethics Advisory | — | ✅ Sophia |
 | Communications | — | ✅ Giuseppe |
 | Realpolitik Counsel | — | ✅ Niccolo |
-| Principled Leadership | — | ✅ Charles (Lincoln) |
+| Principled Leadership | — | ✅ Charles |
 | Revolutionary Strategy | — | ✅ Maximilien |
 | Conservative Counsel | — | ✅ Burke |
 | Systems Thinking | — | ✅ Lee Kuan Yew |
