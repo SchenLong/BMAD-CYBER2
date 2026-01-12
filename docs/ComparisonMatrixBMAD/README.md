@@ -43,7 +43,7 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 | **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 5 workflows | Agent/workflow creation |
 | **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 5 agents, 4 workflows | Creative innovation |
 | **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 7 workflows | Unity/Unreal/Godot |
-| **Core** (Infrastructure) | Abdul PM | Abdul + BMAD Master | +27 party presets |
+| **Core** (Infrastructure) | BMAD Master | Abdul + BMAD Master | +27 party presets |
 
 ### Specialized Teams (BMAD-CYBERSEC Only)
 
