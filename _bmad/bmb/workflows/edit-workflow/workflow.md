@@ -54,6 +54,14 @@ Load and read full config from {project-root}/_bmad/bmb/config.yaml and resolve:
 - `project_name`, `output_folder`, `user_name`, `communication_language`, `document_output_language`, `bmb_creations_output_folder`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
+### 1.5. Lessons Learned Check (MANDATORY)
+
+**Before editing any workflow, you MUST:**
+
+1. Load and read `{project-root}/_bmad/bmb/ExperienceAcquired/LessonsLearned.md`
+2. Review all documented lessons to avoid repeating past mistakes
+3. Apply all relevant prevention measures from the lessons learned
+
 ### 2. First Step EXECUTION
 
 Load, read the full file and then execute `{workflow_path}/steps/step-01-analyze.md` to begin the workflow.
