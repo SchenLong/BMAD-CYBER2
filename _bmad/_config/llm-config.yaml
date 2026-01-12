@@ -1,0 +1,166 @@
+# BMAD LLM Configuration
+# ======================
+# Single source of truth for all LLM provider settings
+# Change provider here -> all agents automatically use it
+#
+# Usage:
+#   - Edit active_provider to switch all agents
+#   - Or use runtime override: echo "ollama" > .claude/llm-provider.txt
+#   - Check status: .claude/hooks/llm-provider-manager.sh list
+
+version: "1.0"
+
+# Active provider (can be overridden by .claude/llm-provider.txt)
+active_provider: claude
+
+# Provider definitions
+providers:
+
+  claude:
+    type: anthropic
+    description: "Claude API via Claude Code CLI (native)"
+    # No config needed - uses Claude Code's native integration
+    native: true
+    capabilities:
+      tool_use: true
+      streaming: true
+      context_window: 200000
+
+  ollama:
+    type: ollama
+    description: "Local LLM via Ollama"
+    base_url: "http://localhost:11434"
+    model: "nemotron-mini"
+    # Alternative models:
+    # model: "mistral:7b"
+    # model: "codellama:34b"
+    # model: "mixtral:8x7b"
+    # model: "qwen2.5:72b"
+    # model: "deepseek-coder-v2:latest"
+    parameters:
+      temperature: 0.7
+      top_p: 0.9
+      # num_ctx: 8192
+      # num_predict: 4096
+    capabilities:
+      tool_use: false  # Most Ollama models don't support native tool use
+      streaming: true
+      context_window: 128000  # Varies by model
+
+  vllm:
+    type: vllm
+    description: "High-performance local serving via vLLM"
+    base_url: "http://localhost:8000"
+    model: "meta-llama/Llama-3.1-70B-Instruct"
+    api_format: openai  # vLLM uses OpenAI-compatible API
+    parameters:
+      temperature: 0.7
+      max_tokens: 4096
+    capabilities:
+      tool_use: true  # vLLM supports function calling
+      streaming: true
+      context_window: 128000
+
+  lmstudio:
+    type: lmstudio
+    description: "Local LLM via LM Studio"
+    base_url: "http://localhost:1234"
+    model: "local-model"  # LM Studio serves the currently loaded model
+    api_format: openai
+    parameters:
+      temperature: 0.7
+    capabilities:
+      tool_use: false
+      streaming: true
+      context_window: 8192  # Varies by loaded model
+
+  llamacpp:
+    type: llamacpp
+    description: "Direct llama.cpp server"
+    base_url: "http://localhost:8080"
+    model: "default"  # llama.cpp serves single model
+    api_format: llamacpp
+    parameters:
+      temperature: 0.7
+      n_predict: 4096
+    capabilities:
+      tool_use: false
+      streaming: true
+      context_window: 8192
+
+  openai:
+    type: openai
+    description: "OpenAI API (GPT-4, etc.)"
+    base_url: "https://api.openai.com/v1"
+    model: "gpt-4-turbo"
+    api_key_env: "OPENAI_API_KEY"  # Read from environment variable
+    parameters:
+      temperature: 0.7
+      max_tokens: 4096
+    capabilities:
+      tool_use: true
+      streaming: true
+      context_window: 128000
+
+  groq:
+    type: groq
+    description: "Groq Cloud - ultra-fast inference"
+    base_url: "https://api.groq.com/openai/v1"
+    model: "llama-3.1-70b-versatile"
+    api_key_env: "GROQ_API_KEY"
+    api_format: openai
+    parameters:
+      temperature: 0.7
+      max_tokens: 4096
+    capabilities:
+      tool_use: true
+      streaming: true
+      context_window: 128000
+
+  together:
+    type: together
+    description: "Together AI - serverless inference"
+    base_url: "https://api.together.xyz/v1"
+    model: "meta-llama/Llama-3.1-70B-Instruct-Turbo"
+    api_key_env: "TOGETHER_API_KEY"
+    api_format: openai
+    parameters:
+      temperature: 0.7
+      max_tokens: 4096
+    capabilities:
+      tool_use: true
+      streaming: true
+      context_window: 128000
+
+# Module-specific overrides (optional)
+# Use when certain modules need specific providers
+# Uncomment and modify as needed
+module_overrides:
+  # strategy-team: claude    # Keep executive decisions on Claude
+  # legal-team: claude       # Legal advice stays on Claude
+  # cybersec-team: ollama    # Security analysis on local
+  # bmm: ollama              # Dev workflows on local
+
+# Agent-specific overrides (optional)
+# More granular than module - overrides module settings for specific agents
+# Format: module/agent-name: provider
+# Check: .claude/hooks/llm-provider-manager.sh get cybersec-team forensic-investigator
+agent_overrides:
+  # cybersec-team/forensic-investigator: ollama   # Forensics always local
+  # cybersec-team/incident-commander: ollama      # IR data stays local
+  # intel-team/dark-web-analyst: ollama           # Dark web intel local
+  # intel-team/humint-specialist: ollama          # HUMINT always local
+  # legal-team/counsel: ollama                    # General counsel local
+  # strategy-team/the-realist: claude             # Exception: needs Claude quality
+
+# Fallback chain - if primary provider fails, try next
+# Order matters: first available provider is used
+fallback_chain:
+  - claude      # Always available via Claude Code
+
+# Capability requirements (for provider matching)
+# Agents requiring these capabilities will only use compatible providers
+required_capabilities:
+  tool_use: true
+  streaming: true
+  min_context_window: 128000

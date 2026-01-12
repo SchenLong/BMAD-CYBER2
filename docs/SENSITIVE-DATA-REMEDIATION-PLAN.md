@@ -1,4 +1,4 @@
-# BMAD-CYBER2 Sensitive Data Risk Remediation Plan
+# BMAD-CYBERSEC Sensitive Data Risk Remediation Plan
 
 **Created:** 2026-01-11
 **Status:** DRAFT - For Review
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This remediation plan addresses the findings from the Sensitive Data Risk Assessment dated January 11, 2026. The assessment identified significant gaps in data handling, classification, and protection capabilities within the BMAD-CYBER2 framework.
+This remediation plan addresses the findings from the Sensitive Data Risk Assessment dated January 11, 2026. The assessment identified significant gaps in data handling, classification, and protection capabilities within the BMAD-CYBERSEC framework.
 
 ### Key Findings Addressed
 
@@ -93,7 +93,7 @@ Add prominent security section near top:
 ```markdown
 ## Security & Data Sensitivity Notice
 
-BMAD-CYBER2 workflows transmit data to Anthropic's Claude API. Before using with sensitive data:
+BMAD-CYBERSEC workflows transmit data to Anthropic's Claude API. Before using with sensitive data:
 
 1. **Read:** [Data Sensitivity Policy](docs/DATA-SENSITIVITY-POLICY.md)
 2. **Classify:** Determine your data's sensitivity level
@@ -112,7 +112,7 @@ See [Section 10](#recommended-safeguards) for detailed guidance.
 **Location:** `_bmad/core/data/classification-schema.yaml`
 
 ```yaml
-# Data Classification Schema for BMAD-CYBER2
+# Data Classification Schema for BMAD-CYBERSEC
 
 classification_levels:
   public:
@@ -501,7 +501,7 @@ Add security orientation section:
 ```markdown
 ## Before You Begin: Data Security
 
-BMAD-CYBER2 transmits all workflow data to Anthropic's Claude API. Before your first workflow:
+BMAD-CYBERSEC transmits all workflow data to Anthropic's Claude API. Before your first workflow:
 
 1. **Read:** [Data Sensitivity Policy](DATA-SENSITIVITY-POLICY.md) (5 min)
 2. **Review:** [Secure Usage Guide](SECURE-USAGE-GUIDE.md) (15 min)

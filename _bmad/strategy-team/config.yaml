@@ -8,7 +8,7 @@ created_date: 2026-01-09
 status: production
 
 # Project Configuration
-project_name: BMAD-CYBER2
+project_name: BMAD-CYBERSEC
 output_folder: "{project-root}/_output/strategy-team"
 bmb_creations_output_folder: "{project-root}/_bmad-output/bmb-creations"
 

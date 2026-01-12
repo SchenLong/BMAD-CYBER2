@@ -9,6 +9,7 @@ Complete guide to installing and using BMAD modules.
 - [BMAD Framework](https://github.com/bmad-code-org/BMAD-METHOD) installed
 - Claude Code CLI (Sonnet 4.5+ or Opus 4.5)
 - Git (for cloning)
+- **Optional:** Local LLM (Ollama, LM Studio, vLLM) for sensitive data
 
 ---
 
@@ -17,8 +18,8 @@ Complete guide to installing and using BMAD modules.
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/BMAD-CYBER2.git
-cd BMAD-CYBER2
+git clone https://github.com/yourusername/BMAD-CYBERSEC.git
+cd BMAD-CYBERSEC
 
 # The modules are ready to use!
 # Agents and workflows are pre-configured
@@ -221,6 +222,56 @@ Load workflow: _bmad/cybersec-team/workflows/virtual-ciso-consulting/workflow.md
 ```
 
 **Output:** Multi-perspective decision analysis with documented trade-offs
+
+---
+
+## LLM Provider Selection
+
+BMAD supports multiple LLM providers. Choose based on your data sensitivity requirements.
+
+### Quick Provider Switch
+
+```bash
+# Check current provider
+.claude/hooks/llm-provider-manager.sh get
+
+# Switch to local LLM (for sensitive data)
+.claude/hooks/llm-provider-manager.sh set ollama
+
+# Switch to cloud (for general use)
+.claude/hooks/llm-provider-manager.sh set claude
+
+# Check provider health
+.claude/hooks/llm-provider-manager.sh health-all
+```
+
+### When to Use Local LLM
+
+| Data Type | Recommended Provider |
+|-----------|---------------------|
+| Security incidents, breach data | Local (Ollama) |
+| Intelligence operations, PII | Local (Ollama) |
+| Legal matters, privileged communications | Local (Ollama) |
+| M&A, trade secrets | Local (Ollama) |
+| General development, public info | Either |
+
+### Configure Automatic Routing
+
+Route specific modules or agents to local LLM in `_bmad/_config/llm-config.yaml`:
+
+```yaml
+# Module routing
+module_overrides:
+  cybersec-team: ollama    # All security agents use local
+  intel-team: ollama       # All intel agents use local
+
+# Agent routing (overrides module)
+agent_overrides:
+  cybersec-team/forensic-investigator: ollama   # Always local
+  legal-team/counsel: ollama                    # Always local
+```
+
+See [LLM Provider System](LLM-PROVIDER-SYSTEM.md) and [Data Sensitivity Guide](DATA-SENSITIVITY-GUIDE.md) for details.
 
 ---
 
