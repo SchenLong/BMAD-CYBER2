@@ -1,5 +1,6 @@
 ---
-name: flash-assessment
+workflow_id: "flash-assessment"
+name: "Flash Assessment"
 description: 'Rapid 15-minute OSINT triage providing immediate hits, exposures, and risk assessment'
 version: '1.0.0'
 module: intel-team
@@ -10,15 +11,29 @@ output_path: '{output_folder}/flash-assessments'
 
 # Workflow Configuration
 primary_agent: osint-lead
+primary_codename: "Vector"
 parallel_agents: [technical-researcher, social-media-analyst, dark-web-analyst, corporate-intel-specialist]
 estimated_duration: '15 minutes'
 classification: 'RAPID RESPONSE'
+execution_mode: 'parallel'
 
 # Step Files
 steps:
-  - steps/step-01-triage.md
-  - steps/step-02-parallel-collection.md
-  - steps/step-03-synthesis.md
+  - name: "Triage Coordination"
+    file: "steps/step-01-triage.md"
+    agent: "osint-lead"
+    codename: "Vector"
+    description: "Validate identifiers, dispatch parallel collection, set boundaries"
+  - name: "Parallel Collection"
+    file: "steps/step-02-parallel-collection.md"
+    agent: "multiple"
+    codename: "Probe, Echo, Shadow, Proxy"
+    description: "Simultaneous data gathering across technical, social, dark web, corporate"
+  - name: "Rapid Synthesis"
+    file: "steps/step-03-synthesis.md"
+    agent: "osint-lead"
+    codename: "Vector"
+    description: "Aggregate findings, assign risk score, flag critical findings"
 ---
 
 # Flash Assessment Workflow
