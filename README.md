@@ -9,8 +9,8 @@
 [![Workflows](https://img.shields.io/badge/workflows-88+-purple.svg)]()
 [![Party Presets](https://img.shields.io/badge/presets-27-teal.svg)]()
 [![Claude](https://img.shields.io/badge/Claude-Opus%204.5-orange.svg)](https://www.anthropic.com/claude)
-[![Ollama](https://img.shields.io/badge/Ollama-Local_LLM-blue?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.ai)
-[![LM Studio](https://img.shields.io/badge/LM_Studio-Local_AI-8A2BE2?style=for-the-badge)](https://lmstudio.ai)
+[![Ollama](https://img.shields.io/badge/Ollama-supported-blue.svg)](https://ollama.ai)
+[![LM Studio](https://img.shields.io/badge/LM%20Studio-supported-blueviolet.svg)](https://lmstudio.ai)
 
 **Professional-grade AI agent modules for cybersecurity, intelligence operations, executive leadership, legal support, software development, and game development**
 
