@@ -739,7 +739,7 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 | **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 6 workflows |
 | **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 6 agents, 4 workflows |
 | **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 29 workflows |
-| **Core** (Infrastructure) | Abdul PM | Abdul + BMAD Master, 27 presets |
+| **Core** (Infrastructure) | BMAD Master | Abdul PM + BMAD Master, 27 presets |
 | **Cybersec-Team** | — | ✅ **15 agents, 13 workflows** |
 | **Intel-Team** | — | ✅ **11 agents, 19 workflows** |
 | **Strategy-Team** | — | ✅ **14 agents, 16 workflows** |
