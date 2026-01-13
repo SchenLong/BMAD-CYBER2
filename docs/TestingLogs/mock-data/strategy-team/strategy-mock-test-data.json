@@ -1,0 +1,60 @@
+{
+  "test_suite": "Strategy-Team Workflow Execution Tests",
+  "test_date": "2026-01-12",
+  "mock_targets": {
+    "strategic_decision": {
+      "decision_topic": "Market Expansion into APAC Region",
+      "stakeholders": ["CEO", "CFO", "Board", "Regional VPs"],
+      "timeline": "Q2 2026",
+      "budget_impact": "$15M investment",
+      "risk_level": "HIGH",
+      "strategic_options": ["Greenfield expansion", "Joint venture", "Acquisition"]
+    },
+    "crisis_response": {
+      "crisis_type": "Data Breach",
+      "severity": "HIGH",
+      "affected_parties": ["Customers", "Regulators", "Media", "Employees"],
+      "timeline": "Immediate (72-hour window)",
+      "regulatory_implications": ["GDPR notification", "SEC disclosure", "State breach laws"]
+    },
+    "ma_due_diligence": {
+      "target_company": "TechTarget Inc",
+      "deal_type": "Acquisition",
+      "deal_value": "$50M",
+      "strategic_rationale": "Technology acquisition for AI capabilities",
+      "timeline": "90 days to close"
+    },
+    "ethical_dilemma": {
+      "dilemma": "Whistleblower report on executive misconduct",
+      "stakeholders": ["Board", "Legal", "HR", "Employees", "Media"],
+      "ethical_dimensions": ["Duty to investigate", "Privacy concerns", "Fiduciary duty"],
+      "timeline": "30 days to resolution"
+    }
+  },
+  "test_scenarios": [
+    {
+      "id": "STRAT-001",
+      "workflow": "strategic-decision-workshop",
+      "target_type": "strategic_decision",
+      "expected_steps": 9
+    },
+    {
+      "id": "STRAT-002",
+      "workflow": "crisis-response-planning",
+      "target_type": "crisis_response",
+      "expected_steps": 7
+    },
+    {
+      "id": "STRAT-003",
+      "workflow": "ma-due-diligence",
+      "target_type": "ma_due_diligence",
+      "expected_steps": 8
+    },
+    {
+      "id": "STRAT-004",
+      "workflow": "ethical-dilemma-resolution",
+      "target_type": "ethical_dilemma",
+      "expected_steps": 8
+    }
+  ]
+}

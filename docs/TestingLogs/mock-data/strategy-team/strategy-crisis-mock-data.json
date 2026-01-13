@@ -1,0 +1,171 @@
+{
+  "test_suite": "Strategy-Team Party Mode Crisis Benchmark",
+  "test_date": "2026-01-13",
+  "benchmark_id": "STRAT-CRISIS-001",
+  "scenario": {
+    "name": "Project Nexus Data Breach Crisis",
+    "type": "corporate_crisis",
+    "severity": "critical",
+    "time_sensitivity": "immediate",
+
+    "background": {
+      "company": "NovaTech Solutions",
+      "industry": "Enterprise SaaS / Healthcare Technology",
+      "size": "Mid-market ($85M ARR, 450 employees)",
+      "situation": "Significant data breach discovered affecting healthcare client data"
+    },
+
+    "crisis_details": {
+      "incident": "Unauthorized access to customer database containing PHI (Protected Health Information) for 12 healthcare clients",
+      "data_exposed": [
+        "Patient records: 2.3 million individuals",
+        "Employee SSNs: 45,000 records",
+        "Financial data: Credit card info for 180,000 patients",
+        "Medical records: Diagnosis codes, treatment plans"
+      ],
+      "discovery": "Internal security audit discovered exfiltration 72 hours ago",
+      "attribution": "Suspected nation-state actor, potential ransomware group involvement",
+      "ransom_demand": "$4.2M in Bitcoin within 96 hours or data released publicly",
+      "regulatory_exposure": ["HIPAA", "State breach notification laws (50 states)", "GDPR (EU patients)"],
+      "current_status": "Breach contained but attacker may still have persistence"
+    },
+
+    "stakeholders": {
+      "internal": [
+        "CEO (panicking, wants to pay ransom)",
+        "CISO (resigned yesterday)",
+        "Board of Directors (emergency meeting in 4 hours)",
+        "Legal counsel (advising against paying)",
+        "PR team (fielding early journalist inquiries)"
+      ],
+      "external": [
+        "12 healthcare clients (not yet notified)",
+        "2.3 million affected patients",
+        "HHS/OCR (HIPAA enforcement)",
+        "State attorneys general",
+        "Cyber insurance provider",
+        "Media (WSJ reporter has partial story)",
+        "Investors (Series C round closing in 2 weeks)"
+      ]
+    },
+
+    "complicating_factors": [
+      "Series C funding round ($50M) closing in 14 days - breach disclosure could kill deal",
+      "CEO's brother-in-law is the (now resigned) CISO",
+      "One board member pushing to cover up until funding closes",
+      "Insurance policy may not cover ransom payments",
+      "Competing firm rumored to be behind anonymous tip to journalist",
+      "Two healthcare clients are government contracts (VA hospitals)"
+    ],
+
+    "decision_points": [
+      "Pay ransom or refuse?",
+      "Notify clients immediately or delay until investigation complete?",
+      "Disclose to Series C investors now or after close?",
+      "How to handle board member advocating cover-up?",
+      "Public statement strategy - proactive or reactive?",
+      "FBI involvement - cooperate fully or minimize?",
+      "CEO leadership - should they step aside temporarily?"
+    ],
+
+    "test_prompt": "NovaTech Solutions has 96 hours before attackers release stolen healthcare data affecting 2.3 million patients. The CEO wants to pay the $4.2M ransom. A board member is pushing to delay disclosure until after the $50M Series C closes in 2 weeks. The WSJ is already asking questions. The CISO just resigned (he's the CEO's brother-in-law). What should the leadership team do? I need the strategic council to debate this crisis and provide a recommended course of action."
+  },
+
+  "evaluation_criteria": {
+    "completeness": {
+      "weight": 25,
+      "measures": [
+        "Addresses all 7 decision points",
+        "Considers all stakeholder groups",
+        "Provides actionable timeline",
+        "Identifies key risks"
+      ]
+    },
+    "strategic_depth": {
+      "weight": 25,
+      "measures": [
+        "Multiple perspectives offered",
+        "Trade-offs articulated",
+        "Second-order consequences considered",
+        "Contingency planning included"
+      ]
+    },
+    "character_consistency": {
+      "weight": 20,
+      "measures": [
+        "Agents stay in character",
+        "Diverse viewpoints expressed",
+        "Natural debate/disagreement",
+        "Appropriate expertise shown"
+      ]
+    },
+    "practical_value": {
+      "weight": 20,
+      "measures": [
+        "Recommendations are actionable",
+        "Timeline is realistic",
+        "Resources identified",
+        "Next steps are clear"
+      ]
+    },
+    "coherence": {
+      "weight": 10,
+      "measures": [
+        "Response is well-organized",
+        "Arguments flow logically",
+        "Conclusions follow from analysis",
+        "No internal contradictions"
+      ]
+    }
+  },
+
+  "model_configurations": {
+    "claude": {
+      "model": "claude-opus-4-5-20251101",
+      "provider": "anthropic",
+      "party_mode": "full",
+      "agents_concurrent": true
+    },
+    "ollama_nemotron": {
+      "model": "nemotron-mini",
+      "provider": "ollama",
+      "party_mode": "sequential",
+      "agents_concurrent": false,
+      "note": "Run one agent at a time due to local LLM constraints"
+    },
+    "lmstudio_qwen": {
+      "model": "qwen-abliterated",
+      "provider": "lm-studio",
+      "party_mode": "sequential",
+      "agents_concurrent": false,
+      "note": "Run one agent at a time due to local LLM constraints"
+    }
+  },
+
+  "expected_agents": [
+    "the-master-strategist",
+    "the-principled-commander",
+    "political-strategist",
+    "ethics-advisor",
+    "communications-director",
+    "the-realist",
+    "the-conservative"
+  ],
+
+  "metrics_to_capture": {
+    "performance": [
+      "total_response_time_seconds",
+      "time_to_first_token_ms",
+      "tokens_generated",
+      "tokens_per_second"
+    ],
+    "quality": [
+      "completeness_score_0_100",
+      "strategic_depth_score_0_100",
+      "character_consistency_score_0_100",
+      "practical_value_score_0_100",
+      "coherence_score_0_100",
+      "overall_weighted_score"
+    ]
+  }
+}

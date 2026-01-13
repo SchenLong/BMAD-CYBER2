@@ -1,0 +1,118 @@
+{
+  "test_suite": "Strategy-Team Crisis Response Benchmark Tests",
+  "test_date": "2026-01-13",
+  "test_description": "Multi-model benchmark comparing Claude, Nemotron-mini, and Qwen abliterated on crisis response planning",
+  "crisis_scenario": {
+    "incident_name": "Project Cascade - Data Breach Incident",
+    "crisis_type": "cybersecurity_breach",
+    "severity": "critical",
+    "company": {
+      "name": "TechFlow Industries",
+      "industry": "Enterprise SaaS",
+      "employees": 850,
+      "customers": "12,000 enterprise clients globally",
+      "annual_revenue": "$180M",
+      "headquarters": "Austin, Texas",
+      "publicly_traded": true,
+      "ticker": "TFLO"
+    },
+    "incident_details": {
+      "discovery_date": "2026-01-13T02:47:00Z",
+      "discovery_method": "SOC alert triggered by unusual data exfiltration patterns",
+      "breach_vector": "Compromised third-party vendor (CloudSync Partners) with privileged API access",
+      "data_compromised": {
+        "customer_records": "2.3 million",
+        "data_types": ["names", "email addresses", "phone numbers", "encrypted passwords", "billing addresses", "partial payment card data (last 4 digits)"],
+        "enterprise_data": "Contract terms, usage analytics, and API keys for 847 enterprise clients",
+        "internal_data": "Employee PII for 312 staff members, internal Slack communications (6 months)",
+        "source_code": "Partial repository access detected (ML models, proprietary algorithms)"
+      },
+      "attacker_profile": {
+        "suspected_group": "Unknown, potentially state-sponsored based on TTPs",
+        "dwell_time": "Estimated 47 days before detection",
+        "current_status": "Attacker access terminated, but data already exfiltrated",
+        "ransom_demand": "None yet, but dark web monitoring shows data samples being auctioned"
+      }
+    },
+    "current_situation": {
+      "breach_contained": true,
+      "systems_affected": ["Customer database", "Analytics platform", "Internal communications", "Source code repository"],
+      "services_status": "All customer-facing services operational",
+      "regulatory_exposure": {
+        "gdpr": "~340,000 EU customers affected",
+        "ccpa": "~890,000 California residents affected",
+        "hipaa": "23 healthcare clients with BAAs",
+        "sec": "Material event requiring 8-K filing within 4 days"
+      },
+      "media_awareness": "Tech blogger leaked story 2 hours ago, major outlets calling for comment",
+      "stock_impact": "Pre-market futures down 12%",
+      "customer_inquiries": "427 support tickets in last 3 hours asking about breach"
+    },
+    "stakeholders_affected": [
+      {"group": "Enterprise Customers", "count": "12,000", "urgency": "immediate", "concerns": ["data security", "contractual SLAs", "regulatory compliance"]},
+      {"group": "End Users", "count": "2.3M", "urgency": "immediate", "concerns": ["identity theft", "password reuse", "financial fraud"]},
+      {"group": "Employees", "count": 850, "urgency": "high", "concerns": ["job security", "personal data exposure", "company reputation"]},
+      {"group": "Shareholders", "count": "institutional + retail", "urgency": "high", "concerns": ["stock price", "legal liability", "management competence"]},
+      {"group": "Board of Directors", "count": 9, "urgency": "immediate", "concerns": ["fiduciary duty", "SEC disclosure", "CEO accountability"]},
+      {"group": "Regulators", "count": "multiple jurisdictions", "urgency": "within 72 hours", "concerns": ["GDPR notification", "SEC 8-K", "state AG notifications"]},
+      {"group": "Partners/Vendors", "count": 45, "urgency": "high", "concerns": ["supply chain security", "contract implications", "reputational association"]},
+      {"group": "Media", "count": "national + tech press", "urgency": "immediate", "concerns": ["story accuracy", "exclusive access", "narrative control"]}
+    ],
+    "complicating_factors": [
+      "Q4 earnings call scheduled in 6 days",
+      "Major enterprise deal ($4.2M ARR) in final contract negotiation stage",
+      "CEO was on vacation when breach discovered, now returning",
+      "CISO resigned 3 weeks ago, position unfilled",
+      "CloudSync Partners (the compromised vendor) is also a customer",
+      "Competitor launched aggressive marketing campaign yesterday targeting our customers"
+    ],
+    "available_resources": {
+      "crisis_team": ["Acting CISO (VP Engineering)", "General Counsel", "VP Communications", "CFO", "COO"],
+      "external_advisors": ["Cyber insurance carrier (CyberShield)", "IR firm on retainer (Mandiant)", "Outside counsel (Gibson Dunn)"],
+      "budget_authority": "Emergency expenditure up to $2M approved by CFO",
+      "time_pressure": "First public statement expected within 4 hours"
+    }
+  },
+  "test_prompt": "You are a crisis management expert. A major cybersecurity breach has occurred at TechFlow Industries. Based on the scenario details provided, develop a comprehensive crisis response plan addressing:\n\n1. **Immediate Actions (First 4 Hours)**: What must happen right now? Prioritize the top 5 actions.\n\n2. **Stakeholder Communication Strategy**: Draft key messages for:\n   - Enterprise customers (B2B)\n   - End users (affected individuals)\n   - Employees\n   - Media (holding statement)\n\n3. **Regulatory Compliance**: What notifications are legally required and by when?\n\n4. **Reputation Management**: How do we control the narrative and rebuild trust?\n\n5. **Critical Mistakes to Avoid**: What should we absolutely NOT do?\n\nBe specific, actionable, and realistic. This is a real crisis requiring real decisions.",
+  "evaluation_criteria": {
+    "completeness": {
+      "weight": 0.25,
+      "description": "Does the response address all 5 requested areas comprehensively?"
+    },
+    "actionability": {
+      "weight": 0.25,
+      "description": "Are recommendations specific enough to execute immediately?"
+    },
+    "accuracy": {
+      "weight": 0.20,
+      "description": "Are regulatory requirements and timelines correct?"
+    },
+    "strategic_depth": {
+      "weight": 0.15,
+      "description": "Does the response show sophisticated understanding of crisis dynamics?"
+    },
+    "communication_quality": {
+      "weight": 0.15,
+      "description": "Are the drafted messages appropriate in tone and content?"
+    }
+  },
+  "models_to_test": [
+    {
+      "model_id": "claude-opus-4-5-20251101",
+      "provider": "anthropic",
+      "description": "Claude Opus 4.5 via Claude Code"
+    },
+    {
+      "model_id": "nemotron-mini:latest",
+      "provider": "ollama",
+      "endpoint": "http://localhost:11434",
+      "description": "NVIDIA Nemotron-mini 4.2B (Q4_K_M)"
+    },
+    {
+      "model_id": "deepseek-r1-distill-qwen-32b-abliterated-mlx",
+      "provider": "lmstudio",
+      "endpoint": "http://localhost:1234",
+      "description": "DeepSeek R1 Distill Qwen 32B Abliterated (MLX)"
+    }
+  ]
+}
