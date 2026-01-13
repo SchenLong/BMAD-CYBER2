@@ -258,7 +258,7 @@ Brainstorming, design thinking, and innovation methodology.
 
 The core infrastructure module is always installed and provides:
 
-> 📦 **Module Origin:** This module is based on the **original [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) framework** core. **Significant extensions in BMAD-CYBERSEC:** Added BMAD Master orchestrator, expanded from basic Abdul PM to full cross-module orchestration, added 27 party mode presets, 15 workflows (up from ~5), phase gates, team orchestration templates, and cross-module expertise mapping.
+> 📦 **Module Origin:** This module is based on the **original [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) framework** core. **Significant extensions in BMAD-CYBERSEC:** Added Abdul PM, expanded from basic BMAD Master orchestrator to full cross-module orchestration, added 27 party mode presets, 15 workflows (up from ~5), phase gates, team orchestration templates, and cross-module expertise mapping.
 
 | | |
 |---|---|
