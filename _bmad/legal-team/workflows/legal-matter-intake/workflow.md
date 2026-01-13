@@ -1,6 +1,35 @@
 ---
 name: legal-matter-intake
 description: Initial case assessment and routing workflow serving as the entry point for all legal matters
+version: 1.0.0
+category: intake
+tags:
+  - intake
+  - routing
+  - assessment
+  - triage
+module: legal-team
+primaryAgent: counsel
+supportingAgents:
+  - liberty
+  - europa
+  - castile
+  - covenant
+  - advocate
+  - tribute
+estimatedSteps: 8
+outputArtifact: '{project-root}/docs/legal/matter-brief-{timestamp}.md'
+stateTracking:
+  file: '{workflow_path}/workflow.md'
+  format: yaml-frontmatter
+  fields:
+    - currentStep
+    - stepsCompleted
+    - matterType
+    - jurisdiction
+    - urgencyLevel
+currentStep: 1
+stepsCompleted: []
 web_bundle: true
 ---
 
