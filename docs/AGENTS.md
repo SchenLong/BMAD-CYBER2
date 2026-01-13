@@ -384,4 +384,4 @@ Meta-module for creating new BMAD modules.
 | **cis** | 6 | Creative innovation & storytelling |
 | **core** | 2 | Framework orchestration |
 
-**Total: 79 specialized AI agents**
+**Total: 80 specialized AI agents**

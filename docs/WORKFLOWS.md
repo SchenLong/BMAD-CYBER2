@@ -548,4 +548,4 @@ These workflows provide legal perspective when other modules require legal input
 | **core** | 15 | Framework orchestration |
 | **cis** | 4 | Creative innovation |
 
-**Total: 141 specialized workflows**
+**Total: 143 specialized workflows**
