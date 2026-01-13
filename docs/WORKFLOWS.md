@@ -542,8 +542,10 @@ These workflows provide legal perspective when other modules require legal input
 | **intel-team** | 19 | Intelligence operations |
 | **strategy-team** | 16 | Executive leadership |
 | **legal-team** | 7 | Legal support (Party Mode - 13 agents) |
-| **bmm** | 20+ | Software development |
-| **bmgd** | 15+ | Game development |
-| **bmb** | 5 | Module creation |
+| **bmm** | 32 | Software development |
+| **bmgd** | 29 | Game development |
+| **bmb** | 6 | Module creation |
+| **core** | 15 | Framework orchestration |
+| **cis** | 4 | Creative innovation |
 
-**Total: 95+ specialized workflows**
+**Total: 143 specialized workflows**

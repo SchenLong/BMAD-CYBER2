@@ -1,6 +1,32 @@
 ---
 name: contract-review
 description: Comprehensive contract analysis identifying risks, gaps, and recommended modifications across jurisdictions
+version: 1.0.0
+category: contracts
+tags:
+  - contract
+  - review
+  - analysis
+  - risk
+module: legal-team
+primaryAgent: covenant
+supportingAgents:
+  - liberty
+  - europa
+  - castile
+estimatedSteps: 9
+outputArtifact: '{project-root}/docs/legal/contract-review-{timestamp}.md'
+stateTracking:
+  file: '{workflow_path}/workflow.md'
+  format: yaml-frontmatter
+  fields:
+    - currentStep
+    - stepsCompleted
+    - contractName
+    - governingLaw
+    - riskLevel
+currentStep: 1
+stepsCompleted: []
 web_bundle: true
 ---
 

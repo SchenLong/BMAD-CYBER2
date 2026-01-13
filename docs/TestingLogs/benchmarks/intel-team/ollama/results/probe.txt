@@ -1,0 +1,29 @@
+========================================
+Agent: probe
+Model: nemotron-mini
+Start: 2026-01-13 01:14:30
+========================================
+ Based on my analysis, I believe that the threat indicators point to a sophisticated and organized APT attack group targeting Meridian Capital Holdings (Meridian). The IP range 167.71.89.0/24 overlaps with documented infrastructure of APT41, indicating a strong possibility of collaboration or affiliation between the two entities.
+
+The campaign is likely being carried out by an attacker who goes by the alias "CryptoPhantom" and has sold access to major US financial institutions in the past using insider credentials. The threat actor's motivations for targeting Meridian might be due to their significant assets under management (AUM) or a desire to steal trade secrets related to their financial services industry operations.
+
+The attack infrastructure is likely being used across multiple domains and phishing pretexts, including meridian-secure-login.com registered just 72 hours ago using the same hosting provider as mcapital-verify.com and meridian-auth.net (DigitalOcean). The Dark Web post on XSS.is mentioning "Project Ledger - Banking Sector Q1 2026" seems to indicate a potential data exfiltration plan targeting specific departments within Meridian, such as Treasury Operations for this specific quarter in the future.
+
+The phishing pretexts and pretext domains (meridian-secure-login.com, mcapital-verify.com, meridian-auth.net) are likely being used by the attacker to extract sensitive information from DocuSign's targeted users within Meridian. The fake LinkedIn profiles impersonating CEO Victoria Chen and CFO Marcus Webb further indicate a strong focus on social engineering for this attack campaign.
+
+The cryptocurrency wallet bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh linked to Conti/LockBit payments suggests the attacker's potential involvement in ransomware operations, which could be used as a cover for data exfiltration or as leverage during negotiation with Meridian.
+
+To address this threat immediately, Meridian should:
+
+1. Implement strong network segmentation and access controls on all IP ranges connected to their infrastructure (including 167.71.89.0/24).
+2. Regularly monitor traffic patterns between these IP ranges and any other potential targets within the organization using tools like Wireshark, tcpdump, or ELK Stack.
+3. Establish a strong multi-factor authentication system for all accounts accessed through Meridian's network to prevent unauthorized access.
+4. Update all antivirus/antimalware solutions and deploy intrusion detection systems (IDS) on all connected devices.
+5. Regularly update security configurations across the entire infrastructure, including any cloud services used by Meridian Capital Holdings.
+6. Conduct a thorough pen-testing of all connected devices within the organization using tools like Metasploit or Nmap to identify potential vulnerabilities and ensure that they are patched as needed.
+7. Establish incident response plans for various types of attacks (data exfiltration, ransomware) and regularly train employees on these plans.
+8. If possible, engage a third-party security firm to perform regular penetration testing and vulnerability assessments within the organization's infrastructure and network.
+
+Duration: 12.913515000s
+End: 2026-01-13 01:14:43
+

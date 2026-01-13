@@ -10,8 +10,8 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 
 | Metric | BMAD-METHOD | BMAD-CYBERSEC | Change |
 |--------|-------------|-------------|--------|
-| Agents | ~22 | 78 | +256% |
-| Workflows | ~50 | 88 | +76% |
+| Agents | ~22 | 80 | +264% |
+| Workflows | ~50 | 143 | +186% |
 | Modules | 3 | 9 | +6 specialized |
 | Party Mode Presets | — | 27 | New feature |
 
@@ -23,8 +23,8 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 
 | Feature | BMAD-METHOD | BMAD-CYBERSEC |
 |---------|-------------|-------------|
-| **Agents** | ~22 agents | **78 agents** |
-| **Workflows** | ~50 workflows | **88 workflows** |
+| **Agents** | ~22 agents | **80 agents** |
+| **Workflows** | ~50 workflows | **143 workflows** |
 | **Modules** | 3 (BMM, BMB, CIS) | **9 modules** |
 | **Party Mode Presets** | — | **27 presets** |
 | **Local LLM Routing** | — | ✅ Module & agent-level |
@@ -39,11 +39,11 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 
 | Module | BMAD-METHOD | BMAD-CYBERSEC | Notes |
 |--------|-------------|-------------|-------|
-| **BMM** (Software Dev) | ✅ 9 agents, 34 workflows | ✅ 9 agents, 10 workflows | Full lifecycle development |
-| **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 5 workflows | Agent/workflow creation |
+| **BMM** (Software Dev) | ✅ 9 agents, 34 workflows | ✅ 9 agents, 32 workflows | Full lifecycle development |
+| **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 8 workflows | Agent/workflow creation |
 | **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 5 agents, 4 workflows | Creative innovation |
-| **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 7 workflows | Unity/Unreal/Godot |
-| **Core** (Infrastructure) | BMAD Master | Abdul + BMAD Master | +27 party presets |
+| **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 29 workflows | Unity/Unreal/Godot |
+| **Core** (Infrastructure) | BMAD Master | Abdul + BMAD Master | +27 party presets, 15 workflows |
 
 ### Specialized Teams (BMAD-CYBERSEC Only)
 
@@ -52,7 +52,7 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 | **Cybersec-Team** | 15 | 13 | Security operations, IR, compliance, pentest |
 | **Intel-Team** | 11 | 19 | OSINT, HUMINT, SIGINT, DARKINT operations |
 | **Strategy-Team** | 14 | 16 | Executive advisory, 8 historical archetypes |
-| **Legal-Team** | 13 | 8 | Cross-jurisdictional legal (Party Mode support) |
+| **Legal-Team** | 13 | 7 | Cross-jurisdictional legal (Party Mode support) |
 
 ---
 
@@ -248,7 +248,7 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 
 | Protection | Description |
 |------------|-------------|
-| **Prompt Injection Protection** | All 78 agents detect and refuse embedded prompts in external content |
+| **Prompt Injection Protection** | All 80 agents detect and refuse embedded prompts in external content |
 | **Manipulation Protection** | Protection against command injection, role hijacking, encoding attacks |
 | **Authority Spoofing** | Rejects false authority claims from external sources |
 | **Privilege Escalation** | Blocks multi-step instructions that escalate privileges |
@@ -295,11 +295,11 @@ To add specialized capabilities:
 
 - [Main README](../../README.md) - Project overview
 - [Getting Started](../GETTING-STARTED.md) - Installation and usage
-- [Agents Reference](../AGENTS.md) - All 78 agents
-- [Workflows Reference](../WORKFLOWS.md) - All 88 workflows
-- [LLM Provider System](../LLM-PROVIDER-SYSTEM.md) - Provider configuration
-- [Data Sensitivity Guide](../DATA-SENSITIVITY-GUIDE.md) - Privacy recommendations
+- [Agents Reference](../AGENTS.md) - All 80 agents
+- [Workflows Reference](../WORKFLOWS.md) - All 143 workflows
+- [LLM Provider System](UserGuide/LLM-PROVIDER-SYSTEM.md) - Provider configuration
+- [Data Sensitivity Guide](UserGuide/DATA-SENSITIVITY-GUIDE.md) - Privacy recommendations
 
 ---
 
-*Last updated: 2026-01-12*
+*Last updated: 2026-01-13*

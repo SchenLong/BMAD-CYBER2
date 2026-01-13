@@ -1,6 +1,31 @@
 ---
 name: contract-drafting
 description: Create jurisdiction-appropriate contracts from scratch or modify existing templates based on requirements
+version: 1.0.0
+category: contracts
+tags:
+  - contract
+  - drafting
+  - template
+  - negotiation
+module: legal-team
+primaryAgent: covenant
+supportingAgents:
+  - liberty
+  - europa
+  - castile
+estimatedSteps: 9
+outputArtifact: '{project-root}/docs/legal/contract-draft-{timestamp}.md'
+stateTracking:
+  file: '{workflow_path}/workflow.md'
+  format: yaml-frontmatter
+  fields:
+    - currentStep
+    - stepsCompleted
+    - contractType
+    - governingLaw
+currentStep: 1
+stepsCompleted: []
 web_bundle: true
 ---
 
