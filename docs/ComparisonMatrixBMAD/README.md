@@ -23,8 +23,8 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 
 | Feature | BMAD-METHOD | BMAD-CYBERSEC |
 |---------|-------------|-------------|
-| **Agents** | ~22 agents | **78 agents** |
-| **Workflows** | ~50 workflows | **88 workflows** |
+| **Agents** | ~22 agents | **79 agents** |
+| **Workflows** | ~50 workflows | **141 workflows** |
 | **Modules** | 3 (BMM, BMB, CIS) | **9 modules** |
 | **Party Mode Presets** | — | **27 presets** |
 | **Local LLM Routing** | — | ✅ Module & agent-level |
@@ -248,7 +248,7 @@ BMAD-CYBERSEC extends the original BMAD-METHOD framework with **4 specialized te
 
 | Protection | Description |
 |------------|-------------|
-| **Prompt Injection Protection** | All 78 agents detect and refuse embedded prompts in external content |
+| **Prompt Injection Protection** | All 79 agents detect and refuse embedded prompts in external content |
 | **Manipulation Protection** | Protection against command injection, role hijacking, encoding attacks |
 | **Authority Spoofing** | Rejects false authority claims from external sources |
 | **Privilege Escalation** | Blocks multi-step instructions that escalate privileges |
@@ -295,8 +295,8 @@ To add specialized capabilities:
 
 - [Main README](../../README.md) - Project overview
 - [Getting Started](../GETTING-STARTED.md) - Installation and usage
-- [Agents Reference](../AGENTS.md) - All 78 agents
-- [Workflows Reference](../WORKFLOWS.md) - All 88 workflows
+- [Agents Reference](../AGENTS.md) - All 79 agents
+- [Workflows Reference](../WORKFLOWS.md) - All 141 workflows
 - [LLM Provider System](../LLM-PROVIDER-SYSTEM.md) - Provider configuration
 - [Data Sensitivity Guide](../DATA-SENSITIVITY-GUIDE.md) - Privacy recommendations
 

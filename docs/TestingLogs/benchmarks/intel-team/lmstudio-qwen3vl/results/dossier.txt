@@ -1,0 +1,84 @@
+========================================
+Agent: dossier
+Model: qwen/qwen3-vl-30b
+Start: 2026-01-13 01:06:47
+========================================
+**Dossier: OPERATION PHANTOM LEDGER**  
+**Threat Actor Profiler | Intelligence Assessment**  
+**Classification: TOP SECRET // EYES ONLY // OPAQUE**  
+
+---
+
+### **1. Attribution: Who is behind this campaign?**  
+**Threat Actor:** *CryptoPhantom* (suspected APT33/Operation GhostNet variant)  
+**Confidence Level:** **High (85%)**  
+
+**Analysis:**  
+- The **Dark Web post** on *XSS.is* by *CryptoPhantom* — a **verified seller** with 47 positive reviews — indicates a **sophisticated, monetized threat actor** with established reputation in the cybercrime market.  
+- The **phishing domain pattern** (meridian-*, mcapital-*, -auth.net) mirrors known **APT33** (also known as **OilRig**, **Comment Crew**) phishing infrastructure — particularly their use of **financial sector impersonation** targeting **high-net-worth institutions**.  
+- **IP range 167.71.89.0/24** shows **documented APT41 infrastructure overlap** in Q4 2024, suggesting **possible operational overlap or tool sharing** between APT41 and *CryptoPhantom*.  
+- **BTC payment wallet** `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh` is **linked to Conti/LockBit payments**, but **not directly affiliated**. This suggests **a hybrid model**: *CryptoPhantom* is **reselling access** to **third-party Ransomware-as-a-Service (RaaS)** actors — likely a **hybrid threat model** where financial exfiltration precedes ransom demands.  
+
+**Conclusion:** This is **not a single actor**, but a **coordinated campaign**. The **primary actor** is *CryptoPhantom* — a **financially motivated threat group** operating under **APT33** tradecraft. There is **high probability of APT33 involvement**, possibly through **a contractor or affiliate**. The **Conti/LockBit link** suggests **future double-extortion** intent.  
+
+---
+
+### **2. Full Attack Infrastructure Footprint**  
+**Infrastructure Layers:**  
+
+| Layer | Details |
+|-------|--------|
+| **Domain Registries** | - `meridian-secure-login.com` (NameCheap, reg. 72h ago) <br> - `meridian-auth.net`, `mcapital-verify.com`, `meridian-portal.org` (all registered same day, same registrar) |
+| **Hosting** | - **DigitalOcean**, IP: `167.71.89.142` <br> - **IP Range**: `167.71.89.0/24` — **APT41 TTPs documented** (2024), **MITRE ATT&CK T1071.001 (Application Shells)** |
+| **C2 Infrastructure** | - **No known C2 hosts yet** — likely **single-use phishing infrastructure** (phishing pages hosted via **GitHub Pages** or **Cloudflare** proxy) |
+| **Compromised Systems** | - **No confirmed breaches** — infrastructure is **pre-compromise** |
+| **TTPs** | - **Phishing** (T1566) <br> - **Spear Phishing Attachment** (T1566.002) — **DocuSign** bait <br> - **Credential Harvesting** (T1110) <br> - **Lateral Movement** (T1078) — **Targeting Treasury Ops** |
+| **Known Infrastructure Links** | - `167.71.89.142` — **Linked to APT41 TTPs**: T1059 (Command and Scripting Interpreter), T1105 (Ingress Tool Transfer), T1204 (User Execution) |
+
+---
+
+### **3. Attack Timeline: When will it likely occur?**  
+**Likely Window:** **Q1 2026**, **Early February 2026**  
+
+**Rationale:**  
+- **Dark Web Post** references **"Project Ledger - Banking Sector Q1 2026"** — **explicit timeframe**.  
+- **Phishing Pretext**: "Urgent Q4 Financial Review" — aligns with **end-of-year financial reporting cycles**, when **Treasury Ops** are most active.  
+- **Peak Activity Window**: **February 1–15, 2026** — when **Meridian Capital** is expected to finalize **Q4 reports** and **audit cycles**.  
+- **Phishing Domain Registration**: 72 hours ago — **imminent deployment**.  
+
+**Risk:** **High likelihood of attack within 30 days** of detection.  
+
+---
+
+### **4. Specific Targets Within Meridian**  
+**Primary Target:** **Treasury Operations Department**  
+
+**Key Individuals:**  
+- **Executive Level:**  
+  - **Victoria Chen** (CEO) — **Fake LinkedIn profile** used for **social engineering** — impersonation attack vector.  
+  - **Marcus Webb** (CFO) — **Fake LinkedIn profile** — likely used to **impersonate** in **phishing emails**.  
+- **Operational Target:**  
+  - **Treasury Operations Analysts** — **access to DocuSign** for **financial review workflows** — **high access** to **payment systems**.  
+  - **Compliance Officers** — potential **access to audit logs** — **targeted for credential theft**.  
+
+**Attack Vector:**  
+- **Phishing email** sent to **Treasury Ops** staff — **"Urgent Q4 Financial Review Required"** — **links to `meridian-secure-login.com`** — **fake DocuSign portal** — **credential harvest**.  
+- **Post-authentication**: **Lateral movement** to **payment processing systems** — **targeting SWIFT integration**.  
+
+---
+
+### **5. Social Engineering Pretexts**  
+**Primary Pretext:**  
+> **"Urgent Q4 Financial Review Required - DocuSign"**  
+
+**Supporting Elements:**  
+- **Sender:** Appears to be **Victoria Chen** or **Marcus Webb** — **spoofed email** via **domain spoofing** (`@meridian-capital.com` — **not** `@meridian-capital-holdings.com`)  
+- **Subject Line:** **Urgent**, **time-sensitive**, **"Review Required"** — **creates urgency** — **reduces scrutiny**  
+- **Attachment:** **Fake DocuSign PDF** — **contains malicious JavaScript** — **opens in browser** — **redirects to phishing site**  
+- **Language:** **Formal**, **financial terminology** — **mimics authentic internal communication**  
+
+**
+
+Duration: 27.300265000s
+End: 2026-01-13 01:07:14
+

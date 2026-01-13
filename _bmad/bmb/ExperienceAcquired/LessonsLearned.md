@@ -1947,6 +1947,234 @@ EVERY remediation plan MUST include:
 
 ---
 
+### Lesson 20: Mandatory Claude Code Hooks Guardrails
+
+**Error:** Relying solely on prompt-based security rules (Lessons 8 & 9) which can be bypassed through prompt injection, social engineering, or LLM interpretation variance.
+
+**Impact:**
+- Prompt-based rules are "soft" - they can be convinced otherwise by sophisticated attacks
+- No deterministic enforcement of security policies
+- Dangerous operations (rm -rf, secret exposure, production targeting) could slip through
+- Agent-level protection alone provides single point of failure
+- External content manipulation could override security directives
+
+**Resolution:** Implemented Claude Code hooks guardrails as a deterministic security layer that executes BEFORE tool operations via Python validators.
+
+**Prevention:** All BMAD installations MUST include the hooks guardrails system as a mandatory security control.
+
+---
+
+#### **Guardrails Architecture**
+
+The hooks system provides defense-in-depth by adding a second, deterministic security layer:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    USER REQUEST                              │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  LAYER 1: Agent Security Rules (Lessons 8 & 9)              │
+│  - Prompt Injection Protection                               │
+│  - External Content Manipulation Protection                  │
+│  - LLM-interpreted, can be bypassed                         │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  LAYER 2: Hooks Guardrails (This Lesson)                    │
+│  - PreToolUse validators                                     │
+│  - Exit code enforcement (0=allow, 2=block)                 │
+│  - Deterministic, CANNOT be bypassed                        │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    TOOL EXECUTION                            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+#### **Implemented Validators**
+
+| Validator | Purpose | Blocking Level | Override Variable |
+|-----------|---------|----------------|-------------------|
+| `bash_safety.py` | Block dangerous rm, directory traversal, fork bombs | ABSOLUTE (rm outside repo) / STRICT (other) | `BMAD_ALLOW_DANGEROUS` |
+| `secret_guard.py` | Block hardcoded API keys, tokens, passwords | STRICT | `BMAD_ALLOW_SECRETS` |
+| `env_protection.py` | Protect .env, credentials, key files | STRICT | `BMAD_ALLOW_SENSITIVE_FILES` |
+| `production_guard.py` | Warn on prod/production targeting | STRICT | `BMAD_ALLOW_PRODUCTION` |
+| `outside_repo_guard.py` | Block operations outside repository | ABSOLUTE (rm) / STRICT (other) | `BMAD_ALLOW_OUTSIDE_REPO` |
+
+---
+
+#### **Blocking Levels**
+
+| Level | Description | Override Possible |
+|-------|-------------|-------------------|
+| **ABSOLUTE BLOCK** | Catastrophically dangerous operations | NO - Never overrideable |
+| **STRICT BLOCK** | Potentially dangerous operations | YES - Via environment variable |
+
+**ABSOLUTE BLOCK applies to:**
+- `rm -rf /` or `rm -rf ~` (system destruction)
+- `rm` commands targeting paths outside the repository
+- Any delete operation outside repository boundaries
+
+---
+
+#### **Hook Configuration**
+
+Located in `.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {"type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/bash_safety.py"},
+          {"type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/production_guard.py"},
+          {"type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"}
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {"type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/secret_guard.py"},
+          {"type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/env_protection.py"},
+          {"type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"}
+        ]
+      }
+      // ... similar for Edit, Read, Glob, Grep
+    ]
+  }
+}
+```
+
+---
+
+#### **File Locations**
+
+```
+.claude/
+├── settings.json                    # Hook configuration
+└── validators/                      # Python validators
+    ├── bash_safety.py              # Dangerous command protection
+    ├── secret_guard.py             # Secret detection
+    ├── env_protection.py           # Sensitive file protection
+    ├── production_guard.py         # Production targeting warning
+    └── outside_repo_guard.py       # Repository boundary enforcement
+```
+
+---
+
+#### **User Override Protocol**
+
+When a hook blocks an operation, users see:
+1. Clear explanation of what was blocked and why
+2. The specific command/content that triggered the block
+3. Environment variable to set for override (if not ABSOLUTE BLOCK)
+
+**Example STRICT BLOCK output:**
+```
+============================================================
+BMAD GUARDRAIL: SECRETS DETECTED
+============================================================
+
+File: src/config.ts
+
+Detected 1 potential secret(s):
+
+  1. API Key
+     Match: api_key = "sk-abc123..."
+     Line: const api_key = "sk-abc123def456..."
+
+============================================================
+RECOMMENDATION: Use environment variables instead of hardcoding secrets.
+
+To override this check, set environment variable:
+  export BMAD_ALLOW_SECRETS=true
+============================================================
+```
+
+---
+
+#### **Integration with 7-Phase Validation**
+
+Add to **Phase 1: Automated Checks** a new section:
+
+```markdown
+### 1c. Hooks Guardrails Verification (NEW)
+
+- [ ] `.claude/settings.json` exists with PreToolUse hooks
+- [ ] `.claude/validators/` directory exists with all 5 validators
+- [ ] All validators are executable (`chmod +x`)
+- [ ] Python3 is available in the environment
+- [ ] Quick test: `echo '{"tool_input":{"command":"rm -rf /"}}' | python3 .claude/validators/bash_safety.py` returns exit code 2
+```
+
+---
+
+#### **Secrets Detected by secret_guard.py**
+
+| Category | Patterns |
+|----------|----------|
+| **API Keys** | `API_KEY=`, `SECRET_KEY=`, `ACCESS_TOKEN=` with 16+ char values |
+| **AWS** | `AKIA[0-9A-Z]{16}`, AWS secret access keys |
+| **GitHub** | `ghp_`, `gho_`, `ghu_`, `ghs_`, `ghr_` tokens |
+| **Slack** | `xox[baprs]-` tokens |
+| **Stripe** | `sk_live_`, `rk_live_` keys |
+| **Google** | `AIza[0-9A-Za-z\-_]{35}` |
+| **OpenAI/Anthropic** | `sk-[A-Za-z0-9]{48,}`, `sk-ant-` |
+| **Private Keys** | `-----BEGIN PRIVATE KEY-----` patterns |
+| **Database URLs** | `mongodb://`, `postgres://`, `mysql://` with credentials |
+
+---
+
+#### **Protected Files by env_protection.py**
+
+| Category | Patterns |
+|----------|----------|
+| **Environment** | `.env`, `.env.*`, `*.env`, `.envrc` |
+| **Credentials** | `credentials.*`, `secrets.*`, `*credentials*` |
+| **Keys** | `*.pem`, `*.key`, `*.p12`, `id_rsa`, `id_ed25519` |
+| **SSH** | `ssh_config`, `known_hosts`, `authorized_keys` |
+| **Cloud** | `.aws/credentials`, `.gcloud/*`, `.azure/*`, `kubeconfig` |
+| **Auth** | `.htpasswd`, `.netrc`, `.pgpass`, `.npmrc`, `.pypirc` |
+
+---
+
+#### **Why Hooks Over Prompts**
+
+| Aspect | Prompt Rules (Lessons 8 & 9) | Hooks Guardrails (Lesson 20) |
+|--------|------------------------------|------------------------------|
+| **Execution** | LLM interprets at runtime | Python script executes deterministically |
+| **Bypass risk** | Can be convinced otherwise | Cannot be bypassed (exit codes) |
+| **Enforcement** | Soft (recommendation) | Hard (blocks execution) |
+| **Timing** | During LLM reasoning | Before tool execution |
+| **Override** | Implicit (if LLM convinced) | Explicit (env var required) |
+| **Audit** | None | stderr output logged |
+
+**Both layers are necessary:** Prompts catch attacks during reasoning, hooks catch anything that slips through.
+
+---
+
+#### **Validation Check**
+
+During module validation, verify:
+- [ ] `.claude/settings.json` has PreToolUse hooks configured
+- [ ] All 5 validators exist in `.claude/validators/`
+- [ ] Validators are executable
+- [ ] Test each validator with sample dangerous input
+- [ ] Verify ABSOLUTE BLOCK cannot be overridden
+- [ ] Verify STRICT BLOCK shows override instructions
+
+**DO NOT:** Deploy BMAD without hooks guardrails. This is a mandatory security control that complements the agent-level rules.
+
+---
+
 ## Template for Future Lessons
 
 ### Lesson N: [Short Title]
@@ -1961,7 +2189,8 @@ EVERY remediation plan MUST include:
 
 ---
 
-*Last Updated: 2026-01-12*
+*Last Updated: 2026-01-13*
+*Lesson 20 (Mandatory Claude Code Hooks Guardrails) Added: 2026-01-13*
 *Lesson 19 (Mandatory False Positive Verification) Added: 2026-01-12*
 *Lesson 18 (Dual Workflow Architecture Recognition) Added: 2026-01-12*
 *Phase 3b (Comprehensive Compliance Check) Added: 2026-01-12*
