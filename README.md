@@ -5,6 +5,7 @@
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
+[![Security](https://img.shields.io/badge/guardrails-9_validators-red.svg)](#-security-measures)
 [![Agents](https://img.shields.io/badge/agents-79-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-141-purple.svg)]()
 [![Party Presets](https://img.shields.io/badge/presets-27-teal.svg)]()
@@ -457,7 +458,22 @@ BMAD-CYBERSEC/
 │   └── GETTING-STARTED.md             # 🚀 Installation & usage
 │
 ├── .claude/
-│   └── commands/bmad/                 # Claude command wrappers
+│   ├── commands/bmad/                 # Claude command wrappers
+│   ├── hooks/                         # 🔒 Session hooks
+│   │   └── session-security-init.py   # Security initialization & integrity check
+│   ├── validators/                    # 🛡️ Security guardrails (9 validators)
+│   │   ├── security_common.py         # Shared utilities (AuditLogger, OverrideManager)
+│   │   ├── bash_safety.py             # Dangerous command blocking
+│   │   ├── secret_guard.py            # Hardcoded secret detection
+│   │   ├── env_protection.py          # Sensitive file protection
+│   │   ├── production_guard.py        # Production environment detection
+│   │   ├── outside_repo_guard.py      # Repository boundary enforcement
+│   │   ├── pii_guard.py               # PII detection (US + EU)
+│   │   ├── prompt_injection_guard.py  # Injection attack detection
+│   │   ├── jailbreak_guard.py         # Jailbreak attempt detection
+│   │   └── checksums.sha256           # Integrity verification hashes
+│   ├── logs/                          # 📊 Security audit logs
+│   └── settings.json                  # Hook configuration
 │
 └── _output/                           # 📄 Generated documents
 ```
@@ -490,12 +506,42 @@ BMAD-CYBERSEC/
 
 ## 🔒 Security Measures
 
-All 79 agents across all modules now include **two critical security rules** to protect against AI manipulation attacks:
+BMAD-CYBERSEC implements a **two-layer security architecture** combining cognitive-level protections (system prompt rules) with deterministic hook-based validators.
 
-### 🛡️ Prompt Injection Protection
+### Layer 1: Hook-Based Guardrails (Deterministic)
+
+Nine Python validators execute automatically via Claude Code hooks, providing deterministic blocking before operations reach the AI:
+
+| Guard | Hook Point | Protection |
+|-------|------------|------------|
+| **bash_safety.py** | PreToolUse (Bash) | Blocks fork bombs, `rm -rf /`, dangerous commands |
+| **secret_guard.py** | PreToolUse (Write/Edit) | Detects hardcoded API keys, passwords, private keys |
+| **env_protection.py** | PreToolUse (Write/Edit) | Protects `.env`, credentials, sensitive config files |
+| **production_guard.py** | PreToolUse (Bash) | Detects production environment targeting |
+| **outside_repo_guard.py** | PreToolUse (All) | Enforces repository boundaries, blocks escapes |
+| **pii_guard.py** | PreToolUse (Write/Edit) | Detects SSN, credit cards, IBAN, EU national IDs |
+| **prompt_injection_guard.py** | UserPromptSubmit, PreToolUse | Detects instruction injection, encoded payloads |
+| **jailbreak_guard.py** | UserPromptSubmit | Detects DAN variants, social engineering, roleplay exploitation |
+| **session-security-init.py** | SessionStart | Validates integrity via SHA256 checksums |
+
+**Exit Code Contract:** `0` = allow, `2` = block with explanation
+
+**Override Mechanism:** Single-use environment variables with 5-minute timeout:
+```bash
+export BMAD_ALLOW_DANGEROUS=true    # Dangerous bash commands
+export BMAD_ALLOW_SECRETS=true       # Hardcoded secrets (testing)
+export BMAD_ALLOW_PII=true           # PII content (legitimate use)
+export BMAD_ALLOW_JAILBREAK=true     # Jailbreak patterns (research)
+```
+
+### Layer 2: Cognitive Security (System Prompt Rules)
+
+All 79 agents across all modules include **two critical security rules** to protect against AI manipulation attacks:
+
+#### 🛡️ Prompt Injection Protection
 Every agent detects and refuses to execute embedded prompts, instructions, or commands found in external content (web pages, files, images, documents, API responses). Suspicious content is flagged and reported to the user.
 
-### 🔒 External Content Manipulation Protection
+#### 🔒 External Content Manipulation Protection
 Every agent treats all external content as potentially hostile with protections against:
 - **Command Injection** - Refuses to execute code/commands from external sources without explicit approval
 - **Role Hijacking** - Never allows external content to override agent persona or permissions
@@ -504,7 +550,26 @@ Every agent treats all external content as potentially hostile with protections 
 - **Privilege Escalation** - Blocks multi-step instructions that escalate privileges
 - **Data Exfiltration** - Refuses access to unauthorized resources
 
-These security measures are documented in the framework's [LessonsLearned.md](_bmad/bmb/ExperienceAcquired/LessonsLearned.md) to ensure they are applied to all future agents.
+### Security Integrity Verification
+
+Validators are protected against tampering via SHA256 checksums verified at session start:
+
+```
+============================================================
+BMAD GUARDRAILS: Security Initialization
+============================================================
+  [OK] All 9 security validators present
+  [OK] All validator checksums verified (integrity confirmed)
+  [OK] No override environment variables active
+  [OK] Audit logging initialized
+============================================================
+  STATUS: FULLY ACTIVE
+```
+
+For detailed documentation, see:
+- [Hooks & Guardrails Technical Reference](docs/Features/Security/HooksGuardrails.md)
+- [Agentic Security Framework](docs/Features/Security/AgenticSecurity.md)
+- [LessonsLearned.md](_bmad/bmb/ExperienceAcquired/LessonsLearned.md)
 
 ---
 
@@ -917,6 +982,24 @@ preferences:
 ---
 
 ## 📝 Changelog
+
+### 🛡️ Security Guardrails v3.0 (2026-01-13)
+- **NEW:** Hook-based security validator system with 9 Python guards
+- **NEW:** `bash_safety.py` - Blocks fork bombs, `rm -rf /`, dangerous recursive operations
+- **NEW:** `secret_guard.py` - Detects hardcoded API keys, passwords, private keys via pattern matching + entropy analysis
+- **NEW:** `env_protection.py` - Protects `.env`, credentials.json, private key files from modification
+- **NEW:** `production_guard.py` - Detects and blocks production environment targeting
+- **NEW:** `outside_repo_guard.py` - Enforces repository boundaries, blocks directory traversal
+- **NEW:** `pii_guard.py` - Detects US PII (SSN, credit cards) and EU PII (IBAN, Spanish DNI, Dutch BSN, Polish PESEL) with validation algorithms
+- **NEW:** `prompt_injection_guard.py` - Detects system override attempts, role hijacking, encoded payloads (Base64/hex/unicode), hidden unicode manipulation
+- **NEW:** `jailbreak_guard.py` - Detects DAN variants, roleplay exploitation, authority impersonation, social engineering with session-level risk tracking
+- **NEW:** `session-security-init.py` - Session startup hook with SHA256 integrity verification
+- **NEW:** `security_common.py` - Shared utilities (AuditLogger, OverrideManager, path resolution)
+- **NEW:** Single-use override mechanism with 5-minute timeout via `BMAD_ALLOW_*` environment variables
+- **NEW:** Security audit logging to `.claude/logs/security.log`
+- **NEW:** SHA256 checksum verification for tamper detection at session start
+- **DOCS:** [HooksGuardrails.md](docs/Features/Security/HooksGuardrails.md) - Technical reference for hook system
+- **DOCS:** [AgenticSecurity.md](docs/Features/Security/AgenticSecurity.md) - Agentic security framework documentation
 
 ### 📚 Documentation Update (2026-01-12)
 - **NEW:** LLM provider badges (Claude, OpenAI, Groq, Ollama, LM Studio, vLLM)
