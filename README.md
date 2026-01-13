@@ -5,8 +5,8 @@
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
-[![Agents](https://img.shields.io/badge/agents-79-blue.svg)]()
-[![Workflows](https://img.shields.io/badge/workflows-141-purple.svg)]()
+[![Agents](https://img.shields.io/badge/agents-80-blue.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-143-purple.svg)]()
 [![Party Presets](https://img.shields.io/badge/presets-27-teal.svg)]()
 
 **LLM Providers:**
@@ -42,8 +42,8 @@
 |--------|---------|--------|-----------|-------|
 | 💻 **[bmm](#-bmm-bmad-method)** | v6.0.0 | 9 | 32 | Software product development |
 | 🎮 **[bmgd](#-bmgd-game-development)** | v1.0.0 | 6 | 29 | Game development (Unity, Unreal, Godot) |
-| 🔧 **[bmb](#-bmb-builder)** | v1.0.0 | 3 | 6 | Module, agent, workflow creation |
-| 🎨 **[cis](#-cis-creative-innovation)** | v1.0.1 | 6 | 4 | Creative innovation & brainstorming |
+| 🔧 **[bmb](#-bmb-builder)** | v1.0.0 | 3 | 8 | Module, agent, workflow creation |
+| 🎨 **[cis](#-cis-creative-innovation)** | v1.0.1 | 5 | 4 | Creative innovation & brainstorming |
 
 ### Core Infrastructure
 
@@ -51,7 +51,7 @@
 |--------|---------|------------|-------|
 | ⚙️ **[core](#️-core-infrastructure)** | v6.0.0 | 2 agents, 15 workflows | Project management & team orchestration |
 
-**Total: 79 specialized agents, 141 production workflows, 27 party mode presets**
+**Total: 80 specialized agents, 143 production workflows, 27 party mode presets**
 
 ---
 
@@ -59,8 +59,8 @@
 
 | Document | Description |
 |----------|-------------|
-| 👥 **[Meet Your Teams](docs/AGENTS.md)** | Complete guide to all 79 AI agents across all modules |
-| 🔄 **[Workflows Reference](docs/WORKFLOWS.md)** | All 141 workflows with details and use cases |
+| 👥 **[Meet Your Teams](docs/AGENTS.md)** | Complete guide to all 80 AI agents across all modules |
+| 🔄 **[Workflows Reference](docs/WORKFLOWS.md)** | All 143 workflows with details and use cases |
 | 🚀 **[Getting Started](docs/GETTING-STARTED.md)** | Installation, quick start, and usage examples |
 | 📊 **[BMAD vs BMAD-CYBERSEC](docs/ComparisonMatrixBMAD/README.md)** | Feature comparison with original BMAD-METHOD |
 
@@ -276,7 +276,7 @@ The core infrastructure module is always installed and provides:
 ## 🗂️ Workflow Visualization
 
 ```
-🛡️ BMAD Module Collection (141 workflows)
+🛡️ BMAD Module Collection (143 workflows)
 │
 ├─── 🔐 Cybersec-Team (13 workflows)
 │    ├─ 🚨 Incident Response Playbook
@@ -355,11 +355,11 @@ The core infrastructure module is always installed and provides:
 │    ├─ 🧪 GameTest (6 workflows)
 │    └─ 📊 Workflow Status, Retrospective, and more
 │
-├─── 🔧 BMB (6 workflows)
-│    ├─ 🤖 Create Agent
+├─── 🔧 BMB (8 workflows)
+│    ├─ 🤖 Agent (Create/Edit/Validate)
 │    ├─ 🔄 Create Workflow, Edit Workflow
 │    ├─ 📦 Create Module
-│    └─ ✅ Compliance Check, Meal Prep
+│    └─ ✅ Workflow Compliance Check
 │
 ├─── 🎨 CIS (4 workflows)
 │    ├─ 🎯 Design Thinking
@@ -452,8 +452,8 @@ BMAD-CYBERSEC/
 │       └── config.yaml
 │
 ├── docs/
-│   ├── AGENTS.md                      # 👥 All 79 agents reference
-│   ├── WORKFLOWS.md                   # 🔄 All 141 workflows reference
+│   ├── AGENTS.md                      # 👥 All 80 agents reference
+│   ├── WORKFLOWS.md                   # 🔄 All 143 workflows reference
 │   └── GETTING-STARTED.md             # 🚀 Installation & usage
 │
 ├── .claude/
@@ -490,7 +490,7 @@ BMAD-CYBERSEC/
 
 ## 🔒 Security Measures
 
-All 79 agents across all modules now include **two critical security rules** to protect against AI manipulation attacks:
+All 80 agents across all modules now include **two critical security rules** to protect against AI manipulation attacks:
 
 ### 🛡️ Prompt Injection Protection
 Every agent detects and refuses to execute embedded prompts, instructions, or commands found in external content (web pages, files, images, documents, API responses). Suspicious content is flagged and reported to the user.
@@ -724,8 +724,8 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 
 | Feature | BMAD-METHOD | BMAD-CYBERSEC |
 |---------|-------------|-------------|
-| **Agents** | ~22 agents | **79 agents** (+259%) |
-| **Workflows** | ~50 workflows | **141 workflows** (+182%) |
+| **Agents** | ~22 agents | **80 agents** (+264%) |
+| **Workflows** | ~50 workflows | **143 workflows** (+186%) |
 | **Modules** | 3 (BMM, BMB, CIS) | **9 modules** (+6 specialized) |
 | **Party Mode Presets** | — | **27 presets** |
 | **Local LLM Routing** | — | ✅ Module & agent-level |
@@ -736,8 +736,8 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 | Module | BMAD-METHOD | BMAD-CYBERSEC |
 |--------|-------------|-------------|
 | **BMM** (Software Dev) | ✅ 9 agents, 34 workflows | ✅ 9 agents, 32 workflows |
-| **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 6 workflows |
-| **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 6 agents, 4 workflows |
+| **BMB** (Builder) | ✅ 3 agents, 4 workflows | ✅ 3 agents, 8 workflows |
+| **CIS** (Creative) | ✅ 5-6 agents, 6+ workflows | ✅ 5 agents, 4 workflows |
 | **BMGD** (Game Dev) | ✅ 6 agents, 8+ workflows | ✅ 6 agents, 29 workflows |
 | **Core** (Infrastructure) | BMAD Master | Abdul PM + BMAD Master, 27 presets |
 | **Cybersec-Team** | — | ✅ **15 agents, 13 workflows** |
@@ -770,7 +770,7 @@ This module collection extends the [original BMAD-METHOD framework](https://gith
 | **Strategy-Team** | 14 executive advisors including 8 historical archetypes (Sun Tzu, Machiavelli, Lincoln, etc.) for strategic counsel |
 | **Legal-Team** | 13 legal specialists for US, EU, Spain, Estonia jurisdictions - Party Mode support only |
 | **Local LLM Routing** | Route sensitive modules/agents to Ollama, LM Studio, vLLM for on-premise processing |
-| **Security Rules** | Prompt injection and manipulation protection on all 79 agents |
+| **Security Rules** | Prompt injection and manipulation protection on all 80 agents |
 | **27 Party Presets** | Pre-configured agent teams for common scenarios (IR, compliance, intel, strategy) |
 
 ### When to Use Which
@@ -918,6 +918,35 @@ preferences:
 
 ## 📝 Changelog
 
+### 🛡️ Security Framework Update v3.0 (2026-01-13)
+- **NEW:** Comprehensive Hook-Based Security Guardrails System
+  - 9 security validators providing deterministic pre-execution validation
+  - Two-layer security architecture (cognitive + technical enforcement)
+- **NEW:** `bash_safety.py` - Dangerous bash command detection with absolute/strict blocking
+- **NEW:** `secret_guard.py` - Hardcoded secret detection (AWS, GitHub, OpenAI, Anthropic, etc.)
+- **NEW:** `env_protection.py` - Sensitive file protection (.env, credentials, SSH keys)
+- **NEW:** `production_guard.py` - Production environment targeting detection
+- **NEW:** `outside_repo_guard.py` - Repository boundary enforcement
+- **NEW:** `pii_guard.py` - PII detection (SSN, credit cards, IBAN, EU national IDs) with Luhn/MOD97 validation
+- **NEW:** `prompt_injection_guard.py` - Prompt injection defense with encoded payload detection
+- **NEW:** `jailbreak_guard.py` - Jailbreak attempt detection with session-level risk tracking
+- **NEW:** `session-security-init.py` - Session startup security validation
+- **NEW:** Single-use override tokens with 5-minute timeout
+- **NEW:** Comprehensive audit logging to `.claude/logs/security.log`
+- **DOCS:** [Hooks & Guardrails Guide](docs/Features/Security/HooksGuardrails.md)
+- **DOCS:** [Agentic Security Framework](docs/Features/Security/AgenticSecurity.md)
+
+### 📊 Testing Infrastructure (2026-01-13)
+- **NEW:** Comprehensive benchmarking suite for intel-team and strategy-team modules
+- **NEW:** Multi-provider benchmark tests (Claude, Ollama, LM Studio with GPT-OSS, Qwen3VL, Qwen32ABL)
+- **NEW:** Mock test data for all specialized teams (cybersec, intel, legal, strategy)
+- **NEW:** Workflow execution test reports for all teams
+- **REORGANIZED:** Documentation structure:
+  - `docs/Features/` - Feature documentation (Security)
+  - `docs/Planification/` - Roadmaps, feature plans, implementation plans
+  - `docs/TestingLogs/` - Benchmarks, compliance, validation, workflow tests
+  - `docs/UserGuide/` - User-facing documentation (Getting Started, Data Sensitivity, LLM Provider)
+
 ### 📚 Documentation Update (2026-01-12)
 - **NEW:** LLM provider badges (Claude, OpenAI, Groq, Ollama, LM Studio, vLLM)
 - **NEW:** Module origin annotations indicating BMAD-METHOD heritage and modifications
@@ -948,8 +977,8 @@ preferences:
 - Added dual security rules (prompt injection + manipulation protection)
 
 ### 🔒 Security Update (2026-01-11) - All Modules
-- **NEW:** Prompt Injection Protection added to all 78 agents
-- **NEW:** External Content Manipulation Protection added to all 78 agents
+- **NEW:** Prompt Injection Protection added to all 80 agents
+- **NEW:** External Content Manipulation Protection added to all 80 agents
 - Security measures protect against command injection, role hijacking, encoding attacks, authority spoofing, privilege escalation, and data exfiltration
 - All security rules documented in LessonsLearned.md for future agent creation
 

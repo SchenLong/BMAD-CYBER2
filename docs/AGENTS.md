@@ -378,8 +378,10 @@ Meta-module for creating new BMAD modules.
 | **intel-team** | 11 | Intelligence operations |
 | **strategy-team** | 14 | Executive leadership |
 | **legal-team** | 13 | Legal support (Party Mode) |
-| **bmm** | 8+ | Software development |
-| **bmgd** | 4+ | Game development |
+| **bmm** | 9 | Software development |
+| **bmgd** | 6 | Game development |
 | **bmb** | 3 | Module creation |
+| **cis** | 6 | Creative innovation & storytelling |
+| **core** | 2 | Framework orchestration |
 
-**Total: 68+ specialized AI agents**
+**Total: 80 specialized AI agents**
