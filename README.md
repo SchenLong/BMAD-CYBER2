@@ -506,6 +506,21 @@ Every agent treats all external content as potentially hostile with protections 
 
 These security measures are documented in the framework's [LessonsLearned.md](_bmad/bmb/ExperienceAcquired/LessonsLearned.md) to ensure they are applied to all future agents.
 
+### 📋 Additional Security Features
+
+| Feature | Description | Documentation |
+|---------|-------------|---------------|
+| **File Integrity Verification** | GPG-signed manifest protects 679 critical files | [Security-File-Integrity.md](docs/Features/Security-File-Integrity.md) |
+| **Audit Logging** | Tamper-evident SHA-256 hash chain for all operations | [Security-Audit-Logging.md](docs/Features/Security-Audit-Logging.md) |
+| **YOLO Mode Restrictions** | Controlled bypass with allowlisting and logging | [Security-YOLO-Mode-Restrictions.md](docs/Features/Security-YOLO-Mode-Restrictions.md) |
+| **Hook Guardrails** | 9 pre-execution validators for deterministic security | [HooksGuardrails.md](docs/Features/Security/HooksGuardrails.md) |
+
+**Quick verification (recommended before first use):**
+```bash
+gpg --import _bmad/core/security/bmad-public-key.asc
+./_bmad/core/security/verify-integrity.sh
+```
+
 ---
 
 ## 🔐 LLM Provider System
@@ -917,6 +932,19 @@ preferences:
 ---
 
 ## 📝 Changelog
+
+### 🛡️ Security Framework Update v4.0 (2026-01-15)
+- **NEW:** File Integrity Verification System
+  - GPG-signed manifest (RSA-4096) protecting 679 critical files
+  - SHA-256 hash verification for agents, workflows, configs, hooks
+  - `sign-manifest.sh` for signing after legitimate changes
+  - `verify-integrity.sh` for tamper detection before sessions
+  - CI/CD compatible exit codes (0=pass, 2=tampered, 3=missing)
+- **NEW:** Audit Logging System with tamper-evident hash chain
+- **NEW:** YOLO Mode Restrictions with allowlisting and logging
+- **DOCS:** [Security-File-Integrity.md](docs/Features/Security-File-Integrity.md)
+- **DOCS:** [Security-Audit-Logging.md](docs/Features/Security-Audit-Logging.md)
+- **DOCS:** [Security-YOLO-Mode-Restrictions.md](docs/Features/Security-YOLO-Mode-Restrictions.md)
 
 ### 🛡️ Security Framework Update v3.0 (2026-01-13)
 - **NEW:** Comprehensive Hook-Based Security Guardrails System
