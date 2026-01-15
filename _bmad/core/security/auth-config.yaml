@@ -1,0 +1,118 @@
+# =============================================================================
+# BMAD AUTHENTICATION CONFIGURATION
+# =============================================================================
+# Token-based authentication for secure identity verification.
+# Part of Phase 1 Security Implementation.
+
+authentication:
+  # Enable/disable authentication requirement
+  enabled: true
+
+  # Authentication method
+  # Options:
+  #   local_token - File-based token (default, single-user)
+  #   env_token   - Token from environment variable (CI/CD, automation)
+  method: local_token
+
+  # ---------------------------------------------------------------------------
+  # Local Token Configuration
+  # ---------------------------------------------------------------------------
+  local_token:
+    # Path to token file (relative to project root)
+    token_file: "{project-root}/.bmad-token"
+
+    # Token validity period in hours
+    # After this, user must regenerate token
+    max_age_hours: 168  # 7 days
+
+    # Auto-refresh token if within this many hours of expiration
+    refresh_threshold_hours: 24
+
+  # ---------------------------------------------------------------------------
+  # Environment Token Configuration (for automation)
+  # ---------------------------------------------------------------------------
+  env_token:
+    # Environment variable name containing the token
+    variable_name: "BMAD_AUTH_TOKEN"
+
+  # ---------------------------------------------------------------------------
+  # Session Configuration
+  # ---------------------------------------------------------------------------
+  session:
+    # Session timeout in minutes of inactivity
+    timeout_minutes: 480  # 8 hours
+
+    # Allow session refresh on activity
+    refresh_on_activity: true
+
+    # Maximum session lifetime regardless of activity
+    max_lifetime_hours: 24
+
+  # ---------------------------------------------------------------------------
+  # Token Security Settings
+  # ---------------------------------------------------------------------------
+  security:
+    # Token encryption algorithm
+    algorithm: "aes-256-gcm"
+
+    # Key derivation for encryption
+    # In production, use environment variable or secret manager
+    key_source: "env:BMAD_TOKEN_KEY"
+    key_source_fallback: "file:{project-root}/.bmad-key"
+
+    # Require specific claims in token
+    required_claims:
+      - "sub"   # Subject (user ID)
+      - "name"  # Display name
+      - "roles" # User roles
+      - "exp"   # Expiration
+
+    # Allowed roles (tokens with other roles are rejected)
+    allowed_roles:
+      - "admin"
+      - "security_lead"
+      - "security_analyst"
+      - "intel_analyst"
+      - "developer"
+      - "product_manager"
+      - "viewer"
+      - "guest"
+
+# =============================================================================
+# ROLE DEFINITIONS
+# =============================================================================
+# Role hierarchy and default module access for token generation.
+
+roles:
+  admin:
+    description: "Full system administrator"
+    default_modules: ["*"]
+
+  security_lead:
+    description: "Security team lead"
+    default_modules: ["cybersec-team", "intel-team", "core"]
+
+  security_analyst:
+    description: "Security analyst"
+    default_modules: ["cybersec-team", "core"]
+
+  intel_analyst:
+    description: "Intelligence analyst"
+    default_modules: ["intel-team", "core"]
+    requires_verification: true
+
+  developer:
+    description: "Software developer"
+    default_modules: ["bmm", "bmgd", "bmb", "cis", "core"]
+
+  product_manager:
+    description: "Product manager"
+    default_modules: ["bmm", "cis", "core"]
+
+  viewer:
+    description: "Read-only access"
+    default_modules: ["core"]
+
+  guest:
+    description: "Limited guest access"
+    default_modules: ["core"]

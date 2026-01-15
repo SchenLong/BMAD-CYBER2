@@ -510,13 +510,21 @@ These security measures are documented in the framework's [LessonsLearned.md](_b
 
 | Feature | Description | Documentation |
 |---------|-------------|---------------|
+| **Token Authentication** | AES-256-GCM encrypted identity tokens with role-based access | [Security-Authentication.md](docs/Features/Security-Authentication.md) |
 | **File Integrity Verification** | GPG-signed manifest protects 679 critical files | [Security-File-Integrity.md](docs/Features/Security-File-Integrity.md) |
 | **Audit Logging** | Tamper-evident SHA-256 hash chain for all operations | [Security-Audit-Logging.md](docs/Features/Security-Audit-Logging.md) |
 | **YOLO Mode Restrictions** | Controlled bypass with allowlisting and logging | [Security-YOLO-Mode-Restrictions.md](docs/Features/Security-YOLO-Mode-Restrictions.md) |
 | **Hook Guardrails** | 9 pre-execution validators for deterministic security | [HooksGuardrails.md](docs/Features/Security/HooksGuardrails.md) |
 
-**Quick verification (recommended before first use):**
+**Quick setup (recommended before first use):**
 ```bash
+# Generate authentication token
+node _bmad/core/security/quick-token.js "YourName" "admin" 168
+
+# Validate token
+node _bmad/core/security/validate-token.js
+
+# Verify file integrity
 gpg --import _bmad/core/security/bmad-public-key.asc
 ./_bmad/core/security/verify-integrity.sh
 ```
@@ -932,6 +940,17 @@ preferences:
 ---
 
 ## 📝 Changelog
+
+### 🛡️ Security Framework Update v4.1 (2026-01-15)
+- **NEW:** Token-Based Authentication System
+  - AES-256-GCM encrypted identity tokens
+  - Role-based access with 8 predefined roles (admin, security_lead, developer, etc.)
+  - Module-level access control
+  - 7-day token validity with 24-hour expiration warnings
+  - `quick-token.js` for fast token generation
+  - `validate-token.js` for 12-point validation test suite
+  - Session management with 8-hour timeout
+- **DOCS:** [Security-Authentication.md](docs/Features/Security-Authentication.md)
 
 ### 🛡️ Security Framework Update v4.0 (2026-01-15)
 - **NEW:** File Integrity Verification System

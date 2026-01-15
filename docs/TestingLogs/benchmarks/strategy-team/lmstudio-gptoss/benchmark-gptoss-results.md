@@ -276,4 +276,4 @@ While GPT-OSS-20B performed well for a local model, it still falls short of Clau
 ## Raw Output Files
 
 All individual agent responses saved to:
-`/Users/paultinp/BMAD-CYBER2/_bmad-output/qa-test-logs/lmstudio-gptoss-results/`
+`{project-root}/_bmad-output/qa-test-logs/lmstudio-gptoss-results/`

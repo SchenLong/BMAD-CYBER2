@@ -270,4 +270,4 @@ The model's `<think>` tags reveal flawed reasoning:
 ## Raw Output Files
 
 All individual agent responses saved to:
-`/Users/paultinp/BMAD-CYBER2/_bmad-output/qa-test-logs/lmstudio-results/`
+`{project-root}/_bmad-output/qa-test-logs/lmstudio-results/`
