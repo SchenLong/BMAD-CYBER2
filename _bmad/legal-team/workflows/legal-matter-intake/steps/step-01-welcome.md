@@ -1,7 +1,7 @@
 ---
 name: step-01-welcome
 description: Welcome user and gather initial context about their legal matter
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/legal-matter-intake'
 nextStepFile: '{workflow_path}/steps/step-02-classification.md'
 ---
 

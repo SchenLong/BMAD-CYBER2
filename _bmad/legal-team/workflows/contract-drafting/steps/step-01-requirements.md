@@ -1,7 +1,7 @@
 ---
 name: step-01-requirements
 description: Gather transaction requirements and party details
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-02-governing-law.md'
 ---
 

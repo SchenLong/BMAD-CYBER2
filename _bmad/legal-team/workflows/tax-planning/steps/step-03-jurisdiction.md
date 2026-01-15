@@ -1,7 +1,7 @@
 ---
 name: step-03-jurisdiction
 description: Analyze tax implications by jurisdiction
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/tax-planning'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/tax-planning'
 nextStepFile: '{workflow_path}/steps/step-04-entity.md'
 ---
 

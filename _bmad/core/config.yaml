@@ -7,3 +7,98 @@ user_name: J
 communication_language: English, French
 document_output_language: English
 output_folder: "{project-root}/_bmad-output"
+
+# =============================================================================
+# SECURITY CONFIGURATION
+# =============================================================================
+
+security:
+  # ---------------------------------------------------------------------------
+  # YOLO Mode Configuration
+  # ---------------------------------------------------------------------------
+  # YOLO mode skips user confirmations during workflow execution.
+  # This is a security risk and should be restricted.
+
+  yolo_mode:
+    # Master switch - if false, YOLO is completely disabled
+    enabled: false
+
+    # Require explicit command-line flag to use YOLO
+    # Even if enabled above, user must acknowledge the risk
+    require_explicit_flag: true
+
+    # Log all YOLO invocations (cannot be disabled)
+    log_invocations: true
+
+    # Workflows allowed to use YOLO mode
+    # Empty list = no workflows can use YOLO (safest)
+    # Add specific workflow names to allow YOLO for them
+    allowed_workflows: []
+    # Example - to allow YOLO for specific workflows:
+    # allowed_workflows:
+    #   - "create-story"
+    #   - "sprint-planning"
+    #   - "quick-dev"
+
+    # Show warning banner when YOLO mode is active
+    show_warning_banner: true
+
+    # Warning message shown when YOLO is active
+    warning_message: |
+      YOLO MODE ACTIVE - All confirmations disabled.
+      Steps will execute automatically without review.
+
+  # ---------------------------------------------------------------------------
+  # Audit Logging Configuration
+  # ---------------------------------------------------------------------------
+  # Tamper-evident audit logging for security visibility.
+
+  audit:
+    # Master switch - if false, no audit logs are written
+    enabled: true
+
+    # Log file location (relative to project root)
+    log_file: "{project-root}/_bmad-output/.audit/audit.log"
+
+    # Hash chain for tamper evidence
+    hash_chain_enabled: true
+
+    # Events to log
+    events:
+      # Workflow events
+      workflow_start: true
+      workflow_complete: true
+      workflow_error: true
+
+      # YOLO events (always logged regardless of this setting)
+      yolo_invoked: true
+      yolo_blocked: true
+
+      # Agent events
+      agent_activation: true
+      agent_tool_use: true
+
+      # File events
+      file_read: false          # High volume, disable by default
+      file_write: true
+      file_delete: true
+
+      # Security events (always logged)
+      security_warning: true
+      security_violation: true
+
+    # Log retention
+    retention_days: 90
+
+    # Log format
+    format: json              # json or text
+
+    # Include in logs
+    include:
+      timestamp: true
+      user: true
+      workflow: true
+      agent: true
+      event_type: true
+      details: true
+      hash: true              # Previous log hash for chain verification

@@ -1,7 +1,7 @@
 ---
 name: step-10-document
 description: Generate final strategy document package
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/dispute-strategy'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/dispute-strategy'
 ---
 
 # Step 10: Strategy Document

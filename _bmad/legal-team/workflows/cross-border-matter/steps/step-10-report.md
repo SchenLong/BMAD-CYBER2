@@ -1,7 +1,7 @@
 ---
 name: step-10-report
 description: Generate comprehensive cross-border matter report
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/cross-border-matter'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/cross-border-matter'
 ---
 
 # Step 10: Matter Report

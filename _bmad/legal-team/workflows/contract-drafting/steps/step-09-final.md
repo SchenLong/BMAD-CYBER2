@@ -1,7 +1,7 @@
 ---
 name: step-09-final
 description: Generate final contract draft with commentary
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 ---
 
 # Step 9: Final Draft Generation

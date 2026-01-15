@@ -97,7 +97,7 @@ This workflow guides through 8 steps:
 
 ### Output Configuration
 
-- **Template:** `{project-root}/_bmad-output/bmb-creations/legal-team/workflows/_shared/templates/matter-brief-template.md`
+- **Template:** `{project-root}/_bmad/legal-team/workflows/_shared/templates/matter-brief-template.md`
 - **Output:** `{output_folder}/legal/matter-brief-{matter_name}.md`
 
 ---
@@ -135,4 +135,4 @@ Load and read full config from `{project-root}/_bmad/legal-team/config.yaml` and
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake/steps/step-01-welcome.md` to begin the workflow.
+Load, read the full file and then execute `{project-root}/_bmad/legal-team/workflows/legal-matter-intake/steps/step-01-welcome.md` to begin the workflow.

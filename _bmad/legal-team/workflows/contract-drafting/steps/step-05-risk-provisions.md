@@ -1,7 +1,7 @@
 ---
 name: step-05-risk-provisions
 description: Draft risk allocation provisions
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-06-boilerplate.md'
 ---
 

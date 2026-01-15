@@ -1,7 +1,7 @@
 ---
 name: step-01-situation
 description: Analyze current tax position and structure
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/tax-planning'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/tax-planning'
 nextStepFile: '{workflow_path}/steps/step-02-goals.md'
 ---
 
