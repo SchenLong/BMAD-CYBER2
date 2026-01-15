@@ -88,3 +88,7 @@ __pycache__/
 .Python
 venv/
 .venv/
+docs/ValidationLog/agent-validation-2026-01-13.md
+docs/ValidationLog/documentation-validation-2026-01-13.md
+docs/ValidationLog/full-validation-plan-2026-01-13.md
+docs/ValidationLog/workflow-validation-2026-01-13.md

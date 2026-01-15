@@ -1,7 +1,7 @@
 ---
 name: step-08-plain-language
 description: Review for clarity and readability
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-09-final.md'
 ---
 

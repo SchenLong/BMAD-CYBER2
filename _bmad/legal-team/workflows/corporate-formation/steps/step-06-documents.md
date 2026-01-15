@@ -1,7 +1,7 @@
 ---
 name: step-06-documents
 description: Compile formation document requirements
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/corporate-formation'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/corporate-formation'
 nextStepFile: '{workflow_path}/steps/step-07-capital.md'
 ---
 

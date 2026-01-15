@@ -1,7 +1,7 @@
 ---
 name: step-01-intake
 description: Initial dispute intake and understanding
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/dispute-strategy'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/dispute-strategy'
 nextStepFile: '{workflow_path}/steps/step-02-facts.md'
 ---
 

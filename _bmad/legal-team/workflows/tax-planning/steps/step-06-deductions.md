@@ -1,7 +1,7 @@
 ---
 name: step-06-deductions
 description: Maximize available deductions and credits
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/tax-planning'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/tax-planning'
 nextStepFile: '{workflow_path}/steps/step-07-international.md'
 ---
 

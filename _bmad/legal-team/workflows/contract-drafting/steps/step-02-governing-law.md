@@ -1,7 +1,7 @@
 ---
 name: step-02-governing-law
 description: Select and justify governing law choice
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-03-template.md'
 ---
 

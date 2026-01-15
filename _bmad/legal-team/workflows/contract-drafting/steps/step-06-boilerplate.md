@@ -1,7 +1,7 @@
 ---
 name: step-06-boilerplate
 description: Customize boilerplate provisions for jurisdiction
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-07-cross-reference.md'
 ---
 

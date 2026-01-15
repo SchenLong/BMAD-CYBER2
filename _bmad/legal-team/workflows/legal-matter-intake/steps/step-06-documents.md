@@ -1,7 +1,7 @@
 ---
 name: step-06-documents
 description: Gather and assess relevant documents and evidence
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/legal-matter-intake'
 nextStepFile: '{workflow_path}/steps/step-07-routing.md'
 ---
 
