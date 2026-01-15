@@ -72,6 +72,14 @@ Thumbs.db
 *.env
 
 # ===================
+# Security Keys
+# ===================
+# Private signing key - NEVER commit
+_bmad/core/security/bmad-private-key.asc
+.bmad-token
+.bmad-key
+
+# ===================
 # Node.js (if applicable)
 # ===================
 node_modules/
