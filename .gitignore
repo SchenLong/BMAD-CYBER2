@@ -8,6 +8,9 @@
 _output/
 _bmad-output/
 
+# Security review documentation (internal development artifacts)
+_bmad-output/BMAD-Security-Review/
+
 # ===================
 # Private Projects
 # ===================
