@@ -10,6 +10,9 @@ TestingLogs/
 │   ├── 2026-01-11/       # Initial validation (modules, security, compliance)
 │   └── 2026-01-12/       # Pre-publication validation
 │
+├── security/             # Security feature validation logs
+│   └── 2026-01-15/       # RBAC and authentication validation
+│
 ├── compliance/           # Compliance remediation plans and reports
 │   └── 2026-01-12/       # BMAD framework compliance audit
 │
@@ -51,6 +54,21 @@ Framework validation reports documenting module integrity, security rules, and c
 |------|-------|-------------|
 | 2026-01-11 | 9 files | Initial module validations, prompt injection tests, LLM provider isolation |
 | 2026-01-12 | 3 files | Pre-publication validation, compliance report, command stub fixes |
+
+### Security Validation Logs
+
+Security feature validation reports for authentication and authorization systems.
+
+| Date | Files | Description |
+|------|-------|-------------|
+| 2026-01-15 | 2 files | RBAC validation (40 tests), token authentication validation (12 tests) |
+
+#### Security Reports
+
+| Report | Description |
+|--------|-------------|
+| rbac-validation-report.md | Comprehensive RBAC validation with 40 tests |
+| security-validation-summary.md | Summary of all security validation (Phase 1 + Phase 2) |
 
 ### Compliance Reports
 
@@ -96,4 +114,4 @@ JSON test data files used for workflow and benchmark testing.
 
 ---
 
-*Last updated: 2026-01-13*
+*Last updated: 2026-01-15*
