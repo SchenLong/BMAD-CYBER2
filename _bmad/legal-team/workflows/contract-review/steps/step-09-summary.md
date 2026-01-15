@@ -1,7 +1,7 @@
 ---
 name: step-09-summary
 description: Generate executive summary and final report
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-review'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-review'
 ---
 
 # Step 9: Executive Summary & Final Report

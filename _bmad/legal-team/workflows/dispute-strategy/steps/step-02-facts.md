@@ -1,7 +1,7 @@
 ---
 name: step-02-facts
 description: Document key events and build chronological timeline
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/dispute-strategy'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/dispute-strategy'
 nextStepFile: '{workflow_path}/steps/step-03-legal-analysis.md'
 ---
 

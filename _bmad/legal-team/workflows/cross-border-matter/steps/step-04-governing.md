@@ -1,7 +1,7 @@
 ---
 name: step-04-governing
 description: Determine applicable governing law
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/cross-border-matter'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/cross-border-matter'
 nextStepFile: '{workflow_path}/steps/step-05-forum.md'
 ---
 

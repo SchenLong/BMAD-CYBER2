@@ -1,7 +1,7 @@
 ---
 name: step-05-parties
 description: Analyze parties involved and their roles/relationships
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/legal-matter-intake'
 nextStepFile: '{workflow_path}/steps/step-06-documents.md'
 ---
 

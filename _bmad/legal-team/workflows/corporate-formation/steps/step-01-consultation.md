@@ -1,7 +1,7 @@
 ---
 name: step-01-consultation
 description: Initial consultation to understand business goals
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/corporate-formation'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/corporate-formation'
 nextStepFile: '{workflow_path}/steps/step-02-jurisdiction.md'
 ---
 

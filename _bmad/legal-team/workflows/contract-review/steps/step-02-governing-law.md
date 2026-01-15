@@ -1,7 +1,7 @@
 ---
 name: step-02-governing-law
 description: Identify governing law and jurisdiction provisions
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-review'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-review'
 nextStepFile: '{workflow_path}/steps/step-03-structure.md'
 ---
 

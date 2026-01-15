@@ -1,7 +1,7 @@
 ---
 name: step-10-post-formation
 description: Post-formation guidance and next steps
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/corporate-formation'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/corporate-formation'
 ---
 
 # Step 10: Post-Formation Guidance

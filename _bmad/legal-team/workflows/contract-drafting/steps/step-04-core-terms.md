@@ -1,7 +1,7 @@
 ---
 name: step-04-core-terms
 description: Draft core obligations and terms
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-05-risk-provisions.md'
 ---
 

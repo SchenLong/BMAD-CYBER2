@@ -1,7 +1,7 @@
 ---
 name: step-05-income
 description: Income timing and characterization optimization
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/tax-planning'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/tax-planning'
 nextStepFile: '{workflow_path}/steps/step-06-deductions.md'
 ---
 

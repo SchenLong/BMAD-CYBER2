@@ -1,7 +1,7 @@
 ---
 name: step-01-intake
 description: Initial cross-border matter intake
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/cross-border-matter'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/cross-border-matter'
 nextStepFile: '{workflow_path}/steps/step-02-jurisdiction.md'
 ---
 

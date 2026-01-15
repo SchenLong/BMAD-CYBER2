@@ -98,7 +98,7 @@ This workflow guides through 9 steps:
 
 ### Output Configuration
 
-- **Template:** `{project-root}/_bmad-output/bmb-creations/legal-team/workflows/_shared/templates/contract-review-report-template.md`
+- **Template:** `{project-root}/_bmad/legal-team/workflows/_shared/templates/contract-review-report-template.md`
 - **Output:** `{output_folder}/legal/contract-review-{contract_name}.md`
 
 ---
@@ -113,4 +113,4 @@ Load and read full config from `{project-root}/_bmad/legal-team/config.yaml` and
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-review/steps/step-01-upload.md` to begin the workflow.
+Load, read the full file and then execute `{project-root}/_bmad/legal-team/workflows/contract-review/steps/step-01-upload.md` to begin the workflow.

@@ -84,4 +84,4 @@ Load config from `{project-root}/_bmad/legal-team/config.yaml`
 
 ### 2. First Step EXECUTION
 
-Load and execute `{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting/steps/step-01-requirements.md`
+Load and execute `{project-root}/_bmad/legal-team/workflows/contract-drafting/steps/step-01-requirements.md`

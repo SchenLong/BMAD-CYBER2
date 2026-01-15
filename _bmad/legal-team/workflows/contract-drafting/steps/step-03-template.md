@@ -1,7 +1,7 @@
 ---
 name: step-03-template
 description: Select template or design contract structure
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-04-core-terms.md'
 ---
 
