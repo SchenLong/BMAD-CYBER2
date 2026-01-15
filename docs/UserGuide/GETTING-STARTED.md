@@ -25,6 +25,27 @@ cd BMAD-CYBER2
 # Agents and workflows are pre-configured
 ```
 
+### Verify Framework Integrity (Recommended)
+
+Before first use, verify that framework files haven't been tampered with:
+
+```bash
+# Import the signing key (one-time)
+gpg --import _bmad/core/security/bmad-public-key.asc
+
+# Verify all critical files (679 agents, workflows, configs)
+./_bmad/core/security/verify-integrity.sh
+```
+
+If verification passes, you'll see:
+```
+╔════════════════════════════════════════════════════════════════╗
+║            ALL INTEGRITY CHECKS PASSED                         ║
+╚════════════════════════════════════════════════════════════════╝
+```
+
+See [Security-File-Integrity.md](../Features/Security-File-Integrity.md) for details.
+
 ---
 
 ## Quick Start

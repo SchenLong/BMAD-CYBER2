@@ -1041,6 +1041,19 @@ Input → Cognitive Firewall → Trust Evaluation → Execution Gate → Process
 
 ---
 
+## Related Security Features
+
+The BMAD Framework includes additional security layers beyond agentic protection:
+
+| Feature | Description | Documentation |
+|---------|-------------|---------------|
+| **File Integrity Verification** | GPG-signed manifest of 679 critical files | [Security-File-Integrity.md](../Security-File-Integrity.md) |
+| **Audit Logging** | Tamper-evident SHA-256 hash chain logging | [Security-Audit-Logging.md](../Security-Audit-Logging.md) |
+| **YOLO Mode Restrictions** | Controlled bypass of workflow confirmations | [Security-YOLO-Mode-Restrictions.md](../Security-YOLO-Mode-Restrictions.md) |
+| **Hook Guardrails** | Pre-execution security validators | [HooksGuardrails.md](./HooksGuardrails.md) |
+
+---
+
 ## References
 
 - [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
