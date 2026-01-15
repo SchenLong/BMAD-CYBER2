@@ -1,7 +1,7 @@
 ---
 name: step-06-risk
 description: Comprehensive risk assessment
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/dispute-strategy'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/dispute-strategy'
 nextStepFile: '{workflow_path}/steps/step-07-options.md'
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: step-04-urgency
 description: Assess urgency level and timeline considerations
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/legal-matter-intake'
 nextStepFile: '{workflow_path}/steps/step-05-parties.md'
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: step-09-risk
 description: Cross-border risk analysis
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/cross-border-matter'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/cross-border-matter'
 nextStepFile: '{workflow_path}/steps/step-10-report.md'
 ---
 

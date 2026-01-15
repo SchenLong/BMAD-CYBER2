@@ -1,7 +1,7 @@
 ---
 name: step-08-brief
 description: Generate comprehensive matter brief and provide next steps
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/legal-matter-intake'
 ---
 
 # Step 8: Matter Brief Generation & Next Steps

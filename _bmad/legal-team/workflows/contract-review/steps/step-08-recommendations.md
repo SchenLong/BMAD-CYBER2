@@ -1,7 +1,7 @@
 ---
 name: step-08-recommendations
 description: Compile prioritized recommendations
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-review'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-review'
 nextStepFile: '{workflow_path}/steps/step-09-summary.md'
 ---
 

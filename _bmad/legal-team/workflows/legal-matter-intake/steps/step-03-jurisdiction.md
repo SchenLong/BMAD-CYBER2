@@ -1,9 +1,9 @@
 ---
 name: step-03-jurisdiction
 description: Identify applicable jurisdictions for the matter
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/legal-matter-intake'
 nextStepFile: '{workflow_path}/steps/step-04-urgency.md'
-jurisdictionChecklist: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/_shared/templates/jurisdiction-checklist.md'
+jurisdictionChecklist: '{project-root}/_bmad/legal-team/workflows/_shared/templates/jurisdiction-checklist.md'
 ---
 
 # Step 3: Jurisdiction Analysis

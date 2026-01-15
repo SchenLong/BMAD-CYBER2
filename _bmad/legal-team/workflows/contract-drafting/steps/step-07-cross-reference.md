@@ -1,7 +1,7 @@
 ---
 name: step-07-cross-reference
 description: Verify internal consistency and cross-references
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-drafting'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-drafting'
 nextStepFile: '{workflow_path}/steps/step-08-plain-language.md'
 ---
 

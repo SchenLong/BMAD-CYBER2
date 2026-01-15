@@ -1,7 +1,7 @@
 ---
 name: step-05-opposing
 description: Analyze opposing party position and likely strategy
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/dispute-strategy'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/dispute-strategy'
 nextStepFile: '{workflow_path}/steps/step-06-risk.md'
 ---
 

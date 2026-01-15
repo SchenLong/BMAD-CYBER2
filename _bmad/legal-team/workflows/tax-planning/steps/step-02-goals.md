@@ -1,7 +1,7 @@
 ---
 name: step-02-goals
 description: Define tax planning objectives
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/tax-planning'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/tax-planning'
 nextStepFile: '{workflow_path}/steps/step-03-jurisdiction.md'
 ---
 

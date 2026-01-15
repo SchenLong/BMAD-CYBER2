@@ -1,7 +1,7 @@
 ---
 name: step-03-structure
 description: Review contract structure, organization, and definitions
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-review'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-review'
 nextStepFile: '{workflow_path}/steps/step-04-substantive.md'
 ---
 

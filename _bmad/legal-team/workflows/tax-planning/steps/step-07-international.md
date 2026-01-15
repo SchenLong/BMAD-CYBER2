@@ -1,7 +1,7 @@
 ---
 name: step-07-international
 description: Cross-border tax planning considerations
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/tax-planning'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/tax-planning'
 nextStepFile: '{workflow_path}/steps/step-08-compliance.md'
 ---
 

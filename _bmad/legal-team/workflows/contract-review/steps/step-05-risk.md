@@ -1,7 +1,7 @@
 ---
 name: step-05-risk
 description: Assess risk allocation provisions
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-review'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-review'
 nextStepFile: '{workflow_path}/steps/step-06-jurisdiction.md'
 ---
 

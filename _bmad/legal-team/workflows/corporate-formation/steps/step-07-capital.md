@@ -1,7 +1,7 @@
 ---
 name: step-07-capital
 description: Define shareholding and capital structure
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/corporate-formation'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/corporate-formation'
 nextStepFile: '{workflow_path}/steps/step-08-compliance.md'
 ---
 

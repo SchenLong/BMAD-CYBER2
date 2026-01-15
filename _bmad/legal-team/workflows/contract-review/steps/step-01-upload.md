@@ -1,7 +1,7 @@
 ---
 name: step-01-upload
 description: Receive contract and perform initial classification
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/contract-review'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/contract-review'
 nextStepFile: '{workflow_path}/steps/step-02-governing-law.md'
 ---
 

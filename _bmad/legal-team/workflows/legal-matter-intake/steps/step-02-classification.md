@@ -1,7 +1,7 @@
 ---
 name: step-02-classification
 description: Classify the matter type to determine appropriate handling
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/legal-matter-intake'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/legal-matter-intake'
 nextStepFile: '{workflow_path}/steps/step-03-jurisdiction.md'
 ---
 

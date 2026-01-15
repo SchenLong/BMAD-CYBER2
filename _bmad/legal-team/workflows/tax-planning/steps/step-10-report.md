@@ -1,7 +1,7 @@
 ---
 name: step-10-report
 description: Generate comprehensive tax planning report
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/tax-planning'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/tax-planning'
 ---
 
 # Step 10: Planning Report

@@ -1,7 +1,7 @@
 ---
 name: step-06-regulatory
 description: Map cross-border regulatory requirements
-workflow_path: '{project-root}/_bmad-output/bmb-creations/legal-team/workflows/cross-border-matter'
+workflow_path: '{project-root}/_bmad/legal-team/workflows/cross-border-matter'
 nextStepFile: '{workflow_path}/steps/step-07-coordination.md'
 ---
 
