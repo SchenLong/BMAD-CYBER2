@@ -251,9 +251,9 @@ All tested workflows executed successfully with mock business scenarios.
 
 ```
 Test Environment: macOS Darwin 24.4.0
-Workflow Path: /Users/paultinp/BMAD-CYBER2/_bmad/strategy-team/workflows/
-Config File: /Users/paultinp/BMAD-CYBER2/_bmad/strategy-team/config.yaml
-Output Path: /Users/paultinp/BMAD-CYBER2/_bmad-output/qa-test-logs/
+Workflow Path: {project-root}/_bmad/strategy-team/workflows/
+Config File: {project-root}/_bmad/strategy-team/config.yaml
+Output Path: {project-root}/_bmad-output/qa-test-logs/
 ```
 
 ---

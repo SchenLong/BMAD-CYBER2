@@ -270,4 +270,4 @@
 ## Raw Output Files
 
 All individual agent responses saved to:
-`/Users/paultinp/BMAD-CYBER2/_bmad-output/qa-test-logs/ollama-results/`
+`{project-root}/_bmad-output/qa-test-logs/ollama-results/`
