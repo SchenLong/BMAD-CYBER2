@@ -510,6 +510,7 @@ These security measures are documented in the framework's [LessonsLearned.md](_b
 
 | Feature | Description | Documentation |
 |---------|-------------|---------------|
+| **Role-Based Access Control** | 10 roles with module/workflow/agent restrictions, credential verification | [rbac-validation-report.md](docs/TestingLogs/security/2026-01-15/rbac-validation-report.md) |
 | **Token Authentication** | AES-256-GCM encrypted identity tokens with role-based access | [Security-Authentication.md](docs/Features/Security-Authentication.md) |
 | **File Integrity Verification** | GPG-signed manifest protects 679 critical files | [Security-File-Integrity.md](docs/Features/Security-File-Integrity.md) |
 | **Audit Logging** | Tamper-evident SHA-256 hash chain for all operations | [Security-Audit-Logging.md](docs/Features/Security-Audit-Logging.md) |
@@ -524,9 +525,41 @@ node _bmad/core/security/quick-token.js "YourName" "admin" 168
 # Validate token
 node _bmad/core/security/validate-token.js
 
+# Check your permissions
+node _bmad/core/security/check-authorization.js roles
+
 # Verify file integrity
 gpg --import _bmad/core/security/bmad-public-key.asc
 ./_bmad/core/security/verify-integrity.sh
+```
+
+### 🔐 Role-Based Access Control (RBAC)
+
+The framework enforces granular access control with 10 predefined roles:
+
+| Role | Description | Module Access |
+|------|-------------|---------------|
+| `admin` | Full system administrator | All modules (*) |
+| `security_lead` | Security team lead | cybersec-team, intel-team, core |
+| `security_analyst` | Security analyst | cybersec-team, core |
+| `intel_analyst` | Intelligence analyst | intel-team, core (requires credential verification) |
+| `legal_counsel` | Legal team member | legal-team, core (privileged) |
+| `developer` | Software developer | bmm, bmgd, bmb, cis, core |
+| `product_manager` | Product manager | bmm, cis, core |
+| `strategist` | Strategic advisor | strategy-team, core |
+| `viewer` | Read-only access | core |
+| `guest` | Minimal guest access | core (rate-limited) |
+
+**Access Control Levels:**
+- **Module-level:** Restricts access to entire modules (e.g., intel-team requires `intel_analyst` or `security_lead`)
+- **Workflow-level:** Restricts sensitive workflows (e.g., `incident-response` requires `security_lead`)
+- **Agent-level:** Restricts sensitive agents (e.g., `field-operative` requires credential verification)
+
+```bash
+# Check access to specific resources
+node _bmad/core/security/check-authorization.js module intel-team
+node _bmad/core/security/check-authorization.js workflow incident-response
+node _bmad/core/security/check-authorization.js agent intel-team/field-operative
 ```
 
 ---
@@ -940,6 +973,21 @@ preferences:
 ---
 
 ## 📝 Changelog
+
+### 🛡️ Security Framework Update v4.2 - RBAC Deployment (2026-01-15)
+- **NEW:** Role-Based Access Control (RBAC) System
+  - 10 distinct roles with granular permissions (admin, security_lead, security_analyst, intel_analyst, legal_counsel, developer, product_manager, strategist, viewer, guest)
+  - Module-level restrictions (8 modules protected with role requirements)
+  - Workflow-level restrictions (10 sensitive workflows require specific roles)
+  - Agent-level restrictions (5 sensitive agents with credential verification)
+  - Role inheritance support (e.g., security_lead inherits security_analyst permissions)
+  - Deny-by-default security model
+  - Credential verification requirement for intel-team access
+  - Privileged flag for attorney-client protected legal-team content
+  - Three audit levels (minimal, standard, full) per resource
+  - `check-authorization.js` for CLI-based permission checking
+- **VALIDATED:** 40/40 RBAC tests passed
+- **DOCS:** [rbac-validation-report.md](docs/TestingLogs/security/2026-01-15/rbac-validation-report.md)
 
 ### 🛡️ Security Framework Update v4.1 (2026-01-15)
 - **NEW:** Token-Based Authentication System
