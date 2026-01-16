@@ -68,6 +68,7 @@
 |----------|-------------|
 | 🚀 **[Getting Started](docs/UserGuide/GETTING-STARTED.md)** | Installation, quick start, and first workflow |
 | 💻 **[CLI Command Reference](docs/UserGuide/CLI-COMMAND-REFERENCE.md)** | Complete command reference with syntax and examples |
+| 📝 **[Prompt Database](docs/UserGuide/PROMPT-DATABASE.md)** | Ready-to-use prompt templates for Cybersec, Intel, Legal, and Strategy modules |
 | 🔐 **[Security Overview](docs/UserGuide/SECURITY-OVERVIEW.md)** | Security architecture and quick setup |
 | 📖 **[Glossary](docs/UserGuide/GLOSSARY.md)** | Terminology and definitions |
 
