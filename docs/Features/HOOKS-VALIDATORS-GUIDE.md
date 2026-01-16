@@ -60,19 +60,36 @@ User Request
 
 Validators are located at: `.claude/validators/`
 
-### Available Validators (9)
+### Available Validators (19)
 
-| Validator | Tool Coverage | Protection |
-|-----------|---------------|------------|
-| `bash_safety.py` | Bash | Dangerous command detection |
-| `secret_guard.py` | Write, Edit | Hardcoded secret detection |
-| `env_protection.py` | Write, Edit | Sensitive file protection |
-| `production_guard.py` | Bash | Production environment detection |
-| `outside_repo_guard.py` | Read, Write, Edit, Glob, Grep | Repository boundary enforcement |
-| `pii_guard.py` | Write, Edit | PII detection |
-| `prompt_injection_guard.py` | Write, Edit, UserPromptSubmit | Prompt injection defense |
-| `jailbreak_guard.py` | UserPromptSubmit | Jailbreak detection |
-| `session-security-init.py` | SessionStart | Session validation |
+#### Core Security Validators
+
+| Validator | Tool Coverage | Protection | OWASP |
+|-----------|---------------|------------|-------|
+| `bash_safety.py` | Bash | Dangerous command detection | - |
+| `secret_guard.py` | Write, Edit | Hardcoded secret detection | LLM06 |
+| `env_protection.py` | Write, Edit | Sensitive file protection | LLM06 |
+| `production_guard.py` | Bash | Production environment detection | - |
+| `outside_repo_guard.py` | Read, Write, Edit, Glob, Grep | Repository boundary enforcement | - |
+| `pii_guard.py` | Write, Edit | PII detection | LLM06 |
+| `prompt_injection_guard.py` | Write, Edit, UserPromptSubmit | Prompt injection defense | **LLM01** |
+| `jailbreak_guard.py` | UserPromptSubmit | Jailbreak detection | **LLM01** |
+| `session-security-init.py` | SessionStart | Session validation | - |
+| `token_validator.py` | SessionStart | Authentication enforcement | - |
+| `security_common.py` | (Library) | Shared utilities | - |
+
+#### OWASP Remediation Validators (NEW - Phase 1-4)
+
+| Validator | Tool Coverage | Protection | OWASP |
+|-----------|---------------|------------|-------|
+| `rate_limiter.py` | All tools | DoS protection (sliding window) | **LLM04** |
+| `plugin_permissions.py` | All tools | Capability-based security | **LLM07** |
+| `supply_chain_verifier.py` | Skill loading | SHA256+GPG verification | **LLM05** |
+| `context_manager.py` | All tools | Context window management | **LLM04** |
+| `recursion_guard.py` | Bash, Read | Recursion/depth limits | **LLM04** |
+| `resource_limits.py` | Bash, Task | Memory/process limits | **LLM04** |
+| `confidence_tracker.py` | PostToolUse | Uncertainty detection | **LLM09** |
+| `telemetry_collector.py` | All hooks | SIEM telemetry export | - |
 
 ---
 
@@ -386,6 +403,303 @@ export BMAD_ALLOW_INJECTION_CONTENT=true
 
 ```bash
 export BMAD_ALLOW_JAILBREAK=true
+```
+
+---
+
+### rate_limiter.py (NEW - Phase 1)
+
+**Purpose:** Prevents denial-of-service attacks by limiting the rate of tool invocations.
+
+**OWASP Reference:** LLM04 - Model Denial of Service
+
+#### Rate Limits
+
+| Operation | Limit | Window |
+|-----------|-------|--------|
+| Global | 100 | 60s |
+| Bash | 30 | 60s |
+| Write/Edit | 50 | 60s |
+| Read | 200 | 60s |
+| Task | 20 | 60s |
+| WebFetch/Search | 30/20 | 60s |
+
+#### Features
+
+- **Sliding window algorithm** - Accurate request counting
+- **Exponential backoff** - 1s base, 2x multiplier, 60s max
+- **Whitelist bypass** - Critical operations exempt
+- **State persistence** - Survives validator restarts
+
+#### Whitelist Patterns
+
+```python
+'read': ['.claude/settings.json', '.claude/validators/', 'CLAUDE.md']
+'bash': ['git status', 'git log', 'git diff']
+```
+
+#### CLI Commands
+
+```bash
+# Check status
+python3 .claude/validators/rate_limiter.py status
+
+# Reset limits
+python3 .claude/validators/rate_limiter.py reset
+
+# Reset specific operation
+python3 .claude/validators/rate_limiter.py reset bash
+```
+
+#### No Override Available
+
+Rate limiting cannot be bypassed - this is a security feature.
+
+---
+
+### plugin_permissions.py (NEW - Phase 1)
+
+**Purpose:** Implements capability-based security for BMAD plugins/modules.
+
+**OWASP Reference:** LLM07 - Insecure Plugin Design
+
+#### Capabilities
+
+| Capability | Operations | Description |
+|------------|------------|-------------|
+| `filesystem` | read, write, delete, list | File system access |
+| `network` | fetch, search, api_call | Network operations |
+| `shell` | execute, spawn | Command execution |
+| `sensitive_data` | read, process | PII/sensitive data |
+
+#### Plugin Manifest
+
+Each plugin declares permissions in `_bmad/{plugin}/manifest.yaml`:
+
+```yaml
+name: intel-team
+version: 1.0.0
+permissions:
+  filesystem:
+    read: ["_bmad/intel-team/**", "docs/**"]
+    write: ["_bmad/intel-team/output/**"]
+  network: true
+  shell:
+    allowed_commands: ["curl", "wget", "whois"]
+    blocked_commands: ["rm", "sudo"]
+  sensitive_data: true
+```
+
+#### Default Permissions
+
+Plugins without manifests get restrictive defaults:
+
+- Filesystem: Own directory + docs
+- Network: Denied
+- Shell: All blocked except safe commands
+- Sensitive data: Denied
+
+#### RBAC Integration
+
+Permission checking integrates with roles:
+
+| Role | Shell | Network | Sensitive |
+|------|-------|---------|-----------|
+| admin | All | Yes | Yes |
+| developer | dev tools | Yes | No |
+| analyst | recon tools | Yes | No |
+| viewer | None | No | No |
+
+**Important:** Plugin manifests take precedence over RBAC grants.
+
+#### CLI Commands
+
+```bash
+# List plugins
+python3 .claude/validators/plugin_permissions.py list
+
+# Check permission
+python3 .claude/validators/plugin_permissions.py check intel-team shell execute "curl https://example.com"
+
+# Generate manifests
+python3 .claude/validators/plugin_permissions.py generate _bmad/
+```
+
+#### No Override Available
+
+Plugin permissions cannot be bypassed - this is enforced at the manifest level.
+
+---
+
+### supply_chain_verifier.py (NEW - Phase 2)
+
+**Purpose:** Verifies integrity and authenticity of skills and plugins before loading.
+
+**OWASP Reference:** LLM05 - Supply Chain Vulnerabilities
+
+#### Features
+
+- **SHA256 Checksums:** Verifies file integrity against manifest
+- **GPG Signatures:** Validates manifest authenticity
+- **Verification Modes:** strict (block), warn (log), disabled
+
+#### Verification Flow
+
+```
+Skill Request → Load Manifest → Verify GPG Signature
+                                      ↓
+                              VALID → Verify SHA256 Checksums
+                                            ↓
+                                    MATCH → Execute Skill
+                                    MISMATCH → BLOCK + LOG
+                              INVALID → BLOCK + LOG
+```
+
+#### CLI Commands
+
+```bash
+# Verify a plugin
+python3 .claude/validators/supply_chain_verifier.py verify _bmad/intel-team
+
+# Generate checksums
+python3 .claude/validators/supply_chain_verifier.py generate _bmad/intel-team
+```
+
+---
+
+### context_manager.py (NEW - Phase 2)
+
+**Purpose:** Tracks and manages context window usage to prevent overflow.
+
+**OWASP Reference:** LLM04 - Model Denial of Service
+
+#### Features
+
+- **Token Estimation:** Estimates tokens for text, files, and operations
+- **Thresholds:** Warning at 75%, blocking at 95%
+- **Session Tracking:** Automatic reset on new session
+
+#### Configuration
+
+```python
+CHARS_PER_TOKEN = 4
+MAX_CONTEXT_TOKENS = 200000
+WARNING_THRESHOLD = 0.75
+BLOCK_THRESHOLD = 0.95
+```
+
+#### CLI Commands
+
+```bash
+# Check context usage
+python3 .claude/validators/context_manager.py status
+
+# Reset context tracking
+python3 .claude/validators/context_manager.py reset
+```
+
+---
+
+### recursion_guard.py (NEW - Phase 2)
+
+**Purpose:** Prevents infinite loops and excessive recursion.
+
+**OWASP Reference:** LLM04 - Model Denial of Service
+
+#### Features
+
+- **Directory Depth:** Limits traversal depth (default: 10)
+- **Call Stack:** Limits nested operations (default: 20)
+- **Circular References:** Detects and blocks circular paths
+- **Symlink Tracking:** Follows symlinks with depth limit
+
+#### Configuration
+
+| Limit | Default | Description |
+|-------|---------|-------------|
+| `MAX_DIRECTORY_DEPTH` | 10 | Maximum directory traversal |
+| `MAX_NESTED_CALLS` | 20 | Maximum nested operations |
+| `MAX_SYMLINK_DEPTH` | 5 | Maximum symlink follows |
+
+---
+
+### resource_limits.py (NEW - Phase 3)
+
+**Purpose:** Enforces memory and process limits to prevent resource exhaustion.
+
+**OWASP Reference:** LLM04 - Model Denial of Service
+
+#### Features
+
+- **Memory Limits:** Per-session maximum (default: 1GB)
+- **Child Processes:** Limits concurrent spawned processes
+- **File Size:** Limits output file sizes
+- **Process Timeout:** Enforces operation timeouts
+
+#### Configuration (Environment Variables)
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `BMAD_MAX_MEMORY_MB` | 1024 | Memory limit in MB |
+| `BMAD_MAX_CHILD_PROCS` | 10 | Maximum child processes |
+| `BMAD_MAX_FILE_SIZE_MB` | 100 | Maximum output file size |
+| `BMAD_PROCESS_TIMEOUT` | 300 | Process timeout in seconds |
+
+---
+
+### confidence_tracker.py (NEW - Phase 3)
+
+**Purpose:** Tracks output confidence and detects uncertainty in responses.
+
+**OWASP Reference:** LLM09 - Overreliance
+
+#### Features
+
+- **Uncertainty Detection:** Detects hedging language (might, maybe, perhaps)
+- **Confidence Scoring:** Assigns HIGH/MEDIUM/LOW/VERY_LOW levels
+- **Source Attribution:** Tracks sources for claims
+- **Code Warnings:** Detects TODO, FIXME, HACK patterns
+
+#### Confidence Levels
+
+| Level | Score | Indicators |
+|-------|-------|------------|
+| HIGH | 0.9+ | No uncertainty markers |
+| MEDIUM | 0.7-0.9 | Some hedging language |
+| LOW | 0.5-0.7 | Multiple uncertainty markers |
+| VERY_LOW | <0.5 | Significant uncertainty |
+
+#### Display Configuration
+
+```bash
+# Enable confidence display
+export BMAD_SHOW_CONFIDENCE=true
+```
+
+---
+
+### telemetry_collector.py (NEW - Phase 4)
+
+**Purpose:** Collects structured telemetry for SIEM/dashboard integration.
+
+#### Features
+
+- **JSONL Output:** Structured telemetry files
+- **Event Types:** Security events, rate limits, permissions, resources
+- **File Rotation:** Automatic rotation at 50MB
+- **External Integration:** Designed for Splunk, ELK, Grafana
+
+#### Telemetry Location
+
+```
+docs/TestingLogs/security/AuditLogs/telemetry/
+├── security_events.jsonl
+├── rate_limit_metrics.jsonl
+├── permission_audit.jsonl
+├── resource_usage.jsonl
+├── supply_chain_verification.jsonl
+├── confidence_analysis.jsonl
+└── TELEMETRY-SCHEMA.md
 ```
 
 ---

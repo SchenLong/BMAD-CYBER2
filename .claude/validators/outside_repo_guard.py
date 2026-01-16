@@ -94,6 +94,21 @@ def get_operation_from_stdin():
         return {}
 
 
+# Safe substitution patterns that don't pose path traversal risk
+SAFE_SUBSTITUTION_PATTERNS = [
+    r'^\$\(date[^)]*\)$',           # Date commands
+    r'^\$\(whoami\)$',              # User identification
+    r'^\$\(pwd\)$',                 # Current directory (already known)
+    r'^\$\(hostname\)$',            # System hostname
+    r'^\$\(uname[^)]*\)$',          # System info
+    r'^\$\{PWD\}$',                 # PWD variable
+    r'^\$\{USER\}$',                # USER variable
+    r'^\$\{HOSTNAME\}$',            # HOSTNAME variable
+    r'^\$\{SHELL\}$',               # SHELL variable
+    r'^\$\{TERM\}$',                # TERM variable
+]
+
+
 def detect_command_substitution(cmd: str) -> list:
     """
     Detect command substitution patterns that could bypass path checks.
@@ -115,6 +130,25 @@ def detect_command_substitution(cmd: str) -> list:
             })
 
     return detected
+
+
+def is_safe_substitution(substitutions: list) -> bool:
+    """
+    Check if all detected substitutions are in the safe allowlist.
+
+    Safe substitutions include date, pwd, hostname, etc. that cannot
+    be used for path traversal or code injection.
+    """
+    for sub in substitutions:
+        match = sub.get('match', '')
+        is_safe = False
+        for safe_pattern in SAFE_SUBSTITUTION_PATTERNS:
+            if re.match(safe_pattern, match):
+                is_safe = True
+                break
+        if not is_safe:
+            return False
+    return True
 
 
 def extract_paths_from_command(cmd: str) -> list:
@@ -169,10 +203,36 @@ def extract_paths_from_command(cmd: str) -> list:
 def check_bash_command(cmd: str, cwd: str) -> tuple:
     """
     Check bash command for paths outside repository.
-    Returns: (is_violation, is_absolute_block, message, paths, substitutions)
+    Returns: (is_violation, is_absolute_block, message, paths, substitutions, substitution_blocked)
+
+    Note: substitution_blocked is True if the command was blocked due to unsafe substitutions
     """
     # First detect command substitution
     substitutions = detect_command_substitution(cmd)
+
+    # NEW: Block commands with unsafe substitution by default
+    substitution_blocked = False
+    if substitutions and not is_safe_substitution(substitutions):
+        # Check for override
+        override_valid, _ = OverrideManager.check_and_consume_override('COMMAND_SUBSTITUTION')
+
+        if not override_valid:
+            substitution_blocked = True
+            return (
+                True,   # is_violation
+                False,  # is_absolute_block (can be overridden)
+                "Command contains substitution patterns that cannot be validated for path safety",
+                [],     # no specific paths (we can't evaluate them)
+                substitutions,
+                substitution_blocked
+            )
+        else:
+            # Log that override was used
+            AuditLogger.log_override_used(
+                VALIDATOR_NAME,
+                'BMAD_ALLOW_COMMAND_SUBSTITUTION',
+                cmd[:200]
+            )
 
     paths = extract_paths_from_command(cmd)
     violations = []
@@ -190,15 +250,15 @@ def check_bash_command(cmd: str, cwd: str) -> tuple:
             })
 
     if not violations:
-        return False, False, '', [], substitutions
+        return False, False, '', [], substitutions, False
 
     # Check if any violations are rm (delete) operations - ABSOLUTE BLOCK
     delete_violations = [v for v in violations if v['operation'] == 'delete']
 
     if delete_violations:
-        return True, True, "ABSOLUTE BLOCK: rm command targets path outside repository", delete_violations, substitutions
+        return True, True, "ABSOLUTE BLOCK: rm command targets path outside repository", delete_violations, substitutions, False
 
-    return True, False, "Operation targets path outside repository", violations, substitutions
+    return True, False, "Operation targets path outside repository", violations, substitutions, False
 
 
 def check_file_path(file_path: str, cwd: str, tool_name: str) -> tuple:
@@ -228,20 +288,32 @@ def main():
     # Check based on tool type
     if operation.get('command'):
         # Bash command
-        is_violation, is_absolute, message, paths, substitutions = check_bash_command(operation['command'], cwd)
-
-        # Log command substitution warnings
-        if substitutions:
-            AuditLogger.log(VALIDATOR_NAME, 'WARNING',
-                           {'message': 'Command substitution detected - path checks may be incomplete',
-                            'patterns': substitutions,
-                            'command': operation['command'][:200]},
-                           severity='WARNING')
-            print(f"WARNING: Command contains substitution patterns that cannot be fully validated:", file=sys.stderr)
-            for sub in substitutions[:3]:
-                print(f"  - {sub['type']}: {sub['match']}", file=sys.stderr)
+        is_violation, is_absolute, message, paths, substitutions, substitution_blocked = check_bash_command(operation['command'], cwd)
 
         if is_violation:
+            # Handle command substitution block separately
+            if substitution_blocked:
+                AuditLogger.log_blocked(VALIDATOR_NAME, message, operation['command'],
+                                       {'block_type': 'SUBSTITUTION',
+                                        'patterns': [s['match'] for s in substitutions]})
+                print(f"\n{'='*60}", file=sys.stderr)
+                print(f"BMAD GUARDRAIL: COMMAND SUBSTITUTION BLOCKED", file=sys.stderr)
+                print(f"{'='*60}", file=sys.stderr)
+                print(f"\n{message}", file=sys.stderr)
+                print(f"\nCommand: {operation['command']}", file=sys.stderr)
+                print(f"\nDetected substitution patterns:", file=sys.stderr)
+                for sub in substitutions:
+                    print(f"  - {sub['type']}: {sub['match']}", file=sys.stderr)
+                print(f"\nSafe patterns (allowlisted):", file=sys.stderr)
+                print(f"  $(date), $(pwd), $(whoami), $(hostname), $(uname)", file=sys.stderr)
+                print(f"  ${{PWD}}, ${{USER}}, ${{HOSTNAME}}, ${{SHELL}}, ${{TERM}}", file=sys.stderr)
+                print(f"\nTo override (if you understand the security implications):", file=sys.stderr)
+                print(f"  export BMAD_ALLOW_COMMAND_SUBSTITUTION=true", file=sys.stderr)
+                print(f"\nNote: This allows commands with dynamic path resolution.", file=sys.stderr)
+                print(f"      Ensure you trust the command source.", file=sys.stderr)
+                print(f"{'='*60}\n", file=sys.stderr)
+                sys.exit(2)
+
             if is_absolute:
                 # ABSOLUTE BLOCK for rm outside repo
                 AuditLogger.log_blocked(VALIDATOR_NAME, message, operation['command'],
@@ -286,6 +358,13 @@ def main():
                 print(f"\nNote: Override will be consumed after one use.", file=sys.stderr)
                 print(f"{'='*60}\n", file=sys.stderr)
                 sys.exit(2)
+        elif substitutions:
+            # Command passed but has safe substitutions - log info
+            AuditLogger.log(VALIDATOR_NAME, 'INFO',
+                           {'message': 'Command contains safe substitution patterns',
+                            'patterns': [s['match'] for s in substitutions],
+                            'command': operation['command'][:200]},
+                           severity='INFO')
 
     elif operation.get('file_path'):
         # File operation (Read, Write, Edit)

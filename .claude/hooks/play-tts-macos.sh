@@ -45,10 +45,42 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
   exit 1
 fi
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source input validation library for security
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+else
+    # Minimal fallback validation if library not found
+    validate_dialogue() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 10000 ]] && return 1
+        [[ "$input" == *$'\0'* ]] && return 1
+        return 0
+    }
+    validate_voice_name() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 50 ]] && return 1
+        [[ "$input" =~ [';|&$`<>(){}!\\'] ]] && return 1
+        return 0
+    }
+fi
+
 TEXT="$1"
 VOICE_OVERRIDE="$2"  # Optional: voice name (e.g., "Samantha", "Daniel")
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# SECURITY: Validate inputs before use
+if ! validate_dialogue "$TEXT"; then
+    echo "❌ Error: Invalid text input" >&2
+    exit 1
+fi
+
+if ! validate_voice_name "$VOICE_OVERRIDE"; then
+    echo "❌ Error: Invalid voice name" >&2
+    exit 1
+fi
 
 # Default voice for macOS
 DEFAULT_VOICE="Samantha"

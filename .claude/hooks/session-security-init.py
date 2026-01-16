@@ -5,14 +5,19 @@ BMAD Guardrails: Session Security Initialization
 Runs at session start to validate security configuration and environment.
 
 This hook:
-1. Verifies all validators exist and are readable
-2. Checks for dangerous environment variables
-3. Initializes the audit log
-4. Reports security status to the user
+1. Validates authentication token (P1 Security Fix)
+2. Verifies all validators exist and are readable
+3. Checks for dangerous environment variables
+4. Initializes the audit log
+5. Reports security status to the user
 
 Exit Codes:
 - 0: Security initialized successfully (with warnings if any)
-- Non-zero exits would block session start (not recommended)
+- 2: Authentication failed (blocks session start)
+
+Security Note:
+    Token validation is now enforced at session start to ensure
+    only authorized users can interact with the system.
 """
 
 import os
@@ -25,9 +30,13 @@ PROJECT_DIR = os.environ.get('CLAUDE_PROJECT_DIR', os.getcwd())
 VALIDATORS_DIR = os.path.join(PROJECT_DIR, '.claude', 'validators')
 LOGS_DIR = os.path.join(PROJECT_DIR, '.claude', 'logs')
 
+# Add validators to path for import
+sys.path.insert(0, VALIDATORS_DIR)
+
 # Required validators
 REQUIRED_VALIDATORS = [
     'security_common.py',
+    'token_validator.py',  # P1 Security Fix: Token authentication
     'bash_safety.py',
     'secret_guard.py',
     'env_protection.py',
@@ -119,6 +128,34 @@ def log_session_start(status: str, issues: list) -> None:
         pass  # Don't fail session start due to logging issues
 
 
+def validate_authentication() -> tuple:
+    """
+    Validate authentication token (P1 Security Fix).
+
+    Returns:
+        Tuple of (is_valid, user_info, error_message)
+    """
+    try:
+        from token_validator import validate_token, mark_session_validated, save_session_claims
+    except ImportError as e:
+        return False, None, f"Could not import token_validator: {e}"
+
+    is_valid, error, claims = validate_token()
+
+    if is_valid:
+        mark_session_validated()
+        save_session_claims(claims)
+
+        user_name = claims.get('name', 'unknown')
+        user_roles = claims.get('roles', [])
+        if isinstance(user_roles, str):
+            user_roles = [user_roles]
+
+        return True, {'name': user_name, 'roles': user_roles}, None
+
+    return False, None, error
+
+
 def main():
     issues = []
     warnings = []
@@ -126,6 +163,33 @@ def main():
     print(f"\n{'='*60}", file=sys.stderr)
     print(f"BMAD GUARDRAILS: Security Initialization", file=sys.stderr)
     print(f"{'='*60}", file=sys.stderr)
+
+    # Check 0: Token Authentication (P1 Security Fix)
+    token_required = os.environ.get('BMAD_TOKEN_REQUIRED', 'true').lower() != 'false'
+
+    if token_required:
+        auth_valid, user_info, auth_error = validate_authentication()
+        if auth_valid:
+            if user_info and not user_info.get('enforcement_disabled'):
+                user_name = user_info.get('name', 'unknown')
+                roles = ', '.join(user_info.get('roles', []))
+                print(f"  [OK] Authenticated: {user_name} (roles: {roles})", file=sys.stderr)
+            else:
+                print(f"  [!!] Token enforcement disabled - running as guest", file=sys.stderr)
+                warnings.append("Token enforcement disabled")
+        else:
+            # Authentication failed - this is a blocking error
+            print(f"  [!!] Authentication FAILED: {auth_error}", file=sys.stderr)
+            print(f"\n{'='*60}", file=sys.stderr)
+            print(f"  To authenticate, generate a token:", file=sys.stderr)
+            print(f"    node _bmad/core/security/quick-token.js \"Name\" \"role\" 168", file=sys.stderr)
+            print(f"\n  Or disable token requirement (NOT RECOMMENDED):", file=sys.stderr)
+            print(f"    export BMAD_TOKEN_REQUIRED=false", file=sys.stderr)
+            print(f"{'='*60}\n", file=sys.stderr)
+            sys.exit(2)
+    else:
+        print(f"  [!!] Token validation SKIPPED (BMAD_TOKEN_REQUIRED=false)", file=sys.stderr)
+        warnings.append("Token validation disabled")
 
     # Check 1: Validators
     missing, unreadable = check_validators()

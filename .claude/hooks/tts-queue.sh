@@ -5,8 +5,43 @@
 # TTS Queue Manager for Party Mode
 # Queues TTS requests and plays them sequentially in the background
 # This allows Claude to continue generating responses while audio plays in order
+#
+# Security:
+#   All inputs are validated using the input-validation library
+#   to prevent shell injection attacks.
 
 set -euo pipefail
+
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+else
+    # Minimal fallback validation if library not found
+    validate_dialogue() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 10000 ]] && return 1
+        [[ "$input" == *$'\0'* ]] && return 1
+        return 0
+    }
+    validate_voice_name() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 50 ]] && return 1
+        [[ "$input" =~ [';|&$`<>(){}!\\'] ]] && return 1
+        return 0
+    }
+    validate_agent_name() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 100 ]] && return 1
+        [[ "$input" =~ [';|&$`<>(){}!\\'] ]] && return 1
+        return 0
+    }
+fi
 
 # Security: Use secure temp directory with restrictive permissions
 # Check if XDG_RUNTIME_DIR is available (more secure than /tmp)
@@ -34,10 +69,27 @@ fi
 # @param $1 dialogue text
 # @param $2 voice name (optional)
 # @param $3 agent name (optional, for background music in party mode)
+# @security All parameters validated before use
 add_to_queue() {
   local text="$1"
   local voice="${2:-}"
   local agent="${3:-default}"
+
+  # SECURITY: Validate all inputs before use
+  if ! validate_dialogue "$text"; then
+    echo "Error: Invalid dialogue text" >&2
+    return 1
+  fi
+
+  if ! validate_voice_name "$voice"; then
+    echo "Error: Invalid voice name" >&2
+    return 1
+  fi
+
+  if ! validate_agent_name "$agent"; then
+    echo "Error: Invalid agent name" >&2
+    return 1
+  fi
 
   # Create unique queue item with timestamp
   local timestamp=$(date +%s%N)

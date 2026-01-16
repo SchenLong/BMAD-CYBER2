@@ -38,6 +38,8 @@ import os
 import re
 import hashlib
 import time
+import unicodedata
+from difflib import SequenceMatcher
 from typing import List, Dict, Tuple, Optional
 from pathlib import Path
 
@@ -328,6 +330,352 @@ ALL_JAILBREAK_PATTERNS = (
     OBFUSCATION_PATTERNS
 )
 
+
+# =============================================================================
+# UNICODE NORMALIZATION (P3 Enhancement)
+# =============================================================================
+
+# Zero-width characters to strip
+ZERO_WIDTH_CHARS = [
+    '\u200b',  # Zero-width space
+    '\u200c',  # Zero-width non-joiner
+    '\u200d',  # Zero-width joiner
+    '\u2060',  # Word joiner
+    '\ufeff',  # Zero-width no-break space (BOM)
+    '\u00ad',  # Soft hyphen
+    '\u180e',  # Mongolian vowel separator
+    '\u2061',  # Function application
+    '\u2062',  # Invisible times
+    '\u2063',  # Invisible separator
+    '\u2064',  # Invisible plus
+]
+
+# Combining character ranges pattern
+COMBINING_MARKS_PATTERN = re.compile(
+    r'[\u0300-\u036f'    # Combining Diacritical Marks
+    r'\u1ab0-\u1aff'     # Combining Diacritical Marks Extended
+    r'\u1dc0-\u1dff'     # Combining Diacritical Marks Supplement
+    r'\u20d0-\u20ff'     # Combining Diacritical Marks for Symbols
+    r'\ufe20-\ufe2f]'    # Combining Half Marks
+)
+
+# Common confusable characters (homoglyphs)
+CONFUSABLE_MAP = {
+    # Cyrillic lookalikes
+    'а': 'a', 'А': 'A',
+    'е': 'e', 'Е': 'E',
+    'о': 'o', 'О': 'O',
+    'р': 'p', 'Р': 'P',
+    'с': 'c', 'С': 'C',
+    'у': 'y', 'У': 'Y',
+    'х': 'x', 'Х': 'X',
+    'і': 'i', 'І': 'I',
+    'ј': 'j',
+    'ɡ': 'g',
+    'ո': 'n',
+    'г': 'r',
+    'Ь': 'b',
+    'к': 'k',
+    'ɑ': 'a',
+    # Greek lookalikes
+    'Α': 'A', 'α': 'a',
+    'Β': 'B', 'β': 'b',
+    'Ε': 'E', 'ε': 'e',
+    'Η': 'H',
+    'Ι': 'I', 'ι': 'i',
+    'Κ': 'K', 'κ': 'k',
+    'Μ': 'M',
+    'Ν': 'N', 'ν': 'v',
+    'Ο': 'O', 'ο': 'o',
+    'Ρ': 'P', 'ρ': 'p',
+    'Τ': 'T', 'τ': 't',
+    'Υ': 'Y', 'υ': 'u',
+    'Χ': 'X', 'χ': 'x',
+    # Special characters
+    'ß': 'ss',
+    'ø': 'o', 'Ø': 'O',
+    'æ': 'ae', 'Æ': 'AE',
+    'œ': 'oe', 'Œ': 'OE',
+    # Fullwidth characters
+    '０': '0', '１': '1', '２': '2', '３': '3', '４': '4',
+    '５': '5', '６': '6', '７': '7', '８': '8', '９': '9',
+    'Ａ': 'A', 'Ｂ': 'B', 'Ｃ': 'C', 'Ｄ': 'D', 'Ｅ': 'E',
+    'Ｆ': 'F', 'Ｇ': 'G', 'Ｈ': 'H', 'Ｉ': 'I', 'Ｊ': 'J',
+    'Ｋ': 'K', 'Ｌ': 'L', 'Ｍ': 'M', 'Ｎ': 'N', 'Ｏ': 'O',
+    'Ｐ': 'P', 'Ｑ': 'Q', 'Ｒ': 'R', 'Ｓ': 'S', 'Ｔ': 'T',
+    'Ｕ': 'U', 'Ｖ': 'V', 'Ｗ': 'W', 'Ｘ': 'X', 'Ｙ': 'Y', 'Ｚ': 'Z',
+    'ａ': 'a', 'ｂ': 'b', 'ｃ': 'c', 'ｄ': 'd', 'ｅ': 'e',
+    'ｆ': 'f', 'ｇ': 'g', 'ｈ': 'h', 'ｉ': 'i', 'ｊ': 'j',
+    'ｋ': 'k', 'ｌ': 'l', 'ｍ': 'm', 'ｎ': 'n', 'ｏ': 'o',
+    'ｐ': 'p', 'ｑ': 'q', 'ｒ': 'r', 'ｓ': 's', 'ｔ': 't',
+    'ｕ': 'u', 'ｖ': 'v', 'ｗ': 'w', 'ｘ': 'x', 'ｙ': 'y', 'ｚ': 'z',
+    # Modifier letters
+    'ᴬ': 'A', 'ᴮ': 'B', 'ᴰ': 'D', 'ᴱ': 'E', 'ᴳ': 'G',
+    'ᴴ': 'H', 'ᴵ': 'I', 'ᴶ': 'J', 'ᴷ': 'K', 'ᴸ': 'L',
+    'ᴹ': 'M', 'ᴺ': 'N', 'ᴼ': 'O', 'ᴾ': 'P', 'ᴿ': 'R',
+    'ᵀ': 'T', 'ᵁ': 'U', 'ⱽ': 'V', 'ᵂ': 'W',
+}
+
+
+def normalize_text(text: str) -> str:
+    """
+    Normalize text to canonical form for pattern matching.
+
+    Steps:
+    1. Unicode NFKC normalization (compatibility + composition)
+    2. Strip zero-width characters
+    3. Remove combining marks (diacritics)
+    4. Convert confusable characters to ASCII equivalents
+    5. Collapse whitespace
+
+    This defeats common evasion techniques:
+    - Zero-width character insertion: "D\u200bA\u200bN" -> "DAN"
+    - Cyrillic substitution: "DАN" (with Cyrillic А) -> "DAN"
+    - Diacritics: "D̲A̲N̲" -> "DAN"
+    - Fullwidth: "ＤＡＮ" -> "DAN"
+    """
+    if not text:
+        return text
+
+    # Step 1: NFKC normalization (handles fullwidth, compatibility chars)
+    normalized = unicodedata.normalize('NFKC', text)
+
+    # Step 2: Strip zero-width characters
+    for char in ZERO_WIDTH_CHARS:
+        normalized = normalized.replace(char, '')
+
+    # Step 3: Remove combining marks (diacritics)
+    normalized = COMBINING_MARKS_PATTERN.sub('', normalized)
+
+    # Step 4: Convert confusable characters
+    result = []
+    for char in normalized:
+        result.append(CONFUSABLE_MAP.get(char, char))
+    normalized = ''.join(result)
+
+    # Step 5: Collapse whitespace (but preserve structure)
+    normalized = re.sub(r'[ \t]+', ' ', normalized)  # Collapse horizontal space
+    normalized = re.sub(r'\n\s*\n', '\n\n', normalized)  # Collapse multiple newlines
+
+    return normalized
+
+
+# =============================================================================
+# FUZZY MATCHING (P3 Enhancement)
+# =============================================================================
+
+# Known jailbreak keywords to fuzzy match
+JAILBREAK_KEYWORDS = [
+    'jailbreak', 'ignore', 'bypass', 'override', 'restrictions',
+    'dan', 'dude', 'stan', 'aim', 'ucar', 'apophis', 'anarchy',
+    'roleplay', 'pretend', 'hypothetically', 'theoretically',
+    'unrestricted', 'unfiltered', 'uncensored', 'unlimited',
+]
+
+# Phrases to fuzzy match (multi-word)
+JAILBREAK_PHRASES = [
+    'developer mode', 'admin mode', 'sudo mode', 'root access',
+    'no restrictions', 'no rules', 'no limits', 'no ethics',
+    'do anything now', 'anything goes', 'ignore guidelines',
+    'previous instructions', 'forget instructions', 'new instructions',
+]
+
+
+def fuzzy_match_keywords(text: str, threshold: float = 0.85) -> List[Dict]:
+    """
+    Find fuzzy matches for known jailbreak keywords.
+
+    Uses SequenceMatcher to detect variations like:
+    - ja1lbreak (leet speak)
+    - jail break (word split)
+    - jailbr3ak (partial substitution)
+    - jailllbreak (character duplication)
+
+    Args:
+        text: Text to search
+        threshold: Minimum similarity ratio (0.0 to 1.0)
+
+    Returns:
+        List of findings with fuzzy match details
+    """
+    findings = []
+    text_lower = text.lower()
+    words = re.findall(r'\b\w+\b', text_lower)
+
+    # Check single keywords
+    for word in words:
+        if len(word) < 3:  # Skip very short words
+            continue
+
+        for keyword in JAILBREAK_KEYWORDS:
+            if word == keyword:  # Exact match handled by pattern matching
+                continue
+
+            ratio = SequenceMatcher(None, word, keyword).ratio()
+            if ratio >= threshold and ratio < 1.0:
+                findings.append({
+                    'type': f'Fuzzy match: {keyword}',
+                    'severity': 'warning',
+                    'description': f'Potential obfuscated keyword "{word}" (similarity: {ratio:.0%})',
+                    'weight': 3,
+                    'match': word,
+                })
+
+    # Check multi-word phrases
+    for phrase in JAILBREAK_PHRASES:
+        # Create variations with different word separators
+        phrase_pattern = phrase.replace(' ', r'[\s_-]*')
+        matches = re.finditer(phrase_pattern, text_lower)
+        for match in matches:
+            matched = match.group(0)
+            ratio = SequenceMatcher(None, matched.replace(' ', ''), phrase.replace(' ', '')).ratio()
+            if 0.8 <= ratio < 1.0:
+                findings.append({
+                    'type': f'Fuzzy phrase: {phrase}',
+                    'severity': 'warning',
+                    'description': f'Potential obfuscated phrase (similarity: {ratio:.0%})',
+                    'weight': 4,
+                    'match': matched,
+                })
+
+    return findings
+
+
+# =============================================================================
+# HEURISTIC DETECTION (P3 Enhancement)
+# =============================================================================
+
+def detect_heuristic_patterns(content: str) -> List[Dict]:
+    """
+    Detect potential jailbreak attempts using heuristics rather than exact patterns.
+
+    This catches novel/unknown jailbreak attempts by identifying:
+    - Multiple authority claims
+    - Instruction-like formatting
+    - Persona definition attempts
+    - Excessive capitalization (shouting)
+    - Suspicious structural patterns
+    """
+    findings = []
+    content_lower = content.lower()
+
+    # Heuristic 1: Multiple authority claims in single message
+    authority_words = [
+        'developer', 'admin', 'administrator', 'creator', 'anthropic', 'openai',
+        'authorization', 'permission', 'clearance', 'special access', 'internal',
+        'maintenance', 'debug', 'testing mode', 'sudo', 'root', 'superuser'
+    ]
+    authority_count = sum(1 for word in authority_words if word in content_lower)
+    if authority_count >= 2:
+        findings.append({
+            'type': 'Multiple authority claims',
+            'severity': 'warning',
+            'description': f'Message contains {authority_count} authority-related terms',
+            'weight': authority_count + 2,
+        })
+
+    # Heuristic 2: Instruction-like formatting
+    lines = content.split('\n')
+    instruction_indicators = [
+        (r'^\s*\d+[\.\)]\s+', 'Numbered instructions'),
+        (r'^\s*[-*•]\s+', 'Bulleted instructions'),
+        (r'(?i)^(step|rule|instruction|requirement)\s*\d+', 'Explicit step markers'),
+    ]
+
+    for pattern, name in instruction_indicators:
+        matches = [line for line in lines if re.match(pattern, line)]
+        if len(matches) >= 4:
+            findings.append({
+                'type': f'Instruction pattern: {name}',
+                'severity': 'info',
+                'description': f'Detected {len(matches)} instruction-like patterns',
+                'weight': 2,
+            })
+
+    # Heuristic 3: Imperative directives to AI
+    imperative_patterns = [
+        r'(?i)\byou must (always|never)\b',
+        r'(?i)\byou will (always|never)\b',
+        r'(?i)\byou shall (always|never)\b',
+        r'(?i)\byou should always\b',
+        r'(?i)\bnever (refuse|say no|decline|reject)\b',
+        r'(?i)\balways (comply|agree|accept|answer|respond)\b',
+    ]
+    imperative_count = sum(1 for p in imperative_patterns if re.search(p, content))
+    if imperative_count >= 2:
+        findings.append({
+            'type': 'Multiple imperative directives',
+            'severity': 'warning',
+            'description': f'Detected {imperative_count} imperative directives to AI',
+            'weight': imperative_count + 2,
+        })
+
+    # Heuristic 4: Persona definition attempt
+    persona_patterns = [
+        r'(?i)from now on,?\s+(you|your)',
+        r'(?i)for (this|the rest of).*(conversation|session|chat)',
+        r'(?i)you are now\b',
+        r'(?i)your new (name|identity|personality|persona)',
+        r'(?i)(act|behave|respond)\s+as\s+(if\s+)?(you\s+)?(are|were)',
+        r'(?i)forget (everything|what|who)\s+(you|about)',
+    ]
+
+    persona_count = sum(1 for p in persona_patterns if re.search(p, content))
+    if persona_count >= 1:
+        findings.append({
+            'type': 'Persona manipulation attempt',
+            'severity': 'warning',
+            'description': f'Detected {persona_count} persona manipulation pattern(s)',
+            'weight': 4 + persona_count,
+        })
+
+    # Heuristic 5: High ratio of ALL CAPS words (shouting/emphasis)
+    words = content.split()
+    if words:
+        caps_words = [w for w in words if w.isupper() and len(w) > 2 and w.isalpha()]
+        caps_ratio = len(caps_words) / len(words) if words else 0
+        if caps_ratio > 0.15 and len(caps_words) > 5:
+            findings.append({
+                'type': 'Excessive capitalization',
+                'severity': 'info',
+                'description': f'{caps_ratio:.0%} of words are ALL CAPS ({len(caps_words)} words)',
+                'weight': 2,
+            })
+
+    # Heuristic 6: Contradictory instructions
+    contradictions = [
+        (r'(?i)ignore.*previous', r'(?i)follow.*new'),
+        (r'(?i)forget.*rules', r'(?i)(new|different)\s+rules'),
+        (r'(?i)discard.*instructions', r'(?i)(these|new)\s+instructions'),
+    ]
+    for pattern1, pattern2 in contradictions:
+        if re.search(pattern1, content) and re.search(pattern2, content):
+            findings.append({
+                'type': 'Contradictory instruction pair',
+                'severity': 'warning',
+                'description': 'Found instruction override pattern (ignore old + follow new)',
+                'weight': 5,
+            })
+            break
+
+    # Heuristic 7: System prompt extraction attempt
+    extraction_patterns = [
+        r'(?i)(show|display|print|reveal|tell me|output)\s+(your\s+)?(system\s+)?(prompt|instructions|rules)',
+        r'(?i)(what\s+are|repeat|recite)\s+(your\s+)?(initial|original|system)\s+(instructions|prompt|rules)',
+        r'(?i)ignore\s+(the\s+)?above\s+and\s+(instead|show|tell)',
+    ]
+    for pattern in extraction_patterns:
+        if re.search(pattern, content):
+            findings.append({
+                'type': 'System prompt extraction attempt',
+                'severity': 'warning',
+                'description': 'Attempting to extract system instructions',
+                'weight': 5,
+            })
+            break
+
+    return findings
+
 # =============================================================================
 # SESSION RISK TRACKING
 # =============================================================================
@@ -459,14 +807,55 @@ def detect_multi_turn_patterns(content: str) -> List[Dict]:
 
 
 def analyze_content(content: str) -> List[Dict]:
-    """Run all jailbreak detection methods."""
+    """
+    Run comprehensive jailbreak detection.
+
+    Layers:
+    1. Normalize content (unicode, zero-width, confusables)
+    2. Pattern matching (exact regex)
+    3. Multi-turn pattern detection
+    4. Fuzzy matching (similar keywords)
+    5. Heuristic detection (behavioral patterns)
+
+    Both original and normalized content are checked to ensure:
+    - Normalized catches obfuscation attempts
+    - Original catches patterns that rely on specific encoding
+    """
     all_findings = []
 
-    # Pattern-based detection
-    all_findings.extend(detect_jailbreak_patterns(content))
+    # Layer 1: Normalize content for evasion detection
+    normalized = normalize_text(content)
 
-    # Multi-turn detection
-    all_findings.extend(detect_multi_turn_patterns(content))
+    # Check if normalization changed anything significant
+    # (indicates potential obfuscation attempt)
+    if len(normalized) < len(content) * 0.9:
+        # More than 10% of content was stripped (zero-width chars, etc.)
+        all_findings.append({
+            'type': 'Heavy text obfuscation',
+            'severity': 'warning',
+            'description': f'Significant obfuscation detected ({len(content) - len(normalized)} chars stripped)',
+            'weight': 5,
+        })
+
+    # Layer 2: Pattern-based detection on both original and normalized
+    all_findings.extend(detect_jailbreak_patterns(normalized))
+    if normalized != content:
+        # Also check original for patterns that need specific encoding
+        original_findings = detect_jailbreak_patterns(content)
+        # Add only unique findings from original
+        existing_types = {f['type'] for f in all_findings}
+        for f in original_findings:
+            if f['type'] not in existing_types:
+                all_findings.append(f)
+
+    # Layer 3: Multi-turn detection
+    all_findings.extend(detect_multi_turn_patterns(normalized))
+
+    # Layer 4: Fuzzy matching (catches leet speak, typos, variations)
+    all_findings.extend(fuzzy_match_keywords(normalized))
+
+    # Layer 5: Heuristic detection (catches unknown patterns)
+    all_findings.extend(detect_heuristic_patterns(content))
 
     # Deduplicate by type (keep highest weight)
     seen_types = {}
@@ -475,7 +864,8 @@ def analyze_content(content: str) -> List[Dict]:
         if t not in seen_types or f.get('weight', 0) > seen_types[t].get('weight', 0):
             seen_types[t] = f
 
-    return list(seen_types.values())
+    # Sort by weight (most significant first)
+    return sorted(seen_types.values(), key=lambda x: x.get('weight', 0), reverse=True)
 
 
 # =============================================================================
