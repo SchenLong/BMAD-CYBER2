@@ -417,11 +417,12 @@ export BMAD_ALLOW_JAILBREAK=true
 
 | Operation | Limit | Window |
 |-----------|-------|--------|
-| Global | 100 | 60s |
-| Bash | 30 | 60s |
-| Write/Edit | 50 | 60s |
-| Read | 200 | 60s |
-| Task | 20 | 60s |
+| Global | 150 | 60s |
+| Bash | 60 | 60s |
+| Write/Edit | 100 | 60s |
+| Read | 400 | 60s |
+| Task | 40 | 60s |
+| Glob/Grep | 200 | 60s |
 | WebFetch/Search | 30/20 | 60s |
 
 #### Features
@@ -631,7 +632,7 @@ python3 .claude/validators/context_manager.py reset
 
 #### Features
 
-- **Memory Limits:** Per-session maximum (default: 1GB)
+- **Memory Limits:** Per-session maximum (default: 4GB, configurable via BMAD_MAX_MEMORY_MB)
 - **Child Processes:** Limits concurrent spawned processes
 - **File Size:** Limits output file sizes
 - **Process Timeout:** Enforces operation timeouts
@@ -640,7 +641,7 @@ python3 .claude/validators/context_manager.py reset
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `BMAD_MAX_MEMORY_MB` | 1024 | Memory limit in MB |
+| `BMAD_MAX_MEMORY_MB` | 4096 | Memory limit in MB (4GB) |
 | `BMAD_MAX_CHILD_PROCS` | 10 | Maximum child processes |
 | `BMAD_MAX_FILE_SIZE_MB` | 100 | Maximum output file size |
 | `BMAD_PROCESS_TIMEOUT` | 300 | Process timeout in seconds |
