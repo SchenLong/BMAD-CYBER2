@@ -139,26 +139,28 @@ These run on every user message before Claude processes it.
 
 | Operation | Limit/Minute |
 |-----------|--------------|
-| Global (all ops) | 100 |
-| Bash | 30 |
-| Write | 50 |
-| Edit | 50 |
-| Read | 200 |
-| Task | 20 |
+| Global (all ops) | 150 |
+| Bash | 60 |
+| Write | 100 |
+| Edit | 100 |
+| Read | 400 |
+| Task | 40 |
+| Glob | 200 |
+| Grep | 200 |
 | Skill | 30 |
 | WebFetch | 30 |
 | WebSearch | 20 |
 
 ### Resource Limits (resource_limits.py)
 
-| Resource | Limit |
-|----------|-------|
-| Memory | 1024 MB |
-| CPU | 80% |
-| Child processes | 10 |
-| File size | 50 MB |
-| Open files | 100 |
-| Timeout | 300 seconds |
+| Resource | Limit | Configurable |
+|----------|-------|--------------|
+| Memory | 4096 MB (4GB) | `BMAD_MAX_MEMORY_MB` |
+| CPU | 80% | `BMAD_MAX_CPU_PERCENT` |
+| Child processes | 10 | `BMAD_MAX_CHILD_PROCS` |
+| File size | 50 MB | `BMAD_MAX_FILE_SIZE_MB` |
+| Open files | 100 | `BMAD_MAX_OPEN_FILES` |
+| Timeout | 300 seconds | `BMAD_PROCESS_TIMEOUT` |
 
 ### Recursion Limits (recursion_guard.py)
 

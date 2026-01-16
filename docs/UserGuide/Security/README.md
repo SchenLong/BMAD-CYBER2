@@ -246,11 +246,24 @@ Log format:
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `BMAD_RATE_LIMIT_ENABLED` | Enable rate limiting | `true` |
-| `BMAD_MAX_MEMORY_MB` | Memory limit for operations | `2048` |
+| `BMAD_MAX_MEMORY_MB` | Memory limit for operations | `4096` (4GB) |
 | `BMAD_MAX_PROCESSES` | Process limit | `50` |
 | `BMAD_MAX_FILE_SIZE_MB` | Max file size for writes | `100` |
 | `BMAD_SHOW_CONFIDENCE` | Display confidence scores | `true` |
 | `BMAD_VERIFY_SUPPLY_CHAIN` | Enable supply chain checks | `true` |
+
+### Rate Limits (LLM04)
+
+| Operation | Limit (per minute) |
+|-----------|-------------------|
+| Bash | 60 |
+| Write/Edit | 100 |
+| Read | 400 |
+| Task | 40 |
+| Global | 150 |
+| Glob/Grep | 200 |
+| WebFetch | 30 |
+| WebSearch | 20 |
 
 ### Phase 4.2 - Long-Term Controls
 

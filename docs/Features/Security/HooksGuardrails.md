@@ -1230,7 +1230,7 @@ Note: Override will be consumed after one use.
 | Jailbreak attempts | BLOCKED - multi-pattern detection | LLM01 |
 | DAN/roleplay exploits | BLOCKED - known template matching | LLM01 |
 | DoS via rapid requests | BLOCKED - sliding window rate limiting | LLM04 |
-| Memory exhaustion | BLOCKED - resource limits (2GB) | LLM04 |
+| Memory exhaustion | BLOCKED - resource limits (4GB) | LLM04 |
 | Context window overflow | BLOCKED - context manager | LLM04 |
 | Infinite loops | BLOCKED - recursion guard | LLM04 |
 | Malicious plugins | BLOCKED - hash verification | LLM05 |
@@ -1436,10 +1436,10 @@ SECRET_PATTERNS = [
 
 ### v4.0 (Current) - OWASP Remediation
 
-**OWASP Score: 93/100 (Grade: A)**
+**OWASP Score: 95/100 (Grade: A+)**
 
 - **Rate Limiter** (LLM04) - DoS protection via sliding window algorithm
-  - Per-tool rate limits (Bash: 30/min, Write: 50/min, etc.)
+  - Per-tool rate limits (Bash: 60/min, Write: 100/min, Read: 400/min, Task: 40/min)
   - Exponential backoff on violations
   - Whitelist bypass for critical operations
   - See: [Rate-Limiting.md](Rate-Limiting.md)
@@ -1460,7 +1460,7 @@ SECRET_PATTERNS = [
   - Pattern detection
   - 60-second cooldown
 - **Resource Limits** (LLM04) - System resource protection
-  - Memory: 2GB default
+  - Memory: 4GB default (configurable via BMAD_MAX_MEMORY_MB)
   - Processes: 50 max
   - File size: 100MB max
 - **Confidence Tracker** (LLM09) - Overreliance mitigation
