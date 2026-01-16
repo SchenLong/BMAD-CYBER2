@@ -177,6 +177,156 @@ This operation is BLOCKED and cannot be overridden.
 - Refine your command to be more specific
 - Target specific directories within the repository
 
+### "Rate Limit Exceeded" (OWASP LLM04)
+
+**Symptoms:**
+```
+BMAD GUARDRAIL: RATE LIMIT EXCEEDED
+
+Tool: Bash
+Limit: 30 calls per minute
+Current: 31
+```
+
+**Solutions:**
+
+1. **Wait and retry:**
+   - Rate limits reset automatically
+   - Wait for the window to pass (1min, 5min, or 1hr)
+
+2. **Increase limits (if needed):**
+   ```bash
+   export BMAD_RATE_LIMIT_BASH_PER_MIN=50
+   ```
+
+3. **Disable rate limiting (not recommended):**
+   ```bash
+   export BMAD_RATE_LIMIT_ENABLED=false
+   ```
+
+### "Resource Limit Exceeded" (OWASP LLM04)
+
+**Symptoms:**
+```
+BMAD GUARDRAIL: RESOURCE LIMIT
+
+Memory usage: 2560MB exceeds limit: 2048MB
+```
+
+**Solutions:**
+
+1. **Increase memory limit:**
+   ```bash
+   export BMAD_MAX_MEMORY_MB=4096
+   ```
+
+2. **Check for memory leaks:**
+   - Review recent operations
+   - Check for large file processing
+
+3. **File size limits:**
+   ```bash
+   export BMAD_MAX_FILE_SIZE_MB=200
+   ```
+
+### "Recursion Depth Exceeded" (OWASP LLM04)
+
+**Symptoms:**
+```
+BMAD GUARDRAIL: RECURSION LIMIT
+
+Recursion depth: 11 exceeds maximum: 10
+```
+
+**Solutions:**
+
+1. **Break recursive pattern:**
+   - Split the operation into smaller steps
+   - Use explicit iteration instead of recursion
+
+2. **Wait for cooldown:**
+   - Recursion guard has 60-second cooldown
+   - Wait and retry with simplified approach
+
+### "Supply Chain Verification Failed" (OWASP LLM05)
+
+**Symptoms:**
+```
+BMAD GUARDRAIL: SUPPLY CHAIN ALERT
+
+Plugin hash mismatch detected
+Expected: abc123...
+Actual: def456...
+```
+
+**Solutions:**
+
+1. **If plugin was legitimately updated:**
+   ```bash
+   # Re-sign the manifest
+   ./_bmad/core/security/sign-manifest.sh
+   ```
+
+2. **If unexpected change:**
+   - DO NOT proceed
+   - Investigate the change
+   - Restore from version control
+
+3. **Disable verification (not recommended):**
+   ```bash
+   export BMAD_VERIFY_SUPPLY_CHAIN=false
+   ```
+
+### "Plugin Permission Denied" (OWASP LLM07)
+
+**Symptoms:**
+```
+BMAD GUARDRAIL: PERMISSION DENIED
+
+Plugin 'custom-plugin' lacks permission: file:write
+Required permissions: [file:write, bash:execute]
+```
+
+**Solutions:**
+
+1. **Add permission to manifest:**
+   ```yaml
+   # In plugin's manifest.yaml
+   permissions:
+     - file:read
+     - file:write
+     - bash:execute
+   ```
+
+2. **Use a different plugin:**
+   - Choose one with required permissions
+   - Or request permission elevation
+
+### "Low Confidence Score" (OWASP LLM09)
+
+**Symptoms:**
+```
+BMAD CONFIDENCE WARNING
+
+Confidence: 45/100 (Very Low)
+Recommendation: Human review required
+```
+
+**Solutions:**
+
+1. **Review output manually:**
+   - Low confidence = uncertainty
+   - Verify before proceeding
+
+2. **Provide more context:**
+   - Add clarifying information
+   - Narrow the scope of the request
+
+3. **Hide confidence display:**
+   ```bash
+   export BMAD_SHOW_CONFIDENCE=false
+   ```
+
 ### False Positive Detection
 
 **Symptoms:**
@@ -561,3 +711,5 @@ tail -100 _bmad-output/.audit/audit.log
 - [CONFIGURATION-GUIDE.md](CONFIGURATION-GUIDE.md) - Configuration options
 - [RBAC-ROLES-GUIDE.md](RBAC-ROLES-GUIDE.md) - Role permissions
 - [HOOKS-VALIDATORS-GUIDE.md](../Features/HOOKS-VALIDATORS-GUIDE.md) - Hook details
+- [HOOKS-CONFIGURATION-REFERENCE.md](../Features/Security/HOOKS-CONFIGURATION-REFERENCE.md) - Complete hooks configuration
+- [Security Audit Report](../TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/) - Comprehensive audit findings

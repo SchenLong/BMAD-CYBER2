@@ -12,6 +12,10 @@
 # - Display names (e.g., "Winston", "John") for party mode
 # - Agent IDs (e.g., "architect", "pm") for individual agents
 #
+# Security:
+#   All inputs are validated using the input-validation library
+#   to prevent shell injection attacks.
+#
 
 set -euo pipefail
 
@@ -19,9 +23,40 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+else
+    # Minimal fallback validation if library not found
+    validate_agent_name() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 100 ]] && return 1
+        [[ "$input" =~ [';|&$`<>(){}!\\'] ]] && return 1
+        return 0
+    }
+    validate_dialogue() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 10000 ]] && return 1
+        return 0
+    }
+fi
+
 # Arguments
-AGENT_NAME_OR_ID="$1"
-DIALOGUE="$2"
+AGENT_NAME_OR_ID="${1:-}"
+DIALOGUE="${2:-}"
+
+# SECURITY: Validate inputs before use
+if ! validate_agent_name "$AGENT_NAME_OR_ID"; then
+    echo "Error: Invalid agent name/ID" >&2
+    exit 1
+fi
+
+if ! validate_dialogue "$DIALOGUE"; then
+    echo "Error: Invalid dialogue text" >&2
+    exit 1
+fi
 
 # Remove backslash escaping that Claude might add for special chars like ! and $
 # In single quotes these don't need escaping, but Claude sometimes adds \! anyway

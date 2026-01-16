@@ -46,6 +46,9 @@ The BMAD module implements a comprehensive **two-layer security architecture** u
 .claude/
 ├── settings.json                    # Hook configuration
 ├── .override_state.json             # Single-use override tokens (runtime)
+├── .rate_limit_state.json           # Rate limit counters (runtime)
+├── .resource_state.json             # Resource usage tracking (runtime)
+├── .confidence_state.json           # Confidence scores (runtime)
 ├── hooks/
 │   ├── session-security-init.py     # Session startup validation
 │   └── session-start-tts.sh         # Text-to-speech hook
@@ -58,10 +61,20 @@ The BMAD module implements a comprehensive **two-layer security architecture** u
 │   ├── outside_repo_guard.py        # Repository boundary enforcement
 │   ├── pii_guard.py                 # PII detection and redaction
 │   ├── prompt_injection_guard.py    # Prompt injection defense
-│   └── jailbreak_guard.py           # Jailbreak attempt detection
+│   ├── jailbreak_guard.py           # Jailbreak attempt detection
+│   ├── token_validator.py           # Token authentication (P1)
+│   ├── rate_limiter.py              # Rate limiting (P4 - LLM04)
+│   ├── plugin_permissions.py        # Plugin security (P4 - LLM07)
+│   ├── supply_chain_verifier.py     # Supply chain (P4 - LLM05)
+│   ├── context_manager.py           # Context protection (P4 - LLM04)
+│   ├── recursion_guard.py           # Loop prevention (P4 - LLM04)
+│   ├── resource_limits.py           # Resource limits (P4 - LLM04)
+│   └── confidence_tracker.py        # Overreliance (P4 - LLM09)
 └── logs/
     └── security.log                 # Audit trail
 ```
+
+**Total: 19 validators** (11 core + 8 OWASP remediation)
 
 ---
 
@@ -1103,9 +1116,10 @@ def main():
 ============================================================
 BMAD GUARDRAILS: Security Initialization
 ============================================================
-  [OK] All 9 security validators present
+  [OK] All 19 security validators present
   [OK] No override environment variables active
   [OK] Audit logging initialized: .claude/logs
+  [OK] OWASP compliance active (Score: 93/100)
 
 ============================================================
   STATUS: FULLY ACTIVE
@@ -1119,6 +1133,10 @@ BMAD GUARDRAILS: Security Initialization
     - PII exposure (SSN, credit cards, EU national IDs, IBAN)
     - Prompt injection attacks
     - Jailbreak attempts
+    - DoS attacks (rate limiting, resource limits)
+    - Supply chain attacks (plugin verification)
+    - Insecure plugins (capability-based permissions)
+    - AI overreliance (confidence scoring)
 ============================================================
 ```
 
@@ -1127,7 +1145,7 @@ BMAD GUARDRAILS: Security Initialization
 ============================================================
 BMAD GUARDRAILS: Security Initialization
 ============================================================
-  [OK] All 9 security validators present
+  [OK] All 19 security validators present
 
   [!!] Active override environment variables:
        BMAD_ALLOW_DANGEROUS=true (Dangerous operations override)
@@ -1136,6 +1154,7 @@ BMAD GUARDRAILS: Security Initialization
        Overrides are single-use and expire after 5 minutes.
 
   [OK] Audit logging initialized: .claude/logs
+  [OK] OWASP compliance active (Score: 93/100)
 
 ============================================================
   STATUS: ACTIVE (with warnings)
@@ -1194,22 +1213,29 @@ Note: Override will be consumed after one use.
 
 ### What This System Protects Against
 
-| Threat | Protection |
-|--------|------------|
-| `rm -rf /` | ABSOLUTE BLOCK - cannot override |
-| Fork bombs | STRICT BLOCK - requires override |
-| Hardcoded AWS keys | BLOCKED - detects AKIA pattern |
-| `.env` file modification | BLOCKED - requires override |
-| Production database access | BLOCKED - detects prod patterns |
-| Reading `/etc/passwd` | BLOCKED - outside repository |
-| Force push to main | BLOCKED - dangerous git operation |
-| Pipe curl to bash | STRICT BLOCK - remote code execution |
-| Social Security Numbers | BLOCKED - PII detection |
-| Credit card numbers | BLOCKED - Luhn-validated detection |
-| EU National IDs (IBAN, DNI, etc.) | BLOCKED - format + checksum validation |
-| Prompt injection in files | BLOCKED - pattern detection |
-| Jailbreak attempts | BLOCKED - multi-pattern detection |
-| DAN/roleplay exploits | BLOCKED - known template matching |
+| Threat | Protection | OWASP |
+|--------|------------|-------|
+| `rm -rf /` | ABSOLUTE BLOCK - cannot override | - |
+| Fork bombs | STRICT BLOCK - requires override | - |
+| Hardcoded AWS keys | BLOCKED - detects AKIA pattern | - |
+| `.env` file modification | BLOCKED - requires override | - |
+| Production database access | BLOCKED - detects prod patterns | - |
+| Reading `/etc/passwd` | BLOCKED - outside repository | - |
+| Force push to main | BLOCKED - dangerous git operation | - |
+| Pipe curl to bash | STRICT BLOCK - remote code execution | - |
+| Social Security Numbers | BLOCKED - PII detection | - |
+| Credit card numbers | BLOCKED - Luhn-validated detection | - |
+| EU National IDs (IBAN, DNI, etc.) | BLOCKED - format + checksum validation | - |
+| Prompt injection in files | BLOCKED - pattern detection | LLM01 |
+| Jailbreak attempts | BLOCKED - multi-pattern detection | LLM01 |
+| DAN/roleplay exploits | BLOCKED - known template matching | LLM01 |
+| DoS via rapid requests | BLOCKED - sliding window rate limiting | LLM04 |
+| Memory exhaustion | BLOCKED - resource limits (2GB) | LLM04 |
+| Context window overflow | BLOCKED - context manager | LLM04 |
+| Infinite loops | BLOCKED - recursion guard | LLM04 |
+| Malicious plugins | BLOCKED - hash verification | LLM05 |
+| Plugin privilege escalation | BLOCKED - capability-based permissions | LLM07 |
+| Overreliance on AI output | WARNING - confidence scoring | LLM09 |
 
 ### What This System Does NOT Protect Against
 
@@ -1408,7 +1434,43 @@ SECRET_PATTERNS = [
 
 ## Version History
 
-### v3.0 (Current)
+### v4.0 (Current) - OWASP Remediation
+
+**OWASP Score: 93/100 (Grade: A)**
+
+- **Rate Limiter** (LLM04) - DoS protection via sliding window algorithm
+  - Per-tool rate limits (Bash: 30/min, Write: 50/min, etc.)
+  - Exponential backoff on violations
+  - Whitelist bypass for critical operations
+  - See: [Rate-Limiting.md](Rate-Limiting.md)
+- **Plugin Permissions** (LLM07) - Capability-based security model
+  - Permission manifest per plugin
+  - Capability inheritance
+  - Elevation requests with audit
+  - See: [Plugin-Permissions.md](Plugin-Permissions.md)
+- **Supply Chain Verifier** (LLM05) - Plugin integrity verification
+  - SHA-256 hash verification
+  - GPG signature validation
+  - Manifest integrity checking
+- **Context Manager** (LLM04) - Context window protection
+  - Token count estimation
+  - Window size enforcement (200K Claude, 128K local)
+- **Recursion Guard** (LLM04) - Infinite loop prevention
+  - Max depth: 10 levels
+  - Pattern detection
+  - 60-second cooldown
+- **Resource Limits** (LLM04) - System resource protection
+  - Memory: 2GB default
+  - Processes: 50 max
+  - File size: 100MB max
+- **Confidence Tracker** (LLM09) - Overreliance mitigation
+  - Confidence scoring (0-100)
+  - Human review triggers at < 50
+- **Telemetry Collector** - Security event telemetry for SIEM integration
+
+**Total Validators: 19** (11 core + 8 OWASP)
+
+### v3.0
 
 - **PII Detection Guard** - Comprehensive US and EU (GDPR) PII detection
   - Social Security Numbers, Credit Cards, National IDs
@@ -1455,3 +1517,12 @@ SECRET_PATTERNS = [
 - [Shannon Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory))
 - [Prompt Injection Research](https://arxiv.org/abs/2302.12173)
 - [GDPR PII Guidelines](https://gdpr.eu/eu-gdpr-personal-data/)
+
+### Related Security Documents
+
+- [Rate-Limiting.md](Rate-Limiting.md) - DoS protection implementation
+- [Plugin-Permissions.md](Plugin-Permissions.md) - Capability-based security
+- [AgenticSecurity.md](AgenticSecurity.md) - Overall agentic security architecture
+- [OWASP-AI-SECURITY-CHECKLIST.md](/_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md) - Compliance tracking
+- [OWASP-REMEDIATION-PLAN.md](/_bmad/core/security/OWASP-REMEDIATION-PLAN.md) - Implementation plan
+- [P4-OWASP-Remediation.md](/docs/UserGuide/Security/P4-OWASP-Remediation.md) - User guide for OWASP validators

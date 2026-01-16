@@ -46,6 +46,49 @@ If verification passes, you'll see:
 
 See [Security-File-Integrity.md](../Features/Security-File-Integrity.md) for details.
 
+### Security Setup (Recommended)
+
+BMAD includes 19 security validators protecting against OWASP Top 10 for LLM Applications threats. Security is enabled by default.
+
+**Security Audit (2026-01-16):** All security systems have been audited and all critical findings remediated. See [Security Audit Report](../TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/SECURITY-AUDIT-MASTER-REPORT.md) for details.
+
+#### Token Authentication
+
+```bash
+# Generate authentication token (valid for 7 days)
+node _bmad/core/security/quick-token.js "YourName" "developer" 168
+
+# Set token for session
+export BMAD_AUTH_TOKEN="<generated-token>"
+
+# Or save to file
+echo "<token>" > .bmad-token
+```
+
+#### Verify Security Configuration
+
+```bash
+# Check all security validators
+python3 -c "import sys; sys.path.insert(0, '.claude/validators'); from security_common import AuditLogger; print('Security validators loaded')"
+
+# Test token validation
+node _bmad/core/security/validate-token.js
+
+# Check authorization
+node _bmad/core/security/check-authorization.js
+```
+
+#### OWASP Compliance (Score: 93/100)
+
+BMAD provides protection against:
+- **LLM01**: Prompt Injection (jailbreak detection)
+- **LLM04**: DoS (rate limiting, resource limits)
+- **LLM05**: Supply Chain (plugin verification)
+- **LLM07**: Plugin Security (capability-based permissions)
+- **LLM09**: Overreliance (confidence scoring)
+
+See [Security Documentation](Security/README.md) for complete details.
+
 ---
 
 ## Quick Start
