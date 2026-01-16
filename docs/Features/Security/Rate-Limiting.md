@@ -39,14 +39,14 @@ The Rate Limiter prevents resource exhaustion attacks by implementing sliding wi
 
 | Operation | Limit | Window | Description |
 |-----------|-------|--------|-------------|
-| `global` | 100 | 60s | Total requests across all types |
-| `bash` | 30 | 60s | Shell command execution |
-| `write` | 50 | 60s | File write operations |
-| `edit` | 50 | 60s | File edit operations |
-| `read` | 200 | 60s | File read operations |
-| `glob` | 100 | 60s | File pattern matching |
-| `grep` | 100 | 60s | Content search |
-| `task` | 20 | 60s | Agent task spawning |
+| `global` | 150 | 60s | Total requests across all types |
+| `bash` | 60 | 60s | Shell command execution |
+| `write` | 100 | 60s | File write operations |
+| `edit` | 100 | 60s | File edit operations |
+| `read` | 400 | 60s | File read operations |
+| `glob` | 200 | 60s | File pattern matching |
+| `grep` | 200 | 60s | Content search |
+| `task` | 40 | 60s | Agent task spawning |
 | `webfetch` | 30 | 60s | Web content fetching |
 | `websearch` | 20 | 60s | Web search queries |
 
@@ -179,10 +179,10 @@ When rate limited, users see:
 BMAD GUARDRAIL: RATE LIMIT EXCEEDED
 ============================================================
 
-Rate limit exceeded for bash (30/30 per minute). Retry in 15s.
+Rate limit exceeded for bash (60/60 per minute). Retry in 15s.
 
 Operation: bash
-Current usage: 30/30 (100.0%)
+Current usage: 60/60 (100.0%)
 Backoff active: 8s remaining
 
 ============================================================

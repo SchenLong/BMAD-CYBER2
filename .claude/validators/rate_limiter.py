@@ -77,14 +77,14 @@ WINDOW_SECONDS = 60
 
 # Rate limits per operation type (requests per minute)
 RATE_LIMITS: Dict[str, Dict[str, int]] = {
-    'global': {'requests': 100, 'window_seconds': 60},
-    'bash': {'requests': 30, 'window_seconds': 60},
-    'write': {'requests': 50, 'window_seconds': 60},
-    'edit': {'requests': 50, 'window_seconds': 60},
-    'read': {'requests': 200, 'window_seconds': 60},
-    'glob': {'requests': 100, 'window_seconds': 60},
-    'grep': {'requests': 100, 'window_seconds': 60},
-    'task': {'requests': 20, 'window_seconds': 60},
+    'global': {'requests': 150, 'window_seconds': 60},
+    'bash': {'requests': 60, 'window_seconds': 60},
+    'write': {'requests': 100, 'window_seconds': 60},
+    'edit': {'requests': 100, 'window_seconds': 60},
+    'read': {'requests': 400, 'window_seconds': 60},
+    'glob': {'requests': 200, 'window_seconds': 60},
+    'grep': {'requests': 200, 'window_seconds': 60},
+    'task': {'requests': 40, 'window_seconds': 60},
     'webfetch': {'requests': 30, 'window_seconds': 60},
     'websearch': {'requests': 20, 'window_seconds': 60},
 }
