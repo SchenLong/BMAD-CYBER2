@@ -414,6 +414,7 @@ Global configuration:
 
 ## Related Documentation
 
+- [PROMPT-DATABASE.md](PROMPT-DATABASE.md) - **Prompt templates for effective module engagement**
 - [AGENTS-REFERENCE.md](AGENTS-REFERENCE.md) - Complete agent catalog
 - [WORKFLOWS-REFERENCE.md](WORKFLOWS-REFERENCE.md) - Complete workflow reference
 - [PARTY-MODE-GUIDE.md](PARTY-MODE-GUIDE.md) - Multi-agent collaboration
