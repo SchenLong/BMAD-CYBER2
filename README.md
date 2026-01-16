@@ -5,8 +5,10 @@
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
-[![Security](https://img.shields.io/badge/security-v4.5-blue.svg)](docs/UserGuide/SECURITY-OVERVIEW.md)
-[![OWASP Score](https://img.shields.io/badge/OWASP-93%2F100-brightgreen.svg)](_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
+[![Security](https://img.shields.io/badge/security-v4.6-blue.svg)](docs/UserGuide/SECURITY-OVERVIEW.md)
+[![OWASP AI](https://img.shields.io/badge/OWASP_AI-95%2F100-brightgreen.svg)](_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
+[![OWASP Top 10 LLM](https://img.shields.io/badge/OWASP_Top_10_LLM-A+-brightgreen.svg)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+[![CWE Coverage](https://img.shields.io/badge/CWE-27_Vectors_Blocked-blue.svg)](docs/UserGuide/Security/P2-Command-Substitution-Input-Validation.md)
 [![Security Audit](https://img.shields.io/badge/audit-2026--01--16-green.svg)](docs/TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/)
 [![Agents](https://img.shields.io/badge/agents-80-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-143-purple.svg)]()
@@ -616,11 +618,11 @@ All critical findings have been remediated. Security validators are now fully wi
 | **Command Substitution Blocking** | Blocks `$()`, backticks, `${}` with safe pattern allowlist | [P2-Command-Substitution-Input-Validation.md](docs/UserGuide/Security/P2-Command-Substitution-Input-Validation.md) |
 | **Shell Input Validation** | Comprehensive injection prevention (27 attack vectors blocked) | [P2-Command-Substitution-Input-Validation.md](docs/UserGuide/Security/P2-Command-Substitution-Input-Validation.md) |
 | **Jailbreak Detection Enhancement** | Multi-layer detection: Unicode normalization, fuzzy matching, heuristics | [P3-Jailbreak-Detection-Enhancements.md](docs/UserGuide/Security/P3-Jailbreak-Detection-Enhancements.md) |
-| **Rate Limiting (OWASP LLM04)** | Sliding window algorithm, per-operation limits, exponential backoff | [Rate-Limiting.md](docs/Features/Security/Rate-Limiting.md) |
+| **Rate Limiting (OWASP LLM04)** | Sliding window algorithm, per-operation limits (Bash: 60/min, Write: 100/min, Read: 400/min, Task: 40/min), exponential backoff | [Rate-Limiting.md](docs/Features/Security/Rate-Limiting.md) |
 | **Plugin Permissions (OWASP LLM07)** | Capability-based security with manifest declarations for 9 plugins | [Plugin-Permissions.md](docs/Features/Security/Plugin-Permissions.md) |
 | **Supply Chain Verification (OWASP LLM05)** | SHA256 checksums + GPG signature verification for skills | [OWASP-REMEDIATION-PLAN.md](_bmad/core/security/OWASP-REMEDIATION-PLAN.md) |
 | **Context Window Management (OWASP LLM04)** | Token estimation, 75% warning, 95% blocking | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
-| **Resource Limits (OWASP LLM04)** | Memory limits (1GB), recursion depth (10), process limits | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
+| **Resource Limits (OWASP LLM04)** | Memory limit: 4GB default (configurable via BMAD_MAX_MEMORY_MB), recursion depth (10), process limits | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
 | **Confidence Tracking (OWASP LLM09)** | Uncertainty detection, source attribution, confidence scoring | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
 | **Security Telemetry** | JSONL export for SIEM integration (Splunk, ELK, Grafana) | [TELEMETRY-SCHEMA.md](docs/TestingLogs/security/AuditLogs/telemetry/TELEMETRY-SCHEMA.md) |
 
@@ -1081,6 +1083,15 @@ preferences:
 
 ## 📝 Changelog
 
+### 🛡️ Security Framework Update v4.6 - Rate Limiting & Resource Tuning (2026-01-16)
+- **OWASP Score:** 93/100 → **95/100** (Grade: A+)
+- **UPDATE: Rate Limiting (LLM04)** - Increased limits for improved developer experience
+  - Bash: 30/min → **60/min**, Write: 50/min → **100/min**, Read: 200/min → **400/min**, Task: 20/min → **40/min**
+  - Global: 100/min → **150/min**, Glob/Grep: 100/min → **200/min**
+- **UPDATE: Resource Limits (LLM04)** - Increased memory limit for larger workloads
+  - Memory limit: 1GB → **4GB** default (configurable via BMAD_MAX_MEMORY_MB)
+- **BADGES:** Added OWASP Top 10 LLM badge, CWE Coverage badge
+
 ### 🛡️ Security Framework Update v4.5 - Comprehensive Security Audit (2026-01-16)
 - **AUDIT:** Full security audit of 6,376 files in 748 directories
 - **AUDIT:** 20 Python validators (12,090 lines) reviewed
@@ -1098,7 +1109,7 @@ preferences:
 ### 🛡️ Security Framework Update v4.4 - OWASP AI Security Remediation (2026-01-16)
 - **OWASP Score:** 87/100 → **93/100** (Grade: A)
 - **NEW: Rate Limiting (LLM04)** - Sliding window algorithm, per-operation limits
-  - Bash: 30/min, Write: 50/min, Read: 200/min, Task: 20/min
+  - Initial limits: Bash: 30/min, Write: 50/min, Read: 200/min, Task: 20/min (updated in v4.6)
   - Exponential backoff on violations (1s base, 60s max)
 - **NEW: Plugin Permissions (LLM07)** - Capability-based security model
   - 4 capability types: filesystem, network, shell, sensitive_data

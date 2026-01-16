@@ -5,7 +5,7 @@ BMAD Guardrails: Resource Limits
 Implements memory and resource limits to prevent resource exhaustion attacks.
 
 Features:
-- Set maximum memory per session (default: 1GB)
+- Set maximum memory per session (default: 4GB)
 - Track memory usage of child processes
 - Kill processes exceeding limits
 - Log resource violations
@@ -66,7 +66,7 @@ LOCK_TIMEOUT_SECONDS = 5.0
 
 # Default limits (can be overridden via environment)
 DEFAULT_LIMITS = {
-    'max_memory_mb': int(os.environ.get('BMAD_MAX_MEMORY_MB', 1024)),       # 1GB
+    'max_memory_mb': int(os.environ.get('BMAD_MAX_MEMORY_MB', 4096)),       # 4GB
     'max_cpu_percent': int(os.environ.get('BMAD_MAX_CPU_PERCENT', 80)),     # 80%
     'max_child_processes': int(os.environ.get('BMAD_MAX_CHILD_PROCS', 10)),  # 10 children
     'max_open_files': int(os.environ.get('BMAD_MAX_OPEN_FILES', 100)),       # 100 files

@@ -35,8 +35,8 @@ This remediation plan addresses all gaps identified in the OWASP AI Security Che
 | ID | Requirement |
 |----|-------------|
 | REQ-1.1.1 | Implement sliding window rate limiting |
-| REQ-1.1.2 | Configure limits per session (default: 100 requests/minute) |
-| REQ-1.1.3 | Configure limits per operation type (Bash: 30/min, Write: 50/min) |
+| REQ-1.1.2 | Configure limits per session (default: 150 requests/minute) |
+| REQ-1.1.3 | Configure limits per operation type (Bash: 60/min, Write: 100/min, Read: 400/min, Task: 40/min) |
 | REQ-1.1.4 | Implement exponential backoff on limit breach |
 | REQ-1.1.5 | Add bypass for whitelisted operations |
 | REQ-1.1.6 | Log all rate limit events |
@@ -45,11 +45,14 @@ This remediation plan addresses all gaps identified in the OWASP AI Security Che
 
 ```python
 RATE_LIMITS = {
-    'global': {'requests': 100, 'window_seconds': 60},
-    'bash': {'requests': 30, 'window_seconds': 60},
-    'write': {'requests': 50, 'window_seconds': 60},
-    'edit': {'requests': 50, 'window_seconds': 60},
-    'read': {'requests': 200, 'window_seconds': 60},
+    'global': {'requests': 150, 'window_seconds': 60},
+    'bash': {'requests': 60, 'window_seconds': 60},
+    'write': {'requests': 100, 'window_seconds': 60},
+    'edit': {'requests': 100, 'window_seconds': 60},
+    'read': {'requests': 400, 'window_seconds': 60},
+    'glob': {'requests': 200, 'window_seconds': 60},
+    'grep': {'requests': 200, 'window_seconds': 60},
+    'task': {'requests': 40, 'window_seconds': 60},
 }
 
 class RateLimiter:
@@ -317,7 +320,7 @@ CONFIDENCE_LEVELS = {
 
 | ID | Requirement |
 |----|-------------|
-| REQ-3.3.1 | Set maximum memory per session (default: 1GB) |
+| REQ-3.3.1 | Set maximum memory per session (default: 4GB via BMAD_MAX_MEMORY_MB) |
 | REQ-3.3.2 | Track memory usage of child processes |
 | REQ-3.3.3 | Kill processes exceeding limits |
 | REQ-3.3.4 | Log memory violations |
@@ -325,7 +328,7 @@ CONFIDENCE_LEVELS = {
 
 #### Acceptance Criteria
 
-- [x] Memory limits enforced on child processes (default: 1GB via BMAD_MAX_MEMORY_MB)
+- [x] Memory limits enforced on child processes (default: 4GB via BMAD_MAX_MEMORY_MB)
 - [x] Processes exceeding limits terminated gracefully (5s grace period)
 - [x] Clear error message on resource exhaustion
 - [x] Configurable limits via environment (BMAD_MAX_MEMORY_MB, BMAD_MAX_CHILD_PROCS, etc.)

@@ -1055,7 +1055,7 @@ The BMAD Framework includes additional security layers beyond agentic protection
 | **Plugin Permissions (OWASP LLM07)** | Capability-based security model | [Plugin-Permissions.md](./Plugin-Permissions.md) |
 | **Supply Chain Verification (OWASP LLM05)** | SHA256+GPG skill verification | [OWASP-REMEDIATION-PLAN.md](../../../_bmad/core/security/OWASP-REMEDIATION-PLAN.md) |
 | **Context Management (OWASP LLM04)** | Token tracking with 75%/95% thresholds | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
-| **Resource Limits (OWASP LLM04)** | Memory (1GB), recursion, process limits | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
+| **Resource Limits (OWASP LLM04)** | Memory (4GB), recursion, process limits | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
 | **Confidence Tracking (OWASP LLM09)** | Uncertainty detection and scoring | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
 | **Security Telemetry** | JSONL export for SIEM integration | [TELEMETRY-SCHEMA.md](../../TestingLogs/security/AuditLogs/telemetry/TELEMETRY-SCHEMA.md) |
 
