@@ -43,6 +43,31 @@ CONFIG_DIR=".agentvibes/bmad"
 VOICE_CONFIG_FILE="$CONFIG_DIR/bmad-voices.md"
 ENABLED_FLAG="$CONFIG_DIR/bmad-voices-enabled.flag"
 
+# Get script directory for sourcing validation library
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source input validation library for security
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+else
+    # Minimal fallback validation if library not found
+    validate_agent_name() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 100 ]] && return 1
+        [[ "$input" =~ [';|&$`<>(){}!\\'] ]] && return 1
+        [[ "$input" == *".."* ]] && return 1
+        return 0
+    }
+    validate_voice_name() {
+        local input="$1"
+        [[ -z "$input" ]] && return 0
+        [[ ${#input} -gt 50 ]] && return 1
+        [[ "$input" =~ [';|&$`<>(){}!\\'] ]] && return 1
+        return 0
+    }
+fi
+
 # AI NOTE: Auto-enable pattern - When BMAD is detected via install-manifest.yaml,
 # automatically enable the voice plugin to provide seamless multi-agent voice support.
 # This avoids requiring manual plugin activation after BMAD installation.
@@ -142,8 +167,15 @@ auto_enable_if_bmad_detected() {
 # @calledby bmad-tts-injector.sh, play-tts.sh when BMAD agent is active
 # @calls auto_enable_if_bmad_detected, grep, awk, sed
 # @version 2.0.0 - Now provider-aware: returns Piper or macOS voice based on active provider
+# @security agent_id validated before use in grep/awk commands
 get_agent_voice() {
     local agent_id="$1"
+
+    # SECURITY: Validate agent_id before use in grep/awk
+    if ! validate_agent_name "$agent_id"; then
+        echo "" # Return empty on invalid input
+        return
+    fi
 
     # Check for BMAD v6 CSV file first (preferred, loose coupling)
     # If this exists, use it directly without requiring plugin enable flag
@@ -367,8 +399,15 @@ sync_intros_from_manifest() {
 # @calledby bmad-speak.sh for agent identification in party mode
 # @calls sync_intros_from_manifest, grep, awk, sed, cut
 # @version 2.2.1 - Added lazy CSV sync trigger
+# @security agent_id validated before use in grep/awk commands
 get_agent_intro() {
     local agent_id="$1"
+
+    # SECURITY: Validate agent_id before use in grep/awk
+    if ! validate_agent_name "$agent_id"; then
+        echo "" # Return empty on invalid input
+        return
+    fi
 
     # Check for BMAD v6 CSV file first (preferred, loose coupling)
     # If this exists, use it directly without requiring plugin enable flag
@@ -502,8 +541,15 @@ get_agent_intro() {
 # @calledby bmad-tts-injector.sh for personality-aware voice synthesis
 # @calls grep, awk, sed
 # @version 2.0.0 - Updated to column 6 (was 5) due to new provider-aware format
+# @security agent_id validated before use in grep/awk commands
 get_agent_personality() {
     local agent_id="$1"
+
+    # SECURITY: Validate agent_id before use in grep/awk
+    if ! validate_agent_name "$agent_id"; then
+        echo "" # Return empty on invalid input
+        return
+    fi
 
     if [[ ! -f "$VOICE_CONFIG_FILE" ]]; then
         echo ""
@@ -803,10 +849,27 @@ list_mappings() {
 # @edgecases Validates agent exists before updating
 # @calledby Main command dispatcher with "set" argument
 # @calls grep, sed
+# @security agent_id and voice validated before use
 set_agent_voice() {
     local agent_id="$1"
     local voice="$2"
     local personality="${3:-normal}"
+
+    # SECURITY: Validate all inputs before use
+    if ! validate_agent_name "$agent_id"; then
+        echo "❌ Invalid agent ID" >&2
+        return 1
+    fi
+
+    if ! validate_voice_name "$voice"; then
+        echo "❌ Invalid voice name" >&2
+        return 1
+    fi
+
+    if ! validate_agent_name "$personality"; then
+        echo "❌ Invalid personality" >&2
+        return 1
+    fi
 
     if [[ ! -f "$VOICE_CONFIG_FILE" ]]; then
         echo "❌ Plugin file not found: $VOICE_CONFIG_FILE"

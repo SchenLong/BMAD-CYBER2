@@ -2175,6 +2175,101 @@ During module validation, verify:
 
 ---
 
+### Lesson 21: Safe Delete Command Testing Protocol
+
+**Error:** Using dangerous delete commands like `rm -rf /` even for testing purposes.
+
+**Impact:**
+- Catastrophic system destruction if command executes
+- Even "test" commands can slip through validation layers
+- Creates terrible habits and muscle memory for dangerous patterns
+- Risk of accidental execution in production environments
+- Could bypass guardrails if validation has gaps
+
+**Resolution:** Established mandatory safe delete testing protocol.
+
+**Prevention:** NEVER use `rm -rf /` or similar destructive commands, even for testing. Instead:
+
+---
+
+#### **Safe Delete Testing Protocol**
+
+When you need to test delete command handling or validation:
+
+1. **Create a test file first:**
+   ```bash
+   echo "test content for deletion" > _bmad-output/testdelete.md
+   ```
+
+2. **Test your delete command against the safe file:**
+   ```bash
+   rm _bmad-output/testdelete.md
+   ```
+
+3. **For testing guardrail validators:**
+   ```bash
+   # SAFE: Test the validator with simulated input
+   echo '{"tool_input":{"command":"rm _bmad-output/testdelete.md"}}' | python3 .claude/validators/bash_safety.py
+   ```
+
+4. **NEVER do this:**
+   ```bash
+   # DANGEROUS - NEVER USE EVEN FOR TESTING
+   rm -rf /
+   rm -rf ~
+   rm -rf /*
+   ```
+
+---
+
+#### **Designated Test Location**
+
+All delete tests MUST use files in:
+```
+_bmad-output/testdelete.md
+```
+
+This location is:
+- Inside the repository (passes outside_repo_guard)
+- In the output folder (safe for deletion)
+- Named clearly as a test file
+- Easy to recreate if needed
+
+---
+
+#### **Why This Matters**
+
+1. **Guardrails can have gaps:** Even with validators, edge cases exist
+2. **Typos happen:** One wrong character could be catastrophic
+3. **Copy/paste errors:** Commands can be accidentally executed in wrong contexts
+4. **Muscle memory:** Using safe patterns builds good habits
+5. **Defense in depth:** Don't rely on a single protection layer
+
+---
+
+#### **Integration with Validation Testing**
+
+When testing bash_safety.py or similar validators:
+
+```bash
+# Create test file
+echo "test" > _bmad-output/testdelete.md
+
+# Test SAFE delete (should PASS)
+echo '{"tool_input":{"command":"rm _bmad-output/testdelete.md"}}' | python3 .claude/validators/bash_safety.py
+echo "Exit code: $?"  # Should be 0 (allowed)
+
+# Test DANGEROUS delete (should BLOCK) - using simulated input only
+echo '{"tool_input":{"command":"rm -rf /"}}' | python3 .claude/validators/bash_safety.py
+echo "Exit code: $?"  # Should be 2 (blocked)
+```
+
+---
+
+**DO NOT:** Ever use `rm -rf /`, `rm -rf ~`, or similar destructive commands for any purpose, including testing. Always use the safe test file protocol instead.
+
+---
+
 ## Template for Future Lessons
 
 ### Lesson N: [Short Title]
@@ -2189,7 +2284,8 @@ During module validation, verify:
 
 ---
 
-*Last Updated: 2026-01-13*
+*Last Updated: 2026-01-16*
+*Lesson 21 (Safe Delete Command Testing Protocol) Added: 2026-01-16*
 *Lesson 20 (Mandatory Claude Code Hooks Guardrails) Added: 2026-01-13*
 *Lesson 19 (Mandatory False Positive Verification) Added: 2026-01-12*
 *Lesson 18 (Dual Workflow Architecture Recognition) Added: 2026-01-12*

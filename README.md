@@ -5,6 +5,9 @@
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
+[![Security](https://img.shields.io/badge/security-v4.5-blue.svg)](docs/UserGuide/SECURITY-OVERVIEW.md)
+[![OWASP Score](https://img.shields.io/badge/OWASP-93%2F100-brightgreen.svg)](_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
+[![Security Audit](https://img.shields.io/badge/audit-2026--01--16-green.svg)](docs/TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/)
 [![Agents](https://img.shields.io/badge/agents-80-blue.svg)]()
 [![Workflows](https://img.shields.io/badge/workflows-143-purple.svg)]()
 [![Party Presets](https://img.shields.io/badge/presets-27-teal.svg)]()
@@ -57,12 +60,83 @@
 
 ## 📚 Documentation
 
+### Quick Start
+
 | Document | Description |
 |----------|-------------|
-| 👥 **[Meet Your Teams](docs/AGENTS.md)** | Complete guide to all 80 AI agents across all modules |
-| 🔄 **[Workflows Reference](docs/WORKFLOWS.md)** | All 143 workflows with details and use cases |
-| 🚀 **[Getting Started](docs/GETTING-STARTED.md)** | Installation, quick start, and usage examples |
+| 🚀 **[Getting Started](docs/UserGuide/GETTING-STARTED.md)** | Installation, quick start, and first workflow |
+| 💻 **[CLI Command Reference](docs/UserGuide/CLI-COMMAND-REFERENCE.md)** | Complete command reference with syntax and examples |
+| 🔐 **[Security Overview](docs/UserGuide/SECURITY-OVERVIEW.md)** | Security architecture and quick setup |
+| 📖 **[Glossary](docs/UserGuide/GLOSSARY.md)** | Terminology and definitions |
+
+### Module Setup Guides
+
+| Document | Description |
+|----------|-------------|
+| 🔐 **[Cybersec Team Setup](docs/UserGuide/ModuleSetup/CYBERSEC-TEAM-SETUP.md)** | Cybersecurity module installation and first workflow |
+| 🕵️ **[Intel Team Setup](docs/UserGuide/ModuleSetup/INTEL-TEAM-SETUP.md)** | Intelligence module installation, API keys, OPSEC setup |
+| ⚖️ **[Legal Team Setup](docs/UserGuide/ModuleSetup/LEGAL-TEAM-SETUP.md)** | Legal module installation and jurisdiction config |
+| 👔 **[Strategy Team Setup](docs/UserGuide/ModuleSetup/STRATEGY-TEAM-SETUP.md)** | Strategy module installation and executive team config |
+| 💻 **[BMM Setup](docs/UserGuide/ModuleSetup/BMM-SETUP.md)** | BMAD Method module installation and project templates |
+
+### Workflow Guides
+
+| Document | Description |
+|----------|-------------|
+| 🎯 **[Workflow Selection Guide](docs/UserGuide/WORKFLOW-SELECTION-GUIDE.md)** | Decision tree for choosing the right workflow |
+| 🔗 **[Workflow Chaining Guide](docs/UserGuide/WORKFLOW-CHAINING-GUIDE.md)** | Combining workflows for complex operations |
+| 📤 **[Data Export Guide](docs/UserGuide/DATA-EXPORT-GUIDE.md)** | Output formats, export procedures, compliance |
+
+### Workflow Examples
+
+| Document | Description |
+|----------|-------------|
+| 🔐 **[Cybersec Examples](docs/UserGuide/Examples/CYBERSEC-WORKFLOW-EXAMPLES.md)** | IR playbook, threat modeling, pentest walkthrough |
+| 🕵️ **[Intel Examples](docs/UserGuide/Examples/INTEL-WORKFLOW-EXAMPLES.md)** | OSINT campaign, attribution chain, operation mosaic |
+| ⚖️ **[Legal Examples](docs/UserGuide/Examples/LEGAL-WORKFLOW-EXAMPLES.md)** | Contract review, corporate formation walkthrough |
+| 👔 **[Strategy Examples](docs/UserGuide/Examples/STRATEGY-WORKFLOW-EXAMPLES.md)** | Strategic decision, crisis response walkthrough |
+| 💻 **[BMM Examples](docs/UserGuide/Examples/BMM-WORKFLOW-EXAMPLES.md)** | PRD creation, sprint planning walkthrough |
+| 🎉 **[Party Mode Examples](docs/UserGuide/Examples/PARTY-MODE-EXAMPLES.md)** | Multi-agent collaboration with sample outputs |
+
+### Security & Operations
+
+| Document | Description |
+|----------|-------------|
+| 🔐 **[RBAC Operations Guide](docs/UserGuide/Security/RBAC-OPERATIONS-GUIDE.md)** | Role assignment, permission management |
+| 🎫 **[Token Management Guide](docs/UserGuide/Security/TOKEN-MANAGEMENT-GUIDE.md)** | Token lifecycle, rotation, revocation |
+| 📋 **[Audit Log Guide](docs/UserGuide/Security/AUDIT-LOG-GUIDE.md)** | Log interpretation, monitoring, SIEM integration |
+| ✅ **[Security Maintenance Checklist](docs/UserGuide/Security/SECURITY-MAINTENANCE-CHECKLIST.md)** | Daily, weekly, monthly security procedures |
+| 🚨 **[Incident Response Runbook](docs/UserGuide/Operations/INCIDENT-RESPONSE-RUNBOOK.md)** | Security incident handling with playbooks |
+| ⚡ **[Performance Tuning](docs/UserGuide/Operations/PERFORMANCE-TUNING.md)** | Resource optimization and scaling |
+| 📋 **[Operational Runbooks](docs/UserGuide/Operations/OPERATIONAL-RUNBOOKS.md)** | Maintenance, backup, monitoring, updates |
+
+### Advanced Usage
+
+| Document | Description |
+|----------|-------------|
+| 🤖 **[Custom Agent Creation](docs/UserGuide/Advanced/CUSTOM-AGENT-CREATION.md)** | Creating custom agents step-by-step |
+| 🔄 **[Custom Workflow Creation](docs/UserGuide/Advanced/CUSTOM-WORKFLOW-CREATION.md)** | Creating custom workflows |
+| 🎉 **[Custom Party Presets](docs/UserGuide/Advanced/CUSTOM-PARTY-PRESETS.md)** | Creating custom party mode presets |
+| 🧠 **[LLM Provider Advanced](docs/UserGuide/Advanced/LLM-PROVIDER-ADVANCED.md)** | Cost optimization, model tuning, failover |
+| 🔌 **[Integration Guide](docs/UserGuide/Integration/INTEGRATION-GUIDE.md)** | Third-party tools (Jira, GitHub, Slack) |
+
+### Developer Documentation
+
+| Document | Description |
+|----------|-------------|
+| 🏗️ **[Architecture Deep Dive](docs/Developer/ARCHITECTURE-DEEP-DIVE.md)** | System architecture and component interaction |
+| 🤝 **[Contributing Guide](docs/Developer/CONTRIBUTING-GUIDE.md)** | How to contribute to BMAD-CYBER2 |
+| 🧪 **[Testing Framework](docs/Developer/TESTING-FRAMEWORK.md)** | Testing agents, workflows, and validation |
+
+### Reference Documentation
+
+| Document | Description |
+|----------|-------------|
+| 👥 **[Meet Your Teams](docs/AGENTS.md)** | Complete guide to all 80 AI agents |
+| 🔄 **[Workflows Reference](docs/WORKFLOWS.md)** | All 143 workflows with details |
 | 📊 **[BMAD vs BMAD-CYBERSEC](docs/ComparisonMatrixBMAD/README.md)** | Feature comparison with original BMAD-METHOD |
+| ⚙️ **[Configuration Guide](docs/UserGuide/CONFIGURATION-GUIDE.md)** | Advanced configuration options |
+| 🛠️ **[Troubleshooting](docs/UserGuide/TROUBLESHOOTING.md)** | Common issues and solutions |
 
 ---
 
@@ -504,7 +578,29 @@ Every agent treats all external content as potentially hostile with protections 
 - **Privilege Escalation** - Blocks multi-step instructions that escalate privileges
 - **Data Exfiltration** - Refuses access to unauthorized resources
 
-These security measures are documented in the framework's [LessonsLearned.md](_bmad/bmb/ExperienceAcquired/LessonsLearned.md) to ensure they are applied to all future agents.
+These security measures are documented in the framework's [LessonsLearned.md](docs/ExperienceAcquired/LessonsLearned.md) to ensure they are applied to all future agents.
+
+### 🛡️ Comprehensive Security Audit (2026-01-16)
+
+A full security audit was conducted reviewing **6,376 files** across **748 directories**, including:
+- 20 Python validators (12,090 lines)
+- 45+ shell hooks (11,330 lines)
+- Complete cryptographic, RBAC, and plugin permission systems
+
+**Audit Results:** [Full Report](docs/TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/SECURITY-AUDIT-MASTER-REPORT.md)
+
+| Category | Findings | Status |
+|----------|----------|--------|
+| Cryptography (AES-256-GCM, PBKDF2) | Excellent | Passed |
+| Shell Injection Prevention | Excellent | Passed |
+| Jailbreak Detection (40+ patterns) | Excellent | Passed |
+| Audit Hash Chain | Excellent | Passed |
+| PII/Secret Detection | Excellent | Passed |
+| **RBAC Enforcement** | Critical gap found | **Fixed** |
+| **Plugin Permissions** | Critical gap found | **Fixed** |
+| **Rate Limiting** | Critical gap found | **Fixed** |
+
+All critical findings have been remediated. Security validators are now fully wired to the hooks system.
 
 ### 📋 Additional Security Features
 
@@ -515,7 +611,18 @@ These security measures are documented in the framework's [LessonsLearned.md](_b
 | **File Integrity Verification** | GPG-signed manifest protects 679 critical files | [Security-File-Integrity.md](docs/Features/Security-File-Integrity.md) |
 | **Audit Logging** | Tamper-evident SHA-256 hash chain for all operations | [Security-Audit-Logging.md](docs/Features/Security-Audit-Logging.md) |
 | **YOLO Mode Restrictions** | Controlled bypass with allowlisting and logging | [Security-YOLO-Mode-Restrictions.md](docs/Features/Security-YOLO-Mode-Restrictions.md) |
-| **Hook Guardrails** | 9 pre-execution validators for deterministic security | [HooksGuardrails.md](docs/Features/Security/HooksGuardrails.md) |
+| **Hook Guardrails** | 19 pre-execution validators for deterministic security | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
+| **TOCTOU Race Condition Fix** | Atomic file locking with fcntl.flock() preventing race conditions | [P1-TOCTOU-Token-Validation.md](docs/UserGuide/Security/P1-TOCTOU-Token-Validation.md) |
+| **Command Substitution Blocking** | Blocks `$()`, backticks, `${}` with safe pattern allowlist | [P2-Command-Substitution-Input-Validation.md](docs/UserGuide/Security/P2-Command-Substitution-Input-Validation.md) |
+| **Shell Input Validation** | Comprehensive injection prevention (27 attack vectors blocked) | [P2-Command-Substitution-Input-Validation.md](docs/UserGuide/Security/P2-Command-Substitution-Input-Validation.md) |
+| **Jailbreak Detection Enhancement** | Multi-layer detection: Unicode normalization, fuzzy matching, heuristics | [P3-Jailbreak-Detection-Enhancements.md](docs/UserGuide/Security/P3-Jailbreak-Detection-Enhancements.md) |
+| **Rate Limiting (OWASP LLM04)** | Sliding window algorithm, per-operation limits, exponential backoff | [Rate-Limiting.md](docs/Features/Security/Rate-Limiting.md) |
+| **Plugin Permissions (OWASP LLM07)** | Capability-based security with manifest declarations for 9 plugins | [Plugin-Permissions.md](docs/Features/Security/Plugin-Permissions.md) |
+| **Supply Chain Verification (OWASP LLM05)** | SHA256 checksums + GPG signature verification for skills | [OWASP-REMEDIATION-PLAN.md](_bmad/core/security/OWASP-REMEDIATION-PLAN.md) |
+| **Context Window Management (OWASP LLM04)** | Token estimation, 75% warning, 95% blocking | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
+| **Resource Limits (OWASP LLM04)** | Memory limits (1GB), recursion depth (10), process limits | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
+| **Confidence Tracking (OWASP LLM09)** | Uncertainty detection, source attribution, confidence scoring | [HOOKS-VALIDATORS-GUIDE.md](docs/Features/HOOKS-VALIDATORS-GUIDE.md) |
+| **Security Telemetry** | JSONL export for SIEM integration (Splunk, ELK, Grafana) | [TELEMETRY-SCHEMA.md](docs/TestingLogs/security/AuditLogs/telemetry/TELEMETRY-SCHEMA.md) |
 
 **Quick setup (recommended before first use):**
 ```bash
@@ -973,6 +1080,77 @@ preferences:
 ---
 
 ## 📝 Changelog
+
+### 🛡️ Security Framework Update v4.5 - Comprehensive Security Audit (2026-01-16)
+- **AUDIT:** Full security audit of 6,376 files in 748 directories
+- **AUDIT:** 20 Python validators (12,090 lines) reviewed
+- **AUDIT:** 45+ shell hooks (11,330 lines) reviewed
+- **CRITICAL FIX:** RBAC authorization now enforced via Skill tool hooks (CVSS 9.1)
+- **CRITICAL FIX:** Plugin permissions now enforced on all file/network operations (CVSS 9.0)
+- **CRITICAL FIX:** Rate limiting now enforced on all tool operations (CVSS 8.5)
+- **HIGH FIX:** Resource limits now enforced on Bash operations
+- **HIGH FIX:** Recursion guard now enforced on Read/Glob/Task operations
+- **HIGH FIX:** Supply chain verification now hooked to Skill tool
+- **HOOKS:** 15 validators now active (was 9) in `.claude/settings.json`
+- **DOCS:** [Security Audit Report](docs/TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/)
+- **DOCS:** [Hooks Configuration Reference](docs/Features/Security/HOOKS-CONFIGURATION-REFERENCE.md)
+
+### 🛡️ Security Framework Update v4.4 - OWASP AI Security Remediation (2026-01-16)
+- **OWASP Score:** 87/100 → **93/100** (Grade: A)
+- **NEW: Rate Limiting (LLM04)** - Sliding window algorithm, per-operation limits
+  - Bash: 30/min, Write: 50/min, Read: 200/min, Task: 20/min
+  - Exponential backoff on violations (1s base, 60s max)
+- **NEW: Plugin Permissions (LLM07)** - Capability-based security model
+  - 4 capability types: filesystem, network, shell, sensitive_data
+  - 9 plugin manifests generated for all BMAD modules
+  - RBAC integration with default-deny policy
+- **NEW: Supply Chain Verification (LLM05)** - SHA256 + GPG verification
+  - Manifest checksum validation before skill loading
+  - GPG signature verification for manifests
+  - Verification modes: strict, warn, disabled
+- **NEW: Context Window Management (LLM04)** - Token tracking
+  - Token estimation for text, files, operations
+  - Warning at 75% capacity, blocking at 95%
+- **NEW: Recursion Guard (LLM04)** - Depth limiting
+  - Directory traversal depth: 10, Nested calls: 20
+  - Circular reference detection
+- **NEW: Resource Limits (LLM04)** - Memory/process limits
+  - Memory limit: 1GB default (configurable via BMAD_MAX_MEMORY_MB)
+  - Child process limits, file size limits
+- **NEW: Confidence Tracking (LLM09)** - Uncertainty detection
+  - HIGH/MEDIUM/LOW/VERY_LOW confidence levels
+  - Source attribution tracking
+  - Configurable display via BMAD_SHOW_CONFIDENCE
+- **NEW: Security Telemetry** - SIEM integration
+  - JSONL export for Splunk, ELK, Grafana
+  - 7 telemetry types: security_events, rate_limit_metrics, permission_audit, etc.
+- **NEW: Audit Integrity** - Hash chain verification
+  - SHA256 hash chain for tamper detection
+  - GPG signing for log files
+- **VALIDATORS:** 11 → **19** security validators
+- **DOCS:** Updated OWASP-AI-SECURITY-CHECKLIST.md, HOOKS-VALIDATORS-GUIDE.md
+
+### 🛡️ Security Framework Update v4.3 - Security Hardening (2026-01-16)
+- **P1: TOCTOU Race Condition Fix**
+  - Atomic file locking using `fcntl.flock()` with exclusive locks
+  - Prevents concurrent modification attacks on override tokens
+  - Token state file protected during read-modify-write operations
+  - 11 race condition tests passed, 5 token validation tests passed
+- **P2: Command Substitution & Input Validation**
+  - Blocks dangerous patterns: `$()`, backticks, `${}`
+  - Safe pattern allowlist: `$(date)`, `$(pwd)`, `$(whoami)`, `$(hostname)`
+  - Shell injection prevention: 27 attack vectors blocked
+  - Command chaining, pipe injection, redirection, path traversal protection
+  - 47 total tests passed (27 shell injection + 10 command substitution + 10 edge cases)
+- **P3: Jailbreak Detection Enhancement**
+  - Unicode normalization layer (zero-width chars, Cyrillic/Greek confusables, fullwidth)
+  - Fuzzy matching for keyword variations (85% similarity threshold)
+  - Heuristic detection: authority claims, imperatives, persona manipulation, system prompt extraction
+  - Detection of known jailbreak templates (DAN, STAN, Grandma exploit, etc.)
+  - 36 tests passed across 7 categories
+- **VALIDATED:** 89 total security tests passed (P1: 16, P2: 37, P3: 36)
+- **PERFORMANCE:** All operations under latency targets (<200ms full analysis, <50ms normalization)
+- **DOCS:** [Security Documentation](docs/UserGuide/Security/README.md)
 
 ### 🛡️ Security Framework Update v4.2 - RBAC Deployment (2026-01-15)
 - **NEW:** Role-Based Access Control (RBAC) System

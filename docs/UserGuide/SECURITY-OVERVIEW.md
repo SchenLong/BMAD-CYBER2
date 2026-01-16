@@ -6,16 +6,18 @@ Comprehensive security architecture protecting the BMAD-CYBER2 framework.
 
 ## Security Architecture
 
-BMAD-CYBER2 implements a 6-phase security framework providing defense-in-depth protection:
+BMAD-CYBER2 implements an 8-phase security framework providing defense-in-depth protection:
 
-| Phase | Feature | Purpose |
-|-------|---------|---------|
-| 1 | Token-Based Authentication | Identity verification |
-| 2 | Role-Based Access Control (RBAC) | Permission management |
-| 3 | File Integrity Verification | Tamper detection |
-| 4 | Audit Logging | Activity tracking |
-| 5 | YOLO Mode Restrictions | Confirmation bypass controls |
-| 6 | Agentic Security Guardrails | AI manipulation defense |
+| Phase | Feature | Purpose | Status |
+|-------|---------|---------|--------|
+| 1 | Token-Based Authentication | Identity verification | Implemented |
+| 2 | Role-Based Access Control (RBAC) | Permission management | Implemented |
+| 3 | File Integrity Verification | Tamper detection | Implemented |
+| 4 | Audit Logging | Activity tracking | Implemented |
+| 5 | YOLO Mode Restrictions | Confirmation bypass controls | Implemented |
+| 6 | Agentic Security Guardrails | AI manipulation defense | Implemented |
+| 7 | **Rate Limiting (NEW)** | DoS protection | **Implemented** |
+| 8 | **Plugin Permissions (NEW)** | Capability-based security | **Implemented** |
 
 ---
 
@@ -295,7 +297,9 @@ yolo_mode:
 | **Layer 1** | Soft Guardrails | System prompt instructions in agent personas |
 | **Layer 2** | Hard Guardrails | PreToolUse hooks that execute before each tool operation |
 
-### Hard Guardrail Validators (9 Total)
+### Hard Guardrail Validators (19 Total)
+
+#### Core Security Validators
 
 | Validator | Protection |
 |-----------|------------|
@@ -308,6 +312,20 @@ yolo_mode:
 | `prompt_injection_guard.py` | Prompt injection defense |
 | `jailbreak_guard.py` | Jailbreak attempt detection |
 | `session-security-init.py` | Session startup validation |
+| `token_validator.py` | Authentication enforcement |
+
+#### OWASP Remediation Validators (NEW)
+
+| Validator | Protection | OWASP |
+|-----------|------------|-------|
+| `rate_limiter.py` | DoS protection (sliding window) | LLM04 |
+| `plugin_permissions.py` | Capability-based security | LLM07 |
+| `supply_chain_verifier.py` | SHA256+GPG skill verification | LLM05 |
+| `context_manager.py` | Context window management | LLM04 |
+| `recursion_guard.py` | Recursion/depth limits | LLM04 |
+| `resource_limits.py` | Memory/process limits | LLM04 |
+| `confidence_tracker.py` | Uncertainty detection | LLM09 |
+| `telemetry_collector.py` | SIEM telemetry export | - |
 
 ### How Hard Guardrails Work
 
@@ -348,6 +366,119 @@ User Request
 | Production Attacks | production_guard.py blocks production targeting |
 
 **Detailed documentation:** [AgenticSecurity.md](../Features/Security/AgenticSecurity.md), [HooksGuardrails.md](../Features/Security/HooksGuardrails.md)
+
+---
+
+## Phase 7: Rate Limiting (NEW)
+
+**Purpose:** Prevent denial-of-service through excessive tool invocations.
+
+**OWASP Reference:** LLM04 - Model Denial of Service
+
+### Features
+
+- **Sliding window algorithm** - Accurate request counting per minute
+- **Per-operation limits** - Different limits for different tool types
+- **Exponential backoff** - Progressive delays on repeated violations
+- **Whitelist bypass** - Critical operations exempt from limits
+
+### Rate Limits
+
+| Operation | Limit/Minute | Description |
+|-----------|--------------|-------------|
+| Global | 100 | All operations combined |
+| Bash | 30 | Shell commands |
+| Write/Edit | 50 | File modifications |
+| Read | 200 | File reading |
+| Task | 20 | Agent spawning |
+| Web | 20-30 | Network operations |
+
+### Commands
+
+```bash
+# Check current rate limit status
+python3 .claude/validators/rate_limiter.py status
+
+# Reset rate limits
+python3 .claude/validators/rate_limiter.py reset
+```
+
+**Detailed documentation:** [Rate-Limiting.md](../Features/Security/Rate-Limiting.md)
+
+---
+
+## Phase 8: Plugin Permissions (NEW)
+
+**Purpose:** Capability-based security for BMAD plugins/modules.
+
+**OWASP Reference:** LLM07 - Insecure Plugin Design
+
+### Features
+
+- **Manifest-based permissions** - Each plugin declares required capabilities
+- **Four capability types** - filesystem, network, shell, sensitive_data
+- **RBAC integration** - Role-based permission inheritance
+- **Default deny** - Restrictive defaults for plugins without manifests
+
+### Capabilities
+
+| Capability | Controls |
+|------------|----------|
+| `filesystem` | Read/write access to files |
+| `network` | API calls, web fetching |
+| `shell` | Command execution |
+| `sensitive_data` | PII and sensitive data access |
+
+### Plugin Manifests
+
+Each plugin has a `manifest.yaml`:
+
+```yaml
+name: intel-team
+version: 1.0.0
+permissions:
+  filesystem:
+    read: ["_bmad/intel-team/**", "docs/**"]
+    write: ["_bmad/intel-team/output/**"]
+  network: true
+  shell:
+    allowed_commands: ["curl", "wget", "whois"]
+    blocked_commands: ["rm", "sudo"]
+  sensitive_data: true
+```
+
+### Commands
+
+```bash
+# List all plugins and manifest status
+python3 .claude/validators/plugin_permissions.py list
+
+# Check specific permission
+python3 .claude/validators/plugin_permissions.py check intel-team shell execute "curl https://example.com"
+```
+
+**Detailed documentation:** [Plugin-Permissions.md](../Features/Security/Plugin-Permissions.md), [Plugin Manifest Schema](../Features/PLUGIN-MANIFEST-SCHEMA.md)
+
+---
+
+## OWASP AI Security Compliance
+
+BMAD-CYBER2 implements comprehensive OWASP Top 10 for LLM Applications coverage:
+
+| OWASP Category | Score | Status | Implementation |
+|----------------|-------|--------|----------------|
+| LLM01: Prompt Injection | 95/100 | ✅ PROTECTED | prompt_injection_guard.py, jailbreak_guard.py |
+| LLM02: Insecure Output | 90/100 | ✅ PROTECTED | Output validators, sanitization |
+| LLM04: Model DoS | **85/100** | ✅ IMPROVED | rate_limiter.py, context_manager.py, recursion_guard.py, resource_limits.py |
+| LLM05: Supply Chain | **80/100** | ✅ IMPROVED | supply_chain_verifier.py |
+| LLM06: Sensitive Info | 98/100 | ✅ PROTECTED | pii_guard.py, secret_guard.py |
+| LLM07: Plugin Design | **85/100** | ✅ IMPROVED | plugin_permissions.py, manifest system |
+| LLM08: Excessive Agency | 92/100 | ✅ PROTECTED | RBAC, audit logging |
+| LLM09: Overreliance | **65/100** | ✅ IMPROVED | confidence_tracker.py |
+
+**Overall OWASP Score: 93/100 (Grade: A)**
+
+**Detailed documentation:** [OWASP-AI-SECURITY-CHECKLIST.md](../../_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md), [OWASP-REMEDIATION-PLAN.md](../../_bmad/core/security/OWASP-REMEDIATION-PLAN.md)
 
 ---
 
@@ -404,6 +535,9 @@ User Request
 - [Security-YOLO-Mode-Restrictions.md](../Features/Security/Security-YOLO-Mode-Restrictions.md) - YOLO controls
 - [AgenticSecurity.md](../Features/Security/AgenticSecurity.md) - AI manipulation defense
 - [HooksGuardrails.md](../Features/Security/HooksGuardrails.md) - Hard guardrail validators
+- [Rate-Limiting.md](../Features/Security/Rate-Limiting.md) - DoS protection (OWASP LLM04)
+- [Plugin-Permissions.md](../Features/Security/Plugin-Permissions.md) - Capability-based security (OWASP LLM07)
+- [Plugin Manifest Schema](../Features/PLUGIN-MANIFEST-SCHEMA.md) - Manifest schema reference
 
 ### User Guides
 

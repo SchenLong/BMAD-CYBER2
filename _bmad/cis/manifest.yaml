@@ -1,0 +1,22 @@
+# BMAD Plugin Manifest: cis
+# Type: general
+# Generated: 2026-01-16T01:03:27.899027
+
+name: cis
+version: 1.0.0
+
+permissions:
+  filesystem:
+    read: ["_bmad/cis/**", "docs/**"]
+    write: ["_bmad/cis/output/**"]
+  network: false
+  shell:
+    allowed_commands: []
+    blocked_commands: ["*"]
+  sensitive_data: false
+
+# Signature (optional GPG signature for verification)
+signature: |
+  -----BEGIN PGP SIGNATURE-----
+  (signature placeholder)
+  -----END PGP SIGNATURE-----

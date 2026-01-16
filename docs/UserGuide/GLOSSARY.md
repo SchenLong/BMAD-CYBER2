@@ -26,6 +26,22 @@ Tamper-evident log file that records all significant operations for compliance a
 
 ---
 
+## C
+
+### Capability-Based Security
+Security model where components are granted specific capabilities rather than broad permissions. Used by `plugin_permissions.py`.
+
+### Confidence Score
+Numerical value (0-100) indicating the AI's certainty about an output. Part of OWASP LLM09 overreliance mitigation.
+
+### Context Manager
+Validator that monitors context window usage to prevent resource exhaustion (OWASP LLM04).
+
+### Context Window
+Maximum number of tokens an LLM can process in a single interaction. Claude: 200K, Local LLMs: varies.
+
+---
+
 ## B
 
 ### BMAD
@@ -202,6 +218,24 @@ Open Source Intelligence - Intelligence gathered from publicly available sources
 ### Override
 Environment variable that allows bypassing a security guardrail for a single operation.
 
+### OWASP Top 10 for LLM Applications
+Industry standard framework for LLM security risks. BMAD addresses LLM01, LLM04, LLM05, LLM07, and LLM09.
+
+### OWASP LLM01 (Prompt Injection)
+Attack where malicious instructions are embedded in prompts. Mitigated by `jailbreak_guard.py`.
+
+### OWASP LLM04 (Model DoS)
+Denial of service attacks targeting LLM resources. Mitigated by rate limiting, context management, and resource limits.
+
+### OWASP LLM05 (Supply Chain)
+Vulnerabilities from untrusted plugins or dependencies. Mitigated by `supply_chain_verifier.py`.
+
+### OWASP LLM07 (Insecure Plugin Design)
+Security risks from poorly designed plugins. Mitigated by `plugin_permissions.py`.
+
+### OWASP LLM09 (Overreliance)
+Risk from excessive trust in AI outputs. Mitigated by `confidence_tracker.py`.
+
 ---
 
 ## P
@@ -228,8 +262,17 @@ Attack attempting to manipulate AI behavior through embedded instructions.
 
 ## R
 
+### Rate Limiting
+Control mechanism that restricts the frequency of operations. Implemented via sliding window algorithm in `rate_limiter.py`.
+
 ### RBAC (Role-Based Access Control)
 Security model where permissions are assigned to roles, and roles are assigned to users.
+
+### Recursion Guard
+Validator that prevents infinite loops and recursive patterns. Maximum depth: 10 levels.
+
+### Resource Limits
+System protection mechanism limiting memory, processes, and file sizes. Configured via environment variables.
 
 ### Role
 Named set of permissions (e.g., admin, developer, security_analyst).
@@ -243,6 +286,12 @@ Cryptographic algorithm used for GPG signing.
 
 ### Schema
 Formal definition of data structure and validation rules.
+
+### Sliding Window
+Rate limiting algorithm that tracks requests over a rolling time period rather than fixed intervals.
+
+### Supply Chain Verification
+Security process that validates plugin/skill integrity using SHA-256 hashes and GPG signatures.
 
 ### Session
 Individual interaction period with BMAD, bounded by start and end.
@@ -325,6 +374,7 @@ Workflow execution mode that skips confirmations. Disabled by default for safety
 | C2 | Command and Control |
 | CIS | Creative Innovation Suite |
 | DAN | Do Anything Now |
+| DoS | Denial of Service |
 | GDPR | General Data Protection Regulation |
 | GPG | GNU Privacy Guard |
 | HIPAA | Health Insurance Portability and Accountability Act |
@@ -334,15 +384,18 @@ Workflow execution mode that skips confirmations. Disabled by default for safety
 | LLM | Large Language Model |
 | NIST CSF | NIST Cybersecurity Framework |
 | OSINT | Open Source Intelligence |
+| OWASP | Open Web Application Security Project |
 | PCI-DSS | Payment Card Industry Data Security Standard |
 | PII | Personally Identifiable Information |
 | RBAC | Role-Based Access Control |
 | RSA | Rivest-Shamir-Adleman |
 | SHA | Secure Hash Algorithm |
+| SIEM | Security Information and Event Management |
 | SIGINT | Signals Intelligence |
 | SOC2 | Service Organization Control 2 |
 | STRIDE | Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege |
 | TLP | Traffic Light Protocol |
+| TOCTOU | Time-of-Check-Time-of-Use |
 | UUID | Universally Unique Identifier |
 | YOLO | You Only Live Once |
 
