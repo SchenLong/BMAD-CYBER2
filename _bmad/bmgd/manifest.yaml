@@ -1,0 +1,22 @@
+# BMAD Plugin Manifest: bmgd
+# Type: dev
+# Generated: 2026-01-16T01:03:27.898941
+
+name: bmgd
+version: 1.0.0
+
+permissions:
+  filesystem:
+    read: ["**"]
+    write: ["src/**", "tests/**", "docs/**"]
+  network: true
+  shell:
+    allowed_commands: ["git", "npm", "python", "pytest", "node"]
+    blocked_commands: ["rm -rf", "sudo"]
+  sensitive_data: false
+
+# Signature (optional GPG signature for verification)
+signature: |
+  -----BEGIN PGP SIGNATURE-----
+  (signature placeholder)
+  -----END PGP SIGNATURE-----

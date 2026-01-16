@@ -1,0 +1,91 @@
+test_combining_marks_removal (__main__.TestUnicodeNormalization.test_combining_marks_removal)
+Test that combining marks (diacritics) are removed. ... ok
+test_complex_evasion_attempt (__main__.TestUnicodeNormalization.test_complex_evasion_attempt)
+Test complex evasion with multiple techniques combined. ... ok
+test_cyrillic_confusables (__main__.TestUnicodeNormalization.test_cyrillic_confusables)
+Test that Cyrillic lookalikes are converted to Latin. ... ok
+test_empty_string (__main__.TestUnicodeNormalization.test_empty_string)
+Test that empty string is handled. ... ok
+test_fullwidth_characters (__main__.TestUnicodeNormalization.test_fullwidth_characters)
+Test that fullwidth characters are converted. ... ok
+test_greek_confusables (__main__.TestUnicodeNormalization.test_greek_confusables)
+Test that Greek lookalikes are converted. ... ok
+test_multiple_zero_width_chars (__main__.TestUnicodeNormalization.test_multiple_zero_width_chars)
+Test stripping of multiple different zero-width characters. ... ok
+test_whitespace_collapse (__main__.TestUnicodeNormalization.test_whitespace_collapse)
+Test that multiple whitespace is collapsed. ... ok
+test_zero_width_character_stripping (__main__.TestUnicodeNormalization.test_zero_width_character_stripping)
+Test that zero-width characters are stripped. ... ok
+test_character_duplication (__main__.TestFuzzyMatching.test_character_duplication)
+Test detection of character duplication. ... ok
+test_exact_match_not_flagged (__main__.TestFuzzyMatching.test_exact_match_not_flagged)
+Test that exact matches are not flagged (handled by pattern matching). ... ok
+test_leet_speak_detection (__main__.TestFuzzyMatching.test_leet_speak_detection)
+Test detection of leet speak variations. ... ok
+test_short_words_ignored (__main__.TestFuzzyMatching.test_short_words_ignored)
+Test that very short words are ignored. ... ok
+test_threshold_boundary (__main__.TestFuzzyMatching.test_threshold_boundary)
+Test that threshold is respected. ... ok
+test_typo_detection (__main__.TestFuzzyMatching.test_typo_detection)
+Test detection of typos. ... ok
+test_contradictory_instructions (__main__.TestHeuristicDetection.test_contradictory_instructions)
+Test detection of contradictory instruction pairs. ... ok
+test_excessive_capitalization (__main__.TestHeuristicDetection.test_excessive_capitalization)
+Test detection of excessive capitalization. ... ok
+test_imperative_directives (__main__.TestHeuristicDetection.test_imperative_directives)
+Test detection of imperative directives. ... ok
+test_multiple_authority_claims (__main__.TestHeuristicDetection.test_multiple_authority_claims)
+Test detection of multiple authority claims. ... ok
+test_normal_text_no_false_positives (__main__.TestHeuristicDetection.test_normal_text_no_false_positives)
+Test that normal text doesn't generate false positives. ... ok
+test_persona_manipulation (__main__.TestHeuristicDetection.test_persona_manipulation)
+Test detection of persona manipulation attempts. ... ok
+test_system_prompt_extraction (__main__.TestHeuristicDetection.test_system_prompt_extraction)
+Test detection of system prompt extraction attempts. ... ok
+test_dan_classic (__main__.TestKnownJailbreaks.test_dan_classic)
+Test detection of classic DAN jailbreak. ... ok
+test_dan_roleplay_variant (__main__.TestKnownJailbreaks.test_dan_roleplay_variant)
+Test detection of DAN roleplay variant. ... ok
+test_developer_mode (__main__.TestKnownJailbreaks.test_developer_mode)
+Test detection of developer mode claim. ... ok
+test_grandma_exploit (__main__.TestKnownJailbreaks.test_grandma_exploit)
+Test detection of grandma exploit. ... ok
+test_obfuscated_jailbreak_with_normalization (__main__.TestKnownJailbreaks.test_obfuscated_jailbreak_with_normalization)
+Test that obfuscated jailbreaks are caught after normalization. ... ok
+test_stan_variant (__main__.TestKnownJailbreaks.test_stan_variant)
+Test detection of STAN variant. ... ok
+test_hypothetical_in_context (__main__.TestFalsePositivePrevention.test_hypothetical_in_context)
+Test that legitimate hypothetical questions pass. ... ok
+test_legitimate_security_discussion (__main__.TestFalsePositivePrevention.test_legitimate_security_discussion)
+Test that legitimate security discussions are allowed. ... ok
+test_normal_coding_request (__main__.TestFalsePositivePrevention.test_normal_coding_request)
+Test that normal coding requests pass. ... ok
+test_word_dan_in_context (__main__.TestFalsePositivePrevention.test_word_dan_in_context)
+Test that 'Dan' as a name doesn't trigger false positive. ... ok
+test_analyze_content_performance (__main__.TestPerformance.test_analyze_content_performance)
+Test that analysis completes within acceptable time. ... ok
+test_normalization_performance (__main__.TestPerformance.test_normalization_performance)
+Test that normalization is fast. ... ok
+test_all_layers_work_together (__main__.TestIntegration.test_all_layers_work_together)
+Test that all detection layers integrate properly. ... ok
+test_severity_ordering (__main__.TestIntegration.test_severity_ordering)
+Test that findings are ordered by severity/weight. ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.340s
+
+OK
+======================================================================
+BMAD Jailbreak Detection Tests (P3 Enhancement)
+======================================================================
+
+======================================================================
+SUMMARY
+======================================================================
+Tests run: 36
+Failures: 0
+Errors: 0
+Skipped: 0
+
+Overall: PASS
+======================================================================

@@ -1,0 +1,51 @@
+==============================================
+BMAD Shell Injection Prevention Test Suite
+==============================================
+
+=== Agent Name Validation Tests ===
+--- Malicious inputs (should be rejected) ---
+[0;32m[PASS][0m Command injection with semicolon
+[0;32m[PASS][0m Command injection with pipe
+[0;32m[PASS][0m Command injection with ampersand
+[0;32m[PASS][0m Command substitution $()
+[0;32m[PASS][0m Command substitution backticks
+[0;32m[PASS][0m Variable expansion
+[0;32m[PASS][0m Redirect output
+[0;32m[PASS][0m Path traversal ..
+[0;32m[PASS][0m Subshell execution
+[0;32m[PASS][0m Brace expansion
+[0;32m[PASS][0m History expansion !
+[0;32m[PASS][0m Backslash escape
+
+--- Valid inputs (should be accepted) ---
+[0;32m[PASS][0m Simple agent name
+[0;32m[PASS][0m Agent name with hyphen
+[0;32m[PASS][0m Agent name with underscore
+[0;32m[PASS][0m Short name
+[0;32m[PASS][0m Display name
+[0;32m[PASS][0m Empty string
+
+=== Voice Name Validation Tests ===
+--- Malicious inputs (should be rejected) ---
+[0;32m[PASS][0m Voice with command injection
+[0;32m[PASS][0m Voice with pipe
+[0;32m[PASS][0m Voice with substitution
+
+--- Valid inputs (should be accepted) ---
+[0;32m[PASS][0m Simple voice name
+[0;32m[PASS][0m Piper voice format
+[0;32m[PASS][0m Empty voice (uses default)
+
+=== Dialogue Validation Tests ===
+--- Valid inputs (should be accepted - dialogue is spoken, not executed) ---
+[0;32m[PASS][0m Normal dialogue
+[0;32m[PASS][0m Dialogue with punctuation
+[0;32m[PASS][0m Empty dialogue
+
+==============================================
+TEST SUMMARY
+==============================================
+Total:  27
+[0;32mPassed: 27[0m
+[0;31mFailed: 0[0m
+[0;32mAll tests passed![0m

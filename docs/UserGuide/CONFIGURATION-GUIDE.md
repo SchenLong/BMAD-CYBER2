@@ -329,7 +329,7 @@ agent_restrictions:
 }
 ```
 
-### Available Hooks
+### Available Hooks - Core Validators (11)
 
 | Hook | Tools | Purpose |
 |------|-------|---------|
@@ -342,6 +342,23 @@ agent_restrictions:
 | `prompt_injection_guard.py` | UserPromptSubmit | Prompt injection defense |
 | `jailbreak_guard.py` | UserPromptSubmit | Jailbreak detection |
 | `session-security-init.py` | SessionStart | Session validation |
+| `token_validator.py` | SessionStart | Token authentication |
+| `security_common.py` | All | Shared utilities, audit logger |
+
+### Available Hooks - OWASP Validators (8 - NEW P4)
+
+| Hook | Tools | OWASP | Purpose |
+|------|-------|-------|---------|
+| `rate_limiter.py` | All tools | LLM04 | DoS protection via sliding window |
+| `plugin_permissions.py` | All tools | LLM07 | Capability-based security |
+| `supply_chain_verifier.py` | Skill | LLM05 | Plugin integrity verification |
+| `context_manager.py` | All tools | LLM04 | Context window protection |
+| `recursion_guard.py` | All tools | LLM04 | Infinite loop prevention |
+| `resource_limits.py` | Bash, Write | LLM04 | Memory/process/file limits |
+| `confidence_tracker.py` | All tools | LLM09 | Overreliance mitigation |
+| `telemetry_collector.py` | All tools | Audit | Security event telemetry |
+
+**Total Validators: 19**
 
 ---
 
@@ -400,16 +417,49 @@ communication:
 
 ## Environment Variables
 
-Some settings can be configured via environment variables:
+### General Settings
 
-| Variable | Purpose |
-|----------|---------|
-| `BMAD_CONFIG_PATH` | Custom config file location |
-| `BMAD_OUTPUT_DIR` | Output directory |
-| `BMAD_LOG_LEVEL` | Logging verbosity |
-| `OLLAMA_HOST` | Ollama server URL |
-| `OPENAI_API_KEY` | OpenAI API key |
-| `ANTHROPIC_API_KEY` | Claude API key |
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `BMAD_CONFIG_PATH` | Custom config file location | `_bmad/core/config.yaml` |
+| `BMAD_OUTPUT_DIR` | Output directory | `_bmad-output` |
+| `BMAD_LOG_LEVEL` | Logging verbosity | `INFO` |
+
+### LLM Provider Settings
+
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `OLLAMA_HOST` | Ollama server URL | `http://localhost:11434` |
+| `OPENAI_API_KEY` | OpenAI API key | None |
+| `ANTHROPIC_API_KEY` | Claude API key | None |
+
+### Security Settings (Core)
+
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `BMAD_AUTH_TOKEN` | Authentication token | None |
+| `BMAD_TOKEN_REQUIRED` | Enable token enforcement | `true` |
+| `BMAD_ALLOW_OUTSIDE_REPO` | Allow path outside repo | `false` |
+| `BMAD_ALLOW_COMMAND_SUBSTITUTION` | Allow shell command substitution | `false` |
+| `BMAD_ALLOW_JAILBREAK` | Allow jailbreak patterns (debug) | `false` |
+| `BMAD_ALLOW_DANGEROUS` | Allow dangerous commands | `false` |
+| `BMAD_ALLOW_SECRETS` | Allow hardcoded secrets | `false` |
+| `BMAD_ALLOW_PII` | Allow PII in outputs | `false` |
+
+### OWASP Security Settings (NEW - P4)
+
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `BMAD_RATE_LIMIT_ENABLED` | Enable rate limiting (LLM04) | `true` |
+| `BMAD_RATE_LIMIT_BASH_PER_MIN` | Bash calls per minute | `30` |
+| `BMAD_RATE_LIMIT_WRITE_PER_MIN` | Write calls per minute | `20` |
+| `BMAD_MAX_MEMORY_MB` | Memory limit in MB (LLM04) | `2048` |
+| `BMAD_MAX_PROCESSES` | Process limit (LLM04) | `50` |
+| `BMAD_MAX_FILE_SIZE_MB` | Max file size in MB (LLM04) | `100` |
+| `BMAD_MAX_EXECUTION_TIME_SEC` | Execution timeout (LLM04) | `300` |
+| `BMAD_VERIFY_SUPPLY_CHAIN` | Enable supply chain verification (LLM05) | `true` |
+| `BMAD_SHOW_CONFIDENCE` | Display confidence scores (LLM09) | `true` |
+| `BMAD_CONFIDENCE_THRESHOLD` | Human review trigger threshold | `50` |
 
 ---
 
