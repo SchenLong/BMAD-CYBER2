@@ -1,0 +1,138 @@
+name,summary,tags,module,path
+brainstorming,"Facilitates interactive brainstorming with diverse creative techniques",creative specialist,core,_bmad/core/workflows/brainstorming/workflow.md
+party-mode,"Orchestrates multi-agent group discussions between installed BMAD agents",software manager,core,_bmad/core/workflows/party-mode/workflow.md
+create-project,"Initializes new project with module selection and folder structure",software manager,core,_bmad/core/workflows/project-manager/create-project/workflow.yaml
+whats-next,"Analyzes project state and recommends next action with appropriate agent",software manager,core,_bmad/core/workflows/project-manager/whats-next/workflow.yaml
+cross-module,"Identifies and invokes cross-module expertise for current context",software manager,core,_bmad/core/workflows/project-manager/cross-module/workflow.yaml
+project-status,"Generates comprehensive project status dashboard",software manager,core,_bmad/core/workflows/project-manager/project-status/workflow.yaml
+assign-task,"Delegates task to appropriate agent with full context",software manager,core,_bmad/core/workflows/project-manager/assign-task/workflow.yaml
+select-template,"Selects team orchestration template for multi-module projects",software manager,core,_bmad/core/workflows/team-orchestration/select-template/workflow.yaml
+secure-software,"Security-aware development with threat modeling and compliance gates",software security,core,_bmad/core/workflows/team-orchestration/secure-software/workflow.yaml
+incident-response,"Coordinates multi-team incident response with legal and communications",software security manager,core,_bmad/core/workflows/team-orchestration/incident-response/workflow.yaml
+strategic-decision,"Multi-perspective decision making with legal risk assessment",strategy software,core,_bmad/core/workflows/team-orchestration/strategic-decision/workflow.yaml
+compliance-first,"Regulated industry development with compliance-driven architecture",software compliance,core,_bmad/core/workflows/team-orchestration/compliance-first/workflow.yaml
+phase-gate,"Validates requirements before project phase transitions",software manager,core,_bmad/core/workflows/team-orchestration/phase-gate/workflow.yaml
+conflict-resolution,"Resolves conflicts between modules or teams during orchestration",software manager,core,_bmad/core/workflows/team-orchestration/conflict-resolution/workflow.yaml
+select-preset,"Selects pre-configured agent group for Party Mode",software manager,core,_bmad/core/workflows/party-mode/select-preset/workflow.yaml
+agent,"Creates edits and validates BMAD-compliant agents tri-modal workflow",software architect,bmb,_bmad/bmb/workflows/agent/workflow.md
+create-module,"Builds complete BMAD modules with agents workflows and installation",software architect,bmb,_bmad/bmb/workflows/create-module/workflow.md
+create-workflow,"Creates structured standalone workflows using markdown step architecture",software architect,bmb,_bmad/bmb/workflows/create-workflow/workflow.md
+edit-workflow,"Modifies existing workflows while following BMAD best practices",software architect,bmb,_bmad/bmb/workflows/edit-workflow/workflow.md
+workflow-compliance-check,"Validates workflows against BMAD standards with adversarial analysis",software tester,bmb,_bmad/bmb/workflows/workflow-compliance-check/workflow.md
+brainstorm-game,"Facilitates game brainstorming with game-specific context and techniques",gamedev creative designer,bmgd,_bmad/bmgd/workflows/1-preproduction/brainstorm-game/workflow.yaml
+create-game-brief,"Creates game brief through collaborative discovery of game vision",gamedev analyst designer,bmgd,_bmad/bmgd/workflows/1-preproduction/game-brief/workflow.md
+game-brief,"Guides users through defining game vision with multiple input sources",gamedev analyst designer,bmgd,_bmad/bmgd/workflows/1-preproduction/game-brief/workflow.yaml
+create-gdd,"Creates GDD through collaborative step-by-step designer-user discovery",gamedev designer,bmgd,_bmad/bmgd/workflows/2-design/gdd/workflow.md
+gdd,"Generates comprehensive GDD with mechanics systems and progression",gamedev designer,bmgd,_bmad/bmgd/workflows/2-design/gdd/workflow.yaml
+narrative,"Creates narrative documentation with story characters and dialogue systems",gamedev designer writer,bmgd,_bmad/bmgd/workflows/2-design/narrative/workflow.yaml
+game-architecture,"Creates game architecture for engine systems networking and AI consistency",gamedev architect,bmgd,_bmad/bmgd/workflows/3-technical/game-architecture/workflow.yaml
+generate-project-context,"Creates project-context.md with critical rules for AI implementation",gamedev developer,bmgd,_bmad/bmgd/workflows/3-technical/generate-project-context/workflow.md
+code-review-game,"Adversarial review finding 3-10 issues with game-specific 60fps focus",gamedev tester developer,bmgd,_bmad/bmgd/workflows/4-production/code-review/workflow.yaml
+correct-course-game,"Navigates sprint changes by analyzing impact and routing for implementation",gamedev manager,bmgd,_bmad/bmgd/workflows/4-production/correct-course/workflow.yaml
+create-story-game,"Creates user story from epics PRD and architecture using standard template",gamedev manager developer,bmgd,_bmad/bmgd/workflows/4-production/create-story/workflow.yaml
+dev-story-game,"Implements story tasks with tests and acceptance criteria validation",gamedev developer tdd,bmgd,_bmad/bmgd/workflows/4-production/dev-story/workflow.yaml
+retrospective-game,"Reviews epic success extracts lessons and identifies next epic impacts",gamedev manager,bmgd,_bmad/bmgd/workflows/4-production/retrospective/workflow.yaml
+sprint-planning-game,"Generates sprint status tracking file extracting epics and stories",gamedev manager,bmgd,_bmad/bmgd/workflows/4-production/sprint-planning/workflow.yaml
+sprint-status-game,"Summarizes sprint status surfaces risks and routes to implementation",gamedev manager,bmgd,_bmad/bmgd/workflows/4-production/sprint-status/workflow.yaml
+create-tech-spec-game,"Conversational spec engineering producing implementation-ready tech-spec",gamedev architect developer,bmgd,_bmad/bmgd/workflows/bmgd-quick-flow/create-tech-spec/workflow.yaml
+quick-dev-game,"Flexible game development executing tech-specs features or refactoring",gamedev developer,bmgd,_bmad/bmgd/workflows/bmgd-quick-flow/quick-dev/workflow.yaml
+quick-prototype,"Rapid game prototyping to quickly test gameplay ideas and mechanics",gamedev developer designer,bmgd,_bmad/bmgd/workflows/bmgd-quick-flow/quick-prototype/workflow.yaml
+gametest-automate,"Generates automated game tests for Unity Unreal or Godot",gamedev tester,bmgd,_bmad/bmgd/workflows/gametest/automate/workflow.yaml
+gametest-performance,"Designs performance testing for frame rate memory and loading times",gamedev tester,bmgd,_bmad/bmgd/workflows/gametest/performance/workflow.yaml
+gametest-playtest-plan,"Creates structured playtesting sessions for gameplay validation feedback",gamedev tester designer,bmgd,_bmad/bmgd/workflows/gametest/playtest-plan/workflow.yaml
+gametest-test-design,"Creates game test scenarios covering gameplay progression and quality",gamedev tester,bmgd,_bmad/bmgd/workflows/gametest/test-design/workflow.yaml
+gametest-framework,"Initializes game test framework for Unity Unreal or Godot projects",gamedev tester architect,bmgd,_bmad/bmgd/workflows/gametest/test-framework/workflow.yaml
+gametest-test-review,"Reviews test quality coverage and identifies gaps in game testing",gamedev tester,bmgd,_bmad/bmgd/workflows/gametest/test-review/workflow.yaml
+workflow-init-game,"Initializes new BMGD game project determining level type and path",gamedev manager,bmgd,_bmad/bmgd/workflows/workflow-status/init/workflow.yaml
+workflow-status-game,"Lightweight status checker answering what should I do now for games",gamedev manager,bmgd,_bmad/bmgd/workflows/workflow-status/workflow.yaml
+create-product-brief,"Creates product briefs through collaborative BA-user discovery",software analyst,bmm,_bmad/bmm/workflows/1-analysis/create-product-brief/workflow.md
+research,"Conducts comprehensive market technical and domain research with web data",software analyst,bmm,_bmad/bmm/workflows/1-analysis/research/workflow.md
+create-ux-design,"Plans UX patterns look and feel with peer UX design expert",software designer,bmm,_bmad/bmm/workflows/2-plan-workflows/create-ux-design/workflow.md
+create-prd,"Creates PRD through collaborative PM-PM peer discovery process",software analyst manager,bmm,_bmad/bmm/workflows/2-plan-workflows/prd/workflow.md
+check-implementation-readiness,"Validates PRD Architecture and Stories for completeness before implementation",software tester analyst,bmm,_bmad/bmm/workflows/3-solutioning/check-implementation-readiness/workflow.md
+create-architecture,"Creates architecture documents through adaptive conversation for agents",software architect,bmm,_bmad/bmm/workflows/3-solutioning/create-architecture/workflow.md
+create-epics-and-stories,"Transforms PRD and Architecture into implementation-ready epics and stories",software manager analyst,bmm,_bmad/bmm/workflows/3-solutioning/create-epics-and-stories/workflow.md
+code-review,"Adversarial review finding 3-10 issues in code quality tests and security",software tester developer,bmm,_bmad/bmm/workflows/4-implementation/code-review/workflow.yaml
+correct-course,"Navigates sprint changes by analyzing impact and routing for implementation",software manager,bmm,_bmad/bmm/workflows/4-implementation/correct-course/workflow.yaml
+create-story,"Creates next user story from epics with context analysis and dev marking",software manager developer,bmm,_bmad/bmm/workflows/4-implementation/create-story/workflow.yaml
+dev-story,"Implements story tasks with tests and acceptance criteria validation",software developer tdd,bmm,_bmad/bmm/workflows/4-implementation/dev-story/workflow.yaml
+retrospective,"Reviews epic success extracts lessons and identifies next epic impacts",software manager,bmm,_bmad/bmm/workflows/4-implementation/retrospective/workflow.yaml
+sprint-planning,"Generates sprint status tracking file extracting epics and stories",software manager,bmm,_bmad/bmm/workflows/4-implementation/sprint-planning/workflow.yaml
+sprint-status,"Summarizes sprint status surfaces risks and routes to implementation",software manager,bmm,_bmad/bmm/workflows/4-implementation/sprint-status/workflow.yaml
+create-tech-spec,"Conversational spec engineering producing implementation-ready tech-spec",software architect developer,bmm,_bmad/bmm/workflows/bmad-quick-flow/create-tech-spec/workflow.md
+quick-dev,"Flexible development executing tech-specs or direct instructions",software developer,bmm,_bmad/bmm/workflows/bmad-quick-flow/quick-dev/workflow.md
+document-project,"Analyzes brownfield projects creating comprehensive reference documentation",software analyst writer,bmm,_bmad/bmm/workflows/document-project/workflow.yaml
+create-excalidraw-dataflow,"Creates data flow diagrams in Excalidraw format",software designer architect,bmm,_bmad/bmm/workflows/excalidraw-diagrams/create-dataflow/workflow.yaml
+create-excalidraw-diagram,"Creates architecture ERD UML diagrams in Excalidraw format",software designer architect,bmm,_bmad/bmm/workflows/excalidraw-diagrams/create-diagram/workflow.yaml
+create-excalidraw-flowchart,"Creates flowchart visualizations in Excalidraw format",software designer architect,bmm,_bmad/bmm/workflows/excalidraw-diagrams/create-flowchart/workflow.yaml
+create-excalidraw-wireframe,"Creates website or app wireframes in Excalidraw format",software designer,bmm,_bmad/bmm/workflows/excalidraw-diagrams/create-wireframe/workflow.yaml
+generate-project-context-bmm,"Creates project-context.md with critical rules for AI implementation",software developer architect,bmm,_bmad/bmm/workflows/generate-project-context/workflow.md
+testarch-atdd,"Generates failing acceptance tests before implementation using TDD cycle",software tester developer,bmm,_bmad/bmm/workflows/testarch/atdd/workflow.yaml
+testarch-automate,"Expands test automation coverage or generates comprehensive test suite",software tester,bmm,_bmad/bmm/workflows/testarch/automate/workflow.yaml
+testarch-ci,"Scaffolds CI/CD quality pipeline with test execution and artifacts",software tester architect,bmm,_bmad/bmm/workflows/testarch/ci/workflow.yaml
+testarch-framework,"Initializes production-ready Playwright or Cypress test framework",software tester architect,bmm,_bmad/bmm/workflows/testarch/framework/workflow.yaml
+testarch-nfr,"Assesses NFRs performance security reliability before release",software tester analyst,bmm,_bmad/bmm/workflows/testarch/nfr-assess/workflow.yaml
+testarch-test-design,"Dual-mode system-level testability or epic-level test planning",software tester analyst,bmm,_bmad/bmm/workflows/testarch/test-design/workflow.yaml
+testarch-test-review,"Reviews test quality using knowledge base and best practices validation",software tester,bmm,_bmad/bmm/workflows/testarch/test-review/workflow.yaml
+testarch-trace,"Generates requirements-to-tests traceability matrix with coverage analysis",software tester analyst,bmm,_bmad/bmm/workflows/testarch/trace/workflow.yaml
+workflow-init,"Initializes new BMM project determining level type and workflow path",software manager,bmm,_bmad/bmm/workflows/workflow-status/init/workflow.yaml
+workflow-status,"Lightweight status checker answering what should I do now for any agent",software manager,bmm,_bmad/bmm/workflows/workflow-status/workflow.yaml
+design-thinking,"Guides human-centered design through empathy define ideate prototype test",creative designer,cis,_bmad/cis/workflows/design-thinking/workflow.yaml
+innovation-strategy,"Identifies disruption opportunities and architects business model innovation",creative analyst strategy,cis,_bmad/cis/workflows/innovation-strategy/workflow.yaml
+problem-solving,"Applies systematic problem-solving with TRIZ and root cause analysis",creative analyst,cis,_bmad/cis/workflows/problem-solving/workflow.yaml
+storytelling,"Crafts compelling narratives using proven story frameworks and techniques",creative writer,cis,_bmad/cis/workflows/storytelling/workflow.yaml
+legal-matter-intake,"Routes legal matters to specialists with jurisdiction analysis",legal manager,legal-team,_bmad/legal-team/workflows/legal-matter-intake/workflow.md
+contract-review,"Analyzes contracts identifying risks obligations and recommendations",legal analyst contracts,legal-team,_bmad/legal-team/workflows/contract-review/workflow.md
+contract-drafting,"Creates jurisdiction-appropriate contracts from requirements to final draft",legal specialist contracts,legal-team,_bmad/legal-team/workflows/contract-drafting/workflow.md
+corporate-formation,"Forms multi-jurisdictional corporate entities with proper structuring",legal specialist corporate,legal-team,_bmad/legal-team/workflows/corporate-formation/workflow.md
+dispute-strategy,"Develops dispute analysis and resolution strategy options",legal analyst,legal-team,_bmad/legal-team/workflows/dispute-strategy/workflow.md
+tax-planning,"Plans tax optimization and compliance across jurisdictions",legal specialist compliance,legal-team,_bmad/legal-team/workflows/tax-planning/workflow.md
+cross-border-matter,"Coordinates multi-jurisdictional legal matters and strategy",legal manager,legal-team,_bmad/legal-team/workflows/cross-border-matter/workflow.md
+incident-response-playbook,"NIST-aligned incident response with investigation and recovery phases",security analyst forensics,cybersec-team,_bmad/cybersec-team/workflows/incident-response-playbook/workflow.md
+security-architecture-review,"Zero-Trust security architecture review with defense-in-depth analysis",security architect,cybersec-team,_bmad/cybersec-team/workflows/security-architecture-review/workflow.md
+threat-modeling,"STRIDE-based threat modeling with risk assessment and mitigation strategies",security analyst architect,cybersec-team,_bmad/cybersec-team/workflows/threat-modeling/workflow.md
+compliance-audit-prep,"Prepares for audits across NIST ISO SOC2 PCI-DSS HIPAA GDPR",security analyst compliance,cybersec-team,_bmad/cybersec-team/workflows/compliance-audit-prep/workflow.md
+virtual-ciso-consulting,"Comprehensive vCISO engagement with strategic planning and governance",security manager,cybersec-team,_bmad/cybersec-team/workflows/virtual-ciso-consulting/workflow.md
+vulnerability-management,"End-to-end vulnerability management from inventory to program maturity",security analyst,cybersec-team,_bmad/cybersec-team/workflows/vulnerability-management/workflow.md
+security-awareness-training,"Builds security awareness program from risk assessment to improvement",security specialist,cybersec-team,_bmad/cybersec-team/workflows/security-awareness-training/workflow.md
+cloud-security-assessment,"Assesses cloud security across AWS Azure GCP with IAM and compliance",security analyst cloud,cybersec-team,_bmad/cybersec-team/workflows/cloud-security-assessment/workflow.md
+blockchain-security-assessment,"Audits smart contracts for DeFi access control and economic security",security analyst blockchain,cybersec-team,_bmad/cybersec-team/workflows/blockchain-security-assessment/workflow.md
+mobile-security-testing,"Tests mobile apps for OWASP Mobile Top 10 on iOS and Android",security analyst mobile pentest,cybersec-team,_bmad/cybersec-team/workflows/mobile-security-testing/workflow.md
+web-app-security-testing,"Tests web apps following OWASP Testing Guide and Top 10",security analyst web pentest,cybersec-team,_bmad/cybersec-team/workflows/web-app-security-testing/workflow.md
+network-assessment,"Performs network penetration testing with reconnaissance and segmentation",security analyst pentest,cybersec-team,_bmad/cybersec-team/workflows/network-assessment/workflow.md
+infrastructure-security-testing,"Assesses servers containers Kubernetes CI/CD and cloud hardening",security analyst cloud,cybersec-team,_bmad/cybersec-team/workflows/infrastructure-security-testing/workflow.md
+board-presentation-prep,"Prepares compelling board presentations with evidence and Q&A prep",strategy writer specialist,strategy-team,_bmad/strategy-team/workflows/board-presentation-prep/workflow.md
+competitive-warfare,"Develops maximum intensity strategy for existential competitive threats",strategy analyst,strategy-team,_bmad/strategy-team/workflows/competitive-warfare/workflow.md
+conflict-resolution-strategy,"Navigates interpersonal or organizational conflicts toward resolution",strategy specialist,strategy-team,_bmad/strategy-team/workflows/conflict-resolution/workflow.md
+corporate-political-game,"Navigates complex internal politics power dynamics and maneuvering",strategy analyst,strategy-team,_bmad/strategy-team/workflows/corporate-political-game/workflow.md
+crisis-response-planning,"Develops crisis communication and response strategies for high-stakes",strategy writer manager,strategy-team,_bmad/strategy-team/workflows/crisis-response-planning/workflow.md
+ethical-dilemma-resolution,"Navigates ethical dilemmas with multi-perspective principled resolution",strategy analyst,strategy-team,_bmad/strategy-team/workflows/ethical-dilemma-resolution/workflow.md
+leadership-philosophy,"Develops personal leadership philosophy through historical archetypes",strategy specialist,strategy-team,_bmad/strategy-team/workflows/leadership-philosophy/workflow.md
+policy-development,"Develops internal policies with evidence ethics and implementation planning",strategy analyst writer,strategy-team,_bmad/strategy-team/workflows/policy-development/workflow.md
+political-risk-assessment,"Evaluates political risks in decisions with systematic analysis",strategy analyst,strategy-team,_bmad/strategy-team/workflows/political-risk-assessment/workflow.md
+stakeholder-negotiation-prep,"Prepares for negotiations with stakeholder analysis and strategy",strategy analyst,strategy-team,_bmad/strategy-team/workflows/stakeholder-negotiation-prep/workflow.md
+strategic-decision-workshop,"Multi-perspective decision analysis using all 14 executive advisors",strategy analyst manager,strategy-team,_bmad/strategy-team/workflows/strategic-decision-workshop/workflow.md
+strategic-planning-session,"Long-term strategic planning with diverse strategic philosophies",strategy analyst manager,strategy-team,_bmad/strategy-team/workflows/strategic-planning-session/workflow.md
+board-relations-management,"Strengthens board relationships and improves governance effectiveness",strategy manager,strategy-team,_bmad/strategy-team/workflows/board-relations-management/workflow.md
+leadership-transition-planning,"Plans succession and leadership handover preserving institutional knowledge",strategy manager,strategy-team,_bmad/strategy-team/workflows/leadership-transition-planning/workflow.md
+ma-due-diligence,"Evaluates M&A targets identifying risks and integration strategies",strategy analyst,strategy-team,_bmad/strategy-team/workflows/ma-due-diligence/workflow.md
+performance-review-preparation,"Prepares executive performance reviews with balanced assessments",strategy manager,strategy-team,_bmad/strategy-team/workflows/performance-review-preparation/workflow.md
+approach-vector,"Plans HUMINT operations identifying vulnerabilities and cover stories",intel analyst specialist,intel-team,_bmad/intel-team/workflows/approach-vector/workflow.md
+attribution-chain,"Builds evidence-based attribution from indicators to actor identity",intel analyst threat,intel-team,_bmad/intel-team/workflows/attribution-chain/workflow.md
+breach-archaeology,"Assesses data exposure across breach sources with timeline and scoring",intel analyst,intel-team,_bmad/intel-team/workflows/breach-archaeology/workflow.md
+campaign-ai,"Plans OSINT campaigns for AI systems models companies and entities",intel analyst osint ai-ml,intel-team,_bmad/intel-team/workflows/campaign-ai/workflow.md
+campaign-planner-org,"Plans comprehensive OSINT campaigns for organizations",intel analyst osint corporate,intel-team,_bmad/intel-team/workflows/campaign-planner-org/workflow.md
+campaign-planner-person,"Plans systematic OSINT campaigns for investigating individuals",intel analyst osint,intel-team,_bmad/intel-team/workflows/campaign-planner-person/workflow.md
+counter-intel-audit,"Assesses organization's exposure vulnerabilities and OPSEC gaps",intel analyst,intel-team,_bmad/intel-team/workflows/counter-intel-audit/workflow.md
+digital-necromancy,"Recovers deleted hidden or historical digital presence",intel analyst osint,intel-team,_bmad/intel-team/workflows/digital-necromancy/workflow.md
+doppelganger-hunt,"Identifies fake accounts sock puppets bots and impersonators",intel analyst osint,intel-team,_bmad/intel-team/workflows/doppelganger-hunt/workflow.md
+flash-assessment,"Provides rapid 15-minute OSINT triage with risk assessment",intel analyst osint,intel-team,_bmad/intel-team/workflows/flash-assessment/workflow.md
+ground-truth,"Prepares complete field operation package for physical operations",intel specialist,intel-team,_bmad/intel-team/workflows/ground-truth/workflow.md
+infrastructure-genealogy,"Traces infrastructure history ownership chains and threat correlations",intel analyst,intel-team,_bmad/intel-team/workflows/infrastructure-genealogy/workflow.md
+operation-mosaic,"Full spectrum target package using all 11 intelligence agents",intel manager analyst,intel-team,_bmad/intel-team/workflows/operation-mosaic/workflow.md
+pattern-of-life,"Analyzes behavior and predicts through multi-source pattern analysis",intel analyst,intel-team,_bmad/intel-team/workflows/pattern-of-life/workflow.md
+signal-landscape,"Maps target electronic footprint and SIGINT collection opportunities",intel analyst,intel-team,_bmad/intel-team/workflows/signal-landscape/workflow.md
+spider-web,"Maps networks starting with single node systematically expanding",intel analyst,intel-team,_bmad/intel-team/workflows/spider-web/workflow.md
+the-synthesis,"Fuses multi-source intelligence resolving conflicts and assessing confidence",intel analyst manager,intel-team,_bmad/intel-team/workflows/the-synthesis/workflow.md
+threat-constellation,"Maps threat actor ecosystem relationships infrastructure and evolution",intel analyst threat,intel-team,_bmad/intel-team/workflows/threat-constellation/workflow.md
+tripwire,"Configures comprehensive monitoring for target changes with alerting",intel analyst,intel-team,_bmad/intel-team/workflows/tripwire/workflow.md

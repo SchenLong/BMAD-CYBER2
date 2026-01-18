@@ -1,0 +1,1 @@
+{"webhooks":{"slack":{"url":"https://hooks.slack.com/mock","enabled":true},"email":{"smtp":"smtp.example.com","enabled":false}}}

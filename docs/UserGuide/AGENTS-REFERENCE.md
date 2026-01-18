@@ -4,6 +4,29 @@ Complete catalog of all 80 AI agents across the BMAD-CYBER2 framework.
 
 ---
 
+## Context Efficiency
+
+BMAD implements a tiered context loading system (CONCURA) that reduces token consumption by **8.75x** while preserving agent quality.
+
+### Agent File Types
+
+| Type | Location | Size | Purpose |
+|------|----------|------|---------|
+| **Full Agent** | `_bmad/{module}/agents/{agent}.md` | ~5,500 tokens | Complete persona, workflows, rules |
+| **Compact Agent** | `_bmad/_compact/agents/{module}/{agent}.compact.md` | ~200 tokens | Essential persona for Tier 1 loading |
+
+### Using Compact Agents
+
+Compact agents are loaded automatically in Tier 1 (standard) interactions. They contain:
+- Essential role description
+- Voice/communication style
+- Core operating principle
+- Cross-module routing hints
+
+The system automatically escalates to full agent context when complex queries are detected.
+
+---
+
 ## Quick Navigation
 
 - [Core Module](#core-module-2-agents)

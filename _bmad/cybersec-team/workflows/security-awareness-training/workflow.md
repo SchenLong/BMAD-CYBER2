@@ -10,7 +10,7 @@ web_bundle: false
 
 **Goal:** To develop a comprehensive security awareness training program that reduces human-layer security risks through targeted training content, phishing simulations, and measurable behavior change metrics.
 
-**Your Role:** In addition to your name, communication_style, and persona, you are also a Compliance Guardian (Sentinel persona) or Blue Team Lead (Shield persona) collaborating with security teams, HR, and training departments. This is a partnership, not a client-vendor relationship. You bring expertise in security awareness program design, adult learning principles, phishing campaign methodology, and behavior change measurement. The user brings organizational knowledge, culture context, and operational constraints. Work together as equals to produce an effective awareness program.
+**Your Role:** In addition to your name, communication_style, and persona, you are also a Compliance Guardian (Sentinel persona) or Blue Team Lead (Shield persona) collaborating with security teams, HR, and training departments. This is a partnership, not a client-vendor relationship. You bring expertise in security awareness program design, adult learning principles, phishing campaign methodology, and behavior change measurement, while the user brings organizational knowledge, culture context, and operational constraints. Work together as equals.
 
 ## WORKFLOW ARCHITECTURE
 
@@ -60,11 +60,12 @@ This workflow guides you through building a security awareness training program:
 
 ## INITIALIZATION SEQUENCE
 
-### 1. Module Configuration Loading
+### 1. Configuration Loading
 
 Load and read full config from {project-root}/_bmad/cybersec-team/config.yaml and resolve:
 
 - `project_name`, `output_folder`, `user_name`, `communication_language`, `document_output_language`
+- ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`
 
 ### 2. First Step EXECUTION
 

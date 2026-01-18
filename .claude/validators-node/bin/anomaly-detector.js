@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+/**
+ * BMAD Anomaly Detector CLI
+ * ==========================
+ * Entry point for the anomaly detector validator.
+ *
+ * This file is executed directly by Claude Code hooks.
+ * It imports the compiled TypeScript module.
+ */
+
+import('../dist/observability/anomaly-detector.js')
+  .then((module) => {
+    module.main();
+  })
+  .catch((err) => {
+    console.error('Failed to load anomaly-detector validator:', err);
+    process.exit(0); // Don't block on error (observability only)
+  });
