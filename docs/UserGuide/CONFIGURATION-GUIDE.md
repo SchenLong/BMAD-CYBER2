@@ -14,6 +14,7 @@ Complete guide to configuring the BMAD-CYBER2 framework.
 | `rbac-config.yaml` | Role-based access control | `_bmad/core/security/rbac-config.yaml` |
 | `settings.json` | Hook configuration | `.claude/settings.json` |
 | `module.yaml` | Per-module configuration | `_bmad/[module]/module.yaml` |
+| `context-loading-rules.yaml` | Context efficiency settings | `_bmad/_config/context-loading-rules.yaml` |
 
 ---
 
@@ -297,32 +298,32 @@ agent_restrictions:
     "PreToolUse": [
       {
         "tool": "Bash",
-        "command": ".claude/hooks/bash_safety.py"
+        "command": ".claude/validators-node/bin/bash-safety.js"
       },
       {
         "tool": "Write",
-        "command": ".claude/hooks/secret_guard.py"
+        "command": ".claude/validators-node/bin/secret.js"
       },
       {
         "tool": "Edit",
-        "command": ".claude/hooks/env_protection.py"
+        "command": ".claude/validators-node/bin/env-protection.js"
       },
       {
         "tool": "Read",
-        "command": ".claude/hooks/outside_repo_guard.py"
+        "command": ".claude/validators-node/bin/outside-repo.js"
       }
     ],
     "UserPromptSubmit": [
       {
-        "command": ".claude/hooks/prompt_injection_guard.py"
+        "command": ".claude/validators-node/bin/prompt-injection.js"
       },
       {
-        "command": ".claude/hooks/jailbreak_guard.py"
+        "command": ".claude/validators-node/bin/jailbreak.js"
       }
     ],
     "SessionStart": [
       {
-        "command": ".claude/hooks/session-security-init.py"
+        "command": ".claude/validators-node/bin/token-validator.js"
       }
     ]
   }
@@ -333,32 +334,116 @@ agent_restrictions:
 
 | Hook | Tools | Purpose |
 |------|-------|---------|
-| `bash_safety.py` | Bash | Dangerous command detection |
-| `secret_guard.py` | Write, Edit | Hardcoded secret detection |
-| `env_protection.py` | Write, Edit | Sensitive file protection |
-| `production_guard.py` | Bash | Production environment detection |
-| `outside_repo_guard.py` | Read, Write, Edit, Glob, Grep | Repository boundary enforcement |
-| `pii_guard.py` | Write, Edit | PII detection |
-| `prompt_injection_guard.py` | UserPromptSubmit | Prompt injection defense |
-| `jailbreak_guard.py` | UserPromptSubmit | Jailbreak detection |
-| `session-security-init.py` | SessionStart | Session validation |
-| `token_validator.py` | SessionStart | Token authentication |
-| `security_common.py` | All | Shared utilities, audit logger |
+| `bash-safety.js` | Bash | Dangerous command detection |
+| `secret.js` | Write, Edit | Hardcoded secret detection |
+| `env-protection.js` | Write, Edit | Sensitive file protection |
+| `production.js` | Bash | Production environment detection |
+| `outside-repo.js` | Read, Write, Edit, Glob, Grep | Repository boundary enforcement |
+| `pii.js` | Write, Edit | PII detection |
+| `prompt-injection.js` | UserPromptSubmit | Prompt injection defense |
+| `jailbreak.js` | UserPromptSubmit | Jailbreak detection |
+| `token-validator.js` | SessionStart | Session validation and authentication |
+| `security-common.js` | All | Shared utilities, audit logger |
 
 ### Available Hooks - OWASP Validators (8 - NEW P4)
 
 | Hook | Tools | OWASP | Purpose |
 |------|-------|-------|---------|
-| `rate_limiter.py` | All tools | LLM04 | DoS protection via sliding window |
-| `plugin_permissions.py` | All tools | LLM07 | Capability-based security |
-| `supply_chain_verifier.py` | Skill | LLM05 | Plugin integrity verification |
-| `context_manager.py` | All tools | LLM04 | Context window protection |
-| `recursion_guard.py` | All tools | LLM04 | Infinite loop prevention |
-| `resource_limits.py` | Bash, Write | LLM04 | Memory/process/file limits |
-| `confidence_tracker.py` | All tools | LLM09 | Overreliance mitigation |
-| `telemetry_collector.py` | All tools | Audit | Security event telemetry |
+| `rate-limiter.js` | All tools | LLM04 | DoS protection via sliding window |
+| `plugin-permissions.js` | All tools | LLM07 | Capability-based security |
+| `supply-chain.js` | Skill | LLM05 | Plugin integrity verification |
+| `context-manager.js` | All tools | LLM04 | Context window protection |
+| `recursion-guard.js` | All tools | LLM04 | Infinite loop prevention |
+| `resource-limits.js` | Bash, Write | LLM04 | Memory/process/file limits |
+| `confidence-tracker.js` | All tools | LLM09 | Overreliance mitigation |
+| `telemetry.js` | All tools | Audit | Security event telemetry |
 
 **Total Validators: 19**
+
+---
+
+## Context Efficiency Configuration
+
+**File:** `_bmad/_config/context-loading-rules.yaml`
+
+BMAD-CYBER2 uses a tiered context loading system to reduce token consumption by up to 8.75x while preserving quality.
+
+### Tiered Loading Settings
+
+```yaml
+# Enable context efficiency system
+context_efficiency:
+  enabled: true
+  default_tier: 1          # Start most queries at Tier 1
+  auto_escalation: true    # Automatically upgrade tier when needed
+
+# Tier definitions
+tiers:
+  tier_0:
+    max_tokens: 500
+    description: "Discovery only - agent/workflow lookup"
+    sources:
+      - micro-agent-manifest.csv
+      - micro-workflow-manifest.csv
+    use_cases:
+      - discovery
+      - routing
+      - menu_display
+
+  tier_1:
+    max_tokens: 2000
+    description: "Standard - compressed personas for most interactions"
+    sources:
+      - _compact/agents/{module}/{agent}.compact.md
+    use_cases:
+      - simple_greeting
+      - basic_questions
+      - menu_selection
+
+  tier_2:
+    max_tokens: 10000
+    description: "Full context for complex operations"
+    sources:
+      - agents/{agent}.md
+      - workflows/{workflow}/workflow.yaml
+    use_cases:
+      - complex_analysis
+      - workflow_execution
+      - cross_module
+```
+
+### Escalation Rules
+
+```yaml
+escalation:
+  tier_0_to_tier_1:
+    - agent_selected
+    - greeting_response
+  tier_1_to_tier_2:
+    - domain_specific_question
+    - workflow_invocation
+    - error_in_tier_1
+    - cross_module_request
+```
+
+### Caching Settings
+
+```yaml
+caching:
+  enabled: true
+  tier_0_ttl: 3600      # 1 hour - manifests rarely change
+  tier_1_ttl: 1800      # 30 minutes - compressed personas
+  tier_2_ttl: 300       # 5 minutes - full context
+  max_cache_size_mb: 50
+```
+
+### Performance Impact
+
+| Tier | Token Budget | Typical Reduction |
+|------|--------------|-------------------|
+| Tier 0 | ~500 tokens | 98% reduction |
+| Tier 1 | ~2,000 tokens | 93% reduction |
+| Tier 2 | ~10,000 tokens | 64% reduction |
 
 ---
 

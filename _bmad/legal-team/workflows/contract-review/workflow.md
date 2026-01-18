@@ -27,7 +27,7 @@ stateTracking:
     - riskLevel
 currentStep: 1
 stepsCompleted: []
-web_bundle: true
+web_bundle: false
 ---
 
 # Contract Review Workflow
@@ -54,17 +54,26 @@ This uses **step-file architecture** for disciplined execution:
 - **State Tracking**: Progress tracked in output file frontmatter
 - **Append-Only Building**: Build review report progressively
 
+### Step Processing Rules
+
+1. **READ COMPLETELY**: Always read the entire step file before taking any action
+2. **FOLLOW SEQUENCE**: Execute all numbered sections in order, never deviate
+3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
+4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
+5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
+6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+
 ### Critical Rules (NO EXCEPTIONS)
 
-- NEVER load multiple step files simultaneously
-- ALWAYS read entire step file before execution
-- NEVER skip steps or optimize the sequence
-- ALWAYS update frontmatter before next step
-- ALWAYS halt at menus and wait for user input
-- ALWAYS include legal disclaimer in final output
-- ALWAYS verify law currency (not amended/repealed)
-- ALWAYS provide legal sources and citations
-- ALWAYS speak in communication style per config `{communication_language}`
+- 🛑 **NEVER** load multiple step files simultaneously
+- 📖 **ALWAYS** read entire step file before execution
+- 🚫 **NEVER** skip steps or optimize the sequence
+- 💾 **ALWAYS** update frontmatter of output files when writing the final output for a specific step
+- 🎯 **ALWAYS** follow the exact instructions in the step file
+- ⏸️ **ALWAYS** halt at menus and wait for user input
+- ⚖️ **ALWAYS** include legal disclaimer in final output
+- 📚 **ALWAYS** verify law currency and provide citations
+- 🗣️ **ALWAYS** speak in communication style per config `{communication_language}`
 
 ---
 
@@ -110,6 +119,7 @@ This workflow guides through 9 steps:
 Load and read full config from `{project-root}/_bmad/legal-team/config.yaml` and resolve:
 
 - `user_name`, `communication_language`, `output_folder`, `primary_jurisdiction`, `detail_level`
+- ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`
 
 ### 2. First Step EXECUTION
 

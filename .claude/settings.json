@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/token_validator.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/token-validator.js"
           },
           {
             "type": "command",
@@ -23,11 +23,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/prompt_injection_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/prompt-injection.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/jailbreak_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/jailbreak.js"
           }
         ]
       }
@@ -42,11 +42,11 @@
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/supply_chain_verifier.py validate"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/supply-chain.js validate"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           }
         ]
       },
@@ -55,11 +55,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/recursion_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/recursion-guard.js"
           }
         ]
       },
@@ -68,27 +68,27 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/bash_safety.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/bash-safety.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/production_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/production.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/outside-repo.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/plugin_permissions.py validate"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/plugin-permissions.js validate"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/resource_limits.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/resource-limits.js"
           }
         ]
       },
@@ -97,31 +97,31 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/secret_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/secret.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/env_protection.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/env-protection.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/outside-repo.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/pii_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/pii.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/prompt_injection_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/prompt-injection.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/plugin_permissions.py validate"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/plugin-permissions.js validate"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           }
         ]
       },
@@ -130,31 +130,31 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/secret_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/secret.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/env_protection.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/env-protection.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/outside-repo.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/pii_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/pii.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/prompt_injection_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/prompt-injection.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/plugin_permissions.py validate"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/plugin-permissions.js validate"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           }
         ]
       },
@@ -163,23 +163,23 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/outside-repo.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/prompt_injection_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/prompt-injection.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/plugin_permissions.py validate"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/plugin-permissions.js validate"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/recursion_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/recursion-guard.js"
           }
         ]
       },
@@ -188,15 +188,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/outside-repo.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/recursion_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/recursion-guard.js"
           }
         ]
       },
@@ -205,11 +205,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/outside_repo_guard.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/outside-repo.js"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           }
         ]
       },
@@ -218,11 +218,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/plugin_permissions.py validate"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/plugin-permissions.js validate"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           }
         ]
       },
@@ -231,11 +231,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/plugin_permissions.py validate"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/plugin-permissions.js validate"
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/validators/rate_limiter.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/rate-limiter.js"
           }
         ]
       }

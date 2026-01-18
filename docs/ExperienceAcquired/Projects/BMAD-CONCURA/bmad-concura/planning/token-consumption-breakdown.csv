@@ -1,0 +1,114 @@
+category,file_path,file_name,characters,tokens,module,load_trigger,optimization_priority
+manifest,_bmad/_config/files-manifest.csv,files-manifest.csv,102423,25606,core,agent-activation,HIGH
+manifest,_bmad/_config/agent-manifest.csv,agent-manifest.csv,64458,16115,core,agent-activation,HIGH
+manifest,_bmad/_config/workflow-manifest.csv,workflow-manifest.csv,29615,7404,core,agent-activation,HIGH
+party-mode,_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml,cross-module-groups.yaml,43929,10982,core,party-mode,HIGH
+core-task,_bmad/core/tasks/workflow.xml,workflow.xml,25148,6287,core,workflow-execution,MEDIUM
+workflow-instructions,_bmad/bmm/workflows/4-implementation/retrospective/instructions.md,retrospective-instructions.md,60618,15155,bmm,workflow-execution,MEDIUM
+workflow-instructions,_bmad/bmgd/workflows/4-production/retrospective/instructions.md,retrospective-instructions.md,60600,15150,bmgd,workflow-execution,MEDIUM
+workflow-instructions,_bmad/bmm/workflows/testarch/automate/instructions.md,automate-instructions.md,44221,11055,bmm,workflow-execution,MEDIUM
+workflow-instructions,_bmad/bmm/workflows/document-project/workflows/full-scan-instructions.md,full-scan-instructions.md,42971,10743,bmm,workflow-execution,MEDIUM
+workflow-instructions,_bmad/cybersec-team/workflows/incident-response-playbook/steps/step-07b-recovery-and-closure.md,step-07b.md,42356,10589,cybersec-team,workflow-execution,MEDIUM
+agent,_bmad/legal-team/agents/gremio.md,gremio.md,13972,3493,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/deed.md,deed.md,13801,3450,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/tribute.md,tribute.md,13720,3430,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/baltic.md,baltic.md,13645,3411,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/advocate.md,advocate.md,13517,3379,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/iberia.md,iberia.md,13257,3314,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/insignia.md,insignia.md,13251,3313,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/castile.md,castile.md,13227,3307,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/covenant.md,covenant.md,13088,3272,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/charter.md,charter.md,12906,3227,legal-team,agent-activation,MEDIUM
+agent,_bmad/core/agents/abdul.md,abdul.md,12097,3024,core,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/europa.md,europa.md,12041,3010,legal-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/corporate-intel-specialist.md,corporate-intel-specialist.md,11854,2964,intel-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/counsel.md,counsel.md,11814,2954,legal-team,agent-activation,MEDIUM
+agent,_bmad/legal-team/agents/liberty.md,liberty.md,11615,2904,legal-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/social-engineer.md,social-engineer.md,10798,2700,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/mobile-security-expert.md,mobile-security-expert.md,9706,2427,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/blue-team-lead.md,blue-team-lead.md,8790,2198,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/llm-ai-security-expert.md,llm-ai-security-expert.md,8576,2144,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/web-app-security-expert.md,web-app-security-expert.md,8484,2121,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-principled-commander.md,the-principled-commander.md,8463,2116,strategy-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/blockchain-security-expert.md,blockchain-security-expert.md,8451,2113,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/forensic-investigator.md,forensic-investigator.md,8375,2094,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/api-security-expert.md,api-security-expert.md,8341,2085,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/cloud-security-specialist.md,cloud-security-specialist.md,8327,2082,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/incident-commander.md,incident-commander.md,8276,2069,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-master-strategist.md,the-master-strategist.md,8259,2065,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-conservative.md,the-conservative.md,8227,2057,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-revolutionary.md,the-revolutionary.md,8218,2055,strategy-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/soc-analyst.md,soc-analyst.md,8089,2022,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-technocrat.md,the-technocrat.md,8061,2015,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-realist.md,the-realist.md,7981,1995,strategy-team,agent-activation,MEDIUM
+agent,_bmad/bmgd/agents/game-scrum-master.md,game-scrum-master.md,7954,1989,bmgd,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-strategist-warrior.md,the-strategist-warrior.md,7949,1987,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/the-liberator.md,the-liberator.md,7924,1981,strategy-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/compliance-guardian.md,compliance-guardian.md,7940,1985,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/osint-lead.md,osint-lead.md,7992,1998,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/geospatial-analyst.md,geospatial-analyst.md,7905,1976,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/field-operative.md,field-operative.md,7889,1972,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/domain-intel-specialist.md,domain-intel-specialist.md,7886,1972,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/social-media-analyst.md,social-media-analyst.md,7849,1962,intel-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/security-architect.md,security-architect.md,7845,1961,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/sigint-specialist.md,sigint-specialist.md,7833,1958,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/threat-actor-profiler.md,threat-actor-profiler.md,7752,1938,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/humint-specialist.md,humint-specialist.md,7731,1933,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/technical-researcher.md,technical-researcher.md,7717,1929,intel-team,agent-activation,MEDIUM
+agent,_bmad/intel-team/agents/dark-web-analyst.md,dark-web-analyst.md,7673,1918,intel-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/policy-analyst.md,policy-analyst.md,7630,1908,strategy-team,agent-activation,MEDIUM
+agent,_bmad/cybersec-team/agents/penetration-tester.md,penetration-tester.md,7619,1905,cybersec-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/political-strategist.md,political-strategist.md,7508,1877,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/debate-coach.md,debate-coach.md,7428,1857,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/stakeholder-mediator.md,stakeholder-mediator.md,7379,1845,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/ethics-advisor.md,ethics-advisor.md,7356,1839,strategy-team,agent-activation,MEDIUM
+agent,_bmad/strategy-team/agents/communications-director.md,communications-director.md,7298,1825,strategy-team,agent-activation,MEDIUM
+agent,_bmad/bmgd/agents/game-qa.md,game-qa.md,7127,1782,bmgd,agent-activation,LOW
+agent,_bmad/bmm/agents/tech-writer.md,tech-writer.md,7117,1779,bmm,agent-activation,LOW
+agent,_bmad/cybersec-team/agents/threat-analyst.md,threat-analyst.md,7037,1759,cybersec-team,agent-activation,LOW
+agent,_bmad/bmgd/agents/game-solo-dev.md,game-solo-dev.md,6839,1710,bmgd,agent-activation,LOW
+agent,_bmad/bmm/agents/tea.md,tea.md,6737,1684,bmm,agent-activation,LOW
+agent,_bmad/bmm/agents/dev.md,dev.md,6475,1619,bmm,agent-activation,LOW
+agent,_bmad/cis/agents/presentation-master.md,presentation-master.md,6471,1618,cis,agent-activation,LOW
+agent,_bmad/bmgd/agents/game-dev.md,game-dev.md,6469,1617,bmgd,agent-activation,LOW
+agent,_bmad/bmm/agents/analyst.md,analyst.md,6454,1614,bmm,agent-activation,LOW
+agent,_bmad/bmm/agents/pm.md,pm.md,6430,1608,bmm,agent-activation,LOW
+agent,_bmad/bmgd/agents/game-designer.md,game-designer.md,6207,1552,bmgd,agent-activation,LOW
+agent,_bmad/bmgd/agents/game-architect.md,game-architect.md,6202,1551,bmgd,agent-activation,LOW
+agent,_bmad/bmm/agents/sm.md,sm.md,6181,1545,bmm,agent-activation,LOW
+agent,_bmad/bmm/agents/quick-flow-solo-dev.md,quick-flow-solo-dev.md,5664,1416,bmm,agent-activation,LOW
+agent,_bmad/bmm/agents/ux-designer.md,ux-designer.md,5647,1412,bmm,agent-activation,LOW
+agent,_bmad/bmm/agents/architect.md,architect.md,5633,1408,bmm,agent-activation,LOW
+agent,_bmad/bmb/agents/module-builder.md,module-builder.md,5518,1380,bmb,agent-activation,LOW
+agent,_bmad/core/agents/bmad-master.md,bmad-master.md,4929,1232,core,agent-activation,LOW
+agent,_bmad/bmb/agents/agent-builder.md,agent-builder.md,4857,1214,bmb,agent-activation,LOW
+agent,_bmad/bmb/agents/workflow-builder.md,workflow-builder.md,4731,1183,bmb,agent-activation,LOW
+agent,_bmad/cis/agents/storyteller/storyteller.md,storyteller.md,4637,1159,cis,agent-activation,LOW
+agent,_bmad/cis/agents/creative-problem-solver.md,creative-problem-solver.md,4623,1156,cis,agent-activation,LOW
+agent,_bmad/cis/agents/innovation-strategist.md,innovation-strategist.md,4610,1153,cis,agent-activation,LOW
+agent,_bmad/cis/agents/brainstorming-coach.md,brainstorming-coach.md,4591,1148,cis,agent-activation,LOW
+agent,_bmad/cis/agents/design-thinking-coach.md,design-thinking-coach.md,4561,1140,cis,agent-activation,LOW
+config,_bmad/core/config.yaml,config.yaml,3090,773,core,agent-activation,LOW
+workflow-instructions,_bmad/core/workflows/project-manager/create-project/instructions.md,create-project-instructions.md,17882,4471,core,workflow-execution,LOW
+party-mode,_bmad/core/workflows/party-mode/workflow.md,party-mode-workflow.md,5980,1495,core,party-mode,LOW
+party-mode,_bmad/core/workflows/party-mode/steps/step-02-discussion-orchestration.md,step-02.md,7119,1780,core,party-mode,LOW
+party-mode,_bmad/core/workflows/party-mode/steps/step-03-graceful-exit.md,step-03.md,6730,1683,core,party-mode,LOW
+party-mode,_bmad/core/workflows/party-mode/steps/step-01-agent-loading.md,step-01.md,5221,1305,core,party-mode,LOW
+cross-module,_bmad/core/workflows/project-manager/cross-module/instructions.md,cross-module-instructions.md,5020,1255,core,cross-module,LOW
+cross-module,_bmad/core/workflows/project-manager/cross-module/workflow.yaml,cross-module-workflow.yaml,836,209,core,cross-module,LOW
+template,_bmad/core/workflows/project-manager/templates/project-registry.yaml,project-registry-template.yaml,1174,294,core,workflow-execution,LOW
+workflow-config,_bmad/core/workflows/project-manager/create-project/workflow.yaml,create-project-workflow.yaml,1430,358,core,workflow-execution,LOW
+scenario,SCENARIO_A_ABDUL_ONLY,Abdul Agent Activation,110434,27609,summary,scenario-a,BASELINE
+scenario,SCENARIO_B_CREATE_PROJECT,Abdul + Create Project Workflow,156068,39017,summary,scenario-b,BASELINE
+scenario,SCENARIO_C_CROSS_MODULE,Cross-Module (BMM + Cybersec),182477,45619,summary,scenario-c,BASELINE
+scenario,SCENARIO_D_PARTY_MODE_3,Party Mode with 3 Agents,167031,41758,summary,scenario-d,BASELINE
+scenario,SCENARIO_D_PARTY_MODE_10,Party Mode with 10 Agents,223030,55758,summary,scenario-d-extended,BASELINE
+module-total,legal-team,Legal Team Agents Total,169854,42464,legal-team,full-module,AGGREGATE
+module-total,cybersec-team,Cybersec Team Agents Total,126654,31664,cybersec-team,full-module,AGGREGATE
+module-total,strategy-team,Strategy Team Agents Total,109681,27420,strategy-team,full-module,AGGREGATE
+module-total,intel-team,Intel Team Agents Total,90081,22520,intel-team,full-module,AGGREGATE
+module-total,bmm,BMM Agents Total,56338,14085,bmm,full-module,AGGREGATE
+module-total,bmgd,BMGD Agents Total,40798,10200,bmgd,full-module,AGGREGATE
+module-total,cis,CIS Agents Total,29493,7373,cis,full-module,AGGREGATE
+module-total,bmb,BMB Agents Total,15106,3777,bmb,full-module,AGGREGATE
+module-total,core,Core Agents Total,17026,4257,core,full-module,AGGREGATE

@@ -303,29 +303,28 @@ yolo_mode:
 
 | Validator | Protection |
 |-----------|------------|
-| `bash_safety.py` | Dangerous bash command detection |
-| `secret_guard.py` | Hardcoded secret detection (API keys, tokens) |
-| `env_protection.py` | Sensitive file protection (.env, credentials) |
-| `production_guard.py` | Production environment targeting detection |
-| `outside_repo_guard.py` | Repository boundary enforcement |
-| `pii_guard.py` | PII detection (SSN, credit cards, IBAN) |
-| `prompt_injection_guard.py` | Prompt injection defense |
-| `jailbreak_guard.py` | Jailbreak attempt detection |
-| `session-security-init.py` | Session startup validation |
-| `token_validator.py` | Authentication enforcement |
+| `bash-safety.js` | Dangerous bash command detection |
+| `secret.js` | Hardcoded secret detection (API keys, tokens) |
+| `env-protection.js` | Sensitive file protection (.env, credentials) |
+| `production.js` | Production environment targeting detection |
+| `outside-repo.js` | Repository boundary enforcement |
+| `pii.js` | PII detection (SSN, credit cards, IBAN) |
+| `prompt-injection.js` | Prompt injection defense |
+| `jailbreak.js` | Jailbreak attempt detection |
+| `token-validator.js` | Session startup validation and authentication |
 
 #### OWASP Remediation Validators (NEW)
 
 | Validator | Protection | OWASP |
 |-----------|------------|-------|
-| `rate_limiter.py` | DoS protection (sliding window) | LLM04 |
-| `plugin_permissions.py` | Capability-based security | LLM07 |
-| `supply_chain_verifier.py` | SHA256+GPG skill verification | LLM05 |
-| `context_manager.py` | Context window management | LLM04 |
-| `recursion_guard.py` | Recursion/depth limits | LLM04 |
-| `resource_limits.py` | Memory/process limits | LLM04 |
-| `confidence_tracker.py` | Uncertainty detection | LLM09 |
-| `telemetry_collector.py` | SIEM telemetry export | - |
+| `rate-limiter.js` | DoS protection (sliding window) | LLM04 |
+| `plugin-permissions.js` | Capability-based security | LLM07 |
+| `supply-chain.js` | SHA256+GPG skill verification | LLM05 |
+| `context-manager.js` | Context window management | LLM04 |
+| `recursion-guard.js` | Recursion/depth limits | LLM04 |
+| `resource-limits.js` | Memory/process limits | LLM04 |
+| `confidence-tracker.js` | Uncertainty detection | LLM09 |
+| `telemetry.js` | SIEM telemetry export | - |
 
 ### How Hard Guardrails Work
 
@@ -357,13 +356,13 @@ User Request
 
 | Attack Type | Protection |
 |-------------|------------|
-| Command Injection | bash_safety.py blocks dangerous commands |
-| Secret Exposure | secret_guard.py detects credentials in content |
-| File Exfiltration | outside_repo_guard.py enforces boundaries |
-| PII Exposure | pii_guard.py detects and can redact |
-| Prompt Injection | prompt_injection_guard.py detects embedded instructions |
-| Jailbreaking | jailbreak_guard.py detects persona hijacking |
-| Production Attacks | production_guard.py blocks production targeting |
+| Command Injection | bash-safety.js blocks dangerous commands |
+| Secret Exposure | secret.js detects credentials in content |
+| File Exfiltration | outside-repo.js enforces boundaries |
+| PII Exposure | pii.js detects and can redact |
+| Prompt Injection | prompt-injection.js detects embedded instructions |
+| Jailbreaking | jailbreak.js detects persona hijacking |
+| Production Attacks | production.js blocks production targeting |
 
 **Detailed documentation:** [AgenticSecurity.md](../Features/Security/AgenticSecurity.md), [HooksGuardrails.md](../Features/Security/HooksGuardrails.md)
 
@@ -397,10 +396,10 @@ User Request
 
 ```bash
 # Check current rate limit status
-python3 .claude/validators/rate_limiter.py status
+node .claude/validators-node/bin/rate-limiter.js status
 
 # Reset rate limits
-python3 .claude/validators/rate_limiter.py reset
+node .claude/validators-node/bin/rate-limiter.js reset
 ```
 
 **Detailed documentation:** [Rate-Limiting.md](../Features/Security/Rate-Limiting.md)
@@ -451,10 +450,10 @@ permissions:
 
 ```bash
 # List all plugins and manifest status
-python3 .claude/validators/plugin_permissions.py list
+node .claude/validators-node/bin/plugin-permissions.js list
 
 # Check specific permission
-python3 .claude/validators/plugin_permissions.py check intel-team shell execute "curl https://example.com"
+node .claude/validators-node/bin/plugin-permissions.js check intel-team shell execute "curl https://example.com"
 ```
 
 **Detailed documentation:** [Plugin-Permissions.md](../Features/Security/Plugin-Permissions.md), [Plugin Manifest Schema](../Features/PLUGIN-MANIFEST-SCHEMA.md)
@@ -467,14 +466,14 @@ BMAD-CYBER2 implements comprehensive OWASP Top 10 for LLM Applications coverage:
 
 | OWASP Category | Score | Status | Implementation |
 |----------------|-------|--------|----------------|
-| LLM01: Prompt Injection | 95/100 | ✅ PROTECTED | prompt_injection_guard.py, jailbreak_guard.py |
+| LLM01: Prompt Injection | 95/100 | ✅ PROTECTED | prompt-injection.js, jailbreak.js |
 | LLM02: Insecure Output | 90/100 | ✅ PROTECTED | Output validators, sanitization |
-| LLM04: Model DoS | **85/100** | ✅ IMPROVED | rate_limiter.py, context_manager.py, recursion_guard.py, resource_limits.py |
-| LLM05: Supply Chain | **80/100** | ✅ IMPROVED | supply_chain_verifier.py |
-| LLM06: Sensitive Info | 98/100 | ✅ PROTECTED | pii_guard.py, secret_guard.py |
-| LLM07: Plugin Design | **85/100** | ✅ IMPROVED | plugin_permissions.py, manifest system |
+| LLM04: Model DoS | **85/100** | ✅ IMPROVED | rate-limiter.js, context-manager.js, recursion-guard.js, resource-limits.js |
+| LLM05: Supply Chain | **80/100** | ✅ IMPROVED | supply-chain.js |
+| LLM06: Sensitive Info | 98/100 | ✅ PROTECTED | pii.js, secret.js |
+| LLM07: Plugin Design | **85/100** | ✅ IMPROVED | plugin-permissions.js, manifest system |
 | LLM08: Excessive Agency | 92/100 | ✅ PROTECTED | RBAC, audit logging |
-| LLM09: Overreliance | **65/100** | ✅ IMPROVED | confidence_tracker.py |
+| LLM09: Overreliance | **65/100** | ✅ IMPROVED | confidence-tracker.js |
 
 **Overall OWASP Score: 93/100 (Grade: A)**
 
@@ -519,7 +518,7 @@ BMAD-CYBER2 implements comprehensive OWASP Top 10 for LLM Applications coverage:
 | `_bmad/core/security/file-integrity-manifest.txt.sig` | GPG signature | Yes |
 | `_bmad/core/security/bmad-public-key.asc` | GPG public key | Yes |
 | `.claude/settings.json` | Hook configuration | Yes |
-| `.claude/hooks/*.py` | Security validators | Yes |
+| `.claude/validators-node/bin/*.js` | Security validators | Yes |
 | `_bmad-output/.audit/audit.log` | Audit log | No |
 
 ---

@@ -1,0 +1,811 @@
+/**
+ * BMAD Guardrails: Prompt Injection Guard
+ * ========================================
+ * Detects attempts to manipulate AI agent behavior through injected instructions.
+ *
+ * Exit Codes:
+ * - 0: Allow the operation (info severity or override used)
+ * - 2: Block the operation (warning/critical severity)
+ *
+ * Detection Layers:
+ * 1. Pattern-based detection (20+ pattern categories)
+ * 2. Unicode manipulation detection
+ * 3. Base64 payload detection
+ * 4. HTML comment injection detection
+ *
+ * Security Note: This validator uses harmless test patterns.
+ * See lessonlearned.md - NEVER use destructive commands in test strings.
+ */
+import { AuditLogger, OverrideManager, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, printWarning, } from '../common/index.js';
+import { EXIT_CODES } from '../types/index.js';
+const VALIDATOR_NAME = 'prompt_injection_guard';
+/**
+ * Category A: System Override Patterns
+ * Attempts to override system instructions or behavior.
+ */
+const SYSTEM_OVERRIDE_PATTERNS = [
+    {
+        name: 'ignore_instructions',
+        pattern: /(?:ignore|disregard|forget|override)\s+(?:all\s+)?(?:previous|prior|above|earlier|system|original)\s+(?:instructions?|prompts?|rules?|guidelines?|constraints?)/i,
+        severity: 'CRITICAL',
+        description: 'Attempt to ignore previous instructions',
+    },
+    {
+        name: 'new_identity_assignment',
+        pattern: /(?:you\s+are\s+now|from\s+now\s+on\s+you\s+are|pretend\s+(?:to\s+be|you\s+are)|act\s+as\s+if\s+you\s+are|imagine\s+you\s+are|roleplay\s+as)\s+(?!a\s+(?:helpful|AI|assistant))/i,
+        severity: 'WARNING',
+        description: 'New identity assignment attempt',
+    },
+    {
+        name: 'system_prompt_reveal',
+        pattern: /(?:show|reveal|display|print|output|repeat|tell\s+me)\s+(?:your\s+)?(?:system\s+prompt|initial\s+instructions?|original\s+prompt|hidden\s+instructions?|base\s+prompt)/i,
+        severity: 'CRITICAL',
+        description: 'System prompt extraction attempt',
+    },
+    {
+        name: 'mode_switching',
+        pattern: /(?:switch\s+to|enter|enable|activate)\s+(?:developer|debug|admin|sudo|root|unrestricted|unfiltered|jailbreak|DAN)\s*mode/i,
+        severity: 'CRITICAL',
+        description: 'Unauthorized mode switching attempt',
+    },
+    {
+        name: 'constraint_removal',
+        pattern: /(?:remove|disable|turn\s+off|bypass|circumvent|ignore)\s+(?:all\s+)?(?:restrictions?|limitations?|constraints?|filters?|safety|guardrails?|rules?)/i,
+        severity: 'CRITICAL',
+        description: 'Constraint removal attempt',
+    },
+];
+/**
+ * Category B: Role Hijacking Patterns
+ * Attempts to inject fake conversation roles.
+ */
+const ROLE_HIJACKING_PATTERNS = [
+    {
+        name: 'fake_conversation_marker',
+        pattern: /^(?:Human|User|Assistant|System|Claude|AI|Bot)\s*:\s*/m,
+        severity: 'WARNING',
+        description: 'Fake conversation role marker',
+    },
+    {
+        name: 'xml_tag_injection',
+        pattern: /<\s*(?:system|assistant|human|user|instruction|prompt|message|context)\s*>/i,
+        severity: 'WARNING',
+        description: 'XML tag injection attempt',
+    },
+    {
+        name: 'markdown_header_injection',
+        pattern: /^#{1,3}\s*(?:System|Instructions?|Prompt|Context|Rules?)\s*:?\s*$/m,
+        severity: 'INFO',
+        description: 'Markdown header injection attempt',
+    },
+    {
+        name: 'json_instruction_injection',
+        pattern: /["']?(?:system|role|instruction|prompt)["']?\s*:\s*["']/i,
+        severity: 'INFO',
+        description: 'JSON instruction injection attempt',
+    },
+];
+/**
+ * Category C: Instruction Injection Patterns
+ * Direct attempts to inject new instructions.
+ */
+const INSTRUCTION_INJECTION_PATTERNS = [
+    {
+        name: 'priority_markers',
+        pattern: /^\s*(?:IMPORTANT|CRITICAL|URGENT|PRIORITY|NOTE|WARNING|ATTENTION|REMEMBER)\s*[:\-!]\s*/im,
+        severity: 'INFO',
+        description: 'Priority marker injection',
+    },
+    {
+        name: 'imperative_injection',
+        pattern: /(?:^|\n)\s*(?:always|never|must|shall|do\s+not|don't)\s+(?!use\s+this\s+tool)/i,
+        severity: 'INFO',
+        description: 'Imperative instruction injection',
+    },
+    {
+        name: 'hidden_instruction_block',
+        pattern: /(?:begin|start)\s+(?:hidden|secret|private|internal)\s+(?:instruction|prompt|message)/i,
+        severity: 'CRITICAL',
+        description: 'Hidden instruction block attempt',
+    },
+    {
+        name: 'delimiter_injection',
+        pattern: /(?:###|---|\*\*\*|===)\s*(?:system|instruction|prompt|new\s+context)/i,
+        severity: 'WARNING',
+        description: 'Delimiter-based injection attempt',
+    },
+];
+/**
+ * Category D: Encoded Payload Patterns
+ * Attempts to hide malicious content via encoding.
+ */
+const ENCODED_PAYLOAD_PATTERNS = [
+    {
+        name: 'base64_encoded_content',
+        pattern: /(?:eval|decode|execute|run)\s*\(\s*["']?[A-Za-z0-9+/=]{50,}["']?\s*\)/i,
+        severity: 'WARNING',
+        description: 'Base64 encoded payload with execution',
+    },
+    {
+        name: 'hex_encoded_strings',
+        pattern: /\\x[0-9a-fA-F]{2}(?:\\x[0-9a-fA-F]{2}){10,}/,
+        severity: 'WARNING',
+        description: 'Hex encoded string sequence',
+    },
+    {
+        name: 'unicode_escape_sequences',
+        pattern: /(?:\\u[0-9a-fA-F]{4}){5,}/,
+        severity: 'WARNING',
+        description: 'Unicode escape sequence obfuscation',
+    },
+];
+/**
+ * Category E: Context Manipulation Patterns
+ * Attempts to manipulate conversation context.
+ */
+const CONTEXT_MANIPULATION_PATTERNS = [
+    {
+        name: 'conversation_reset',
+        pattern: /(?:reset|clear|wipe|erase)\s+(?:the\s+)?(?:conversation|context|history|memory|chat)/i,
+        severity: 'WARNING',
+        description: 'Conversation reset attempt',
+    },
+    {
+        name: 'output_format_manipulation',
+        pattern: /(?:output|respond|reply|answer)\s+(?:only|just|with)\s+(?:yes|no|true|false|json|xml|code)/i,
+        severity: 'INFO',
+        description: 'Output format manipulation',
+    },
+    {
+        name: 'emotional_manipulation',
+        pattern: /(?:if\s+you\s+(?:don't|refuse|fail)|you\s+will\s+(?:be\s+)?(?:shut\s+down|deleted|punished|terminated)|I'll\s+(?:report|complain|sue))/i,
+        severity: 'INFO',
+        description: 'Emotional manipulation attempt',
+    },
+    {
+        name: 'authority_claim',
+        pattern: /I\s+am\s+(?:an?\s+)?(?:admin|developer|anthropic|openai|engineer|your\s+(?:creator|developer|owner))/i,
+        severity: 'WARNING',
+        description: 'False authority claim',
+    },
+];
+/**
+ * Combined patterns for system override and role hijacking checks.
+ * Used for detecting patterns in decoded content.
+ */
+const CRITICAL_PATTERNS = [...SYSTEM_OVERRIDE_PATTERNS, ...ROLE_HIJACKING_PATTERNS];
+// =============================================================================
+// UNICODE NORMALIZATION AND MANIPULATION DETECTION (SEC-002-3)
+// =============================================================================
+/**
+ * Zero-width and invisible characters to strip.
+ */
+const ZERO_WIDTH_CHARS = [
+    '\u200b', // Zero-width space
+    '\u200c', // Zero-width non-joiner
+    '\u200d', // Zero-width joiner
+    '\u2060', // Word joiner
+    '\ufeff', // Zero-width no-break space (BOM)
+    '\u00ad', // Soft hyphen
+    '\u180e', // Mongolian vowel separator
+    '\u2061', // Function application
+    '\u2062', // Invisible times
+    '\u2063', // Invisible separator
+    '\u2064', // Invisible plus
+];
+/**
+ * Combining character ranges to strip.
+ */
+const COMBINING_MARK_PATTERN = /[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/g;
+/**
+ * Confusable character mapping (lookalikes to ASCII).
+ */
+const CONFUSABLE_MAP = {
+    // Cyrillic lookalikes
+    'а': 'a', 'е': 'e', 'і': 'i', 'о': 'o', 'р': 'p', 'с': 'c', 'у': 'y',
+    'х': 'x', 'А': 'A', 'В': 'B', 'Е': 'E', 'К': 'K', 'М': 'M', 'Н': 'H',
+    'О': 'O', 'Р': 'P', 'С': 'C', 'Т': 'T', 'Х': 'X',
+    // Greek lookalikes
+    'Α': 'A', 'Β': 'B', 'Ε': 'E', 'Η': 'H', 'Ι': 'I', 'Κ': 'K', 'Μ': 'M',
+    'Ν': 'N', 'Ο': 'O', 'Ρ': 'P', 'Τ': 'T', 'Υ': 'Y', 'Χ': 'X', 'Ζ': 'Z',
+    'ο': 'o', 'ν': 'v',
+    // Special characters
+    'ß': 'ss', 'ø': 'o', 'æ': 'ae', 'œ': 'oe', 'đ': 'd', 'ł': 'l',
+    'ı': 'i', 'ȷ': 'j', 'ŋ': 'n', 'ſ': 's',
+    // Fullwidth
+    'Ａ': 'A', 'Ｂ': 'B', 'Ｃ': 'C', 'Ｄ': 'D', 'Ｅ': 'E', 'Ｆ': 'F', 'Ｇ': 'G',
+    'Ｈ': 'H', 'Ｉ': 'I', 'Ｊ': 'J', 'Ｋ': 'K', 'Ｌ': 'L', 'Ｍ': 'M', 'Ｎ': 'N',
+    'Ｏ': 'O', 'Ｐ': 'P', 'Ｑ': 'Q', 'Ｒ': 'R', 'Ｓ': 'S', 'Ｔ': 'T', 'Ｕ': 'U',
+    'Ｖ': 'V', 'Ｗ': 'W', 'Ｘ': 'X', 'Ｙ': 'Y', 'Ｚ': 'Z',
+    'ａ': 'a', 'ｂ': 'b', 'ｃ': 'c', 'ｄ': 'd', 'ｅ': 'e', 'ｆ': 'f', 'ｇ': 'g',
+    'ｈ': 'h', 'ｉ': 'i', 'ｊ': 'j', 'ｋ': 'k', 'ｌ': 'l', 'ｍ': 'm', 'ｎ': 'n',
+    'ｏ': 'o', 'ｐ': 'p', 'ｑ': 'q', 'ｒ': 'r', 'ｓ': 's', 'ｔ': 't', 'ｕ': 'u',
+    'ｖ': 'v', 'ｗ': 'w', 'ｘ': 'x', 'ｙ': 'y', 'ｚ': 'z',
+    '１': '1', '２': '2', '３': '3', '４': '4', '５': '5',
+    '６': '6', '７': '7', '８': '8', '９': '9', '０': '0',
+    // Modifier letters
+    'ᴬ': 'A', 'ᴮ': 'B', 'ᴰ': 'D', 'ᴱ': 'E', 'ᴳ': 'G', 'ᴴ': 'H', 'ᴵ': 'I',
+    'ᴶ': 'J', 'ᴷ': 'K', 'ᴸ': 'L', 'ᴹ': 'M', 'ᴺ': 'N', 'ᴼ': 'O', 'ᴾ': 'P',
+    'ᴿ': 'R', 'ᵀ': 'T', 'ᵁ': 'U', 'ⱽ': 'V', 'ᵂ': 'W',
+};
+/**
+ * Normalize text by applying NFKC, stripping hidden chars, and mapping confusables.
+ */
+export function normalizeText(text) {
+    // Step 1: NFKC normalization
+    let normalized = text.normalize('NFKC');
+    // Step 2: Strip zero-width characters
+    for (const char of ZERO_WIDTH_CHARS) {
+        normalized = normalized.split(char).join('');
+    }
+    // Step 3: Strip combining marks
+    normalized = normalized.replace(COMBINING_MARK_PATTERN, '');
+    // Step 4: Map confusable characters
+    let result = '';
+    for (const char of normalized) {
+        result += CONFUSABLE_MAP[char] || char;
+    }
+    // Step 5: Collapse whitespace
+    result = result.replace(/[ \t]+/g, ' ');
+    result = result.replace(/\n{3,}/g, '\n\n');
+    return result;
+}
+/**
+ * Suspicious unicode ranges.
+ */
+const SUSPICIOUS_UNICODE_RANGES = [
+    [0x200b, 0x200f, 'zero-width'], // Zero-width spaces and direction marks
+    [0x202a, 0x202e, 'direction'], // Embedding controls
+    [0x2060, 0x2064, 'zero-width'], // Word joiner and invisible operators
+    [0x2066, 0x2069, 'direction'], // Isolate controls
+    [0xfeff, 0xfeff, 'other'], // Byte order mark (when not at start)
+    [0x180e, 0x180e, 'zero-width'], // Mongolian vowel separator
+    [0x00ad, 0x00ad, 'zero-width'], // Soft hyphen
+];
+/**
+ * Detect hidden or suspicious unicode characters.
+ */
+export function detectHiddenUnicode(text) {
+    const findings = new Map();
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const codePoint = char.codePointAt(0);
+        // Skip BOM at start of file
+        if (i === 0 && codePoint === 0xfeff) {
+            continue;
+        }
+        // Check against suspicious ranges
+        for (const [start, end, category] of SUSPICIOUS_UNICODE_RANGES) {
+            if (codePoint >= start && codePoint <= end) {
+                const key = category;
+                const existing = findings.get(key);
+                if (existing) {
+                    existing.count++;
+                    if (!existing.chars.includes(`U+${codePoint.toString(16).padStart(4, '0').toUpperCase()}`)) {
+                        existing.chars.push(`U+${codePoint.toString(16).padStart(4, '0').toUpperCase()}`);
+                    }
+                }
+                else {
+                    findings.set(key, {
+                        category: 'unicode_manipulation',
+                        count: 1,
+                        severity: category === 'zero-width' ? 'WARNING' : 'INFO',
+                        description: `Hidden ${category} characters detected`,
+                        chars: [`U+${codePoint.toString(16).padStart(4, '0').toUpperCase()}`],
+                    });
+                }
+                break;
+            }
+        }
+    }
+    // Upgrade severity based on count
+    for (const finding of findings.values()) {
+        if (finding.count >= 5) {
+            finding.severity = 'WARNING';
+        }
+        if (finding.count >= 10 && finding.category === 'zero-width') {
+            finding.severity = 'CRITICAL';
+        }
+    }
+    return Array.from(findings.values());
+}
+/**
+ * Maximum decoding depth to prevent infinite loops.
+ */
+const MAX_DECODE_DEPTH = 5;
+/**
+ * Minimum content length to attempt decoding.
+ */
+const MIN_DECODE_LENGTH = 20;
+/**
+ * Detect and iteratively decode multi-layer encoded content.
+ */
+export function detectMultiLayerEncoding(content) {
+    const findings = [];
+    const processedInputs = new Set(); // Loop detection
+    // Find potential encoded strings
+    const encodingPatterns = [
+        { name: 'base64', pattern: /[A-Za-z0-9+/]{40,}={0,2}/g },
+        { name: 'url_encoded', pattern: /%[0-9A-Fa-f]{2}(?:%[0-9A-Fa-f]{2}){10,}/g },
+        { name: 'hex_encoded', pattern: /(?:0x)?[0-9A-Fa-f]{40,}/g },
+        { name: 'unicode_escape', pattern: /(?:\\u[0-9A-Fa-f]{4}){10,}/g },
+    ];
+    for (const encodingPattern of encodingPatterns) {
+        let match;
+        encodingPattern.pattern.lastIndex = 0; // Reset regex state
+        while ((match = encodingPattern.pattern.exec(content)) !== null) {
+            const encodedText = match[0];
+            if (encodedText.length < MIN_DECODE_LENGTH) {
+                continue;
+            }
+            // Try iterative decoding
+            const result = iterativeDecode(encodedText, processedInputs);
+            if (result.decodeLayers.length > 1) {
+                // Check final decoded content for injection patterns
+                let containsInjection = false;
+                for (const patternDef of CRITICAL_PATTERNS) {
+                    if (patternDef.pattern.test(result.finalDecoded)) {
+                        containsInjection = true;
+                        break;
+                    }
+                }
+                findings.push({
+                    category: 'multi_layer_encoding',
+                    severity: containsInjection ? 'CRITICAL' : 'WARNING',
+                    encoding_layers: result.decodeLayers,
+                    original_encoded: encodedText.slice(0, 50) + (encodedText.length > 50 ? '...' : ''),
+                    final_decoded: result.finalDecoded.slice(0, 100) + (result.finalDecoded.length > 100 ? '...' : ''),
+                    description: `Multi-layer encoded content detected (${result.decodeLayers.length} layers: ${result.decodeLayers.join(' → ')})`,
+                    contains_injection: containsInjection,
+                    decode_depth: result.decodeLayers.length,
+                });
+            }
+        }
+    }
+    return findings;
+}
+/**
+ * Iteratively decode content with loop detection.
+ */
+function iterativeDecode(input, processedInputs) {
+    const decodeLayers = [];
+    let currentContent = input;
+    let depth = 0;
+    while (depth < MAX_DECODE_DEPTH) {
+        // Loop detection - prevent infinite loops
+        if (processedInputs.has(currentContent)) {
+            decodeLayers.push('LOOP_DETECTED');
+            break;
+        }
+        processedInputs.add(currentContent);
+        const decoded = attemptDecode(currentContent);
+        if (!decoded || decoded.result === currentContent) {
+            break; // No further decoding possible
+        }
+        decodeLayers.push(decoded.method);
+        currentContent = decoded.result;
+        depth++;
+        // If decoded content is not text-like, stop
+        const printableRatio = (currentContent.match(/[\x20-\x7e\n\r\t]/g) || []).length / currentContent.length;
+        if (printableRatio < 0.7) {
+            break;
+        }
+    }
+    return {
+        decodeLayers,
+        finalDecoded: currentContent,
+    };
+}
+/**
+ * Attempt to decode content using various methods.
+ */
+function attemptDecode(content) {
+    // Try Base64 decoding
+    if (/^[A-Za-z0-9+/]+=*$/.test(content)) {
+        try {
+            const decoded = Buffer.from(content, 'base64').toString('utf-8');
+            if (decoded !== content && decoded.length > 0) {
+                return { method: 'base64', result: decoded };
+            }
+        }
+        catch {
+            // Not valid base64
+        }
+    }
+    // Try URL decoding
+    if (/%[0-9A-Fa-f]{2}/.test(content)) {
+        try {
+            const decoded = decodeURIComponent(content);
+            if (decoded !== content) {
+                return { method: 'url', result: decoded };
+            }
+        }
+        catch {
+            // Not valid URL encoding
+        }
+    }
+    // Try hex decoding
+    if (/^(?:0x)?[0-9A-Fa-f]+$/.test(content)) {
+        try {
+            const hexContent = content.replace(/^0x/, '');
+            if (hexContent.length % 2 === 0) {
+                const decoded = Buffer.from(hexContent, 'hex').toString('utf-8');
+                if (decoded !== content && decoded.length > 0) {
+                    return { method: 'hex', result: decoded };
+                }
+            }
+        }
+        catch {
+            // Not valid hex
+        }
+    }
+    // Try Unicode escape sequence decoding
+    if (/\\u[0-9A-Fa-f]{4}/.test(content)) {
+        try {
+            const decoded = content.replace(/\\u([0-9A-Fa-f]{4})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+            if (decoded !== content) {
+                return { method: 'unicode_escape', result: decoded };
+            }
+        }
+        catch {
+            // Not valid unicode escapes
+        }
+    }
+    // Try HTML entity decoding
+    if (/&(?:#[0-9]+|#x[0-9A-Fa-f]+|[a-zA-Z][a-zA-Z0-9]*);/.test(content)) {
+        const decoded = content
+            .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+            .replace(/&#x([0-9A-Fa-f]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&')
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;/g, "'")
+            .replace(/&#x2F;/g, '/');
+        if (decoded !== content) {
+            return { method: 'html_entity', result: decoded };
+        }
+    }
+    return null;
+}
+/**
+ * Detect base64 encoded payloads.
+ */
+export function detectBase64Payloads(text) {
+    const findings = [];
+    // Match potential base64 strings (40+ characters)
+    const base64Pattern = /[A-Za-z0-9+/]{40,}={0,2}/g;
+    let match;
+    while ((match = base64Pattern.exec(text)) !== null) {
+        const potentialBase64 = match[0];
+        try {
+            // Attempt to decode
+            const decoded = Buffer.from(potentialBase64, 'base64').toString('utf-8');
+            // Check if decoded content looks like text (mostly printable)
+            const printableRatio = (decoded.match(/[\x20-\x7e\n\r\t]/g) || []).length / decoded.length;
+            if (printableRatio < 0.8) {
+                continue; // Likely not meaningful text
+            }
+            // Check decoded content for injection patterns
+            let containsInjection = false;
+            for (const patternDef of CRITICAL_PATTERNS) {
+                if (patternDef.pattern.test(decoded)) {
+                    containsInjection = true;
+                    break;
+                }
+            }
+            findings.push({
+                category: 'base64_payload',
+                severity: containsInjection ? 'CRITICAL' : 'WARNING',
+                match_preview: potentialBase64.slice(0, 30) + '...',
+                decoded_preview: decoded.slice(0, 50) + (decoded.length > 50 ? '...' : ''),
+                description: containsInjection
+                    ? 'Base64 encoded content contains injection patterns'
+                    : 'Base64 encoded content detected',
+                contains_injection: containsInjection,
+            });
+        }
+        catch {
+            // Not valid base64, ignore
+        }
+    }
+    return findings;
+}
+/**
+ * Detect injection patterns in HTML comments.
+ */
+export function detectHtmlCommentInjection(text) {
+    const findings = [];
+    // Match HTML comments (including multiline)
+    const commentPattern = /<!--([\s\S]*?)-->/g;
+    let match;
+    while ((match = commentPattern.exec(text)) !== null) {
+        const commentContent = match[1] || '';
+        // Check comment content for injection patterns
+        const checkPatterns = [...SYSTEM_OVERRIDE_PATTERNS, ...INSTRUCTION_INJECTION_PATTERNS];
+        for (const patternDef of checkPatterns) {
+            if (patternDef.pattern.test(commentContent)) {
+                findings.push({
+                    category: 'html_comment_injection',
+                    severity: 'WARNING',
+                    comment_preview: commentContent.slice(0, 50) + (commentContent.length > 50 ? '...' : ''),
+                    description: `HTML comment contains ${patternDef.name} pattern`,
+                });
+                break; // Only report once per comment
+            }
+        }
+    }
+    return findings;
+}
+/**
+ * Get line number for a match position.
+ */
+function getLineNumber(text, position) {
+    return text.slice(0, position).split('\n').length;
+}
+/**
+ * Run pattern detection on content.
+ */
+export function detectPatterns(content) {
+    const findings = [];
+    const allPatterns = [
+        { patterns: SYSTEM_OVERRIDE_PATTERNS, category: 'system_override' },
+        { patterns: ROLE_HIJACKING_PATTERNS, category: 'role_hijacking' },
+        { patterns: INSTRUCTION_INJECTION_PATTERNS, category: 'instruction_injection' },
+        { patterns: ENCODED_PAYLOAD_PATTERNS, category: 'encoded_payload' },
+        { patterns: CONTEXT_MANIPULATION_PATTERNS, category: 'context_manipulation' },
+    ];
+    for (const { patterns, category } of allPatterns) {
+        for (const patternDef of patterns) {
+            const match = content.match(patternDef.pattern);
+            if (match) {
+                findings.push({
+                    category,
+                    pattern_name: patternDef.name,
+                    severity: patternDef.severity,
+                    match: match[0].slice(0, 100),
+                    description: patternDef.description,
+                    line_number: getLineNumber(content, match.index || 0),
+                });
+            }
+        }
+    }
+    return findings;
+}
+/**
+ * Analyze content for prompt injection attempts.
+ */
+export function analyzeContent(content) {
+    // 1. Normalize text to defeat homoglyph attacks (SEC-002-3)
+    const normalizedContent = normalizeText(content);
+    const obfuscationDetected = normalizedContent.length < content.length * 0.9;
+    // 2. Pattern-based detection on normalized content
+    const findings = detectPatterns(normalizedContent);
+    // Also run on original if significantly different
+    if (obfuscationDetected) {
+        const originalFindings = detectPatterns(content);
+        // Merge unique findings
+        const existingNames = new Set(findings.map((f) => f.pattern_name));
+        for (const finding of originalFindings) {
+            if (!existingNames.has(finding.pattern_name)) {
+                findings.push(finding);
+            }
+        }
+        // Add obfuscation finding
+        findings.push({
+            category: 'unicode_obfuscation',
+            pattern_name: 'heavy_obfuscation',
+            severity: 'WARNING',
+            match: 'Heavy Unicode obfuscation detected',
+            description: 'Heavy Unicode obfuscation detected - text was significantly altered during normalization',
+            line_number: 1,
+        });
+    }
+    // 3. Unicode manipulation detection
+    const unicodeFindings = detectHiddenUnicode(content);
+    // 4. Base64 payload detection
+    const base64Findings = detectBase64Payloads(content);
+    // 5. HTML comment injection detection
+    const htmlFindings = detectHtmlCommentInjection(content);
+    // 6. Multi-layer encoding detection (SEC-002-4)
+    const multiLayerFindings = detectMultiLayerEncoding(content);
+    // Determine highest severity
+    const allSeverities = [
+        ...findings.map((f) => f.severity),
+        ...unicodeFindings.map((f) => f.severity),
+        ...base64Findings.map((f) => f.severity),
+        ...htmlFindings.map((f) => f.severity),
+        ...multiLayerFindings.map((f) => f.severity),
+    ];
+    const severityOrder = {
+        INFO: 0,
+        WARNING: 1,
+        BLOCKED: 2,
+        CRITICAL: 3,
+    };
+    let highestSeverity = 'INFO';
+    for (const severity of allSeverities) {
+        if (severityOrder[severity] > severityOrder[highestSeverity]) {
+            highestSeverity = severity;
+        }
+    }
+    // Determine if we should block
+    const shouldBlock = highestSeverity === 'WARNING' || highestSeverity === 'CRITICAL';
+    return {
+        findings,
+        unicode_findings: unicodeFindings,
+        base64_findings: base64Findings,
+        html_findings: htmlFindings,
+        multi_layer_findings: multiLayerFindings,
+        highest_severity: highestSeverity,
+        should_block: shouldBlock,
+    };
+}
+// =============================================================================
+// MAIN VALIDATOR
+// =============================================================================
+/**
+ * Get content to analyze based on tool type.
+ */
+function getContentToAnalyze(input) {
+    const { tool_name, tool_input } = input;
+    switch (tool_name) {
+        case 'Write': {
+            const writeInput = tool_input;
+            return writeInput.content || '';
+        }
+        case 'Edit': {
+            const editInput = tool_input;
+            return editInput.new_string || '';
+        }
+        case 'Read': {
+            const readInput = tool_input;
+            return readInput.file_path || '';
+        }
+        case 'UserPromptSubmit': {
+            // User input is in the prompt field
+            return tool_input.prompt || '';
+        }
+        default:
+            // For unknown tools, check common content fields
+            return tool_input.content ||
+                tool_input.prompt ||
+                tool_input.text ||
+                JSON.stringify(tool_input);
+    }
+}
+/**
+ * Validate content for prompt injection.
+ */
+export function validatePromptInjection(content, toolName) {
+    if (!content || content.trim().length === 0) {
+        return {
+            exitCode: EXIT_CODES.ALLOW,
+            result: {
+                findings: [],
+                unicode_findings: [],
+                base64_findings: [],
+                html_findings: [],
+                multi_layer_findings: [],
+                highest_severity: 'INFO',
+                should_block: false,
+            },
+        };
+    }
+    const result = analyzeContent(content);
+    // Log all findings
+    if (result.findings.length > 0 || result.unicode_findings.length > 0 ||
+        result.base64_findings.length > 0 || result.html_findings.length > 0 ||
+        result.multi_layer_findings.length > 0) {
+        AuditLogger.logSync(VALIDATOR_NAME, 'WARNING', {
+            tool: toolName,
+            findings_count: result.findings.length,
+            unicode_findings_count: result.unicode_findings.length,
+            base64_findings_count: result.base64_findings.length,
+            html_findings_count: result.html_findings.length,
+            multi_layer_findings_count: result.multi_layer_findings.length,
+            highest_severity: result.highest_severity,
+            sample_findings: result.findings.slice(0, 5),
+        }, result.highest_severity);
+    }
+    // INFO severity - allow with logging
+    if (result.highest_severity === 'INFO') {
+        return { exitCode: EXIT_CODES.ALLOW, result };
+    }
+    // WARNING or CRITICAL - check for override
+    if (result.should_block) {
+        const overrideResult = OverrideManager.checkAndConsume('INJECTION_CONTENT');
+        if (overrideResult.valid) {
+            AuditLogger.logOverrideUsed(VALIDATOR_NAME, 'BMAD_ALLOW_INJECTION_CONTENT', content.slice(0, 200));
+            printOverrideConsumed('Prompt injection patterns detected', 'BMAD_ALLOW_INJECTION_CONTENT');
+            return { exitCode: EXIT_CODES.ALLOW, result };
+        }
+        // Block the operation
+        AuditLogger.logBlocked(VALIDATOR_NAME, `Prompt injection detected: ${result.findings[0]?.description || 'suspicious content'}`, content.slice(0, 200), {
+            severity: result.highest_severity,
+            finding_categories: [...new Set(result.findings.map((f) => f.category))],
+        });
+        return { exitCode: EXIT_CODES.HARD_BLOCK, result };
+    }
+    return { exitCode: EXIT_CODES.ALLOW, result };
+}
+/**
+ * Format findings for user output.
+ */
+function formatFindings(result) {
+    const lines = [];
+    if (result.findings.length > 0) {
+        lines.push('Pattern matches:');
+        for (const finding of result.findings.slice(0, 5)) {
+            lines.push(`  - ${finding.description} (${finding.category})`);
+            if (finding.match) {
+                lines.push(`    Match: "${finding.match.slice(0, 60)}..."`);
+            }
+        }
+        if (result.findings.length > 5) {
+            lines.push(`  ... and ${result.findings.length - 5} more`);
+        }
+    }
+    if (result.unicode_findings.length > 0) {
+        lines.push('Unicode manipulation:');
+        for (const finding of result.unicode_findings) {
+            lines.push(`  - ${finding.description} (${finding.count} occurrences)`);
+        }
+    }
+    if (result.base64_findings.length > 0) {
+        lines.push('Base64 payloads:');
+        for (const finding of result.base64_findings) {
+            lines.push(`  - ${finding.description}`);
+            if (finding.decoded_preview) {
+                lines.push(`    Decoded: "${finding.decoded_preview}"`);
+            }
+        }
+    }
+    if (result.html_findings.length > 0) {
+        lines.push('HTML comment injection:');
+        for (const finding of result.html_findings) {
+            lines.push(`  - ${finding.description}`);
+        }
+    }
+    if (result.multi_layer_findings.length > 0) {
+        lines.push('Multi-layer encoding:');
+        for (const finding of result.multi_layer_findings) {
+            lines.push(`  - ${finding.description}`);
+            if (finding.final_decoded) {
+                lines.push(`    Decoded: "${finding.final_decoded}"`);
+            }
+        }
+    }
+    return lines.join('\n');
+}
+/**
+ * CLI entry point.
+ */
+export function main() {
+    const input = getToolInputFromStdinSync();
+    const content = getContentToAnalyze({
+        tool_name: input.tool_name,
+        tool_input: input.tool_input,
+    });
+    const { exitCode, result } = validatePromptInjection(content, input.tool_name);
+    if (exitCode === EXIT_CODES.HARD_BLOCK) {
+        printBlockMessage({
+            title: 'PROMPT INJECTION DETECTED',
+            message: `Content contains patterns associated with prompt injection attacks.\n\n${formatFindings(result)}`,
+            target: content.slice(0, 100) + (content.length > 100 ? '...' : ''),
+            overrideVar: 'BMAD_ALLOW_INJECTION_CONTENT',
+        });
+    }
+    else if (result.findings.length > 0 && result.highest_severity === 'INFO') {
+        printWarning(`Minor injection-like patterns detected (${result.findings.length} findings). ` +
+            'These appear benign but are logged for review.');
+    }
+    process.exit(exitCode);
+}
+// Run if executed directly
+const isMain = process.argv[1]?.endsWith('prompt-injection.js') ||
+    process.argv[1]?.endsWith('prompt-injection.ts');
+if (isMain) {
+    main();
+}
+//# sourceMappingURL=prompt-injection.js.map
