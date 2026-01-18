@@ -1,10 +1,89 @@
 # BMAD Framework File Integrity Manifest
-# Generated: 2026-01-15T17:42:36Z
+# Generated: 2026-01-18T20:24:19Z
 # Key ID: bmad-signing@internal
 #
 # Format: SHA256 hash  filepath
 
 # === AGENTS ===
+6110de9d446304a0b110ad493e37ea431440f73e600aa80b1bbc536cf019c652  _bmad/_compact/agents/bmb/agent-builder.compact.md
+1d2e07f88b511ed307bb5f7e49b708e93fbbb8929a71d473219ca0f0335654d4  _bmad/_compact/agents/bmb/module-builder.compact.md
+ba1be97fb57df5c0099228928b21a1b482e38ea4abd5793b776f2965808e308b  _bmad/_compact/agents/bmb/workflow-builder.compact.md
+e9ef590bc63550a1472654b7f157f0dde9efc43c6205ddba92378ab7355bbb30  _bmad/_compact/agents/bmgd/game-architect.compact.md
+563864404c343dd461dcb5915c5aed57799001de29baaac220cb484648adf00e  _bmad/_compact/agents/bmgd/game-designer.compact.md
+a9d056bbb5e6d4d9c0c4d91af388ed9350a91259ae896c44f978162d7dd59d80  _bmad/_compact/agents/bmgd/game-dev.compact.md
+30b9e96539cd49a8c8e2611c8ba590b8e46e01db5b5bf541079b8951a4c6cc1e  _bmad/_compact/agents/bmgd/game-qa.compact.md
+221fb14b00550001d590e5ae5fbfbf32632b2b59655acb5fa6f985cee7ccd05c  _bmad/_compact/agents/bmgd/game-scrum-master.compact.md
+a5f3891e8eaafacceef6ad41b89882229e4aad4f90019f98973731b8f3ec1134  _bmad/_compact/agents/bmgd/game-solo-dev.compact.md
+2e7be2df8d782e168fd627b2bd3a900720d784974e68ce64b779fe9e3c93574f  _bmad/_compact/agents/bmm/analyst.compact.md
+8e64110858aeb2cda07ebc5904928a896ede73d7b4776be312e3bd6b4eb93aea  _bmad/_compact/agents/bmm/architect.compact.md
+669c7c64b516979607499373ef01a03f9b56a125a5b35f924a0ae20418c22963  _bmad/_compact/agents/bmm/dev.compact.md
+d63f336933310dbf285af07b32ac42c2d28c052a50d8e2cd24e047353de18f37  _bmad/_compact/agents/bmm/pm.compact.md
+f4d4717f49411e7df62ccda10db126234ce2e698727f8e116185a60a4f5177df  _bmad/_compact/agents/bmm/quick-flow-solo-dev.compact.md
+ac678edd0fac6d6bff19a3b62bcace34753c76ac45cb1e7c6d81952ce380ab7d  _bmad/_compact/agents/bmm/sm.compact.md
+5125ac1dbe4abeb316985d494bc297c61c0d503589d6f6041a674758aee158c5  _bmad/_compact/agents/bmm/tea.compact.md
+257adaec1afb3f356c1397bf5f9a4b116ee0edca87116e3b5fc583048ca534cb  _bmad/_compact/agents/bmm/tech-writer.compact.md
+c66c554ee24d49e3da0f5304b6fcc8d07e016bbdaface3b7423ce01db4511d00  _bmad/_compact/agents/bmm/ux-designer.compact.md
+90666a643a3734656df121c7d2890595a5ca51d6b97944f69824a3e53b644653  _bmad/_compact/agents/cis/brainstorming-coach.compact.md
+f67639a1db630f9b2add58a9e165c7fa05464d10a58c80ba8212c67b9c6543f0  _bmad/_compact/agents/cis/creative-problem-solver.compact.md
+5f7da8c224dc463499916260ce0620dbc5868ab46159df5685023fdea24cd617  _bmad/_compact/agents/cis/design-thinking-coach.compact.md
+82479fa42c548b02e400b0b511f0823c3b2e0b4ab91b8cd413c231529fccfa65  _bmad/_compact/agents/cis/innovation-strategist.compact.md
+5ac51f4f6fdf690194cb41231a1f229e022d866cf3b5b096c01783b051f43d5f  _bmad/_compact/agents/cis/presentation-master.compact.md
+0c4c3919eb3c9e3b71e906670a74c9d78a4670c97e9dad8c8bfd3bdbfe2abb97  _bmad/_compact/agents/cis/storyteller.compact.md
+0a115ebe642c766cc7ce6f74153e3cba910ca44855569dd007872835e551c5ab  _bmad/_compact/agents/core/abdul.compact.md
+23ff1f577a0514816378d3dc823ea94461f8127e49e4c4ecec50221d06927900  _bmad/_compact/agents/core/bmad-master.compact.md
+774ca5d7a4f1ef7af4c95f8b20a05a3a9523c155872d655d6b590dc45178616e  _bmad/_compact/agents/cybersec-team/api-security-expert.compact.md
+4b396b3d8d79cb8d4caab66f6745c48dc32255affbcd98fc3839aa2df396afbe  _bmad/_compact/agents/cybersec-team/blockchain-security-expert.compact.md
+7c513e62eecee7acff48f46d2f9b951b650f92dfb4082f7efd8916aa804a3464  _bmad/_compact/agents/cybersec-team/blue-team-lead.compact.md
+ea67cd279a78aa8ec08a793c5872784712f46f8bcfa2f03911c8748427bb7620  _bmad/_compact/agents/cybersec-team/cloud-security-specialist.compact.md
+339dc0c23892d3aaa34591d894e4af0bfe8e7d148f89afe2294c051b4680ceb7  _bmad/_compact/agents/cybersec-team/compliance-guardian.compact.md
+f99cdd4f2fdee0e4b7807626a1a6121da18f08eb0ee68743298ffc77e53fe2ef  _bmad/_compact/agents/cybersec-team/forensic-investigator.compact.md
+14ecae954c5ec101272f0b08fe066da22dfe18b6f2e4f588fea9b7e4d0edae5f  _bmad/_compact/agents/cybersec-team/incident-commander.compact.md
+5ba6f133e076da489df80bb3598158041269ba21304973c83f09b10214947c64  _bmad/_compact/agents/cybersec-team/llm-ai-security-expert.compact.md
+a8536c75a1fce5ebb58ce425baef48dec18ce66016aa2c61a00fea70a61e4367  _bmad/_compact/agents/cybersec-team/mobile-security-expert.compact.md
+6306ab705c32ca561d0bd6d3a1679fdbbe5c1ed43db4df8e4339b7b9b6c9ff74  _bmad/_compact/agents/cybersec-team/penetration-tester.compact.md
+7abaa025facd2048f442562fc8805bed5bc0b23c189d67937858ba6347beb6d6  _bmad/_compact/agents/cybersec-team/security-architect.compact.md
+a09ff4a7ee4b5bdfb0baac7dc5f62efe50017ab354784efd7e76a70b416a5425  _bmad/_compact/agents/cybersec-team/soc-analyst.compact.md
+99fb6118ade02a295e326efefe8d2c8cb22da98e52c15435d21c86408a3a7e4b  _bmad/_compact/agents/cybersec-team/social-engineer.compact.md
+fa6cc25eb6f97709008abb58b3dc8b3dced065fba91c2c650de506e99f9ffd2a  _bmad/_compact/agents/cybersec-team/threat-analyst.compact.md
+c373284e0903572e392973439cef193cf61ab3d7baf267ff78de2a9a8077fe7a  _bmad/_compact/agents/cybersec-team/web-app-security-expert.compact.md
+58476bf0af2dd56d7f449aa93d3d757d8e9098895194c44c92892aea59561a90  _bmad/_compact/agents/intel-team/corporate-intel-specialist.compact.md
+12cbe914b55dd1e14d56239902bbe5a6cf1b81413232f88145c6a07cb0249c74  _bmad/_compact/agents/intel-team/dark-web-analyst.compact.md
+e3f73fb2df138247557154cf7af2b0f68d4fe8688f061f03ba5d4799fa785700  _bmad/_compact/agents/intel-team/domain-intel-specialist.compact.md
+64be623eca4886bd09c77fd77bbc307ebd939d527f3c46694cadf2a09b315162  _bmad/_compact/agents/intel-team/field-operative.compact.md
+977afbae3c79603f66a8f6c154dca59df985b1288b9197b6c217bc6aa65a8a75  _bmad/_compact/agents/intel-team/geospatial-analyst.compact.md
+9b38c6ab026891168aa3165b8e060d0e23d7611ce8fce984abfe6d7a1b88050a  _bmad/_compact/agents/intel-team/humint-specialist.compact.md
+12b61e9f8395ee10e95afd92467efdc495d17a7bf2a0633277f903717ffe6337  _bmad/_compact/agents/intel-team/osint-lead.compact.md
+61df21323918916f603b56702934de4a1e90fef93a54ec7598a078efac1d7445  _bmad/_compact/agents/intel-team/sigint-specialist.compact.md
+79967266a710c22eac2525004612610a81062f01ef46b651befc815dd0087406  _bmad/_compact/agents/intel-team/social-media-analyst.compact.md
+d36616b792ed60e711c2348a9e27945a9a6c3bfb97afc14f31dcb2723b1e6e1f  _bmad/_compact/agents/intel-team/technical-researcher.compact.md
+565295bfa749ed5f428895d53697a6ae1cea336a66f59a44af498021f3a60272  _bmad/_compact/agents/intel-team/threat-actor-profiler.compact.md
+d88b7d1860db6f20e620aac89914d353c319393c261a59355d5af91892d7137c  _bmad/_compact/agents/legal-team/advocate.compact.md
+695fc3cb3330fb60661c77cb3acd4b5495250b1f4068a0302d6f312febf7c070  _bmad/_compact/agents/legal-team/baltic.compact.md
+9b0df4be5af1b253a49319bf98a9e4598e0cc9bcdd28d62d279fc898c12e842f  _bmad/_compact/agents/legal-team/castile.compact.md
+fa9ea91e75551f04347ce9c018cb9b03ae75729fe77b0a7b08be7f017e8b2dcc  _bmad/_compact/agents/legal-team/charter.compact.md
+b0073f07d8ab3902c6665d403f3eebc23621652d3fa8a697d07b4ad2b8da3b68  _bmad/_compact/agents/legal-team/counsel.compact.md
+a76653d189e6b9dfec39bc91eadc5d7e11d3c89bf81e5450698b9535c68e4de4  _bmad/_compact/agents/legal-team/covenant.compact.md
+6c2439f882cbb855b67f07f52aae6a8602ba368f67549ddba4a19edc77acd351  _bmad/_compact/agents/legal-team/deed.compact.md
+117c121411ca678f31b0131483ef32c1e75b761d23d7321664d50fbd5e1ba795  _bmad/_compact/agents/legal-team/europa.compact.md
+d1aa1196ab2f607cb685bdc4884e6bbc3a221c6655493574ed20cd16e6d06b4e  _bmad/_compact/agents/legal-team/gremio.compact.md
+2c0395e891f2be7baab00987eedd708a810c0a0f6f574997579fc838bac5d6a0  _bmad/_compact/agents/legal-team/iberia.compact.md
+85c233457131f701e9d684230766a3dc2dcecb8f459458f4d305312c5169a3a7  _bmad/_compact/agents/legal-team/insignia.compact.md
+0c8deaad67084be1182a038d81603f7321570d39197be1560c031b446e914498  _bmad/_compact/agents/legal-team/liberty.compact.md
+de3bb31facfec36aef9201437c7d74116f549af1ce0d0c06c23352ec14211cc6  _bmad/_compact/agents/legal-team/tribute.compact.md
+3d389cbebfe3e4e2b2afe6d9ce2a1e0cf50d79898a1d85ca2244ef1b801a4e2c  _bmad/_compact/agents/strategy-team/communications-director.compact.md
+df635985086319a9bef9985a2efa516adb9b4406c90a9e3118c03d2005224f51  _bmad/_compact/agents/strategy-team/debate-coach.compact.md
+c8ac44362099efdaa2ea7f1d078ff11b409961ea7e90572e4aff17e97bbec903  _bmad/_compact/agents/strategy-team/ethics-advisor.compact.md
+7b5728b8872ec07a7be725cd2b35528631d72edfb16a101b6c62c2357afea3e3  _bmad/_compact/agents/strategy-team/policy-analyst.compact.md
+0ce4c1960d9064c22277f3746527d1a39450359906b4017c7af708d47ef0b39a  _bmad/_compact/agents/strategy-team/political-strategist.compact.md
+7fbe10ea50045da54dcfd95287ddda4137c53850deaa7e9de4aabbd20a32823d  _bmad/_compact/agents/strategy-team/stakeholder-mediator.compact.md
+c5d7cef6c6c8560d70c4b358d0085de95032daa486c10edf5e7c40cad77d75c1  _bmad/_compact/agents/strategy-team/the-conservative.compact.md
+77ce15e2b6c64c86ec0fffe2be764977552737422e2bae3e596014278d207315  _bmad/_compact/agents/strategy-team/the-liberator.compact.md
+c8968740be7cf8645ad004ca30d61364d7d1444f5b6b5a1b53f2b65ba2bcaff7  _bmad/_compact/agents/strategy-team/the-master-strategist.compact.md
+e2183e090d408ad09a5fdf47622426b933d50362fecfcb62a0fbb5e15e0f14e4  _bmad/_compact/agents/strategy-team/the-principled-commander.compact.md
+ff972818c992ec21d1d805948699e11c3bad89dc98095352ed0da51c1181c297  _bmad/_compact/agents/strategy-team/the-realist.compact.md
+7a267bce5eed64f20751771a8847c881ee71be9ed0e9ad816f75af05ae529eab  _bmad/_compact/agents/strategy-team/the-revolutionary.compact.md
+01a3c0055cf9425cbd63242db64f2c12f1412d9b0d0859789af9f85185e2fe14  _bmad/_compact/agents/strategy-team/the-strategist-warrior.compact.md
+f7cceb455f4e49cb0798f683c807efaf7e7644905ae02a3ed7c30494977ae00a  _bmad/_compact/agents/strategy-team/the-technocrat.compact.md
 5b0fb0108822cbdbb44dc69fffba30a1b46e6e6228e3ec8356c6177bf097827b  _bmad/bmb/agents/agent-builder.md
 f1fb9f726f8dfdd9375b7fbd1612a5a5b67d4dfc418b239771bf31555a27ec6a  _bmad/bmb/agents/module-builder.md
 3904ee181a70cd4b574f33cbfa24ecc112a023a9aa8c7fb31b1ed765722f1ce9  _bmad/bmb/agents/workflow-builder.md
@@ -686,7 +765,7 @@ e78479bdfe63054c350dee2d5a1ab0887803d1c1f0a9df8af43b92d3bda7508e  _bmad/strategy
 # === CONFIGURATION ===
 
 # === SECURITY HOOKS ===
-fa0a6872ba25ffc564cc7bc6f267974ad3bf6195388eaea5de6165e66d8963a2  .claude/hooks/session-security-init.py
+0e1ef28db812ab8b33059a2c3508e03f2b92197920d6e638e21e910eef941e1e  .claude/hooks/session-security-init.py
 
 # === CORE TASKS ===
 13ffd40ccaed0f05b35e4f22255f023e77a6926e8a2f01d071b0b91a4c942812  _bmad/core/tasks/index-docs.xml
@@ -696,5 +775,5 @@ f71987855cabb46bd58a63a4fd356efb0739a272ab040dd3c8156d7f538d7caf  _bmad/core/tas
 10a80f7ded1949045cf0d65b4539af602887dd92b77e6ec2a0205a9402a25166  _bmad/core/tasks/workflow.xml
 
 
-# Total files: 679
+# Total files: 758
 # End of manifest
