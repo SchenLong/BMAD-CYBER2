@@ -50,6 +50,7 @@ The BMAD module implements a comprehensive **two-layer security architecture** u
 ├── .resource_state.json             # Resource usage tracking (runtime)
 ├── .confidence_state.json           # Confidence scores (runtime)
 ├── hooks/
+│   ├── session-security-init.ts     # Session security initialization (TypeScript)
 │   └── session-start-tts.sh         # Text-to-speech hook
 ├── validators-node/
 │   └── bin/
@@ -92,7 +93,7 @@ The hooks are configured in `.claude/settings.json` with matchers for each tool 
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/validators-node/bin/token-validator.js"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-security-init.ts"
           }
         ]
       }
@@ -1101,9 +1102,9 @@ export BMAD_ALLOW_DANGEROUS=true
 
 ## Session Security Initialization
 
-### Hook: `token-validator.js`
+### Hook: `session-security-init.ts`
 
-Runs at every session start to validate security configuration:
+Runs at every session start to validate security configuration and authentication:
 
 ```javascript
 function main() {

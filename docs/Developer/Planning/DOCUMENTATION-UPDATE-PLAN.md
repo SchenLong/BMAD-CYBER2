@@ -26,7 +26,8 @@ The validator system has been migrated from Python (`.claude/validators/*.py`) t
 | `pii_guard.py` | `bin/pii.js` |
 | `prompt_injection_guard.py` | `bin/prompt-injection.js` |
 | `jailbreak_guard.py` | `bin/jailbreak.js` |
-| `session-security-init.py` | `bin/token-validator.js` (merged) |
+| `session-security-init.py` | `hooks/session-security-init.ts` (converted) |
+| `add-provider-awareness.py` | `scripts/add-provider-awareness.ts` (converted) |
 | `token_validator.py` | `bin/token-validator.js` |
 | `rate_limiter.py` | `bin/rate-limiter.js` |
 | `plugin_permissions.py` | `bin/plugin-permissions.js` |
@@ -69,7 +70,7 @@ These files directly describe the validator system and will be misleading if not
 - **NEW:** `pii_guard.py` - PII detection
 - **NEW:** `prompt_injection_guard.py` - Prompt injection defense
 - **NEW:** `jailbreak_guard.py` - Jailbreak attempt detection
-- **NEW:** `session-security-init.py` - Session startup security validation
+- **NEW:** `session-security-init.ts` - Session startup security validation
 ```
 
 **Replacement:**

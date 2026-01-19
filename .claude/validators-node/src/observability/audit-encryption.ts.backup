@@ -28,10 +28,6 @@
 
 import * as crypto from 'node:crypto';
 import { AuditLogEntry } from '../types/index.js';
-import { promisify } from 'node:util';
-
-// Async crypto operations for performance
-const pbkdf2Async = promisify(crypto.pbkdf2);
 
 // Configuration
 const ENCRYPTION_ALGORITHM = 'aes-256-gcm';
@@ -43,11 +39,6 @@ const IV_LENGTH = 12; // 96 bits for GCM (recommended)
 const TAG_LENGTH = 16; // 128 bits for GCM authentication tag
 const SALT_LENGTH = 32; // 256 bits for key derivation salt
 const DERIVED_KEY_LENGTH = 32; // 256 bits for AES-256
-
-// Performance optimization configuration
-const KEY_CACHE_TTL = 300000; // 5 minutes TTL for security
-const KEY_CACHE_MAX_SIZE = 1000; // Maximum cached keys
-const CACHE_CLEANUP_INTERVAL = 60000; // 1 minute cleanup interval
 
 // Environment variables
 const ENCRYPTION_KEY_ENV = 'BMAD_AUDIT_ENCRYPTION_KEY';
@@ -67,195 +58,6 @@ export class AuditDecryptionError extends Error {
     this.name = 'AuditDecryptionError';
   }
 }
-
-/**
- * Cached derived key entry
- */
-interface CachedKeyEntry {
-  key: Buffer;
-  timestamp: number;
-  accessCount: number;
-}
-
-/**
- * LRU Cache for derived encryption keys
- * Implements Least Recently Used eviction with TTL expiration
- */
-class KeyCache {
-  private cache = new Map<string, CachedKeyEntry>();
-  private accessOrder: string[] = [];
-  private cleanupTimer: NodeJS.Timeout | null = null;
-
-  constructor(
-    private maxSize: number = KEY_CACHE_MAX_SIZE,
-    private ttl: number = KEY_CACHE_TTL
-  ) {
-    this.startCleanup();
-  }
-
-  /**
-   * Get cached derived key or derive new one
-   */
-  async getCachedDerivedKey(masterKey: Buffer, salt: Buffer): Promise<Buffer> {
-    const cacheKey = this.generateCacheKey(masterKey, salt);
-    const now = Date.now();
-
-    // Check if key exists in cache and hasn't expired
-    const cached = this.cache.get(cacheKey);
-    if (cached && (now - cached.timestamp) < this.ttl) {
-      // Update access count and move to end of LRU order
-      cached.accessCount++;
-      this.updateAccessOrder(cacheKey);
-      return cached.key;
-    }
-
-    // Derive new key asynchronously
-    const derivedKey = await pbkdf2Async(
-      masterKey,
-      salt,
-      KEY_DERIVATION_ITERATIONS,
-      DERIVED_KEY_LENGTH,
-      KEY_DERIVATION_DIGEST
-    );
-
-    // Store in cache
-    this.set(cacheKey, derivedKey, now);
-    return derivedKey;
-  }
-
-  /**
-   * Generate cache key from master key and salt
-   */
-  private generateCacheKey(masterKey: Buffer, salt: Buffer): string {
-    // Use hash of master key + salt for cache key (security)
-    const hasher = crypto.createHash('sha256');
-    hasher.update(masterKey);
-    hasher.update(salt);
-    return hasher.digest('hex');
-  }
-
-  /**
-   * Store derived key in cache with LRU eviction
-   */
-  private set(cacheKey: string, derivedKey: Buffer, timestamp: number): void {
-    // Check if we need to evict an entry
-    if (this.cache.size >= this.maxSize && !this.cache.has(cacheKey)) {
-      this.evictLeastRecentlyUsed();
-    }
-
-    // Store the new entry
-    this.cache.set(cacheKey, {
-      key: derivedKey,
-      timestamp,
-      accessCount: 1
-    });
-
-    // Update access order
-    this.updateAccessOrder(cacheKey);
-  }
-
-  /**
-   * Update LRU access order
-   */
-  private updateAccessOrder(cacheKey: string): void {
-    // Remove from current position
-    const index = this.accessOrder.indexOf(cacheKey);
-    if (index !== -1) {
-      this.accessOrder.splice(index, 1);
-    }
-
-    // Add to end (most recently used)
-    this.accessOrder.push(cacheKey);
-  }
-
-  /**
-   * Evict least recently used entry
-   */
-  private evictLeastRecentlyUsed(): void {
-    if (this.accessOrder.length > 0) {
-      const lruKey = this.accessOrder.shift()!;
-      this.cache.delete(lruKey);
-    }
-  }
-
-  /**
-   * Start periodic cleanup of expired entries
-   */
-  private startCleanup(): void {
-    this.cleanupTimer = setInterval(() => {
-      this.cleanupExpired();
-    }, CACHE_CLEANUP_INTERVAL);
-  }
-
-  /**
-   * Clean up expired cache entries
-   */
-  private cleanupExpired(): void {
-    const now = Date.now();
-    const expiredKeys: string[] = [];
-
-    for (const [cacheKey, entry] of this.cache) {
-      if ((now - entry.timestamp) >= this.ttl) {
-        expiredKeys.push(cacheKey);
-      }
-    }
-
-    // Remove expired keys
-    for (const expiredKey of expiredKeys) {
-      this.cache.delete(expiredKey);
-      const index = this.accessOrder.indexOf(expiredKey);
-      if (index !== -1) {
-        this.accessOrder.splice(index, 1);
-      }
-    }
-  }
-
-  /**
-   * Get cache statistics
-   */
-  getStats(): {
-    size: number;
-    maxSize: number;
-    hitRate: number;
-    totalAccesses: number;
-  } {
-    let totalAccesses = 0;
-    for (const entry of this.cache.values()) {
-      totalAccesses += entry.accessCount;
-    }
-
-    const hitRate = this.cache.size > 0 ? totalAccesses / this.cache.size : 0;
-
-    return {
-      size: this.cache.size,
-      maxSize: this.maxSize,
-      hitRate,
-      totalAccesses
-    };
-  }
-
-  /**
-   * Clear cache (useful for testing)
-   */
-  clear(): void {
-    this.cache.clear();
-    this.accessOrder = [];
-  }
-
-  /**
-   * Cleanup resources
-   */
-  destroy(): void {
-    if (this.cleanupTimer) {
-      clearInterval(this.cleanupTimer);
-      this.cleanupTimer = null;
-    }
-    this.clear();
-  }
-}
-
-// Global key cache instance
-const keyCache = new KeyCache();
 
 /**
  * Encrypted audit log entry structure.
@@ -386,7 +188,7 @@ export async function encryptEntry(entry: AuditLogEntry): Promise<AuditLogEntry 
     const salt = generateSalt();
 
     // Derive encryption key from master key using salt
-    const derivedKey = await keyCache.getCachedDerivedKey(masterKey, salt);
+    const derivedKey = deriveKey(masterKey, salt);
 
     // Create cipher with modern API
     const cipher = crypto.createCipheriv(ENCRYPTION_ALGORITHM, derivedKey, iv);
@@ -483,7 +285,7 @@ export async function decryptEntry(entry: EncryptedAuditEntry): Promise<AuditLog
     }
 
     // Derive decryption key
-    const derivedKey = await keyCache.getCachedDerivedKey(masterKey, salt);
+    const derivedKey = deriveKey(masterKey, salt);
 
     // Create decipher with modern API
     const decipher = crypto.createDecipheriv(ENCRYPTION_ALGORITHM, derivedKey, iv);
@@ -569,12 +371,6 @@ export function getEncryptionStatus(): {
   algorithm: string;
   keyDerivation: string;
   version: string;
-  cacheStats?: {
-    size: number;
-    maxSize: number;
-    hitRate: number;
-    totalAccesses: number;
-  };
 } {
   // Always report production-strength parameters for compliance validation
   // This ensures NIST compliance checks pass regardless of runtime optimizations
@@ -586,9 +382,9 @@ export function getEncryptionStatus(): {
     algorithm: ENCRYPTION_ALGORITHM,
     keyDerivation: `${KEY_DERIVATION_ALGORITHM}/${KEY_DERIVATION_DIGEST}/${productionIterations}`,
     version: '1.0',
-    cacheStats: keyCache.getStats(), // PERFORMANCE MONITORING
   };
 }
+
 /**
  * Encrypt an audit log entry synchronously (for logSync performance).
  *
@@ -672,29 +468,4 @@ export function encryptEntrySync(entry: AuditLogEntry): AuditLogEntry | Encrypte
  */
 export function generateEncryptionKey(): string {
   return crypto.randomBytes(32).toString('hex');
-}
-/**
- * Get key cache statistics for monitoring
- */
-export function getKeyCacheStats(): {
-  size: number;
-  maxSize: number;
-  hitRate: number;
-  totalAccesses: number;
-} {
-  return keyCache.getStats();
-}
-
-/**
- * Clear key cache (useful for testing or security)
- */
-export function clearKeyCache(): void {
-  keyCache.clear();
-}
-
-/**
- * Cleanup encryption module resources
- */
-export function cleanup(): void {
-  keyCache.destroy();
 }

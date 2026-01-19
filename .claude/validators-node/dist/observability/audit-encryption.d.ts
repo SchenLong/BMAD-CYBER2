@@ -98,6 +98,12 @@ export declare function getEncryptionStatus(): {
     algorithm: string;
     keyDerivation: string;
     version: string;
+    cacheStats?: {
+        size: number;
+        maxSize: number;
+        hitRate: number;
+        totalAccesses: number;
+    };
 };
 /**
  * Encrypt an audit log entry synchronously (for logSync performance).
@@ -112,3 +118,20 @@ export declare function encryptEntrySync(entry: AuditLogEntry): AuditLogEntry | 
  * @returns 32-byte hex-encoded key suitable for BMAD_AUDIT_ENCRYPTION_KEY
  */
 export declare function generateEncryptionKey(): string;
+/**
+ * Get key cache statistics for monitoring
+ */
+export declare function getKeyCacheStats(): {
+    size: number;
+    maxSize: number;
+    hitRate: number;
+    totalAccesses: number;
+};
+/**
+ * Clear key cache (useful for testing or security)
+ */
+export declare function clearKeyCache(): void;
+/**
+ * Cleanup encryption module resources
+ */
+export declare function cleanup(): void;

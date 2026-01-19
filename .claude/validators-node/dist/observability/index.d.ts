@@ -11,7 +11,7 @@ export { AnomalyDetector, getAnomalyDetector, recordSecurityEventForAnomaly, che
 export type { AnomalySignal } from './anomaly-detector.js';
 export { ConfidenceTracker, ConfidenceLevel, getConfidenceTracker, analyzeResponseConfidence, getConfidenceIndicator, analyzeToolOutput, } from './confidence-tracker.js';
 export type { UncertaintyMatch, SourceAttribution, ConfidenceResult, } from './confidence-tracker.js';
-export { LogArchiver, createLogArchiver, runDailyArchival, ArchivalError, S3ArchivalError, GPGSigningError, } from './log-archiver.js';
+export { LogArchiver, createLogArchiver, runDailyArchival, archiveLogsInDateRange, ArchivalError, S3ArchivalError, GPGSigningError, } from './log-archiver.js';
 export type { ArchivalConfig, ArchiveMetadata, ArchiveResult, } from './log-archiver.js';
 export { ArchivalConfigManager, createConfigManager, checkConfiguration, } from './archival-config.js';
 export type { ConfigValidationResult, S3BucketStatus, GPGKeyInfo, ScheduleValidation, } from './archival-config.js';

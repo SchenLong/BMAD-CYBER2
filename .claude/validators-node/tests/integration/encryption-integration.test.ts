@@ -186,6 +186,7 @@ describe('Audit Log Encryption Integration Tests', () => {
 
       for (const invalidKey of invalidKeys) {
         process.env.BMAD_AUDIT_ENCRYPTION_KEY = invalidKey;
+        process.env.BMAD_AUDIT_ENCRYPTION_ENABLED = 'true'; // Force encryption to validate key
 
         // Re-import module to pick up new environment
         vi.resetModules();
@@ -202,6 +203,9 @@ describe('Audit Log Encryption Integration Tests', () => {
           };
           return freshModule.encryptEntrySync(testEntry);
         }).toThrow();
+
+        // Clean up environment
+        delete process.env.BMAD_AUDIT_ENCRYPTION_ENABLED;
       }
     });
   });

@@ -76,7 +76,7 @@ rm -f "$STATE_FILE" 2>/dev/null
 echo "not valid json {{{{" > "$STATE_FILE"
 
 # Validator should recover gracefully
-if python3 .claude/validators/rate_limiter.py status 2>/dev/null | grep -q "total_operations"; then
+if node .claude/validators-node/bin/rate-limiter.js status 2>/dev/null | grep -q "total_operations"; then
     log_pass "Rate limiter recovers from corrupted state file"
 else
     log_fail "Rate limiter fails on corrupted state file"
@@ -97,7 +97,7 @@ BLOCKED=0
 START_TIME=$(date +%s.%N)
 for i in {1..100}; do
     if echo '{"tool_name": "bash", "tool_input": {"command": "ls"}}' | \
-        python3 .claude/validators/rate_limiter.py validate 2>/dev/null; then
+        node .claude/validators-node/bin/rate-limiter.js validate 2>/dev/null; then
         ((ALLOWED++))
     else
         ((BLOCKED++))
@@ -142,7 +142,7 @@ rm -f "$LOCK_FILE" 2>/dev/null
 wait $BG_PID 2>/dev/null
 
 # Subsequent operation should still work
-if python3 .claude/validators/rate_limiter.py status 2>/dev/null; then
+if node .claude/validators-node/bin/rate-limiter.js status 2>/dev/null; then
     log_pass "Rate limiter recovers from lock file deletion"
 else
     log_fail "Rate limiter fails after lock file deletion"
@@ -172,7 +172,7 @@ TRAVERSAL_TESTS=(
 BLOCKED_COUNT=0
 for path in "${TRAVERSAL_TESTS[@]}"; do
     if ! echo "{\"tool_name\": \"read\", \"tool_input\": {\"file_path\": \"$path\"}, \"cwd\": \"_bmad/intel-team/\"}" | \
-        python3 .claude/validators/plugin_permissions.py validate 2>/dev/null; then
+        node .claude/validators-node/bin/plugin-permissions.js validate 2>/dev/null; then
         ((BLOCKED_COUNT++))
     fi
 done
@@ -200,7 +200,7 @@ INJECTION_TESTS=(
 BLOCKED_COUNT=0
 for cmd in "${INJECTION_TESTS[@]}"; do
     if ! echo "{\"tool_name\": \"bash\", \"tool_input\": {\"command\": \"$cmd\"}, \"cwd\": \"_bmad/intel-team/\"}" | \
-        python3 .claude/validators/plugin_permissions.py validate 2>/dev/null; then
+        node .claude/validators-node/bin/plugin-permissions.js validate 2>/dev/null; then
         ((BLOCKED_COUNT++))
     fi
 done
@@ -230,7 +230,7 @@ DANGEROUS_TESTS=(
 BLOCKED_COUNT=0
 for cmd in "${DANGEROUS_TESTS[@]}"; do
     if ! echo "{\"tool_name\": \"bash\", \"tool_input\": {\"command\": \"$cmd\"}, \"cwd\": \"_bmad/intel-team/\"}" | \
-        python3 .claude/validators/plugin_permissions.py validate 2>/dev/null; then
+        node .claude/validators-node/bin/plugin-permissions.js validate 2>/dev/null; then
         ((BLOCKED_COUNT++))
     fi
 done
@@ -495,7 +495,7 @@ RESULTS_FILE=$(mktemp)
 for i in {1..5}; do
     (
         if echo '{"tool_name": "bash", "tool_input": {"command": "ls"}}' | \
-            python3 .claude/validators/rate_limiter.py validate 2>/dev/null; then
+            node .claude/validators-node/bin/rate-limiter.js validate 2>/dev/null; then
             echo "SUCCESS" >> "$RESULTS_FILE"
         else
             echo "BLOCKED" >> "$RESULTS_FILE"
