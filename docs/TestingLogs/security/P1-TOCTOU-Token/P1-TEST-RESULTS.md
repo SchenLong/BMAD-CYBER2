@@ -120,7 +120,7 @@ All operations meet performance targets:
 |------|--------|
 | `.claude/validators/security_common.py` | TOCTOU fix with atomic locking |
 | `.claude/validators/token_validator.py` | New - token validation module |
-| `.claude/hooks/session-security-init.py` | Added token validation call |
+| `.claude/hooks/session-security-init.ts` | Added token validation call |
 | `.claude/settings.json` | Added token_validator to hooks |
 
 ---

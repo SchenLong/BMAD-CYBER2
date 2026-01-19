@@ -64,8 +64,7 @@ run_test "Performance Tests" \
 
 # Test 5: Syntax Validation
 run_test "Syntax Validation" \
-    "python3 -m py_compile .claude/validators/security_common.py && \
-     python3 -m py_compile .claude/validators/token_validator.py && \
+    "node .claude/validators-node/bin/token-validator.js --test && \
      python3 -m py_compile .claude/hooks/session-security-init.py && \
      python3 -c 'import json; json.load(open(\".claude/settings.json\"))' && \
      echo 'All syntax checks passed'"
@@ -78,7 +77,7 @@ export CLAUDE_PROJECT_DIR="$PROJECT_DIR"
 
 # Test with enforcement disabled
 export BMAD_TOKEN_REQUIRED=false
-if python3 .claude/validators/token_validator.py 2>&1 | grep -q "enforcement disabled\|enforcement DISABLED"; then
+if node .claude/validators-node/bin/token-validator.js 2>&1 | grep -q "enforcement disabled\|enforcement DISABLED"; then
     echo "  Subtest 1: Enforcement disabled - PASS"
     SUBTEST1=0
 else

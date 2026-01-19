@@ -8,7 +8,7 @@ export { HashChainManager, getChainManager, addChainFields, verifySecurityLog, g
 export { AnomalyDetector, getAnomalyDetector, recordSecurityEventForAnomaly, checkAnomalies, getBaselineStatus, resetBaseline, } from './anomaly-detector.js';
 export { ConfidenceTracker, ConfidenceLevel, getConfidenceTracker, analyzeResponseConfidence, getConfidenceIndicator, analyzeToolOutput, } from './confidence-tracker.js';
 // Log Archival exports (SEC-003-3)
-export { LogArchiver, createLogArchiver, runDailyArchival, ArchivalError, S3ArchivalError, GPGSigningError, } from './log-archiver.js';
+export { LogArchiver, createLogArchiver, runDailyArchival, archiveLogsInDateRange, ArchivalError, S3ArchivalError, GPGSigningError, } from './log-archiver.js';
 export { ArchivalConfigManager, createConfigManager, checkConfiguration, } from './archival-config.js';
 export { ArchivalScheduler, getArchivalScheduler, initializeArchivalScheduling, triggerArchival, getArchivalStatus, } from './archival-scheduler.js';
 // Audit Encryption exports (already implemented)

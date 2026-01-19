@@ -67,6 +67,7 @@ export {
   LogArchiver,
   createLogArchiver,
   runDailyArchival,
+  archiveLogsInDateRange,
   ArchivalError,
   S3ArchivalError,
   GPGSigningError,

@@ -264,7 +264,7 @@ grep -l "OverrideManager" .claude/validators/*.py
 ### Priority: P1 (This Week)
 ### Effort: Medium
 ### Affected Files:
-- `.claude/validators/session-security-init.py`
+- `.claude/hooks/session-security-init.ts`
 - `.claude/settings.json`
 - `_bmad/core/security/validate-token.js`
 
@@ -491,35 +491,34 @@ if __name__ == '__main__':
 
 #### Step 2: Update Session Security Init
 
-Modify `.claude/validators/session-security-init.py` to call token validation:
+Modify `.claude/hooks/session-security-init.ts` to call token validation:
 
-```python
-# Add to session-security-init.py
+```typescript
+// Add to session-security-init.ts
 
-def initialize_session():
-    """Initialize session security including token validation."""
+function initializeSession(): void {
+    // Initialize session security including token validation
 
-    # Existing initialization...
+    // Existing initialization...
 
-    # Add token validation
-    from token_validator import validate_token, mark_session_validated
-
-    is_valid, error, claims = validate_token()
-    if not is_valid:
-        print(f"Authentication failed: {error}", file=sys.stderr)
-        sys.exit(2)
-
-    # Store session context
-    session_context = {
-        'user': claims.get('name'),
-        'roles': claims.get('roles', []),
-        'session_start': datetime.now().isoformat(),
-        'token_exp': claims.get('exp')
+    // Add token validation
+    const { isValid, error, claims } = validateAuthentication();
+    if (!isValid) {
+        console.error(`Authentication failed: ${error}`);
+        process.exit(2);
     }
 
-    mark_session_validated()
+    // Store session context
+    const sessionContext = {
+        user: claims?.name,
+        roles: claims?.roles || [],
+        sessionStart: new Date().toISOString(),
+        tokenExp: claims?.exp
+    };
 
-    # Continue with existing initialization...
+    markSessionValidated();
+
+    // Continue with existing initialization...
 ```
 
 #### Step 3: Update Hook Configuration
@@ -1396,8 +1395,8 @@ Week 1 (P1 Items):
 │   └── Deploy and verify
 │
 ├── Day 3-4: Add token validation to hooks
-│   ├── Create token_validator.py
-│   ├── Update session-security-init.py
+│   ├── Create token_validator.ts
+│   ├── Update session-security-init.ts
 │   ├── Update settings.json
 │   └── Test authentication flow
 │

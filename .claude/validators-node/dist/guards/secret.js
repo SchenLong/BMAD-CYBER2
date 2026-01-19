@@ -35,6 +35,7 @@ const CRITICAL_PATTERNS = [
     { pattern: /xox[baprs]-[0-9]{10,13}-[0-9]{10,13}-[a-zA-Z0-9]{24}/g, secretType: 'Slack Token', confidence: 'critical' },
     // Stripe
     { pattern: /sk_live_[A-Za-z0-9]{24,}/g, secretType: 'Stripe Secret Key', confidence: 'critical' },
+    { pattern: /sk_test_[A-Za-z0-9]{24,}/g, secretType: 'Stripe Secret Key', confidence: 'critical' },
     { pattern: /rk_live_[A-Za-z0-9]{24,}/g, secretType: 'Stripe Restricted Key', confidence: 'critical' },
     // Google
     { pattern: /AIza[0-9A-Za-z\-_]{35}/g, secretType: 'Google API Key', confidence: 'critical' },

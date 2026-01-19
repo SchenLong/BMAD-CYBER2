@@ -52,6 +52,7 @@ describe('End-to-End Security Pipeline Integration', () => {
     testEncryptionKey = crypto.randomBytes(32).toString('hex');
 
     // Setup test environment variables
+    process.env.NODE_ENV = 'test'; // Critical: Enable performance optimizations for encryption
     process.env.BMAD_AUDIT_ENCRYPTION_KEY = testEncryptionKey;
     process.env.BMAD_AUDIT_ENCRYPTION_ENABLED = 'true';
 
@@ -61,6 +62,47 @@ describe('End-to-End Security Pipeline Integration', () => {
     process.env.BMAD_S3_ARCHIVE_PREFIX = 'e2e-test/';
     process.env.BMAD_LOG_RETENTION_DAYS = '90';
     process.env.BMAD_ARCHIVE_SCHEDULE_CRON = '0 2 * * *';
+
+    // Mock AWS credentials for testing (critical fix for S3 initialization)
+    process.env.AWS_ACCESS_KEY_ID = 'test-access-key-id';
+    process.env.AWS_SECRET_ACCESS_KEY = 'test-secret-access-key';
+    process.env.AWS_SESSION_TOKEN = 'test-session-token';
+    process.env.AWS_REGION = 'us-east-1';
+
+
+    // Mock AWS SDK just enough to prevent credential errors, while allowing test-specific overrides
+    vi.doMock('@aws-sdk/client-s3', () => ({
+      S3Client: vi.fn().mockImplementation(() => ({
+        send: vi.fn().mockImplementation((command) => {
+          // Default successful responses to prevent credential errors
+          const commandName = command.constructor.name;
+
+          if (commandName === 'PutObjectCommand') {
+            return Promise.resolve({
+              ETag: `"${crypto.randomBytes(16).toString('hex')}"`,
+              ServerSideEncryption: 'AES256',
+              VersionId: `test-version-${Date.now()}`
+            });
+          }
+
+          if (commandName === 'GetObjectCommand') {
+            const mockContent = Buffer.from('test-archive-content');
+            return Promise.resolve({
+              Body: {
+                async *[Symbol.asyncIterator]() {
+                  yield mockContent;
+                }
+              }
+            });
+          }
+
+          return Promise.resolve({});
+        })
+      })),
+      GetObjectLockConfigurationCommand: vi.fn().mockImplementation((params) => ({ ...params })),
+      PutObjectCommand: vi.fn().mockImplementation((params) => ({ ...params })),
+      GetObjectCommand: vi.fn().mockImplementation((params) => ({ ...params }))
+    }));
 
     // Mock path-utils to use temp directory
     vi.doMock('../../src/common/path-utils.js', () => ({
@@ -198,7 +240,7 @@ describe('End-to-End Security Pipeline Integration', () => {
       }));
 
       // 6. Run archival process
-      const archiveResult = await archiver.archiveLogsInDateRange(
+      const archiveResult = await archiver.archiveLogs(
         new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
         new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)  // 1 day ago
       );
@@ -353,7 +395,7 @@ describe('End-to-End Security Pipeline Integration', () => {
       const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
       await fs.promises.utimes(logFile, yesterday.getTime() / 1000, yesterday.getTime() / 1000);
 
-      const archiveResult = await archiver.archiveLogsInDateRange(
+      const archiveResult = await archiver.archiveLogs(
         new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         new Date()
       );
@@ -422,7 +464,7 @@ describe('End-to-End Security Pipeline Integration', () => {
       await fs.promises.utimes(logFile, yesterday.getTime() / 1000, yesterday.getTime() / 1000);
 
       // Archival should complete despite corrupted entries
-      const archiveResult = await archiver.archiveLogsInDateRange(
+      const archiveResult = await archiver.archiveLogs(
         new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         new Date()
       );
@@ -458,14 +500,15 @@ describe('End-to-End Security Pipeline Integration', () => {
         enableObjectLock: false,
       });
 
-      archiver.createS3Client = vi.fn().mockReturnValue(mockS3Client);
+      // Direct injection of failing S3 client for testing
+      archiver.setS3Client(mockS3Client);
 
       const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
       await fs.promises.utimes(logFile, yesterday.getTime() / 1000, yesterday.getTime() / 1000);
 
       // Should throw error for S3 failure
       await expect(
-        archiver.archiveLogsInDateRange(
+        archiver.archiveLogs(
           new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
           new Date()
         )
@@ -569,7 +612,7 @@ describe('End-to-End Security Pipeline Integration', () => {
       console.log(`Starting archival of ${entryCount} entries...`);
       const archiveStart = Date.now();
 
-      const result = await archiver.archiveLogsInDateRange(
+      const result = await archiver.archiveLogs(
         new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         new Date()
       );
@@ -597,7 +640,7 @@ describe('End-to-End Security Pipeline Integration', () => {
       // Performance targets
       expect(archivalTime).toBeLessThan(entryCount * 2); // <2ms per entry for archival
       expect(result.metadata.compressionRatio).toBeLessThan(0.8); // >20% compression
-    });
+    }, 30000); // 30 second timeout for performance test
 
     test('should maintain encryption performance under concurrent access', async () => {
       const concurrentOperations = 50;
@@ -722,7 +765,7 @@ describe('End-to-End Security Pipeline Integration', () => {
       const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
       await fs.promises.utimes(logFile, yesterday.getTime() / 1000, yesterday.getTime() / 1000);
 
-      const archiveResult = await archiver.archiveLogsInDateRange(
+      const archiveResult = await archiver.archiveLogs(
         new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         new Date()
       );

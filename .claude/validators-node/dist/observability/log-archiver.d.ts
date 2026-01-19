@@ -173,6 +173,14 @@ export declare class LogArchiver {
         gpgSigningEnabled?: boolean;
         issues?: string[];
     };
+    /**
+     * Create S3 client (exposed for testing)
+     */
+    createS3Client: () => Promise<any>;
+    /**
+     * Override S3 client for testing (allows tests to inject failing clients)
+     */
+    setS3Client(client: any): void;
 }
 /**
  * Convenience function to create archiver from environment.
@@ -182,3 +190,8 @@ export declare function createLogArchiver(): LogArchiver;
  * Run daily archival job.
  */
 export declare function runDailyArchival(): Promise<ArchiveResult>;
+/**
+ * Archive logs within a specific date range (convenience function).
+ * Alias for archiver.archiveLogs() to match test expectations.
+ */
+export declare function archiveLogsInDateRange(startDate: Date, endDate?: Date): Promise<ArchiveResult>;
