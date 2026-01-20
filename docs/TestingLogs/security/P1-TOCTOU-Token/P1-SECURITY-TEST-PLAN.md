@@ -156,7 +156,7 @@ fi
 
 echo ""
 echo "=== Test 3: Session init runs after token validation ==="
-python3 .claude/hooks/session-security-init.py 2>&1
+node .claude/hooks/session-security-init.ts 2>&1
 RESULT=$?
 if [ $RESULT -eq 0 ]; then
     echo "PASS: Session init completed"

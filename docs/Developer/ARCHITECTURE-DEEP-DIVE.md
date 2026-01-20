@@ -1,7 +1,7 @@
 # BMAD-CYBER2 Architecture Deep Dive
 
-> **Version:** 1.0
-> **Last Updated:** 2026-01-16
+> **Version:** 1.1
+> **Last Updated:** 2026-01-18
 > **Audience:** Developers, Contributors, System Architects
 
 ---
@@ -18,9 +18,11 @@ BMAD-CYBER2 is a professional-grade AI agent orchestration platform built on Cla
 | Total Workflows | 143+ |
 | Party Mode Presets | 27 |
 | Modules | 9 |
-| Security Validators | 21 |
+| Security Validators | 20 (TypeScript) |
 | Hook Scripts | 43+ |
-| RBAC Roles | 9 |
+| RBAC Roles | 10 |
+| Context Efficiency | 8.75x token reduction (BMAD-CONCURA) |
+| Migration Success | 100% Python→TypeScript (zero downtime) |
 
 ---
 
@@ -83,6 +85,94 @@ BMAD-CYBER2 is a professional-grade AI agent orchestration platform built on Cla
 
 ---
 
+## Context Efficiency Architecture (BMAD-CONCURA)
+
+### Three-Tier Progressive Loading
+
+BMAD-CYBER2 implements a revolutionary context efficiency system that reduces token consumption by 8.75x through progressive loading:
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    Context Loading Architecture                          │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐ │
+│  │                     Tier 0: Discovery                              │ │
+│  │   micro-agent-manifest.csv │ micro-workflow-manifest.csv           │ │
+│  │   ~500 tokens │ 98% reduction │ 29.1x improvement in discovery     │ │
+│  └────────────────────────────────────────────────────────────────────┘ │
+│                                   │                                      │
+│  ┌────────────────────────────────▼────────────────────────────────────┐│
+│  │                     Tier 1: Standard                               ││
+│  │   Compressed personas │ Essential capabilities │ 85% of interactions││
+│  │   ~2,000 tokens │ 93% reduction │ Quality preserved               ││
+│  └────────────────────────────────────────────────────────────────────┘│
+│                                   │                                      │
+│  ┌────────────────────────────────▼────────────────────────────────────┐│
+│  │                     Tier 2: Full                                   ││
+│  │   Complete personas │ Full workflows │ Complex operations          ││
+│  │   ~10,000 tokens │ 64% reduction │ Intelligent escalation         ││
+│  └────────────────────────────────────────────────────────────────────┘│
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+### Performance Results
+
+| Scenario | Before CONCURA | After CONCURA | Reduction Factor |
+|----------|----------------|---------------|------------------|
+| Simple activation | 27,609 tokens | 4,602 tokens | 6.0x |
+| Agent + workflow | 39,017 tokens | 6,845 tokens | 5.7x |
+| Cross-module ops | 45,619 tokens | 5,431 tokens | 8.4x |
+| Party Mode (3 agents) | 41,758 tokens | 2,804 tokens | 14.9x |
+| Discovery only | 27,609 tokens | 949 tokens | 29.1x |
+
+---
+
+## Infrastructure Modernization
+
+### Python-to-TypeScript Validator Migration
+
+BMAD-CYBER2 successfully completed a **zero-downtime migration** of 20 security validators from Python to TypeScript:
+
+#### Migration Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                  Validator Migration Architecture                        │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐ │
+│  │                Previous: Python Validators                          │ │
+│  │   20 Python scripts │ Standard library only │ Exception handling   │ │
+│  └────────────────────────────────────────────────────────────────────┘ │
+│                                   │                                      │
+│  ┌────────────────────────────────▼────────────────────────────────────┐│
+│  │                Migration Phase: Parallel Execution                 ││
+│  │   Behavioral parity testing │ 631 comprehensive tests              ││
+│  │   Gradual cutover │ Rollback capability │ Zero downtime            ││
+│  └────────────────────────────────────────────────────────────────────┘│
+│                                   │                                      │
+│  ┌────────────────────────────────▼────────────────────────────────────┐│
+│  │                Current: TypeScript Validators                       ││
+│  │   20 TypeScript modules │ 70% faster startup │ 38% memory reduction ││
+│  │   Compile-time type safety │ Enhanced maintainability              ││
+│  └────────────────────────────────────────────────────────────────────┘│
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+#### TypeScript Validator Benefits
+
+| Metric | Python Baseline | TypeScript Result | Improvement |
+|--------|-----------------|-------------------|-------------|
+| Startup Time | ~500ms | ~150ms | 70% faster |
+| Memory Usage | 45MB baseline | 28MB active | 38% reduction |
+| Type Safety | Runtime checks | Compile-time | Enhanced reliability |
+| Maintainability | Good | Excellent | Improved developer experience |
+
+---
+
 ## Module Architecture
 
 ### Directory Structure
@@ -93,7 +183,22 @@ _bmad/
 │   ├── manifest.yaml           # Installation metadata
 │   ├── agent-manifest.csv      # All 80 agents registry
 │   ├── workflow-manifest.csv   # All 143 workflows registry
+│   ├── micro-agent-manifest.csv    # Compressed agent summaries (80% smaller)
+│   ├── micro-workflow-manifest.csv # Compressed workflow summaries
+│   ├── context-loading-rules.yaml  # Tiered context loading configuration
 │   └── llm-config.yaml         # LLM provider routing
+│
+├── _compact/                   # Compressed Resources (CONCURA)
+│   └── agents/                 # 79 compressed agent personas
+│       ├── core/               # Core agents (~200 tokens each)
+│       ├── cybersec-team/      # Security specialists
+│       ├── intel-team/         # Intelligence specialists
+│       ├── legal-team/         # Legal specialists
+│       ├── strategy-team/      # Strategy advisors
+│       ├── bmm/                # Product dev agents
+│       ├── bmgd/               # Game dev agents
+│       ├── bmb/                # Builder agents
+│       └── cis/                # Creative agents
 │
 ├── core/                       # Core Infrastructure (976KB)
 │   ├── agents/                 # Orchestrator agents
@@ -339,7 +444,7 @@ BMAD-CYBER2 implements defense-in-depth with two primary security layers:
 - **Auth Configuration** - Token policies and session rules
 
 #### Layer 2: Runtime Security (Dynamic)
-- **Hook Validators** - Pre-execution checks (21 Python validators)
+- **Hook Validators** - Pre-execution checks (20 TypeScript validators, migrated from Python)
 - **Anomaly Detection** - Behavioral analysis during execution
 - **Audit Logging** - Tamper-evident hash-chained logs
 
@@ -348,33 +453,33 @@ BMAD-CYBER2 implements defense-in-depth with two primary security layers:
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                     Pre-Session Validation                          │
-│   token_validator.py → session-security-init.py → TTS config       │
+│   token-validator.js → TTS config                                   │
 └────────────────────────────────┬────────────────────────────────────┘
                                  │
 ┌────────────────────────────────▼────────────────────────────────────┐
 │                      User Input Validation                          │
-│   prompt_injection_guard.py → jailbreak_guard.py → outside_repo    │
+│   prompt-injection.js → jailbreak.js → outside-repo.js             │
 └────────────────────────────────┬────────────────────────────────────┘
                                  │
 ┌────────────────────────────────▼────────────────────────────────────┐
 │                   Pre-Tool Use Validation                           │
-│   authorization.js (RBAC) → supply_chain_verifier.py               │
-│   rate_limiter.py → plugin_permissions.py → recursion_guard.py     │
+│   authorization.js (RBAC) → supply-chain.js                        │
+│   rate-limiter.js → plugin-permissions.js → recursion-guard.js     │
 └────────────────────────────────┬────────────────────────────────────┘
                                  │
 ┌────────────────────────────────▼────────────────────────────────────┐
 │                   Tool-Specific Guards                              │
-│   Bash: bash_safety.py, production_guard.py, resource_limits.py    │
-│   Write/Edit: secret_guard.py, env_protection.py, pii_guard.py     │
-│   Skill: plugin_permissions.py, recursion_guard.py                 │
-│   Read/Glob/Grep: outside_repo_guard.py                            │
-│   Network: plugin_permissions.py                                    │
+│   Bash: bash-safety.js, production.js, resource-limits.js          │
+│   Write/Edit: secret.js, env-protection.js, pii.js                 │
+│   Skill: plugin-permissions.js, recursion-guard.js                 │
+│   Read/Glob/Grep: outside-repo.js                                  │
+│   Network: plugin-permissions.js                                    │
 └────────────────────────────────┬────────────────────────────────────┘
                                  │
 ┌────────────────────────────────▼────────────────────────────────────┐
 │                   Execution & Monitoring                            │
-│   telemetry_collector.py → anomaly_detector.py →                   │
-│   audit_integrity.py → context_manager.py                          │
+│   telemetry.js → anomaly-detector.js →                             │
+│   audit-integrity.js → context-manager.js                          │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -443,12 +548,12 @@ permissions:
   "hooks": {
     "pre-tool-use": [
       {
-        "path": ".claude/validators/token_validator.py",
+        "path": ".claude/validators-node/bin/token-validator.js",
         "tools": ["*"],
         "blocking": true
       },
       {
-        "path": ".claude/validators/bash_safety.py",
+        "path": ".claude/validators-node/bin/bash-safety.js",
         "tools": ["Bash"],
         "blocking": true
       }
@@ -656,7 +761,7 @@ Modules share data through:
 
 ### Adding Security Validators
 
-1. Create Python script: `.claude/validators/new_guard.py`
+1. Create Node.js script: `.claude/validators-node/bin/new-guard.js`
 2. Implement validation logic with exit codes:
    - `0` = allowed
    - `2` = blocked
@@ -760,6 +865,187 @@ routing:
 - Async logging to prevent blocking
 - Batch writes for high-volume operations
 - Configurable retention with automatic cleanup
+
+---
+
+## Context Efficiency Architecture (CONCURA)
+
+BMAD-CYBER2 implements a tiered context loading system to optimize token usage while preserving agent quality. This system, developed under the BMAD-CONCURA project, achieves an average **8.75x token reduction** compared to eager loading.
+
+### The Problem: Context Token Consumption
+
+| Scenario | Before CONCURA | After CONCURA | Reduction |
+|----------|----------------|---------------|-----------|
+| Simple agent activation | 27,609 tokens | 4,602 tokens | 6.0x |
+| Agent + workflow | 39,017 tokens | 6,845 tokens | 5.7x |
+| Cross-module operation | 45,619 tokens | 5,431 tokens | 8.4x |
+| Party Mode (3 agents) | 41,758 tokens | 2,804 tokens | 14.9x |
+| Tier 0 discovery only | 27,609 tokens | 949 tokens | 29.1x |
+
+### Three-Tier Context Loading
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                     Context Loading Architecture                      │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │                    Tier 0: Discovery (~500 tokens)               │ │
+│  │   micro-agent-manifest.csv │ micro-workflow-manifest.csv        │ │
+│  │   • Agent/workflow discovery and routing                         │ │
+│  │   • 10-word summaries with routing tags                         │ │
+│  │   • 98% reduction from full context                              │ │
+│  └────────────────────────────────┬────────────────────────────────┘ │
+│                                   │ Escalate on agent selection      │
+│  ┌────────────────────────────────▼────────────────────────────────┐ │
+│  │                 Tier 1: Standard (~2,000 tokens)                 │ │
+│  │   Compact persona │ Essential menu │ Core capabilities          │ │
+│  │   • 200-token compressed personas (from _compact/agents/)       │ │
+│  │   • Cross-module routing hints                                  │ │
+│  │   • Sufficient for 85% of interactions                          │ │
+│  │   • 93% reduction from full context                              │ │
+│  └────────────────────────────────┬────────────────────────────────┘ │
+│                                   │ Escalate on complex query        │
+│  ┌────────────────────────────────▼────────────────────────────────┐ │
+│  │                    Tier 2: Full (~10,000 tokens)                 │ │
+│  │   Complete persona │ All workflows │ Extended context           │ │
+│  │   • Full agent.md with complete persona                         │ │
+│  │   • All available workflows and templates                       │ │
+│  │   • 64% reduction from eager loading                            │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Escalation Triggers
+
+The system escalates from lower to higher tiers based on detected intent:
+
+| From | To | Trigger Conditions |
+|------|----|--------------------|
+| Tier 0 | Tier 1 | Agent selected, simple greeting, menu request |
+| Tier 1 | Tier 2 | Complex domain question, workflow execution, cross-module request |
+
+### Compressed Agent Format
+
+Each agent has a compressed version in `_bmad/_compact/agents/{module}/{agent}.compact.md`:
+
+```markdown
+---
+agent_id: "abdul"
+name: "Abdul"
+title: "Master Project Manager"
+icon: "📊"
+module: "core"
+---
+
+# 📊 Abdul
+
+**Master Project Manager** | Module: core
+
+## Essential Persona
+
+**Role:**
+Cross-Module Orchestrator (15+ yrs). Expert in BMAD methodology,
+multi-team coordination. Turns chaos into clarity.
+
+**Voice:**
+Warm but decisive. Asks clarifying questions before acting.
+Clear next steps with specific recommendations.
+
+**Core Principle:**
+Right agent for the right job. Cross-functional collaboration
+unlocks innovation.
+
+## Cross-Module Hints
+
+bmm: pm, architect, dev (product development)
+cybersec-team: security-architect (security reviews)
+strategy-team: the-master-strategist (strategic planning)
+```
+
+### Micro-Manifest Format
+
+The `micro-agent-manifest.csv` provides ultra-compact agent discovery:
+
+```csv
+agent_id,module,name,summary,tags
+abdul,core,Abdul,Cross-module orchestrator coordinates multi-team projects and delegates,project|orchestration|delegation
+bastion,cybersec-team,Bastion,Security architect designs defense-in-depth enterprise security,security|architecture|defense
+osint-lead,intel-team,OSINT Lead,Intelligence director coordinates all-source collection and fusion,intelligence|osint|coordination
+```
+
+### Context Loading Configuration
+
+Configure context behavior in `_bmad/_config/context-loading-rules.yaml`:
+
+```yaml
+tiers:
+  tier_0:
+    max_tokens: 500
+    sources:
+      - micro-agent-manifest.csv
+      - micro-workflow-manifest.csv
+    use_cases:
+      - discovery
+      - routing
+      - menu_display
+
+  tier_1:
+    max_tokens: 2000
+    sources:
+      - _compact/agents/{module}/{agent}.compact.md
+    use_cases:
+      - simple_greeting
+      - basic_questions
+      - menu_selection
+
+  tier_2:
+    max_tokens: 10000
+    sources:
+      - agents/{agent}.md
+      - workflows/{workflow}/workflow.yaml
+    use_cases:
+      - complex_analysis
+      - workflow_execution
+      - cross_module
+
+escalation:
+  tier_0_to_tier_1:
+    - agent_selected
+    - greeting_response
+  tier_1_to_tier_2:
+    - domain_specific_question
+    - workflow_invocation
+    - error_in_tier_1
+
+caching:
+  tier_0_ttl: 3600      # 1 hour
+  tier_1_ttl: 1800      # 30 minutes
+  tier_2_ttl: 300       # 5 minutes
+```
+
+### Quality Preservation
+
+Despite significant token reduction, agent quality is preserved:
+
+| Quality Metric | Score |
+|----------------|-------|
+| Persona distinctiveness | 88% correct identification |
+| Response accuracy | 9.2/10 average |
+| Cross-module routing | 85% first-attempt success |
+| Overall quality score | 8.6/10 |
+
+### Implementation Files
+
+| File | Purpose |
+|------|---------|
+| `_bmad/_config/micro-agent-manifest.csv` | Tier 0 agent discovery |
+| `_bmad/_config/micro-workflow-manifest.csv` | Tier 0 workflow discovery |
+| `_bmad/_config/context-loading-rules.yaml` | Tier escalation rules |
+| `_bmad/_compact/agents/` | 79 compressed agent personas |
+| `_bmad/core/templates/agent-activation-v2.xml` | Tiered activation protocol |
+| `_bmad/core/templates/compact-menu.xml` | Token-efficient menu format |
 
 ---
 

@@ -1,0 +1,78 @@
+name: Validator Tests
+
+on:
+  push:
+    branches: [main, master, VALIDATORS-PY-2-JS, BMAD-CYBEROPS-RP]
+    paths:
+      - '.claude/validators-node/**'
+      - '_bmad/**/workflow.md'
+  pull_request:
+    branches: [main, master, BMAD-CYBEROPS-RP]
+    paths:
+      - '.claude/validators-node/**'
+      - '_bmad/**/workflow.md'
+
+jobs:
+  test-validators:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: '.claude/validators-node/package-lock.json'
+
+      - name: Install Dependencies
+        working-directory: .claude/validators-node
+        run: npm ci
+
+      - name: Build TypeScript
+        working-directory: .claude/validators-node
+        run: npm run build
+
+      - name: Run Tests
+        working-directory: .claude/validators-node
+        run: npm test
+
+      - name: Type Check
+        working-directory: .claude/validators-node
+        run: npm run lint
+
+  workflow-compliance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Workflow Compliance
+        run: |
+          echo "Checking workflow compliance..."
+
+          # Count total workflows
+          TOTAL=$(find _bmad -name "workflow.md" -type f | wc -l)
+          echo "Total workflows found: $TOTAL"
+
+          # Check for communication style reminder
+          COMPLIANT=$(grep -l "YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style" _bmad/*/workflows/*/workflow.md 2>/dev/null | wc -l)
+          echo "Compliant workflows: $COMPLIANT"
+
+          # Check for required sections
+          MISSING_ARCH=$(find _bmad -name "workflow.md" -exec grep -L "Step Processing Rules" {} \; | wc -l)
+          echo "Missing Step Processing Rules: $MISSING_ARCH"
+
+          # Compliance percentage
+          if [ $TOTAL -gt 0 ]; then
+            PERCENT=$((COMPLIANT * 100 / TOTAL))
+            echo "Compliance rate: ${PERCENT}%"
+
+            if [ $PERCENT -lt 90 ]; then
+              echo "ERROR: Workflow compliance below 90%"
+              exit 1
+            fi
+          fi
+
+          echo "Workflow compliance check passed!"

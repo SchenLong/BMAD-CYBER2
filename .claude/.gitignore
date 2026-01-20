@@ -1,0 +1,28 @@
+# BMAD Security State Files - NEVER COMMIT
+# These files contain runtime security state and must not be tracked
+
+# Session and state files
+logs/*.json
+logs/.chain_state.json
+logs/.anomaly_baseline.json
+logs/.jailbreak_session.json
+logs/.session_risk.json
+.*_state.json
+.override_state.json
+.rate_limit_state.json
+.session_*
+validators-node/state/
+
+# Lock files
+*.lock
+.override.lock
+
+# Telemetry files
+logs/*.jsonl
+
+# Token files (if stored here)
+.bmad-token
+.bmad-key
+
+# Temporary files
+*.tmp
