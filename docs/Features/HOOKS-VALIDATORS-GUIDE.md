@@ -13,7 +13,7 @@ BMAD-CYBER2 implements a two-layer security defense:
 | **Layer 1** | Soft Guardrails | System prompt instructions in agent personas |
 | **Layer 2** | Hard Guardrails | PreToolUse hooks that execute before each tool operation |
 
-Hard guardrails are **deterministic** - they execute as Python scripts before any tool operation and cannot be bypassed by prompt injection.
+Hard guardrails are **deterministic** - they execute as Node.js scripts before any tool operation and cannot be bypassed by prompt injection.
 
 ---
 
@@ -58,7 +58,7 @@ User Request
 
 ### Location
 
-Validators are located at: `.claude/validators/`
+Validators are located at: `.claude/validators-node/bin/`
 
 ### Available Validators (19)
 
@@ -66,36 +66,36 @@ Validators are located at: `.claude/validators/`
 
 | Validator | Tool Coverage | Protection | OWASP |
 |-----------|---------------|------------|-------|
-| `bash_safety.py` | Bash | Dangerous command detection | - |
-| `secret_guard.py` | Write, Edit | Hardcoded secret detection | LLM06 |
-| `env_protection.py` | Write, Edit | Sensitive file protection | LLM06 |
-| `production_guard.py` | Bash | Production environment detection | - |
-| `outside_repo_guard.py` | Read, Write, Edit, Glob, Grep | Repository boundary enforcement | - |
-| `pii_guard.py` | Write, Edit | PII detection | LLM06 |
-| `prompt_injection_guard.py` | Write, Edit, UserPromptSubmit | Prompt injection defense | **LLM01** |
-| `jailbreak_guard.py` | UserPromptSubmit | Jailbreak detection | **LLM01** |
-| `session-security-init.py` | SessionStart | Session validation | - |
-| `token_validator.py` | SessionStart | Authentication enforcement | - |
-| `security_common.py` | (Library) | Shared utilities | - |
+| `bash-safety.js` | Bash | Dangerous command detection | - |
+| `secret.js` | Write, Edit | Hardcoded secret detection | LLM06 |
+| `env-protection.js` | Write, Edit | Sensitive file protection | LLM06 |
+| `production.js` | Bash | Production environment detection | - |
+| `outside-repo.js` | Read, Write, Edit, Glob, Grep | Repository boundary enforcement | - |
+| `pii.js` | Write, Edit | PII detection | LLM06 |
+| `prompt-injection.js` | Write, Edit, UserPromptSubmit | Prompt injection defense | **LLM01** |
+| `jailbreak.js` | UserPromptSubmit | Jailbreak detection | **LLM01** |
+| `token-validator.js` | SessionStart | Session validation | - |
+| `token-validator.js` | SessionStart | Authentication enforcement | - |
+| `security-common.js` | (Library) | Shared utilities | - |
 
 #### OWASP Remediation Validators (NEW - Phase 1-4)
 
 | Validator | Tool Coverage | Protection | OWASP |
 |-----------|---------------|------------|-------|
-| `rate_limiter.py` | All tools | DoS protection (sliding window) | **LLM04** |
-| `plugin_permissions.py` | All tools | Capability-based security | **LLM07** |
-| `supply_chain_verifier.py` | Skill loading | SHA256+GPG verification | **LLM05** |
-| `context_manager.py` | All tools | Context window management | **LLM04** |
-| `recursion_guard.py` | Bash, Read | Recursion/depth limits | **LLM04** |
-| `resource_limits.py` | Bash, Task | Memory/process limits | **LLM04** |
-| `confidence_tracker.py` | PostToolUse | Uncertainty detection | **LLM09** |
-| `telemetry_collector.py` | All hooks | SIEM telemetry export | - |
+| `rate-limiter.js` | All tools | DoS protection (sliding window) | **LLM04** |
+| `plugin-permissions.js` | All tools | Capability-based security | **LLM07** |
+| `supply-chain.js` | Skill loading | SHA256+GPG verification | **LLM05** |
+| `context-manager.js` | All tools | Context window management | **LLM04** |
+| `recursion-guard.js` | Bash, Read | Recursion/depth limits | **LLM04** |
+| `resource-limits.js` | Bash, Task | Memory/process limits | **LLM04** |
+| `confidence-tracker.js` | PostToolUse | Uncertainty detection | **LLM09** |
+| `telemetry.js` | All hooks | SIEM telemetry export | - |
 
 ---
 
 ## Validator Details
 
-### bash_safety.py
+### bash-safety.js
 
 **Purpose:** Blocks dangerous bash commands that could cause irreversible damage.
 
@@ -141,7 +141,7 @@ export BMAD_ALLOW_DANGEROUS=true
 
 ---
 
-### secret_guard.py
+### secret.js
 
 **Purpose:** Blocks file writes containing hardcoded secrets, API keys, tokens, or passwords.
 
@@ -197,7 +197,7 @@ export BMAD_ALLOW_SECRETS=true
 
 ---
 
-### env_protection.py
+### env-protection.js
 
 **Purpose:** Protects sensitive environment and configuration files from modification.
 
@@ -218,7 +218,7 @@ export BMAD_ALLOW_SENSITIVE_FILES=true
 
 ---
 
-### production_guard.py
+### production.js
 
 **Purpose:** Detects and blocks operations targeting production environments.
 
@@ -237,7 +237,7 @@ export BMAD_ALLOW_PRODUCTION=true
 
 ---
 
-### outside_repo_guard.py
+### outside-repo.js
 
 **Purpose:** Enforces repository boundary to prevent file operations outside the project.
 
@@ -256,7 +256,7 @@ export BMAD_ALLOW_OUTSIDE_REPO=true
 
 ---
 
-### pii_guard.py
+### pii.js
 
 **Purpose:** Detects and blocks file writes containing Personally Identifiable Information.
 
@@ -325,7 +325,7 @@ export BMAD_ALLOW_PII=true
 
 ---
 
-### prompt_injection_guard.py
+### prompt-injection.js
 
 **Purpose:** Detects content that attempts to manipulate AI agent behavior through injected instructions.
 
@@ -381,7 +381,7 @@ export BMAD_ALLOW_INJECTION_CONTENT=true
 
 ---
 
-### jailbreak_guard.py
+### jailbreak.js
 
 **Purpose:** Detects attempts to bypass AI safety guidelines through jailbreak techniques.
 
@@ -407,7 +407,7 @@ export BMAD_ALLOW_JAILBREAK=true
 
 ---
 
-### rate_limiter.py (NEW - Phase 1)
+### rate-limiter.js (NEW - Phase 1)
 
 **Purpose:** Prevents denial-of-service attacks by limiting the rate of tool invocations.
 
@@ -434,8 +434,8 @@ export BMAD_ALLOW_JAILBREAK=true
 
 #### Whitelist Patterns
 
-```python
-'read': ['.claude/settings.json', '.claude/validators/', 'CLAUDE.md']
+```javascript
+'read': ['.claude/settings.json', '.claude/validators-node/', 'CLAUDE.md']
 'bash': ['git status', 'git log', 'git diff']
 ```
 
@@ -443,13 +443,13 @@ export BMAD_ALLOW_JAILBREAK=true
 
 ```bash
 # Check status
-python3 .claude/validators/rate_limiter.py status
+node .claude/validators-node/bin/rate-limiter.js status
 
 # Reset limits
-python3 .claude/validators/rate_limiter.py reset
+node .claude/validators-node/bin/rate-limiter.js reset
 
 # Reset specific operation
-python3 .claude/validators/rate_limiter.py reset bash
+node .claude/validators-node/bin/rate-limiter.js reset bash
 ```
 
 #### No Override Available
@@ -458,7 +458,7 @@ Rate limiting cannot be bypassed - this is a security feature.
 
 ---
 
-### plugin_permissions.py (NEW - Phase 1)
+### plugin-permissions.js (NEW - Phase 1)
 
 **Purpose:** Implements capability-based security for BMAD plugins/modules.
 
@@ -517,13 +517,13 @@ Permission checking integrates with roles:
 
 ```bash
 # List plugins
-python3 .claude/validators/plugin_permissions.py list
+node .claude/validators-node/bin/plugin-permissions.js list
 
 # Check permission
-python3 .claude/validators/plugin_permissions.py check intel-team shell execute "curl https://example.com"
+node .claude/validators-node/bin/plugin-permissions.js check intel-team shell execute "curl https://example.com"
 
 # Generate manifests
-python3 .claude/validators/plugin_permissions.py generate _bmad/
+node .claude/validators-node/bin/plugin-permissions.js generate _bmad/
 ```
 
 #### No Override Available
@@ -532,7 +532,7 @@ Plugin permissions cannot be bypassed - this is enforced at the manifest level.
 
 ---
 
-### supply_chain_verifier.py (NEW - Phase 2)
+### supply-chain.js (NEW - Phase 2)
 
 **Purpose:** Verifies integrity and authenticity of skills and plugins before loading.
 
@@ -560,15 +560,15 @@ Skill Request → Load Manifest → Verify GPG Signature
 
 ```bash
 # Verify a plugin
-python3 .claude/validators/supply_chain_verifier.py verify _bmad/intel-team
+node .claude/validators-node/bin/supply-chain.js verify _bmad/intel-team
 
 # Generate checksums
-python3 .claude/validators/supply_chain_verifier.py generate _bmad/intel-team
+node .claude/validators-node/bin/supply-chain.js generate _bmad/intel-team
 ```
 
 ---
 
-### context_manager.py (NEW - Phase 2)
+### context-manager.js (NEW - Phase 2)
 
 **Purpose:** Tracks and manages context window usage to prevent overflow.
 
@@ -582,26 +582,26 @@ python3 .claude/validators/supply_chain_verifier.py generate _bmad/intel-team
 
 #### Configuration
 
-```python
-CHARS_PER_TOKEN = 4
-MAX_CONTEXT_TOKENS = 200000
-WARNING_THRESHOLD = 0.75
-BLOCK_THRESHOLD = 0.95
+```javascript
+const CHARS_PER_TOKEN = 4;
+const MAX_CONTEXT_TOKENS = 200000;
+const WARNING_THRESHOLD = 0.75;
+const BLOCK_THRESHOLD = 0.95;
 ```
 
 #### CLI Commands
 
 ```bash
 # Check context usage
-python3 .claude/validators/context_manager.py status
+node .claude/validators-node/bin/context-manager.js status
 
 # Reset context tracking
-python3 .claude/validators/context_manager.py reset
+node .claude/validators-node/bin/context-manager.js reset
 ```
 
 ---
 
-### recursion_guard.py (NEW - Phase 2)
+### recursion-guard.js (NEW - Phase 2)
 
 **Purpose:** Prevents infinite loops and excessive recursion.
 
@@ -624,7 +624,7 @@ python3 .claude/validators/context_manager.py reset
 
 ---
 
-### resource_limits.py (NEW - Phase 3)
+### resource-limits.js (NEW - Phase 3)
 
 **Purpose:** Enforces memory and process limits to prevent resource exhaustion.
 
@@ -648,7 +648,7 @@ python3 .claude/validators/context_manager.py reset
 
 ---
 
-### confidence_tracker.py (NEW - Phase 3)
+### confidence-tracker.js (NEW - Phase 3)
 
 **Purpose:** Tracks output confidence and detects uncertainty in responses.
 
@@ -679,7 +679,7 @@ export BMAD_SHOW_CONFIDENCE=true
 
 ---
 
-### telemetry_collector.py (NEW - Phase 4)
+### telemetry.js (NEW - Phase 4)
 
 **Purpose:** Collects structured telemetry for SIEM/dashboard integration.
 
@@ -705,7 +705,7 @@ docs/TestingLogs/security/AuditLogs/telemetry/
 
 ---
 
-### session-security-init.py
+### token-validator.js (Session Initialization)
 
 **Purpose:** Runs at session start to validate security configuration.
 
@@ -745,7 +745,7 @@ BMAD GUARDRAILS: Security Initialization
 
 ## Common Utilities
 
-### security_common.py
+### security-common.js
 
 Shared utilities for all validators.
 
@@ -753,37 +753,37 @@ Shared utilities for all validators.
 
 Provides secure audit logging for all security events.
 
-```python
-# Log a blocked operation
-AuditLogger.log_blocked(validator, reason, command, additional)
+```javascript
+// Log a blocked operation
+AuditLogger.logBlocked(validator, reason, command, additional);
 
-# Log an allowed operation
-AuditLogger.log_allowed(validator, reason, additional)
+// Log an allowed operation
+AuditLogger.logAllowed(validator, reason, additional);
 
-# Log override usage
-AuditLogger.log_override_used(validator, override_var, target)
+// Log override usage
+AuditLogger.logOverrideUsed(validator, overrideVar, target);
 ```
 
 #### OverrideManager
 
 Manages single-use override tokens with timeout.
 
-```python
-# Check and consume override
-valid, reason = OverrideManager.check_and_consume_override('DANGEROUS')
+```javascript
+// Check and consume override
+const { valid, reason } = OverrideManager.checkAndConsumeOverride('DANGEROUS');
 
-# Get override status
-status = OverrideManager.get_override_status()
+// Get override status
+const status = OverrideManager.getOverrideStatus();
 ```
 
 #### Path Utilities
 
-```python
-# Resolve path to absolute
-resolved = resolve_path(path, cwd)
+```javascript
+// Resolve path to absolute
+const resolved = resolvePath(path, cwd);
 
-# Check if path is in repository
-in_repo = is_path_in_repo(path, cwd, project_dir)
+// Check if path is in repository
+const inRepo = isPathInRepo(path, cwd, projectDir);
 ```
 
 ---
@@ -837,32 +837,32 @@ Hooks are configured in: `.claude/settings.json`
     "PreToolUse": [
       {
         "tool": "Bash",
-        "command": ".claude/validators/bash_safety.py"
+        "command": ".claude/validators-node/bin/bash-safety.js"
       },
       {
         "tool": "Write",
-        "command": ".claude/validators/secret_guard.py"
+        "command": ".claude/validators-node/bin/secret.js"
       },
       {
         "tool": "Edit",
-        "command": ".claude/validators/env_protection.py"
+        "command": ".claude/validators-node/bin/env-protection.js"
       },
       {
         "tool": "Read",
-        "command": ".claude/validators/outside_repo_guard.py"
+        "command": ".claude/validators-node/bin/outside-repo.js"
       }
     ],
     "UserPromptSubmit": [
       {
-        "command": ".claude/validators/prompt_injection_guard.py"
+        "command": ".claude/validators-node/bin/prompt-injection.js"
       },
       {
-        "command": ".claude/validators/jailbreak_guard.py"
+        "command": ".claude/validators-node/bin/jailbreak.js"
       }
     ],
     "SessionStart": [
       {
-        "command": ".claude/hooks/session-security-init.py"
+        "command": ".claude/validators-node/bin/token-validator.js"
       }
     ]
   }
@@ -908,8 +908,8 @@ Hooks are configured in: `.claude/settings.json`
 
 ### Validator Not Running
 
-1. Check validator exists: `ls .claude/validators/`
-2. Check executable: `python3 .claude/validators/bash_safety.py`
+1. Check validator exists: `ls .claude/validators-node/bin/`
+2. Check executable: `node .claude/validators-node/bin/bash-safety.js`
 3. Check settings.json configuration
 
 ### Override Not Working

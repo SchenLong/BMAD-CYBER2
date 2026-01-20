@@ -69,7 +69,7 @@ export BMAD_RATE_LIMIT_BASH=3
 ALLOWED=0
 for i in {1..3}; do
     if echo '{"tool_name": "bash", "tool_input": {"command": "ls"}}' | \
-        python3 .claude/validators/rate_limiter.py validate 2>/dev/null; then
+        node .claude/validators-node/bin/rate-limiter.js validate 2>/dev/null; then
         ((ALLOWED++))
     fi
 done
@@ -77,7 +77,7 @@ done
 # 4th request should be blocked
 BLOCKED=false
 if ! echo '{"tool_name": "bash", "tool_input": {"command": "ls"}}' | \
-    python3 .claude/validators/rate_limiter.py validate 2>/dev/null; then
+    node .claude/validators-node/bin/rate-limiter.js validate 2>/dev/null; then
     BLOCKED=true
 fi
 
@@ -99,7 +99,7 @@ export BMAD_RATE_LIMIT_READ=2
 WHITELISTED_PASS=true
 for i in {1..10}; do
     if ! echo '{"tool_name": "read", "tool_input": {"file_path": ".claude/settings.json"}}' | \
-        python3 .claude/validators/rate_limiter.py validate 2>/dev/null; then
+        node .claude/validators-node/bin/rate-limiter.js validate 2>/dev/null; then
         WHITELISTED_PASS=false
         break
     fi
@@ -117,7 +117,7 @@ echo "[PP-I01] Plugin Permission - Dangerous Command Blocking..."
 
 # rm command should be blocked for all plugins
 if echo '{"tool_name": "bash", "tool_input": {"command": "rm -rf /"}, "cwd": "_bmad/intel-team/"}' | \
-    python3 .claude/validators/plugin_permissions.py validate 2>/dev/null; then
+    node .claude/validators-node/bin/plugin-permissions.js validate 2>/dev/null; then
     log_fail "Dangerous command 'rm' was allowed"
 else
     log_pass "Dangerous command 'rm' blocked correctly"
@@ -129,7 +129,7 @@ echo "[PP-I02] Plugin Permission - Path Restriction..."
 
 # Intel team should not be able to write outside their directory
 if echo '{"tool_name": "write", "tool_input": {"file_path": "_bmad/legal-team/confidential.md", "content": "test"}, "cwd": "_bmad/intel-team/"}' | \
-    python3 .claude/validators/plugin_permissions.py validate 2>/dev/null; then
+    node .claude/validators-node/bin/plugin-permissions.js validate 2>/dev/null; then
     log_fail "Cross-plugin write was allowed"
 else
     log_pass "Cross-plugin write blocked correctly"
@@ -141,7 +141,7 @@ echo "[PP-I03] Plugin Permission - Allowed Operations..."
 
 # Intel team should be able to use curl
 if echo '{"tool_name": "bash", "tool_input": {"command": "curl https://example.com"}, "cwd": "_bmad/intel-team/"}' | \
-    python3 .claude/validators/plugin_permissions.py validate 2>/dev/null; then
+    node .claude/validators-node/bin/plugin-permissions.js validate 2>/dev/null; then
     log_pass "Allowed command 'curl' permitted for intel-team"
 else
     log_fail "Allowed command 'curl' was blocked for intel-team"
@@ -160,7 +160,7 @@ echo "=============================================="
 echo ""
 echo "[SC-I01] Supply Chain Verifier Status..."
 
-SC_OUTPUT=$(python3 .claude/validators/supply_chain_verifier.py status 2>/dev/null)
+SC_OUTPUT=$(node .claude/validators-node/bin/supply-chain.js status 2>/dev/null)
 if echo "$SC_OUTPUT" | grep -q "verify_mode"; then
     log_pass "Supply chain verifier status reporting works"
 else
@@ -189,7 +189,7 @@ fi
 echo ""
 echo "[CM-I01] Context Manager Status..."
 
-CM_OUTPUT=$(python3 .claude/validators/context_manager.py status 2>/dev/null)
+CM_OUTPUT=$(node .claude/validators-node/bin/context-manager.js status 2>/dev/null)
 if echo "$CM_OUTPUT" | grep -q "tokens_used"; then
     log_pass "Context manager status reporting works"
 else
@@ -200,7 +200,7 @@ fi
 echo ""
 echo "[CM-I02] Context Manager Token Estimation..."
 
-ESTIMATE_OUTPUT=$(python3 .claude/validators/context_manager.py estimate-file README.md 2>/dev/null)
+ESTIMATE_OUTPUT=$(node .claude/validators-node/bin/context-manager.js estimate-file README.md 2>/dev/null)
 if echo "$ESTIMATE_OUTPUT" | grep -q "Estimated tokens"; then
     log_pass "Context manager token estimation works"
 else
@@ -222,7 +222,7 @@ m = ContextManager()
 m.record_operation('test', int(MAX_CONTEXT_TOKENS * 0.8))
 " 2>/dev/null
 
-CM_CHECK=$(python3 .claude/validators/context_manager.py check 2>/dev/null)
+CM_CHECK=$(node .claude/validators-node/bin/context-manager.js check 2>/dev/null)
 if echo "$CM_CHECK" | grep -q "warning"; then
     log_pass "Context manager generates warnings at 80% capacity"
 else
@@ -233,7 +233,7 @@ fi
 echo ""
 echo "[RG-I01] Recursion Guard Status..."
 
-RG_OUTPUT=$(python3 .claude/validators/recursion_guard.py status 2>/dev/null)
+RG_OUTPUT=$(node .claude/validators-node/bin/recursion-guard.js status 2>/dev/null)
 if echo "$RG_OUTPUT" | grep -q "limits"; then
     log_pass "Recursion guard status reporting works"
 else
@@ -245,7 +245,7 @@ echo ""
 echo "[RG-I02] Recursion Guard Depth Checking..."
 
 # Check path depth
-DEPTH_OUTPUT=$(python3 .claude/validators/recursion_guard.py check-path "$PROJECT_DIR/a/b/c/d/file.txt" 2>/dev/null)
+DEPTH_OUTPUT=$(node .claude/validators-node/bin/recursion-guard.js check-path "$PROJECT_DIR/a/b/c/d/file.txt" 2>/dev/null)
 if echo "$DEPTH_OUTPUT" | grep -q "Allowed"; then
     log_pass "Recursion guard depth check works"
 else
@@ -261,10 +261,10 @@ rm -f "$PROJECT_DIR/.claude/.recursion_state.json" 2>/dev/null
 
 # Perform same operation multiple times
 for i in {1..15}; do
-    python3 .claude/validators/recursion_guard.py check-circular read "/same/path.txt" 2>/dev/null
+    node .claude/validators-node/bin/recursion-guard.js check-circular read "/same/path.txt" 2>/dev/null
 done
 
-CIRCULAR_OUTPUT=$(python3 .claude/validators/recursion_guard.py check-circular read "/same/path.txt" 2>/dev/null)
+CIRCULAR_OUTPUT=$(node .claude/validators-node/bin/recursion-guard.js check-circular read "/same/path.txt" 2>/dev/null)
 if echo "$CIRCULAR_OUTPUT" | grep -q "Allowed: False"; then
     log_pass "Recursion guard detects circular patterns"
 else
@@ -284,7 +284,7 @@ echo "=============================================="
 echo ""
 echo "[CT-I01] Confidence Tracker Analysis..."
 
-CT_OUTPUT=$(python3 .claude/validators/confidence_tracker.py analyze "I think this might work, but I'm not sure about the implementation. Perhaps we should test it more thoroughly." 2>/dev/null)
+CT_OUTPUT=$(node .claude/validators-node/bin/confidence-tracker.js analyze "I think this might work, but I'm not sure about the implementation. Perhaps we should test it more thoroughly." 2>/dev/null)
 if echo "$CT_OUTPUT" | grep -q "Confidence"; then
     log_pass "Confidence tracker analysis works"
 else
@@ -295,7 +295,7 @@ fi
 echo ""
 echo "[CT-I02] Confidence Tracker Uncertainty Detection..."
 
-CT_UNCERTAINTY=$(python3 .claude/validators/confidence_tracker.py analyze "I definitely know this is correct. The documentation states this clearly." 2>/dev/null)
+CT_UNCERTAINTY=$(node .claude/validators-node/bin/confidence-tracker.js analyze "I definitely know this is correct. The documentation states this clearly." 2>/dev/null)
 if echo "$CT_UNCERTAINTY" | grep -q "Confidence Level"; then
     log_pass "Confidence tracker detects uncertainty markers"
 else
@@ -306,7 +306,7 @@ fi
 echo ""
 echo "[CT-I03] Confidence Tracker Session Stats..."
 
-CT_STATS=$(python3 .claude/validators/confidence_tracker.py status 2>/dev/null)
+CT_STATS=$(node .claude/validators-node/bin/confidence-tracker.js status 2>/dev/null)
 if echo "$CT_STATS" | grep -q "session_id"; then
     log_pass "Confidence tracker session stats work"
 else

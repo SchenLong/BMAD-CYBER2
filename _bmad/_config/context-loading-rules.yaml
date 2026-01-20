@@ -1,0 +1,1040 @@
+# =============================================================================
+# BMAD Context Loading Rules Configuration
+# =============================================================================
+# Story: CONCURA-3.2 - Implement Lazy Context Loader
+# Author: Winston (System Architect)
+# Date: 2026-01-17
+# Version: 1.0
+#
+# This file defines the rules for lazy context loading in the BMAD framework.
+# It specifies what context loads at each tier, trigger conditions for tier
+# escalation, caching rules, and error handling strategies.
+# =============================================================================
+
+version: "1.0"
+description: "BMAD Lazy Context Loading Rules"
+
+# =============================================================================
+# SECTION 1: GLOBAL SETTINGS
+# =============================================================================
+
+settings:
+  # Cache configuration
+  cache:
+    max_cached_tokens: 100000          # Maximum tokens to cache in session
+    lru_eviction_enabled: true          # Enable LRU eviction when over limit
+    cache_ttl_minutes:
+      default: 60                       # Default cache duration
+      git_status: 5                     # Git status refreshes frequently
+      project_context: 30               # Project context semi-stable
+      agents: -1                        # Agents never expire (session lifetime)
+      workflows: -1                     # Workflows never expire (session lifetime)
+
+  # Loading behavior
+  loading:
+    enable_anticipatory_loading: true   # Pre-load predicted components
+    enable_background_loading: true     # Load in background when idle
+    enable_cache_warming: true          # Warm cache for detected intent
+    max_parallel_loads: 3               # Maximum concurrent loads
+    load_timeout_ms: 2000               # Timeout for individual loads
+
+  # Error handling
+  error_handling:
+    max_retries: 2                      # Retries before degradation
+    retry_delay_ms: 100                 # Delay between retries
+    fallback_enabled: true              # Enable graceful degradation
+    log_errors: true                    # Log load errors
+    notify_on_degradation: false        # Don't notify user of degradation
+
+  # Monitoring
+  monitoring:
+    log_load_times: true                # Log component load times
+    log_cache_hits: true                # Log cache hit/miss ratio
+    alert_on_slow_loads: true           # Alert when loads exceed threshold
+    slow_load_threshold_ms: 500         # Threshold for slow load alert
+
+# =============================================================================
+# SECTION 2: TIER DEFINITIONS
+# =============================================================================
+# These tiers align with the architecture from CONCURA-2.1 (tier-architecture.md)
+
+tiers:
+  minimal:
+    token_budget: 500
+    hard_limit: 750
+    description: "Routing decisions, listing operations, simple queries"
+    default_at_session_start: true
+
+  standard:
+    token_budget: 2000
+    hard_limit: 3000
+    description: "Single agent operations, single workflow execution"
+    inherits_from: minimal
+
+  full:
+    token_budget: 10000
+    hard_limit: 15000
+    description: "Multi-agent operations, Party Mode, cross-module workflows"
+    inherits_from: standard
+
+# =============================================================================
+# SECTION 3: COMPONENT DEFINITIONS
+# =============================================================================
+# Defines all context components that can be loaded
+
+components:
+  # ----- System Components (Always/Eager Load) -----
+  SYS_BASE:
+    description: "Claude Code base system instructions"
+    estimated_tokens: 15000
+    loading_strategy: eager
+    tier: minimal
+    cacheable: true
+    location: system
+    priority: critical
+
+  TOOL_DEFS:
+    description: "Tool definitions and descriptions"
+    estimated_tokens: 12000
+    loading_strategy: eager
+    tier: minimal
+    cacheable: true
+    location: system
+    priority: critical
+
+  SEC_RULES:
+    description: "Security rules reference"
+    estimated_tokens: 500
+    loading_strategy: eager
+    tier: minimal
+    cacheable: true
+    location: shared
+    priority: critical
+
+  # ----- Index Components (Minimal Tier) -----
+  AGENT_INDEX:
+    description: "Minimal agent ID to path mapping"
+    estimated_tokens: 500
+    loading_strategy: eager_conditional
+    tier: minimal
+    cacheable: true
+    location: "{project-root}/_bmad/_config/agent-index.yaml"
+    condition: "intent_may_need_agent_lookup"
+    priority: high
+
+  WF_INDEX:
+    description: "Minimal workflow ID to path mapping"
+    estimated_tokens: 300
+    loading_strategy: eager_conditional
+    tier: minimal
+    cacheable: true
+    location: "{project-root}/_bmad/_config/workflow-index.yaml"
+    condition: "intent_may_need_workflow_lookup"
+    priority: high
+
+  # ----- Agent Components (Lazy Load) -----
+  AGENT_FILE:
+    description: "Full agent persona file"
+    estimated_tokens: 2500              # Average
+    token_range: [1500, 14000]
+    loading_strategy: lazy
+    tier: standard
+    cacheable: true
+    location_pattern: "{project-root}/_bmad/{module}/agents/{agent}.md"
+    priority: high
+    trigger: agent_activation
+
+  AGENT_SUM:
+    description: "Compressed agent identity summary (~200 tokens)"
+    estimated_tokens: 200
+    loading_strategy: lazy
+    tier: full
+    cacheable: true
+    derived_from: AGENT_FILE
+    priority: medium
+    trigger: party_mode_initialization
+
+  # ----- Workflow Components (Lazy/Progressive Load) -----
+  WF_FILE:
+    description: "Workflow entry file (workflow.md or workflow.yaml)"
+    estimated_tokens: 4000              # Average
+    token_range: [2000, 15000]
+    loading_strategy: lazy
+    tier: standard
+    cacheable: true
+    location_pattern: "{project-root}/_bmad/{module}/workflows/{workflow}/workflow.md"
+    priority: high
+    trigger: workflow_invocation
+
+  WF_STEP:
+    description: "Individual workflow step file"
+    estimated_tokens: 3500              # Average
+    token_range: [1000, 10000]
+    loading_strategy: progressive
+    tier: standard
+    cacheable: true
+    location_pattern: "{workflow_path}/steps/step-{n}.md"
+    priority: high
+    trigger: step_transition
+    progressive_config:
+      load_current: true
+      load_ahead: 1                     # Pre-load 1 step ahead
+      replace_on_advance: true          # Don't accumulate steps
+
+  # ----- Project Context (Conditional Load) -----
+  PROJ_CTX:
+    description: "Project context file (project-context.md)"
+    estimated_tokens: 3000
+    loading_strategy: conditional
+    tier: minimal
+    cacheable: true
+    location: "{output_folder}/project-context.md"
+    condition: file_exists
+    priority: medium
+
+  GIT_STATUS:
+    description: "Current git branch and changes"
+    estimated_tokens: 800
+    loading_strategy: conditional
+    tier: minimal
+    cacheable: true
+    cache_ttl_minutes: 5
+    location: system
+    condition: is_development_context
+    priority: medium
+
+  # ----- Multi-Agent Components (Full Tier) -----
+  PARTY_ORCHESTRATOR:
+    description: "Party mode orchestration rules"
+    estimated_tokens: 1000
+    loading_strategy: lazy
+    tier: full
+    cacheable: true
+    location: "{project-root}/_bmad/core/workflows/party-mode/workflow.md"
+    priority: high
+    trigger: party_mode_start
+
+  PARTY_PRESETS:
+    description: "Cross-module team presets"
+    estimated_tokens: 11000
+    loading_strategy: conditional
+    tier: full
+    cacheable: true
+    location: "{project-root}/_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml"
+    condition: using_preset
+    priority: medium
+
+  CROSS_MODULE:
+    description: "Cross-module coordination context"
+    estimated_tokens: 800
+    loading_strategy: lazy
+    tier: full
+    cacheable: true
+    location: derived
+    priority: high
+    trigger: cross_module_operation
+
+  # ----- Knowledge Base Components (Lazy Load) -----
+  KNOWLEDGE:
+    description: "Domain-specific knowledge files"
+    estimated_tokens: 6000              # Average
+    token_range: [2000, 25000]
+    loading_strategy: lazy
+    tier: full
+    cacheable: true
+    location_pattern: "{project-root}/_bmad/{module}/knowledge/*.md"
+    priority: low
+    trigger: knowledge_reference
+    loading_config:
+      strategy: INDEX_GUIDED            # Use index to load relevant sections
+      fallback: FULL_LOAD               # Load all if no index
+
+  # ----- Manifests (Avoid Load) -----
+  AGENT_MANIFEST:
+    description: "Full agent manifest - AVOID LOADING"
+    estimated_tokens: 16000
+    loading_strategy: avoid
+    tier: full
+    cacheable: true
+    location: "{project-root}/_bmad/_config/agent-manifest.csv"
+    priority: low
+    note: "Use AGENT_INDEX instead"
+
+  WF_MANIFEST:
+    description: "Full workflow manifest - AVOID LOADING"
+    estimated_tokens: 7400
+    loading_strategy: avoid
+    tier: full
+    cacheable: true
+    location: "{project-root}/_bmad/_config/workflow-manifest.csv"
+    priority: low
+    note: "Use WF_INDEX instead"
+
+  FILES_MANIFEST:
+    description: "File integrity manifest - AVOID LOADING"
+    estimated_tokens: 25600
+    loading_strategy: avoid
+    tier: full
+    cacheable: true
+    location: "{project-root}/_bmad/_config/files-manifest.csv"
+    condition: security_verification_requested
+    priority: low
+
+  # ----- Skill List -----
+  SKILL_LIST:
+    description: "Available skills listing"
+    estimated_tokens: 9400              # Full
+    loading_strategy: eager_conditional
+    tier: minimal
+    cacheable: true
+    location: system
+    variants:
+      full:
+        tokens: 9400
+        condition: workflow_or_party_mode
+      minimal:
+        tokens: 2000
+        condition: default
+
+# =============================================================================
+# SECTION 4: TIER ESCALATION TRIGGERS
+# =============================================================================
+# Defines when to escalate from one tier to another
+
+tier_escalation:
+  minimal_to_standard:
+    triggers:
+      - trigger: agent_activation
+        description: "User activates a specific agent"
+        patterns:
+          - "activate {agent}"
+          - "talk to {agent}"
+          - "speak with {agent}"
+          - "get {agent}"
+          - "bring in {agent}"
+          - "@{agent}"
+
+      - trigger: workflow_invocation
+        description: "User invokes a workflow"
+        patterns:
+          - "/{workflow}"
+          - "run {workflow}"
+          - "execute {workflow}"
+          - "start {workflow}"
+
+      - trigger: role_based_request
+        description: "User requests help from a role"
+        patterns:
+          - "I need an architect"
+          - "I need a developer"
+          - "I need help with security"
+        action: "map_role_to_agent"
+
+    confirmation_required: false
+    auto_escalate: true
+
+  standard_to_full:
+    triggers:
+      - trigger: additional_agent_needed
+        description: "User requests another agent while one is active"
+        patterns:
+          - "also bring in {agent}"
+          - "let's add {agent}"
+          - "and {agent}"
+
+      - trigger: party_mode_request
+        description: "User requests multi-agent discussion"
+        patterns:
+          - "party mode"
+          - "team discussion"
+          - "get the team"
+          - "multiple agents"
+
+      - trigger: cross_module_operation
+        description: "Operation spans multiple BMAD modules"
+        detection: "automatic"
+        action: "detect_cross_module_references"
+
+      - trigger: knowledge_base_required
+        description: "Workflow step requires knowledge base"
+        detection: "workflow_step_dependency"
+
+    confirmation_required: false        # Per tier-architecture.md
+    auto_escalate: true
+
+  full_to_standard:
+    triggers:
+      - trigger: party_mode_exit
+        description: "User exits party mode, single agent remains"
+        patterns:
+          - "dismiss all"
+          - "just talk to {agent}"
+          - "end party mode"
+
+      - trigger: workflow_completion
+        description: "Complex workflow completes, return to agent"
+        detection: "workflow_complete_signal"
+
+    confirmation_required: true
+    confirmation_message: "Exiting multi-agent mode. Continue with just {agent}?"
+
+  any_to_minimal:
+    triggers:
+      - trigger: agent_dismissal
+        description: "User dismisses all agents"
+        patterns:
+          - "dismiss agent"
+          - "[DA]"
+          - "dismiss all"
+
+      - trigger: session_reset
+        description: "User requests fresh start"
+        patterns:
+          - "start fresh"
+          - "reset session"
+          - "clear context"
+
+    confirmation_required: true
+    confirmation_message: "This will dismiss all active agents. Confirm?"
+
+# =============================================================================
+# SECTION 5: INTENT-BASED LOADING RULES
+# =============================================================================
+# Rules for what to load based on detected intent (from CONCURA-2.3)
+
+intent_loading_rules:
+  AGENT_ACTIVATE:
+    description: "User wants to work with a specific BMAD agent"
+    tier: standard
+
+    eager_load:
+      - component: AGENT_FILE
+        selector: detected_agent
+        fallback: AGENT_INDEX
+
+    conditional_load:
+      - component: SKILL_LIST
+        variant: minimal
+
+      - component: PROJ_CTX
+        condition: file_exists
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - WF_FILE
+      - WF_STEP
+      - PARTY_PRESETS
+      - KNOWLEDGE
+      - FILES_MANIFEST
+
+    progressive_load: []
+
+  WORKFLOW_EXECUTE:
+    description: "User wants to run a structured workflow"
+    tier: standard
+
+    eager_load:
+      - component: WF_FILE
+        selector: detected_workflow
+
+      - component: WF_STEP
+        selector: current_step_only
+
+      - component: AGENT_FILE
+        selector: workflow_primary_agent
+
+      - component: SKILL_LIST
+        variant: full
+
+    conditional_load:
+      - component: PROJ_CTX
+        condition: file_exists
+
+      - component: GIT_STATUS
+        condition: is_dev_workflow
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - FILES_MANIFEST
+      - PARTY_PRESETS
+
+    progressive_load:
+      - component: WF_STEP
+        strategy: load_on_step_completion
+        config:
+          load_ahead: 1
+
+      - component: KNOWLEDGE
+        strategy: load_on_reference
+
+  PARTY_MODE:
+    description: "User wants multiple agents in conversation"
+    tier: full
+
+    eager_load:
+      - component: PARTY_ORCHESTRATOR
+
+      - component: AGENT_SUM
+        selector: participating_agents
+
+      - component: SKILL_LIST
+        variant: minimal
+
+    conditional_load:
+      - component: PARTY_PRESETS
+        condition: using_preset
+
+      - component: CROSS_MODULE
+        condition: cross_module_agents
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - WF_FILE
+      - WF_STEP
+      - FILES_MANIFEST
+      - Full AGENT_FILEs  # Use summaries
+
+    progressive_load:
+      - component: AGENT_FILE
+        strategy: load_on_first_speak
+        config:
+          cache_after_load: true
+
+  QUICK_CHAT:
+    description: "User has a quick question, no formal process"
+    tier: minimal
+
+    eager_load:
+      - component: SKILL_LIST
+        variant: minimal
+
+    conditional_load:
+      - component: PROJ_CTX
+        condition: question_about_project
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - WF_FILE
+      - WF_STEP
+      - AGENT_FILE
+      - PARTY_PRESETS
+      - KNOWLEDGE
+      - FILES_MANIFEST
+      - GIT_STATUS
+
+    progressive_load: []
+
+  PROJECT_MGMT:
+    description: "User wants to manage projects/tasks"
+    tier: standard
+
+    eager_load:
+      - component: AGENT_FILE
+        selector: abdul
+
+      - component: WF_INDEX
+
+      - component: SKILL_LIST
+        variant: full
+
+    conditional_load:
+      - component: PROJ_CTX
+        condition: file_exists
+
+      - component: WF_FILE
+        condition: workflow_selected
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - FILES_MANIFEST
+      - PARTY_PRESETS
+      - KNOWLEDGE
+
+    progressive_load:
+      - component: WF_FILE
+        strategy: load_on_selection
+
+  CODE_DEV:
+    description: "User wants to write/review code"
+    tier: standard
+
+    eager_load:
+      - component: AGENT_FILE
+        selector: dev
+
+      - component: PROJ_CTX
+
+      - component: GIT_STATUS
+
+      - component: SKILL_LIST
+        variant: minimal
+
+    conditional_load:
+      - component: WF_FILE
+        selector: dev-story
+        condition: executing_story
+
+      - component: WF_STEP
+        condition: executing_story
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - FILES_MANIFEST
+      - PARTY_PRESETS
+      - KNOWLEDGE
+
+    progressive_load:
+      - component: WF_STEP
+        strategy: load_on_task_completion
+
+  DOCUMENTATION:
+    description: "User wants to create/update docs"
+    tier: standard
+
+    eager_load:
+      - component: AGENT_FILE
+        selector: tech-writer
+
+      - component: SKILL_LIST
+        variant: minimal
+
+    conditional_load:
+      - component: PROJ_CTX
+        condition: documenting_project
+
+      - component: GIT_STATUS
+        condition: documenting_code
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - WF_FILE
+      - WF_STEP
+      - PARTY_PRESETS
+      - KNOWLEDGE
+      - FILES_MANIFEST
+
+    progressive_load: []
+
+  SECURITY_OPS:
+    description: "User needs security assessment/response"
+    tier: standard_or_full
+
+    eager_load:
+      - component: AGENT_FILE
+        selector: security_lead_agent
+
+      - component: SKILL_LIST
+        variant: full
+
+    conditional_load:
+      - component: WF_FILE
+        condition: workflow_identified
+
+      - component: PARTY_PRESETS
+        condition: team_requested
+
+      - component: FILES_MANIFEST
+        condition: integrity_check_requested
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - Non-security agents
+      - Non-security workflows
+
+    progressive_load:
+      - component: AGENT_FILE
+        selector: additional_security_agents
+        strategy: load_as_needed
+
+      - component: KNOWLEDGE
+        strategy: load_on_reference
+
+  INTEL_OPS:
+    description: "User needs OSINT/intelligence work"
+    tier: standard_or_full
+
+    eager_load:
+      - component: AGENT_FILE
+        selector: osint-lead
+
+      - component: SKILL_LIST
+        variant: full
+
+    conditional_load:
+      - component: WF_FILE
+        condition: workflow_identified
+
+      - component: PARTY_PRESETS
+        condition: team_requested
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - Non-intel agents
+      - Non-intel workflows
+
+    progressive_load:
+      - component: AGENT_FILE
+        selector: additional_intel_agents
+        strategy: load_as_needed
+
+      - component: KNOWLEDGE
+        selector: osint_knowledge
+        strategy: load_on_reference
+
+  RESEARCH:
+    description: "User wants deep research on a topic"
+    tier: standard_or_full
+
+    eager_load:
+      - component: SKILL_LIST
+        variant: full
+
+    conditional_load:
+      - component: WF_FILE
+        condition: using_research_workflow
+
+      - component: AGENT_FILE
+        condition: agent_specified
+
+      - component: PROJ_CTX
+        condition: file_exists
+
+    skip:
+      - AGENT_MANIFEST
+      - WF_MANIFEST
+      - PARTY_PRESETS
+      - FILES_MANIFEST
+
+    progressive_load:
+      - component: KNOWLEDGE
+        strategy: load_on_reference
+
+# =============================================================================
+# SECTION 6: CACHING RULES
+# =============================================================================
+
+caching:
+  # Session-level cache behavior
+  session_cache:
+    enabled: true
+    max_tokens: 100000
+    eviction_policy: lru              # Least Recently Used
+
+  # Component-specific caching rules
+  component_rules:
+    AGENT_FILE:
+      cache_duration: session         # Never expires within session
+      eviction_priority: low          # Keep agents as long as possible
+      replace_on_deactivation: false  # Keep even when agent deactivated
+
+    WF_FILE:
+      cache_duration: session
+      eviction_priority: low
+      replace_on_completion: false    # Keep for reference
+
+    WF_STEP:
+      cache_duration: until_replaced  # Replace when advancing
+      eviction_priority: n/a          # Managed by progressive loader
+      max_cached_steps: 2             # Current + 1 ahead
+
+    KNOWLEDGE:
+      cache_duration: session
+      eviction_priority: high         # Evict first if needed
+      reload_on_domain_change: true
+
+    GIT_STATUS:
+      cache_duration: 5_minutes
+      eviction_priority: high
+      refresh_trigger: file_change
+
+    PROJ_CTX:
+      cache_duration: 30_minutes
+      eviction_priority: medium
+      refresh_trigger: manual
+
+  # Cache warming strategy
+  warming:
+    enabled: true
+    triggers:
+      - trigger: intent_detection
+        action: warm_intent_components
+
+      - trigger: workflow_start
+        action: warm_workflow_steps
+
+      - trigger: agent_activation
+        action: warm_agent_workflows
+
+    background: true                  # Don't block user interaction
+
+# =============================================================================
+# SECTION 7: ERROR HANDLING AND DEGRADATION
+# =============================================================================
+
+error_handling:
+  # Error classification
+  error_types:
+    file_not_found:
+      severity: recoverable
+      strategy: suggest_alternatives
+
+    parse_error:
+      severity: recoverable
+      strategy: use_minimal_stub
+
+    token_overflow:
+      severity: recoverable
+      strategy: trim_or_escalate
+
+    network_error:
+      severity: recoverable
+      strategy: use_cached_or_skip
+
+    timeout_error:
+      severity: recoverable
+      strategy: return_partial
+
+  # Degradation strategies
+  degradation_strategies:
+    agent_not_found:
+      action: return_minimal_stub
+      stub_content: |
+        I am {agent_id}, but my full configuration is unavailable.
+        I can help with general conversation and routing to other agents.
+      suggest_similar: true
+      log_warning: true
+
+    workflow_not_found:
+      action: list_available_workflows
+      suggest_similar: true
+      log_warning: true
+
+    step_load_failed:
+      action: offer_options
+      options:
+        - manual: "Describe what this step should do"
+        - skip: "Skip to next step"
+        - abort: "Exit workflow"
+      log_error: true
+
+    knowledge_unavailable:
+      action: continue_without
+      message: |
+        Knowledge base '{kb_id}' is unavailable.
+        Responses may be less detailed in this domain.
+      log_warning: true
+
+    token_overflow:
+      action: smart_trim
+      trim_order:
+        - KNOWLEDGE
+        - WF_STEP  # Old steps
+        - AGENT_SUM  # Non-speaking agents
+      escalate_if_insufficient: true
+      log_warning: true
+
+  # Retry configuration
+  retry:
+    max_attempts: 2
+    delay_ms: 100
+    exponential_backoff: false
+    retryable_errors:
+      - timeout_error
+      - network_error
+
+  # Logging
+  logging:
+    log_all_errors: true
+    log_degradation: true
+    include_stack_trace: false
+    log_file: "{project-root}/.claude/logs/context-loader.log"
+
+# =============================================================================
+# SECTION 8: CROSS-MODULE RULES
+# =============================================================================
+
+cross_module:
+  # Module definitions
+  modules:
+    core:
+      description: "Core orchestration and project management"
+      primary_agents: [abdul, bmad-master]
+      can_invoke: all
+
+    bmm:
+      description: "Software development lifecycle"
+      primary_agents: [dev, architect, pm, analyst, qa, designer, tea, sm]
+      can_invoke: [core, cybersec-team]
+
+    cybersec-team:
+      description: "Security operations and assessments"
+      primary_agents: [security-architect, incident-commander, penetration-tester, compliance-officer]
+      can_invoke: [core, intel-team, legal-team]
+
+    intel-team:
+      description: "Intelligence and OSINT operations"
+      primary_agents: [osint-lead, threat-actor-profiler, dark-web-analyst]
+      can_invoke: [core, cybersec-team]
+
+    legal-team:
+      description: "Legal and compliance operations"
+      primary_agents: [counsel]
+      can_invoke: [core, cybersec-team]
+
+    strategy-team:
+      description: "Strategic advisory and decision support"
+      primary_agents: [the-master-strategist, political-strategist]
+      can_invoke: [core, legal-team]
+
+  # Cross-module detection
+  detection:
+    enabled: true
+    method: track_referenced_modules
+    threshold: 2                        # Cross-module if 2+ modules referenced
+
+  # Cross-module context loading
+  on_cross_module:
+    load_components:
+      - CROSS_MODULE
+
+    load_content:
+      - module_boundaries
+      - handoff_protocols
+      - conflict_resolution_rules
+
+# =============================================================================
+# SECTION 9: AGENT AND WORKFLOW QUICK MAPS
+# =============================================================================
+# Quick lookup maps for common agents and workflows
+
+agent_quick_map:
+  # Core module
+  abdul:
+    module: core
+    path: "_bmad/core/agents/abdul.md"
+    role: "Master Project Manager"
+
+  # BMM module - key agents
+  winston:
+    module: bmm
+    path: "_bmad/bmm/agents/architect.md"
+    role: "System Architect"
+    alias_for: architect
+
+  dev:
+    module: bmm
+    path: "_bmad/bmm/agents/dev.md"
+    role: "Senior Developer"
+
+  pm:
+    module: bmm
+    path: "_bmad/bmm/agents/pm.md"
+    role: "Product Manager"
+
+  tea:
+    module: bmm
+    path: "_bmad/bmm/agents/tea.md"
+    role: "Test Architect"
+
+  # Cybersec module - key agents
+  bastion:
+    module: cybersec-team
+    path: "_bmad/cybersec-team/agents/security-architect.md"
+    role: "Security Architect"
+    alias_for: security-architect
+
+  phoenix:
+    module: cybersec-team
+    path: "_bmad/cybersec-team/agents/incident-commander.md"
+    role: "Incident Commander"
+    alias_for: incident-commander
+
+  # Intel module - key agents
+  vector:
+    module: intel-team
+    path: "_bmad/intel-team/agents/osint-lead.md"
+    role: "Intelligence Operations"
+    alias_for: osint-lead
+
+workflow_quick_map:
+  # Development workflows
+  create-prd:
+    path: "_bmad/bmm/workflows/2-plan-workflows/prd/workflow.md"
+    primary_agent: pm
+    module: bmm
+
+  create-architecture:
+    path: "_bmad/bmm/workflows/3-solutioning/create-architecture/workflow.md"
+    primary_agent: architect
+    module: bmm
+
+  dev-story:
+    path: "_bmad/bmm/workflows/4-implementation/dev-story/workflow.yaml"
+    primary_agent: dev
+    module: bmm
+
+  # Intel workflows
+  flash-assessment:
+    path: "_bmad/intel-team/workflows/flash-assessment/workflow.md"
+    primary_agent: osint-lead
+    module: intel-team
+
+  # Security workflows
+  incident-response:
+    path: "_bmad/cybersec-team/workflows/incident-response-playbook/workflow.md"
+    primary_agent: incident-commander
+    module: cybersec-team
+
+  threat-modeling:
+    path: "_bmad/cybersec-team/workflows/threat-modeling/workflow.md"
+    primary_agent: security-architect
+    module: cybersec-team
+
+  # Core workflows
+  party-mode:
+    path: "_bmad/core/workflows/party-mode/workflow.md"
+    primary_agent: null
+    module: core
+
+  whats-next:
+    path: "_bmad/core/workflows/project-manager/whats-next/workflow.yaml"
+    primary_agent: abdul
+    module: core
+
+# =============================================================================
+# SECTION 10: PERFORMANCE TARGETS
+# =============================================================================
+
+performance:
+  latency_targets:
+    agent_activation: 100ms
+    workflow_invocation: 200ms
+    step_transition: 50ms
+    party_mode_start: 300ms
+    knowledge_lookup: 500ms
+
+  token_targets:
+    minimal_tier: 500
+    standard_tier: 2000
+    full_tier: 10000
+    quick_chat_session: 28000
+    agent_activate_session: 32000
+    workflow_execute_session: 42000
+    party_mode_session: 45000
+
+  cache_targets:
+    hit_rate: 0.80                    # 80% cache hit rate
+    eviction_rate: 0.10               # Max 10% evictions per session
+
+# =============================================================================
+# END OF CONFIGURATION
+# =============================================================================

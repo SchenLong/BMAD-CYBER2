@@ -1,0 +1,509 @@
+{
+  "sessionId": "1768770281576",
+  "tokensUsed": 13100,
+  "operations": [
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281590
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281591
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281591
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281591
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281592
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281592
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281592
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281593
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281593
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281593
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281594
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281594
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281594
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281595
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281595
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281595
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281596
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281596
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281597
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281597
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281597
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281598
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281598
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281599
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281599
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281600
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281600
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281601
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281602
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281602
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281603
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281603
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281604
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281604
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281604
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281605
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281605
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281606
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281606
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281606
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281607
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281607
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281608
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281608
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281609
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281609
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281609
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281610
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281610
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281611
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281611
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281612
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281612
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281613
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281614
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281614
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281615
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281616
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281617
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281618
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281619
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281619
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281620
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281620
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281621
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281621
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281622
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281622
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281623
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281624
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281624
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281625
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281625
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281626
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281626
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281626
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281627
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281627
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281628
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281628
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281629
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281629
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281630
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281631
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281631
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281631
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281632
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281633
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281633
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281634
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281634
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281634
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281635
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281635
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281636
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281637
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281637
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281637
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281638
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1768770281638
+    }
+  ],
+  "warningsIssued": 0,
+  "lastUpdate": 1768770281638,
+  "createdAt": 1768770281576
+}

@@ -7,6 +7,7 @@
 # User-generated outputs - these are created during workflow execution
 _output/
 _bmad-output/
+_bmad-output/project-registry.yaml
 
 # Security review documentation (internal development artifacts)
 _bmad-output/BMAD-Security-Review/
@@ -22,8 +23,31 @@ docs/projects/
 # ===================
 # Local settings contain user-specific configurations
 .claude/settings.local.json
+.claude/settings-python-backup.json
 .claude/audio/
 .claude/projects/
+
+# ===================
+# Archive Directories
+# ===================
+# Archived Python validators (development artifacts)
+.claude/validators-python-backup/
+# Legacy output artifacts
+_bmad-output/
+docs/archive/
+
+# ===================
+# Runtime State Files
+# ===================
+# Sensitive runtime state and configuration
+.claude/.rate_limit_state.json
+.claude/.confidence_state.json
+.claude/.override_state.json
+.claude/.resource_state.json
+.claude/.session_claims.json
+.claude/.session_validated
+.claude/*.lock
+.claude/dashboard.html
 
 # ===================
 # Planning Artifacts

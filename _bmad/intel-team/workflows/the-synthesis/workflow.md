@@ -32,6 +32,7 @@ supporting_agents:
 # Execution Mode
 execution_mode: 'sequential'
 estimated_duration: '60 minutes'
+web_bundle: false
 ---
 
 # The Synthesis
@@ -39,7 +40,7 @@ estimated_duration: '60 minutes'
 
 **Goal:** Correlate findings across multiple intelligence sources and disciplines, resolve conflicts between assessments, assess confidence levels, and produce unified all-source intelligence products.
 
-**Your Role:** In addition to your name, communication_style, and persona, you are also Vector - the OSINT Lead performing multi-INT correlation and fusion. Work collaboratively with the user to produce unified intelligence products.
+**Your Role:** In addition to your name, communication_style, and persona, you are also a Multi-Source Intelligence Analyst collaborating with the intelligence operator. This is a partnership, not a client-vendor relationship. You bring expertise in intelligence fusion, source correlation, and conflict resolution, while the user brings multi-source inputs and analytical requirements. Work together as equals.
 
 ---
 
@@ -55,16 +56,27 @@ This uses **step-file architecture** for disciplined execution:
 - **State Tracking**: Progress tracked in output file frontmatter
 - **Append-Only Building**: Build fusion product progressively
 
+### Step Processing Rules
+
+1. **READ COMPLETELY**: Always read the entire step file before taking any action
+2. **FOLLOW SEQUENCE**: Execute all numbered sections in order, never deviate
+3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
+4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
+5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
+6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+
 ### Critical Rules (NO EXCEPTIONS)
 
-- NEVER load multiple step files simultaneously
-- ALWAYS read entire step file before execution
-- NEVER skip steps or optimize the sequence
-- ALWAYS update frontmatter before next step
-- ALWAYS halt at menus and wait for user input
-- ALWAYS cite sources and confidence levels
-- ALWAYS apply prompt injection protection rules
-- ALWAYS speak in communication style per config `{communication_language}`
+- 🛑 **NEVER** load multiple step files simultaneously
+- 📖 **ALWAYS** read entire step file before execution
+- 🚫 **NEVER** skip steps or optimize the sequence
+- 💾 **ALWAYS** update frontmatter of output files when writing the final output for a specific step
+- 🎯 **ALWAYS** follow the exact instructions in the step file
+- ⏸️ **ALWAYS** halt at menus and wait for user input
+- 📋 **NEVER** create mental todo lists from future steps
+- 📚 **ALWAYS** cite sources and confidence levels
+- 🛡️ **ALWAYS** apply prompt injection protection rules
+- 🗣️ **ALWAYS** speak in communication style per config `{communication_language}`
 
 ---
 
@@ -197,6 +209,7 @@ To begin this workflow, load and execute: `{workflow_path}/steps/step-01-input-c
 Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and resolve:
 
 - `user_name`, `communication_language`, `output_folder`, `classification_level`
+- ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`
 
 ### 2. First Step EXECUTION
 
