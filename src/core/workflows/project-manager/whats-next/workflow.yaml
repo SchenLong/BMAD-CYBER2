@@ -1,0 +1,411 @@
+# BMAD What's Next Intelligent Routing Workflow
+# Analyzes project state and recommends optimal next actions with appropriate agent assignments
+# Version: 2.0.0
+
+schema_version: "1.0"
+format_version: "workflow.yaml"
+
+# Workflow Metadata
+workflow:
+  metadata:
+    name: What's Next - Intelligent Routing
+    id: whats-next
+    version: "2.0.0"
+    description: "Analyzes current project state and intelligently recommends next actions with optimal agent assignments"
+    category: "intelligent-orchestration"
+    estimated_duration: "3-8 minutes"
+    complexity: "high"
+
+  # Workflow Inputs
+  inputs:
+    - name: context_analysis
+      type: string
+      required: false
+      options: ["current_project", "portfolio_wide", "specific_domain"]
+      default: "current_project"
+    - name: priority_focus
+      type: string
+      required: false
+      options: ["urgent", "strategic", "efficiency", "quality", "balanced"]
+      default: "balanced"
+    - name: resource_constraints
+      type: array
+      required: false
+      description: "Known resource limitations or preferences"
+    - name: time_horizon
+      type: string
+      required: false
+      options: ["immediate", "today", "this_week", "this_month"]
+      default: "today"
+
+  # Workflow Outputs
+  outputs:
+    - name: recommended_actions
+      type: array
+      description: "Prioritized list of recommended next actions"
+    - name: agent_assignments
+      type: object
+      description: "Optimal agent assignments for each action"
+    - name: rationale
+      type: text
+      description: "Explanation of recommendations"
+    - name: alternative_paths
+      type: array
+      description: "Alternative approaches and their trade-offs"
+    - name: resource_allocation
+      type: object
+      description: "Recommended resource allocation strategy"
+
+# Workflow Steps
+steps:
+  - number: 1
+    name: "Context Analysis"
+    description: "Analyze current project and portfolio state"
+    action: "analyze_context"
+    logic: |
+      1. Load active project registry and status
+      2. Analyze recent activity patterns across teams
+      3. Identify pending deliverables and milestones
+      4. Review resource utilization and capacity
+      5. Assess stakeholder expectations and pressures
+
+  - number: 2
+    name: "Opportunity Identification"
+    description: "Identify available opportunities and priorities"
+    action: "identify_opportunities"
+    logic: |
+      1. Scan for high-impact, ready-to-start tasks
+      2. Identify blocked tasks that could be unblocked
+      3. Look for cross-team collaboration opportunities
+      4. Find quick wins and momentum builders
+      5. Assess strategic alignment opportunities
+
+  - number: 3
+    name: "Resource Assessment"
+    description: "Evaluate available resources and capabilities"
+    action: "assess_resources"
+    logic: |
+      1. Check current team availability and workloads
+      2. Identify underutilized expertise areas
+      3. Assess agent specialization matches
+      4. Evaluate cross-team collaboration bandwidth
+      5. Consider external resource requirements
+
+  - number: 4
+    name: "Intelligent Prioritization"
+    description: "Apply AI-driven prioritization algorithms"
+    action: "prioritize_intelligently"
+    logic: |
+      1. Calculate impact vs. effort matrices
+      2. Apply urgency and dependency analysis
+      3. Consider strategic alignment scoring
+      4. Evaluate risk mitigation opportunities
+      5. Assess momentum and motivation factors
+
+  - number: 5
+    name: "Agent Matching"
+    description: "Match optimal agents to prioritized actions"
+    action: "match_agents"
+    integration: "intelligent-routing"
+    logic: |
+      1. Use keyword mapping for expertise matching
+      2. Consider current workload distribution
+      3. Optimize for skill development opportunities
+      4. Balance specialization with collaboration
+      5. Account for preference and success history
+
+  - number: 6
+    name: "Path Analysis"
+    description: "Analyze different execution paths and their implications"
+    action: "analyze_paths"
+    logic: |
+      1. Model sequential vs. parallel execution
+      2. Identify critical path dependencies
+      3. Assess resource contention scenarios
+      4. Evaluate risk and contingency options
+      5. Consider stakeholder communication needs
+
+  - number: 7
+    name: "Generate Recommendations"
+    description: "Create comprehensive next-action recommendations"
+    action: "generate_recommendations"
+    output_format: |
+      ## 🎯 What's Next - Intelligent Recommendations
+
+      **Analysis Completed:** {current_timestamp}
+      **Context:** {context_analysis} | **Focus:** {priority_focus} | **Horizon:** {time_horizon}
+
+      ---
+
+      ## 🚀 Top Priority Recommendations
+
+      {for action in recommended_actions[:3]}
+      ### {action.priority}. {action.title}
+
+      **🎯 Impact:** {action.impact_score}/10 | **⚡ Effort:** {action.effort_score}/10 | **🏆 Priority Score:** {action.priority_score}/10
+
+      **Description:** {action.description}
+
+      **Recommended Agent:** {action.assigned_agent} ({action.team})
+      **Rationale:** {action.assignment_rationale}
+
+      **Supporting Team:**
+      {for support in action.supporting_agents}
+      - {support.agent} ({support.role})
+      {/for}
+
+      **Estimated Duration:** {action.estimated_duration}
+      **Dependencies:** {action.dependencies}
+
+      **Why This Matters:**
+      {action.strategic_importance}
+
+      **Success Metrics:**
+      {for metric in action.success_metrics}
+      - {metric}
+      {/for}
+
+      ---
+      {/for}
+
+      ## 📊 Full Action Portfolio
+
+      ### Immediate Actions (Next 24 Hours)
+      {for action in immediate_actions}
+      **{action.title}** | Agent: {action.agent} | Duration: {action.duration}
+      {action.brief_description}
+      {/for}
+
+      ### Short-term Actions (This Week)
+      {for action in short_term_actions}
+      **{action.title}** | Agent: {action.agent} | Duration: {action.duration}
+      {action.brief_description}
+      {/for}
+
+      ### Strategic Actions (This Month)
+      {for action in strategic_actions}
+      **{action.title}** | Agent: {action.agent} | Duration: {action.duration}
+      {action.brief_description}
+      {/for}
+
+      ---
+
+      ## 🧠 Analysis Insights
+
+      ### Current State Assessment
+      **Portfolio Health:** {portfolio_health}/10
+      **Team Utilization:** {team_utilization}%
+      **Momentum Score:** {momentum_score}/10
+      **Risk Level:** {risk_level}
+
+      **Key Observations:**
+      {for insight in key_insights}
+      - {insight}
+      {/for}
+
+      ### Resource Allocation Recommendation
+      **Cybersecurity Team:** {cybersec_allocation}% capacity
+      - Focus: {cybersec_focus_areas}
+
+      **Intelligence Team:** {intel_allocation}% capacity
+      - Focus: {intel_focus_areas}
+
+      **Legal Team:** {legal_allocation}% capacity
+      - Focus: {legal_focus_areas}
+
+      **Strategy Team:** {strategy_allocation}% capacity
+      - Focus: {strategy_focus_areas}
+
+      ### Optimization Opportunities
+      {for opportunity in optimization_opportunities}
+      **{opportunity.title}**
+      {opportunity.description}
+      Potential Impact: {opportunity.impact}
+      {/for}
+
+      ---
+
+      ## 🔄 Alternative Approaches
+
+      {for alternative in alternative_paths}
+      ### Approach: {alternative.name}
+      **Philosophy:** {alternative.philosophy}
+      **Pros:** {alternative.advantages}
+      **Cons:** {alternative.disadvantages}
+      **Best For:** {alternative.best_scenarios}
+      {/for}
+
+      ---
+
+      ## 🎬 Next Steps
+
+      1. **[E]** Execute top priority recommendation
+      2. **[C]** Customize recommendations based on constraints
+      3. **[A]** Assign specific actions to agents
+      4. **[R]** Refresh analysis with updated context
+      5. **[S]** Schedule follow-up analysis session
+
+      **Recommendation Confidence:** {recommendation_confidence}%
+
+# Prioritization Algorithms
+prioritization_algorithms:
+  impact_assessment:
+    factors:
+      strategic_alignment: 25
+      stakeholder_value: 20
+      risk_mitigation: 15
+      capability_building: 15
+      efficiency_gain: 15
+      revenue_impact: 10
+
+  effort_estimation:
+    factors:
+      complexity: 30
+      resource_requirements: 25
+      dependency_complexity: 20
+      skill_availability: 15
+      tool_requirements: 10
+
+  urgency_scoring:
+    factors:
+      deadline_pressure: 35
+      stakeholder_expectations: 25
+      dependency_chains: 20
+      competitive_pressure: 10
+      regulatory_requirements: 10
+
+  momentum_factors:
+    positive_indicators:
+      - "team_energy_high"
+      - "recent_success_completion"
+      - "clear_stakeholder_engagement"
+      - "resources_readily_available"
+      - "expertise_well_matched"
+
+    negative_indicators:
+      - "team_overcommitted"
+      - "recent_project_challenges"
+      - "unclear_requirements"
+      - "resource_conflicts"
+      - "skill_gaps_identified"
+
+# Action Categories and Templates
+action_categories:
+  quick_wins:
+    criteria: ["low_effort", "high_visibility", "immediate_impact"]
+    typical_duration: "1-4 hours"
+    examples: ["status_report_completion", "stakeholder_update", "process_optimization"]
+
+  strategic_initiatives:
+    criteria: ["high_impact", "long_term_value", "capability_building"]
+    typical_duration: "1-4 weeks"
+    examples: ["security_architecture_review", "threat_landscape_analysis", "legal_framework_development"]
+
+  operational_improvements:
+    criteria: ["efficiency_focused", "process_enhancement", "quality_improvement"]
+    typical_duration: "2-7 days"
+    examples: ["workflow_optimization", "tool_integration", "knowledge_base_update"]
+
+  risk_mitigation:
+    criteria: ["risk_reduction", "compliance_focused", "security_enhancement"]
+    typical_duration: "3-10 days"
+    examples: ["vulnerability_assessment", "compliance_audit", "policy_review"]
+
+  collaboration_enhancers:
+    criteria: ["cross_team_benefit", "communication_improvement", "knowledge_sharing"]
+    typical_duration: "1-3 days"
+    examples: ["cross_team_briefing", "best_practice_sharing", "joint_analysis_session"]
+
+# Decision Trees for Recommendations
+decision_trees:
+  high_pressure_scenario:
+    conditions: ["urgent_deadline", "stakeholder_pressure", "critical_issue"]
+    recommendations:
+      - "focus_on_critical_path"
+      - "assign_best_available_agents"
+      - "increase_communication_frequency"
+      - "prepare_contingency_plans"
+
+  resource_constrained_scenario:
+    conditions: ["high_utilization", "limited_expertise", "budget_constraints"]
+    recommendations:
+      - "prioritize_high_impact_low_effort"
+      - "leverage_cross_team_collaboration"
+      - "focus_on_skill_development"
+      - "optimize_existing_processes"
+
+  growth_opportunity_scenario:
+    conditions: ["low_utilization", "new_capabilities", "strategic_alignment"]
+    recommendations:
+      - "pursue_strategic_initiatives"
+      - "invest_in_capability_building"
+      - "explore_innovation_projects"
+      - "strengthen_competitive_position"
+
+  maintenance_scenario:
+    conditions: ["steady_state", "normal_utilization", "routine_operations"]
+    recommendations:
+      - "optimize_operational_efficiency"
+      - "invest_in_process_improvement"
+      - "prepare_for_future_growth"
+      - "maintain_stakeholder_relationships"
+
+# Cross-Team Synergy Patterns
+synergy_patterns:
+  security_legal_synergy:
+    scenarios: ["compliance_projects", "incident_response", "policy_development"]
+    benefits: ["comprehensive_risk_assessment", "regulatory_alignment", "stakeholder_confidence"]
+    recommended_actions: ["joint_compliance_review", "security_policy_update", "incident_response_legal_prep"]
+
+  intel_security_synergy:
+    scenarios: ["threat_analysis", "incident_investigation", "risk_assessment"]
+    benefits: ["enhanced_threat_intelligence", "comprehensive_attribution", "proactive_defense"]
+    recommended_actions: ["threat_landscape_analysis", "attack_vector_assessment", "intelligence_driven_security"]
+
+  strategy_all_teams_synergy:
+    scenarios: ["organizational_change", "strategic_planning", "stakeholder_engagement"]
+    benefits: ["aligned_execution", "comprehensive_planning", "stakeholder_buy_in"]
+    recommended_actions: ["strategic_alignment_session", "cross_functional_planning", "stakeholder_communication_strategy"]
+
+# Quality Assurance and Validation
+quality_assurance:
+  recommendation_validation:
+    criteria:
+      - "Recommendations are actionable"
+      - "Agent assignments are optimal"
+      - "Dependencies are identified"
+      - "Success metrics are defined"
+      - "Alternative paths are considered"
+
+  confidence_scoring:
+    factors:
+      data_completeness: 30
+      pattern_recognition_strength: 25
+      resource_availability_certainty: 20
+      stakeholder_alignment: 15
+      historical_success_correlation: 10
+
+  feedback_integration:
+    mechanisms:
+      - "recommendation_outcome_tracking"
+      - "agent_performance_correlation"
+      - "stakeholder_satisfaction_measurement"
+      - "efficiency_improvement_metrics"
+
+# Integration Points
+integrations:
+  project_registry:
+    purpose: "Source project context and status"
+    path: "{output_folder}/project-registry.yaml"
+
+  intelligent_routing:
+    purpose: "Leverage routing intelligence for agent matching"
+    path: "core/workflows/intelligent-routing"
+
+  project_status:
+    purpose: "Use status data for context analysis"
+    path: "project-manager/project-status"
+
+  assign_task:
+    purpose: "Execute recommended task assignments"
+    path: "project-manager/assign-task"

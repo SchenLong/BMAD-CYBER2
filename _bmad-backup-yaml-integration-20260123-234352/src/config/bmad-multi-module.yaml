@@ -1,0 +1,325 @@
+# BMAD CYBERCOMMAND Multi-Module Distribution v2.0.0
+# Comprehensive package containing all 4 specialized team modules
+
+code: "bmad-cybercommand"
+name: "BMAD CYBERCOMMAND Multi-Module Distribution"
+version: "2.0.0"
+default_selected: true
+type: "multi-module"
+category: "bmad-cybercommand"
+
+npm:
+  scope: "@bmad-cybercommand"
+  package_name: "multi-module"
+  full_name: "@bmad-cybercommand/multi-module"
+  registry: "https://registry.npmjs.org"
+  access: "public"
+
+repository:
+  type: "git"
+  url: "https://github.com/bmad-code-org/BMAD-CYBERCOMMAND.git"
+  directory: "."
+  branch: "main"
+
+keywords:
+  - "bmad"
+  - "agent"
+  - "workflow"
+  - "multi-module"
+  - "cybersecurity"
+  - "intelligence"
+  - "legal"
+  - "strategy"
+  - "specialized-teams"
+
+# Combined agent inventory across all modules
+agents:
+  count: 53
+  conversion_format: "agent.yaml"
+  source_path: "src/"
+  target_path: "dist/agents/"
+
+  agent_list:
+    # Cybersec Team (15 agents)
+    - { id: "api-security-expert", name: "API Security Expert", team: "cybersec-team", specialization: "API Security", complexity: "advanced" }
+    - { id: "blockchain-security-expert", name: "Blockchain Security Expert", team: "cybersec-team", specialization: "Blockchain Security", complexity: "expert" }
+    - { id: "blue-team-lead", name: "Blue Team Lead", team: "cybersec-team", specialization: "Defense Operations", complexity: "advanced" }
+    - { id: "cloud-security-specialist", name: "Cloud Security Specialist", team: "cybersec-team", specialization: "Cloud Security", complexity: "advanced" }
+    - { id: "compliance-guardian", name: "Compliance Guardian", team: "cybersec-team", specialization: "Compliance & Governance", complexity: "intermediate" }
+    - { id: "forensic-investigator", name: "Forensic Investigator", team: "cybersec-team", specialization: "Digital Forensics", complexity: "expert" }
+    - { id: "incident-commander", name: "Incident Commander", team: "cybersec-team", specialization: "Incident Response", complexity: "expert" }
+    - { id: "llm-ai-security-expert", name: "LLM AI Security Expert", team: "cybersec-team", specialization: "AI/ML Security", complexity: "expert" }
+    - { id: "mobile-security-expert", name: "Mobile Security Expert", team: "cybersec-team", specialization: "Mobile Security", complexity: "advanced" }
+    - { id: "penetration-tester", name: "Penetration Tester", team: "cybersec-team", specialization: "Penetration Testing", complexity: "advanced" }
+    - { id: "security-architect", name: "Security Architect", team: "cybersec-team", specialization: "Security Architecture", complexity: "expert" }
+    - { id: "soc-analyst", name: "SOC Analyst", team: "cybersec-team", specialization: "Security Operations", complexity: "intermediate" }
+    - { id: "social-engineer", name: "Social Engineer", team: "cybersec-team", specialization: "Social Engineering", complexity: "advanced" }
+    - { id: "threat-analyst", name: "Threat Analyst", team: "cybersec-team", specialization: "Threat Intelligence", complexity: "advanced" }
+    - { id: "web-app-security-expert", name: "Web App Security Expert", team: "cybersec-team", specialization: "Web Application Security", complexity: "advanced" }
+
+    # Intel Team (11 agents)
+    - { id: "corporate-intel-specialist", name: "Corporate Intel Specialist", team: "intel-team", specialization: "Corporate Intelligence", complexity: "advanced" }
+    - { id: "dark-web-analyst", name: "Dark Web Analyst", team: "intel-team", specialization: "Dark Web Operations", complexity: "expert" }
+    - { id: "domain-intel-specialist", name: "Domain Intel Specialist", team: "intel-team", specialization: "Network Intelligence", complexity: "intermediate" }
+    - { id: "field-operative", name: "Field Operative", team: "intel-team", specialization: "Field Operations", complexity: "expert" }
+    - { id: "geospatial-analyst", name: "Geospatial Analyst", team: "intel-team", specialization: "Imagery Analysis", complexity: "advanced" }
+    - { id: "humint-specialist", name: "HUMINT Specialist", team: "intel-team", specialization: "Human Intelligence", complexity: "expert" }
+    - { id: "osint-lead", name: "OSINT Lead", team: "intel-team", specialization: "Operations Director", complexity: "expert" }
+    - { id: "sigint-specialist", name: "SIGINT Specialist", team: "intel-team", specialization: "Signals Intelligence", complexity: "expert" }
+    - { id: "social-media-analyst", name: "Social Media Analyst", team: "intel-team", specialization: "SOCMINT", complexity: "intermediate" }
+    - { id: "technical-researcher", name: "Technical Researcher", team: "intel-team", specialization: "Technical Intelligence", complexity: "advanced" }
+    - { id: "threat-actor-profiler", name: "Threat Actor Profiler", team: "intel-team", specialization: "Adversary Attribution", complexity: "expert" }
+
+    # Legal Team (13 agents)
+    - { id: "advocate", name: "Advocate", team: "legal-team", specialization: "Litigation Strategy", complexity: "expert" }
+    - { id: "baltic", name: "Baltic", team: "legal-team", specialization: "Estonia Corporate Law", complexity: "advanced" }
+    - { id: "castile", name: "Castile", team: "legal-team", specialization: "Spain Corporate Law", complexity: "advanced" }
+    - { id: "charter", name: "Charter", team: "legal-team", specialization: "Corporate Governance", complexity: "expert" }
+    - { id: "counsel", name: "Counsel", team: "legal-team", specialization: "General Counsel", complexity: "expert" }
+    - { id: "covenant", name: "Covenant", team: "legal-team", specialization: "Contract Law", complexity: "advanced" }
+    - { id: "deed", name: "Deed", team: "legal-team", specialization: "Real Estate Law", complexity: "advanced" }
+    - { id: "europa", name: "Europa", team: "legal-team", specialization: "European Union Law", complexity: "expert" }
+    - { id: "gremio", name: "Gremio", team: "legal-team", specialization: "Spain Labor Law", complexity: "advanced" }
+    - { id: "iberia", name: "Iberia", team: "legal-team", specialization: "Spain Civil Law", complexity: "advanced" }
+    - { id: "insignia", name: "Insignia", team: "legal-team", specialization: "Intellectual Property", complexity: "advanced" }
+    - { id: "liberty", name: "Liberty", team: "legal-team", specialization: "US Corporate Law", complexity: "expert" }
+    - { id: "tribute", name: "Tribute", team: "legal-team", specialization: "Tax Law", complexity: "expert" }
+
+    # Strategy Team (14 agents)
+    - { id: "communications-director", name: "Communications Director", team: "strategy-team", specialization: "Strategic Communications", complexity: "advanced" }
+    - { id: "debate-coach", name: "Debate Coach", team: "strategy-team", specialization: "Argumentation", complexity: "intermediate" }
+    - { id: "ethics-advisor", name: "Ethics Advisor", team: "strategy-team", specialization: "Ethical Analysis", complexity: "advanced" }
+    - { id: "policy-analyst", name: "Policy Analyst", team: "strategy-team", specialization: "Policy Development", complexity: "advanced" }
+    - { id: "political-strategist", name: "Political Strategist", team: "strategy-team", specialization: "Political Strategy", complexity: "expert" }
+    - { id: "stakeholder-mediator", name: "Stakeholder Mediator", team: "strategy-team", specialization: "Conflict Resolution", complexity: "advanced" }
+    - { id: "the-conservative", name: "The Conservative", team: "strategy-team", specialization: "Conservative Philosophy", complexity: "expert" }
+    - { id: "the-liberator", name: "The Liberator", team: "strategy-team", specialization: "Liberation Philosophy", complexity: "expert" }
+    - { id: "the-master-strategist", name: "The Master Strategist", team: "strategy-team", specialization: "Strategic Planning", complexity: "expert" }
+    - { id: "the-principled-commander", name: "The Principled Commander", team: "strategy-team", specialization: "Principled Leadership", complexity: "expert" }
+    - { id: "the-realist", name: "The Realist", team: "strategy-team", specialization: "Pragmatic Analysis", complexity: "expert" }
+    - { id: "the-revolutionary", name: "The Revolutionary", team: "strategy-team", specialization: "Revolutionary Strategy", complexity: "expert" }
+    - { id: "the-strategist-warrior", name: "The Strategist Warrior", team: "strategy-team", specialization: "Strategic Warfare", complexity: "expert" }
+    - { id: "the-technocrat", name: "The Technocrat", team: "strategy-team", specialization: "Technical Governance", complexity: "advanced" }
+
+# Combined workflow inventory across all modules
+workflows:
+  count: 57
+  conversion_format: "workflow.yaml"
+  source_path: "src/"
+  target_path: "dist/workflows/"
+
+  workflow_list:
+    # Cybersec Team Workflows (13)
+    - { id: "blockchain-security-assessment", name: "Blockchain Security Assessment", category: "cybersecurity", complexity: "advanced" }
+    - { id: "cloud-security-assessment", name: "Cloud Security Assessment", category: "cybersecurity", complexity: "advanced" }
+    - { id: "compliance-audit-prep", name: "Compliance Audit Preparation", category: "cybersecurity", complexity: "intermediate" }
+    - { id: "incident-response-playbook", name: "Incident Response Playbook", category: "cybersecurity", complexity: "expert" }
+    - { id: "infrastructure-security-testing", name: "Infrastructure Security Testing", category: "cybersecurity", complexity: "advanced" }
+    - { id: "mobile-security-testing", name: "Mobile Security Testing", category: "cybersecurity", complexity: "advanced" }
+    - { id: "network-assessment", name: "Network Assessment", category: "cybersecurity", complexity: "intermediate" }
+    - { id: "security-architecture-review", name: "Security Architecture Review", category: "cybersecurity", complexity: "expert" }
+    - { id: "security-awareness-training", name: "Security Awareness Training", category: "cybersecurity", complexity: "beginner" }
+    - { id: "threat-modeling", name: "Threat Modeling", category: "cybersecurity", complexity: "advanced" }
+    - { id: "virtual-ciso-consulting", name: "Virtual CISO Consulting", category: "cybersecurity", complexity: "expert" }
+    - { id: "vulnerability-management", name: "Vulnerability Management", category: "cybersecurity", complexity: "intermediate" }
+    - { id: "web-app-security-testing", name: "Web App Security Testing", category: "cybersecurity", complexity: "advanced" }
+
+    # Intel Team Workflows (19)
+    - { id: "approach-vector", name: "Approach Vector", category: "intelligence", complexity: "expert" }
+    - { id: "attribution-chain", name: "Attribution Chain", category: "intelligence", complexity: "expert" }
+    - { id: "breach-archaeology", name: "Breach Archaeology", category: "intelligence", complexity: "advanced" }
+    - { id: "campaign-ai", name: "Campaign AI", category: "intelligence", complexity: "advanced" }
+    - { id: "campaign-planner-org", name: "Campaign Planner Org", category: "intelligence", complexity: "advanced" }
+    - { id: "campaign-planner-person", name: "Campaign Planner Person", category: "intelligence", complexity: "intermediate" }
+    - { id: "counter-intel-audit", name: "Counter Intel Audit", category: "intelligence", complexity: "expert" }
+    - { id: "digital-necromancy", name: "Digital Necromancy", category: "intelligence", complexity: "advanced" }
+    - { id: "doppelganger-hunt", name: "Doppelganger Hunt", category: "intelligence", complexity: "intermediate" }
+    - { id: "flash-assessment", name: "Flash Assessment", category: "intelligence", complexity: "beginner" }
+    - { id: "ground-truth", name: "Ground Truth", category: "intelligence", complexity: "expert" }
+    - { id: "infrastructure-genealogy", name: "Infrastructure Genealogy", category: "intelligence", complexity: "advanced" }
+    - { id: "operation-mosaic", name: "Operation Mosaic", category: "intelligence", complexity: "expert" }
+    - { id: "pattern-of-life", name: "Pattern of Life", category: "intelligence", complexity: "advanced" }
+    - { id: "signal-landscape", name: "Signal Landscape", category: "intelligence", complexity: "expert" }
+    - { id: "spider-web", name: "Spider Web", category: "intelligence", complexity: "intermediate" }
+    - { id: "the-synthesis", name: "The Synthesis", category: "intelligence", complexity: "expert" }
+    - { id: "threat-constellation", name: "Threat Constellation", category: "intelligence", complexity: "advanced" }
+    - { id: "tripwire", name: "Tripwire", category: "intelligence", complexity: "intermediate" }
+
+    # Legal Team Workflows (8, including _shared)
+    - { id: "contract-drafting", name: "Contract Drafting", category: "legal", complexity: "advanced" }
+    - { id: "contract-review", name: "Contract Review", category: "legal", complexity: "intermediate" }
+    - { id: "corporate-formation", name: "Corporate Formation", category: "legal", complexity: "advanced" }
+    - { id: "cross-border-matter", name: "Cross Border Matter", category: "legal", complexity: "expert" }
+    - { id: "dispute-strategy", name: "Dispute Strategy", category: "legal", complexity: "expert" }
+    - { id: "legal-matter-intake", name: "Legal Matter Intake", category: "legal", complexity: "beginner" }
+    - { id: "tax-planning", name: "Tax Planning", category: "legal", complexity: "advanced" }
+    - { id: "shared-resources", name: "Shared Legal Resources", category: "legal", complexity: "intermediate" }
+
+    # Strategy Team Workflows (17, including _shared)
+    - { id: "board-presentation-prep", name: "Board Presentation Prep", category: "strategy", complexity: "advanced" }
+    - { id: "board-relations-management", name: "Board Relations Management", category: "strategy", complexity: "expert" }
+    - { id: "competitive-warfare", name: "Competitive Warfare", category: "strategy", complexity: "expert" }
+    - { id: "conflict-resolution", name: "Conflict Resolution", category: "strategy", complexity: "intermediate" }
+    - { id: "corporate-political-game", name: "Corporate Political Game", category: "strategy", complexity: "expert" }
+    - { id: "crisis-response-planning", name: "Crisis Response Planning", category: "strategy", complexity: "advanced" }
+    - { id: "ethical-dilemma-resolution", name: "Ethical Dilemma Resolution", category: "strategy", complexity: "advanced" }
+    - { id: "leadership-philosophy", name: "Leadership Philosophy", category: "strategy", complexity: "advanced" }
+    - { id: "leadership-transition-planning", name: "Leadership Transition Planning", category: "strategy", complexity: "expert" }
+    - { id: "ma-due-diligence", name: "M&A Due Diligence", category: "strategy", complexity: "expert" }
+    - { id: "performance-review-preparation", name: "Performance Review Preparation", category: "strategy", complexity: "intermediate" }
+    - { id: "policy-development", name: "Policy Development", category: "strategy", complexity: "advanced" }
+    - { id: "political-risk-assessment", name: "Political Risk Assessment", category: "strategy", complexity: "advanced" }
+    - { id: "stakeholder-negotiation-prep", name: "Stakeholder Negotiation Prep", category: "strategy", complexity: "advanced" }
+    - { id: "strategic-decision-workshop", name: "Strategic Decision Workshop", category: "strategy", complexity: "expert" }
+    - { id: "strategic-planning-session", name: "Strategic Planning Session", category: "strategy", complexity: "expert" }
+    - { id: "shared-strategy-resources", name: "Shared Strategy Resources", category: "strategy", complexity: "intermediate" }
+
+# Dependencies
+dependencies:
+  core:
+    - module: "bmad:core"
+      version: ">=2.0.0"
+      required: true
+      agents: ["abdul", "bmad-master"]
+      workflows: ["party-mode", "cross-module", "incident-response", "whats-next", "assign-task"]
+
+# Integration capabilities
+integration:
+  exposed_workflows:
+    - workflow_id: "multi-team-consultation"
+      trigger: "external"
+      description: "Coordinated consultation across all specialized teams"
+      access_level: "cross_team"
+    - workflow_id: "emergency-response"
+      trigger: "urgent"
+      description: "Multi-team emergency response coordination"
+      access_level: "cross_team"
+    - workflow_id: "strategic-assessment"
+      trigger: "scheduled"
+      description: "Comprehensive strategic assessment using all teams"
+      access_level: "cross_team"
+
+# Installation prompts
+prompt:
+  - "🚀 Installing BMAD CYBERCOMMAND Multi-Module Distribution v2.0.0"
+  - ""
+  - "This comprehensive package includes ALL 4 specialized team modules:"
+  - ""
+  - "🔒 CYBERSECURITY TEAM (15 agents + 13 workflows)"
+  - "   Complete security operations: pentesting, forensics, incident response"
+  - ""
+  - "🕵️ INTELLIGENCE TEAM (11 agents + 19 workflows)"
+  - "   Full spectrum intelligence: OSINT, HUMINT, SIGINT, analysis"
+  - ""
+  - "⚖️ LEGAL TEAM (13 agents + 8 workflows)"
+  - "   Multi-jurisdictional legal counsel: US, EU, Spain, Estonia"
+  - ""
+  - "🎯 STRATEGY TEAM (14 agents + 17 workflows)"
+  - "   Strategic planning and executive decision support"
+  - ""
+  - "TOTAL: 53 specialized agents + 57 comprehensive workflows"
+  - ""
+  - "Ready for immediate deployment in enterprise environments."
+
+# Configuration
+configuration:
+  output_folder:
+    prompt: "Where should specialized teams save their outputs and documentation?"
+    default: "_bmad-output/specialized-teams"
+    result: "{project-root}/{value}"
+    validation:
+      pattern: "^[a-zA-Z0-9/_-]+$"
+      message: "Output folder must contain only letters, numbers, forward slashes, underscores, and hyphens"
+
+  deployment_mode:
+    prompt: "Which deployment mode should be used?"
+    default: "full"
+    result: "{value}"
+    type: "select"
+    options:
+      - value: "full"
+        label: "Full Deployment - All 4 teams active"
+      - value: "selective"
+        label: "Selective Deployment - Choose specific teams"
+      - value: "minimal"
+        label: "Minimal Deployment - Core agents only"
+
+  team_coordination:
+    prompt: "Enable cross-team coordination workflows?"
+    default: true
+    result: "{value}"
+    type: "boolean"
+
+# Computed paths
+computed_paths:
+  module_code:
+    result: "BMAD-CYBERCOMMAND"
+  agents_path:
+    result: "{npm_package_root}/dist/agents"
+  workflows_path:
+    result: "{npm_package_root}/dist/workflows"
+  output_subdirectories:
+    cybersec: "{output_folder}/cybersec-team"
+    intel: "{output_folder}/intel-team"
+    legal: "{output_folder}/legal-team"
+    strategy: "{output_folder}/strategy-team"
+    coordination: "{output_folder}/coordination"
+
+# Permissions
+permissions:
+  filesystem:
+    read: [
+      "{npm_package_root}/**",
+      "_bmad/core/**",
+      "docs/**",
+      "config/**"
+    ]
+    write: [
+      "{output_folder}/**",
+      "_bmad-output/specialized-teams/**"
+    ]
+  network: true
+  shell:
+    allowed_commands: ["curl", "wget", "dig", "netstat", "ss"]
+    blocked_commands: ["rm", "mv", "chmod", "sudo", "su", "dd"]
+  sensitive_data: true
+  external_apis: [
+    "github.com",
+    "api.github.com",
+    "registry.npmjs.org",
+    "shodan.io",
+    "virustotal.com"
+  ]
+
+# Metadata
+metadata:
+  author: "BMAD Development Team"
+  maintainers: ["Morgan (Module Builder)", "Amelia (Developer)", "Winston (Master Strategist)"]
+  license: "MIT"
+  homepage: "https://github.com/bmad-code-org/BMAD-CYBERCOMMAND"
+  bugs:
+    url: "https://github.com/bmad-code-org/BMAD-CYBERCOMMAND/issues"
+  created_by: "Story 5.1 Multi-Module Extraction Pipeline"
+  total_agents: 53
+  total_workflows: 57
+  total_modules: 4
+  production_ready: true
+  tested: true
+  documented: true
+  quality_score: 95
+  complexity_rating: "advanced"
+  performance_rating: "fast"
+
+# Update tracking
+update_info:
+  last_updated: "2026-01-23"
+  update_notes: "Initial multi-module release with all 4 specialized teams"
+  next_review_date: "2026-04-23"
+
+# Distribution settings
+distribution:
+  channels: ["stable"]
+  auto_update: false
+  update_check_interval: "monthly"
+  minimum_bmad_version: "2.0.0"
+  supported_platforms: ["macos", "linux", "windows", "docker"]

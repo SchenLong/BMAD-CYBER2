@@ -1,0 +1,438 @@
+# BMAD Specialized Teams - Multi-Module Distribution Template
+# Template for standardized module.yaml files following bmad-builder format
+# Version: 2.0.0 (Multi-Module NPM Distribution)
+#
+# Usage: Copy this template for each specialized team module:
+# - cybersec-team/module.yaml
+# - intel-team/module.yaml
+# - legal-team/module.yaml
+# - strategy-team/module.yaml
+
+# ============================================================================
+# MODULE IDENTIFICATION
+# ============================================================================
+
+# Module code identifier (replace with: cybersec-team, intel-team, legal-team, strategy-team)
+code: "{TEAM_MODULE_CODE}"
+
+# Display name for the module
+name: "{TEAM_DISPLAY_NAME}"
+
+# Module version following semantic versioning
+version: "2.0.0"
+
+# Whether this module is selected by default during installation
+default_selected: false
+
+# Module type for BMAD ecosystem
+type: "specialized-team"
+
+# Module category for grouping
+category: "bmad-specialized-teams"
+
+# ============================================================================
+# NPM DISTRIBUTION METADATA
+# ============================================================================
+
+# NPM package scope and name
+npm:
+  scope: "@bmad-cybercommand"
+  package_name: "{TEAM_MODULE_CODE}"
+  full_name: "@bmad-cybercommand/{TEAM_MODULE_CODE}"
+
+# Repository configuration for multi-module setup
+repository:
+  type: "git"
+  url: "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+  directory: "src/{TEAM_MODULE_CODE}"
+
+# License and distribution
+license: "MIT"
+private: false
+
+# Keywords for NPM discovery
+keywords:
+  - "bmad"
+  - "agent"
+  - "workflow"
+  - "{TEAM_KEYWORD_1}"
+  - "{TEAM_KEYWORD_2}"
+  - "{TEAM_KEYWORD_3}"
+
+# ============================================================================
+# MODULE CAPABILITIES DEFINITION
+# ============================================================================
+
+# Agents provided by this module
+agents:
+  count: {AGENT_COUNT}
+  conversion_format: "agent.yaml"
+  source_path: "agents/"
+  target_path: "dist/agents/"
+
+# Workflows provided by this module
+workflows:
+  count: {WORKFLOW_COUNT}
+  conversion_format: "workflow.yaml"
+  source_path: "workflows/"
+  target_path: "dist/workflows/"
+
+# Tools and utilities
+tools:
+  source_path: "tools/"
+  target_path: "dist/tools/"
+
+# Data files and templates
+data:
+  source_path: "data/"
+  target_path: "dist/data/"
+
+# ============================================================================
+# CROSS-MODULE DEPENDENCIES
+# ============================================================================
+
+# Dependencies on other BMAD modules
+dependencies:
+  # Core BMAD dependencies (always required)
+  core:
+    - module: "bmad:core"
+      version: ">=2.0.0"
+      required: true
+      agents: ["abdul", "bmad-master"]
+      workflows: ["party-mode", "cross-module", "assign-task"]
+
+  # Optional peer dependencies on other specialized teams
+  peer_dependencies:
+    - module: "@bmad-cybercommand/intel-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "cross_team_workflows_enabled"
+    - module: "@bmad-cybercommand/legal-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "compliance_workflows_enabled"
+    - module: "@bmad-cybercommand/strategy-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "strategic_workflows_enabled"
+    - module: "@bmad-cybercommand/cybersec-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "security_workflows_enabled"
+
+# Cross-team integration points
+integration:
+  # Workflows that can be triggered by other teams
+  exposed_workflows:
+    - workflow_id: "{TEAM_PREFIX}-consultation"
+      trigger: "external"
+      description: "Provides specialized consultation to other teams"
+      access_level: "cross_team"
+    - workflow_id: "{TEAM_PREFIX}-emergency-response"
+      trigger: "urgent"
+      description: "Emergency response for specialized incidents"
+      access_level: "cross_team"
+
+  # Workflows this team can invoke from other teams
+  consumed_workflows:
+    - source_team: "legal-team"
+      workflow_id: "legal-matter-intake"
+      condition: "legal_review_required"
+    - source_team: "strategy-team"
+      workflow_id: "strategic-decision"
+      condition: "strategic_input_required"
+
+# ============================================================================
+# AGENT CONVERSION SPECIFICATIONS
+# ============================================================================
+
+# Conversion rules from current .md format to .agent.yaml format
+agent_conversion:
+  # Input format specifications
+  input_format: "markdown"
+  input_extension: ".md"
+  input_structure:
+    frontmatter: "yaml"
+    content: "markdown"
+    agent_xml: "embedded"
+
+  # Output format specifications
+  output_format: "yaml"
+  output_extension: ".agent.yaml"
+  output_schema_version: "1.0"
+
+  # Conversion mapping rules
+  field_mapping:
+    # Basic agent metadata
+    name: "extract_from_frontmatter(name)"
+    title: "extract_from_xml(title)"
+    description: "extract_from_frontmatter(description)"
+    icon: "extract_from_xml(icon)"
+    codename: "extract_from_xml(name)"
+
+    # Agent configuration
+    activation_steps: "extract_from_xml(activation)"
+    menu_handlers: "extract_from_xml(menu-handlers)"
+    rules: "extract_from_xml(rules)"
+    menu_items: "extract_from_content(menu_section)"
+
+    # Paths and configuration
+    config_path: "derive_from_team_config"
+    workflows_path: "derive_from_team_structure"
+
+  # Validation rules for converted agents
+  validation:
+    required_fields: ["name", "title", "description", "activation_steps"]
+    max_menu_items: 20
+    required_handlers: ["exec", "workflow"]
+
+# ============================================================================
+# WORKFLOW MAPPING CONFIGURATIONS
+# ============================================================================
+
+# Workflow conversion and mapping specifications
+workflow_conversion:
+  # Input format specifications
+  input_format: "markdown"
+  input_structure:
+    frontmatter: "yaml"
+    content: "markdown"
+    steps: "separate_files"
+
+  # Output format specifications
+  output_format: "yaml"
+  output_extension: ".workflow.yaml"
+  output_schema_version: "1.0"
+
+  # Conversion mapping
+  field_mapping:
+    workflow_id: "extract_from_frontmatter(workflow_id)"
+    name: "extract_from_frontmatter(name)"
+    description: "extract_from_frontmatter(description)"
+    module: "extract_from_frontmatter(module)"
+    version: "extract_from_frontmatter(version)"
+
+    # Execution configuration
+    primary_agent: "extract_from_frontmatter(primary_agent)"
+    parallel_agents: "extract_from_frontmatter(parallel_agents)"
+    execution_mode: "extract_from_frontmatter(execution_mode)"
+    estimated_duration: "extract_from_frontmatter(estimated_duration)"
+
+    # Step definitions
+    steps: "extract_from_frontmatter(steps)"
+    step_files: "resolve_step_file_paths"
+
+    # Output and paths
+    output_path: "extract_from_frontmatter(output_path)"
+    workflow_path: "extract_from_frontmatter(workflow_path)"
+
+# ============================================================================
+# INSTALLATION PROMPTS
+# ============================================================================
+
+# Installation welcome message
+prompt:
+  - "{INSTALLATION_HEADER}"
+  - ""
+  - "{TEAM_DESCRIPTION}"
+  - ""
+  - "  Core {TEAM_TYPE} Team:"
+  - "{CORE_AGENTS_LIST}"
+  - ""
+  - "  Extended {TEAM_TYPE} Team:"
+  - "{EXTENDED_AGENTS_LIST}"
+  - ""
+  - "{WORKFLOW_COUNT} specialized workflows included."
+  - "{ADDITIONAL_INFO}"
+
+# ============================================================================
+# CONFIGURATION FIELDS
+# ============================================================================
+# Interactive and static configuration options following bmad-builder format
+
+# INTERACTIVE: Primary output location
+output_folder:
+  prompt: "Where should {TEAM_MODULE_CODE} save outputs and artifacts?"
+  default: "_bmad-output/{TEAM_MODULE_CODE}"
+  result: "{project-root}/{value}"
+
+# INTERACTIVE: Team-specific configuration (varies by team)
+team_specific_config:
+  prompt: "{TEAM_SPECIFIC_PROMPT}"
+  default: "{TEAM_SPECIFIC_DEFAULT}"
+  result: "{value}"
+  # Note: This section will be customized per team module
+
+# STATIC: Module identification
+module_code:
+  result: "{TEAM_MODULE_CODE}"
+
+module_version:
+  result: "2.0.0"
+
+module_type:
+  result: "specialized-team"
+
+# STATIC: Module paths for bmad-builder compatibility
+agents_path:
+  result: "{npm_package_root}/dist/agents"
+
+workflows_path:
+  result: "{npm_package_root}/dist/workflows"
+
+data_path:
+  result: "{npm_package_root}/dist/data"
+
+tools_path:
+  result: "{npm_package_root}/dist/tools"
+
+# STATIC: Output subdirectories (team-specific)
+output_subdirectories:
+  primary: "{output_folder}/{PRIMARY_OUTPUT_TYPE}"
+  secondary: "{output_folder}/{SECONDARY_OUTPUT_TYPE}"
+  reports: "{output_folder}/reports"
+  artifacts: "{output_folder}/artifacts"
+
+# ============================================================================
+# BUILD AND DISTRIBUTION CONFIGURATION
+# ============================================================================
+
+# Build pipeline configuration
+build:
+  # Pre-build validation
+  validation:
+    agents: true
+    workflows: true
+    dependencies: true
+    cross_references: true
+
+  # Build steps
+  steps:
+    - name: "validate_source"
+      command: "bmad validate {TEAM_MODULE_CODE}"
+    - name: "convert_agents"
+      command: "bmad convert agents --format yaml"
+    - name: "convert_workflows"
+      command: "bmad convert workflows --format yaml"
+    - name: "package_assets"
+      command: "bmad package --output dist/"
+    - name: "generate_manifest"
+      command: "bmad manifest --target npm"
+
+  # Output configuration
+  output:
+    directory: "dist/"
+    format: "npm"
+    include: ["agents/", "workflows/", "data/", "tools/", "README.md"]
+    exclude: ["*.log", "*.tmp", ".DS_Store"]
+
+# NPM publishing configuration
+publish:
+  registry: "https://registry.npmjs.org"
+  access: "public"
+  tag: "latest"
+
+# Testing configuration
+testing:
+  # Unit tests for agents and workflows
+  unit_tests: true
+  integration_tests: true
+  cross_team_tests: false  # Enable for cross-team integration testing
+
+  # Test directories
+  test_dir: "tests/"
+  fixtures_dir: "tests/fixtures/"
+
+# ============================================================================
+# SECURITY AND PERMISSIONS
+# ============================================================================
+
+# Permission model for the module
+permissions:
+  filesystem:
+    read: [
+      "{npm_package_root}/**",
+      "_bmad/core/**",
+      "docs/**"
+    ]
+    write: [
+      "{output_folder}/**",
+      "_bmad-output/{TEAM_MODULE_CODE}/**"
+    ]
+  network: {NETWORK_ACCESS_REQUIRED}
+  shell:
+    allowed_commands: {ALLOWED_SHELL_COMMANDS}
+    blocked_commands: ["rm", "mv", "chmod", "sudo", "su"]
+  sensitive_data: {SENSITIVE_DATA_ACCESS}
+
+# Security configuration
+security:
+  signature_required: true
+  integrity_check: true
+  dependency_scanning: true
+  vulnerability_monitoring: true
+
+# ============================================================================
+# DOCUMENTATION AND METADATA
+# ============================================================================
+
+# Documentation configuration
+documentation:
+  readme_path: "README.md"
+  changelog_path: "CHANGELOG.md"
+  api_docs: "docs/api/"
+  examples: "examples/"
+
+# Maintainer information
+maintainers:
+  - name: "BMAD Development Team"
+    email: "dev@bmad.ai"
+    role: "primary"
+
+# Support and community
+support:
+  issues: "https://github.com/bmad-code-org/bmad-specialized-teams/issues"
+  discussions: "https://github.com/bmad-code-org/bmad-specialized-teams/discussions"
+  documentation: "https://docs.bmad.ai/specialized-teams/{TEAM_MODULE_CODE}"
+
+# ============================================================================
+# PLACEHOLDER SUBSTITUTION MAP
+# ============================================================================
+# This section defines all placeholders used in this template
+# Replace these when creating actual module.yaml files
+
+substitutions:
+  # Team identification
+  TEAM_MODULE_CODE: "Replace with: cybersec-team | intel-team | legal-team | strategy-team"
+  TEAM_DISPLAY_NAME: "Replace with full team display name"
+  TEAM_TYPE: "Replace with: Security | Intelligence | Legal | Strategic"
+
+  # Capabilities
+  AGENT_COUNT: "Replace with actual number of agents"
+  WORKFLOW_COUNT: "Replace with actual number of workflows"
+
+  # Keywords and metadata
+  TEAM_KEYWORD_1: "Replace with primary team keyword"
+  TEAM_KEYWORD_2: "Replace with secondary team keyword"
+  TEAM_KEYWORD_3: "Replace with tertiary team keyword"
+
+  # Installation prompts
+  INSTALLATION_HEADER: "Replace with team-specific installation header"
+  TEAM_DESCRIPTION: "Replace with team description"
+  CORE_AGENTS_LIST: "Replace with formatted list of core agents"
+  EXTENDED_AGENTS_LIST: "Replace with formatted list of extended agents"
+  ADDITIONAL_INFO: "Replace with additional team-specific information"
+
+  # Configuration
+  TEAM_SPECIFIC_PROMPT: "Replace with team-specific configuration prompt"
+  TEAM_SPECIFIC_DEFAULT: "Replace with team-specific default value"
+  TEAM_PREFIX: "Replace with team workflow prefix"
+
+  # Outputs
+  PRIMARY_OUTPUT_TYPE: "Replace with primary output directory name"
+  SECONDARY_OUTPUT_TYPE: "Replace with secondary output directory name"
+
+  # Security
+  NETWORK_ACCESS_REQUIRED: "Replace with true/false based on team needs"
+  ALLOWED_SHELL_COMMANDS: "Replace with array of allowed commands"
+  SENSITIVE_DATA_ACCESS: "Replace with true/false based on team needs"

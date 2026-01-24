@@ -1,0 +1,45 @@
+code: legal-team
+name: Legal Team (Legal-Team)
+version: 2.0.0
+type: specialized-team
+category: bmad-specialized-teams
+npm:
+  scope: '@bmad-specialized-teams'
+  package_name: legal-team
+  full_name: '@bmad-cybercommand/legal-team'
+repository:
+  type: git
+  url: https://github.com/bmad-code-org/bmad-specialized-teams.git
+  directory: src/legal-team
+description: Legal operations and compliance with 13 specialized legal agents
+keywords:
+  - bmad
+  - agent
+  - workflow
+  - legal
+  - compliance
+  - contracts
+  - governance
+license: MIT
+capabilities:
+  agents:
+    count: 13
+    format: agent.yaml
+    path: agents/
+  workflows:
+    count: 6
+    format: workflow.yaml
+    path: workflows/
+dependencies:
+  core:
+    - module: bmad:core
+      version: '>=2.0.0'
+      required: true
+build:
+  validation: true
+  format: bmad-builder
+  target: distribution
+generated:
+  date: '2026-01-23T16:44:40.154Z'
+  by: bmad-module-packager
+  version: 1.0.0

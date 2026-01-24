@@ -66,6 +66,16 @@
 | **[Testing Reports](testing-reports/)** | Historical audit logs, validation reports | Technical teams |
 | **[Reference](reference/)** | Glossary, changelog, roadmap | All users |
 
+### 📋 Project Documentation (BMAD METHOD)
+
+| Section | Contents | Audience |
+|---------|----------|----------|
+| **[Epics](epics/)** | Epic specifications, completion reports, planning documents | Project managers, stakeholders |
+| **[Stories](stories/)** | User story completion reports, validation summaries | Development teams, QA |
+| **[Implementation Guides](guides/)** | Technical guides, schema docs, dependency management | Developers, architects |
+| **[System Documentation](systems/)** | System overviews, validation reports, architecture | System architects, DevOps |
+| **[Deployment](deployment/)** | Installation framework, package registry, deployment guides | DevOps, system administrators |
+
 ---
 
 ## 🆘 Need Help?
