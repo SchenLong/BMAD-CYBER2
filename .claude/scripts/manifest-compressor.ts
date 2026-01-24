@@ -331,7 +331,7 @@ function generateAgentTags(agent: AgentEntry): string {
   }
 
   // Deduplicate and limit
-  const uniqueTags = [...new Set(tags)].slice(0, CONFIG.maxTags);
+  const uniqueTags = Array.from(new Set(tags)).slice(0, CONFIG.maxTags);
   const result = uniqueTags.join(' ');
 
   // Ensure we don't exceed max chars
@@ -364,7 +364,7 @@ function generateWorkflowTags(workflow: WorkflowEntry): string {
     }
   }
 
-  const uniqueTags = [...new Set(tags)].slice(0, CONFIG.maxTags);
+  const uniqueTags = Array.from(new Set(tags)).slice(0, CONFIG.maxTags);
   const result = uniqueTags.join(' ');
 
   if (result.length > CONFIG.maxTagChars) {

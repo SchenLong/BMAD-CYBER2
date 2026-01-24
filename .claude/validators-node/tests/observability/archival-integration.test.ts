@@ -35,6 +35,9 @@ describe('Archival System Integration', () => {
 
     // Clear AWS SDK mocks
     vi.clearAllMocks();
+
+    // Reset modules to ensure fresh imports
+    vi.resetModules();
   });
 
   afterEach(async () => {
@@ -55,17 +58,24 @@ describe('Archival System Integration', () => {
 
   describe('Configuration System', () => {
     test('should validate configuration requirements', async () => {
+      // First test without required bucket
+      delete process.env.BMAD_S3_ARCHIVE_BUCKET;
+      vi.resetModules();
+
       const { ArchivalConfigManager } = await import('../../src/observability/archival-config.js');
       const configManager = new ArchivalConfigManager();
 
-      // Test without required bucket
       const result1 = await configManager.loadConfiguration();
       expect(result1.isValid).toBe(false);
       expect(result1.errors).toContain('S3 bucket name is required');
 
-      // Test with valid bucket
+      // Test with valid bucket - reset modules to pick up new environment
       process.env.BMAD_S3_ARCHIVE_BUCKET = 'test-bucket';
-      const result2 = await configManager.loadConfiguration();
+      vi.resetModules();
+
+      const { ArchivalConfigManager: FreshConfigManager } = await import('../../src/observability/archival-config.js');
+      const freshConfigManager = new FreshConfigManager();
+      const result2 = await freshConfigManager.loadConfiguration();
       expect(result2.config?.bucket).toBe('test-bucket');
     });
 
@@ -330,7 +340,7 @@ describe('Archival System Integration', () => {
       const { LogArchiver } = await import('../../src/observability/log-archiver.js');
 
       // Test invalid configurations
-      expect(() => new LogArchiver({})).toThrow('S3 bucket name is required');
+      expect(() => new LogArchiver({} as any)).toThrow('S3 bucket name is required');
 
       const archiver = new LogArchiver({
         bucket: 'test-bucket',
@@ -357,8 +367,11 @@ describe('Archival System Integration', () => {
       // Verify compliance recommendations
       process.env.BMAD_S3_ARCHIVE_BUCKET = 'test-bucket';
       process.env.BMAD_LOG_RETENTION_DAYS = '30'; // Short retention
+      vi.resetModules();
 
-      const validation = await configManager.loadConfiguration();
+      const { ArchivalConfigManager: FreshConfigManager2 } = await import('../../src/observability/archival-config.js');
+      const freshConfigManager2 = new FreshConfigManager2();
+      const validation = await freshConfigManager2.loadConfiguration();
       expect(validation.warnings).toContain(
         expect.stringContaining('below regulatory recommendation')
       );

@@ -81,8 +81,8 @@ bmad-agent-schema-extracted.yaml → /src/config/bmad-agent-schema-extracted.yam
 
 ```yaml
 # Validation Scripts → /src/lib/validators/
-bmad-validator.py → /src/lib/validators/bmad-validator.py
-bmad-dependency-validator.py → /src/lib/validators/bmad-dependency-validator.py
+bmad-validator.py → /src/utility/tools/bmad-validator.py
+bmad-dependency-validator.py → /src/utility/tools/bmad-dependency-validator.py
 ```
 
 ### A.5 Template/Example Files Movement Plan

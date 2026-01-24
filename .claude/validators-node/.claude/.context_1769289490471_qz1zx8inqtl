@@ -1,0 +1,64 @@
+{
+  "sessionId": "1769289490467",
+  "tokensUsed": 1100,
+  "operations": [
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490467
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490468
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490468
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490468
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490469
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490469
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490470
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490470
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490470
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490471
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289490471
+    }
+  ],
+  "warningsIssued": 0,
+  "lastUpdate": 1769289490471,
+  "createdAt": 1769289490467
+}

@@ -1,0 +1,1475 @@
+openapi: 3.0.3
+info:
+  title: BMAD Module Integration API
+  version: 2.0.0
+  description: |
+    Enterprise-grade API for managing agent and workflow distribution, cross-module orchestration,
+    and team coordination in the BMAD-CYBER2 framework.
+
+    This API provides comprehensive module integration capabilities including:
+
+    ## Core Integration Features
+
+    - **Agent Distribution**: YAML to Markdown conversion and deployment
+    - **Workflow Orchestration**: Cross-team workflow execution and coordination
+    - **Module Registry**: Centralized module discovery and health monitoring
+    - **Team Coordination**: Abdul's intelligent routing and team orchestration
+    - **Package Management**: NPM-based module distribution and versioning
+    - **Configuration Management**: Dynamic module configuration and customization
+
+    ## Supported Teams & Modules
+
+    ### Specialized Teams
+    - **cybersec-team**: 15 agents, 13 workflows - Cybersecurity operations
+    - **intel-team**: 11 agents, 19 workflows - Intelligence operations
+    - **strategy-team**: 14 agents, 16 workflows - Executive leadership & strategy
+    - **legal-team**: 13 agents, 7 workflows - Legal support and compliance
+
+    ### Development Modules
+    - **bmm**: 9 agents, 32 workflows - Software product development
+    - **bmgd**: 6 agents, 29 workflows - Game development
+    - **bmb**: 3 agents, 8 workflows - Module and agent creation
+    - **cis**: 5 agents, 4 workflows - Creative innovation
+
+    ## Orchestration Capabilities
+
+    - **Abdul Master Project Manager**: Central coordination and intelligent routing
+    - **Party Mode**: Multi-agent collaboration with 27 presets
+    - **Cross-Module Consultation**: Inter-team knowledge sharing
+    - **Phase Gate Validation**: Project milestone verification
+    - **Intelligent Task Assignment**: AI-powered task routing
+
+  contact:
+    name: BMAD Integration Team
+    url: https://bmad.code/integration
+    email: integration@bmad.code
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://integration-api.bmad.code/v2
+    description: Production Integration API
+  - url: https://staging-integration-api.bmad.code/v2
+    description: Staging Integration API
+  - url: http://localhost:3002/api/v2/integration
+    description: Local Development Integration Server
+
+security:
+  - BearerAuth: []
+  - IntegrationApiKey: []
+
+paths:
+  /agents:
+    get:
+      summary: List Available Agents
+      description: |
+        Retrieve a comprehensive list of all available agents across all modules
+        with their capabilities, status, and integration metadata.
+      operationId: listAgents
+      parameters:
+        - name: team
+          in: query
+          description: Filter by team/module
+          schema:
+            type: string
+            enum: [cybersec-team, intel-team, legal-team, strategy-team, bmm, bmgd, bmb, cis, core]
+        - name: capability
+          in: query
+          description: Filter by specific capability
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by agent status
+          schema:
+            type: string
+            enum: [active, inactive, disabled, updating]
+        - name: includeMetadata
+          in: query
+          description: Include detailed metadata
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Agents retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentListResponse'
+
+    post:
+      summary: Register New Agent
+      description: |
+        Register a new agent in the BMAD ecosystem, converting from YAML format
+        to BMB-compliant Markdown and updating global registries.
+      operationId: registerAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRegistrationRequest'
+      responses:
+        '201':
+          description: Agent registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentRegistrationResponse'
+        '400':
+          description: Invalid agent specification
+        '409':
+          description: Agent name conflict
+
+  /agents/{agentId}:
+    get:
+      summary: Get Agent Details
+      description: Retrieve detailed information about a specific agent
+      operationId: getAgentDetails
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "cybersec-team:bastion"
+      responses:
+        '200':
+          description: Agent details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDetailsResponse'
+        '404':
+          description: Agent not found
+
+    put:
+      summary: Update Agent Configuration
+      description: Update agent configuration and metadata
+      operationId: updateAgent
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentUpdateRequest'
+      responses:
+        '200':
+          description: Agent updated successfully
+        '404':
+          description: Agent not found
+
+    delete:
+      summary: Deactivate Agent
+      description: Deactivate an agent and remove from active registry
+      operationId: deactivateAgent
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Agent deactivated successfully
+        '404':
+          description: Agent not found
+        '409':
+          description: Agent has active dependencies
+
+  /workflows:
+    get:
+      summary: List Available Workflows
+      description: |
+        Retrieve a comprehensive list of all available workflows across all modules
+        with execution metadata and integration points.
+      operationId: listWorkflows
+      parameters:
+        - name: team
+          in: query
+          description: Filter by team/module
+          schema:
+            type: string
+        - name: trigger
+          in: query
+          description: Filter by trigger type
+          schema:
+            type: string
+            enum: [manual, automatic, external, scheduled, event]
+        - name: accessLevel
+          in: query
+          description: Filter by access level
+          schema:
+            type: string
+            enum: [public, team, cross-team, restricted]
+        - name: category
+          in: query
+          description: Filter by workflow category
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Workflows retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowListResponse'
+
+    post:
+      summary: Register New Workflow
+      description: |
+        Register a new workflow in the BMAD ecosystem with conversion and validation
+      operationId: registerWorkflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkflowRegistrationRequest'
+      responses:
+        '201':
+          description: Workflow registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowRegistrationResponse'
+
+  /workflows/{workflowId}:
+    get:
+      summary: Get Workflow Details
+      description: Retrieve detailed workflow information and execution metadata
+      operationId: getWorkflowDetails
+      parameters:
+        - name: workflowId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "intel-team:operation-mosaic"
+      responses:
+        '200':
+          description: Workflow details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowDetailsResponse'
+
+    post:
+      summary: Execute Workflow
+      description: |
+        Execute a workflow with specified parameters and context.
+        Supports both synchronous and asynchronous execution modes.
+      operationId: executeWorkflow
+      parameters:
+        - name: workflowId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkflowExecutionRequest'
+      responses:
+        '200':
+          description: Workflow executed successfully (synchronous)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowExecutionResponse'
+        '202':
+          description: Workflow execution started (asynchronous)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowExecutionStartedResponse'
+
+  /orchestration/abdul:
+    post:
+      summary: Abdul Orchestration Request
+      description: |
+        Submit a request to Abdul (Master Project Manager) for intelligent routing,
+        task assignment, or cross-team coordination.
+      operationId: requestAbdulOrchestration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AbdulOrchestrationRequest'
+      responses:
+        '200':
+          description: Orchestration completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrchestrationResponse'
+        '202':
+          description: Orchestration in progress
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrchestrationStartedResponse'
+
+  /orchestration/party-mode:
+    post:
+      summary: Initiate Party Mode Collaboration
+      description: |
+        Start a multi-agent Party Mode session with specified team members
+        and collaboration parameters.
+      operationId: initiatePartyMode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartyModeRequest'
+      responses:
+        '200':
+          description: Party Mode session started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartyModeResponse'
+
+  /orchestration/cross-module:
+    post:
+      summary: Cross-Module Consultation
+      description: |
+        Facilitate consultation between different modules/teams for knowledge
+        sharing and collaborative problem solving.
+      operationId: crossModuleConsultation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrossModuleRequest'
+      responses:
+        '200':
+          description: Consultation completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrossModuleResponse'
+
+  /registry/modules:
+    get:
+      summary: Module Registry
+      description: |
+        Get comprehensive registry information for all installed modules
+        including health status, dependencies, and integration points.
+      operationId: getModuleRegistry
+      parameters:
+        - name: includeHealth
+          in: query
+          description: Include health check results
+          schema:
+            type: boolean
+            default: true
+        - name: includeDependencies
+          in: query
+          description: Include dependency graph
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Module registry retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModuleRegistryResponse'
+
+  /registry/health:
+    get:
+      summary: System Health Check
+      description: |
+        Comprehensive health check across all modules, agents, and workflows
+        with performance metrics and status indicators.
+      operationId: getSystemHealth
+      parameters:
+        - name: detail
+          in: query
+          description: Level of detail in health report
+          schema:
+            type: string
+            enum: [summary, detailed, comprehensive]
+            default: detailed
+      responses:
+        '200':
+          description: Health check completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemHealthResponse'
+
+  /conversion/yaml-to-md:
+    post:
+      summary: Convert YAML to Markdown
+      description: |
+        Convert YAML agent or workflow definitions to BMB-compliant Markdown format
+        with validation and optimization.
+      operationId: convertYamlToMarkdown
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversionRequest'
+      responses:
+        '200':
+          description: Conversion completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversionResponse'
+        '400':
+          description: Invalid YAML format
+
+  /conversion/validate:
+    post:
+      summary: Validate Module Definition
+      description: |
+        Validate agent or workflow definitions against BMAD schemas
+        and best practices.
+      operationId: validateModuleDefinition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+      responses:
+        '200':
+          description: Validation completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+
+  /configuration:
+    get:
+      summary: Get Integration Configuration
+      description: Retrieve current integration configuration and policies
+      operationId: getIntegrationConfiguration
+      responses:
+        '200':
+          description: Configuration retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationConfigurationResponse'
+
+    put:
+      summary: Update Integration Configuration
+      description: Update integration configuration and policies
+      operationId: updateIntegrationConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationConfigurationUpdateRequest'
+      responses:
+        '200':
+          description: Configuration updated successfully
+
+  /events/stream:
+    get:
+      summary: Real-time Integration Events
+      description: |
+        Stream real-time integration events including agent activations,
+        workflow executions, and system status changes.
+      operationId: getIntegrationEventStream
+      parameters:
+        - name: eventTypes
+          in: query
+          description: Event types to include
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [agent_activation, workflow_execution, module_update, health_change]
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: Event stream established
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: Server-sent events stream
+
+  /health:
+    get:
+      summary: Integration API Health
+      description: Check health status of the integration API service
+      operationId: getIntegrationHealth
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationHealthResponse'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    IntegrationApiKey:
+      type: apiKey
+      in: header
+      name: X-Integration-API-Key
+
+  schemas:
+    AgentListResponse:
+      type: object
+      properties:
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentSummary'
+        total:
+          type: integer
+        filters:
+          type: object
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+
+    AgentSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "cybersec-team:bastion"
+        name:
+          type: string
+          example: "Bastion"
+        title:
+          type: string
+          example: "Defense & Infrastructure Design"
+        team:
+          type: string
+          example: "cybersec-team"
+        status:
+          type: string
+          enum: [active, inactive, disabled, updating]
+        capabilities:
+          type: array
+          items:
+            type: string
+        lastActive:
+          type: string
+          format: date-time
+        version:
+          type: string
+        icon:
+          type: string
+          example: "🏰"
+
+    AgentDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/AgentMetadata'
+        persona:
+          $ref: '#/components/schemas/AgentPersona'
+        capabilities:
+          type: array
+          items:
+            type: string
+        menu:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuEntry'
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentRule'
+        status:
+          $ref: '#/components/schemas/AgentStatus'
+        integration:
+          $ref: '#/components/schemas/AgentIntegration'
+        metrics:
+          $ref: '#/components/schemas/AgentMetrics'
+
+    AgentMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+        team:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        author:
+          type: string
+        created:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+
+    AgentPersona:
+      type: object
+      properties:
+        role:
+          type: string
+        identity:
+          type: string
+        communicationStyle:
+          type: string
+        principles:
+          type: string
+        specialties:
+          type: array
+          items:
+            type: string
+
+    MenuEntry:
+      type: object
+      properties:
+        trigger:
+          type: string
+        description:
+          type: string
+        action:
+          type: string
+        workflow:
+          type: string
+        category:
+          type: string
+
+    AgentRule:
+      type: object
+      properties:
+        content:
+          type: string
+        critical:
+          oneOf:
+            - type: boolean
+            - type: string
+        scope:
+          type: string
+        enforcement:
+          type: string
+
+    AgentStatus:
+      type: object
+      properties:
+        status:
+          type: string
+        health:
+          type: string
+        lastHealthCheck:
+          type: string
+          format: date-time
+        uptime:
+          type: integer
+        activeConnections:
+          type: integer
+
+    AgentIntegration:
+      type: object
+      properties:
+        exposedWorkflows:
+          type: array
+          items:
+            type: string
+        dependencies:
+          type: array
+          items:
+            type: string
+        permissions:
+          $ref: '#/components/schemas/AgentPermissions'
+
+    AgentPermissions:
+      type: object
+      properties:
+        filesystem:
+          type: object
+          properties:
+            read:
+              type: array
+              items:
+                type: string
+            write:
+              type: array
+              items:
+                type: string
+        network:
+          type: boolean
+        shell:
+          type: object
+
+    AgentMetrics:
+      type: object
+      properties:
+        executionCount:
+          type: integer
+        averageResponseTime:
+          type: number
+        errorRate:
+          type: number
+        lastExecution:
+          type: string
+          format: date-time
+
+    AgentRegistrationRequest:
+      type: object
+      required:
+        - yamlContent
+        - team
+      properties:
+        yamlContent:
+          type: string
+          description: YAML agent definition
+        team:
+          type: string
+        options:
+          type: object
+          properties:
+            validate:
+              type: boolean
+              default: true
+            autoActivate:
+              type: boolean
+              default: true
+
+    AgentRegistrationResponse:
+      type: object
+      properties:
+        agentId:
+          type: string
+        status:
+          type: string
+        conversionResult:
+          $ref: '#/components/schemas/ConversionResult'
+        registryEntry:
+          $ref: '#/components/schemas/RegistryEntry'
+
+    AgentUpdateRequest:
+      type: object
+      properties:
+        metadata:
+          type: object
+        configuration:
+          type: object
+        status:
+          type: string
+
+    WorkflowListResponse:
+      type: object
+      properties:
+        workflows:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowSummary'
+        total:
+          type: integer
+        filters:
+          type: object
+
+    WorkflowSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        team:
+          type: string
+        trigger:
+          type: string
+        accessLevel:
+          type: string
+        status:
+          type: string
+        lastExecution:
+          type: string
+          format: date-time
+
+    WorkflowDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/WorkflowMetadata'
+        configuration:
+          type: object
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStep'
+        integration:
+          $ref: '#/components/schemas/WorkflowIntegration'
+        metrics:
+          $ref: '#/components/schemas/WorkflowMetrics'
+
+    WorkflowMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        team:
+          type: string
+        category:
+          type: string
+        version:
+          type: string
+        author:
+          type: string
+
+    WorkflowStep:
+      type: object
+      properties:
+        stepId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        configuration:
+          type: object
+
+    WorkflowIntegration:
+      type: object
+      properties:
+        requiredAgents:
+          type: array
+          items:
+            type: string
+        exposedEndpoints:
+          type: array
+          items:
+            type: string
+        dependencies:
+          type: array
+          items:
+            type: string
+
+    WorkflowMetrics:
+      type: object
+      properties:
+        executionCount:
+          type: integer
+        successRate:
+          type: number
+        averageExecutionTime:
+          type: number
+        lastExecution:
+          type: string
+          format: date-time
+
+    WorkflowRegistrationRequest:
+      type: object
+      required:
+        - yamlContent
+        - team
+      properties:
+        yamlContent:
+          type: string
+        team:
+          type: string
+        options:
+          type: object
+
+    WorkflowRegistrationResponse:
+      type: object
+      properties:
+        workflowId:
+          type: string
+        status:
+          type: string
+        conversionResult:
+          $ref: '#/components/schemas/ConversionResult'
+
+    WorkflowExecutionRequest:
+      type: object
+      properties:
+        parameters:
+          type: object
+        context:
+          type: object
+        options:
+          type: object
+          properties:
+            async:
+              type: boolean
+              default: false
+            timeout:
+              type: integer
+            priority:
+              type: string
+              enum: [low, normal, high, urgent]
+
+    WorkflowExecutionResponse:
+      type: object
+      properties:
+        executionId:
+          type: string
+        status:
+          type: string
+          enum: [completed, failed, timeout]
+        result:
+          type: object
+        metrics:
+          type: object
+          properties:
+            executionTime:
+              type: integer
+            stepsExecuted:
+              type: integer
+
+    WorkflowExecutionStartedResponse:
+      type: object
+      properties:
+        executionId:
+          type: string
+        status:
+          type: string
+          enum: [started, queued]
+        estimatedCompletion:
+          type: string
+          format: date-time
+
+    AbdulOrchestrationRequest:
+      type: object
+      required:
+        - requestType
+        - description
+      properties:
+        requestType:
+          type: string
+          enum: [task_assignment, team_coordination, resource_allocation, project_planning, crisis_response]
+        description:
+          type: string
+        context:
+          type: object
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+        requiredTeams:
+          type: array
+          items:
+            type: string
+        deadline:
+          type: string
+          format: date-time
+
+    OrchestrationResponse:
+      type: object
+      properties:
+        orchestrationId:
+          type: string
+        status:
+          type: string
+        result:
+          type: object
+          properties:
+            assignedTeams:
+              type: array
+              items:
+                type: string
+            recommendedActions:
+              type: array
+              items:
+                type: string
+            timeline:
+              type: object
+        reasoning:
+          type: string
+
+    OrchestrationStartedResponse:
+      type: object
+      properties:
+        orchestrationId:
+          type: string
+        status:
+          type: string
+        estimatedCompletion:
+          type: string
+          format: date-time
+
+    PartyModeRequest:
+      type: object
+      required:
+        - sessionName
+        - participants
+      properties:
+        sessionName:
+          type: string
+        participants:
+          type: array
+          items:
+            type: string
+        preset:
+          type: string
+        configuration:
+          type: object
+        objective:
+          type: string
+
+    PartyModeResponse:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        status:
+          type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyModeParticipant'
+        configuration:
+          type: object
+
+    PartyModeParticipant:
+      type: object
+      properties:
+        agentId:
+          type: string
+        role:
+          type: string
+        status:
+          type: string
+
+    CrossModuleRequest:
+      type: object
+      required:
+        - requestingTeam
+        - targetTeam
+        - consultationType
+      properties:
+        requestingTeam:
+          type: string
+        targetTeam:
+          type: string
+        consultationType:
+          type: string
+          enum: [knowledge_sharing, collaboration, expertise_request, joint_analysis]
+        description:
+          type: string
+        context:
+          type: object
+
+    CrossModuleResponse:
+      type: object
+      properties:
+        consultationId:
+          type: string
+        status:
+          type: string
+        result:
+          type: object
+        participatingAgents:
+          type: array
+          items:
+            type: string
+
+    ModuleRegistryResponse:
+      type: object
+      properties:
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleRegistryEntry'
+        lastUpdated:
+          type: string
+          format: date-time
+        totalModules:
+          type: integer
+
+    ModuleRegistryEntry:
+      type: object
+      properties:
+        moduleId:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+        health:
+          $ref: '#/components/schemas/ModuleHealth'
+        agents:
+          type: integer
+        workflows:
+          type: integer
+        dependencies:
+          type: array
+          items:
+            type: string
+        lastHealthCheck:
+          type: string
+          format: date-time
+
+    ModuleHealth:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        score:
+          type: number
+          minimum: 0
+          maximum: 100
+        issues:
+          type: array
+          items:
+            type: string
+
+    SystemHealthResponse:
+      type: object
+      properties:
+        overallHealth:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        score:
+          type: number
+        modules:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ModuleHealth'
+        infrastructure:
+          $ref: '#/components/schemas/InfrastructureHealth'
+        metrics:
+          $ref: '#/components/schemas/SystemMetrics'
+
+    InfrastructureHealth:
+      type: object
+      properties:
+        database:
+          type: string
+        filesystem:
+          type: string
+        network:
+          type: string
+        memory:
+          type: string
+        cpu:
+          type: string
+
+    SystemMetrics:
+      type: object
+      properties:
+        activeAgents:
+          type: integer
+        runningWorkflows:
+          type: integer
+        totalExecutions:
+          type: integer
+        errorRate:
+          type: number
+        averageResponseTime:
+          type: number
+
+    ConversionRequest:
+      type: object
+      required:
+        - content
+        - sourceFormat
+        - targetFormat
+      properties:
+        content:
+          type: string
+        sourceFormat:
+          type: string
+          enum: [yaml, json, xml]
+        targetFormat:
+          type: string
+          enum: [markdown, yaml, json]
+        options:
+          type: object
+          properties:
+            validate:
+              type: boolean
+              default: true
+            optimize:
+              type: boolean
+              default: true
+
+    ConversionResponse:
+      type: object
+      properties:
+        conversionId:
+          type: string
+        status:
+          type: string
+          enum: [success, failed, warning]
+        result:
+          $ref: '#/components/schemas/ConversionResult'
+        warnings:
+          type: array
+          items:
+            type: string
+
+    ConversionResult:
+      type: object
+      properties:
+        convertedContent:
+          type: string
+        metadata:
+          type: object
+        validationStatus:
+          type: string
+        optimization:
+          type: object
+          properties:
+            sizeReduction:
+              type: number
+            performanceGain:
+              type: number
+
+    ValidationRequest:
+      type: object
+      required:
+        - content
+        - type
+      properties:
+        content:
+          type: string
+        type:
+          type: string
+          enum: [agent, workflow, module]
+        options:
+          type: object
+
+    ValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+        suggestions:
+          type: array
+          items:
+            type: string
+
+    ValidationError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        line:
+          type: integer
+        column:
+          type: integer
+        severity:
+          type: string
+
+    ValidationWarning:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        suggestion:
+          type: string
+
+    IntegrationConfigurationResponse:
+      type: object
+      properties:
+        version:
+          type: string
+        coordination:
+          type: object
+        routing:
+          type: object
+        security:
+          type: object
+        performance:
+          type: object
+
+    IntegrationConfigurationUpdateRequest:
+      type: object
+      properties:
+        coordination:
+          type: object
+        routing:
+          type: object
+        security:
+          type: object
+        performance:
+          type: object
+
+    IntegrationHealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        version:
+          type: string
+        components:
+          type: object
+          properties:
+            agentRegistry:
+              type: string
+            workflowEngine:
+              type: string
+            orchestrator:
+              type: string
+            converter:
+              type: string
+        uptime:
+          type: integer
+
+    RegistryEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        registeredAt:
+          type: string
+          format: date-time
+
+    PaginationInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        timestamp:
+          type: string
+          format: date-time
+
+# Integration Examples and Patterns
+x-examples:
+  list-agents: |
+    # List all cybersec team agents
+    curl -X GET "https://integration-api.bmad.code/v2/agents?team=cybersec-team&includeMetadata=true" \
+      -H "Authorization: Bearer YOUR_TOKEN"
+
+  execute-workflow: |
+    # Execute an intelligence operation workflow
+    curl -X POST "https://integration-api.bmad.code/v2/workflows/intel-team:operation-mosaic" \
+      -H "Authorization: Bearer YOUR_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "parameters": {
+          "target": "threat-actor-analysis",
+          "scope": "comprehensive"
+        },
+        "options": {
+          "async": true,
+          "priority": "high"
+        }
+      }'
+
+  abdul-orchestration: |
+    # Request Abdul orchestration for crisis response
+    curl -X POST "https://integration-api.bmad.code/v2/orchestration/abdul" \
+      -H "Authorization: Bearer YOUR_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "requestType": "crisis_response",
+        "description": "Security incident requiring multi-team coordination",
+        "priority": "urgent",
+        "requiredTeams": ["cybersec-team", "intel-team", "legal-team"]
+      }'
+
+  party-mode: |
+    # Initiate Party Mode collaboration session
+    curl -X POST "https://integration-api.bmad.code/v2/orchestration/party-mode" \
+      -H "Authorization: Bearer YOUR_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "sessionName": "Strategic Crisis Response",
+        "participants": ["strategy-team:strategist", "cybersec-team:bastion", "legal-team:counsel"],
+        "objective": "Develop comprehensive response strategy for data breach incident"
+      }'
+
+# Enterprise Integration Patterns
+x-integration-patterns:
+  microservices-orchestration: |
+    Use BMAD integration API for microservices orchestration:
+
+    1. **Service Discovery**: Use /agents and /workflows endpoints for dynamic service discovery
+    2. **Load Balancing**: Leverage Abdul's intelligent routing for optimal agent selection
+    3. **Circuit Breaker**: Implement health checks with /registry/health endpoint
+    4. **Event Sourcing**: Use /events/stream for real-time event processing
+    5. **Saga Pattern**: Orchestrate complex workflows with /orchestration/abdul
+
+  enterprise-deployment: |
+    Enterprise deployment patterns:
+
+    1. **Multi-Region**: Deploy integration API across multiple regions
+    2. **High Availability**: Use load balancers with health checks
+    3. **Security**: Implement OAuth2 with RBAC for agent access
+    4. **Monitoring**: Real-time monitoring with event streaming
+    5. **Disaster Recovery**: Automated failover with module redundancy
+
+x-rate-limits:
+  agent-operations: "100 requests per minute per API key"
+  workflow-execution: "50 executions per minute per API key"
+  orchestration: "20 requests per minute per API key"
+  conversion: "30 requests per minute per API key"
+  health-monitoring: "Unlimited"
+  event-streaming: "Unlimited (streaming endpoint)"

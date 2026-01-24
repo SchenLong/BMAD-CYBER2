@@ -29,7 +29,7 @@
  *     const result = verifier.verifySkill('bmad:intel-team:agents:osint-lead');
  */
 
-import { execSync, spawnSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import { createHash } from 'crypto';
 import {
   existsSync,
@@ -794,9 +794,20 @@ export function generateManifest(
   if (sign) {
     const sigPath = targetPath + '.asc';
     try {
-      execSync(`gpg --armor --detach-sign --local-user "${signingKey}" --output "${sigPath}" "${targetPath}"`, {
+      // Use spawnSync with argument array to prevent injection attacks
+      const result = spawnSync('gpg', [
+        '--armor',
+        '--detach-sign',
+        '--local-user', signingKey,
+        '--output', sigPath,
+        targetPath
+      ], {
         stdio: 'pipe',
       });
+
+      if (result.status !== 0) {
+        throw new Error(`GPG signing failed with status ${result.status}: ${result.stderr?.toString()}`);
+      }
       AuditLogger.logSync(VALIDATOR_NAME, 'ALLOWED', {
         message: 'Manifest signed',
         path: sigPath,

@@ -174,6 +174,7 @@ export function getSessionState(sessionId: string): SessionPatternState {
       container.sessions[sessionId] = session;
       saveSessionsContainer(container);
 
+      // Return the decayed session object directly (not a copy, since we just modified it)
       return session;
     } else if (elapsed >= SESSION_TIMEOUT_MS) {
       // Session expired, remove from container and return fresh state
@@ -182,8 +183,9 @@ export function getSessionState(sessionId: string): SessionPatternState {
       return createFreshState(sessionId);
     }
 
-    // Return deep copy to avoid mutations affecting the stored state
-    return JSON.parse(JSON.stringify(session));
+    // Return the session object directly from the container
+    // No deep copy needed since we're reading current state
+    return session;
   }
 
   return createFreshState(sessionId);
