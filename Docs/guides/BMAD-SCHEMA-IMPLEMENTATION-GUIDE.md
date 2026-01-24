@@ -22,7 +22,7 @@ BMAD-CYBER2/
 ├── bmad-agent-schema.yaml          # Core agent validation schema
 ├── bmad-package-metadata.yaml      # Package distribution metadata schema
 ├── bmad-validation-rules.yaml      # Comprehensive validation rules
-├── bmad-validator.py               # Python validation tool
+├── src/utility/tools/bmad-validator.py               # Python validation tool
 └── BMAD-SCHEMA-IMPLEMENTATION-GUIDE.md  # This implementation guide
 ```
 
@@ -30,23 +30,23 @@ BMAD-CYBER2/
 
 ```bash
 # Basic validation
-python bmad-validator.py agent /path/to/agent.yaml
+python src/utility/tools/bmad-validator.py agent /path/to/agent.yaml
 
 # Strict mode with custom schema
-python bmad-validator.py agent /path/to/agent.yaml --strict --schema-file custom-schema.yaml
+python src/utility/tools/bmad-validator.py agent /path/to/agent.yaml --strict --schema-file custom-schema.yaml
 
 # JSON output
-python bmad-validator.py agent /path/to/agent.yaml --output-format json --output-file report.json
+python src/utility/tools/bmad-validator.py agent /path/to/agent.yaml --output-format json --output-file report.json
 ```
 
 ### 3. Validate Entire Package
 
 ```bash
 # Validate all agents in extracted teams
-python bmad-validator.py package _bmad-output/extraction-output/specialized-teams --recursive --parallel
+python src/utility/tools/bmad-validator.py package _bmad-output/extraction-output/specialized-teams --recursive --parallel
 
 # Generate detailed report
-python bmad-validator.py package /path/to/package --output-format json --output-file validation-report.json
+python src/utility/tools/bmad-validator.py package /path/to/package --output-format json --output-file validation-report.json
 ```
 
 ## 🏗️ Schema Architecture
@@ -120,7 +120,7 @@ agent:
 pip install PyYAML jsonschema python-magic click
 
 # Make validator executable
-chmod +x bmad-validator.py
+chmod +x src/utility/tools/bmad-validator.py
 
 # Verify schema files are accessible
 ls -la bmad-*.yaml
@@ -130,13 +130,13 @@ ls -la bmad-*.yaml
 
 ```bash
 # Test with known good agent
-python bmad-validator.py agent _bmad-output/extraction-output/specialized-teams/src/cybersec-team/agents/security-architect.agent.yaml
+python src/utility/tools/bmad-validator.py agent _bmad-output/extraction-output/specialized-teams/src/cybersec-team/agents/security-architect.agent.yaml
 
 # Test entire cybersec team (15 agents)
-python bmad-validator.py package _bmad-output/extraction-output/specialized-teams/src/cybersec-team/agents/
+python src/utility/tools/bmad-validator.py package _bmad-output/extraction-output/specialized-teams/src/cybersec-team/agents/
 
 # Test all 53 extracted agents
-python bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ --recursive
+python src/utility/tools/bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ --recursive
 ```
 
 ### Step 3: Integration with Build Pipeline
@@ -157,7 +157,7 @@ jobs:
       - name: Install dependencies
         run: pip install PyYAML jsonschema python-magic click
       - name: Validate agents
-        run: python bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ --output-format json --output-file validation-report.json
+        run: python src/utility/tools/bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ --output-format json --output-file validation-report.json
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -388,7 +388,7 @@ changed_files=$(git diff --cached --name-only | grep '\.agent\.yaml$')
 if [ -n "$changed_files" ]; then
     echo "Validating agent files..."
     for file in $changed_files; do
-        python bmad-validator.py agent "$file" || exit 1
+        python src/utility/tools/bmad-validator.py agent "$file" || exit 1
     done
     echo "✅ All agent files pass validation"
 fi
@@ -402,7 +402,7 @@ The validator supports parallel processing for large agent sets:
 
 ```python
 # Validate 53 agents in parallel (default: 4 workers)
-python bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ --parallel
+python src/utility/tools/bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ --parallel
 
 # Custom worker count
 validator = BMADAgentValidator()
@@ -482,16 +482,16 @@ python tests/performance-test.py --agents _bmad-output/extraction-output/special
 **Solution**: Validate YAML syntax using `yamllint` before running BMAD validator
 
 **Issue**: "Permission denied on bmad-validator.py"
-**Solution**: Run `chmod +x bmad-validator.py` to make executable
+**Solution**: Run `chmod +x src/utility/tools/bmad-validator.py` to make executable
 
 ### Debug Mode
 
 ```bash
 # Enable verbose output
-python bmad-validator.py agent file.yaml --verbose
+python src/utility/tools/bmad-validator.py agent file.yaml --verbose
 
 # Enable debug logging
-BMAD_DEBUG=true python bmad-validator.py package /path/to/package
+BMAD_DEBUG=true python src/utility/tools/bmad-validator.py package /path/to/package
 ```
 
 ### Report Issues
@@ -517,7 +517,7 @@ Story 2.2 is complete when:
 
 ```bash
 # Ultimate validation test for Story 2.2 completion
-python bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ \
+python src/utility/tools/bmad-validator.py package _bmad-output/extraction-output/specialized-teams/ \
     --recursive --parallel \
     --output-format json \
     --output-file story-2.2-validation-report.json

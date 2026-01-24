@@ -105,7 +105,7 @@ I have successfully designed and implemented a comprehensive dependency manageme
 
 ### 8. Validation System
 
-**File**: `bmad-dependency-validator.py`
+**File**: `src/utility/tools/bmad-dependency-validator.py`
 - System validation and integrity checking
 - Configuration schema validation
 - Integration readiness assessment

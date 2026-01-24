@@ -1,0 +1,189 @@
+{
+  "timestamp": "2026-01-24T01:13:19.532Z",
+  "testType": "integration-validation",
+  "targetCoverage": 90,
+  "modules": [
+    "intel-team",
+    "legal-team",
+    "strategy-team",
+    "cybersec-team",
+    "bmm",
+    "bmgd",
+    "cis"
+  ],
+  "testResults": {
+    "moduleStructure": {
+      "intel-team": {
+        "isValid": true,
+        "expectedAgents": 11,
+        "expectedWorkflows": 19,
+        "agentCoverage": null,
+        "workflowCoverage": null,
+        "coverageScore": null
+      },
+      "legal-team": {
+        "isValid": true,
+        "expectedAgents": 13,
+        "expectedWorkflows": 8,
+        "agentCoverage": null,
+        "workflowCoverage": null,
+        "coverageScore": null
+      },
+      "strategy-team": {
+        "isValid": true,
+        "expectedAgents": 14,
+        "expectedWorkflows": 23,
+        "agentCoverage": null,
+        "workflowCoverage": null,
+        "coverageScore": null
+      },
+      "cybersec-team": {
+        "isValid": true,
+        "expectedAgents": 15,
+        "expectedWorkflows": 13,
+        "agentCoverage": null,
+        "workflowCoverage": null,
+        "coverageScore": null
+      },
+      "bmm": {
+        "isValid": false,
+        "error": "Module file not found: bmm",
+        "coverageScore": 0
+      },
+      "bmgd": {
+        "isValid": false,
+        "error": "Module file not found: bmgd",
+        "coverageScore": 0
+      },
+      "cis": {
+        "isValid": false,
+        "error": "Module file not found: cis",
+        "coverageScore": 0
+      }
+    },
+    "crossModuleCommunication": {
+      "intel-team-to-legal-team": {
+        "moduleA": "intel-team",
+        "moduleB": "legal-team",
+        "duration": 34.245791,
+        "success": false,
+        "passed": false
+      },
+      "intel-team-to-strategy-team": {
+        "moduleA": "intel-team",
+        "moduleB": "strategy-team",
+        "duration": 11.094250000000045,
+        "success": false,
+        "passed": false
+      },
+      "intel-team-to-cybersec-team": {
+        "moduleA": "intel-team",
+        "moduleB": "cybersec-team",
+        "duration": 17.100750000000005,
+        "success": false,
+        "passed": false
+      },
+      "legal-team-to-strategy-team": {
+        "moduleA": "legal-team",
+        "moduleB": "strategy-team",
+        "duration": 25.052999999999997,
+        "success": false,
+        "passed": false
+      },
+      "legal-team-to-cybersec-team": {
+        "moduleA": "legal-team",
+        "moduleB": "cybersec-team",
+        "duration": 11.056541999999979,
+        "success": false,
+        "passed": false
+      },
+      "strategy-team-to-cybersec-team": {
+        "moduleA": "strategy-team",
+        "moduleB": "cybersec-team",
+        "duration": 20.054708000000062,
+        "success": false,
+        "passed": false
+      }
+    },
+    "workflowIntegration": {
+      "intel-team": {
+        "totalWorkflows": 5,
+        "successfulWorkflows": 5,
+        "integrationScore": 100,
+        "passed": true
+      },
+      "legal-team": {
+        "totalWorkflows": 5,
+        "successfulWorkflows": 5,
+        "integrationScore": 100,
+        "passed": true
+      },
+      "strategy-team": {
+        "totalWorkflows": 5,
+        "successfulWorkflows": 4,
+        "integrationScore": 80,
+        "passed": true
+      },
+      "cybersec-team": {
+        "totalWorkflows": 5,
+        "successfulWorkflows": 5,
+        "integrationScore": 100,
+        "passed": true
+      },
+      "bmm": {
+        "totalWorkflows": 5,
+        "successfulWorkflows": 3,
+        "integrationScore": 60,
+        "passed": false
+      },
+      "bmgd": {
+        "totalWorkflows": 5,
+        "successfulWorkflows": 3,
+        "integrationScore": 60,
+        "passed": false
+      },
+      "cis": {
+        "totalWorkflows": 5,
+        "successfulWorkflows": 5,
+        "integrationScore": 100,
+        "passed": true
+      }
+    },
+    "performanceIntegration": {
+      "size-10": {
+        "operations": 10,
+        "duration": 0.10116600000003473,
+        "throughput": 98847,
+        "passed": true
+      },
+      "size-25": {
+        "operations": 25,
+        "duration": 0.07741699999996854,
+        "throughput": 322926,
+        "passed": true
+      }
+    },
+    "errorHandling": {
+      "invalid-input": {
+        "scenario": "invalid-input",
+        "handledGracefully": true,
+        "recoveryTime": 312.5823760796973,
+        "errorMessage": "Handled invalid-input successfully"
+      },
+      "module-unavailable": {
+        "scenario": "module-unavailable",
+        "handledGracefully": true,
+        "recoveryTime": 111.97000691658482,
+        "errorMessage": "Handled module-unavailable successfully"
+      },
+      "timeout": {
+        "scenario": "timeout",
+        "handledGracefully": true,
+        "recoveryTime": 70.03204396970453,
+        "errorMessage": "Handled timeout successfully"
+      }
+    }
+  },
+  "overallScore": 72,
+  "passed": false
+}

@@ -1,0 +1,225 @@
+{
+  "timestamp": "2026-01-24T16:37:07.900Z",
+  "vulnerabilities": [
+    {
+      "type": "SENSITIVE_FILE",
+      "severity": "CRITICAL",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/.env.example",
+      "message": "Sensitive file present: .env.example",
+      "recommendation": "Remove or secure this file"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/settings.local.json",
+      "line": 52,
+      "pattern": "JWT Token",
+      "match": "eys..",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/settings.local.json",
+      "line": 58,
+      "pattern": "JWT Token",
+      "match": "eys..",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/dist/guards/secret.js",
+      "line": 114,
+      "pattern": "PEM Certificate",
+      "match": "-----BEGIN CERTIFICATE-----",
+      "message": "Potential PEM Certificate found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/package-lock.json",
+      "line": 2970,
+      "pattern": "JWT Token",
+      "match": "ey-4.0.0",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/package-lock.json",
+      "line": 3015,
+      "pattern": "JWT Token",
+      "match": "ey-3.1.1",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/src/guards/secret.js",
+      "line": 114,
+      "pattern": "PEM Certificate",
+      "match": "-----BEGIN CERTIFICATE-----",
+      "message": "Potential PEM Certificate found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/src/guards/secret.ts",
+      "line": 173,
+      "pattern": "PEM Certificate",
+      "match": "-----BEGIN CERTIFICATE-----",
+      "message": "Potential PEM Certificate found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "CRITICAL",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/tests/guards/secret.test.ts",
+      "line": 108,
+      "pattern": "GitHub Personal Access Token",
+      "match": "ghp_1234567890abcdefghijklmnopqrstuvwxyz",
+      "message": "Potential GitHub Personal Access Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "CRITICAL",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/tests/guards/secret.test.ts",
+      "line": 131,
+      "pattern": "SSH Private Key Header",
+      "match": "-----BEGIN RSA PRIVATE KEY-----",
+      "message": "Potential SSH Private Key Header found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/tests/guards/secret.test.ts",
+      "line": 165,
+      "pattern": "JWT Token",
+      "match": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "CRITICAL",
+      "file": "/Users/paultinp/BMAD-CYBER2/.claude/validators-node/tests/guards/secret.test.ts",
+      "line": 202,
+      "pattern": "SSH Private Key Header",
+      "match": "-----BEGIN RSA PRIVATE KEY-----",
+      "message": "Potential SSH Private Key Header found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/dist/.claude/validators-node/src/guards/secret.js",
+      "line": 114,
+      "pattern": "PEM Certificate",
+      "match": "-----BEGIN CERTIFICATE-----",
+      "message": "Potential PEM Certificate found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/package-lock.json",
+      "line": 3168,
+      "pattern": "JWT Token",
+      "match": "eys-6.21.0",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/package-lock.json",
+      "line": 3899,
+      "pattern": "JWT Token",
+      "match": "eys-3.4.3",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/package-lock.json",
+      "line": 4471,
+      "pattern": "JWT Token",
+      "match": "eyv-4.5.4",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/package-lock.json",
+      "line": 4803,
+      "pattern": "JWT Token",
+      "match": "ey-3.1.1",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "MEDIUM",
+      "file": "/Users/paultinp/BMAD-CYBER2/package-lock.json",
+      "line": 6242,
+      "pattern": "JWT Token",
+      "match": "ey-4.0.0",
+      "message": "Potential JWT Token found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "HIGH",
+      "file": "/Users/paultinp/BMAD-CYBER2/src/config/security-hardening-config.yaml",
+      "line": 47,
+      "pattern": "Generic API Key",
+      "match": "api_key: \"sk-[a-zA-Z0-9]{48}\"",
+      "message": "Potential Generic API Key found",
+      "recommendation": "Use environment variables or secure key management"
+    },
+    {
+      "type": "CREDENTIAL_EXPOSURE",
+      "severity": "HIGH",
+      "file": "/Users/paultinp/BMAD-CYBER2/tests/security/generate-token.test.ts",
+      "line": 90,
+      "pattern": "Password Assignment",
+      "match": "password = 'test-password'",
+      "message": "Potential Password Assignment found",
+      "recommendation": "Use environment variables or secure key management"
+    }
+  ],
+  "warnings": [],
+  "passed": [
+    {
+      "type": "PERMISSION_CHECK",
+      "file": "/Users/paultinp/BMAD-CYBER2/package.json",
+      "message": "Correct permissions: 0644"
+    },
+    {
+      "type": "GITIGNORE_CHECK",
+      "file": "/Users/paultinp/BMAD-CYBER2/.gitignore",
+      "message": "All required patterns present in .gitignore"
+    }
+  ],
+  "summary": {
+    "total_vulnerabilities": 20,
+    "critical": 4,
+    "high": 2,
+    "medium": 14,
+    "low": 0,
+    "warnings": 0,
+    "passed_checks": 2,
+    "security_score": 0
+  }
+}

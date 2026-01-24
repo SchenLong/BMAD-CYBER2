@@ -1,0 +1,98 @@
+{
+  "timestamp": "2026-01-24T20:33:53.870Z",
+  "system": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "nodeVersion": "v25.2.1",
+    "totalMemory": 65536,
+    "availableMemory": 425,
+    "cpuCores": 24
+  },
+  "testResults": {
+    "coreModuleLoad": {
+      "duration": 1.8237079999999537,
+      "threshold": 1000,
+      "passed": true
+    },
+    "teamModuleLoads": {
+      "intel-team": {
+        "duration": null,
+        "passed": false,
+        "error": "ENOENT: no such file or directory, open '/Users/paultinp/BMAD-CYBER2/intel-team-module.yaml.example'"
+      },
+      "legal-team": {
+        "duration": null,
+        "passed": false,
+        "error": "ENOENT: no such file or directory, open '/Users/paultinp/BMAD-CYBER2/legal-team-module.yaml.example'"
+      },
+      "strategy-team": {
+        "duration": null,
+        "passed": false,
+        "error": "ENOENT: no such file or directory, open '/Users/paultinp/BMAD-CYBER2/strategy-team-module.yaml.example'"
+      },
+      "cybersec-team": {
+        "duration": null,
+        "passed": false,
+        "error": "ENOENT: no such file or directory, open '/Users/paultinp/BMAD-CYBER2/cybersec-team-module.yaml.example'"
+      }
+    },
+    "memoryStability": {
+      "initialMemory": 31,
+      "finalMemory": 28,
+      "growthPercentage": -10,
+      "threshold": 50,
+      "passed": true
+    },
+    "fileSystemPerformance": {
+      "sequentialTime": 13.91404099999994,
+      "concurrentTime": 3.2339589999999134,
+      "efficiency": 4.30247909760152,
+      "threshold": 0.8,
+      "passed": true
+    },
+    "crossModuleCommunication": {
+      "core": {
+        "duration": 0.09454200000004676,
+        "passed": true
+      },
+      "intel-team": {
+        "duration": 0.04800000000000182,
+        "passed": true
+      },
+      "legal-team": {
+        "duration": 0.04062500000009095,
+        "passed": true
+      },
+      "strategy-team": {
+        "duration": 0.03933299999994233,
+        "passed": true
+      },
+      "cybersec-team": {
+        "duration": 0.04141600000002654,
+        "passed": true
+      }
+    },
+    "scalability": {
+      "1": {
+        "duration": 0.043667000000027656,
+        "throughput": 22901,
+        "efficiency": 1
+      },
+      "5": {
+        "duration": 0.08195800000009967,
+        "throughput": 61007,
+        "efficiency": 2.6639864320734126
+      },
+      "10": {
+        "duration": 0.16741700000000037,
+        "throughput": 59731,
+        "efficiency": 2.6082775345411493
+      },
+      "25": {
+        "duration": 0.39608300000008967,
+        "throughput": 63118,
+        "efficiency": 2.7561773668661473
+      }
+    }
+  }
+}

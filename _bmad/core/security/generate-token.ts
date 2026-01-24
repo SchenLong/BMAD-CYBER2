@@ -54,8 +54,8 @@ export class TokenGenerator {
    * Generate encryption key from password or create new random key
    */
   static generateKey(password?: string): Buffer {
-    if (password) {
-      // Derive key from password using PBKDF2
+    if (password !== undefined) {
+      // Derive key from password using PBKDF2 (allows empty string passwords)
       return crypto.pbkdf2Sync(password, 'bmad-auth-salt-v1', 100000, 32, 'sha256');
     }
     // Generate random key

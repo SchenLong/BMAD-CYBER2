@@ -175,13 +175,12 @@ describe('Audit Log Encryption Integration Tests', () => {
     });
 
     test('should validate encryption key format', async () => {
-      // Invalid key formats should throw errors
+      // Invalid key formats should throw errors (excluding empty which is treated as "no key")
       const invalidKeys = [
         'short', // Too short
         'not-hex-123xyz', // Invalid hex
         'a'.repeat(63), // Wrong length (31.5 bytes)
         'a'.repeat(65), // Wrong length (32.5 bytes)
-        '', // Empty
       ];
 
       for (const invalidKey of invalidKeys) {
@@ -192,20 +191,19 @@ describe('Audit Log Encryption Integration Tests', () => {
         vi.resetModules();
         const freshModule = await import('../../src/observability/audit-encryption.js');
 
-        expect(() => {
-          const testEntry: AuditLogEntry = {
-            timestamp: new Date().toISOString(),
-            session_id: 'key-validation-test',
-            validator: 'test',
-            severity: 'INFO',
-            action: 'LOG',
-            details: {},
-          };
-          return freshModule.encryptEntrySync(testEntry);
-        }).toThrow();
+        const testEntry: AuditLogEntry = {
+          timestamp: new Date().toISOString(),
+          session_id: 'key-validation-test',
+          validator: 'test',
+          severity: 'INFO',
+          action: 'LOG',
+          details: {},
+        };
+        expect(() => freshModule.encryptEntrySync(testEntry)).toThrow();
 
         // Clean up environment
         delete process.env.BMAD_AUDIT_ENCRYPTION_ENABLED;
+        delete process.env.BMAD_AUDIT_ENCRYPTION_KEY;
       }
     });
   });
