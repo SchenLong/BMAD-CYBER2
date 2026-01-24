@@ -1,0 +1,61 @@
+{
+  "name": "@bmad-cybercommand/meta-package",
+  "version": "2.0.0",
+  "description": "BMAD Specialized Teams Multi-Module Distribution Package",
+  "keywords": [
+    "bmad",
+    "agent",
+    "workflow",
+    "security",
+    "intelligence",
+    "legal",
+    "strategy"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+  },
+  "author": "BMAD Development Team <dev@bmad.ai>",
+  "maintainers": [
+    {
+      "name": "BMAD Development Team",
+      "email": "dev@bmad.ai"
+    }
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.1",
+    "typescript": "^5.0.0",
+    "vitest": "^0.34.0"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-modules.js",
+    "build": "node scripts/build-packages.js",
+    "test": "vitest",
+    "prepack": "npm run validate && npm run build"
+  },
+  "files": [
+    "src/",
+    "docs/",
+    "samples/",
+    "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md"
+  ],
+  "bmad": {
+    "version": "2.0.0",
+    "modules": [
+      "cybersec-team",
+      "intel-team",
+      "legal-team",
+      "strategy-team"
+    ],
+    "format": "bmad-builder",
+    "compatible": true
+  }
+}

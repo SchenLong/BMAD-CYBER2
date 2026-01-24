@@ -1,0 +1,149 @@
+# BMAD Specialized Teams - Cybersecurity Team Module Configuration
+# Multi-Module Distribution Format v2.0.0
+
+code: "cybersec-team"
+name: "Cybersecurity Operations Team"
+version: "2.0.0"
+default_selected: false
+type: "specialized-team"
+category: "bmad-specialized-teams"
+
+npm:
+  scope: "@bmad-cybercommand"
+  package_name: "cybersec-team"
+  full_name: "@bmad-cybercommand/cybersec-team"
+
+repository:
+  type: "git"
+  url: "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+  directory: "src/cybersec-team"
+
+keywords:
+  - "bmad"
+  - "agent"
+  - "workflow"
+  - "cybersecurity"
+  - "security"
+  - "pentesting"
+
+agents:
+  count: 15
+  conversion_format: "agent.yaml"
+  source_path: "agents/"
+  target_path: "dist/agents/"
+
+workflows:
+  count: 13
+  conversion_format: "workflow.yaml"
+  source_path: "workflows/"
+  target_path: "dist/workflows/"
+
+dependencies:
+  core:
+    - module: "bmad:core"
+      version: ">=2.0.0"
+      required: true
+      agents: ["abdul", "bmad-master"]
+      workflows: ["party-mode", "cross-module", "incident-response"]
+
+  peer_dependencies:
+    - module: "@bmad-cybercommand/intel-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "threat_intel_integration_enabled"
+    - module: "@bmad-cybercommand/legal-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "compliance_frameworks_enabled"
+
+integration:
+  exposed_workflows:
+    - workflow_id: "security-consultation"
+      trigger: "external"
+      description: "Provides security consultation to other teams"
+      access_level: "cross_team"
+    - workflow_id: "incident-response"
+      trigger: "urgent"
+      description: "Emergency security incident response"
+      access_level: "cross_team"
+    - workflow_id: "threat-assessment"
+      trigger: "scheduled"
+      description: "Comprehensive threat assessment"
+      access_level: "cross_team"
+
+prompt:
+  - "🔒 Installing Cybersecurity Operations Team Module"
+  - ""
+  - "This module provides 15 specialized security agents:"
+  - ""
+  - "  Core Security Team:"
+  - "  - Cipher (Threat Intelligence & APT Analysis)"
+  - "  - Bastion (Security Architecture & Zero Trust)"
+  - "  - Sentinel (Compliance & Governance)"
+  - "  - Trace (Digital Forensics & Evidence)"
+  - "  - Phoenix (Incident Command & Crisis)"
+  - "  - Spectre (Penetration Testing & Red Team)"
+  - ""
+  - "  Extended Security Team:"
+  - "  - Watchman (SOC Analysis & Detection)"
+  - "  - Nimbus (Cloud Security - AWS/Azure/GCP)"
+  - "  - Ledger (Blockchain & Web3 Security)"
+  - "  - Weaver (Web Application Security)"
+  - "  - Gateway (API Security & OAuth)"
+  - "  - Oracle (AI/ML & LLM Security)"
+  - "  - Shield (Blue Team Lead & Purple Team)"
+  - "  - Phantom (Mobile App Security - iOS/Android)"
+  - "  - Ghost (Social Engineering & Awareness)"
+  - ""
+  - "13 comprehensive security workflows included."
+
+output_folder:
+  prompt: "Where should cybersec-team save security artifacts and documentation?"
+  default: "_bmad-output/security"
+  result: "{project-root}/{value}"
+
+security_framework:
+  prompt: "Which primary security framework should be used?"
+  default: "nist_csf"
+  result: "{value}"
+  single-select:
+    - value: "nist_csf"
+      label: "NIST Cybersecurity Framework"
+    - value: "iso27001"
+      label: "ISO 27001"
+    - value: "cis_controls"
+      label: "CIS Critical Security Controls"
+    - value: "mitre_attack"
+      label: "MITRE ATT&CK Framework"
+
+module_code:
+  result: "cybersec-team"
+
+agents_path:
+  result: "{npm_package_root}/dist/agents"
+
+workflows_path:
+  result: "{npm_package_root}/dist/workflows"
+
+output_subdirectories:
+  planning: "{output_folder}/planning"
+  operations: "{output_folder}/operations"
+  documentation: "{output_folder}/docs"
+  artifacts: "{output_folder}/artifacts"
+
+permissions:
+  filesystem:
+    read: [
+      "{npm_package_root}/**",
+      "_bmad/core/**",
+      "docs/**"
+    ]
+    write: [
+      "{output_folder}/**",
+      "_bmad-output/security/**"
+    ]
+  network: true
+  shell:
+    allowed_commands: ["nmap", "curl", "wget", "netstat", "ss", "dig"]
+    blocked_commands: ["rm", "mv", "chmod", "sudo", "su"]
+  sensitive_data: true

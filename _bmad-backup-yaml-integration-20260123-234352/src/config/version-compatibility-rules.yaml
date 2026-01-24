@@ -1,0 +1,558 @@
+# BMAD Specialized Teams - Version Compatibility Rules
+# Comprehensive specification for module version management
+# Author: Winston (System Architect)
+# Version: 1.0.0
+
+version: "1.0.0"
+specification_type: "bmad_compatibility_rules"
+target_ecosystem: "bmad-specialized-teams"
+
+# =============================================================================
+# SEMANTIC VERSIONING RULES
+# =============================================================================
+
+semantic_versioning:
+  format: "MAJOR.MINOR.PATCH[-prerelease][+build]"
+
+  version_components:
+    major:
+      description: "Breaking changes to agent interfaces or workflow signatures"
+      compatibility: "incompatible"
+      examples:
+        - "Agent parameter schema changes"
+        - "Workflow output format changes"
+        - "Removal of public agents or workflows"
+        - "Party Mode preset signature changes"
+
+    minor:
+      description: "New features, agents, or workflows (backward compatible)"
+      compatibility: "backward_compatible"
+      examples:
+        - "New agents added"
+        - "New workflows added"
+        - "New Party Mode presets"
+        - "Optional parameter additions"
+
+    patch:
+      description: "Bug fixes, documentation, security patches"
+      compatibility: "fully_compatible"
+      examples:
+        - "Agent behavior bug fixes"
+        - "Workflow logic corrections"
+        - "Documentation updates"
+        - "Security vulnerability patches"
+
+# =============================================================================
+# CORE DEPENDENCY MATRIX
+# =============================================================================
+
+core_requirements:
+  bmad_core:
+    version_history:
+      "6.0.0":
+        release_date: "2024-12-15"
+        breaking_changes:
+          - "Party Mode preset schema v2.0"
+          - "Abdul orchestration API changes"
+          - "Cross-module workflow trigger framework"
+        compatibility_notes: "Required for all specialized team modules"
+
+      "5.x.x":
+        status: "deprecated"
+        eol_date: "2025-06-01"
+        migration_required: true
+        reason: "Missing cross-module orchestration framework"
+
+  minimum_requirements:
+    by_team_module:
+      cybersec_team:
+        "1.0.0": "core >= 6.0.0"
+        "1.1.0": "core >= 6.0.0"
+        "1.3.0": "core >= 6.0.0"
+        "2.0.0": "core >= 6.1.0"  # Future requirement
+
+      intel_team:
+        "1.0.0": "core >= 6.0.0"
+        "1.1.0": "core >= 6.0.0"
+        "2.0.0": "core >= 6.1.0"  # Future requirement
+
+      legal_team:
+        "1.0.0": "core >= 6.0.0"
+        "1.1.0": "core >= 6.0.0"
+        "2.0.0": "core >= 6.1.0"  # Future requirement
+
+      strategy_team:
+        "1.0.0": "core >= 6.0.0"
+        "1.1.0": "core >= 6.0.0"
+        "2.0.0": "core >= 6.1.0"  # Future requirement
+
+# =============================================================================
+# CROSS-MODULE COMPATIBILITY MATRIX
+# =============================================================================
+
+cross_module_compatibility:
+  compatibility_rules:
+    # Rule 1: Same major version compatibility
+    same_major_version:
+      description: "Modules with same major version are always compatible"
+      rule: "MAJOR.x.x ↔ MAJOR.y.z = compatible"
+      enforcement: "guaranteed"
+      examples:
+        - "cybersec-team 1.0.0 ↔ intel-team 1.3.5 = compatible"
+        - "legal-team 1.2.1 ↔ strategy-team 1.0.8 = compatible"
+
+    # Rule 2: Cross-major version incompatibility
+    cross_major_version:
+      description: "Different major versions may be incompatible"
+      rule: "MAJOR1.x.x ↔ MAJOR2.y.z = potentially_incompatible"
+      enforcement: "warning_required"
+      validation: "runtime_compatibility_check"
+      examples:
+        - "cybersec-team 1.5.0 ↔ intel-team 2.0.0 = warning + validation"
+
+    # Rule 3: Future version compatibility
+    future_compatibility:
+      description: "Newer minor/patch versions are backward compatible"
+      rule: "x.y.z → x.y+n.z+m = compatible"
+      enforcement: "automatic"
+
+  specific_combinations:
+    # Current stable combinations (tested and verified)
+    stable_combinations:
+      - modules: ["cybersec-team@1.3.0", "intel-team@1.1.0"]
+        status: "fully_tested"
+        party_mode_presets: ["threat-intel-fusion", "incident-war-room", "attribution-validation-party"]
+
+      - modules: ["cybersec-team@1.3.0", "legal-team@1.0.0"]
+        status: "fully_tested"
+        party_mode_presets: ["compliance-audit-team", "incident-war-room", "contract-review-party"]
+
+      - modules: ["cybersec-team@1.3.0", "strategy-team@1.0.0"]
+        status: "fully_tested"
+        party_mode_presets: ["vciso-advisory-party", "strategic-decision-validated"]
+
+      - modules: ["intel-team@1.1.0", "legal-team@1.0.0"]
+        status: "fully_tested"
+        party_mode_presets: ["legal-intake-party"]
+
+      - modules: ["intel-team@1.1.0", "strategy-team@1.0.0"]
+        status: "fully_tested"
+        party_mode_presets: ["negotiation-intelligence-party", "strategic-intelligence-council"]
+
+      - modules: ["legal-team@1.0.0", "strategy-team@1.0.0"]
+        status: "fully_tested"
+        party_mode_presets: ["strategic-decision-validated", "litigation-war-room"]
+
+      - modules: ["cybersec-team@1.3.0", "intel-team@1.1.0", "legal-team@1.0.0", "strategy-team@1.0.0"]
+        status: "integration_tested"
+        party_mode_presets: ["crisis-response-party", "m-and-a-diligence-board"]
+
+    # Known incompatible combinations
+    incompatible_combinations:
+      - modules: ["cybersec-team@0.x.x", "*"]
+        reason: "Pre-1.0 versions use incompatible agent naming"
+        resolution: "upgrade_to_1.0_or_later"
+
+      - modules: ["*@x.y.z", "core@5.x.x"]
+        reason: "Core 5.x lacks cross-module orchestration framework"
+        resolution: "upgrade_core_to_6.0_or_later"
+
+# =============================================================================
+# VERSION VALIDATION RULES
+# =============================================================================
+
+validation_rules:
+  pre_install_checks:
+    core_version_check:
+      type: "blocking"
+      rule: "installed_core_version >= required_core_version"
+      error_message: "BMAD Core {required_version} or later is required. Found: {current_version}"
+      resolution: "Upgrade BMAD Core before installing team modules"
+
+    major_version_alignment:
+      type: "warning"
+      rule: "all_team_modules_same_major_version_recommended"
+      warning_message: "Mixed major versions detected: {version_list}. Cross-module features may not work correctly."
+      resolution: "Consider upgrading modules to same major version"
+
+    dependency_cycle_detection:
+      type: "blocking"
+      rule: "no_circular_workflow_dependencies"
+      error_message: "Circular dependency detected: {dependency_chain}"
+      resolution: "Contact support - this indicates a module design issue"
+
+  runtime_checks:
+    agent_availability:
+      type: "warning"
+      rule: "referenced_agents_exist_in_installed_modules"
+      warning_message: "Party Mode preset '{preset}' references agent '{agent}' from uninstalled module '{module}'"
+      resolution: "Install {module} or disable preset"
+
+    workflow_trigger_validation:
+      type: "warning"
+      rule: "workflow_triggers_target_available_workflows"
+      warning_message: "Workflow '{workflow}' trigger references unavailable workflow '{target}'"
+      resolution: "Install required modules or update workflow configuration"
+
+  post_upgrade_checks:
+    backward_compatibility:
+      type: "validation"
+      rule: "existing_configurations_still_valid"
+      test_scenarios:
+        - "Party Mode presets load successfully"
+        - "Agent interfaces unchanged"
+        - "Workflow signatures preserved"
+        - "Output paths accessible"
+
+# =============================================================================
+# UPGRADE/DOWNGRADE POLICIES
+# =============================================================================
+
+upgrade_policies:
+  automatic_upgrades:
+    patch_versions:
+      enabled: true
+      scope: "security_patches_only"
+      notification: "optional"
+      rollback: "automatic_on_failure"
+
+    minor_versions:
+      enabled: false  # User must explicitly approve
+      reason: "New features may affect user workflows"
+      notification: "required"
+
+    major_versions:
+      enabled: false  # Always manual
+      reason: "Breaking changes require user review"
+      coordination_required: true
+
+  downgrade_policies:
+    patch_downgrades:
+      supported: true
+      conditions: "no_new_features_used"
+      validation: "configuration_compatibility_check"
+
+    minor_downgrades:
+      supported: "limited"
+      conditions:
+        - "no_new_agents_referenced"
+        - "no_new_workflows_used"
+        - "no_new_presets_saved"
+      warning: "New features will be unavailable"
+
+    major_downgrades:
+      supported: false
+      reason: "Data format incompatibilities likely"
+      alternative: "restore_from_backup"
+
+  coordinated_upgrades:
+    description: "When multiple modules must upgrade together"
+    triggers:
+      - "cross_module_breaking_changes"
+      - "core_major_version_upgrade"
+      - "security_critical_updates"
+
+    process:
+      1: "Stop all BMAD processes"
+      2: "Create full backup"
+      3: "Upgrade in dependency order: [core, teams]"
+      4: "Run migration scripts"
+      5: "Validate all integrations"
+      6: "Resume operations"
+
+    rollback_strategy:
+      method: "full_system_restore"
+      prerequisites: "verified_backup_available"
+      estimated_time: "15-30 minutes"
+
+# =============================================================================
+# CONFLICT RESOLUTION SPECIFICATIONS
+# =============================================================================
+
+conflict_resolution:
+  agent_name_conflicts:
+    detection: "pre_install_validation"
+    resolution_order:
+      1: "check_global_agent_registry"
+      2: "identify_conflicting_modules"
+      3: "determine_conflict_type"
+      4: "apply_resolution_strategy"
+
+    conflict_types:
+      true_duplicate:
+        description: "Same agent implementation in different modules"
+        resolution: "allow_with_warning"
+        note: "Some agents may legitimately exist in multiple modules"
+
+      name_collision:
+        description: "Different agents with same name"
+        resolution: "block_installation"
+        message: "Agent name '{name}' already exists in module '{existing_module}'"
+
+      reserved_name:
+        description: "Attempting to use core reserved name"
+        resolution: "block_installation"
+        message: "Agent name '{name}' is reserved for core system use"
+
+  workflow_id_conflicts:
+    prevention: "namespace_prefix_enforcement"
+    format: "{module_code}:{workflow_name}"
+    validation: "install_time_check"
+
+    conflict_handling:
+      same_workflow:
+        description: "Identical workflow in multiple modules"
+        resolution: "deduplicate_with_preference"
+        preference_order: ["latest_version", "user_specified_module"]
+
+      different_workflows:
+        description: "Different workflows with same ID"
+        resolution: "force_unique_naming"
+        enforcement: "block_second_installation"
+
+  version_conflicts:
+    peer_dependency_mismatch:
+      description: "Module A requires Module B v1.x, but v2.x is installed"
+      resolution_strategies:
+        1: "upgrade_module_a_if_compatible_version_exists"
+        2: "install_side_by_side_if_supported"  # Future feature
+        3: "warn_and_allow_with_reduced_functionality"
+        4: "block_installation_if_incompatible"
+
+    core_version_mismatch:
+      description: "Team module requires newer core version"
+      resolution: "require_core_upgrade"
+      blocking: true
+      message: "This module requires BMAD Core {required} or later. Please upgrade core first."
+
+# =============================================================================
+# TESTING & VALIDATION MATRIX
+# =============================================================================
+
+testing_matrix:
+  compatibility_test_scenarios:
+    single_module:
+      - scenario: "cybersec_only"
+        modules: ["cybersec-team@1.3.0"]
+        expected: "all_cybersec_features_available"
+
+      - scenario: "intel_only"
+        modules: ["intel-team@1.1.0"]
+        expected: "all_intel_features_available"
+
+      - scenario: "legal_only"
+        modules: ["legal-team@1.0.0"]
+        expected: "all_legal_features_available"
+
+      - scenario: "strategy_only"
+        modules: ["strategy-team@1.0.0"]
+        expected: "all_strategy_features_available"
+
+    two_module_combinations:
+      - scenario: "cybersec_intel"
+        modules: ["cybersec-team@1.3.0", "intel-team@1.1.0"]
+        expected_presets: ["threat-intel-fusion", "incident-war-room", "threat-ecosystem-party"]
+
+      - scenario: "cybersec_legal"
+        modules: ["cybersec-team@1.3.0", "legal-team@1.0.0"]
+        expected_presets: ["compliance-audit-team", "incident-war-room"]
+
+      - scenario: "cybersec_strategy"
+        modules: ["cybersec-team@1.3.0", "strategy-team@1.0.0"]
+        expected_presets: ["vciso-advisory-party", "strategic-decision-validated"]
+
+    full_integration:
+      - scenario: "all_modules"
+        modules: ["cybersec-team@1.3.0", "intel-team@1.1.0", "legal-team@1.0.0", "strategy-team@1.0.0"]
+        expected_presets: "all_47_presets_functional"
+        performance_benchmark: "startup_time < 30s, memory < 400MB"
+
+  version_upgrade_testing:
+    patch_upgrades:
+      - from: "1.0.0"
+        to: "1.0.1"
+        expected: "no_breaking_changes"
+        test_duration: "automated_5min"
+
+    minor_upgrades:
+      - from: "1.0.x"
+        to: "1.1.0"
+        expected: "new_features_available, existing_preserved"
+        test_duration: "automated_15min"
+
+    major_upgrades:
+      - from: "1.x.x"
+        to: "2.0.0"
+        expected: "migration_successful_with_data_preservation"
+        test_duration: "manual_60min"
+
+  regression_testing:
+    scope: "existing_functionality_preserved"
+    test_frequency: "every_release"
+    automation_level: "95%_automated"
+    manual_tests:
+      - "complex_party_mode_scenarios"
+      - "cross_workflow_trigger_chains"
+      - "user_configuration_preservation"
+
+# =============================================================================
+# MONITORING & HEALTH CHECKS
+# =============================================================================
+
+health_monitoring:
+  version_drift_detection:
+    check_frequency: "startup + weekly"
+
+    drift_scenarios:
+      minor_drift:
+        threshold: "2_minor_versions_behind_latest"
+        action: "log_info"
+        message: "Module {module} version {version} is {count} versions behind latest {latest}"
+
+      major_drift:
+        threshold: "1_major_version_behind_latest"
+        action: "log_warning"
+        message: "Module {module} is a major version behind. Consider upgrading for latest features."
+
+      critical_drift:
+        threshold: "security_vulnerability_in_current_version"
+        action: "log_error"
+        message: "SECURITY: Module {module} version {version} has known vulnerabilities. Upgrade immediately."
+
+  dependency_health:
+    core_version_monitoring:
+      check: "core_version_still_supported"
+      frequency: "daily"
+      action_on_eol: "warn_user_upgrade_required"
+
+    cross_module_references:
+      check: "all_referenced_agents_and_workflows_exist"
+      frequency: "startup"
+      action_on_failure: "disable_affected_presets"
+
+  performance_monitoring:
+    memory_usage:
+      baseline: "core_only = 150MB"
+      per_module_overhead: "~25MB average"
+      alert_threshold: "500MB total"
+
+    startup_time:
+      baseline: "core_only = 5s"
+      per_module_overhead: "~2s average"
+      alert_threshold: "30s total"
+
+# =============================================================================
+# FUTURE COMPATIBILITY PLANNING
+# =============================================================================
+
+future_planning:
+  version_2_0_preparation:
+    breaking_changes_planned:
+      - "agent_interface_standardization"
+      - "workflow_output_schema_v2"
+      - "party_mode_preset_format_v3"
+
+    migration_strategy:
+      automated_migration: "80%_of_configurations"
+      manual_review_required: "custom_user_configurations"
+      estimated_migration_time: "15_minutes_per_installation"
+
+    backward_compatibility:
+      support_duration: "12_months_after_v2_release"
+      deprecation_warnings: "6_months_before_support_end"
+
+  ecosystem_evolution:
+    new_module_integration:
+      standards_required: "bmad_module_specification_v2"
+      compatibility_matrix_update: "required_for_each_new_module"
+
+    external_dependencies:
+      nodejs_version_evolution: "follow_lts_schedule"
+      npm_ecosystem_changes: "monitor_breaking_changes"
+
+    security_considerations:
+      regular_security_audits: "quarterly"
+      vulnerability_response_time: "48_hours_for_critical"
+      security_update_coordination: "all_modules_together"
+
+# =============================================================================
+# ERROR CODES & MESSAGES
+# =============================================================================
+
+error_codes:
+  compatibility_errors:
+    COMPAT_001:
+      message: "Core version {found} is below minimum required {required}"
+      resolution: "Upgrade BMAD Core to {required} or later"
+      severity: "blocking"
+
+    COMPAT_002:
+      message: "Agent name conflict: '{agent}' exists in both {module1} and {module2}"
+      resolution: "Choose which module to install or contact support"
+      severity: "blocking"
+
+    COMPAT_003:
+      message: "Workflow ID conflict: '{workflow_id}' is duplicated"
+      resolution: "Update workflow naming to use unique IDs"
+      severity: "blocking"
+
+    COMPAT_004:
+      message: "Circular dependency detected in workflow chain: {chain}"
+      resolution: "Contact support - this is a module design issue"
+      severity: "blocking"
+
+  version_warnings:
+    VER_001:
+      message: "Mixed major versions detected: {versions}"
+      resolution: "Consider upgrading all modules to same major version"
+      severity: "warning"
+
+    VER_002:
+      message: "Module {module} is {count} versions behind latest"
+      resolution: "Consider upgrading for latest features and security"
+      severity: "info"
+
+    VER_003:
+      message: "Security vulnerability in {module} version {version}"
+      resolution: "Upgrade immediately to {safe_version} or later"
+      severity: "critical"
+
+# =============================================================================
+# VALIDATION SCHEMA
+# =============================================================================
+
+validation_schema:
+  version_format:
+    regex: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    examples:
+      valid: ["1.0.0", "2.1.3", "1.0.0-alpha.1", "1.0.0+build.123"]
+      invalid: ["v1.0.0", "1.0", "1.0.0.0", "01.0.0"]
+
+  module_identifier_format:
+    regex: "^[a-z][a-z0-9-]*[a-z0-9]$"
+    examples:
+      valid: ["cybersec-team", "intel-team", "legal-team", "strategy-team"]
+      invalid: ["CyberSec-Team", "intel_team", "123legal", "team-"]
+
+  agent_name_format:
+    regex: "^[a-z][a-z0-9-]*[a-z0-9]$"
+    examples:
+      valid: ["cipher", "bastion", "sun-tzu", "abdul"]
+      invalid: ["Cipher", "agent_name", "123test", "name-"]
+
+# =============================================================================
+# DOCUMENT METADATA
+# =============================================================================
+
+metadata:
+  version: "1.0.0"
+  created: "2025-01-23"
+  author: "Winston (System Architect)"
+  review_schedule: "quarterly"
+  next_review: "2025-04-23"
+  related_documents:
+    - "module-compatibility-matrix.md"
+    - "module.yaml.template"
+    - "cross-module-groups.yaml"
+  change_log:
+    "1.0.0": "Initial version with comprehensive compatibility rules"

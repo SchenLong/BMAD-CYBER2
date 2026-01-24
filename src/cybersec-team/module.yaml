@@ -1,0 +1,138 @@
+# Cybersecurity Operations (Cybersec-Team) Module Configuration
+# This file defines installation questions and module configuration values
+
+code: "cybersec-team"
+name: "Cybersecurity Team (Cybersec-Team)"
+version: "2.1.0"
+type: "specialized-team"
+category: "bmad-cybercommand"
+default_selected: false
+
+# NPM Publishing Configuration
+npm:
+  scope: "@bmad-cybercommand"
+  package_name: "cybersec-team"
+  full_name: "@bmad-cybercommand/cybersec-team"
+
+repository:
+  type: "git"
+  url: "https://github.com/bmad-code-org/bmad-cybercommand.git"
+  directory: "src/cybersec-team"
+
+description: "Comprehensive cybersecurity operations with 15 specialized security agents"
+keywords:
+  - "bmad"
+  - "agent"
+  - "workflow"
+  - "security"
+  - "cybersecurity"
+  - "penetration-testing"
+  - "compliance"
+
+license: "MIT"
+
+# Module Capabilities
+capabilities:
+  agents:
+    count: 15
+    format: "agent.yaml"
+    path: "agents/"
+  workflows:
+    count: 13
+    format: "workflow.yaml"
+    path: "workflows/"
+
+# Dependencies
+dependencies:
+  core:
+    - module: "bmad:core"
+      version: ">=2.0.0"
+      required: true
+
+# Build Configuration
+build:
+  validation: true
+  format: "bmad-builder"
+  target: "distribution"
+
+# Welcome message shown during installation
+prompt:
+  - "🔒 Installing Cybersecurity Operations (Cybersec-Team) Module"
+  - ""
+  - "This module provides 15 specialized security agents:"
+  - ""
+  - "  Core Security Team:"
+  - "  - Cipher (Threat Intelligence & APT Analysis)"
+  - "  - Bastion (Security Architecture & Zero Trust)"
+  - "  - Sentinel (Compliance & Governance)"
+  - "  - Trace (Digital Forensics & Evidence)"
+  - "  - Phoenix (Incident Command & Crisis)"
+  - "  - Spectre (Penetration Testing & Red Team)"
+  - ""
+  - "  Extended Security Team:"
+  - "  - Watchman (SOC Analysis & Detection)"
+  - "  - Nimbus (Cloud Security - AWS/Azure/GCP)"
+  - "  - Ledger (Blockchain & Web3 Security)"
+  - "  - Weaver (Web Application Security)"
+  - "  - Gateway (API Security & OAuth)"
+  - "  - Oracle (AI/ML & LLM Security)"
+  - "  - Shield (Blue Team Lead & Purple Team)"
+  - "  - Phantom (Mobile App Security - iOS/Android)"
+  - "  - Ghost (Social Engineering & Awareness)"
+  - ""
+  - "13 comprehensive security workflows included."
+  - "Expert cybersecurity guidance integrated into your BMAD workflow."
+
+# Core config values are automatically inherited from installer:
+## user_name
+## communication_language
+## document_output_language
+
+# ============================================================================
+# CONFIGURATION FIELDS
+# ============================================================================
+# Each field can be:
+# 1. INTERACTIVE (has 'prompt' - asks user during installation)
+# 2. STATIC (no 'prompt' - just uses 'result' value)
+# ============================================================================
+
+# INTERACTIVE: Primary output location
+output_folder:
+  prompt: "Where should cybersec-team save security artifacts and documentation?"
+  default: "_bmad-output/security"
+  result: "{project-root}/{value}"
+
+# STATIC: Module identification
+module_code:
+  result: "cybersec-team"
+
+module_version:
+  result: "2.1.0"
+
+# STATIC: Module paths
+agents_path:
+  result: "{project-root}/_bmad/cybersec-team/agents"
+
+workflows_path:
+  result: "{project-root}/_bmad/cybersec-team/workflows"
+
+# STATIC: Automatic subdirectory configuration
+# These are derived from output_folder and created automatically by agents
+planning_artifacts:
+  result: "{output_folder}/planning"
+
+operational_artifacts:
+  result: "{output_folder}/operations"
+
+documentation:
+  result: "{output_folder}/docs"
+
+# User skill level for security operations
+user_skill_level:
+  result: "intermediate"
+
+# Generation metadata
+generated:
+  date: "2026-01-23T16:44:40.125Z"
+  by: "bmad-module-packager"
+  version: "1.0.0"

@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-01-24T00:47:48.958Z",
+  "regressions": [],
+  "currentMetrics": {
+    "agentLoading": {
+      "totalAgents": 53,
+      "averageLoadTime": 0,
+      "maxLoadTime": 3,
+      "minLoadTime": 0
+    },
+    "memory": {
+      "initialHeapMB": 7,
+      "peakHeapMB": 7,
+      "memoryGrowthMB": 0,
+      "agentsLoaded": 53,
+      "memoryPerAgentKB": -2
+    },
+    "integration": {
+      "averageLatency": 5,
+      "maxLatency": 7,
+      "minLatency": 2,
+      "totalTests": 6
+    },
+    "throughput": {
+      "totalOperations": 100,
+      "totalTimeMs": 116,
+      "operationsPerSecond": 862,
+      "averageOperationTime": 1
+    },
+    "fileSystem": {
+      "totalFiles": 53,
+      "totalTimeMs": 5,
+      "filesPerSecond": 10295,
+      "averageReadTime": 0
+    }
+  },
+  "system": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "nodeVersion": "v25.2.1",
+    "cpuCores": 24,
+    "totalMemory": 65536
+  },
+  "thresholds": {
+    "loadTimeRegression": 50,
+    "memoryRegression": 30,
+    "throughputRegression": 20,
+    "integrationLatencyRegression": 100
+  },
+  "conclusion": "PERFORMANCE_STABLE"
+}

@@ -1,0 +1,167 @@
+# BMAD Specialized Teams - Strategy Team Module Configuration
+# Multi-Module Distribution Format v2.0.0
+
+code: "strategy-team"
+name: "Strategic Advisory Team"
+version: "2.0.0"
+default_selected: false
+type: "specialized-team"
+category: "bmad-specialized-teams"
+
+npm:
+  scope: "@bmad-cybercommand"
+  package_name: "strategy-team"
+  full_name: "@bmad-cybercommand/strategy-team"
+
+repository:
+  type: "git"
+  url: "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+  directory: "src/strategy-team"
+
+keywords:
+  - "bmad"
+  - "agent"
+  - "workflow"
+  - "strategy"
+  - "leadership"
+  - "decision-making"
+
+agents:
+  count: 14
+  conversion_format: "agent.yaml"
+  source_path: "agents/"
+  target_path: "dist/agents/"
+
+workflows:
+  count: 16
+  conversion_format: "workflow.yaml"
+  source_path: "workflows/"
+  target_path: "dist/workflows/"
+
+dependencies:
+  core:
+    - module: "bmad:core"
+      version: ">=2.0.0"
+      required: true
+      agents: ["abdul", "bmad-master"]
+      workflows: ["party-mode", "cross-module", "strategic-decision"]
+
+  peer_dependencies:
+    - module: "@bmad-cybercommand/legal-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "legal_strategic_alignment_enabled"
+    - module: "@bmad-cybercommand/intel-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "competitive_intelligence_enabled"
+
+integration:
+  exposed_workflows:
+    - workflow_id: "strategic-consultation"
+      trigger: "external"
+      description: "Provides strategic consultation to other teams"
+      access_level: "cross_team"
+    - workflow_id: "decision-analysis"
+      trigger: "external"
+      description: "Multi-perspective decision analysis"
+      access_level: "cross_team"
+    - workflow_id: "crisis-response"
+      trigger: "urgent"
+      description: "Strategic crisis response planning"
+      access_level: "cross_team"
+
+prompt:
+  - "📊 Installing Strategic Advisory Team Module"
+  - ""
+  - "This module provides 14 specialized strategic advisors:"
+  - ""
+  - "  Strategic Leadership:"
+  - "  - Sun Tzu (The Master Strategist - Competitive Strategy)"
+  - "  - Cicero (Debate Coach - Rigorous Analysis)"
+  - "  - Sophia (Ethics Advisor - Principled Decisions)"
+  - "  - Augustus (Policy Analyst - Evidence-Based Policy)"
+  - ""
+  - "  Political & Stakeholder Strategy:"
+  - "  - Magnus (Political Strategist - Power Dynamics)"
+  - "  - Geneva (Stakeholder Mediator - Conflict Resolution)"
+  - "  - Giuseppe (Communications Director - Crisis Comms)"
+  - ""
+  - "  Strategic Archetypes (Board-Level Advisors):"
+  - "  - Edmund Burke (The Conservative)"
+  - "  - Maximilien (The Revolutionary)"
+  - "  - Lee (The Strategist-Warrior)"
+  - "  - Otto (The Realist)"
+  - "  - Dwight (The Principled Commander)"
+  - "  - Ataturk (The Liberator)"
+  - "  - Herbert (The Technocrat)"
+  - ""
+  - "16 strategic workflows for decisions, crises, negotiations, and board prep."
+
+output_folder:
+  prompt: "Where should Strategy Team save strategic documents and analyses?"
+  default: "_bmad-output/strategy"
+  result: "{project-root}/{value}"
+
+leadership_level:
+  prompt: "What is your primary leadership level?"
+  default: "executive"
+  result: "{value}"
+  single-select:
+    - value: "individual_contributor"
+      label: "Individual Contributor - Personal strategy"
+    - value: "team_lead"
+      label: "Team Lead - Team strategy and tactics"
+    - value: "manager"
+      label: "Manager - Departmental strategy"
+    - value: "executive"
+      label: "Executive - Corporate strategy"
+    - value: "board"
+      label: "Board Level - Governance and oversight"
+
+decision_style:
+  prompt: "What is your preferred decision-making style?"
+  default: "collaborative"
+  result: "{value}"
+  single-select:
+    - value: "analytical"
+      label: "Analytical - Data-driven, thorough analysis"
+    - value: "collaborative"
+      label: "Collaborative - Multi-perspective input"
+    - value: "directive"
+      label: "Directive - Quick, authoritative decisions"
+    - value: "consensus"
+      label: "Consensus - Stakeholder alignment focused"
+
+module_code:
+  result: "strategy-team"
+
+agents_path:
+  result: "{npm_package_root}/dist/agents"
+
+workflows_path:
+  result: "{npm_package_root}/dist/workflows"
+
+output_subdirectories:
+  decisions: "{output_folder}/decisions"
+  presentations: "{output_folder}/presentations"
+  policies: "{output_folder}/policies"
+  warfare: "{output_folder}/competitive-analysis"
+  artifacts: "{output_folder}/artifacts"
+
+permissions:
+  filesystem:
+    read: [
+      "{npm_package_root}/**",
+      "_bmad/core/**",
+      "docs/**"
+    ]
+    write: [
+      "{output_folder}/**",
+      "_bmad-output/strategy/**"
+    ]
+  network: false
+  shell:
+    allowed_commands: []
+    blocked_commands: ["rm", "mv", "chmod", "sudo", "su"]
+  sensitive_data: false

@@ -1,0 +1,60 @@
+{
+  "name": "bmad-installation-framework",
+  "version": "1.0.0",
+  "description": "Core installation system for BMAD specialized team modules",
+  "main": "src/bin/install.js",
+  "scripts": {
+    "test": "jest --config=test/config/jest.config.js",
+    "test:unit": "jest --config=test/config/jest.config.js test/unit/",
+    "test:integration": "jest --config=test/config/jest.config.js test/integration/",
+    "test:performance": "jest --config=test/config/jest.config.js test/performance/",
+    "test:validation": "jest --config=test/config/jest.config.js test/validation/",
+    "test:benchmarks": "node test/benchmarks/bmad-performance-benchmark.js",
+    "test:abdul": "node test/unit/abdul/abdul-validation-test-suite.js",
+    "test:abdul-enhanced": "node test/unit/abdul/abdul-validation-enhanced.js",
+    "test:registry": "node test/unit/registry/package-registry-test-suite.js",
+    "test:validators": "node test/validators/bmad-agent-communication-validator.js",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:performance && npm run test:validation",
+    "test:comprehensive": "node test/scripts/run-comprehensive-tests.js",
+    "test:coverage": "jest --config=test/config/jest.config.js --coverage",
+    "test:watch": "jest --config=test/config/jest.config.js --watch",
+    "test:verbose": "JEST_VERBOSE=true npm run test",
+    "test:21-lesson": "jest --config=test/config/jest.config.js test/validation/21-lesson-validation-framework.js",
+    "lint": "eslint src/ test/ --recursive",
+    "install-module": "node src/bin/install.js",
+    "validate": "node scripts/validate-installation.js",
+    "validate:installation": "node test/integration/verify-installation.js"
+  },
+  "keywords": [
+    "bmad",
+    "installation",
+    "modules", 
+    "yaml",
+    "markdown",
+    "dependency-management",
+    "performance-testing",
+    "integration-testing",
+    "red-green-refactor"
+  ],
+  "author": "Amelia (Developer)",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.1",
+    "semver": "^7.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.0",
+    "babel-jest": "^29.0.0",
+    "jest-html-reporters": "^3.1.0",
+    "mocha": "^10.2.0",
+    "chai": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

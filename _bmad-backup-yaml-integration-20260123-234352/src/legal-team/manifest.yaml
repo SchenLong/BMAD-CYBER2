@@ -1,0 +1,22 @@
+# BMAD Plugin Manifest: legal-team
+# Type: legal
+# Generated: 2026-01-16T01:03:27.898445
+
+name: legal-team
+version: 1.0.0
+
+permissions:
+  filesystem:
+    read: ["_bmad/legal-team/**", "docs/**", "_bmad/core/**"]
+    write: ["_bmad/legal-team/output/**", "docs/legal/**"]
+  network: true
+  shell:
+    allowed_commands: []
+    blocked_commands: ["*"]
+  sensitive_data: true
+
+# Signature (optional GPG signature for verification)
+signature: |
+  -----BEGIN PGP SIGNATURE-----
+  (signature placeholder)
+  -----END PGP SIGNATURE-----

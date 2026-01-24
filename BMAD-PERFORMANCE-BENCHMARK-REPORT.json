@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-01-23T20:34:20.547Z",
+  "system": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "nodeVersion": "v25.2.1",
+    "totalMemory": 65536,
+    "availableMemory": 144,
+    "cpuCores": 24
+  },
+  "installation": {
+    "extractionTime": 6,
+    "dependencyInstallTime": 1,
+    "validationTime": 3,
+    "totalInstallTime": 10,
+    "totalFiles": 141,
+    "totalSize": 455,
+    "throughput": 75246
+  },
+  "agentLoading": {
+    "totalAgents": 53,
+    "totalLoadTime": 14,
+    "avgLoadTimePerAgent": 0,
+    "agentsPerSecond": 3786,
+    "teamResults": {
+      "cybersec-team": {
+        "agentCount": 15,
+        "successfulLoads": 15,
+        "failedLoads": 0,
+        "avgLoadTime": 0,
+        "maxLoadTime": 1,
+        "minLoadTime": 0,
+        "loadTime": 6
+      },
+      "intel-team": {
+        "agentCount": 11,
+        "successfulLoads": 11,
+        "failedLoads": 0,
+        "avgLoadTime": 0,
+        "maxLoadTime": 0,
+        "minLoadTime": 0,
+        "loadTime": 2
+      },
+      "legal-team": {
+        "agentCount": 13,
+        "successfulLoads": 13,
+        "failedLoads": 0,
+        "avgLoadTime": 0,
+        "maxLoadTime": 0,
+        "minLoadTime": 0,
+        "loadTime": 3
+      },
+      "strategy-team": {
+        "agentCount": 14,
+        "successfulLoads": 14,
+        "failedLoads": 0,
+        "avgLoadTime": 0,
+        "maxLoadTime": 0,
+        "minLoadTime": 0,
+        "loadTime": 3
+      }
+    }
+  },
+  "memoryUsage": {
+    "initial": {
+      "heapUsed": 6,
+      "heapTotal": 10,
+      "rss": 58
+    },
+    "peak": {
+      "heapUsed": 8,
+      "heapTotal": 12,
+      "rss": 61
+    },
+    "final": {
+      "heapUsed": 8,
+      "heapTotal": 12,
+      "rss": 61
+    },
+    "agentsLoaded": 53,
+    "memoryPerAgent": 30
+  },
+  "fileSystem": {
+    "totalFiles": 53,
+    "sequentialTime": 3,
+    "concurrentTime": 1,
+    "sequentialThroughput": 15535,
+    "concurrentThroughput": 39652,
+    "concurrentSpeedup": 2.55
+  },
+  "concurrency": {
+    "1": {
+      "time": 0,
+      "throughput": 4119
+    },
+    "5": {
+      "time": 1,
+      "throughput": 6852
+    },
+    "10": {
+      "time": 2,
+      "throughput": 5667
+    },
+    "20": {
+      "time": 2,
+      "throughput": 8258
+    },
+    "optimal": {
+      "level": 20,
+      "throughput": 8258
+    }
+  },
+  "recommendations": [
+    "✅ Installation performance is excellent",
+    "✅ Agent loading performance is excellent",
+    "✅ Memory efficiency is excellent",
+    "✅ File system concurrency is excellent"
+  ],
+  "overallScore": 100
+}

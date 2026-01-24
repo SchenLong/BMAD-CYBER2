@@ -1,0 +1,45 @@
+code: cybersec-team
+name: Cybersecurity Team (Cybersec-Team)
+version: 2.0.0
+type: specialized-team
+category: bmad-specialized-teams
+npm:
+  scope: '@bmad-specialized-teams'
+  package_name: cybersec-team
+  full_name: '@bmad-cybercommand/cybersec-team'
+repository:
+  type: git
+  url: https://github.com/bmad-code-org/bmad-specialized-teams.git
+  directory: src/cybersec-team
+description: Comprehensive cybersecurity operations with 15 specialized security agents
+keywords:
+  - bmad
+  - agent
+  - workflow
+  - security
+  - cybersecurity
+  - penetration-testing
+  - compliance
+license: MIT
+capabilities:
+  agents:
+    count: 15
+    format: agent.yaml
+    path: agents/
+  workflows:
+    count: 13
+    format: workflow.yaml
+    path: workflows/
+dependencies:
+  core:
+    - module: bmad:core
+      version: '>=2.0.0'
+      required: true
+build:
+  validation: true
+  format: bmad-builder
+  target: distribution
+generated:
+  date: '2026-01-23T16:44:40.125Z'
+  by: bmad-module-packager
+  version: 1.0.0

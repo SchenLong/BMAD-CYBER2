@@ -1,0 +1,322 @@
+{
+  "monitoring_config": {
+    "framework_name": "BMAD-CYBER2",
+    "version": "1.0.0",
+    "monitoring_enabled": true,
+    "update_interval": 30000,
+    "alert_thresholds": {
+      "agent_load_time_ms": {
+        "warning": 50,
+        "critical": 100,
+        "description": "Agent loading performance degradation"
+      },
+      "memory_usage_mb": {
+        "warning": 50,
+        "critical": 100,
+        "description": "Memory usage approaching limits"
+      },
+      "integration_latency_ms": {
+        "warning": 20,
+        "critical": 50,
+        "description": "Cross-module integration latency increase"
+      },
+      "error_rate_percent": {
+        "warning": 1,
+        "critical": 5,
+        "description": "System error rate increase"
+      },
+      "cpu_usage_percent": {
+        "warning": 70,
+        "critical": 90,
+        "description": "High CPU utilization detected"
+      },
+      "throughput_ops_per_sec": {
+        "min_warning": 50,
+        "min_critical": 25,
+        "description": "Throughput degradation detected"
+      }
+    },
+    "metrics_to_track": [
+      {
+        "name": "agent_loading_performance",
+        "type": "histogram",
+        "unit": "milliseconds",
+        "description": "Time taken to load and initialize agents"
+      },
+      {
+        "name": "memory_utilization",
+        "type": "gauge",
+        "unit": "megabytes",
+        "description": "Current memory usage across all modules"
+      },
+      {
+        "name": "integration_latency",
+        "type": "histogram",
+        "unit": "milliseconds",
+        "description": "Cross-module communication latency"
+      },
+      {
+        "name": "api_response_time",
+        "type": "histogram",
+        "unit": "milliseconds",
+        "description": "API endpoint response times"
+      },
+      {
+        "name": "system_throughput",
+        "type": "gauge",
+        "unit": "operations_per_second",
+        "description": "Overall system operation throughput"
+      },
+      {
+        "name": "error_rate",
+        "type": "counter",
+        "unit": "percent",
+        "description": "System-wide error rate percentage"
+      },
+      {
+        "name": "concurrent_operations",
+        "type": "gauge",
+        "unit": "count",
+        "description": "Number of concurrent operations"
+      },
+      {
+        "name": "resource_utilization",
+        "type": "gauge",
+        "unit": "percent",
+        "description": "CPU and memory resource utilization"
+      }
+    ],
+    "dashboards": [
+      {
+        "name": "System Overview",
+        "panels": [
+          {
+            "title": "System Throughput",
+            "type": "line_chart",
+            "metric": "system_throughput",
+            "time_range": "1h"
+          },
+          {
+            "title": "Response Time Distribution",
+            "type": "histogram",
+            "metric": "api_response_time",
+            "time_range": "1h"
+          },
+          {
+            "title": "Memory Usage",
+            "type": "gauge",
+            "metric": "memory_utilization",
+            "time_range": "current"
+          },
+          {
+            "title": "Error Rate",
+            "type": "line_chart",
+            "metric": "error_rate",
+            "time_range": "1h"
+          }
+        ]
+      },
+      {
+        "name": "Performance Deep Dive",
+        "panels": [
+          {
+            "title": "Agent Loading Performance",
+            "type": "histogram",
+            "metric": "agent_loading_performance",
+            "time_range": "4h"
+          },
+          {
+            "title": "Integration Latency",
+            "type": "heatmap",
+            "metric": "integration_latency",
+            "time_range": "4h",
+            "dimensions": ["source_team", "target_team"]
+          },
+          {
+            "title": "Concurrent Operations",
+            "type": "line_chart",
+            "metric": "concurrent_operations",
+            "time_range": "4h"
+          },
+          {
+            "title": "Resource Utilization",
+            "type": "area_chart",
+            "metric": "resource_utilization",
+            "time_range": "4h",
+            "dimensions": ["cpu", "memory"]
+          }
+        ]
+      },
+      {
+        "name": "Module Performance",
+        "panels": [
+          {
+            "title": "Per-Team Performance",
+            "type": "table",
+            "metrics": [
+              "agent_loading_performance",
+              "memory_utilization",
+              "integration_latency"
+            ],
+            "dimensions": ["team"],
+            "time_range": "1h"
+          },
+          {
+            "title": "Team Integration Matrix",
+            "type": "heatmap",
+            "metric": "integration_latency",
+            "dimensions": ["source_team", "target_team"],
+            "time_range": "1h"
+          }
+        ]
+      }
+    ],
+    "baseline_metrics": {
+      "established_date": "2026-01-24T00:47:48.958Z",
+      "agent_loading_performance": {
+        "average_ms": 1.5,
+        "p95_ms": 3,
+        "p99_ms": 5
+      },
+      "memory_utilization": {
+        "average_mb": 7,
+        "peak_mb": 11,
+        "per_agent_kb": -2
+      },
+      "integration_latency": {
+        "average_ms": 4,
+        "p95_ms": 8,
+        "p99_ms": 12
+      },
+      "api_response_time": {
+        "get_endpoints_ms": 11,
+        "post_endpoints_ms": 75,
+        "complex_endpoints_ms": 105
+      },
+      "system_throughput": {
+        "light_load_ops_sec": 48,
+        "medium_load_ops_sec": 91,
+        "heavy_load_ops_sec": 90,
+        "optimal_concurrency": 50
+      },
+      "error_rate": {
+        "baseline_percent": 0,
+        "acceptable_percent": 1,
+        "critical_percent": 5
+      }
+    },
+    "automated_tests": {
+      "enabled": true,
+      "schedule": "0 */6 * * *",
+      "tests": [
+        {
+          "name": "agent_loading_benchmark",
+          "type": "performance_test",
+          "target": "load_all_agents",
+          "threshold": "50ms_average",
+          "timeout": "30s"
+        },
+        {
+          "name": "integration_health_check",
+          "type": "integration_test",
+          "target": "all_team_pairs",
+          "threshold": "20ms_max_latency",
+          "timeout": "60s"
+        },
+        {
+          "name": "memory_leak_detection",
+          "type": "resource_test",
+          "target": "sustained_load",
+          "threshold": "no_growth_over_baseline",
+          "duration": "300s"
+        },
+        {
+          "name": "scalability_validation",
+          "type": "load_test",
+          "target": "concurrent_operations",
+          "max_concurrency": 100,
+          "threshold": "linear_scaling_maintained",
+          "timeout": "600s"
+        }
+      ]
+    },
+    "alerting": {
+      "enabled": true,
+      "channels": [
+        {
+          "name": "performance_alerts",
+          "type": "webhook",
+          "url": "${PERFORMANCE_ALERT_WEBHOOK}",
+          "severity_levels": ["warning", "critical"]
+        },
+        {
+          "name": "regression_alerts",
+          "type": "email",
+          "recipients": ["dev-team@bmad.cyber", "ops-team@bmad.cyber"],
+          "severity_levels": ["critical"]
+        }
+      ],
+      "rules": [
+        {
+          "name": "Performance Regression Detected",
+          "condition": "agent_loading_performance > baseline * 1.5",
+          "severity": "warning",
+          "description": "Agent loading performance has degraded significantly"
+        },
+        {
+          "name": "Critical Performance Degradation",
+          "condition": "api_response_time > 500ms OR error_rate > 5%",
+          "severity": "critical",
+          "description": "System experiencing critical performance issues"
+        },
+        {
+          "name": "Memory Usage Spike",
+          "condition": "memory_utilization > 50MB",
+          "severity": "warning",
+          "description": "Memory usage significantly higher than baseline"
+        },
+        {
+          "name": "Integration Failure",
+          "condition": "integration_latency > 50ms OR integration_error_rate > 1%",
+          "severity": "critical",
+          "description": "Cross-module integration experiencing issues"
+        },
+        {
+          "name": "Throughput Degradation",
+          "condition": "system_throughput < baseline * 0.7",
+          "severity": "warning",
+          "description": "System throughput has dropped below acceptable levels"
+        }
+      ]
+    },
+    "reporting": {
+      "enabled": true,
+      "schedule": "0 0 * * 0",
+      "reports": [
+        {
+          "name": "Weekly Performance Summary",
+          "type": "summary",
+          "metrics": [
+            "system_throughput",
+            "api_response_time",
+            "memory_utilization",
+            "error_rate"
+          ],
+          "time_range": "7d",
+          "format": "json"
+        },
+        {
+          "name": "Monthly Performance Trend",
+          "type": "trend_analysis",
+          "metrics": [
+            "agent_loading_performance",
+            "integration_latency",
+            "system_throughput"
+          ],
+          "time_range": "30d",
+          "format": "pdf"
+        }
+      ]
+    }
+  }
+}

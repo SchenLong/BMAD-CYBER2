@@ -18,6 +18,9 @@ _bmad-output/BMAD-Security-Review/
 # Internal security investigations and private project documentation
 docs/projects/
 
+# Private project documentation
+privateproject/
+
 # ===================
 # Claude Code Settings
 # ===================

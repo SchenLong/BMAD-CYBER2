@@ -1,0 +1,37 @@
+{
+  "name": "@bmad-cybercommand/cybersec-team",
+  "version": "2.1.0",
+  "description": "Comprehensive cybersecurity operations with 15 specialized security agents",
+  "keywords": [
+    "bmad",
+    "agent",
+    "workflow",
+    "security",
+    "cybersecurity",
+    "penetration-testing",
+    "compliance"
+  ],
+  "license": "MIT",
+  "author": "BMAD Development Team <dev@bmad.ai>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmad-code-org/bmad-cybercommand.git",
+    "directory": "src/cybersec-team"
+  },
+  "main": "module.yaml",
+  "files": [
+    "agents/",
+    "workflows/",
+    "tools/",
+    "data/",
+    "module.yaml",
+    "README.md"
+  ],
+  "bmad": {
+    "version": "2.1.0",
+    "team": "cybersec-team",
+    "format": "bmad-builder",
+    "agents": 15,
+    "workflows": 13
+  }
+}
