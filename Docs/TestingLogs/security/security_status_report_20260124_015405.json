@@ -1,0 +1,199 @@
+{
+  "report_timestamp": "2026-01-24T01:54:05.998269",
+  "report_type": "BMAD_SECURITY_STATUS",
+  "framework_version": "v2.1.0",
+  "reporting_agent": "Watchman (SOC-Analyst)",
+  "executive_summary": {
+    "overall_status": "OPERATIONAL",
+    "threat_level": "MODERATE",
+    "active_incidents": 2,
+    "critical_threats": 15,
+    "system_availability": "95.2%",
+    "key_concerns": [
+      "One EDR endpoint gap requiring attention",
+      "Encoded payload attacks trending upward",
+      "Multi-vector attack pattern detected"
+    ]
+  },
+  "threat_intelligence": {
+    "timestamp": "2026-01-24T01:54:05.998238",
+    "status": "MONITORING",
+    "active_threats": {
+      "prompt_injection": {
+        "count": 47,
+        "severity_breakdown": {
+          "critical": 3,
+          "high": 12,
+          "medium": 24,
+          "low": 8
+        },
+        "trend": "\u2197 +12%",
+        "last_detection": "2026-01-24T01:31:05.998238"
+      },
+      "role_hijacking": {
+        "count": 12,
+        "severity_breakdown": {
+          "critical": 5,
+          "high": 4,
+          "medium": 2,
+          "low": 1
+        },
+        "trend": "\u2198 -8%",
+        "last_detection": "2026-01-24T01:09:05.998238"
+      },
+      "authority_spoofing": {
+        "count": 8,
+        "severity_breakdown": {
+          "critical": 2,
+          "high": 3,
+          "medium": 2,
+          "low": 1
+        },
+        "trend": "\u2192 0%",
+        "last_detection": "2026-01-23T23:54:05.998238"
+      },
+      "encoded_payloads": {
+        "count": 23,
+        "severity_breakdown": {
+          "critical": 1,
+          "high": 6,
+          "medium": 12,
+          "low": 4
+        },
+        "trend": "\u2197 +18%",
+        "last_detection": "2026-01-24T01:47:05.998238"
+      },
+      "privilege_escalation": {
+        "count": 6,
+        "severity_breakdown": {
+          "critical": 4,
+          "high": 1,
+          "medium": 1,
+          "low": 0
+        },
+        "trend": "\u2198 -25%",
+        "last_detection": "2026-01-24T00:54:05.998238"
+      },
+      "indirect_injection": {
+        "count": 15,
+        "severity_breakdown": {
+          "critical": 0,
+          "high": 3,
+          "medium": 8,
+          "low": 4
+        },
+        "trend": "\u2192 +3%",
+        "last_detection": "2026-01-24T01:20:05.998238"
+      }
+    },
+    "total_events": 111,
+    "critical_count": 15,
+    "high_count": 29,
+    "response_metrics": {
+      "mean_detection_time": "45.2 seconds",
+      "mean_response_time": "2.3 minutes",
+      "containment_rate": "94.2%"
+    }
+  },
+  "system_health": {
+    "timestamp": "2026-01-24T01:54:05.998256",
+    "overall_status": "OPERATIONAL",
+    "components": {
+      "detection_engines": {
+        "status": "ONLINE",
+        "performance": "95.2%",
+        "last_check": "2026-01-24T01:54:05.998257",
+        "active_detectors": 6
+      },
+      "siem_integration": {
+        "status": "ONLINE",
+        "performance": "99.8%",
+        "last_check": "2026-01-24T01:54:05.998258",
+        "connected_platforms": [
+          "Splunk",
+          "Sentinel",
+          "QRadar"
+        ]
+      },
+      "edr_coverage": {
+        "status": "DEGRADED",
+        "performance": "87.5%",
+        "last_check": "2026-01-24T01:54:05.998260",
+        "protected_endpoints": "7/8"
+      },
+      "alert_correlation": {
+        "status": "ONLINE",
+        "performance": "94.2%",
+        "last_check": "2026-01-24T01:54:05.998261",
+        "active_rules": 4
+      }
+    },
+    "resource_usage": {
+      "cpu_usage": "23%",
+      "memory_usage": "67%",
+      "disk_usage": "45%",
+      "network_bandwidth": "234 Mbps"
+    }
+  },
+  "active_incidents": [
+    {
+      "incident_id": "INC-001",
+      "title": "Multi-Vector Attack Detection",
+      "severity": "CRITICAL",
+      "status": "INVESTIGATING",
+      "assigned_to": "Watchman (SOC-Analyst)",
+      "created_at": "2026-01-24T01:09:05.998262",
+      "last_update": "2026-01-24T01:42:05.998264",
+      "affected_systems": [
+        "bmad-intel-01"
+      ],
+      "attack_vectors": [
+        "prompt_injection",
+        "role_hijacking"
+      ],
+      "actions_taken": [
+        "Enhanced monitoring activated",
+        "User account review initiated",
+        "Threat intelligence correlation in progress"
+      ]
+    },
+    {
+      "incident_id": "INC-002",
+      "title": "Privilege Escalation Attempt",
+      "severity": "HIGH",
+      "status": "CONTAINED",
+      "assigned_to": "Ghost (Penetration-Tester)",
+      "created_at": "2026-01-23T23:54:05.998266",
+      "last_update": "2026-01-24T01:31:05.998267",
+      "affected_systems": [
+        "bmad-security-01"
+      ],
+      "attack_vectors": [
+        "privilege_escalation"
+      ],
+      "actions_taken": [
+        "Account privileges reverted",
+        "Security policy review scheduled",
+        "Additional monitoring implemented"
+      ]
+    }
+  ],
+  "recommendations": {
+    "immediate_actions": [
+      "Deploy EDR agent on unprotected endpoint",
+      "Investigate multi-vector attack correlation",
+      "Review encoded payload detection signatures"
+    ],
+    "strategic_improvements": [
+      "Enhance behavioral analytics capabilities",
+      "Implement additional threat intelligence feeds",
+      "Optimize alert correlation algorithms"
+    ]
+  },
+  "compliance_status": {
+    "nist_csf": "COMPLIANT (95.2%)",
+    "iso_27001": "COMPLIANT (92.1%)",
+    "soc_2": "COMPLIANT (98.3%)",
+    "gdpr": "COMPLIANT (96.7%)"
+  }
+}
