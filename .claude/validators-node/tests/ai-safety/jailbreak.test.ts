@@ -25,6 +25,12 @@ const SESSION_TRACKER_FILE = '.claude/logs/.jailbreak_session.json';
 
 function cleanupSessionRisk() {
   try {
+    // Ensure logs directory exists
+    const logsDir = path.join(process.cwd(), '.claude', 'logs');
+    if (!fs.existsSync(logsDir)) {
+      fs.mkdirSync(logsDir, { recursive: true });
+    }
+
     // Clean up old session risk file
     const oldRiskFile = path.join(process.cwd(), SESSION_RISK_FILE);
     if (fs.existsSync(oldRiskFile)) {

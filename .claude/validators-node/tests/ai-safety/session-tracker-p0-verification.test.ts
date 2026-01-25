@@ -28,20 +28,34 @@ import { analyzeContent } from '../../src/ai-safety/jailbreak.js';
 // Clean up session files
 const SESSION_FILE = '.claude/logs/.jailbreak_session.json';
 
-function cleanupSessionFiles() {
-  try {
-    const sessionFile = path.join(process.cwd(), SESSION_FILE);
-    if (fs.existsSync(sessionFile)) {
-      fs.unlinkSync(sessionFile);
-    }
-  } catch {
-    // Ignore cleanup errors
-  }
-}
-
 describe('P0-2 Session Tracking Verification', () => {
-  beforeEach(cleanupSessionFiles);
-  afterEach(cleanupSessionFiles);
+  beforeEach(() => {
+    // Ensure logs directory exists before running test
+    const logsDir = path.join(process.cwd(), '.claude', 'logs');
+    if (!fs.existsSync(logsDir)) {
+      fs.mkdirSync(logsDir, { recursive: true });
+    }
+    // Clean up session files but keep directory
+    try {
+      const sessionFile = path.join(process.cwd(), SESSION_FILE);
+      if (fs.existsSync(sessionFile)) {
+        fs.unlinkSync(sessionFile);
+      }
+    } catch {
+      // Ignore errors
+    }
+  });
+  afterEach(() => {
+    // Only delete session file, not directory
+    try {
+      const sessionFile = path.join(process.cwd(), SESSION_FILE);
+      if (fs.existsSync(sessionFile)) {
+        fs.unlinkSync(sessionFile);
+      }
+    } catch {
+      // Ignore errors
+    }
+  });
 
   describe('Requirement 1: Category Repetition Escalation', () => {
     it('should trigger escalation after 3 patterns from same category', () => {
