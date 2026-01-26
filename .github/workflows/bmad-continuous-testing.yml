@@ -72,8 +72,8 @@ jobs:
           name: unit-test-results-${{ matrix.module }}
           path: |
             test-output-${{ matrix.module }}.log
-            test/reports/
-            test/coverage/
+            dev-tools/reports/
+            dev-tools/coverage/
 
   integration-tests:
     name: Integration Tests
@@ -102,7 +102,7 @@ jobs:
           echo "📊 Validating coverage against 90% threshold"
           node -e "
             const fs = require('fs');
-            const path = './test/reports/integration-test-report.json';
+            const path = './dev-tools/reports/integration-test-report.json';
             if (fs.existsSync(path)) {
               const report = JSON.parse(fs.readFileSync(path, 'utf8'));
               console.log(\`Integration Score: \${report.overallScore}/100\`);
@@ -124,8 +124,8 @@ jobs:
         with:
           name: integration-test-results
           path: |
-            test/reports/
-            test/coverage/
+            dev-tools/reports/
+            dev-tools/coverage/
 
   performance-tests:
     name: Performance Tests
@@ -152,14 +152,14 @@ jobs:
       - name: Run performance test suite
         run: |
           echo "🚀 Running comprehensive performance test suite"
-          npx jest test/performance/performance-test-suite.js --verbose
+          npx jest dev-tools/performance/performance-test-suite.js --verbose
 
       - name: Validate performance thresholds
         run: |
           echo "📊 Validating performance against thresholds"
           node -e "
             const fs = require('fs');
-            const path = './test/reports/performance-test-report.json';
+            const path = './dev-tools/reports/performance-test-report.json';
             if (fs.existsSync(path)) {
               const report = JSON.parse(fs.readFileSync(path, 'utf8'));
               console.log(\`Performance Score: \${report.overallScore || 0}/100\`);
@@ -183,7 +183,7 @@ jobs:
             node -e "
               const fs = require('fs');
               const baseline = JSON.parse(fs.readFileSync('BMAD-PERFORMANCE-BENCHMARK-REPORT.json', 'utf8'));
-              const current = JSON.parse(fs.readFileSync('./test/reports/performance-test-report.json', 'utf8'));
+              const current = JSON.parse(fs.readFileSync('./dev-tools/reports/performance-test-report.json', 'utf8'));
               
               console.log('Performance Comparison:');
               console.log(\`Baseline Score: \${baseline.overallScore}/100\`);
@@ -206,7 +206,7 @@ jobs:
         with:
           name: performance-test-results
           path: |
-            test/reports/
+            dev-tools/reports/
             BMAD-PERFORMANCE-BENCHMARK-REPORT.json
 
   coverage-validation:
@@ -241,7 +241,7 @@ jobs:
           echo "🎯 Validating 90% coverage requirement"
           node -e "
             const fs = require('fs');
-            const path = './test/coverage/coverage-summary.json';
+            const path = './dev-tools/coverage/coverage-summary.json';
             if (fs.existsSync(path)) {
               const coverage = JSON.parse(fs.readFileSync(path, 'utf8'));
               const totalCoverage = coverage.total.lines.pct;
@@ -264,7 +264,7 @@ jobs:
         if: always()
         with:
           name: coverage-results
-          path: test/coverage/
+          path: dev-tools/coverage/
 
   final-validation:
     name: Final Validation

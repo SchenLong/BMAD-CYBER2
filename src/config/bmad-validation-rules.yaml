@@ -3,7 +3,7 @@
 # Designed by Winston (The Master Strategist) for Story 2.2
 
 $schema: "http://json-schema.org/draft-07/schema#"
-$id: "https://bmad.code/schemas/validation-rules-v2.0.0.json"
+$id: "https://api.blackunicorn.tech/schemas/validation-rules-v2.0.0.json"
 
 title: "BMAD Validation Rules Framework"
 description: "Validation rules and tooling specification for BMAD agent distribution pipeline"

@@ -1,0 +1,234 @@
+{
+  "name": "@bmad/versioning-system",
+  "version": "2.4.0",
+  "description": "Enterprise-grade version compatibility analysis and migration system with intelligent planning, automated execution, and comprehensive rollback capabilities",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:integration": "jest tests/integration.test.js",
+    "test:compatibility": "jest --testPathPattern=compatibility",
+    "test:migration": "jest --testPathPattern=migration",
+    "test:matrix": "jest --testPathPattern=matrix",
+    "test:visualization": "jest --testPathPattern=visualization",
+    "test:security": "npm audit && npm run test:coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "validate": "npm run lint && npm run test",
+    "build": "npm run validate && npm run docs",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "example": "node examples/usage-examples.js",
+    "example:basic": "node examples/usage-examples.js basic",
+    "example:enterprise": "node examples/usage-examples.js enterprise",
+    "example:matrix": "node examples/usage-examples.js matrix",
+    "example:testing": "node examples/usage-examples.js testing",
+    "example:performance": "node examples/usage-examples.js performance",
+    "benchmark": "node benchmarks/performance.js",
+    "clean": "rm -rf coverage docs dist",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "version",
+    "compatibility",
+    "migration",
+    "semantic-versioning",
+    "package-management",
+    "dependency-analysis",
+    "matrix-generation",
+    "visualization",
+    "rollback",
+    "testing",
+    "bmad",
+    "enterprise",
+    "security",
+    "owasp"
+  ],
+  "author": "BMAD Development Team <dev@bmad.io>",
+  "license": "MIT",
+  "homepage": "https://bmad.dev/versioning",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmad/versioning-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bmad/versioning-system/issues",
+    "email": "support@bmad.dev"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "files": [
+    "*.js",
+    "compatibility/",
+    "migration/",
+    "matrix/",
+    "testing/",
+    "integration/",
+    "examples/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.js"
+    },
+    "./compatibility": {
+      "require": "./compatibility/bmad-version-compatibility.js"
+    },
+    "./migration": {
+      "require": "./migration/version-migration-planner.js"
+    },
+    "./matrix": {
+      "require": "./matrix/compatibility-matrix-generator.js"
+    },
+    "./visualization": {
+      "require": "./matrix/matrix-visualization.js"
+    },
+    "./testing": {
+      "require": "./testing/migration-validator.js"
+    },
+    "./integration": {
+      "require": "./integration/epic2-integration.js"
+    },
+    "./examples": {
+      "require": "./examples/usage-examples.js"
+    }
+  },
+  "dependencies": {
+    "semver": "^7.5.4",
+    "crypto": "^1.0.1",
+    "events": "^3.3.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "eslint": "^8.42.0",
+    "prettier": "^2.8.8",
+    "jsdoc": "^4.0.2",
+    "@types/node": "^20.3.1",
+    "typescript": "^5.1.3",
+    "benchmark": "^2.1.4"
+  },
+  "peerDependencies": {
+    "@bmad/security-integration": "^1.0.0",
+    "@bmad/dependency-resolver": "^1.0.0",
+    "@bmad/installation-orchestrator": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@bmad/security-integration": {
+      "optional": true
+    },
+    "@bmad/dependency-resolver": {
+      "optional": true
+    },
+    "@bmad/installation-orchestrator": {
+      "optional": true
+    }
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/bmad"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!examples/**",
+      "!tests/**",
+      "!coverage/**",
+      "!docs/**",
+      "!node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "testMatch": [
+      "**/tests/**/*.test.js",
+      "**/__tests__/**/*.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es2021": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "warn",
+      "no-unused-vars": "error",
+      "no-undef": "error",
+      "prefer-const": "error",
+      "no-var": "error"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 120,
+    "tabWidth": 2,
+    "useTabs": false
+  },
+  "security": {
+    "auditLevel": "high",
+    "auditSignatures": true,
+    "encryptionRequired": true,
+    "owasp": {
+      "compliance": "A+",
+      "version": "2021"
+    }
+  },
+  "epic": "Epic 2: Package Management System",
+  "story": "Story 2.4: Version Compatibility System Export",
+  "compliance": {
+    "owasp": "A+",
+    "security": "enterprise",
+    "audit": "enabled"
+  },
+  "bmad": {
+    "component": "versioning-system",
+    "version": "2.4.0",
+    "epic": 2,
+    "story": "2.4",
+    "integration": {
+      "security": "epic1",
+      "dependencies": "epic2",
+      "installation": "epic2",
+      "registry": "epic2"
+    }
+  }
+}

@@ -1,0 +1,331 @@
+# BMAD Specialized Teams - Intel Team Module Configuration
+# Multi-Module Distribution Format v2.0.0
+
+# ============================================================================
+# MODULE IDENTIFICATION
+# ============================================================================
+
+code: "intel-team"
+name: "Intelligence Operations Team"
+version: "2.0.0"
+default_selected: false
+type: "specialized-team"
+category: "bmad-specialized-teams"
+
+# ============================================================================
+# NPM DISTRIBUTION METADATA
+# ============================================================================
+
+npm:
+  scope: "@bmad-cybercommand"
+  package_name: "intel-team"
+  full_name: "@bmad-cybercommand/intel-team"
+
+repository:
+  type: "git"
+  url: "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+  directory: "src/intel-team"
+
+license: "MIT"
+private: false
+
+keywords:
+  - "bmad"
+  - "agent"
+  - "workflow"
+  - "intelligence"
+  - "osint"
+  - "investigation"
+
+# ============================================================================
+# MODULE CAPABILITIES DEFINITION
+# ============================================================================
+
+agents:
+  count: 11
+  conversion_format: "agent.yaml"
+  source_path: "agents/"
+  target_path: "dist/agents/"
+
+workflows:
+  count: 19
+  conversion_format: "workflow.yaml"
+  source_path: "workflows/"
+  target_path: "dist/workflows/"
+
+tools:
+  source_path: "tools/"
+  target_path: "dist/tools/"
+
+data:
+  source_path: "data/"
+  target_path: "dist/data/"
+
+# ============================================================================
+# CROSS-MODULE DEPENDENCIES
+# ============================================================================
+
+dependencies:
+  core:
+    - module: "bmad:core"
+      version: ">=2.0.0"
+      required: true
+      agents: ["abdul", "bmad-master"]
+      workflows: ["party-mode", "cross-module", "assign-task"]
+
+  peer_dependencies:
+    - module: "@bmad-cybercommand/legal-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "legal_compliance_workflows_enabled"
+    - module: "@bmad-cybercommand/cybersec-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "threat_intel_integration_enabled"
+
+integration:
+  exposed_workflows:
+    - workflow_id: "intel-consultation"
+      trigger: "external"
+      description: "Provides intelligence consultation to other teams"
+      access_level: "cross_team"
+    - workflow_id: "threat-assessment"
+      trigger: "urgent"
+      description: "Emergency threat assessment for security incidents"
+      access_level: "cross_team"
+
+  consumed_workflows:
+    - source_team: "legal-team"
+      workflow_id: "legal-matter-intake"
+      condition: "legal_review_required"
+    - source_team: "cybersec-team"
+      workflow_id: "incident-response"
+      condition: "security_incident_detected"
+
+# ============================================================================
+# AGENT CONVERSION SPECIFICATIONS
+# ============================================================================
+
+agent_conversion:
+  input_format: "markdown"
+  input_extension: ".md"
+  input_structure:
+    frontmatter: "yaml"
+    content: "markdown"
+    agent_xml: "embedded"
+
+  output_format: "yaml"
+  output_extension: ".agent.yaml"
+  output_schema_version: "1.0"
+
+  field_mapping:
+    name: "extract_from_frontmatter(name)"
+    title: "extract_from_xml(title)"
+    description: "extract_from_frontmatter(description)"
+    icon: "extract_from_xml(icon)"
+    codename: "extract_from_xml(name)"
+    activation_steps: "extract_from_xml(activation)"
+    menu_handlers: "extract_from_xml(menu-handlers)"
+    rules: "extract_from_xml(rules)"
+    menu_items: "extract_from_content(menu_section)"
+    config_path: "derive_from_team_config"
+    workflows_path: "derive_from_team_structure"
+
+  validation:
+    required_fields: ["name", "title", "description", "activation_steps"]
+    max_menu_items: 20
+    required_handlers: ["exec", "workflow"]
+
+# ============================================================================
+# WORKFLOW MAPPING CONFIGURATIONS
+# ============================================================================
+
+workflow_conversion:
+  input_format: "markdown"
+  input_structure:
+    frontmatter: "yaml"
+    content: "markdown"
+    steps: "separate_files"
+
+  output_format: "yaml"
+  output_extension: ".workflow.yaml"
+  output_schema_version: "1.0"
+
+  field_mapping:
+    workflow_id: "extract_from_frontmatter(workflow_id)"
+    name: "extract_from_frontmatter(name)"
+    description: "extract_from_frontmatter(description)"
+    module: "extract_from_frontmatter(module)"
+    version: "extract_from_frontmatter(version)"
+    primary_agent: "extract_from_frontmatter(primary_agent)"
+    parallel_agents: "extract_from_frontmatter(parallel_agents)"
+    execution_mode: "extract_from_frontmatter(execution_mode)"
+    estimated_duration: "extract_from_frontmatter(estimated_duration)"
+    steps: "extract_from_frontmatter(steps)"
+    step_files: "resolve_step_file_paths"
+    output_path: "extract_from_frontmatter(output_path)"
+    workflow_path: "extract_from_frontmatter(workflow_path)"
+
+# ============================================================================
+# INSTALLATION PROMPTS
+# ============================================================================
+
+prompt:
+  - "🎯 Installing Intelligence Operations Team Module"
+  - ""
+  - "This module provides 11 specialized intelligence agents:"
+  - ""
+  - "  Core Intelligence Team:"
+  - "  - Vector (Intelligence Operations Director)"
+  - "  - Resolver (Domain Intelligence Specialist)"
+  - "  - Echo (Social Media Intelligence Analyst)"
+  - "  - Shadow (Dark Web Intelligence Analyst)"
+  - "  - Atlas (Geospatial Intelligence Analyst)"
+  - "  - Probe (Technical Reconnaissance Specialist)"
+  - ""
+  - "  Extended Intelligence Disciplines:"
+  - "  - Dossier (Threat Actor Profiler)"
+  - "  - Proxy (Corporate Intelligence Specialist)"
+  - "  - Viper (Human Intelligence Specialist)"
+  - "  - Sigil (Signals Intelligence Specialist)"
+  - "  - Specter (Field Operations Specialist)"
+  - ""
+  - "19 comprehensive intelligence workflows included."
+  - "Multi-discipline intelligence operations for accredited professionals."
+
+# ============================================================================
+# CONFIGURATION FIELDS
+# ============================================================================
+
+output_folder:
+  prompt: "Where should intel-team save intelligence reports and outputs?"
+  default: "_bmad-output/intel-team"
+  result: "{project-root}/{value}"
+
+authorization_level:
+  prompt: "What is your operational authorization level?"
+  default: "accredited_professional"
+  result: "{value}"
+  single-select:
+    - value: "academic_research"
+      label: "Academic Research - Educational use only"
+    - value: "accredited_professional"
+      label: "Accredited Professional - Licensed investigator"
+    - value: "law_enforcement"
+      label: "Law Enforcement - Official capacity"
+
+module_code:
+  result: "intel-team"
+
+module_version:
+  result: "2.0.0"
+
+module_type:
+  result: "specialized-team"
+
+agents_path:
+  result: "{npm_package_root}/dist/agents"
+
+workflows_path:
+  result: "{npm_package_root}/dist/workflows"
+
+data_path:
+  result: "{npm_package_root}/dist/data"
+
+tools_path:
+  result: "{npm_package_root}/dist/tools"
+
+output_subdirectories:
+  collection: "{output_folder}/collection"
+  analysis: "{output_folder}/analysis"
+  reports: "{output_folder}/reports"
+  artifacts: "{output_folder}/artifacts"
+
+# ============================================================================
+# BUILD AND DISTRIBUTION CONFIGURATION
+# ============================================================================
+
+build:
+  validation:
+    agents: true
+    workflows: true
+    dependencies: true
+    cross_references: true
+
+  steps:
+    - name: "validate_source"
+      command: "bmad validate intel-team"
+    - name: "convert_agents"
+      command: "bmad convert agents --format yaml"
+    - name: "convert_workflows"
+      command: "bmad convert workflows --format yaml"
+    - name: "package_assets"
+      command: "bmad package --output dist/"
+    - name: "generate_manifest"
+      command: "bmad manifest --target npm"
+
+  output:
+    directory: "dist/"
+    format: "npm"
+    include: ["agents/", "workflows/", "data/", "tools/", "README.md"]
+    exclude: ["*.log", "*.tmp", ".DS_Store"]
+
+publish:
+  registry: "https://registry.npmjs.org"
+  access: "public"
+  tag: "latest"
+
+testing:
+  unit_tests: true
+  integration_tests: true
+  cross_team_tests: true
+
+  test_dir: "tests/"
+  fixtures_dir: "tests/fixtures/"
+
+# ============================================================================
+# SECURITY AND PERMISSIONS
+# ============================================================================
+
+permissions:
+  filesystem:
+    read: [
+      "{npm_package_root}/**",
+      "_bmad/core/**",
+      "docs/**"
+    ]
+    write: [
+      "{output_folder}/**",
+      "_bmad-output/intel-team/**"
+    ]
+  network: true
+  shell:
+    allowed_commands: ["curl", "wget", "whois", "dig", "nslookup", "host"]
+    blocked_commands: ["rm", "mv", "chmod", "sudo", "su"]
+  sensitive_data: true
+
+security:
+  signature_required: true
+  integrity_check: true
+  dependency_scanning: true
+  vulnerability_monitoring: true
+
+# ============================================================================
+# DOCUMENTATION AND METADATA
+# ============================================================================
+
+documentation:
+  readme_path: "README.md"
+  changelog_path: "CHANGELOG.md"
+  api_docs: "docs/api/"
+  examples: "examples/"
+
+maintainers:
+  - name: "BMAD Development Team"
+    email: "dev@blackunicorn.tech"
+    role: "primary"
+
+support:
+  issues: "https://github.com/bmad-code-org/bmad-specialized-teams/issues"
+  discussions: "https://github.com/bmad-code-org/bmad-specialized-teams/discussions"
+  documentation: "https://docs.blackunicorn.tech/specialized-teams/intel-team"

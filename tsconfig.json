@@ -15,7 +15,7 @@
       "@bmad/framework/*": ["./framework/*/index.ts"],
       "@bmad/validators": ["./.claude/validators-node/src/index.ts"],
       "@src/*": ["./src/*"],
-      "@test/*": ["./test/*"]
+      "@dev-tools/*": ["./dev-tools/*"]
     },
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -63,7 +63,7 @@
     "src/**/*",
     "framework/**/*",
     ".claude/validators-node/src/**/*",
-    "test/**/*",
+    "dev-tools/**/*",
     "scripts/**/*"
   ],
   "exclude": [
@@ -73,7 +73,7 @@
     "**/*.spec.ts",
     "_bmad-backup-*",
     "_bmad-output/dist",
-    "test-installation/node_modules"
+    "dev-tools-installation/node_modules"
   ],
   "ts-node": {
     "esm": true,
