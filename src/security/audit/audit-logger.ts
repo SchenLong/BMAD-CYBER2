@@ -113,9 +113,7 @@ export class TamperEvidentAuditLogger {
     if (this.logBuffer.length === 0) return;
 
     try {
-      const logData = this.logBuffer.map(entry => JSON.stringify(entry)).join("
-") + "
-";
+      const logData = this.logBuffer.map(entry => JSON.stringify(entry)).join("\n") + "\n";
       await fs.appendFile(this.logPath, logData);
       
       // Clear buffer after successful write
@@ -131,8 +129,7 @@ export class TamperEvidentAuditLogger {
   private async getLastLogEntry(): Promise<AuditLogEntry | null> {
     try {
       const logContent = await fs.readFile(this.logPath, "utf-8");
-      const lines = logContent.trim().split("
-");
+      const lines = logContent.trim().split("\n");
       const lastLine = lines[lines.length - 1];
       return lastLine ? JSON.parse(lastLine) : null;
     } catch (error) {
@@ -201,8 +198,7 @@ export class TamperEvidentAuditLogger {
 
   private async getLogEntries(startDate?: Date, endDate?: Date): Promise<AuditLogEntry[]> {
     const logContent = await fs.readFile(this.logPath, "utf-8");
-    const entries = logContent.trim().split("
-")
+    const entries = logContent.trim().split("\n")
       .filter(line => line.trim())
       .map(line => JSON.parse(line) as AuditLogEntry);
     

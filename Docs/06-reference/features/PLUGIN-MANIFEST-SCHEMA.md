@@ -291,6 +291,6 @@ _bmad/
 
 ## Related Documents
 
-- [Plugin Permissions](/docs/Features/Security/Plugin-Permissions.md)
-- [RBAC Roles Guide](/docs/UserGuide/RBAC-ROLES-GUIDE.md)
+- [Plugin Permissions](Security/Plugin-Permissions.md)
+- [RBAC Roles Guide](../../02-user-guides/RBAC-ROLES-GUIDE.md)
 - [OWASP Remediation Plan](/_bmad/core/security/OWASP-REMEDIATION-PLAN.md)

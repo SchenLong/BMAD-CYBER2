@@ -8,8 +8,8 @@
 npm test src/security/
 
 # Run specific component tests
-npm test src/security/testing/token-generator.test.ts
-npm test src/security/testing/session-manager.test.ts
+npm test dev-tools/security/testing/token-generator.test.ts
+npm test dev-tools/security/testing/session-manager.test.ts
 ```
 
 ### Integration Tests
@@ -18,7 +18,7 @@ npm test src/security/testing/session-manager.test.ts
 npm run test:integration
 
 # Run security-specific integration tests
-npm test src/security/testing/integration/
+npm test dev-tools/security/testing/integration/
 ```
 
 ### Security Audit Tests

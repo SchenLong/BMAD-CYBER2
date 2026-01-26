@@ -328,15 +328,14 @@ export {
 
 /**
  * Types for external consumption
+ * Note: CompleteFrameworkConfig is already exported above via the interface
  */
 export type {
   FrameworkConfig,
-  ValidatorSuiteConfig,
   HookConfig,
   ScriptConfig,
   AuthConfig,
-  AuditConfig,
-  CompleteFrameworkConfig
+  AuditConfig
 };
 
 /**

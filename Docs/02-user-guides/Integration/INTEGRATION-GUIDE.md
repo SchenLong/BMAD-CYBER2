@@ -854,7 +854,7 @@ def create_finding(finding):
 - [Data Export Guide](../DATA-EXPORT-GUIDE.md)
 - [LLM Provider Advanced](../Advanced/LLM-PROVIDER-ADVANCED.md)
 - [Configuration Guide](../CONFIGURATION-GUIDE.md)
-- [Hooks & Validators Guide](../../Features/HOOKS-VALIDATORS-GUIDE.md)
+- [Hooks & Validators Guide](../../06-reference/features/HOOKS-VALIDATORS-GUIDE.md)
 
 ---
 

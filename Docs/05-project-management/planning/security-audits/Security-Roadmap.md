@@ -123,7 +123,7 @@ security:
 | `_bmad/core/security/MANIFEST.sha256` | SHA-256 hashes of 679 critical files |
 | `_bmad/core/security/MANIFEST.sha256.asc` | GPG signature of manifest |
 | `_bmad/core/security/KEY-INFO.md` | Key documentation |
-| `docs/Features/Security-File-Integrity.md` | User documentation |
+| `Docs/06-reference/features/Security/Security-File-Integrity.md` | User documentation |
 
 **Security Controls:**
 - Manifest-based approach (single signed file lists all hashes)
@@ -162,7 +162,7 @@ security:
 | `_bmad/core/security/quick-token.js` | Non-interactive token generator |
 | `_bmad/core/security/validate-token.js` | 12-point validation test suite |
 | `_bmad/core/security/session-manager.ts` | Session management module |
-| `docs/Features/Security-Authentication.md` | User documentation |
+| `Docs/06-reference/features/Security/Security-Authentication.md` | User documentation |
 
 **Security Controls:**
 - AES-256-GCM encrypted tokens (no external dependencies)

@@ -298,7 +298,7 @@ abdul analyze-repository --path=/Users/paultinp/BMAD-CYBER2 --suggest-cleanup
 1. Stop all maintenance operations
 2. Create immediate backup
 3. Contact development team lead
-4. Document incident in `/docs/operations/incidents/`
+4. Document incident in `/Docs/04-operations/incidents/`
 
 **Accidental Deletion:**
 1. Check git history for recovery

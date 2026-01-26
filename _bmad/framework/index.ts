@@ -10,14 +10,14 @@
  * @author Amelia (Dev) - Code Quality & Structure Specialist
  */
 
-// Core Framework Exports
-export * from './validators/index.js';
-export * from './hooks/index.js';
-export * from './scripts/index.js';
-export * from './auth/index.js';
-export * from './audit/index.js';
+// Namespace exports to avoid conflicts
+export * as validators from './validators/index.js';
+export * as hooks from './hooks/index.js';
+export * as scripts from './scripts/index.js';
+export * as auth from './auth/index.js';
+export * as audit from './audit/index.js';
 
-// Utility exports
+// Utility exports (these have their own BMADFramework class)
 export * from './exports/index.js';
 
 // Version and metadata

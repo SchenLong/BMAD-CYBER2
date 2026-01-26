@@ -223,4 +223,4 @@ Test coverage includes:
 
 - [OWASP AI Security Checklist](/_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
 - [OWASP Remediation Plan](/_bmad/core/security/OWASP-REMEDIATION-PLAN.md)
-- [Hooks & Validators Guide](/docs/Features/HOOKS-VALIDATORS-GUIDE.md)
+- [Hooks & Validators Guide](../../../06-reference/features/HOOKS-VALIDATORS-GUIDE.md)

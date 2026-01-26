@@ -404,7 +404,7 @@ With RBAC implementation, two additional roles are available:
 
 ### Test Report
 
-Full validation report: [rbac-validation-report.md](../../TestingLogs/security/2026-01-15/rbac-validation-report.md)
+Full validation report: See `Docs/testing/` for validation reports
 
 ---
 

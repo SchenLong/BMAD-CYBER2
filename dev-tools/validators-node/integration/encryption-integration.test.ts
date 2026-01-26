@@ -26,7 +26,7 @@ import * as path from 'node:path';
 import * as os from 'node:os';
 import * as crypto from 'node:crypto';
 import { promisify } from 'node:util';
-import type { AuditLogEntry, EncryptedAuditEntry } from '../../src/types/index.js';
+import type { AuditLogEntry, EncryptedAuditEntry } from '../../.claude/validators-node/src/types/index.js';
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);

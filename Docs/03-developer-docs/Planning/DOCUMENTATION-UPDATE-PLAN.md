@@ -99,7 +99,7 @@ These files directly describe the validator system and will be misleading if not
 ---
 
 ### 1.2 HOOKS-VALIDATORS-GUIDE.md
-**Location:** `docs/Features/HOOKS-VALIDATORS-GUIDE.md`
+**Location:** `Docs/06-reference/features/HOOKS-VALIDATORS-GUIDE.md`
 **Update Type:** Full rewrite of validator registry and examples
 
 **Changes Required:**
@@ -112,7 +112,7 @@ These files directly describe the validator system and will be misleading if not
 ---
 
 ### 1.3 HOOKS-CONFIGURATION-REFERENCE.md
-**Location:** `docs/Features/Security/HOOKS-CONFIGURATION-REFERENCE.md`
+**Location:** `Docs/06-reference/features/Security/HOOKS-CONFIGURATION-REFERENCE.md`
 **Update Type:** Replace all validator file references
 
 **Changes Required:**
@@ -131,13 +131,13 @@ Files that discuss security validators in context of security features.
 
 | File | Type of Update |
 |------|----------------|
-| `docs/Features/Security/Rate-Limiting.md` | Update `rate_limiter.py` → `rate-limiter.js` |
-| `docs/Features/Security/AgenticSecurity.md` | Update validator references |
-| `docs/Features/Security/HooksGuardrails.md` | Update all validator references |
-| `docs/Features/Security/Plugin-Permissions.md` | Update `plugin_permissions.py` → `plugin-permissions.js` |
-| `docs/Features/Security/Security-File-Integrity.md` | Update validator references |
-| `docs/Features/Security/Security-Authentication.md` | Update `token_validator.py` → `token-validator.js` |
-| `docs/Features/Security/Security-RBAC.md` | Update authorization references |
+| `Docs/06-reference/features/Security/Rate-Limiting.md` | Update `rate_limiter.py` → `rate-limiter.js` |
+| `Docs/06-reference/features/Security/AgenticSecurity.md` | Update validator references |
+| `Docs/06-reference/features/Security/HooksGuardrails.md` | Update all validator references |
+| `Docs/06-reference/features/Security/Plugin-Permissions.md` | Update `plugin_permissions.py` → `plugin-permissions.js` |
+| `Docs/06-reference/features/Security/Security-File-Integrity.md` | Update validator references |
+| `Docs/06-reference/features/Security/Security-Authentication.md` | Update `token_validator.py` → `token-validator.js` |
+| `Docs/06-reference/features/Security/Security-RBAC.md` | Update authorization references |
 | `docs/UserGuide/Security/README.md` | Update security overview |
 | `docs/UserGuide/Security/SECURITY-MAINTENANCE-CHECKLIST.md` | Update maintenance steps |
 | `docs/UserGuide/Security/AUDIT-LOG-GUIDE.md` | Update audit references |
@@ -193,7 +193,7 @@ Technical documentation for contributors.
 | `docs/Developer/ARCHITECTURE-DEEP-DIVE.md` | Update architecture diagrams |
 | `docs/Developer/CONTRIBUTING-GUIDE.md` | Update contribution instructions |
 | `docs/Developer/TESTING-FRAMEWORK.md` | Update testing references |
-| `docs/Features/PLUGIN-MANIFEST-SCHEMA.md` | Update schema references |
+| `Docs/06-reference/features/PLUGIN-MANIFEST-SCHEMA.md` | Update schema references |
 
 ---
 
@@ -212,12 +212,8 @@ These should be marked as historical with a note about the migration:
 ```
 
 **Files:**
-- `docs/TestingLogs/README.md`
-- `docs/TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/*.md` (8 files)
-- `docs/TestingLogs/security/2026-01-16/*.md` (2 files)
-- `docs/TestingLogs/security/P1-TOCTOU-Token/*.md` (2 files)
-- `docs/TestingLogs/security/P2-CommandSubstitution-InputValidation/README.md`
-- `docs/TestingLogs/security/P3-JailbreakDetection/README.md`
+- `Docs/testing/README.md`
+- `Docs/testing/` (various test results and reports)
 - `docs/ValidationLog/*.md` (3 files)
 
 ---
@@ -246,12 +242,12 @@ Planning documents - add migration completion notes.
 | Workstream | Agent | Files | Priority |
 |------------|-------|-------|----------|
 | **WS-1** | Agent 1 | README.md + HOOKS-VALIDATORS-GUIDE.md + HOOKS-CONFIGURATION-REFERENCE.md | P1 |
-| **WS-2** | Agent 2 | `docs/Features/Security/*.md` (8 files) | P2 |
+| **WS-2** | Agent 2 | `Docs/06-reference/features/Security/*.md` (8 files) | P2 |
 | **WS-3** | Agent 3 | `docs/UserGuide/Security/*.md` (10 files) | P2 |
 | **WS-4** | Agent 4 | `docs/UserGuide/*.md` (setup & config, 10 files) | P3 |
 | **WS-5** | Agent 5 | `docs/UserGuide/Operations/*.md` + `docs/UserGuide/ModuleSetup/*.md` (10 files) | P3 |
 | **WS-6** | Agent 6 | `docs/Developer/*.md` (4 files) | P4 |
-| **WS-7** | Agent 7 | `docs/TestingLogs/**/*.md` (add historical notes, 18 files) | P5 |
+| **WS-7** | Agent 7 | `Docs/testing/**/*.md` (add historical notes) | P5 |
 | **WS-8** | Agent 8 | `docs/Planification/**/*.md` (6 files) | P6 |
 
 ### Update Rules

@@ -266,7 +266,7 @@ function generateAgentTags(agent) {
         }
     }
     // Deduplicate and limit
-    const uniqueTags = [...new Set(tags)].slice(0, CONFIG.maxTags);
+    const uniqueTags = Array.from(new Set(tags)).slice(0, CONFIG.maxTags);
     const result = uniqueTags.join(' ');
     // Ensure we don't exceed max chars
     if (result.length > CONFIG.maxTagChars) {
@@ -293,7 +293,7 @@ function generateWorkflowTags(workflow) {
             tags.push(tag);
         }
     }
-    const uniqueTags = [...new Set(tags)].slice(0, CONFIG.maxTags);
+    const uniqueTags = Array.from(new Set(tags)).slice(0, CONFIG.maxTags);
     const result = uniqueTags.join(' ');
     if (result.length > CONFIG.maxTagChars) {
         return uniqueTags.slice(0, 3).join(' ');

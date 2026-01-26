@@ -256,7 +256,7 @@ export class IntegrityVerifier {
 - GPG key pair created (RSA-4096): `_bmad/core/security/bmad-public-key.asc`
 - Manifest-based approach: `MANIFEST.sha256` with 679 files protected
 - Scripts: `sign-manifest.sh`, `verify-integrity.sh`
-- Documentation: `docs/Features/Security-File-Integrity.md`
+- Documentation: `Docs/06-reference/features/Security/Security-File-Integrity.md`
 
 ---
 
@@ -514,7 +514,7 @@ export class SessionManager {
 - 8 predefined roles: admin, security_lead, security_analyst, intel_analyst, developer, product_manager, viewer, guest
 - Token validity: 7 days default, 24-hour expiration warnings
 - Session timeout: 8 hours of inactivity
-- Documentation: `docs/Features/Security-Authentication.md`
+- Documentation: `Docs/06-reference/features/Security/Security-Authentication.md`
 
 ---
 
@@ -532,7 +532,7 @@ export class SessionManager {
 | 1.3.1.4 | Add warning banner when YOLO active | Backend | 1 | ✅ Done |
 
 **Implementation Notes:**
-- Documentation: `docs/Features/Security-YOLO-Mode-Restrictions.md`
+- Documentation: `Docs/06-reference/features/Security/Security-YOLO-Mode-Restrictions.md`
 - YOLO mode now requires explicit enablement
 - All YOLO invocations are logged with audit trail
 
@@ -552,9 +552,9 @@ export class SessionManager {
 
 | Item | Status | Documentation |
 |------|--------|---------------|
-| 1.1 File Integrity Verification | ✅ Complete | [Security-File-Integrity.md](../../docs/Features/Security-File-Integrity.md) |
-| 1.2 Authentication System | ✅ Complete | [Security-Authentication.md](../../docs/Features/Security-Authentication.md) |
-| 1.3.1 YOLO Mode Restrictions | ✅ Complete | [Security-YOLO-Mode-Restrictions.md](../../docs/Features/Security-YOLO-Mode-Restrictions.md) |
+| 1.1 File Integrity Verification | ✅ Complete | [Security-File-Integrity.md](../../06-reference/features/Security/Security-File-Integrity.md) |
+| 1.2 Authentication System | ✅ Complete | [Security-Authentication.md](../../06-reference/features/Security/Security-Authentication.md) |
+| 1.3.1 YOLO Mode Restrictions | ✅ Complete | [Security-YOLO-Mode-Restrictions.md](../../06-reference/features/Security/Security-YOLO-Mode-Restrictions.md) |
 | 1.3.2 Secure Defaults | ✅ Complete | Integrated into config files |
 
 **Files Created:**

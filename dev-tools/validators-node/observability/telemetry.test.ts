@@ -12,7 +12,7 @@ import {
   TelemetryCollector,
   recordSecurityEvent,
   recordRateLimitMetrics,
-} from '../../src/observability/telemetry.js';
+} from '../../.claude/validators-node/src/observability/telemetry.js';
 
 describe('TelemetryCollector', () => {
   let testDir: string;

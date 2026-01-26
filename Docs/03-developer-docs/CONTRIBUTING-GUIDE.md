@@ -731,4 +731,4 @@ By contributing, you agree that your contributions will be licensed under the pr
 
 - [ARCHITECTURE-DEEP-DIVE.md](ARCHITECTURE-DEEP-DIVE.md) - System architecture
 - [TESTING-FRAMEWORK.md](TESTING-FRAMEWORK.md) - Testing guide
-- [Security Documentation](../Features/Security/) - Security guidelines
+- [Security Documentation](../06-reference/features/Security/) - Security guidelines

@@ -18,9 +18,9 @@
 | 1.3 YOLO Mode Restrictions | ✅ Complete | 2026-01-15 |
 
 **Documentation:**
-- [Security-File-Integrity.md](../../docs/Features/Security-File-Integrity.md)
-- [Security-Authentication.md](../../docs/Features/Security-Authentication.md)
-- [Security-YOLO-Mode-Restrictions.md](../../docs/Features/Security-YOLO-Mode-Restrictions.md)
+- [Security-File-Integrity.md](../../06-reference/features/Security/Security-File-Integrity.md)
+- [Security-Authentication.md](../../06-reference/features/Security/Security-Authentication.md)
+- [Security-YOLO-Mode-Restrictions.md](../../06-reference/features/Security/Security-YOLO-Mode-Restrictions.md)
 
 ---
 

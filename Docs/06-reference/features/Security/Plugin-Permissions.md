@@ -324,5 +324,5 @@ Test coverage includes:
 
 - [OWASP AI Security Checklist](/_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
 - [OWASP Remediation Plan](/_bmad/core/security/OWASP-REMEDIATION-PLAN.md)
-- [RBAC Roles Guide](/docs/UserGuide/RBAC-ROLES-GUIDE.md)
-- [Hooks & Validators Guide](/docs/Features/HOOKS-VALIDATORS-GUIDE.md)
+- [RBAC Roles Guide](../../../02-user-guides/RBAC-ROLES-GUIDE.md)
+- [Hooks & Validators Guide](../HOOKS-VALIDATORS-GUIDE.md)

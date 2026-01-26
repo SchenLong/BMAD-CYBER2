@@ -489,7 +489,7 @@ All new validators integrate via PreToolUse hooks:
 
 ### Test Locations
 
-- `docs/TestingLogs/security/2026-01-16/OWASP-QA-SECURITY-ASSESSMENT.md` - Full QA Assessment
+- `Docs/05-project-management/planning/security-audits/` - Security audit documentation
 - `tests/test_audit_integrity.js` - Audit chain tests (17)
 - `tests/test_anomaly_detector.js` - Anomaly detection tests (29)
 - `tests/test_owasp_validators.js` - Core OWASP tests
@@ -549,7 +549,7 @@ resource_limits:
 
 ### Output Location
 
-`docs/TestingLogs/security/AuditLogs/telemetry/`
+`Docs/testing/` (telemetry output)
 
 ### Event Schema
 
@@ -593,7 +593,7 @@ resource_limits:
 - [OWASP-AI-SECURITY-CHECKLIST.md](_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
 - [OWASP-REMEDIATION-PLAN.md](_bmad/core/security/OWASP-REMEDIATION-PLAN.md)
 - [SECURITY-OVERVIEW.md](../SECURITY-OVERVIEW.md)
-- [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md)
+- [HOOKS-VALIDATORS-GUIDE.md](../../06-reference/features/HOOKS-VALIDATORS-GUIDE.md)
 
 ---
 

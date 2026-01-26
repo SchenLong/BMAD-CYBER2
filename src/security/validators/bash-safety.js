@@ -20,7 +20,7 @@ class BashSafetyValidator {
   }
 
   validate(input) {
-    if (\!input || typeof input \!== "string") {
+    if (!input || typeof input !== "string") {
       return { isValid: false, error: "Invalid input type" };
     }
 
@@ -39,7 +39,7 @@ class BashSafetyValidator {
     const command = input.trim().split(" ")[0];
     
     // Check if command is in allowed list
-    if (\!this.allowedCommands.has(command)) {
+    if (!this.allowedCommands.has(command)) {
       return {
         isValid: false,
         error: `Command not in allowlist: ${command}`,

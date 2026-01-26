@@ -615,17 +615,13 @@ export class SiemIntegration extends EventEmitter {
           sourcetype: this.config.sourcetype || "json",
           index: this.config.indexName,
           event
-        })).join("
-");
-      
+        })).join("\n");
+
       case SiemProvider.ELASTIC:
-        return events.map(event => 
-          JSON.stringify({ index: { _index: this.config.indexName } }) + "
-" +
+        return events.map(event =>
+          JSON.stringify({ index: { _index: this.config.indexName } }) + "\n" +
           JSON.stringify(event)
-        ).join("
-") + "
-";
+        ).join("\n") + "\n";
       
       default:
         return JSON.stringify({ events });

@@ -31,7 +31,7 @@ export class ArchivalConfigManager {
     /**
      * Load configuration from environment and/or config file.
      */
-    async loadConfiguration() {
+    async loadConfiguration(options) {
         const errors = [];
         const warnings = [];
         const recommendations = [];
@@ -44,7 +44,7 @@ export class ArchivalConfigManager {
                 config = { ...fileConfig, ...config }; // Environment takes precedence
             }
             // Validate the merged configuration
-            const validation = await this.validateConfiguration(config);
+            const validation = await this.validateConfiguration(config, options);
             return {
                 isValid: validation.errors.length === 0,
                 config: validation.errors.length === 0 && config.bucket ? config : undefined,
@@ -131,7 +131,7 @@ export class ArchivalConfigManager {
     /**
      * Validate a configuration object.
      */
-    async validateConfiguration(config) {
+    async validateConfiguration(config, options = {}) {
         const errors = [];
         const warnings = [];
         const recommendations = [];
@@ -168,8 +168,8 @@ export class ArchivalConfigManager {
                 errors.push(`Invalid cron expression: ${scheduleValidation.error}`);
             }
         }
-        // Additional validations if bucket is configured
-        if (config.bucket) {
+        // Additional validations if bucket is configured (skip in test environments)
+        if (config.bucket && !options?.skipS3Verification) {
             try {
                 const s3Status = await this.verifyS3Bucket(config);
                 if (!s3Status.exists) {

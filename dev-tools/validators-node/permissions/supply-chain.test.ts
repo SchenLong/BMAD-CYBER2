@@ -6,7 +6,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createHash } from 'crypto';
-import { SupplyChainVerifier } from '../../src/permissions/supply-chain.js';
+import { SupplyChainVerifier } from '../../.claude/validators-node/src/permissions/supply-chain.js';
 
 // Mock file system
 vi.mock('fs', async () => {

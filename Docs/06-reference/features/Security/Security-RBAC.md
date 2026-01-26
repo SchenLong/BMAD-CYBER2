@@ -433,7 +433,7 @@ node _bmad/core/security/check-authorization.js roles
 
 ### Test Report
 
-Full validation report: [rbac-validation-report.md](../../TestingLogs/security/2026-01-15/rbac-validation-report.md)
+Full validation report: See `Docs/testing/` for validation reports
 
 ---
 

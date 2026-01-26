@@ -65,7 +65,9 @@ export declare class ArchivalConfigManager {
     /**
      * Load configuration from environment and/or config file.
      */
-    loadConfiguration(): Promise<ConfigValidationResult>;
+    loadConfiguration(options?: {
+        skipS3Verification?: boolean;
+    }): Promise<ConfigValidationResult>;
     /**
      * Load configuration from environment variables.
      */
@@ -81,7 +83,9 @@ export declare class ArchivalConfigManager {
     /**
      * Validate a configuration object.
      */
-    validateConfiguration(config: Partial<ArchivalConfig>): Promise<{
+    validateConfiguration(config: Partial<ArchivalConfig>, options?: {
+        skipS3Verification?: boolean;
+    }): Promise<{
         errors: string[];
         warnings: string[];
         recommendations: string[];

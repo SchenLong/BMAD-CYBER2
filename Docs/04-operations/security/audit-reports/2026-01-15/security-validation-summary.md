@@ -275,8 +275,8 @@ The BMAD security implementation is complete and validated. All 40 tests passed 
 
 ## Related Documentation
 
-- [Security-Authentication.md](../../Features/Security/Security-Authentication.md) - Authentication feature documentation
-- [Security-RBAC.md](../../Features/Security/Security-RBAC.md) - RBAC feature documentation
+- [Security-Authentication.md](../../../06-reference/features/Security/Security-Authentication.md) - Authentication feature documentation
+- [Security-RBAC.md](../../../06-reference/features/Security/Security-RBAC.md) - RBAC feature documentation
 - [rbac-validation-report.md](rbac-validation-report.md) - Detailed test report
 
 ---

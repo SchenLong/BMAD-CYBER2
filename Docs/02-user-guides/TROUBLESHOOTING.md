@@ -710,6 +710,6 @@ tail -100 _bmad-output/.audit/audit.log
 - [SECURITY-OVERVIEW.md](SECURITY-OVERVIEW.md) - Security features
 - [CONFIGURATION-GUIDE.md](CONFIGURATION-GUIDE.md) - Configuration options
 - [RBAC-ROLES-GUIDE.md](RBAC-ROLES-GUIDE.md) - Role permissions
-- [HOOKS-VALIDATORS-GUIDE.md](../Features/HOOKS-VALIDATORS-GUIDE.md) - Hook details
-- [HOOKS-CONFIGURATION-REFERENCE.md](../Features/Security/HOOKS-CONFIGURATION-REFERENCE.md) - Complete hooks configuration
-- [Security Audit Report](../TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/) - Comprehensive audit findings
+- [HOOKS-VALIDATORS-GUIDE.md](../06-reference/features/HOOKS-VALIDATORS-GUIDE.md) - Hook details
+- [HOOKS-CONFIGURATION-REFERENCE.md](../06-reference/features/Security/HOOKS-CONFIGURATION-REFERENCE.md) - Complete hooks configuration
+- [Security Audit Report](../05-project-management/planning/security-audits/BMAD-Security-Audit-Report.md) - Comprehensive audit findings

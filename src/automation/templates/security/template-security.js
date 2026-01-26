@@ -19,7 +19,7 @@ class BMADTemplateSecurity {
             maxTemplateSize: config.maxTemplateSize || 10 * 1024 * 1024,
             allowedTags: config.allowedTags || ["div", "span", "p", "h1", "h2", "h3"],
             blockedTags: config.blockedTags || ["script", "iframe", "object", "embed"],
-            sandboxMode: config.sandboxMode \!== false,
+            sandboxMode: config.sandboxMode !== false,
             ...config
         };
 
@@ -28,7 +28,7 @@ class BMADTemplateSecurity {
             /Function\s*\(/gi,
             /setTimeout\s*\(/gi,
             /setInterval\s*\(/gi,
-            /<script[^<]*(?:(?\!<\/script>)<[^<]*)*<\/script>/gi,
+            /<script[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
             /__proto__/gi,
             /constructor/gi
         ];
@@ -41,7 +41,7 @@ class BMADTemplateSecurity {
 
     async validateTemplatePath(templatePath) {
         const normalized = require("path").normalize(templatePath);
-        return \!(normalized.includes("..") || normalized.includes("~"));
+        return !(normalized.includes("..") || normalized.includes("~"));
     }
 
     async scanTemplate(content, templatePath) {
@@ -58,7 +58,7 @@ class BMADTemplateSecurity {
         for (const [key, value] of Object.entries(data)) {
             if (typeof value === "string") {
                 sanitized[key] = this.escapeHtml(value);
-            } else if (typeof value === "object" && value \!== null) {
+            } else if (typeof value === "object" && value !== null) {
                 sanitized[key] = this.sanitizeRenderData(value);
             } else {
                 sanitized[key] = value;

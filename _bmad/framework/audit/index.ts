@@ -6,20 +6,30 @@
  * compliance logging, and security event monitoring for BMAD applications.
  */
 
-// Re-export observability modules
+// Re-export observability modules from @bmad/validators package
 export {
-  AuditLogger,
   LogArchiver,
   ConfidenceTracker,
   TelemetryCollector,
-  AnomalyDetector
-} from '../../../.claude/validators-node/src/observability/index.js';
-
-// Re-export audit encryption
-export {
-  AuditEncryption,
-  AuditIntegrity
-} from '../../../.claude/validators-node/src/observability/index.js';
+  AnomalyDetector,
+  // Audit encryption utilities
+  encryptEntry,
+  decryptEntry,
+  processEntryForStorage,
+  processLineForReading,
+  isEncryptionEnabled,
+  getEncryptionStatus,
+  generateEncryptionKey,
+  isEncryptedEntry,
+  AuditEncryptionError,
+  AuditDecryptionError,
+  // Audit integrity utilities
+  HashChainManager,
+  getChainManager,
+  addChainFields,
+  verifySecurityLog,
+  getIntegrityStatus,
+} from '@bmad/validators';
 
 /**
  * Audit Types and Interfaces

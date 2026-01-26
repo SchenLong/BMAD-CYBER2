@@ -20,7 +20,7 @@ import * as path from 'node:path';
 import * as os from 'node:os';
 import * as crypto from 'node:crypto';
 import { promisify } from 'node:util';
-import type { AuditLogEntry } from '../../src/types/index.js';
+import type { AuditLogEntry } from '../../.claude/validators-node/src/types/index.js';
 
 const writeFile = promisify(fs.writeFile);
 const mkdir = promisify(fs.mkdir);

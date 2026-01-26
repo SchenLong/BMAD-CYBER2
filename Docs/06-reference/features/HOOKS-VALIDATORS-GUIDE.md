@@ -693,7 +693,7 @@ export BMAD_SHOW_CONFIDENCE=true
 #### Telemetry Location
 
 ```
-docs/TestingLogs/security/AuditLogs/telemetry/
+Docs/testing/
 ├── security_events.jsonl
 ├── rate_limit_metrics.jsonl
 ├── permission_audit.jsonl

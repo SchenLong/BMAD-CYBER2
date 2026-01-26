@@ -4,17 +4,24 @@
  *
  * Exported authentication system providing token generation,
  * authorization checks, session management, and RBAC capabilities.
+ *
+ * Note: The core security modules (generate-token, validate-token, etc.)
+ * are located at _bmad/core/security/ and can be imported directly.
  */
 
-// Import security modules for internal use and re-export
 import crypto from 'crypto';
-import { generateToken } from '../../core/security/generate-token.js';
-import { validateToken } from '../../core/security/validate-token.js';
-import { checkAuthorization } from '../../core/security/check-authorization.js';
-import { SessionManager } from '../../core/security/session-manager.js';
 
-// Re-export security modules
-export { generateToken, validateToken, checkAuthorization, SessionManager };
+// Import token generator for internal use
+import TokenGenerator from '../../core/security/generate-token.js';
+
+// Re-export the token generator class
+export { TokenGenerator };
+export type { GeneratedToken, TokenClaims } from '../../core/security/generate-token.js';
+export { SessionManager } from '../../core/security/session-manager.js';
+
+// Internal token generator instance with default key
+const defaultKey = TokenGenerator.generateKey('bmad-framework-default-key');
+const tokenGenerator = new TokenGenerator(defaultKey);
 
 /**
  * Authentication Types and Interfaces
@@ -241,13 +248,16 @@ export class AuthManager {
       // Assign roles to user
       this.rbac.assignRoles(userId, roles);
 
-      // Generate tokens
-      const accessToken = await generateToken({
-        userId,
-        username: credentials.username,
+      // Generate tokens using the token generator
+      // API: generateToken(name, email, roles, modules, expiresInHours)
+      const tokenResult = tokenGenerator.generateToken(
+        credentials.username,
+        credentials.email,
         roles,
-        sessionId: crypto.randomUUID()
-      });
+        [], // modules
+        this.config.tokenExpiry / 3600 // convert seconds to hours
+      );
+      const accessToken = tokenResult.token;
 
       // Create auth context
       const authContext: AuthContext = {
@@ -278,10 +288,12 @@ export class AuthManager {
    */
   async validateAuthToken(token: string): Promise<AuthContext | null> {
     try {
-      const isValid = await validateToken(token);
-      if (!isValid) return null;
+      // Check if token exists in our sessions
+      const session = this.sessions.get(token);
+      if (!session) return null;
 
-      return this.sessions.get(token) || null;
+      // Token is valid if it's in our session store
+      return session;
     } catch (error) {
       console.error('Token validation failed:', error);
       return null;

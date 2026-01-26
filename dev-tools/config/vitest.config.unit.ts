@@ -6,20 +6,19 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: [
-      'dev-tools/unit/**/*.test.{js,ts}',
-      'dev-tools/unit/**/*.spec.{js,ts}',
       'dev-tools/validators-node/**/*.test.{js,ts}',
       'dev-tools/package-management/**/*.test.{js,ts}',
       'dev-tools/performance/**/*.test.{js,ts}',
-      'dev-tools/automation/**/*.test.{js,ts}'
+      'dev-tools/automation/**/*.test.{js,ts}',
+      '_bmad/framework/**/*.test.{js,ts}',
+      '.claude/validators-node/**/*.test.{js,ts}'
     ],
     exclude: [
       'node_modules/**',
       'dist/**',
       '_bmad-output/**',
       'dev-tools-installation/**',
-      'dev-tools/integration/**',
-      'dev-tools/performance/**'
+      'dev-tools/integration/**'
     ],
     timeout: 60000, // 1 minute for unit tests
     testTimeout: 30000,
@@ -27,9 +26,8 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       include: [
-        'framework/src/**/*.{js,ts}',
-        '.claude/validators-node/src/**/*.{js,ts}',
-        'src/**/*.{js,ts}'
+        '_bmad/framework/**/*.{js,ts}',
+        '.claude/validators-node/src/**/*.{js,ts}'
       ],
       exclude: [
         'dev-tools/**',
@@ -53,10 +51,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@dev-tools': path.resolve(__dirname, 'dev-tools'),
-      '@framework': path.resolve(__dirname, 'framework/src'),
-      '@validators': path.resolve(__dirname, '.claude/validators-node/src'),
+      '@dev-tools': path.resolve(__dirname, '../../dev-tools'),
+      '@framework': path.resolve(__dirname, '../../_bmad/framework'),
+      '@validators': path.resolve(__dirname, '../../.claude/validators-node/src'),
+      '@bmad': path.resolve(__dirname, '../../_bmad'),
     },
   },
   esbuild: {
