@@ -37,41 +37,33 @@ Day 1          Week 1           Week 2-4         Ongoing
 ### Step 1.1: Installation (15 minutes)
 
 **Prerequisites:**
-- Node.js 18+ installed
-- Claude Code or compatible AI IDE
+- Claude Code (Anthropic's CLI) or compatible AI IDE with skill support
+- Git installed
 - Terminal access
 
 **Install BMAD:**
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/bmad-cyber2.git
-cd bmad-cyber2
+git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+cd BMAD-CYBERSEC
 
-# Install dependencies
+# Install dependencies (optional - for framework development)
 npm install
-
-# Run the installer
-bmad install
 ```
 
-**During Installation:**
-1. Select your modules (start with Core + BMM)
-2. Set your output folder preferences
-3. Configure language settings
+**Open in Claude Code:**
+1. Open Claude Code in the BMAD-CYBERSEC directory
+2. The BMAD skills are automatically available via the `_bmad/` folder
 
-**Verification:**
-```bash
-# Verify installation
-bmad --version
+**Verification - Test Your First Skill:**
+```
+# In Claude Code, type:
+/bmad:core:agents:abdul
 
-# List available agents
-bmad agents
-
-# List available workflows
-bmad workflows
+# Ask Abdul: "What modules are available?"
 ```
 
-**Checkpoint:** You should see a list of available agents and workflows.
+**Checkpoint:** Abdul should respond with information about installed modules.
 
 ---
 
@@ -111,7 +103,7 @@ _bmad/
 **Try the BMAD Master:**
 ```bash
 # Start BMAD Master for system overview
-/bmad:bmad-master
+/bmad:core:agents:bmad-master
 ```
 
 Ask: "What modules are installed and what can I do with them?"
@@ -172,13 +164,13 @@ Ask: "Help me understand my options for starting a new project"
 
 Try the Product Manager:
 ```bash
-/bmm:pm
+/bmad:bmm:agents:pm
 ```
 Ask: "I want to build a task management app. Help me create a product brief."
 
 Try the Architect:
 ```bash
-/bmm:architect
+/bmad:bmm:agents:architect
 ```
 Ask: "Design a simple architecture for a REST API with user authentication"
 
@@ -208,13 +200,13 @@ Ask: "Analyze the competitive landscape for project management tools"
 
 1. **Create a Product Brief:**
 ```bash
-/bmm:create-product-brief
+/bmad:bmm:workflows:create-product-brief
 ```
 Follow the guided process to create a complete product brief.
 
 2. **Create Architecture:**
 ```bash
-/bmm:create-architecture
+/bmad:bmm:workflows:create-architecture
 ```
 Design system architecture with AI guidance.
 
@@ -293,25 +285,25 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 **Day 1-2: Discovery Phase**
 ```bash
 # Start with business analysis
-/bmm:analyst
+/bmad:bmm:agents:analyst
 
 # Create product brief
-/bmm:create-product-brief
+/bmad:bmm:workflows:create-product-brief
 ```
 
 **Day 3-4: Planning Phase**
 ```bash
 # Create PRD
-/bmm:create-prd
+/bmad:bmm:workflows:create-prd
 
 # Design architecture
-/bmm:create-architecture
+/bmad:bmm:workflows:create-architecture
 ```
 
 **Day 5-7: Specification Phase**
 ```bash
 # Create epics and stories
-/bmm:create-epics-and-stories
+/bmad:bmm:workflows:create-epics-and-stories
 
 # Review with Party Mode
 /bmad:core:workflows:party-mode
@@ -328,7 +320,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 **Security-Aware Development (BMM + Cybersec):**
 ```bash
 # 1. Create architecture
-/bmm:create-architecture
+/bmad:bmm:workflows:create-architecture
 
 # 2. Threat model with Cybersec
 /bmad:cybersec-team:workflows:threat-modeling
@@ -343,7 +335,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 /bmad:strategy-team:agents:the-master-strategist
 
 # 2. Product strategy
-/bmm:pm
+/bmad:bmm:agents:pm
 
 # 3. Multi-perspective review
 /bmad:core:workflows:party-mode
@@ -383,9 +375,9 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 Use output from one workflow as input to another:
 ```bash
 # Create brief, then immediately create PRD
-/bmm:create-product-brief
+/bmad:bmm:workflows:create-product-brief
 # Use the brief to...
-/bmm:create-prd
+/bmad:bmm:workflows:create-prd
 ```
 
 **2. Abdul Orchestration:**
@@ -508,37 +500,54 @@ Use pre-configured team assemblies:
 
 ## Quick Reference
 
-### Essential Commands
+### Skill Path Format
 
-```bash
-# List agents
-bmad agents
+BMAD skills follow this pattern:
+```
+/bmad:{module}:{type}:{name}
+```
+- **module**: `core`, `bmm`, `cybersec-team`, `strategy-team`, `intel-team`, etc.
+- **type**: `agents` or `workflows`
+- **name**: specific agent or workflow name
 
-# List workflows
-bmad workflows
+### Essential Skills
 
-# Get help
-/help
-
-# Start Abdul
+```
+# Start Abdul (Project Manager)
 /bmad:core:agents:abdul
 
-# Start Party Mode
+# Start BMAD Master (System Overview)
+/bmad:core:agents:bmad-master
+
+# Start Party Mode (Multi-Agent Discussion)
 /bmad:core:workflows:party-mode
 
 # Check project status
 /bmad:core:workflows:project-status
+
+# Brainstorming session
+/bmad:core:workflows:brainstorming
 ```
 
-### Workflow Shortcuts
+### Common Workflows
 
-| Task | Workflow |
-|------|----------|
+| Task | Skill |
+|------|-------|
 | Brainstorm ideas | `/bmad:core:workflows:brainstorming` |
-| Create product brief | `/bmm:create-product-brief` |
-| Design architecture | `/bmm:create-architecture` |
+| Create product brief | `/bmad:bmm:workflows:create-product-brief` |
+| Design architecture | `/bmad:bmm:workflows:create-architecture` |
 | Security review | `/bmad:cybersec-team:workflows:security-architecture-review` |
 | Strategic decision | `/bmad:strategy-team:workflows:strategic-decision-workshop` |
+
+### Common Agents
+
+| Role | Skill |
+|------|-------|
+| Project Manager | `/bmad:core:agents:abdul` |
+| Product Manager | `/bmad:bmm:agents:pm` |
+| Architect | `/bmad:bmm:agents:architect` |
+| Security Architect | `/bmad:cybersec-team:agents:security-architect` |
+| Strategist | `/bmad:strategy-team:agents:the-master-strategist` |
 
 ---
 

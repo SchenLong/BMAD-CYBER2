@@ -1050,14 +1050,14 @@ The BMAD Framework includes additional security layers beyond agentic protection
 | **File Integrity Verification** | GPG-signed manifest of 679 critical files | [Security-File-Integrity.md](../Security-File-Integrity.md) |
 | **Audit Logging** | Tamper-evident SHA-256 hash chain logging | [Security-Audit-Logging.md](../Security-Audit-Logging.md) |
 | **YOLO Mode Restrictions** | Controlled bypass of workflow confirmations | [Security-YOLO-Mode-Restrictions.md](../Security-YOLO-Mode-Restrictions.md) |
-| **Hook Guardrails** | 19 pre-execution security validators | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
+| **Hook Guardrails** | 19 pre-execution security validators | [HOOKS-VALIDATORS-GUIDE.md](../HOOKS-VALIDATORS-GUIDE.md) |
 | **Rate Limiting (OWASP LLM04)** | Sliding window DoS protection | [Rate-Limiting.md](./Rate-Limiting.md) |
 | **Plugin Permissions (OWASP LLM07)** | Capability-based security model | [Plugin-Permissions.md](./Plugin-Permissions.md) |
 | **Supply Chain Verification (OWASP LLM05)** | SHA256+GPG skill verification | [OWASP-REMEDIATION-PLAN.md](../../../_bmad/core/security/OWASP-REMEDIATION-PLAN.md) |
-| **Context Management (OWASP LLM04)** | Token tracking with 75%/95% thresholds | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
-| **Resource Limits (OWASP LLM04)** | Memory (4GB), recursion, process limits | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
-| **Confidence Tracking (OWASP LLM09)** | Uncertainty detection and scoring | [HOOKS-VALIDATORS-GUIDE.md](../../Features/HOOKS-VALIDATORS-GUIDE.md) |
-| **Security Telemetry** | JSONL export for SIEM integration | [TELEMETRY-SCHEMA.md](../../TestingLogs/security/AuditLogs/telemetry/TELEMETRY-SCHEMA.md) |
+| **Context Management (OWASP LLM04)** | Token tracking with 75%/95% thresholds | [HOOKS-VALIDATORS-GUIDE.md](../HOOKS-VALIDATORS-GUIDE.md) |
+| **Resource Limits (OWASP LLM04)** | Memory (4GB), recursion, process limits | [HOOKS-VALIDATORS-GUIDE.md](../HOOKS-VALIDATORS-GUIDE.md) |
+| **Confidence Tracking (OWASP LLM09)** | Uncertainty detection and scoring | [HOOKS-VALIDATORS-GUIDE.md](../HOOKS-VALIDATORS-GUIDE.md) |
+| **Security Telemetry** | JSONL export for SIEM integration | See `Docs/testing/` for telemetry documentation |
 
 ---
 

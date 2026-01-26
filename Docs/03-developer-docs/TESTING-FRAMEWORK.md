@@ -1075,4 +1075,4 @@ class TestComponent:
 
 - [ARCHITECTURE-DEEP-DIVE.md](ARCHITECTURE-DEEP-DIVE.md) - System architecture
 - [CONTRIBUTING-GUIDE.md](CONTRIBUTING-GUIDE.md) - Contribution process
-- [Security Test Results](../TestingLogs/security/) - Historical test results
+- [Security Test Results](../testing/) - Historical test results

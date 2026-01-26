@@ -573,7 +573,7 @@ security:
 
 **New Severity:** MEDIUM - Static verification available but not enforced at runtime.
 
-See: [Security-File-Integrity.md](../../docs/Features/Security-File-Integrity.md)
+See: [Security-File-Integrity.md](../../06-reference/features/Security-File-Integrity.md)
 
 ---
 
@@ -627,7 +627,7 @@ node _bmad/core/security/validate-token.js
 
 **Finding Status:** RESOLVED - Full token-based authentication implemented with AES-256-GCM encryption.
 
-See: [Security-Authentication.md](../../docs/Features/Security-Authentication.md)
+See: [Security-Authentication.md](../../06-reference/features/Security-Authentication.md)
 
 ---
 
@@ -690,7 +690,7 @@ Comprehensive Role-Based Access Control (RBAC) now enforced:
 
 **Finding Status:** RESOLVED - Full RBAC with 10 roles, module/workflow/agent restrictions, and credential verification.
 
-See: [RBAC Validation Report](../../docs/TestingLogs/security/2026-01-15/rbac-validation-report.md)
+See: [RBAC Validation Report](../../testing/security/2026-01-15/rbac-validation-report.md)
 
 ---
 
@@ -734,7 +734,7 @@ Comprehensive audit logging system now implemented:
 
 **Remaining Gap:** Log verification command (`audit-verify`) not yet implemented.
 
-See: [Security-Audit-Logging.md](../../docs/Features/Security-Audit-Logging.md)
+See: [Security-Audit-Logging.md](../../06-reference/features/Security-Audit-Logging.md)
 
 ---
 
@@ -787,7 +787,7 @@ Comprehensive YOLO mode restrictions now enforced:
 - When YOLO IS allowed, steps still execute without review (by design)
 - Administrators should carefully vet workflows before adding to allowlist
 
-See: [Security-YOLO-Mode-Restrictions.md](../../docs/Features/Security-YOLO-Mode-Restrictions.md)
+See: [Security-YOLO-Mode-Restrictions.md](../../06-reference/features/Security-YOLO-Mode-Restrictions.md)
 
 ---
 
@@ -1024,9 +1024,9 @@ user_context: "accredited_professional"  # Text claim only
 
 | Control | Implementation | Documentation |
 |---------|----------------|---------------|
-| File Integrity | GPG-signed manifest with 679 files | [Security-File-Integrity.md](../../docs/Features/Security-File-Integrity.md) |
-| Authentication | AES-256-GCM tokens with session management | [Security-Authentication.md](../../docs/Features/Security-Authentication.md) |
-| Authorization | 10-role RBAC with module/workflow/agent restrictions | [rbac-validation-report.md](../../docs/TestingLogs/security/2026-01-15/rbac-validation-report.md) |
+| File Integrity | GPG-signed manifest with 679 files | [Security-File-Integrity.md](../../06-reference/features/Security-File-Integrity.md) |
+| Authentication | AES-256-GCM tokens with session management | [Security-Authentication.md](../../06-reference/features/Security-Authentication.md) |
+| Authorization | 10-role RBAC with module/workflow/agent restrictions | [rbac-validation-report.md](../../testing/security/2026-01-15/rbac-validation-report.md) |
 
 ### 4.2 High Priority - IMPLEMENTED
 
@@ -1042,8 +1042,8 @@ user_context: "accredited_professional"  # Text claim only
 
 | Control | Implementation | Documentation |
 |---------|----------------|---------------|
-| Audit Logging | `_bmad/core/config.yaml` security.audit | [Security-Audit-Logging.md](../../docs/Features/Security-Audit-Logging.md) |
-| YOLO Restrictions | `_bmad/core/config.yaml` security.yolo_mode | [Security-YOLO-Mode-Restrictions.md](../../docs/Features/Security-YOLO-Mode-Restrictions.md) |
+| Audit Logging | `_bmad/core/config.yaml` security.audit | [Security-Audit-Logging.md](../../06-reference/features/Security-Audit-Logging.md) |
+| YOLO Restrictions | `_bmad/core/config.yaml` security.yolo_mode | [Security-YOLO-Mode-Restrictions.md](../../06-reference/features/Security-YOLO-Mode-Restrictions.md) |
 | Hook System | `.claude/settings.json` + `.claude/validators/` | 9 validators implemented |
 
 ### 4.3 Medium Priority
@@ -1411,8 +1411,8 @@ security:
 
 | Document | Location | Description |
 |----------|----------|-------------|
-| YOLO Mode Restrictions | `docs/Features/Security-YOLO-Mode-Restrictions.md` | Feature documentation |
-| Audit Logging System | `docs/Features/Security-Audit-Logging.md` | Feature documentation |
+| YOLO Mode Restrictions | `Docs/06-reference/features/Security/Security-YOLO-Mode-Restrictions.md` | Feature documentation |
+| Audit Logging System | `Docs/06-reference/features/Security/Security-Audit-Logging.md` | Feature documentation |
 | Comprehensive Validation | `docs/ValidationLog/comprehensive-validation-report-2026-01-13.md` | Platform validation |
 | Audit Log | `docs/ValidationLog/Audit Logs/audit.log` | Test audit entries |
 

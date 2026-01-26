@@ -38,14 +38,9 @@ function parseAgentFile(filePath) {
     const pathParts = filePath.split(path.sep);
     const bmadIdx = pathParts.findIndex(p => p === '_bmad');
     const module = bmadIdx >= 0 ? pathParts[bmadIdx + 1] : 'unknown';
-    // Parse YAML frontmatter
-    const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
-    const yamlName = frontmatterMatch
-        ? frontmatterMatch[1].match(/name:\s*["']?([^"'\n]+)["']?/)?.[1] || ''
-        : '';
     // Parse XML agent tag
     const agentTagMatch = content.match(/<agent\s+id="([^"]+)"\s+name="([^"]+)"\s+title="([^"]+)"\s+icon="([^"]+)">/);
-    if (!agentTagMatch) {
+    if (!agentTagMatch || !agentTagMatch[1] || !agentTagMatch[2] || !agentTagMatch[3] || !agentTagMatch[4]) {
         console.warn(`Could not parse agent tag in ${filePath}`);
         return null;
     }
@@ -56,6 +51,7 @@ function parseAgentFile(filePath) {
     const styleMatch = content.match(/<communication_style>([\s\S]*?)<\/communication_style>/);
     const principlesMatch = content.match(/<principles>([\s\S]*?)<\/principles>/);
     const biasesMatch = content.match(/<inherent_biases[\s\S]*?>([\s\S]*?)<\/inherent_biases>/);
+    const trimmedBiases = biasesMatch?.[1]?.trim();
     return {
         metadata: {
             agentId: agentId.replace('.agent.yaml', '').replace('.agent.md', ''),
@@ -70,7 +66,7 @@ function parseAgentFile(filePath) {
             identity: identityMatch?.[1]?.trim() || '',
             communicationStyle: styleMatch?.[1]?.trim() || '',
             principles: principlesMatch?.[1]?.trim() || '',
-            inherentBiases: biasesMatch?.[1]?.trim() || undefined,
+            ...(trimmedBiases ? { inherentBiases: trimmedBiases } : {}),
         },
         rawContent: content,
     };
@@ -98,13 +94,14 @@ function compressIdentity(identity, role) {
     // Build compressed version
     let compressed = coreSentence;
     // Add years if not in core
-    if (yearsMatch && !compressed.includes(yearsMatch[1])) {
+    if (yearsMatch && yearsMatch[1] && !compressed.includes(yearsMatch[1])) {
         compressed = compressed.replace(/with\s+/, `(${yearsMatch[1]}) `);
     }
     // Add certs if found
     if (certMatch && certMatch.length > 0) {
-        const uniqueCerts = [...new Set(certMatch.map(c => c.toUpperCase()))].slice(0, 3);
-        if (!compressed.toLowerCase().includes(uniqueCerts[0].toLowerCase())) {
+        const uniqueCerts = Array.from(new Set(certMatch.map(c => c.toUpperCase()))).slice(0, 3);
+        const firstCert = uniqueCerts[0];
+        if (firstCert && !compressed.toLowerCase().includes(firstCert.toLowerCase())) {
             compressed += ` ${uniqueCerts.join('/')} certified.`;
         }
     }
@@ -164,7 +161,7 @@ function compressPrinciples(principles) {
     if (items.length === 0)
         return '';
     // Take first 1-2 principles and condense
-    let core = items[0];
+    let core = items[0] ?? '';
     // Remove explanatory clauses
     core = core.replace(/\s*[-–]\s+[^.]+$/, '');
     core = core.replace(/\s+because[^.]*\.?/gi, '.');
@@ -172,7 +169,7 @@ function compressPrinciples(principles) {
     // If there are multiple short principles, try to combine
     if (items.length >= 3 && core.length < 30) {
         const keywords = items.slice(0, 3).map(p => {
-            const firstPart = p.split(/[-–,]/)[0].trim();
+            const firstPart = p.split(/[-–,]/)[0]?.trim() ?? '';
             return firstPart.length < 40 ? firstPart : '';
         }).filter(k => k.length > 0);
         if (keywords.length >= 2) {
@@ -189,6 +186,15 @@ function compressPrinciples(principles) {
  * Generate compressed persona from parsed agent
  */
 function compressAgent(metadata, persona) {
+    const extended = {};
+    if (persona.identity)
+        extended.identity_full = persona.identity;
+    if (persona.principles)
+        extended.principles_full = persona.principles;
+    if (persona.communicationStyle)
+        extended.communication_style_full = persona.communicationStyle;
+    if (persona.inherentBiases)
+        extended.inherent_biases = persona.inherentBiases;
     return {
         essential: {
             agent_id: metadata.agentId,
@@ -200,12 +206,7 @@ function compressAgent(metadata, persona) {
             voice: compressVoice(persona.communicationStyle),
             core_principle: compressPrinciples(persona.principles),
         },
-        extended: {
-            identity_full: persona.identity || undefined,
-            principles_full: persona.principles || undefined,
-            communication_style_full: persona.communicationStyle || undefined,
-            inherent_biases: persona.inherentBiases || undefined,
-        },
+        ...(Object.keys(extended).length > 0 ? { extended } : {}),
     };
 }
 // ============================================================================
@@ -333,7 +334,10 @@ function printStats(results) {
     for (const r of results) {
         if (!byModule[r.module])
             byModule[r.module] = [];
-        byModule[r.module].push(r);
+        const moduleResults = byModule[r.module];
+        if (moduleResults) {
+            moduleResults.push(r);
+        }
     }
     // Print per-module stats
     console.log('By Module:');

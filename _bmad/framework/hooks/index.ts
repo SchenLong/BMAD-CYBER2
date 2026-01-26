@@ -4,10 +4,21 @@
  *
  * Exported hook system providing session initialization,
  * security monitoring, and event handling capabilities.
+ *
+ * Note: The session-security-init hook is a standalone CLI script
+ * located at .claude/hooks/session-security-init.js and is invoked
+ * by Claude Code as a hook, not imported as a module.
  */
 
-// Re-export session security hooks
-export { sessionSecurityInit } from '../../../.claude/hooks/session-security-init.js';
+/**
+ * Placeholder for session security initialization
+ * The actual implementation runs as a Claude Code hook
+ */
+export async function sessionSecurityInit(): Promise<void> {
+  // This is a placeholder - the actual session security init
+  // runs via the Claude Code hooks system (.claude/hooks/)
+  console.log('[BMAD] Session security initialization (hook placeholder)');
+}
 
 /**
  * Hook Types and Interfaces

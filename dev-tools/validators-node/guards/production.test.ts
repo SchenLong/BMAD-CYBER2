@@ -9,8 +9,8 @@ import {
   isCriticalDeployCommand,
   detectProductionIndicators,
   validateProductionGuard,
-} from '../../src/guards/production.js';
-import { EXIT_CODES } from '../../src/types/index.js';
+} from '../../.claude/validators-node/src/guards/production.js';
+import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
 
 describe('isDocumentationFile', () => {
   it('should identify markdown files', () => {

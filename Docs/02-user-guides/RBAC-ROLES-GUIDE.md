@@ -439,6 +439,6 @@ node _bmad/core/security/quick-token.js "YourName" "your_role" 168
 ## Related Documentation
 
 - [SECURITY-OVERVIEW.md](SECURITY-OVERVIEW.md) - Security architecture
-- [Security-RBAC.md](../Features/Security/Security-RBAC.md) - Detailed RBAC documentation
-- [Security-Authentication.md](../Features/Security/Security-Authentication.md) - Token authentication
+- [Security-RBAC.md](../06-reference/features/Security/Security-RBAC.md) - Detailed RBAC documentation
+- [Security-Authentication.md](../06-reference/features/Security/Security-Authentication.md) - Token authentication
 - [MODULES-OVERVIEW.md](MODULES-OVERVIEW.md) - Module descriptions

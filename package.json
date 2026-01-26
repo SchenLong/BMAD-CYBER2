@@ -3,38 +3,38 @@
   "version": "2.0.0",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
-  "main": "./framework/dist/index.js",
-  "module": "./framework/dist/index.js",
-  "types": "./framework/dist/index.d.ts",
+  "main": "./_bmad/framework/dist/index.js",
+  "module": "./_bmad/framework/dist/index.js",
+  "types": "./_bmad/framework/dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./framework/dist/index.js",
-      "types": "./framework/dist/index.d.ts"
+      "import": "./_bmad/framework/dist/index.js",
+      "types": "./_bmad/framework/dist/index.d.ts"
     },
     "./framework": {
-      "import": "./framework/dist/index.js",
-      "types": "./framework/dist/index.d.ts"
+      "import": "./_bmad/framework/dist/index.js",
+      "types": "./_bmad/framework/dist/index.d.ts"
     },
     "./validators": {
-      "import": "./framework/dist/validators/index.js",
-      "types": "./framework/dist/validators/index.d.ts"
+      "import": "./_bmad/framework/dist/validators/index.js",
+      "types": "./_bmad/framework/dist/validators/index.d.ts"
     },
     "./auth": {
-      "import": "./framework/dist/auth/index.js",
-      "types": "./framework/dist/auth/index.d.ts"
+      "import": "./_bmad/framework/dist/auth/index.js",
+      "types": "./_bmad/framework/dist/auth/index.d.ts"
     },
     "./audit": {
-      "import": "./framework/dist/audit/index.js",
-      "types": "./framework/dist/audit/index.d.ts"
+      "import": "./_bmad/framework/dist/audit/index.js",
+      "types": "./_bmad/framework/dist/audit/index.d.ts"
     }
   },
   "workspaces": [
-    "framework",
+    "_bmad/framework",
     ".claude/validators-node"
   ],
   "scripts": {
     "build": "npm run build:framework && npm run build:validators",
-    "build:framework": "cd framework && npm run build",
+    "build:framework": "cd _bmad/framework && npm run build",
     "build:validators": "cd .claude/validators-node && npm run build",
     "build:watch": "npm run build:framework -- --watch",
     "dev": "npm run build:watch",
@@ -49,7 +49,7 @@
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "type-check": "tsc --noEmit && cd framework && tsc --noEmit && cd ../.claude/validators-node && tsc --noEmit",
+    "type-check": "tsc --noEmit && cd _bmad/framework && tsc --noEmit && cd ../../.claude/validators-node && tsc --noEmit",
     "security:scan": "npm audit --audit-level=moderate",
     "security:validate-framework": "node scripts/validate-security.js",
     "check:bundle-size": "node scripts/check-bundle-size.js",
@@ -57,7 +57,7 @@
     "docs:generate": "typedoc --options typedoc.json",
     "docs:validate": "node scripts/validate-docs.js",
     "docs:check-readme": "node scripts/check-readme.js",
-    "clean": "rm -rf dist framework/dist .claude/validators-node/dist",
+    "clean": "rm -rf dist _bmad/framework/dist .claude/validators-node/dist",
     "prepack": "npm run clean && npm run build",
     "postinstall": "npm run build",
     "quality:check": "npm run lint && npm run type-check && npm run test:coverage",
@@ -106,12 +106,12 @@
     "typescript": "^5.0.0"
   },
   "files": [
-    "framework/dist/**/*",
+    "_bmad/framework/dist/**/*",
     ".claude/validators-node/dist/**/*",
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
-    "framework/README.md"
+    "_bmad/framework/README.md"
   ],
   "repository": {
     "type": "git",

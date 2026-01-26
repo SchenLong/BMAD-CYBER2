@@ -11,8 +11,8 @@
     // Modules
     "baseUrl": ".",
     "paths": {
-      "@bmad/framework": ["./framework/index.ts"],
-      "@bmad/framework/*": ["./framework/*/index.ts"],
+      "@bmad/framework": ["./_bmad/framework/index.ts"],
+      "@bmad/framework/*": ["./_bmad/framework/*/index.ts"],
       "@bmad/validators": ["./.claude/validators-node/src/index.ts"],
       "@src/*": ["./src/*"],
       "@dev-tools/*": ["./dev-tools/*"]
@@ -61,7 +61,7 @@
   },
   "include": [
     "src/**/*",
-    "framework/**/*",
+    "_bmad/framework/**/*",
     ".claude/validators-node/src/**/*",
     "dev-tools/**/*",
     "scripts/**/*"

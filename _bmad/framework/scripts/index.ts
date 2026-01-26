@@ -4,11 +4,48 @@
  *
  * Exported script utilities providing compression, manifest management,
  * and build automation for BMAD applications.
+ *
+ * Note: The agent-compressor and manifest-compressor are standalone CLI scripts
+ * located at .claude/scripts/ and are invoked via npx ts-node, not as modules.
  */
 
-// Re-export utility scripts
-export { default as agentCompressor } from '../../../.claude/scripts/agent-compressor.js';
-export { default as manifestCompressor } from '../../../.claude/scripts/manifest-compressor.js';
+import { spawn } from 'child_process';
+import * as path from 'path';
+
+/**
+ * Helper to run a CLI script from .claude/scripts/
+ */
+async function runScript(scriptName: string, args: string[]): Promise<{ success: boolean; output: string; errors: string[] }> {
+  return new Promise((resolve) => {
+    const scriptPath = path.resolve(__dirname, '../../../.claude/scripts', scriptName);
+    const child = spawn('npx', ['ts-node', scriptPath, ...args], {
+      cwd: path.resolve(__dirname, '../../..'),
+      stdio: ['inherit', 'pipe', 'pipe']
+    });
+
+    let stdout = '';
+    let stderr = '';
+
+    child.stdout?.on('data', (data) => { stdout += data.toString(); });
+    child.stderr?.on('data', (data) => { stderr += data.toString(); });
+
+    child.on('close', (code) => {
+      resolve({
+        success: code === 0,
+        output: stdout,
+        errors: code !== 0 ? [stderr || `Script exited with code ${code}`] : []
+      });
+    });
+
+    child.on('error', (err) => {
+      resolve({
+        success: false,
+        output: '',
+        errors: [err.message]
+      });
+    });
+  });
+}
 
 /**
  * Script Types and Interfaces
@@ -120,21 +157,17 @@ export class BMADScriptManager {
       requiredArgs: ['inputPath'],
       optionalArgs: ['outputPath', 'compressionLevel'],
       execute: async (args, config) => {
-        const options: CompressionOptions = {
-          inputPath: args[0],
-          outputPath: args[1] || config.outputPath || './compressed',
-          preserveComments: false,
-          minify: true
-        };
+        const inputPath = args[0];
+        const outputPath = args[1] || config.outputPath || './compressed';
 
         try {
-          // Call the actual agent compressor
-          const result = await agentCompressor(options);
+          // Invoke the agent-compressor CLI script
+          const result = await runScript('agent-compressor.ts', ['--all']);
           return {
-            success: true,
-            output: `Compressed agents to ${options.outputPath}`,
-            errors: [],
-            metadata: { compressionRatio: result.compressionRatio }
+            success: result.success,
+            output: result.success ? `Compressed agents to ${outputPath}` : '',
+            errors: result.errors,
+            metadata: {}
           };
         } catch (error) {
           return {
@@ -154,15 +187,13 @@ export class BMADScriptManager {
       optionalArgs: ['outputPath'],
       execute: async (args, config) => {
         try {
-          const result = await manifestCompressor({
-            inputPath: args[0],
-            outputPath: args[1] || config.outputPath
-          });
+          // Invoke the manifest-compressor CLI script
+          const result = await runScript('manifest-compressor.ts', []);
           return {
-            success: true,
-            output: `Compressed manifest to ${args[1] || config.outputPath}`,
-            errors: [],
-            metadata: result
+            success: result.success,
+            output: result.success ? `Compressed manifests` : '',
+            errors: result.errors,
+            metadata: {}
           };
         } catch (error) {
           return {

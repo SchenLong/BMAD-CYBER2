@@ -10,9 +10,9 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html', 'json-summary'],
       include: [
-        'framework/**/*.ts',
+        '_bmad/framework/**/*.ts',
         '_bmad/core/**/*.ts',
-        'src/**/*.ts'
+        '.claude/validators-node/src/**/*.ts'
       ],
       exclude: [
         '**/*.d.ts',
@@ -37,8 +37,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': './src',
-      '@framework': './framework',
+      '@framework': './_bmad/framework',
+      '@validators': './.claude/validators-node/src',
       '@bmad': './_bmad'
     },
   },

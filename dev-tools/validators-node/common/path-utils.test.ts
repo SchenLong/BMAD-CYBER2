@@ -13,7 +13,7 @@ import {
   getProjectDir,
   normalizePath,
   getRelativePath,
-} from '../../src/common/path-utils.js';
+} from '../../.claude/validators-node/src/common/path-utils.js';
 
 describe('resolvePath', () => {
   const cwd = process.cwd();

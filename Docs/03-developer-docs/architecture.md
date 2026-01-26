@@ -965,4 +965,4 @@ Despite significant token reduction, agent quality is preserved:
 - [TESTING-FRAMEWORK.md](TESTING-FRAMEWORK.md) - Testing agents and workflows
 - [PERFORMANCE-TUNING.md](../UserGuide/Operations/PERFORMANCE-TUNING.md) - Optimization guide
 - [OPERATIONAL-RUNBOOKS.md](../UserGuide/Operations/OPERATIONAL-RUNBOOKS.md) - Maintenance procedures
-- [Security Documentation](../Features/Security/) - Detailed security architecture
+- [Security Documentation](../06-reference/features/Security/) - Detailed security architecture

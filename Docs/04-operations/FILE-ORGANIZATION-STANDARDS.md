@@ -133,7 +133,7 @@ This document establishes comprehensive standards for file and folder organizati
     └── troubleshooting.md
 ```
 
-#### 6. `/docs/operations/` - Operational Procedures
+#### 6. `/Docs/04-operations/` - Operational Procedures
 **Purpose:** Operational runbooks and maintenance procedures
 **Security:** Internal use only
 **Examples:**

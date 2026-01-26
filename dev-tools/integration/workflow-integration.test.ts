@@ -1,12 +1,12 @@
 import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { AuthManager } from '../../framework/auth/index.js';
+import { AuthManager } from '../../_bmad/framework/auth/index.js';
 import { SessionManager } from '../../_bmad/core/security/session-manager.js';
 import { TokenGenerator } from '../../_bmad/core/security/generate-token.js';
 import {
   createValidatorSuite
-} from '../../framework/validators/index.js';
+} from '../../_bmad/framework/validators/index.js';
 
 // Mock file system
 vi.mock('fs');

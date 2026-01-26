@@ -44,13 +44,13 @@ If verification passes, you'll see:
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
-See [Security-File-Integrity.md](../Features/Security-File-Integrity.md) for details.
+See [Security-File-Integrity.md](../06-reference/features/Security/Security-File-Integrity.md) for details.
 
 ### Security Setup (Recommended)
 
 BMAD includes 19 security validators protecting against OWASP Top 10 for LLM Applications threats. Security is enabled by default.
 
-**Security Audit (2026-01-16):** All security systems have been audited and all critical findings remediated. See [Security Audit Report](../TestingLogs/security/RBAC-SEC-AUDIT-2026-01-16/SECURITY-AUDIT-MASTER-REPORT.md) for details.
+**Security Audit (2026-01-16):** All security systems have been audited and all critical findings remediated. See [Security Audit Report](../05-project-management/planning/security-audits/BMAD-Security-Audit-Report.md) for details.
 
 #### Token Authentication
 
@@ -91,7 +91,7 @@ See [Security Documentation](Security/README.md) for complete details.
 
 #### Context Efficiency (CONCURA)
 
-BMAD includes a tiered context loading system that reduces token consumption by **8.75x**. This is enabled by default and requires no configuration. See [CONTEXT-EFFICIENCY.md](../Features/CONTEXT-EFFICIENCY.md) for details.
+BMAD includes a tiered context loading system that reduces token consumption by **8.75x**. This is enabled by default and requires no configuration. See [CONTEXT-EFFICIENCY.md](../06-reference/features/CONTEXT-EFFICIENCY.md) for details.
 
 ---
 

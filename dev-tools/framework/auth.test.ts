@@ -13,7 +13,7 @@ import {
   type AuthContext,
   type Permission,
   type Role
-} from '../../framework/auth/index.js';
+} from '../../_bmad/framework/auth/index.js';
 
 // Mock crypto
 vi.mock('crypto', async (importOriginal) => {

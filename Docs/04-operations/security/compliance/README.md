@@ -87,9 +87,9 @@ Override tokens are:
 
 | Document | Location | Description |
 |----------|----------|-------------|
-| Security Audit Report | `docs/Planification/security-audits/` | Original audit findings |
-| Mitigation Plan | `docs/Planification/security-audits/BMAD-Security-Mitigation-Plan.md` | Detailed fix plans |
-| Test Results | `docs/TestingLogs/security/` | Test execution logs |
+| Security Audit Report | `Docs/05-project-management/planning/security-audits/` | Original audit findings |
+| Mitigation Plan | `Docs/05-project-management/planning/security-audits/BMAD-Security-Mitigation-Plan.md` | Detailed fix plans |
+| Test Results | `Docs/testing/` | Test execution logs |
 | OWASP Checklist | `_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md` | Security compliance tracking |
 | OWASP Remediation Plan | `_bmad/core/security/OWASP-REMEDIATION-PLAN.md` | Phase-by-phase implementation |
 
@@ -195,11 +195,8 @@ python3 tests/test_performance.py
 
 ### Test Results Location
 
-- `docs/TestingLogs/security/P1-TOCTOU-Token/` - Token validation tests
-- `docs/TestingLogs/security/P2-CommandSubstitution-InputValidation/` - Shell injection tests
-- `docs/TestingLogs/security/P3-JailbreakDetection/` - Jailbreak detection tests
-- `docs/TestingLogs/security/2026-01-16/OWASP-QA-SECURITY-ASSESSMENT.md` - Full OWASP QA Assessment
-- `docs/TestingLogs/security/AuditLogs/telemetry/` - Telemetry output
+- `Docs/testing/` - Security test results and execution logs
+- See `Docs/05-project-management/planning/security-audits/` for audit reports
 
 ---
 

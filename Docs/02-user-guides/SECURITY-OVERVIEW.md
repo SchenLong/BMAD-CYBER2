@@ -104,7 +104,7 @@ node _bmad/core/security/validate-token.js
 # Key stored in: .bmad-key (git-ignored)
 ```
 
-**Detailed documentation:** [Security-Authentication.md](../Features/Security/Security-Authentication.md)
+**Detailed documentation:** [Security-Authentication.md](../06-reference/features/Security/Security-Authentication.md)
 
 ---
 
@@ -149,7 +149,7 @@ node _bmad/core/security/check-authorization.js module cybersec-team
 node _bmad/core/security/check-authorization.js roles
 ```
 
-**Detailed documentation:** [Security-RBAC.md](../Features/Security/Security-RBAC.md)
+**Detailed documentation:** [Security-RBAC.md](../06-reference/features/Security/Security-RBAC.md)
 
 ---
 
@@ -197,7 +197,7 @@ gpg --import _bmad/core/security/bmad-public-key.asc
 | 3 | Missing files detected |
 | 4 | Setup error |
 
-**Detailed documentation:** [Security-File-Integrity.md](../Features/Security/Security-File-Integrity.md)
+**Detailed documentation:** [Security-File-Integrity.md](../06-reference/features/Security/Security-File-Integrity.md)
 
 ---
 
@@ -248,7 +248,7 @@ _bmad-output/.audit/audit.log
 }
 ```
 
-**Detailed documentation:** [Security-Audit-Logging.md](../Features/Security/Security-Audit-Logging.md)
+**Detailed documentation:** [Security-Audit-Logging.md](../06-reference/features/Security/Security-Audit-Logging.md)
 
 ---
 
@@ -282,7 +282,7 @@ yolo_mode:
 | `enabled: true` + specific workflows | Moderate - only listed workflows |
 | `enabled: true` + `*` allowlist | Highest risk - not recommended |
 
-**Detailed documentation:** [Security-YOLO-Mode-Restrictions.md](../Features/Security/Security-YOLO-Mode-Restrictions.md)
+**Detailed documentation:** [Security-YOLO-Mode-Restrictions.md](../06-reference/features/Security/Security-YOLO-Mode-Restrictions.md)
 
 ---
 
@@ -364,7 +364,7 @@ User Request
 | Jailbreaking | jailbreak.js detects persona hijacking |
 | Production Attacks | production.js blocks production targeting |
 
-**Detailed documentation:** [AgenticSecurity.md](../Features/Security/AgenticSecurity.md), [HooksGuardrails.md](../Features/Security/HooksGuardrails.md)
+**Detailed documentation:** [AgenticSecurity.md](../06-reference/features/Security/AgenticSecurity.md), [HooksGuardrails.md](../06-reference/features/Security/HooksGuardrails.md)
 
 ---
 
@@ -402,7 +402,7 @@ node .claude/validators-node/bin/rate-limiter.js status
 node .claude/validators-node/bin/rate-limiter.js reset
 ```
 
-**Detailed documentation:** [Rate-Limiting.md](../Features/Security/Rate-Limiting.md)
+**Detailed documentation:** [Rate-Limiting.md](../06-reference/features/Security/Rate-Limiting.md)
 
 ---
 
@@ -456,7 +456,7 @@ node .claude/validators-node/bin/plugin-permissions.js list
 node .claude/validators-node/bin/plugin-permissions.js check intel-team shell execute "curl https://example.com"
 ```
 
-**Detailed documentation:** [Plugin-Permissions.md](../Features/Security/Plugin-Permissions.md), [Plugin Manifest Schema](../Features/PLUGIN-MANIFEST-SCHEMA.md)
+**Detailed documentation:** [Plugin-Permissions.md](../06-reference/features/Security/Plugin-Permissions.md), [Plugin Manifest Schema](../06-reference/features/PLUGIN-MANIFEST-SCHEMA.md)
 
 ---
 
@@ -527,16 +527,16 @@ BMAD-CYBER2 implements comprehensive OWASP Top 10 for LLM Applications coverage:
 
 ### Detailed Security Documentation
 
-- [Security-Authentication.md](../Features/Security/Security-Authentication.md) - Token-based authentication
-- [Security-RBAC.md](../Features/Security/Security-RBAC.md) - Role-based access control
-- [Security-File-Integrity.md](../Features/Security/Security-File-Integrity.md) - GPG file integrity
-- [Security-Audit-Logging.md](../Features/Security/Security-Audit-Logging.md) - Tamper-evident audit
-- [Security-YOLO-Mode-Restrictions.md](../Features/Security/Security-YOLO-Mode-Restrictions.md) - YOLO controls
-- [AgenticSecurity.md](../Features/Security/AgenticSecurity.md) - AI manipulation defense
-- [HooksGuardrails.md](../Features/Security/HooksGuardrails.md) - Hard guardrail validators
-- [Rate-Limiting.md](../Features/Security/Rate-Limiting.md) - DoS protection (OWASP LLM04)
-- [Plugin-Permissions.md](../Features/Security/Plugin-Permissions.md) - Capability-based security (OWASP LLM07)
-- [Plugin Manifest Schema](../Features/PLUGIN-MANIFEST-SCHEMA.md) - Manifest schema reference
+- [Security-Authentication.md](../06-reference/features/Security/Security-Authentication.md) - Token-based authentication
+- [Security-RBAC.md](../06-reference/features/Security/Security-RBAC.md) - Role-based access control
+- [Security-File-Integrity.md](../06-reference/features/Security/Security-File-Integrity.md) - GPG file integrity
+- [Security-Audit-Logging.md](../06-reference/features/Security/Security-Audit-Logging.md) - Tamper-evident audit
+- [Security-YOLO-Mode-Restrictions.md](../06-reference/features/Security/Security-YOLO-Mode-Restrictions.md) - YOLO controls
+- [AgenticSecurity.md](../06-reference/features/Security/AgenticSecurity.md) - AI manipulation defense
+- [HooksGuardrails.md](../06-reference/features/Security/HooksGuardrails.md) - Hard guardrail validators
+- [Rate-Limiting.md](../06-reference/features/Security/Rate-Limiting.md) - DoS protection (OWASP LLM04)
+- [Plugin-Permissions.md](../06-reference/features/Security/Plugin-Permissions.md) - Capability-based security (OWASP LLM07)
+- [Plugin Manifest Schema](../06-reference/features/PLUGIN-MANIFEST-SCHEMA.md) - Manifest schema reference
 
 ### User Guides
 

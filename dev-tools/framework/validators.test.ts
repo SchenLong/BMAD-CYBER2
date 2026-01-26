@@ -21,7 +21,7 @@ import {
   RecursionGuard,
   ResourceLimiter,
   ContextManager
-} from '../../framework/validators/index.js';
+} from '../../_bmad/framework/validators/index.js';
 
 // Mock the validators-node module
 vi.mock('../../.claude/validators-node/src/index.js', () => ({

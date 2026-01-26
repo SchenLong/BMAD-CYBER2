@@ -28,8 +28,8 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
       include: [
         'dev-tools/integration/**/*.{js,ts}',
-        'framework/src/**/*.{js,ts}',
-        'src/**/*.{js,ts}'
+        '_bmad/framework/**/*.{js,ts}',
+        '.claude/validators-node/src/**/*.{js,ts}'
       ],
       exclude: [
         'dev-tools/**/*.test.{js,ts}',
@@ -46,9 +46,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@dev-tools': path.resolve(__dirname, 'dev-tools'),
-      '@framework': path.resolve(__dirname, 'framework/src'),
+      '@dev-tools': path.resolve(__dirname, '../../dev-tools'),
+      '@framework': path.resolve(__dirname, '../../_bmad/framework'),
+      '@validators': path.resolve(__dirname, '../../.claude/validators-node/src'),
+      '@bmad': path.resolve(__dirname, '../../_bmad'),
     },
   },
   esbuild: {

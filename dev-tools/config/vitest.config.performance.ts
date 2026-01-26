@@ -15,7 +15,7 @@ export default defineConfig({
       '_bmad-output/**',
       'dev-tools-installation/**',
       'dev-tools/integration/**',
-      'dev-tools/unit/**'
+      'dev-tools/validators-node/**'
     ],
     timeout: 600000, // 10 minutes for performance tests
     testTimeout: 600000,
@@ -39,9 +39,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@dev-tools': path.resolve(__dirname, 'dev-tools'),
-      '@framework': path.resolve(__dirname, 'framework/src'),
+      '@dev-tools': path.resolve(__dirname, '../../dev-tools'),
+      '@framework': path.resolve(__dirname, '../../_bmad/framework'),
+      '@validators': path.resolve(__dirname, '../../.claude/validators-node/src'),
+      '@bmad': path.resolve(__dirname, '../../_bmad'),
     },
   },
   esbuild: {
