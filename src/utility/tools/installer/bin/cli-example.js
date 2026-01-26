@@ -302,7 +302,7 @@ Examples:
   # Rollback to previous state
   node cli-example.js rollback backup_install_123_abc
 
-For more information, visit: https://docs.bmad.ai
+For more information, visit: https://docs.blackunicorn.tech
     `);
   }
 

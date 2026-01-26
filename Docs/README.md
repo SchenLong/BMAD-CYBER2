@@ -1,123 +1,126 @@
-# BMAD-CYBER2 Documentation
+# BMAD CYBERCOMMAND Documentation
 
 > **Professional-Grade AI Agent Orchestration Platform**
 >
-> Complete documentation for BMAD-CYBER2, featuring 80+ agents, 143+ workflows across cybersecurity, intelligence, strategy, and legal operations.
+> Complete documentation for BMAD CYBERCOMMAND, featuring 80+ specialized agents and 143+ workflows across cybersecurity, intelligence, strategy, and legal operations.
 
 ---
 
-## Quick Navigation
+## Quick Start
 
-### 🚀 New to BMAD?
-**[Getting Started Guide](getting-started/)** - Installation, setup, and your first workflow
+**New to BMAD?** Follow this path:
 
-### 📚 Documentation by Role
-
-| Role | Documentation Path | Description |
-|------|-------------------|-------------|
-| **End Users** | [User Guide](user-guide/) | Workflows, configuration, daily usage |
-| **Developers** | [Developer Guide](developer/) | Architecture, API, contributing |
-| **Security Teams** | [Security Documentation](security/) | Security features, compliance, audit reports |
-| **System Administrators** | [Operations Guide](operations/) | Deployment, monitoring, maintenance |
+1. **[Quick Start Guide](01-getting-started/quick-start.md)** - Get running in 5 minutes
+2. **[Installation Guide](01-getting-started/installation.md)** - Complete setup instructions
+3. **[Your First Workflow](02-user-guides/WORKFLOWS-REFERENCE.md)** - Execute your first workflow
 
 ---
 
-## 🎯 Quick Access
+## Documentation Structure
 
-### Most Popular Workflows
-- **[Cybersec Team (13 workflows)](user-guide/workflows/cybersec-team.md)** - Security assessments, penetration testing, compliance
-- **[Intel Team (19 workflows)](user-guide/workflows/intel-team.md)** - OSINT, threat intelligence, attribution
-- **[Strategy Team (16 workflows)](user-guide/workflows/strategy-team.md)** - Executive decision making, negotiations, crisis management
-- **[Legal Team (7 workflows)](user-guide/workflows/legal-team.md)** - Contract review, compliance, multi-jurisdictional matters
+BMAD documentation is organized into 7 categories for easy navigation:
 
-### Key Features
-- **[143+ Specialized Workflows](user-guide/workflows/)** - Ready-to-use professional workflows
-- **[Party Mode](user-guide/workflows/#party-mode)** - Multi-agent collaborative sessions
-- **[Advanced Security](security/)** - Enterprise-grade security with RBAC, hooks, and validators
-- **[Multi-LLM Support](user-guide/configuration.md#llm-configuration)** - Claude, local LLMs, custom endpoints
-
----
-
-## 🔍 Find What You Need
-
-### By Use Case
-- **Security Operations** → [Cybersec Workflows](user-guide/workflows/cybersec-team.md)
-- **Intelligence Analysis** → [Intel Workflows](user-guide/workflows/intel-team.md)
-- **Executive Leadership** → [Strategy Workflows](user-guide/workflows/strategy-team.md)
-- **Legal Compliance** → [Legal Workflows](user-guide/workflows/legal-team.md)
-- **Software Development** → [Developer Guide](developer/)
-
-### By Experience Level
-- **Beginner** → [Getting Started](getting-started/) → [Examples](user-guide/examples/)
-- **Intermediate** → [User Guide](user-guide/) → [Configuration](user-guide/configuration.md)
-- **Advanced** → [Developer Guide](developer/) → [Security Guide](security/)
+| Category | Path | Description | Audience |
+|----------|------|-------------|----------|
+| **Getting Started** | [01-getting-started/](01-getting-started/) | Onboarding, installation, quick start | New users |
+| **User Guides** | [02-user-guides/](02-user-guides/) | Workflows, agents, configuration | End users |
+| **Developer Docs** | [03-developer-docs/](03-developer-docs/) | Architecture, API, contributing | Developers |
+| **Operations** | [04-operations/](04-operations/) | Deployment, security, maintenance | Administrators |
+| **Project Management** | [05-project-management/](05-project-management/) | Epics, stories, milestones | Project teams |
+| **Reference** | [06-reference/](06-reference/) | Glossary, schemas, frameworks | All users |
+| **Archive** | [07-archive/](07-archive/) | Historical and legacy documents | Reference |
 
 ---
 
-## 📋 Documentation Overview
+## Find Documentation by Role
 
-| Section | Contents | Audience |
-|---------|----------|----------|
-| **[Getting Started](getting-started/)** | Installation, quick start, first workflow | New users |
-| **[User Guide](user-guide/)** | Workflows, agents, configuration, troubleshooting | End users |
-| **[Developer](developer/)** | Architecture, contributing, API reference | Developers |
-| **[Security](security/)** | Security features, compliance, audit reports | Security teams |
-| **[Operations](operations/)** | Deployment, monitoring, performance tuning | System admins |
-| **[Testing Reports](testing-reports/)** | Historical audit logs, validation reports | Technical teams |
-| **[Reference](reference/)** | Glossary, changelog, roadmap | All users |
+### End Users
+- **[Workflows Reference](02-user-guides/WORKFLOWS-REFERENCE.md)** - All 143+ available workflows
+- **[Agents Reference](02-user-guides/AGENTS-REFERENCE.md)** - All 80+ specialized agents
+- **[Party Mode Guide](02-user-guides/PARTY-MODE-GUIDE.md)** - Multi-agent collaborative sessions
+- **[Troubleshooting](02-user-guides/TROUBLESHOOTING.md)** - Common issues and solutions
 
-### 📋 Project Documentation (BMAD METHOD)
+### Developers
+- **[Architecture Deep Dive](03-developer-docs/ARCHITECTURE-DEEP-DIVE.md)** - System architecture
+- **[Contributing Guide](03-developer-docs/CONTRIBUTING-GUIDE.md)** - How to contribute
+- **[Testing Framework](03-developer-docs/TESTING-FRAMEWORK.md)** - Testing approach
+- **[API Documentation](03-developer-docs/API/)** - API reference
 
-| Section | Contents | Audience |
-|---------|----------|----------|
-| **[Epics](epics/)** | Epic specifications, completion reports, planning documents | Project managers, stakeholders |
-| **[Stories](stories/)** | User story completion reports, validation summaries | Development teams, QA |
-| **[Implementation Guides](guides/)** | Technical guides, schema docs, dependency management | Developers, architects |
-| **[System Documentation](systems/)** | System overviews, validation reports, architecture | System architects, DevOps |
-| **[Deployment](deployment/)** | Installation framework, package registry, deployment guides | DevOps, system administrators |
+### Administrators
+- **[Enterprise Deployment](03-developer-docs/ENTERPRISE-DEPLOYMENT-GUIDE.md)** - Production deployment
+- **[Security Operations](04-operations/security/)** - Security configuration
+- **[Incident Response](04-operations/INCIDENT-RESPONSE-RUNBOOK.md)** - Incident procedures
+- **[Performance Tuning](04-operations/PERFORMANCE-TUNING.md)** - Optimization guide
 
 ---
 
-## 🆘 Need Help?
+## Specialized Team Documentation
 
-### Common Starting Points
-1. **First time user?** → [Quick Start Guide](getting-started/quick-start-guide.md)
-2. **Want to try a workflow?** → [Examples](user-guide/examples/)
-3. **Security questions?** → [Security Overview](security/)
-4. **Technical issues?** → [Troubleshooting](user-guide/troubleshooting.md)
-5. **Contributing?** → [Contributing Guide](developer/contributing.md)
+### Cybersecurity Team
+13 workflows for security assessments, penetration testing, and compliance
+- **[Cybersec Team Guide](02-user-guides/teams/cybersec-team.md)**
 
-### Support Resources
-- **Documentation Issues** → [Report Documentation Issues](https://github.com/SchenLong/BMAD-CYBER2/issues)
-- **Security Concerns** → [Security Policy](security/README.md#reporting-security-issues)
-- **Feature Requests** → [Roadmap](reference/roadmap.md)
+### Intelligence Team
+19 workflows for OSINT, threat intelligence, and attribution
+- **[Intel Team Guide](02-user-guides/teams/intel-team.md)**
+
+### Strategy Team
+16 workflows for executive decision making, negotiations, and crisis management
+- **[Strategy Team Guide](02-user-guides/teams/strategy-team.md)**
+
+### Legal Team
+7 workflows for contract review, compliance, and multi-jurisdictional matters
+- **[Legal Team Guide](02-user-guides/teams/legal-team.md)**
 
 ---
 
-## 📊 Platform Statistics
+## Key Features
+
+| Feature | Documentation |
+|---------|---------------|
+| **143+ Workflows** | [Workflow Reference](02-user-guides/WORKFLOWS-REFERENCE.md) |
+| **80+ Agents** | [Agent Reference](02-user-guides/AGENTS-REFERENCE.md) |
+| **Party Mode** | [Party Mode Guide](02-user-guides/PARTY-MODE-GUIDE.md) |
+| **RBAC Security** | [RBAC Roles Guide](02-user-guides/RBAC-ROLES-GUIDE.md) |
+| **Multi-LLM Support** | [LLM Provider System](02-user-guides/LLM-PROVIDER-SYSTEM.md) |
+| **Workflow Chaining** | [Workflow Chaining Guide](02-user-guides/WORKFLOW-CHAINING-GUIDE.md) |
+
+---
+
+## Platform Statistics
 
 | Metric | Value |
 |--------|-------|
-| **Total Agents** | 80+ |
-| **Total Workflows** | 143+ |
-| **Security Validators** | 21 |
-| **Supported Modules** | 9 |
-| **Party Mode Presets** | 27 |
-| **Hook Scripts** | 43+ |
-| **RBAC Roles** | 9 |
+| Total Agents | 80+ |
+| Total Workflows | 143+ |
+| Security Validators | 21 |
+| Supported Modules | 9 |
+| Party Mode Presets | 27 |
+| Hook Scripts | 43+ |
+| RBAC Roles | 9 |
 
 ---
 
-## 📝 Documentation Standards
+## Additional Resources
 
-This documentation follows professional standards for:
-- **Accessibility** - Clear navigation and multiple access paths
-- **Security** - Appropriate handling of sensitive information
-- **Maintenance** - Version controlled and regularly updated
-- **User Experience** - Role-based organization with clear entry points
+- **[Documentation Index](DOCUMENTATION-INDEX.md)** - Complete searchable index of all documentation
+- **[Glossary](06-reference/glossary.md)** - Terms and definitions
+- **[CLI Command Reference](02-user-guides/CLI-COMMAND-REFERENCE.md)** - Command line reference
 
 ---
 
-> **Version:** 1.1
-> **Last Updated:** 2026-01-18
-> **Maintained by:** Team Gamma (Documentation Consolidation)
+## Need Help?
+
+| Issue | Resource |
+|-------|----------|
+| Getting started | [Quick Start Guide](01-getting-started/quick-start.md) |
+| Workflow questions | [Workflow Selection Guide](02-user-guides/WORKFLOW-SELECTION-GUIDE.md) |
+| Technical issues | [Troubleshooting Guide](02-user-guides/TROUBLESHOOTING.md) |
+| Security concerns | [Security Overview](02-user-guides/SECURITY-OVERVIEW.md) |
+| Contributing | [Contributing Guide](03-developer-docs/CONTRIBUTING-GUIDE.md) |
+
+---
+
+> **Version:** 2.0
+> **Last Updated:** 2026-01-26
+> **Documentation Structure:** 7-Category Organization

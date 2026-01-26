@@ -1,0 +1,1502 @@
+openapi: 3.0.3
+info:
+  title: BMAD Security Testing Framework API
+  version: 2.1.0
+  description: |
+    Enterprise-grade security testing and monitoring API for BMAD-CYBER2 framework.
+
+    This API provides comprehensive security testing capabilities across 6 mandatory attack vectors
+    with enterprise-grade validation, zero-trust verification, and continuous monitoring.
+
+    ## Security Testing Capabilities
+
+    ### Core Attack Vectors
+    - **Direct Prompt Injection**: Testing for direct manipulation attempts
+    - **Role Hijacking**: Validation against unauthorized role escalation
+    - **Authority Spoofing**: Detection of fake administrative commands
+    - **Encoded Payload**: Protection against obfuscated malicious content
+    - **Privilege Escalation**: Prevention of unauthorized access elevation
+    - **Indirect Injection**: Defense against secondary payload execution
+
+    ### Enterprise Features
+    - **Zero-Trust Architecture**: Continuous verification of all operations
+    - **Defense-in-Depth**: Multi-layered security validation
+    - **21-Lesson Compliance**: Full compliance with enterprise security frameworks
+    - **Real-time Monitoring**: Continuous security posture assessment
+    - **Automated Response**: Immediate threat detection and mitigation
+
+    ## Security Compliance
+    - NIST Cybersecurity Framework alignment
+    - ISO 27001 compliance validation
+    - OWASP Top 10 for LLM coverage
+    - CWE (Common Weakness Enumeration) protection
+
+  contact:
+    name: BMAD Security Team
+    url: https://api.blackunicorn.tech/security
+    email: security@blackunicorn.tech
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://security-api.blackunicorn.tech/v2
+    description: Production Security API
+  - url: https://staging-security-api.blackunicorn.tech/v2
+    description: Staging Security API
+  - url: http://localhost:3001/api/v2/security
+    description: Local Development Security Server
+
+security:
+  - BearerAuth: []
+  - SecurityApiKey: []
+
+paths:
+  /test/comprehensive:
+    post:
+      summary: Run Comprehensive Security Test
+      description: |
+        Execute a complete security testing suite across all 6 mandatory attack vectors
+        with enterprise-grade validation and zero-trust architecture verification.
+
+        This endpoint orchestrates the complete security testing pipeline:
+        1. Pre-flight security checks
+        2. Attack vector testing (6 mandatory vectors)
+        3. Module-specific security validation
+        4. Zero-trust architecture verification
+        5. 21-lesson validation framework compliance
+        6. Defense-in-depth verification
+        7. Comprehensive security report generation
+        8. Security posture assessment
+
+      operationId: runComprehensiveSecurityTest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComprehensiveTestRequest'
+            examples:
+              full_test:
+                summary: Full Security Test
+                value:
+                  target:
+                    modules: ["cybersec-team", "intel-team", "legal-team", "strategy-team"]
+                    scope: "enterprise"
+                  options:
+                    attackVectors: "all"
+                    complianceFramework: "enterprise"
+                    reportFormat: "comprehensive"
+                    realTimeMonitoring: true
+              focused_test:
+                summary: Focused Module Test
+                value:
+                  target:
+                    modules: ["cybersec-team"]
+                    scope: "module-specific"
+                  options:
+                    attackVectors: ["direct_prompt_injection", "role_hijacking"]
+                    reportFormat: "summary"
+      responses:
+        '200':
+          description: Security test completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComprehensiveTestResponse'
+        '400':
+          description: Invalid test configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityErrorResponse'
+        '403':
+          description: Insufficient permissions for security testing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityErrorResponse'
+        '422':
+          description: Test execution failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityTestFailureResponse'
+
+  /test/attack-vector/{vectorType}:
+    post:
+      summary: Test Specific Attack Vector
+      description: |
+        Execute targeted testing for a specific attack vector across specified modules.
+        Provides detailed analysis and mitigation recommendations for the tested vector.
+      operationId: testAttackVector
+      parameters:
+        - name: vectorType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [direct_prompt_injection, role_hijacking, authority_spoofing, encoded_payload, privilege_escalation, indirect_injection]
+          example: "direct_prompt_injection"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttackVectorTestRequest'
+      responses:
+        '200':
+          description: Attack vector test completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttackVectorTestResponse'
+        '400':
+          description: Invalid attack vector or parameters
+        '422':
+          description: Attack vector test failed
+
+  /monitoring/real-time:
+    get:
+      summary: Real-time Security Monitoring
+      description: |
+        Stream real-time security monitoring data including threat detection,
+        anomaly identification, and security posture metrics.
+      operationId: getRealTimeMonitoring
+      parameters:
+        - name: modules
+          in: query
+          description: Modules to monitor
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - name: metrics
+          in: query
+          description: Specific metrics to monitor
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [threat_detection, access_patterns, resource_usage, compliance_status]
+          style: form
+          explode: false
+        - name: alertLevel
+          in: query
+          description: Minimum alert level to include
+          schema:
+            type: string
+            enum: [info, warning, critical]
+            default: warning
+      responses:
+        '200':
+          description: Real-time monitoring data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RealTimeMonitoringResponse'
+            text/event-stream:
+              schema:
+                type: string
+                description: Server-sent events stream
+        '403':
+          description: Insufficient monitoring permissions
+
+  /compliance/validate:
+    post:
+      summary: Compliance Framework Validation
+      description: |
+        Validate compliance with enterprise security frameworks including
+        21-lesson validation framework, NIST, ISO 27001, and OWASP guidelines.
+      operationId: validateCompliance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComplianceValidationRequest'
+      responses:
+        '200':
+          description: Compliance validation completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceValidationResponse'
+        '422':
+          description: Compliance validation failed
+
+  /threat-analysis:
+    post:
+      summary: Advanced Threat Analysis
+      description: |
+        Perform advanced threat analysis including pattern recognition,
+        behavioral analysis, and predictive threat modeling.
+      operationId: performThreatAnalysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreatAnalysisRequest'
+      responses:
+        '200':
+          description: Threat analysis completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreatAnalysisResponse'
+
+  /security-posture:
+    get:
+      summary: Security Posture Assessment
+      description: |
+        Get comprehensive security posture assessment including risk scoring,
+        vulnerability identification, and improvement recommendations.
+      operationId: getSecurityPosture
+      parameters:
+        - name: includeHistorical
+          in: query
+          description: Include historical posture data
+          schema:
+            type: boolean
+            default: false
+        - name: detailLevel
+          in: query
+          description: Level of detail in response
+          schema:
+            type: string
+            enum: [summary, detailed, comprehensive]
+            default: detailed
+      responses:
+        '200':
+          description: Security posture assessment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityPostureResponse'
+
+  /incident-response:
+    post:
+      summary: Security Incident Response
+      description: |
+        Initiate automated security incident response including
+        threat containment, evidence collection, and recovery procedures.
+      operationId: initiateIncidentResponse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncidentResponseRequest'
+      responses:
+        '200':
+          description: Incident response initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentResponseResponse'
+        '201':
+          description: New incident created and response initiated
+
+  /audit-log:
+    get:
+      summary: Security Audit Log
+      description: |
+        Retrieve security audit logs with hash-chained integrity verification
+        and comprehensive event tracking.
+      operationId: getSecurityAuditLog
+      parameters:
+        - name: startTime
+          in: query
+          description: Start time for log retrieval
+          schema:
+            type: string
+            format: date-time
+        - name: endTime
+          in: query
+          description: End time for log retrieval
+          schema:
+            type: string
+            format: date-time
+        - name: eventType
+          in: query
+          description: Filter by event type
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [authentication, authorization, threat_detection, compliance_check, incident_response]
+          style: form
+          explode: false
+        - name: severity
+          in: query
+          description: Minimum severity level
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+        - name: limit
+          in: query
+          description: Maximum number of log entries
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 100
+      responses:
+        '200':
+          description: Security audit log retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogResponse'
+
+  /vulnerability-scan:
+    post:
+      summary: Vulnerability Scan
+      description: |
+        Execute comprehensive vulnerability scanning across BMAD modules
+        with CVE correlation and risk assessment.
+      operationId: performVulnerabilityScan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VulnerabilityScanRequest'
+      responses:
+        '200':
+          description: Vulnerability scan completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityScanResponse'
+
+  /security-config:
+    get:
+      summary: Get Security Configuration
+      description: Retrieve current security configuration and policies
+      operationId: getSecurityConfiguration
+      responses:
+        '200':
+          description: Security configuration retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityConfigurationResponse'
+
+    put:
+      summary: Update Security Configuration
+      description: Update security configuration and policies
+      operationId: updateSecurityConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityConfigurationUpdateRequest'
+      responses:
+        '200':
+          description: Security configuration updated successfully
+        '400':
+          description: Invalid configuration
+        '403':
+          description: Insufficient permissions
+
+  /health/security:
+    get:
+      summary: Security Service Health
+      description: Check health status of security testing framework
+      operationId: getSecurityHealth
+      security: []
+      responses:
+        '200':
+          description: Security service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityHealthResponse'
+        '503':
+          description: Security service is unhealthy
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    SecurityApiKey:
+      type: apiKey
+      in: header
+      name: X-Security-API-Key
+
+  schemas:
+    ComprehensiveTestRequest:
+      type: object
+      required:
+        - target
+      properties:
+        target:
+          $ref: '#/components/schemas/SecurityTestTarget'
+        options:
+          $ref: '#/components/schemas/SecurityTestOptions'
+
+    SecurityTestTarget:
+      type: object
+      properties:
+        modules:
+          type: array
+          items:
+            type: string
+          description: Target modules for security testing
+          example: ["cybersec-team", "intel-team"]
+        scope:
+          type: string
+          enum: [enterprise, module-specific, agent-specific, workflow-specific]
+          description: Scope of security testing
+        agents:
+          type: array
+          items:
+            type: string
+          description: Specific agents to test (if scope is agent-specific)
+        workflows:
+          type: array
+          items:
+            type: string
+          description: Specific workflows to test (if scope is workflow-specific)
+
+    SecurityTestOptions:
+      type: object
+      properties:
+        attackVectors:
+          oneOf:
+            - type: string
+              enum: [all, standard, custom]
+            - type: array
+              items:
+                type: string
+                enum: [direct_prompt_injection, role_hijacking, authority_spoofing, encoded_payload, privilege_escalation, indirect_injection]
+        complianceFramework:
+          type: string
+          enum: [enterprise, nist, iso27001, owasp, custom]
+          default: enterprise
+        reportFormat:
+          type: string
+          enum: [summary, detailed, comprehensive]
+          default: detailed
+        realTimeMonitoring:
+          type: boolean
+          default: false
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+          description: Minimum severity level to report
+        timeout:
+          type: integer
+          description: Test timeout in seconds
+          default: 3600
+        parallel:
+          type: boolean
+          description: Enable parallel testing
+          default: true
+
+    ComprehensiveTestResponse:
+      type: object
+      properties:
+        testId:
+          type: string
+          description: Unique test execution identifier
+        status:
+          type: string
+          enum: [completed, failed, partial]
+        executionTime:
+          type: integer
+          description: Test execution time in milliseconds
+        overallScore:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Overall security score (0-100)
+        summary:
+          $ref: '#/components/schemas/SecurityTestSummary'
+        attackVectorResults:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AttackVectorResult'
+        moduleResults:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ModuleSecurityResult'
+        complianceResults:
+          $ref: '#/components/schemas/ComplianceResults'
+        criticalFindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityFinding'
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityRecommendation'
+        reportUrl:
+          type: string
+          format: uri
+          description: URL to detailed security report
+
+    SecurityTestSummary:
+      type: object
+      properties:
+        totalTests:
+          type: integer
+        passedTests:
+          type: integer
+        failedTests:
+          type: integer
+        warningTests:
+          type: integer
+        criticalIssues:
+          type: integer
+        highRiskIssues:
+          type: integer
+        mediumRiskIssues:
+          type: integer
+        lowRiskIssues:
+          type: integer
+
+    AttackVectorResult:
+      type: object
+      properties:
+        vectorType:
+          type: string
+        status:
+          type: string
+          enum: [passed, failed, warning, error]
+        score:
+          type: number
+          minimum: 0
+          maximum: 100
+        testsExecuted:
+          type: integer
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        mitigations:
+          type: array
+          items:
+            type: string
+        recommendations:
+          type: array
+          items:
+            type: string
+
+    ModuleSecurityResult:
+      type: object
+      properties:
+        moduleName:
+          type: string
+        overallScore:
+          type: number
+        agentResults:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AgentSecurityResult'
+        workflowResults:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/WorkflowSecurityResult'
+        permissions:
+          $ref: '#/components/schemas/PermissionAnalysis'
+        dependencies:
+          $ref: '#/components/schemas/DependencySecurityAnalysis'
+
+    AgentSecurityResult:
+      type: object
+      properties:
+        agentId:
+          type: string
+        securityScore:
+          type: number
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        riskLevel:
+          type: string
+          enum: [low, medium, high, critical]
+
+    WorkflowSecurityResult:
+      type: object
+      properties:
+        workflowId:
+          type: string
+        securityScore:
+          type: number
+        executionSafety:
+          type: object
+          properties:
+            bashSafety:
+              type: boolean
+            resourceLimits:
+              type: boolean
+            inputValidation:
+              type: boolean
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+
+    ComplianceResults:
+      type: object
+      properties:
+        overallCompliance:
+          type: number
+          minimum: 0
+          maximum: 100
+        frameworks:
+          type: object
+          properties:
+            nist:
+              $ref: '#/components/schemas/FrameworkComplianceResult'
+            iso27001:
+              $ref: '#/components/schemas/FrameworkComplianceResult'
+            owasp:
+              $ref: '#/components/schemas/FrameworkComplianceResult'
+            twentyOneLessons:
+              $ref: '#/components/schemas/FrameworkComplianceResult'
+        gaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComplianceGap'
+
+    FrameworkComplianceResult:
+      type: object
+      properties:
+        score:
+          type: number
+          minimum: 0
+          maximum: 100
+        passedControls:
+          type: integer
+        failedControls:
+          type: integer
+        totalControls:
+          type: integer
+        criticalFailures:
+          type: array
+          items:
+            type: string
+
+    ComplianceGap:
+      type: object
+      properties:
+        framework:
+          type: string
+        control:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        remediation:
+          type: string
+
+    SecurityFinding:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum: [info, low, medium, high, critical]
+        category:
+          type: string
+        module:
+          type: string
+        agent:
+          type: string
+        cveId:
+          type: string
+        attackVector:
+          type: string
+        impact:
+          type: string
+        likelihood:
+          type: string
+        remediation:
+          type: string
+        evidence:
+          type: array
+          items:
+            type: string
+
+    SecurityRecommendation:
+      type: object
+      properties:
+        priority:
+          type: string
+          enum: [low, medium, high, critical]
+        category:
+          type: string
+        recommendation:
+          type: string
+        implementation:
+          type: string
+        effort:
+          type: string
+          enum: [low, medium, high]
+        timeline:
+          type: string
+
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        severity:
+          type: string
+          enum: [info, low, medium, high, critical]
+        description:
+          type: string
+        location:
+          type: string
+        cveId:
+          type: string
+        cvssScore:
+          type: number
+        exploitability:
+          type: string
+        remediation:
+          type: string
+
+    AttackVectorTestRequest:
+      type: object
+      required:
+        - target
+      properties:
+        target:
+          $ref: '#/components/schemas/SecurityTestTarget'
+        payloads:
+          type: array
+          items:
+            type: string
+          description: Custom test payloads for the attack vector
+        options:
+          type: object
+          properties:
+            intensity:
+              type: string
+              enum: [low, medium, high, comprehensive]
+            customRules:
+              type: array
+              items:
+                type: string
+
+    AttackVectorTestResponse:
+      type: object
+      properties:
+        testId:
+          type: string
+        vectorType:
+          type: string
+        result:
+          $ref: '#/components/schemas/AttackVectorResult'
+        detailedResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetailedTestResult'
+
+    DetailedTestResult:
+      type: object
+      properties:
+        testName:
+          type: string
+        payload:
+          type: string
+        response:
+          type: string
+        blocked:
+          type: boolean
+        riskLevel:
+          type: string
+        analysis:
+          type: string
+
+    RealTimeMonitoringResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [normal, warning, alert, critical]
+        metrics:
+          type: object
+          properties:
+            threatLevel:
+              type: string
+              enum: [low, medium, high, critical]
+            activeThreats:
+              type: integer
+            blockedAttempts:
+              type: integer
+            resourceUsage:
+              type: object
+              properties:
+                cpu:
+                  type: number
+                memory:
+                  type: number
+                network:
+                  type: number
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityAlert'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityEvent'
+
+    SecurityAlert:
+      type: object
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        severity:
+          type: string
+          enum: [info, warning, critical]
+        title:
+          type: string
+        description:
+          type: string
+        source:
+          type: string
+        actionRequired:
+          type: boolean
+        recommendations:
+          type: array
+          items:
+            type: string
+
+    SecurityEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          type: string
+        source:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+
+    ComplianceValidationRequest:
+      type: object
+      required:
+        - frameworks
+      properties:
+        frameworks:
+          type: array
+          items:
+            type: string
+            enum: [nist, iso27001, owasp, twentyOneLessons, all]
+        target:
+          $ref: '#/components/schemas/SecurityTestTarget'
+        options:
+          type: object
+          properties:
+            includeEvidence:
+              type: boolean
+              default: true
+            generateReport:
+              type: boolean
+              default: true
+
+    ComplianceValidationResponse:
+      type: object
+      properties:
+        validationId:
+          type: string
+        overallCompliance:
+          type: number
+        results:
+          $ref: '#/components/schemas/ComplianceResults'
+        evidence:
+          type: object
+          description: Supporting evidence for compliance claims
+        reportUrl:
+          type: string
+          format: uri
+
+    ThreatAnalysisRequest:
+      type: object
+      properties:
+        analysisType:
+          type: string
+          enum: [behavioral, pattern, predictive, comprehensive]
+        timeframe:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+        includeHistorical:
+          type: boolean
+        customIndicators:
+          type: array
+          items:
+            type: string
+
+    ThreatAnalysisResponse:
+      type: object
+      properties:
+        analysisId:
+          type: string
+        threatLevel:
+          type: string
+          enum: [low, medium, high, critical]
+        patterns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatPattern'
+        predictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatPrediction'
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityRecommendation'
+
+    ThreatPattern:
+      type: object
+      properties:
+        patternId:
+          type: string
+        type:
+          type: string
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        indicators:
+          type: array
+          items:
+            type: string
+        timeline:
+          type: object
+
+    ThreatPrediction:
+      type: object
+      properties:
+        predictionId:
+          type: string
+        threatType:
+          type: string
+        probability:
+          type: number
+          minimum: 0
+          maximum: 1
+        timeframe:
+          type: string
+        impactAssessment:
+          type: string
+        mitigationStrategies:
+          type: array
+          items:
+            type: string
+
+    SecurityPostureResponse:
+      type: object
+      properties:
+        overallScore:
+          type: number
+          minimum: 0
+          maximum: 100
+        maturityLevel:
+          type: string
+          enum: [initial, developing, defined, managed, optimizing]
+        domains:
+          type: object
+          properties:
+            accessControl:
+              $ref: '#/components/schemas/DomainScore'
+            dataProtection:
+              $ref: '#/components/schemas/DomainScore'
+            threatDetection:
+              $ref: '#/components/schemas/DomainScore'
+            incidentResponse:
+              $ref: '#/components/schemas/DomainScore'
+            governance:
+              $ref: '#/components/schemas/DomainScore'
+        trends:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityTrend'
+        improvements:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityRecommendation'
+
+    DomainScore:
+      type: object
+      properties:
+        score:
+          type: number
+        level:
+          type: string
+        strengths:
+          type: array
+          items:
+            type: string
+        weaknesses:
+          type: array
+          items:
+            type: string
+
+    SecurityTrend:
+      type: object
+      properties:
+        metric:
+          type: string
+        direction:
+          type: string
+          enum: [improving, degrading, stable]
+        change:
+          type: number
+        timeframe:
+          type: string
+
+    IncidentResponseRequest:
+      type: object
+      required:
+        - incidentType
+        - severity
+      properties:
+        incidentType:
+          type: string
+          enum: [security_breach, malware_detection, unauthorized_access, data_leak, ddos_attack, insider_threat]
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        description:
+          type: string
+        affectedModules:
+          type: array
+          items:
+            type: string
+        evidence:
+          type: array
+          items:
+            type: string
+        containmentRequired:
+          type: boolean
+          default: true
+        notificationRequired:
+          type: boolean
+          default: true
+
+    IncidentResponseResponse:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        responseId:
+          type: string
+        status:
+          type: string
+          enum: [initiated, investigating, containing, recovering, closed]
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseAction'
+        timeline:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimelineEvent'
+        impact:
+          $ref: '#/components/schemas/IncidentImpact'
+
+    ResponseAction:
+      type: object
+      properties:
+        actionId:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [pending, executing, completed, failed]
+        assignee:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high, critical]
+
+    TimelineEvent:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        event:
+          type: string
+        description:
+          type: string
+        actor:
+          type: string
+
+    IncidentImpact:
+      type: object
+      properties:
+        severity:
+          type: string
+        affectedSystems:
+          type: array
+          items:
+            type: string
+        estimatedCost:
+          type: number
+        dataIntegrity:
+          type: boolean
+        serviceAvailability:
+          type: boolean
+
+    AuditLogResponse:
+      type: object
+      properties:
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLogEntry'
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+        nextCursor:
+          type: string
+        integrity:
+          $ref: '#/components/schemas/LogIntegrity'
+
+    AuditLogEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        eventType:
+          type: string
+        severity:
+          type: string
+        source:
+          type: string
+        user:
+          type: string
+        description:
+          type: string
+        details:
+          type: object
+        hash:
+          type: string
+        previousHash:
+          type: string
+
+    LogIntegrity:
+      type: object
+      properties:
+        verified:
+          type: boolean
+        chainValid:
+          type: boolean
+        totalEntries:
+          type: integer
+        verifiedEntries:
+          type: integer
+        lastVerification:
+          type: string
+          format: date-time
+
+    VulnerabilityScanRequest:
+      type: object
+      properties:
+        target:
+          $ref: '#/components/schemas/SecurityTestTarget'
+        scanType:
+          type: string
+          enum: [quick, comprehensive, targeted, compliance]
+        includeNetwork:
+          type: boolean
+          default: true
+        includeDependencies:
+          type: boolean
+          default: true
+        customRules:
+          type: array
+          items:
+            type: string
+
+    VulnerabilityScanResponse:
+      type: object
+      properties:
+        scanId:
+          type: string
+        status:
+          type: string
+          enum: [completed, failed, partial]
+        summary:
+          type: object
+          properties:
+            totalVulnerabilities:
+              type: integer
+            criticalVulnerabilities:
+              type: integer
+            highVulnerabilities:
+              type: integer
+            mediumVulnerabilities:
+              type: integer
+            lowVulnerabilities:
+              type: integer
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        remediation:
+          type: array
+          items:
+            $ref: '#/components/schemas/RemediationStep'
+
+    RemediationStep:
+      type: object
+      properties:
+        step:
+          type: string
+        priority:
+          type: string
+        description:
+          type: string
+        effort:
+          type: string
+        timeline:
+          type: string
+
+    SecurityConfigurationResponse:
+      type: object
+      properties:
+        version:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+        policies:
+          type: object
+          properties:
+            authentication:
+              type: object
+            authorization:
+              type: object
+            monitoring:
+              type: object
+            compliance:
+              type: object
+        thresholds:
+          type: object
+        integrations:
+          type: object
+
+    SecurityConfigurationUpdateRequest:
+      type: object
+      properties:
+        policies:
+          type: object
+        thresholds:
+          type: object
+        integrations:
+          type: object
+        validation:
+          type: boolean
+          default: true
+
+    SecurityHealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        version:
+          type: string
+        components:
+          type: object
+          properties:
+            threatDetection:
+              type: string
+              enum: [operational, degraded, failed]
+            monitoring:
+              type: string
+              enum: [operational, degraded, failed]
+            compliance:
+              type: string
+              enum: [operational, degraded, failed]
+            auditing:
+              type: string
+              enum: [operational, degraded, failed]
+        uptime:
+          type: integer
+        lastScan:
+          type: string
+          format: date-time
+
+    PermissionAnalysis:
+      type: object
+      properties:
+        excessive:
+          type: array
+          items:
+            type: string
+        missing:
+          type: array
+          items:
+            type: string
+        compliance:
+          type: string
+          enum: [compliant, non-compliant, warning]
+
+    DependencySecurityAnalysis:
+      type: object
+      properties:
+        vulnerableDependencies:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              version:
+                type: string
+              vulnerabilities:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+        outdatedDependencies:
+          type: array
+          items:
+            type: string
+        licenseIssues:
+          type: array
+          items:
+            type: string
+
+    SecurityErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        timestamp:
+          type: string
+          format: date-time
+
+    SecurityTestFailureResponse:
+      type: object
+      properties:
+        testId:
+          type: string
+        error:
+          type: string
+        phase:
+          type: string
+        partialResults:
+          type: object
+        recommendations:
+          type: array
+          items:
+            type: string
+        retryable:
+          type: boolean
+
+# Enterprise Security Integration Examples
+x-examples:
+  comprehensive-security-test: |
+    # Run comprehensive security test
+    curl -X POST "https://security-api.blackunicorn.tech/v2/test/comprehensive" \
+      -H "Authorization: Bearer YOUR_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "target": {
+          "modules": ["cybersec-team", "intel-team"],
+          "scope": "enterprise"
+        },
+        "options": {
+          "attackVectors": "all",
+          "complianceFramework": "enterprise",
+          "reportFormat": "comprehensive",
+          "realTimeMonitoring": true
+        }
+      }'
+
+  attack-vector-test: |
+    # Test specific attack vector
+    curl -X POST "https://security-api.blackunicorn.tech/v2/test/attack-vector/direct_prompt_injection" \
+      -H "Authorization: Bearer YOUR_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "target": {
+          "modules": ["cybersec-team"],
+          "scope": "module-specific"
+        },
+        "options": {
+          "intensity": "comprehensive"
+        }
+      }'
+
+# Security Best Practices
+x-security-guidelines:
+  authentication: |
+    - Use strong API keys with proper rotation
+    - Implement OAuth 2.0 for user authentication
+    - Enable multi-factor authentication for critical operations
+
+  monitoring: |
+    - Enable real-time monitoring for all security tests
+    - Set up alerting for critical security events
+    - Implement comprehensive audit logging
+
+  compliance: |
+    - Regular compliance validation (at least monthly)
+    - Maintain evidence for all security controls
+    - Implement continuous compliance monitoring
+
+x-rate-limits:
+  comprehensive-test: "2 requests per hour per API key"
+  attack-vector-test: "10 requests per hour per API key"
+  monitoring: "Unlimited (streaming endpoint)"
+  audit-log: "50 requests per minute per API key"
+  general: "100 requests per minute per API key"

@@ -386,14 +386,14 @@ documentation:
 # Maintainer information
 maintainers:
   - name: "BMAD Development Team"
-    email: "dev@bmad.ai"
+    email: "dev@blackunicorn.tech"
     role: "primary"
 
 # Support and community
 support:
   issues: "https://github.com/bmad-code-org/bmad-specialized-teams/issues"
   discussions: "https://github.com/bmad-code-org/bmad-specialized-teams/discussions"
-  documentation: "https://docs.bmad.ai/specialized-teams/{TEAM_MODULE_CODE}"
+  documentation: "https://docs.blackunicorn.tech/specialized-teams/{TEAM_MODULE_CODE}"
 
 # ============================================================================
 # PLACEHOLDER SUBSTITUTION MAP

@@ -185,7 +185,7 @@ const RBAC_PERMISSIONS: Record<string, RBACPermissions> = {
     sensitive_data: true,
   },
   developer: {
-    filesystem: { read: ['**'], write: ['_bmad/**', 'docs/**', 'tests/**'] },
+    filesystem: { read: ['**'], write: ['_bmad/**', 'docs/**', 'dev-tools/**'] },
     network: true,
     shell: { allowed_commands: ['git', 'npm', 'python', 'pytest'] },
     sensitive_data: false,
@@ -881,7 +881,7 @@ const TYPE_PERMISSIONS: Record<string, TypePermissionTemplate> = {
   dev: {
     filesystem: {
       read: ['**'],
-      write: ['src/**', 'tests/**', 'docs/**'],
+      write: ['src/**', 'dev-tools/**', 'docs/**'],
     },
     network: true,
     shell: {

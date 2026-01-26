@@ -81,7 +81,7 @@ const RBAC_PERMISSIONS = {
         sensitive_data: true,
     },
     developer: {
-        filesystem: { read: ['**'], write: ['_bmad/**', 'docs/**', 'tests/**'] },
+        filesystem: { read: ['**'], write: ['_bmad/**', 'docs/**', 'dev-tools/**'] },
         network: true,
         shell: { allowed_commands: ['git', 'npm', 'python', 'pytest'] },
         sensitive_data: false,
@@ -678,7 +678,7 @@ const TYPE_PERMISSIONS = {
     dev: {
         filesystem: {
             read: ['**'],
-            write: ['src/**', 'tests/**', 'docs/**'],
+            write: ['src/**', 'dev-tools/**', 'docs/**'],
         },
         network: true,
         shell: {
