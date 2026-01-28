@@ -22,6 +22,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { getProjectDir } from '../common/path-utils.js';
 import { AuditLogger } from '../common/audit-logger.js';
+import { getToolInputFromStdinSync } from '../common/stdin-parser.js';
 import { EXIT_CODES } from '../types/index.js';
 
 // Try to import telemetry (graceful fallback)
@@ -550,24 +551,23 @@ function printBlockMessage(result: RateLimitCheckResult): void {
 
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates rate limits.
+ * Reads tool input from stdin (sync) and validates rate limits.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export async function validateRateLimit(): Promise<number> {
+export function validateRateLimit(): number {
   try {
-    // Read from stdin
-    const chunks: Buffer[] = [];
-    for await (const chunk of process.stdin) {
-      chunks.push(chunk);
-    }
-    const input = Buffer.concat(chunks).toString('utf-8');
+    // Read from stdin synchronously (prevents hang on EOF issues)
+    const input = getToolInputFromStdinSync();
 
-    if (!input.trim()) {
+    if (!input.tool_name) {
       return EXIT_CODES.ALLOW;
     }
 
-    const data = JSON.parse(input);
-    const toolName = (data.tool_name || '').toLowerCase();
-    const toolInput = data.tool_input || {};
+    const toolName = input.tool_name.toLowerCase();
+    const toolInput = input.tool_input || {};
 
     // Map tool name to operation
     const operation = TOOL_MAPPING[toolName] || toolName;
@@ -575,13 +575,13 @@ export async function validateRateLimit(): Promise<number> {
     // Get target for whitelist checking
     let target = '';
     if (toolInput.command) {
-      target = toolInput.command;
+      target = String(toolInput.command);
     } else if (toolInput.file_path) {
-      target = toolInput.file_path;
+      target = String(toolInput.file_path);
     } else if (toolInput.path) {
-      target = toolInput.path;
+      target = String(toolInput.path);
     } else if (toolInput.url) {
-      target = toolInput.url;
+      target = String(toolInput.url);
     }
 
     const limiter = getRateLimiter();
@@ -615,7 +615,7 @@ export async function validateRateLimit(): Promise<number> {
  * CLI entry point for bin/ invocation.
  */
 export function main(): void {
-  validateRateLimit().then(code => process.exit(code));
+  process.exit(validateRateLimit());
 }
 
 // CLI entry point (direct execution)

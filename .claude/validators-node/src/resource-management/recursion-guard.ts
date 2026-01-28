@@ -18,6 +18,7 @@ import * as path from 'node:path';
 import * as crypto from 'node:crypto';
 import { getProjectDir } from '../common/path-utils.js';
 import { AuditLogger } from '../common/audit-logger.js';
+import { getToolInputFromStdinSync } from '../common/stdin-parser.js';
 import { EXIT_CODES } from '../types/index.js';
 
 // Configuration from environment
@@ -527,30 +528,29 @@ function printBlockMessage(result: RecursionCheckResult): void {
 
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates recursion limits.
+ * Reads tool input from stdin (sync) and validates recursion limits.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export async function validateRecursion(): Promise<number> {
+export function validateRecursion(): number {
   try {
-    // Read from stdin
-    const chunks: Buffer[] = [];
-    for await (const chunk of process.stdin) {
-      chunks.push(chunk);
-    }
-    const input = Buffer.concat(chunks).toString('utf-8');
+    // Read from stdin synchronously (prevents hang on EOF issues)
+    const input = getToolInputFromStdinSync();
 
-    if (!input.trim()) {
+    if (!input.tool_name) {
       return EXIT_CODES.ALLOW;
     }
 
-    const data = JSON.parse(input);
-    const toolName = (data.tool_name || '').toLowerCase();
-    const toolInput = data.tool_input || {};
+    const toolName = input.tool_name.toLowerCase();
+    const toolInput = input.tool_input || {};
 
     const guard = getRecursionGuard();
 
     // Task tool: Check task depth and circular
     if (toolName === 'task') {
-      const taskPrompt = toolInput.prompt || '';
+      const taskPrompt = String(toolInput.prompt || '');
       const circularResult = guard.checkCircular('task', taskPrompt);
       if (!circularResult.allowed) {
         printBlockMessage(circularResult);
@@ -564,7 +564,7 @@ export async function validateRecursion(): Promise<number> {
 
     // Read/Glob tool: Check directory depth
     if (toolName === 'read' || toolName === 'glob') {
-      const filePath = toolInput.file_path || toolInput.path || '';
+      const filePath = String(toolInput.file_path || toolInput.path || '');
       if (filePath) {
         const depthResult = guard.checkDirectoryDepth(filePath);
         if (!depthResult.allowed) {
@@ -603,7 +603,7 @@ export async function validateRecursion(): Promise<number> {
  * CLI entry point for bin/ invocation.
  */
 export function main(): void {
-  validateRecursion().then(code => process.exit(code));
+  process.exit(validateRecursion());
 }
 
 // CLI entry point (direct execution)

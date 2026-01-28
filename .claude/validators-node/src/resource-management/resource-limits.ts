@@ -16,6 +16,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { getProjectDir } from '../common/path-utils.js';
 import { AuditLogger } from '../common/audit-logger.js';
+import { getToolInputFromStdinSync } from '../common/stdin-parser.js';
 import { EXIT_CODES } from '../types/index.js';
 
 // Try to import telemetry (graceful fallback)
@@ -570,24 +571,23 @@ function printBlockMessage(result: ResourceCheckResult): void {
 
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates resource limits.
+ * Reads tool input from stdin (sync) and validates resource limits.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export async function validateResourceLimits(): Promise<number> {
+export function validateResourceLimits(): number {
   try {
-    // Read from stdin
-    const chunks: Buffer[] = [];
-    for await (const chunk of process.stdin) {
-      chunks.push(chunk);
-    }
-    const input = Buffer.concat(chunks).toString('utf-8');
+    // Read from stdin synchronously (prevents hang on EOF issues)
+    const input = getToolInputFromStdinSync();
 
-    if (!input.trim()) {
+    if (!input.tool_name) {
       return EXIT_CODES.ALLOW;
     }
 
-    const data = JSON.parse(input);
-    const toolName = (data.tool_name || '').toLowerCase();
-    const toolInput = data.tool_input || {};
+    const toolName = input.tool_name.toLowerCase();
+    const toolInput = input.tool_input || {};
 
     const limiter = getResourceLimiter();
 
@@ -651,7 +651,7 @@ export async function validateResourceLimits(): Promise<number> {
  * CLI entry point for bin/ invocation.
  */
 export function main(): void {
-  validateResourceLimits().then(code => process.exit(code));
+  process.exit(validateResourceLimits());
 }
 
 // CLI entry point (direct execution)
