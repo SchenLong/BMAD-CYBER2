@@ -9,7 +9,7 @@ import {
   isFakeData,
   detectPii,
   validatePiiGuard,
-} from '../../.claude/validators-node/src/guards/pii/index.js';
+} from '../../../.claude/validators-node/src/guards/pii/index.js';
 import {
   validateLuhn,
   validateIban,
@@ -20,8 +20,8 @@ import {
   validateDutchBsn,
   validatePolishPesel,
   validatePortugueseNif,
-} from '../../.claude/validators-node/src/guards/pii/validators.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/guards/pii/validators.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 describe('PII Validators', () => {
   describe('validateLuhn', () => {

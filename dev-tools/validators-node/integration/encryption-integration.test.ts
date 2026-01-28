@@ -26,7 +26,7 @@ import * as path from 'node:path';
 import * as os from 'node:os';
 import * as crypto from 'node:crypto';
 import { promisify } from 'node:util';
-import type { AuditLogEntry, EncryptedAuditEntry } from '../../.claude/validators-node/src/types/index.js';
+import type { AuditLogEntry, EncryptedAuditEntry } from '../../../.claude/validators-node/src/types/index.js';
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
@@ -52,7 +52,7 @@ describe('Audit Log Encryption Integration Tests', () => {
 
     // Import encryption module fresh for each test
     vi.resetModules();
-    encryptionModule = await import('../../src/observability/audit-encryption.js');
+    encryptionModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
   });
 
   afterEach(async () => {
@@ -189,7 +189,7 @@ describe('Audit Log Encryption Integration Tests', () => {
 
         // Re-import module to pick up new environment
         vi.resetModules();
-        const freshModule = await import('../../src/observability/audit-encryption.js');
+        const freshModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
         const testEntry: AuditLogEntry = {
           timestamp: new Date().toISOString(),
@@ -351,7 +351,7 @@ describe('Audit Log Encryption Integration Tests', () => {
       // Remove key and try to decrypt
       delete process.env.BMAD_AUDIT_ENCRYPTION_KEY;
       vi.resetModules();
-      const freshModule = await import('../../src/observability/audit-encryption.js');
+      const freshModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
       await expect(freshModule.decryptEntry(encrypted))
         .rejects.toThrow(/encryption key not available/i);

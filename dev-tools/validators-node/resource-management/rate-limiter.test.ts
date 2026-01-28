@@ -13,8 +13,8 @@ import {
   checkRateLimit,
   recordOperation,
   getRateStatus,
-} from '../../.claude/validators-node/src/resource-management/rate-limiter.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/resource-management/rate-limiter.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 // State files to clean up
 const STATE_FILE = '.claude/.rate_limit_state.json';

@@ -13,8 +13,8 @@ import {
   getContextManager,
   checkContextCapacity,
   estimateOperationCost,
-} from '../../.claude/validators-node/src/resource-management/context-manager.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/resource-management/context-manager.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 // State files to clean up
 const STATE_FILE = '.claude/.context_state.json';

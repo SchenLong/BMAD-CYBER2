@@ -20,7 +20,7 @@ import * as path from 'node:path';
 import * as os from 'node:os';
 import * as crypto from 'node:crypto';
 import { promisify } from 'node:util';
-import type { AuditLogEntry } from '../../.claude/validators-node/src/types/index.js';
+import type { AuditLogEntry } from '../../../.claude/validators-node/src/types/index.js';
 
 const writeFile = promisify(fs.writeFile);
 const mkdir = promisify(fs.mkdir);
@@ -59,7 +59,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
 
   describe('SEC-003-1: Audit Log Encryption Validation', () => {
     test('should demonstrate robust encryption capabilities', async () => {
-      const encryptionModule = await import('../../src/observability/audit-encryption.js');
+      const encryptionModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
       // Test various data types and sizes
       const testCases = [
@@ -169,7 +169,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
     });
 
     test('should validate NIST cryptographic compliance', async () => {
-      const encryptionModule = await import('../../src/observability/audit-encryption.js');
+      const encryptionModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
       const status = encryptionModule.getEncryptionStatus();
 
@@ -225,7 +225,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
       delete process.env.BMAD_AUDIT_ENCRYPTION_KEY;
       process.env.BMAD_AUDIT_ENCRYPTION_ENABLED = 'false';
       vi.resetModules();
-      const disabledModule = await import('../../src/observability/audit-encryption.js');
+      const disabledModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
       const testEntry: AuditLogEntry = {
         timestamp: new Date().toISOString(),
@@ -244,7 +244,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
       // Restore encryption
       process.env.BMAD_AUDIT_ENCRYPTION_KEY = testEncryptionKey;
       vi.resetModules();
-      const enabledModule = await import('../../src/observability/audit-encryption.js');
+      const enabledModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
       // Test with extremely large entry
       const largeEntry: AuditLogEntry = {
@@ -285,12 +285,12 @@ describe('P2 Security Enhancement Validation Tests', () => {
   describe('SEC-003-3: Log Archival System Validation', () => {
     test('should demonstrate archival configuration and metadata management', async () => {
       // Mock path utils
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const configModule = await import('../../src/observability/archival-config.js');
-      const archiverModule = await import('../../src/observability/log-archiver.js');
+      const configModule = await import('../../../.claude/validators-node/src/observability/archival-config.js');
+      const archiverModule = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       // Test configuration validation
       const configManager = new configModule.ArchivalConfigManager();
@@ -308,7 +308,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
       process.env.BMAD_ARCHIVE_SCHEDULE_CRON = '0 2 * * *';
       vi.resetModules();
 
-      const freshConfigModule = await import('../../src/observability/archival-config.js');
+      const freshConfigModule = await import('../../../.claude/validators-node/src/observability/archival-config.js');
       const freshConfigManager = new freshConfigModule.ArchivalConfigManager();
       const validResult = await freshConfigManager.loadConfiguration();
 
@@ -343,7 +343,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
     });
 
     test('should validate compliance features and setup instructions', async () => {
-      const configModule = await import('../../src/observability/archival-config.js');
+      const configModule = await import('../../../.claude/validators-node/src/observability/archival-config.js');
 
       const configManager = new configModule.ArchivalConfigManager();
 
@@ -382,11 +382,11 @@ describe('P2 Security Enhancement Validation Tests', () => {
 
     test('should demonstrate archival metadata and listing functionality', async () => {
       // Mock path utils
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const archiverModule = await import('../../src/observability/log-archiver.js');
+      const archiverModule = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       const archiver = new archiverModule.LogArchiver({
         bucket: 'test-metadata',
@@ -461,7 +461,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
 
   describe('System Integration and Interoperability', () => {
     test('should demonstrate integration between encryption and archival systems', async () => {
-      const encryptionModule = await import('../../src/observability/audit-encryption.js');
+      const encryptionModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
       // Create test log directory
       const logDir = path.join(tempDir, '.claude', 'logs');
@@ -521,11 +521,11 @@ describe('P2 Security Enhancement Validation Tests', () => {
 
     test('should validate scheduler integration', async () => {
       // Mock path utils
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const schedulerModule = await import('../../src/observability/archival-scheduler.js');
+      const schedulerModule = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
 
       // Initialize scheduler
       const scheduler = new schedulerModule.ArchivalScheduler();
@@ -560,8 +560,8 @@ describe('P2 Security Enhancement Validation Tests', () => {
 
   describe('Error Handling and Resilience', () => {
     test('should handle configuration errors gracefully', async () => {
-      const configModule = await import('../../src/observability/archival-config.js');
-      const schedulerModule = await import('../../src/observability/archival-scheduler.js');
+      const configModule = await import('../../../.claude/validators-node/src/observability/archival-config.js');
+      const schedulerModule = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
 
       // Test with missing configuration
       delete process.env.BMAD_S3_ARCHIVE_BUCKET;
@@ -573,7 +573,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
       expect(result.errors).toContain('S3 bucket name is required');
 
       // Test scheduler with invalid config
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
@@ -592,7 +592,7 @@ describe('P2 Security Enhancement Validation Tests', () => {
     });
 
     test('should maintain data integrity under stress conditions', async () => {
-      const encryptionModule = await import('../../src/observability/audit-encryption.js');
+      const encryptionModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
 
       // Test concurrent encryption operations
       const concurrentCount = 20;
@@ -635,8 +635,8 @@ describe('P2 Security Enhancement Validation Tests', () => {
 
   describe('Production Readiness Assessment', () => {
     test('should validate deployment readiness indicators', () => {
-      const encryptionModule = require('../../src/observability/audit-encryption.js');
-      const configModule = require('../../src/observability/archival-config.js');
+      const encryptionModule = require('../../../.claude/validators-node/src/observability/audit-encryption.js');
+      const configModule = require('../../../.claude/validators-node/src/observability/archival-config.js');
 
       // Check encryption system status
       const encryptionStatus = encryptionModule.getEncryptionStatus();
@@ -666,11 +666,11 @@ describe('P2 Security Enhancement Validation Tests', () => {
 
     test('should validate monitoring and observability', async () => {
       // Mock path utils
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const schedulerModule = await import('../../src/observability/archival-scheduler.js');
+      const schedulerModule = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
 
       const scheduler = new schedulerModule.ArchivalScheduler();
       await scheduler.initialize();

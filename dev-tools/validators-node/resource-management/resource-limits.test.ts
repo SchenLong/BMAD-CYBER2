@@ -11,7 +11,7 @@ import {
   ResourceLimiter,
   checkResourceLimits,
   checkMemoryAvailable,
-} from '../../.claude/validators-node/src/resource-management/resource-limits.js';
+} from '../../../.claude/validators-node/src/resource-management/resource-limits.js';
 
 // State files to clean up
 const STATE_FILE = '.claude/.resource_state.json';

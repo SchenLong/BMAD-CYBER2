@@ -24,7 +24,7 @@ import * as path from 'node:path';
 import * as os from 'node:os';
 import * as crypto from 'node:crypto';
 import { promisify } from 'node:util';
-import type { AuditLogEntry } from '../../.claude/validators-node/src/types/index.js';
+import type { AuditLogEntry } from '../../../.claude/validators-node/src/types/index.js';
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
@@ -105,16 +105,16 @@ describe('End-to-End Security Pipeline Integration', () => {
     }));
 
     // Mock path-utils to use temp directory
-    vi.doMock('../../src/common/path-utils.js', () => ({
+    vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
       getProjectDir: () => tempDir,
     }));
 
     // Fresh module imports
     vi.resetModules();
-    encryptionModule = await import('../../src/observability/audit-encryption.js');
-    archiverModule = await import('../../src/observability/log-archiver.js');
-    schedulerModule = await import('../../src/observability/archival-scheduler.js');
-    auditLogger = await import('../../src/common/audit-logger.js');
+    encryptionModule = await import('../../../.claude/validators-node/src/observability/audit-encryption.js');
+    archiverModule = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
+    schedulerModule = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
+    auditLogger = await import('../../../.claude/validators-node/src/common/audit-logger.js');
   });
 
   afterEach(async () => {
@@ -367,7 +367,7 @@ describe('End-to-End Security Pipeline Integration', () => {
       await writeFile(logFile, mixedLogContent);
 
       // Mock encryption module processing
-      vi.doMock('../../src/observability/audit-encryption.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/observability/audit-encryption.js', () => ({
         ...encryptionModule,
         processLineForReading: vi.fn((line) => {
           const entry = JSON.parse(line);
@@ -444,7 +444,7 @@ describe('End-to-End Security Pipeline Integration', () => {
         }
       });
 
-      vi.doMock('../../src/observability/audit-encryption.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/observability/audit-encryption.js', () => ({
         ...encryptionModule,
         processLineForReading: mockProcessLine,
         isEncryptionEnabled: () => true,

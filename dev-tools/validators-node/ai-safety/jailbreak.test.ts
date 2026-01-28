@@ -16,8 +16,8 @@ import {
   detectMultiTurnPatterns,
   analyzeContent,
   validateJailbreak,
-} from '../../.claude/validators-node/src/ai-safety/jailbreak.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/ai-safety/jailbreak.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 // Clean up session risk files before/after tests
 const SESSION_RISK_FILE = '.claude/logs/.session_risk.json';

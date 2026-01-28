@@ -9,7 +9,7 @@ import {
   parseClaimsFromOutput,
   extractErrorFromOutput,
   validateRbac,
-} from '../../.claude/validators-node/src/permissions/token-validator.js';
+} from '../../../.claude/validators-node/src/permissions/token-validator.js';
 
 describe('parseClaimsFromOutput', () => {
   it('should parse claims from Token Details section', () => {

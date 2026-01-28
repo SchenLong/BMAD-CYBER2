@@ -4,8 +4,14 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    include: ['**/*.test.ts'],
-    exclude: ['node_modules/**', 'dist/**'],
+    include: ['**/*.test.{ts,js}'],
+    exclude: [
+      'node_modules/**',
+      'dist/**',
+      'dev-tools/archive/**',              // Archived tests - deprecated
+      '_bmad-output/**',                   // Output directory
+      'dev-tools-installation/**',         // Installation tests - run separately
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html', 'json-summary'],

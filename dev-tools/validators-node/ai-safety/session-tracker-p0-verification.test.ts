@@ -22,8 +22,8 @@ import {
   ACCUMULATION_THRESHOLD,
   CATEGORY_REPEAT_THRESHOLD,
   type SessionPatternFinding,
-} from '../../.claude/validators-node/src/ai-safety/session-tracker.js';
-import { analyzeContent } from '../../.claude/validators-node/src/ai-safety/jailbreak.js';
+} from '../../../.claude/validators-node/src/ai-safety/session-tracker.js';
+import { analyzeContent } from '../../../.claude/validators-node/src/ai-safety/jailbreak.js';
 
 // Clean up session files
 const SESSION_FILE = '.claude/logs/.jailbreak_session.json';

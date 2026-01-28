@@ -8,7 +8,7 @@ import {
   detectUnsafeSubstitutions,
   checkBashCommand,
   checkFilePath,
-} from '../../.claude/validators-node/src/guards/outside-repo.js';
+} from '../../../.claude/validators-node/src/guards/outside-repo.js';
 
 describe('extractPathsFromCommand', () => {
   describe('file read operations', () => {

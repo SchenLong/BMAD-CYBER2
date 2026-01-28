@@ -14,12 +14,19 @@
  * Security Note:
  *   Uses atomic file operations to prevent race conditions where multiple
  *   processes could consume the same override.
+ *
+ * Session Context Integration (NEW):
+ *   When BMAD_SESSION_PERMISSIONS=true, overrides are session-scoped:
+ *   - Permissions granted to parent session apply to all subagents
+ *   - Subagents inherit permissions without consuming them
+ *   - Session permissions persist for the session duration (not single-use)
  */
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import type { OverrideState, OverrideCheckResult, OverrideStatus, OverrideTokenInfo } from '../types/index.js';
 import { getProjectDir } from './path-utils.js';
+import { SessionContext, checkSessionPermission } from './session-context.js';
 
 // Configuration
 const OVERRIDE_TIMEOUT_SECONDS = 300; // 5 minutes
@@ -209,17 +216,81 @@ export class OverrideManager {
    * Check if override is available and consume it atomically.
    * Uses validator identification to prevent race conditions (SEC-001-3).
    *
+   * NEW: Session-scoped permissions
+   *   When BMAD_SESSION_PERMISSIONS=true (default), permissions are session-scoped:
+   *   - First check session context for inherited permissions
+   *   - If not in session, fall back to single-use override behavior
+   *   - Subagents automatically inherit parent session permissions
+   *
    * @param overrideType - The type of override to check
    * @param validatorName - Optional name of the validator consuming the token
    * @returns Result with validity and reason
    */
   static checkAndConsume(overrideType: string, validatorName?: string): OverrideCheckResult {
-    // First check environment variable (fast path)
+    // Check if session-scoped permissions are enabled (default: true)
+    const sessionPermEnv = process.env['BMAD_SESSION_PERMISSIONS'];
+    const useSessionPermissions = sessionPermEnv !== 'false';
+
+    // DEBUG logging (can be removed after testing)
+    if (process.env['DEBUG_SESSION']) {
+      console.error(`[DEBUG] BMAD_SESSION_PERMISSIONS env: '${sessionPermEnv}', useSessionPermissions: ${useSessionPermissions}`);
+    }
+
+    if (useSessionPermissions) {
+      // Check session context for inherited permissions first
+      const sessionResult = checkSessionPermission(overrideType, validatorName);
+
+      if (process.env['DEBUG_SESSION']) {
+        console.error(`[DEBUG] checkSessionPermission result:`, JSON.stringify(sessionResult));
+      }
+
+      if (sessionResult.allowed) {
+        return {
+          valid: true,
+          reason: sessionResult.reason + (sessionResult.inherited ? ' [inherited from session]' : ''),
+        };
+      }
+
+      // If session exists but permission not granted, provide helpful message
+      if (sessionResult.sessionId !== 'unknown') {
+        // Continue to check env var below - it might grant the permission
+      }
+    }
+
+    // Check environment variable
     const envVar = `BMAD_ALLOW_${overrideType.toUpperCase()}`;
     const envValue = (process.env[envVar] || '').toLowerCase();
 
+    if (process.env['DEBUG_SESSION']) {
+      console.error(`[DEBUG] envVar: ${envVar}, envValue: '${envValue}'`);
+    }
+
     if (envValue !== 'true') {
+      // If using session permissions, provide a more helpful message
+      if (useSessionPermissions) {
+        return {
+          valid: false,
+          reason: `Override ${envVar} not set. Set it to grant permission to this session and all subagents.`,
+        };
+      }
       return { valid: false, reason: 'Override not set' };
+    }
+
+    // Environment variable is set - grant to session if using session permissions
+    if (useSessionPermissions) {
+      if (process.env['DEBUG_SESSION']) {
+        console.error(`[DEBUG] Granting to session context...`);
+      }
+      // Grant permission to session context so subagents inherit it
+      SessionContext.grantPermission(overrideType, {
+        consumable: false,  // Session-wide, not single-use
+        reason: `Granted via ${envVar} environment variable`,
+      });
+
+      return {
+        valid: true,
+        reason: `Override ${envVar} granted to session (subagents will inherit this permission)`,
+      };
     }
 
     const lockFd = acquireLock();

@@ -13,7 +13,7 @@ import {
   CAPABILITY_MAPPING,
   PluginPermissionChecker,
   generateManifestTemplate,
-} from '../../.claude/validators-node/src/permissions/plugin-permissions.js';
+} from '../../../.claude/validators-node/src/permissions/plugin-permissions.js';
 
 // Mock file system
 vi.mock('fs', async () => {

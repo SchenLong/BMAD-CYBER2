@@ -16,7 +16,7 @@ import {
   checkDirectoryEscape,
   checkDangerousPatterns,
   validateBashCommand,
-} from '../../.claude/validators-node/src/guards/bash-safety.js';
+} from '../../../.claude/validators-node/src/guards/bash-safety.js';
 
 // Test with a mock project directory
 const TEST_PROJECT_DIR = '/mock/project';

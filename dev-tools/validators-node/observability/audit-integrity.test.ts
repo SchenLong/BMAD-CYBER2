@@ -20,7 +20,7 @@ import {
   addChainFields,
   verifySecurityLog,
   getIntegrityStatus,
-} from '../../.claude/validators-node/src/observability/audit-integrity.js';
+} from '../../../.claude/validators-node/src/observability/audit-integrity.js';
 
 // Global chain state file path (matches the implementation)
 const LOG_DIR = path.join(process.cwd(), '.claude', 'logs');

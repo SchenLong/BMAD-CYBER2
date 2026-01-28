@@ -17,7 +17,7 @@ import {
   getConfidenceTracker,
   analyzeResponseConfidence,
   getConfidenceIndicator,
-} from '../../.claude/validators-node/src/observability/confidence-tracker.js';
+} from '../../../.claude/validators-node/src/observability/confidence-tracker.js';
 
 describe('ConfidenceTracker', () => {
   let tracker: ConfidenceTracker;

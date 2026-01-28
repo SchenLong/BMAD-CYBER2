@@ -16,7 +16,7 @@ import {
   checkAnomalies,
   getBaselineStatus,
   resetBaseline,
-} from '../../.claude/validators-node/src/observability/anomaly-detector.js';
+} from '../../../.claude/validators-node/src/observability/anomaly-detector.js';
 
 describe('AnomalyDetector', () => {
   let detector: AnomalyDetector;
