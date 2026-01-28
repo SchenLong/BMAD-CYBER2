@@ -26,9 +26,35 @@ vi.mock('crypto', async (importOriginal) => {
 
 // Mock token generation/validation functions
 let tokenCounter = 0;
-vi.mock('../../_bmad/core/security/generate-token.js', () => ({
-  generateToken: vi.fn(() => Promise.resolve(`mock-token-${++tokenCounter}`))
-}));
+
+vi.mock('../../_bmad/core/security/generate-token.js', () => {
+  const mockKey = Buffer.alloc(32, 'k'); // 32-byte key for AES-256
+
+  class MockTokenGenerator {
+    key: Buffer;
+    constructor(key?: Buffer) {
+      this.key = key || mockKey;
+    }
+    static generateKey(_password?: string): Buffer {
+      return mockKey;
+    }
+    encrypt(_claims: Record<string, unknown>): string {
+      return `bmad.v1.mock-token-${tokenCounter++}`;
+    }
+    decrypt(_token: string): Record<string, unknown> | null {
+      return { sub: 'mock-user', exp: Date.now() + 3600000 };
+    }
+    generateToken(_role: string, _userId?: string, _modules?: string[], _permissions?: string[]): string {
+      return `bmad.v1.mock-token-${tokenCounter++}`;
+    }
+  }
+
+  return {
+    default: MockTokenGenerator,
+    TokenGenerator: MockTokenGenerator,
+    generateToken: vi.fn(() => Promise.resolve(`mock-token-${tokenCounter++}`))
+  };
+});
 
 vi.mock('../../_bmad/core/security/validate-token.js', () => ({
   validateToken: vi.fn(() => Promise.resolve(true))

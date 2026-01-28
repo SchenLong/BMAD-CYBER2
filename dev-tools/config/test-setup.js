@@ -1,10 +1,10 @@
 /**
  * Global Test Setup for BMAD CYBER2
  * Amelia's Red-Green-Refactor Performance Testing Framework
- * Updated for Jest CommonJS compatibility
+ * Updated for ES Module compatibility
  */
 
-const { performance } = require('perf_hooks');
+import { performance } from 'perf_hooks';
 
 // Setup global console mocking (Vitest compatible)
 if (typeof global.console === 'undefined') {
@@ -49,8 +49,8 @@ global.BMAD_TEST_UTILS = {
 
   // Test data generator
   generateTestData: (size) => {
-    return Array.from({ length: size }, (_, i) => ({ 
-      id: i, 
+    return Array.from({ length: size }, (_, i) => ({
+      id: i,
       data: `test-data-${i}`,
       timestamp: Date.now() + i
     }));

@@ -13,8 +13,8 @@ import {
   detectHtmlCommentInjection,
   analyzeContent,
   validatePromptInjection,
-} from '../../.claude/validators-node/src/ai-safety/prompt-injection.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/ai-safety/prompt-injection.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 describe('detectPatterns', () => {
   describe('System Override Patterns', () => {

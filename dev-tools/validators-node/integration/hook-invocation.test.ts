@@ -13,7 +13,8 @@ import { describe, it, expect } from 'vitest';
 import { execSync, spawnSync } from 'node:child_process';
 import * as path from 'node:path';
 
-const DIST_DIR = path.join(__dirname, '..', '..', 'dist');
+// Point to the actual compiled validators location
+const DIST_DIR = path.join(__dirname, '..', '..', '..', '.claude', 'validators-node', 'dist', 'src');
 const BASH_SAFETY_PATH = path.join(DIST_DIR, 'guards', 'bash-safety.js');
 
 /**

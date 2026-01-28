@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-24T20:28:15.108Z",
+  "timestamp": "2026-01-28T09:53:00.919Z",
   "epic": "PRD-SEC-EPIC-2",
   "phase": "Phase-2-Validation-Framework",
   "lead": "Performance-Lessons-Implementation-Team",
@@ -7,65 +7,119 @@
     "12": {
       "name": "Load Testing and Scalability Validation",
       "weight": 25,
-      "score": 100,
+      "score": 67,
       "results": {
         "concurrentUsers": {
-          "userCount": 25,
-          "executionTime": 74.40916700000002,
-          "throughput": 335.9801084723874,
-          "memoryGrowth": 0.03014099226796918,
-          "success": 25,
-          "failures": 0,
+          "userCount": 50,
+          "executionTime": 149.168,
+          "throughput": 335.19253459186956,
+          "memoryGrowth": 0.011399814478393928,
+          "success": 49,
+          "failures": 1,
           "passed": true
         },
         "scalability": {
           "loadLevels": {
-            "5": {
-              "executionTime": 3.8167909999999665,
-              "throughput": 1310.000992980764,
+            "10": {
+              "executionTime": 7.6720000000000255,
+              "throughput": 1303.441084462978,
               "efficiency": 1
             },
-            "10": {
-              "executionTime": 4.928667000000019,
-              "throughput": 2028.9461633338105,
-              "efficiency": 1.54881269113939
+            "20": {
+              "executionTime": 6.134500000000003,
+              "throughput": 3260.249409079793,
+              "efficiency": 2.5012633466460255
             },
-            "15": {
-              "executionTime": 6.9109999999999445,
-              "throughput": 2170.452901172062,
-              "efficiency": 1.6568330198234686
+            "30": {
+              "executionTime": 10.563083000000006,
+              "throughput": 2840.0799274227024,
+              "efficiency": 2.1789093203187044
             },
-            "25": {
-              "executionTime": 7.889415999999983,
-              "throughput": 3168.8023549525155,
-              "efficiency": 2.418931261832292
+            "50": {
+              "executionTime": 11.218417000000045,
+              "throughput": 4456.956805937933,
+              "efficiency": 3.419377261515593
             }
           },
-          "averageEfficiency": 1.6561442431987876,
+          "averageEfficiency": 2.2748874821200804,
           "passed": true
+        },
+        "stressTest": {
+          "results": [
+            {
+              "load": 50,
+              "executionTime": 2.9314999999999145,
+              "memoryUsage": 21.510498046875,
+              "success": true
+            },
+            {
+              "load": 75,
+              "executionTime": 4.084249999999997,
+              "memoryUsage": 21.371780395507812,
+              "success": true
+            },
+            {
+              "load": 100,
+              "executionTime": 11.454584000000068,
+              "memoryUsage": 21.531898498535156,
+              "success": true
+            },
+            {
+              "load": 125,
+              "executionTime": 4.662582999999927,
+              "memoryUsage": 21.69823455810547,
+              "success": true
+            },
+            {
+              "load": 150,
+              "executionTime": 3.3315000000000055,
+              "memoryUsage": 21.86840057373047,
+              "success": true
+            },
+            {
+              "load": 175,
+              "executionTime": 4.6922499999999445,
+              "memoryUsage": 22.063186645507812,
+              "success": true
+            },
+            {
+              "load": 200,
+              "executionTime": 4.611833000000047,
+              "memoryUsage": 22.269989013671875,
+              "success": true
+            }
+          ],
+          "breakingPoint": 200,
+          "systemStability": false,
+          "passed": false
         }
       },
-      "passed": true
+      "passed": false
     },
     "13": {
       "name": "Resource Usage and Memory Analysis",
       "weight": 25,
-      "score": 50,
+      "score": 33,
       "results": {
         "memoryAnalysis": {
-          "initialHeapMB": 30,
-          "finalHeapMB": 41,
-          "maxHeapMB": 60,
-          "heapGrowth": 0.39590774443959853,
-          "snapshots": 5,
-          "passed": true
+          "initialHeapMB": 24,
+          "finalHeapMB": 153,
+          "maxHeapMB": 387,
+          "heapGrowth": 5.287511855733943,
+          "snapshots": 10,
+          "passed": false
         },
         "cpuAnalysis": {
-          "totalTimeSec": 0.010711917,
-          "cpuTimeSec": 0.012398,
-          "cpuUtilization": 115.74025452213641,
-          "efficiency": 0.8640036296176803,
+          "totalTimeSec": 0.001017667,
+          "cpuTimeSec": 0.002915,
+          "cpuUtilization": 286.4394738160911,
+          "efficiency": 0.3491138936535163,
           "passed": false
+        },
+        "gcAnalysis": {
+          "skipped": true,
+          "reason": "GC not exposed",
+          "passed": true
         }
       },
       "passed": false
@@ -76,18 +130,25 @@
       "score": 100,
       "results": {
         "responseTime": {
-          "operationCount": 50,
-          "avgResponseTime": 42.78288082000001,
-          "p95ResponseTime": 68.30787499999997,
-          "maxResponseTime": 69.04429200000004,
-          "minResponseTime": 13.144874999999956,
+          "operationCount": 100,
+          "avgResponseTime": 47.60534829999993,
+          "p95ResponseTime": 88.25874999999996,
+          "maxResponseTime": 90.15458299999955,
+          "minResponseTime": 13.857874999999694,
+          "passed": true
+        },
+        "latency": {
+          "requestCount": 50,
+          "avgLatency": 20.477195779999892,
+          "maxLatency": 25.155125000000226,
+          "jitter": 2.9924141278283836,
           "passed": true
         },
         "throughput": {
-          "operationCount": 1331,
-          "durationSec": 3.0019850420000003,
-          "throughputOPS": 443.37329512916335,
-          "avgResponseTime": 2.253572197595792,
+          "operationCount": 1481,
+          "durationSec": 5.004701958,
+          "throughputOPS": 295.9217177024151,
+          "avgResponseTime": 3.375076153950022,
           "passed": true
         }
       },
@@ -96,39 +157,140 @@
     "15": {
       "name": "Performance Regression Prevention",
       "weight": 25,
-      "score": 0,
+      "score": 33,
       "results": {
         "baseline": {
           "metrics": {
             "dataProcessing": {
-              "avgTime": 3.20307499999999,
-              "variance": 0.8285449361165649,
-              "stdDev": 0.9102444375641989,
+              "avgTime": 3.934016800000245,
+              "variance": 1.6590802806395317,
+              "stdDev": 1.2880529028885155,
               "measurements": [
-                1.8574170000001686,
-                4.0873750000000655,
-                4.090790999999626,
-                2.410667000000103,
-                3.5691249999999854
+                4.019000000000233,
+                2.9250840000004246,
+                4.673624999999447,
+                4.137416000001394,
+                3.9080420000009326,
+                1.9228750000002037,
+                6.342458999999508,
+                1.9687080000003334,
+                4.841166999998677,
+                4.601792000001296
+              ],
+              "stability": false
+            },
+            "fileOperation": {
+              "avgTime": 11.391650000000118,
+              "variance": 6.664465770216256,
+              "stdDev": 2.581562660524872,
+              "measurements": [
+                9.366124999998647,
+                9.125167000000147,
+                7.998792000000321,
+                9.811416000000463,
+                13.820166999999856,
+                11.129042000000481,
+                13.560999999999694,
+                9.717291000000841,
+                12.67975000000115,
+                16.707749999999578
               ],
               "stability": false
             },
             "computation": {
-              "avgTime": 3.4032916000001934,
-              "variance": 1.622937653277679,
-              "stdDev": 1.2739457026410814,
+              "avgTime": 1.5719583000000057,
+              "variance": 0.0951728531139353,
+              "stdDev": 0.3085009774926739,
               "measurements": [
-                5.839249999999993,
-                3.4890830000003916,
-                2.374749999999949,
-                2.6754170000003796,
-                2.6379580000002534
+                2.4808329999996204,
+                1.5907499999993888,
+                1.4694170000002487,
+                1.432875000000422,
+                1.445583999999144,
+                1.4336249999996653,
+                1.4590000000007421,
+                1.4122079999997368,
+                1.4233750000003056,
+                1.5719160000007832
               ],
               "stability": false
             }
           },
           "stable": false,
           "passed": false
+        },
+        "trendAnalysis": {
+          "runs": 10,
+          "firstHalfAvg": 3.994616799999858,
+          "secondHalfAvg": 2.9211248000003254,
+          "regressionRate": -0.2687346631095055,
+          "trendData": [
+            {
+              "run": 1,
+              "time": 4.706208999999944,
+              "timestamp": 1769593993937
+            },
+            {
+              "run": 2,
+              "time": 1.3872919999994338,
+              "timestamp": 1769593993938
+            },
+            {
+              "run": 3,
+              "time": 5.099958000000697,
+              "timestamp": 1769593993943
+            },
+            {
+              "run": 4,
+              "time": 6.0207919999993464,
+              "timestamp": 1769593993949
+            },
+            {
+              "run": 5,
+              "time": 2.7588329999998678,
+              "timestamp": 1769593993952
+            },
+            {
+              "run": 6,
+              "time": 4.024290999999721,
+              "timestamp": 1769593993956
+            },
+            {
+              "run": 7,
+              "time": 1.4187920000003942,
+              "timestamp": 1769593993957
+            },
+            {
+              "run": 8,
+              "time": 2.6458330000004935,
+              "timestamp": 1769593993960
+            },
+            {
+              "run": 9,
+              "time": 5.012083000001439,
+              "timestamp": 1769593993965
+            },
+            {
+              "run": 10,
+              "time": 1.504624999999578,
+              "timestamp": 1769593993967
+            }
+          ],
+          "passed": false
+        },
+        "alertSystem": {
+          "monitoring": true,
+          "alerts": [
+            {
+              "operation": "slow",
+              "time": 200,
+              "threshold": 100,
+              "severity": "warning",
+              "timestamp": 1769593993968
+            }
+          ],
+          "alertCount": 1,
+          "passed": true
         }
       },
       "passed": false
@@ -142,15 +304,15 @@
     "architecture": "arm64",
     "nodeVersion": "v25.2.1",
     "totalMemory": 65536,
-    "availableMemory": 628,
+    "availableMemory": 64,
     "cpuCores": 24,
     "loadAverage": [
-      3.4736328125,
-      2.9775390625,
-      2.84521484375
+      9.78515625,
+      7.9765625,
+      7.85986328125
     ]
   },
-  "overallScore": 63,
-  "executionTime": 6,
+  "overallScore": 58,
+  "executionTime": 13,
   "success": false
 }

@@ -13,8 +13,8 @@ import {
   getRecursionGuard,
   checkRecursionLimit,
   checkCircularReference,
-} from '../../.claude/validators-node/src/resource-management/recursion-guard.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/resource-management/recursion-guard.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 // State files to clean up
 const STATE_FILE = '.claude/.recursion_state.json';

@@ -61,7 +61,12 @@
     "prepack": "npm run clean && npm run build",
     "postinstall": "npm run build",
     "quality:check": "npm run lint && npm run type-check && npm run test:coverage",
-    "ci:quality": "npm run quality:check && npm run security:scan && npm run build"
+    "ci:quality": "npm run quality:check && npm run security:scan && npm run build",
+    "modules": "node src/utility/tools/module-selector/index.js",
+    "security:config": "node src/utility/tools/security-config/index.js",
+    "llm:setup": "node src/utility/tools/llm-setup/index.js",
+    "health": "node src/utility/tools/health-check/index.js",
+    "pgp:setup": "node src/utility/tools/pgp-setup/index.js"
   },
   "keywords": [
     "bmad",
@@ -84,7 +89,9 @@
   },
   "dependencies": {
     "@bmad/validators": "file:.claude/validators-node",
+    "chalk": "^5.6.2",
     "commander": "^11.0.0",
+    "inquirer": "^13.2.1",
     "zod": "^3.22.0"
   },
   "devDependencies": {

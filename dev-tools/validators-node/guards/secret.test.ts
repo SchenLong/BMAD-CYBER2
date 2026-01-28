@@ -10,8 +10,8 @@ import {
   isExampleContent,
   detectSecrets,
   validateSecretGuard,
-} from '../../.claude/validators-node/src/guards/secret.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/guards/secret.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 describe('calculateEntropy', () => {
   it('should return 0 for empty string', () => {

@@ -11,7 +11,8 @@ export default defineConfig({
       'dev-tools/performance/**/*.test.{js,ts}',
       'dev-tools/automation/**/*.test.{js,ts}',
       '_bmad/framework/**/*.test.{js,ts}',
-      '.claude/validators-node/**/*.test.{js,ts}'
+      '.claude/validators-node/**/*.test.{js,ts}',
+      'src/utility/tools/**/*.test.{js,ts}'
     ],
     exclude: [
       'node_modules/**',
@@ -55,6 +56,9 @@ export default defineConfig({
       '@framework': path.resolve(__dirname, '../../_bmad/framework'),
       '@validators': path.resolve(__dirname, '../../.claude/validators-node/src'),
       '@bmad': path.resolve(__dirname, '../../_bmad'),
+      // Map relative imports from dev-tools/validators-node tests to actual source location
+      '../../src/observability': path.resolve(__dirname, '../../.claude/validators-node/src/observability'),
+      '../../src/common': path.resolve(__dirname, '../../.claude/validators-node/src/common'),
     },
   },
   esbuild: {

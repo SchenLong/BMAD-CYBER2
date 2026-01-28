@@ -7,8 +7,8 @@ import {
   isProtectedFile,
   isAllowedPattern,
   validateEnvProtection,
-} from '../../.claude/validators-node/src/guards/env-protection.js';
-import { EXIT_CODES } from '../../.claude/validators-node/src/types/index.js';
+} from '../../../.claude/validators-node/src/guards/env-protection.js';
+import { EXIT_CODES } from '../../../.claude/validators-node/src/types/index.js';
 
 describe('isAllowedPattern', () => {
   it('should allow .example files', () => {

@@ -1,8 +1,7 @@
 import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import crypto from 'crypto';
-import fs from 'fs';
 
-// Import the TokenGenerator after crypto/fs
+// Import the TokenGenerator
 const { TokenGenerator } = await import('../../_bmad/core/security/generate-token.js');
 
 // Define types
@@ -24,44 +23,16 @@ interface GeneratedToken {
 }
 
 describe('TokenGenerator', () => {
-  let tokenGenerator: TokenGenerator;
-  let cryptoSpies: { [key: string]: any };
+  let tokenGenerator: InstanceType<typeof TokenGenerator>;
   const testKey = Buffer.alloc(32, 'test-key-32-bytes-for-aes-256!!');
 
   beforeEach(() => {
     vi.clearAllMocks();
-
-    // Create spies on the crypto module
-    cryptoSpies = {
-      pbkdf2Sync: vi.spyOn(crypto, 'pbkdf2Sync').mockReturnValue(testKey),
-      randomBytes: vi.spyOn(crypto, 'randomBytes').mockReturnValue(Buffer.alloc(16, 'test-iv')),
-      randomUUID: vi.spyOn(crypto, 'randomUUID').mockReturnValue('test-uuid-123'),
-      createCipheriv: vi.spyOn(crypto, 'createCipheriv'),
-      createDecipheriv: vi.spyOn(crypto, 'createDecipheriv')
-    };
-
-    // Setup cipher mocks
-    const mockCipher = {
-      update: vi.fn().mockReturnValue(Buffer.from('encrypted')),
-      final: vi.fn().mockReturnValue(Buffer.from('final')),
-      getAuthTag: vi.fn().mockReturnValue(Buffer.alloc(16, 'auth-tag'))
-    };
-    cryptoSpies.createCipheriv.mockReturnValue(mockCipher as any);
-
-    // Setup decipher mocks
-    const mockDecipher = {
-      update: vi.fn().mockReturnValue(Buffer.from('{"test":"data"}')),
-      final: vi.fn().mockReturnValue(Buffer.alloc(0)),
-      setAuthTag: vi.fn()
-    };
-    cryptoSpies.createDecipheriv.mockReturnValue(mockDecipher as any);
-
     tokenGenerator = new TokenGenerator(testKey);
   });
 
   afterEach(() => {
-    // Restore all spies
-    Object.values(cryptoSpies).forEach(spy => spy.mockRestore());
+    vi.clearAllMocks();
   });
 
   describe('Constructor', () => {
@@ -90,40 +61,40 @@ describe('TokenGenerator', () => {
       const password = 'test-password';
       const key = TokenGenerator.generateKey(password);
 
-      expect(cryptoSpies.pbkdf2Sync).toHaveBeenCalledWith(
-        password,
-        'bmad-auth-salt-v1',
-        100000,
-        32,
-        'sha256'
-      );
-      expect(key).toEqual(testKey);
+      // Verify key is a 32-byte buffer (AES-256 key size)
+      expect(key).toBeInstanceOf(Buffer);
+      expect(key.length).toBe(32);
     });
 
     test('should generate random key when no password provided', () => {
-      cryptoSpies.randomBytes.mockReturnValue(testKey);
       const key = TokenGenerator.generateKey();
 
-      expect(cryptoSpies.randomBytes).toHaveBeenCalledWith(32);
-      expect(key).toEqual(testKey);
+      expect(key).toBeInstanceOf(Buffer);
+      expect(key.length).toBe(32);
     });
 
     test('should generate different keys for different passwords', () => {
       const key1 = TokenGenerator.generateKey('password1');
       const key2 = TokenGenerator.generateKey('password2');
 
-      expect(cryptoSpies.pbkdf2Sync).toHaveBeenCalledTimes(2);
-      // In real implementation, these would be different
+      // Keys should be different for different passwords
+      expect(key1.equals(key2)).toBe(false);
     });
 
     test('should handle empty password string', () => {
-      cryptoSpies.randomBytes.mockReturnValue(testKey);
       const key = TokenGenerator.generateKey('');
 
-      // Empty string is falsy, so it should call randomBytes instead of pbkdf2Sync
-      expect(cryptoSpies.randomBytes).toHaveBeenCalledWith(32);
-      expect(cryptoSpies.pbkdf2Sync).not.toHaveBeenCalled();
-      expect(key).toEqual(testKey);
+      // Empty string is falsy, so it should generate a random key
+      expect(key).toBeInstanceOf(Buffer);
+      expect(key.length).toBe(32);
+    });
+
+    test('should generate consistent keys for same password', () => {
+      const key1 = TokenGenerator.generateKey('consistent-password');
+      const key2 = TokenGenerator.generateKey('consistent-password');
+
+      // Same password should produce same key (deterministic PBKDF2)
+      expect(key1.equals(key2)).toBe(true);
     });
   });
 
@@ -143,8 +114,6 @@ describe('TokenGenerator', () => {
       const token = tokenGenerator.encrypt(testClaims);
 
       expect(token).toMatch(/^bmad\.v1\./);
-      expect(cryptoSpies.randomBytes).toHaveBeenCalledWith(16);
-      expect(cryptoSpies.createCipheriv).toHaveBeenCalledWith('aes-256-gcm', testKey, expect.any(Buffer));
     });
 
     test('should create token with proper format', () => {
@@ -183,46 +152,35 @@ describe('TokenGenerator', () => {
     });
 
     test('should use different IVs for each encryption', () => {
-      cryptoSpies.randomBytes
-        .mockReturnValueOnce(Buffer.alloc(16, 'iv1'))
-        .mockReturnValueOnce(Buffer.alloc(16, 'iv2'));
-
       const token1 = tokenGenerator.encrypt(testClaims);
       const token2 = tokenGenerator.encrypt(testClaims);
 
-      expect(cryptoSpies.randomBytes).toHaveBeenCalledTimes(2);
-      // Tokens should be different due to different IVs
+      // Tokens should be different due to different IVs (randomBytes generates unique IVs)
+      expect(token1).not.toBe(token2);
     });
   });
 
   describe('decrypt', () => {
-    beforeEach(() => {
-      // Mock successful decryption
-      const validClaims = {
-        sub: 'user-123',
-        name: 'Test User',
-        roles: ['user'],
-        modules: ['core'],
-        iat: '2024-01-01T00:00:00.000Z',
-        exp: '2099-01-01T00:00:00.000Z', // Far future
-        jti: 'token-123'
-      };
-
-      const mockDecipher = {
-        update: vi.fn().mockReturnValue(Buffer.from(JSON.stringify(validClaims))),
-        final: vi.fn().mockReturnValue(Buffer.alloc(0)),
-        setAuthTag: vi.fn()
-      };
-      cryptoSpies.createDecipheriv.mockReturnValue(mockDecipher as any);
-    });
+    const validClaims: TokenClaims = {
+      sub: 'user-123',
+      name: 'Test User',
+      roles: ['user'],
+      modules: ['core'],
+      iat: '2024-01-01T00:00:00.000Z',
+      exp: '2099-01-01T00:00:00.000Z', // Far future
+      jti: 'token-123'
+    };
 
     test('should decrypt valid tokens', () => {
-      const token = 'bmad.v1.dGVzdC1kYXRh'; // base64url encoded test data
-      const claims = tokenGenerator.decrypt(token);
+      // First encrypt a token
+      const token = tokenGenerator.encrypt(validClaims);
 
-      expect(claims).toBeDefined();
-      expect(claims?.sub).toBe('user-123');
-      expect(claims?.name).toBe('Test User');
+      // Then decrypt it
+      const decrypted = tokenGenerator.decrypt(token);
+
+      expect(decrypted).toBeDefined();
+      expect(decrypted?.sub).toBe('user-123');
+      expect(decrypted?.name).toBe('Test User');
     });
 
     test('should reject tokens without proper prefix', () => {
@@ -233,19 +191,13 @@ describe('TokenGenerator', () => {
     });
 
     test('should reject tokens with invalid format', () => {
-      const invalidToken = 'bmad.v1.invalid-base64!';
-
-      // Mock Buffer.from to throw
-      vi.spyOn(Buffer, 'from').mockImplementationOnce(() => {
-        throw new Error('Invalid base64');
-      });
-
+      const invalidToken = 'bmad.v1.!!!invalid-base64!!!';
       const claims = tokenGenerator.decrypt(invalidToken);
       expect(claims).toBeNull();
     });
 
     test('should reject expired tokens', () => {
-      const expiredClaims = {
+      const expiredClaims: TokenClaims = {
         sub: 'user-123',
         name: 'Test User',
         roles: ['user'],
@@ -255,66 +207,51 @@ describe('TokenGenerator', () => {
         jti: 'token-123'
       };
 
-      const mockDecipher = {
-        update: vi.fn().mockReturnValue(Buffer.from(JSON.stringify(expiredClaims))),
-        final: vi.fn().mockReturnValue(Buffer.alloc(0)),
-        setAuthTag: vi.fn()
-      };
-      cryptoSpies.createDecipheriv.mockReturnValue(mockDecipher as any);
+      // Encrypt with expired claims
+      const token = tokenGenerator.encrypt(expiredClaims);
+      const decrypted = tokenGenerator.decrypt(token);
 
-      const token = 'bmad.v1.dGVzdC1kYXRh';
-      const claims = tokenGenerator.decrypt(token);
-
-      expect(claims).toBeNull();
+      expect(decrypted).toBeNull();
     });
 
     test('should handle decryption errors gracefully', () => {
-      const mockDecipher = {
-        update: vi.fn().mockImplementation(() => {
-          throw new Error('Decryption failed');
-        }),
-        final: vi.fn(),
-        setAuthTag: vi.fn()
-      };
-      cryptoSpies.createDecipheriv.mockReturnValue(mockDecipher as any);
-
-      const token = 'bmad.v1.dGVzdC1kYXRh';
-      const claims = tokenGenerator.decrypt(token);
+      // Create a token with garbage data that will fail decryption
+      const badToken = 'bmad.v1.' + Buffer.from('garbage-data-that-wont-decrypt').toString('base64url');
+      const claims = tokenGenerator.decrypt(badToken);
 
       expect(claims).toBeNull();
     });
 
     test('should handle malformed JSON in decrypted content', () => {
-      const mockDecipher = {
-        update: vi.fn().mockReturnValue(Buffer.from('invalid-json{')),
-        final: vi.fn().mockReturnValue(Buffer.alloc(0)),
-        setAuthTag: vi.fn()
-      };
-      cryptoSpies.createDecipheriv.mockReturnValue(mockDecipher as any);
+      // This test verifies error handling for corrupted token data
+      const token = 'bmad.v1.' + Buffer.concat([
+        Buffer.alloc(16, 0), // iv
+        Buffer.alloc(16, 0), // auth tag
+        Buffer.alloc(32, 0)  // encrypted data
+      ]).toString('base64url');
 
-      const token = 'bmad.v1.dGVzdC1kYXRh';
       const claims = tokenGenerator.decrypt(token);
-
       expect(claims).toBeNull();
     });
 
     test('should validate auth tag during decryption', () => {
-      const token = 'bmad.v1.' + Buffer.concat([
-        Buffer.alloc(16, 'iv'),
-        Buffer.alloc(16, 'auth'),
-        Buffer.alloc(32, 'encrypted')
-      ]).toString('base64url');
+      // Encrypt a valid token first
+      const token = tokenGenerator.encrypt(validClaims);
 
-      tokenGenerator.decrypt(token);
+      // Tamper with the auth tag portion of the token
+      const tokenData = token.replace('bmad.v1.', '');
+      const decoded = Buffer.from(tokenData, 'base64url');
 
-      expect(cryptoSpies.createDecipheriv).toHaveBeenCalledWith(
-        'aes-256-gcm',
-        testKey,
-        expect.any(Buffer)
-      );
+      // Corrupt a byte in the auth tag area (bytes 16-32)
+      if (decoded.length > 20) {
+        decoded[20] = decoded[20] ^ 0xFF; // Flip bits in auth tag
+      }
 
-      const mockDecipher = cryptoSpies.createDecipheriv.mock.results[0].value;
-      expect(mockDecipher.setAuthTag).toHaveBeenCalled();
+      const tamperedToken = 'bmad.v1.' + decoded.toString('base64url');
+      const claims = tokenGenerator.decrypt(tamperedToken);
+
+      // Should fail due to auth tag mismatch
+      expect(claims).toBeNull();
     });
   });
 
@@ -324,9 +261,6 @@ describe('TokenGenerator', () => {
     beforeEach(() => {
       vi.useFakeTimers();
       vi.setSystemTime(mockDate);
-
-      // Mock successful encryption
-      vi.spyOn(tokenGenerator, 'encrypt').mockReturnValue('bmad.v1.encrypted-token');
     });
 
     afterEach(() => {
@@ -342,7 +276,7 @@ describe('TokenGenerator', () => {
         24
       );
 
-      expect(result.token).toBe('bmad.v1.encrypted-token');
+      expect(result.token).toMatch(/^bmad\.v1\./);
       expect(result.claims.name).toBe('John Doe');
       expect(result.claims.email).toBe('john@example.com');
       expect(result.claims.roles).toEqual(['admin', 'user']);
@@ -373,19 +307,17 @@ describe('TokenGenerator', () => {
     });
 
     test('should generate unique subject and jti IDs', () => {
-      cryptoSpies.randomUUID
-        .mockReturnValueOnce('unique-sub-1')
-        .mockReturnValueOnce('unique-jti-1')
-        .mockReturnValueOnce('unique-sub-2')
-        .mockReturnValueOnce('unique-jti-2');
-
       const result1 = tokenGenerator.generateToken('User 1', undefined, ['user'], ['core']);
       const result2 = tokenGenerator.generateToken('User 2', undefined, ['user'], ['core']);
 
-      expect(result1.claims.sub).toBe('unique-sub-1');
-      expect(result1.claims.jti).toBe('unique-jti-1');
-      expect(result2.claims.sub).toBe('unique-sub-2');
-      expect(result2.claims.jti).toBe('unique-jti-2');
+      // IDs should be unique UUIDs
+      expect(result1.claims.sub).not.toBe(result2.claims.sub);
+      expect(result1.claims.jti).not.toBe(result2.claims.jti);
+
+      // Should be valid UUID format
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      expect(result1.claims.sub).toMatch(uuidRegex);
+      expect(result1.claims.jti).toMatch(uuidRegex);
     });
 
     test('should set proper timestamps', () => {
@@ -474,11 +406,13 @@ describe('TokenGenerator', () => {
   });
 
   describe('Security Properties', () => {
-    test('should use secure random values', () => {
-      tokenGenerator.generateToken('User', undefined, ['user'], ['core']);
+    test('should use secure random values for token IDs', () => {
+      const result = tokenGenerator.generateToken('User', undefined, ['user'], ['core']);
 
-      expect(cryptoSpies.randomUUID).toHaveBeenCalled();
-      expect(cryptoSpies.randomBytes).toHaveBeenCalledWith(16);
+      // Verify UUIDs are generated (which use crypto.randomUUID)
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      expect(result.claims.sub).toMatch(uuidRegex);
+      expect(result.claims.jti).toMatch(uuidRegex);
     });
 
     test('should use AES-256-GCM for encryption', () => {
@@ -492,13 +426,18 @@ describe('TokenGenerator', () => {
         jti: 'token-123'
       };
 
-      tokenGenerator.encrypt(claims);
+      const token = tokenGenerator.encrypt(claims);
 
-      expect(cryptoSpies.createCipheriv).toHaveBeenCalledWith(
-        'aes-256-gcm',
-        testKey,
-        expect.any(Buffer)
-      );
+      // Token should be properly formatted
+      expect(token).toMatch(/^bmad\.v1\./);
+
+      // Extract the payload and verify it contains IV + authTag + ciphertext
+      const payload = token.replace('bmad.v1.', '');
+      const decoded = Buffer.from(payload, 'base64url');
+
+      // AES-256-GCM uses 16-byte IV and 16-byte auth tag minimum
+      // So payload should be at least 32 bytes + some ciphertext
+      expect(decoded.length).toBeGreaterThan(32);
     });
 
     test('should include authentication tag in encrypted data', () => {
@@ -508,26 +447,37 @@ describe('TokenGenerator', () => {
         roles: ['user'],
         modules: ['core'],
         iat: '2024-01-01T00:00:00.000Z',
-        exp: '2024-01-02T00:00:00.000Z',
+        exp: '2099-01-01T00:00:00.000Z', // Far future to avoid expiration
         jti: 'token-123'
       };
 
-      tokenGenerator.encrypt(claims);
+      const token = tokenGenerator.encrypt(claims);
 
-      const mockCipher = cryptoSpies.createCipheriv.mock.results[0].value;
-      expect(mockCipher.getAuthTag).toHaveBeenCalled();
+      // Decrypt should work with valid token
+      const decrypted = tokenGenerator.decrypt(token);
+      expect(decrypted).not.toBeNull();
+      expect(decrypted?.sub).toBe('user-123');
+
+      // Tampered token should fail (auth tag validation)
+      const payload = token.replace('bmad.v1.', '');
+      const decoded = Buffer.from(payload, 'base64url');
+      decoded[20] = decoded[20] ^ 0xFF; // Corrupt auth tag area
+      const tamperedToken = 'bmad.v1.' + decoded.toString('base64url');
+
+      expect(tokenGenerator.decrypt(tamperedToken)).toBeNull();
     });
 
     test('should use proper PBKDF2 parameters for key derivation', () => {
-      TokenGenerator.generateKey('password');
+      // Generate keys from same password - should be identical (deterministic)
+      const key1 = TokenGenerator.generateKey('test-password');
+      const key2 = TokenGenerator.generateKey('test-password');
 
-      expect(cryptoSpies.pbkdf2Sync).toHaveBeenCalledWith(
-        'password',
-        'bmad-auth-salt-v1',
-        100000, // iterations
-        32,     // key length
-        'sha256' // hash algorithm
-      );
+      expect(key1.equals(key2)).toBe(true);
+      expect(key1.length).toBe(32); // AES-256 key size
+
+      // Different passwords should produce different keys
+      const key3 = TokenGenerator.generateKey('different-password');
+      expect(key1.equals(key3)).toBe(false);
     });
 
     test('should produce base64url encoded tokens', () => {

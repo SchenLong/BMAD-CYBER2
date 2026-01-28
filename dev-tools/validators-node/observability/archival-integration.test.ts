@@ -17,7 +17,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as os from 'node:os';
 import { promisify } from 'node:util';
-import type { AuditLogEntry } from '../../.claude/validators-node/src/types/index.js';
+import type { AuditLogEntry } from '../../../.claude/validators-node/src/types/index.js';
 
 const writeFile = promisify(fs.writeFile);
 const mkdir = promisify(fs.mkdir);
@@ -61,7 +61,7 @@ describe('Archival System Integration', () => {
       // First test without required bucket
       delete process.env.BMAD_S3_ARCHIVE_BUCKET;
 
-      const { ArchivalConfigManager } = await import('../../src/observability/archival-config.js');
+      const { ArchivalConfigManager } = await import('../../../.claude/validators-node/src/observability/archival-config.js');
       const configManager = new ArchivalConfigManager();
 
       const result1 = await configManager.loadConfiguration();
@@ -75,7 +75,7 @@ describe('Archival System Integration', () => {
     });
 
     test('should generate example configuration', async () => {
-      const { ArchivalConfigManager } = await import('../../src/observability/archival-config.js');
+      const { ArchivalConfigManager } = await import('../../../.claude/validators-node/src/observability/archival-config.js');
       const configManager = new ArchivalConfigManager();
 
       const example = configManager.generateExampleConfig();
@@ -86,7 +86,7 @@ describe('Archival System Integration', () => {
     });
 
     test('should validate cron expressions', async () => {
-      const { ArchivalConfigManager } = await import('../../src/observability/archival-config.js');
+      const { ArchivalConfigManager } = await import('../../../.claude/validators-node/src/observability/archival-config.js');
       const configManager = new ArchivalConfigManager();
 
       // Test private method through type assertion
@@ -104,11 +104,11 @@ describe('Archival System Integration', () => {
   describe('Archive Metadata Management', () => {
     test('should create and store archive metadata', async () => {
       // Mock path utils to use temp directory
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const { LogArchiver } = await import('../../src/observability/log-archiver.js');
+      const { LogArchiver } = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       const archiver = new LogArchiver({
         bucket: 'test-bucket',
@@ -149,11 +149,11 @@ describe('Archival System Integration', () => {
     });
 
     test('should handle corrupt metadata gracefully', async () => {
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const { LogArchiver } = await import('../../src/observability/log-archiver.js');
+      const { LogArchiver } = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       const archiver = new LogArchiver({
         bucket: 'test-bucket',
@@ -174,17 +174,17 @@ describe('Archival System Integration', () => {
 
   describe('Local Archive Processing', () => {
     test('should process audit log entries', async () => {
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
       // Mock encryption module
-      vi.doMock('../../src/observability/audit-encryption.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/observability/audit-encryption.js', () => ({
         processLineForReading: vi.fn((line) => JSON.parse(line)),
         isEncryptionEnabled: vi.fn(() => false),
       }));
 
-      const { LogArchiver } = await import('../../src/observability/log-archiver.js');
+      const { LogArchiver } = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       // Create log directory and files
       const logDir = path.join(tempDir, '.claude', 'logs');
@@ -243,11 +243,11 @@ describe('Archival System Integration', () => {
     });
 
     test('should handle empty log directory', async () => {
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const { LogArchiver } = await import('../../src/observability/log-archiver.js');
+      const { LogArchiver } = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       const archiver = new LogArchiver({
         bucket: 'test-bucket',
@@ -270,11 +270,11 @@ describe('Archival System Integration', () => {
 
   describe('Scheduler Integration', () => {
     test('should initialize scheduler and track status', async () => {
-      vi.doMock('../../src/common/path-utils.js', () => ({
+      vi.doMock('../../../.claude/validators-node/src/common/path-utils.js', () => ({
         getProjectDir: () => tempDir,
       }));
 
-      const { ArchivalScheduler } = await import('../../src/observability/archival-scheduler.js');
+      const { ArchivalScheduler } = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
 
       const scheduler = new ArchivalScheduler();
       await scheduler.initialize();
@@ -293,7 +293,7 @@ describe('Archival System Integration', () => {
     });
 
     test('should handle scheduler configuration issues', async () => {
-      const { getArchivalStatus } = await import('../../src/observability/archival-scheduler.js');
+      const { getArchivalStatus } = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
 
       // Without S3 bucket configured, should identify issues
       const status = await getArchivalStatus();
@@ -306,7 +306,7 @@ describe('Archival System Integration', () => {
 
   describe('Audit Logger Integration', () => {
     test('should provide archival functions in audit logger', async () => {
-      const { AuditLogger } = await import('../../src/common/audit-logger.js');
+      const { AuditLogger } = await import('../../../.claude/validators-node/src/common/audit-logger.js');
 
       // Test that archival functions are available
       expect(typeof AuditLogger.initializeArchival).toBe('function');
@@ -326,13 +326,13 @@ describe('Archival System Integration', () => {
       delete process.env.BMAD_S3_ARCHIVE_BUCKET;
       delete process.env.BMAD_S3_ARCHIVE_REGION;
 
-      const { LogArchiver } = await import('../../src/observability/log-archiver.js');
+      const { LogArchiver } = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       expect(() => LogArchiver.fromEnvironment()).toThrow('BMAD_S3_ARCHIVE_BUCKET environment variable is required');
     });
 
     test('should validate archival configuration options', async () => {
-      const { LogArchiver } = await import('../../src/observability/log-archiver.js');
+      const { LogArchiver } = await import('../../../.claude/validators-node/src/observability/log-archiver.js');
 
       // Test invalid configurations
       expect(() => new LogArchiver({} as any)).toThrow('S3 bucket name is required');
@@ -349,7 +349,7 @@ describe('Archival System Integration', () => {
 
   describe('Compliance Features', () => {
     test('should support compliance requirements', async () => {
-      const { ArchivalConfigManager } = await import('../../src/observability/archival-config.js');
+      const { ArchivalConfigManager } = await import('../../../.claude/validators-node/src/observability/archival-config.js');
 
       const configManager = new ArchivalConfigManager();
       const example = configManager.generateExampleConfig();
@@ -375,7 +375,7 @@ describe('Archival System Integration', () => {
     });
 
     test('should provide setup instructions for compliance', async () => {
-      const { ArchivalConfigManager } = await import('../../src/observability/archival-config.js');
+      const { ArchivalConfigManager } = await import('../../../.claude/validators-node/src/observability/archival-config.js');
 
       const configManager = new ArchivalConfigManager();
       const instructions = configManager.generateSetupInstructions();
@@ -392,7 +392,7 @@ describe('Archival System Integration', () => {
 
 describe('Archival System Status Verification', () => {
   test('should report comprehensive system status', async () => {
-    const { getArchivalStatus } = await import('../../src/observability/archival-scheduler.js');
+    const { getArchivalStatus } = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
 
     const status = await getArchivalStatus();
 
@@ -416,7 +416,7 @@ describe('Archival System Status Verification', () => {
   });
 
   test('should identify required configuration', async () => {
-    const { getArchivalStatus } = await import('../../src/observability/archival-scheduler.js');
+    const { getArchivalStatus } = await import('../../../.claude/validators-node/src/observability/archival-scheduler.js');
 
     // Without S3 bucket configured
     delete process.env.BMAD_S3_ARCHIVE_BUCKET;

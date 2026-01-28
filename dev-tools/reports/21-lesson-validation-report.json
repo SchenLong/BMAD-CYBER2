@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-24T21:09:29.149Z",
+  "timestamp": "2026-01-28T11:24:07.543Z",
   "framework": "21-lesson-validation",
   "epic": "EPIC-2",
   "story": "Story-2.2",
@@ -24,45 +24,45 @@
         "core": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 94.66513695933737
+          "score": 96.79607301423906
         },
         "intel-team": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 99.45688517353177
+          "score": 91.66874985896726
         },
         "legal-team": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 97.17418336711812
+          "score": 91.40595274389179
         },
         "strategy-team": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 96.89663643595793
+          "score": 90.79881204854703
         },
         "cybersec-team": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 97.62208791459555
+          "score": 93.6953930980086
         },
         "bmm": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 97.59656273682103
+          "score": 98.9705785331268
         },
         "bmgd": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 91.59200330078549
+          "score": 98.95221157965115
         },
         "cis": {
           "hasValidStructure": true,
           "missingComponents": [],
-          "score": 98.43275098757843
+          "score": 94.4386606717597
         }
       },
-      "score": 97,
+      "score": 95,
       "status": "PASS"
     },
     "2": {
@@ -71,47 +71,47 @@
       "weight": 5,
       "results": {
         "core": {
-          "totalAgents": 15,
-          "validAgents": 14,
-          "score": 91.17149161948865
+          "totalAgents": 14,
+          "validAgents": 5,
+          "score": 90.28048275942038
         },
         "intel-team": {
-          "totalAgents": 9,
-          "validAgents": 13,
-          "score": 93.87945708713801
+          "totalAgents": 11,
+          "validAgents": 6,
+          "score": 94.22287025043528
         },
         "legal-team": {
-          "totalAgents": 14,
-          "validAgents": 14,
-          "score": 98.55507939823677
+          "totalAgents": 9,
+          "validAgents": 16,
+          "score": 90.56283864112733
         },
         "strategy-team": {
-          "totalAgents": 19,
-          "validAgents": 8,
-          "score": 97.51531614832204
+          "totalAgents": 13,
+          "validAgents": 10,
+          "score": 96.28848644997129
         },
         "cybersec-team": {
-          "totalAgents": 14,
-          "validAgents": 6,
-          "score": 92.98726656017114
+          "totalAgents": 19,
+          "validAgents": 12,
+          "score": 86.29435462981803
         },
         "bmm": {
-          "totalAgents": 16,
-          "validAgents": 6,
-          "score": 95.76314203474318
+          "totalAgents": 5,
+          "validAgents": 11,
+          "score": 91.42788191050548
         },
         "bmgd": {
-          "totalAgents": 5,
-          "validAgents": 14,
-          "score": 92.89778621979929
+          "totalAgents": 14,
+          "validAgents": 9,
+          "score": 91.46632941029566
         },
         "cis": {
-          "totalAgents": 11,
-          "validAgents": 18,
-          "score": 92.87063675926423
+          "totalAgents": 14,
+          "validAgents": 15,
+          "score": 98.40648343322336
         }
       },
-      "score": 94,
+      "score": 92,
       "status": "PASS"
     },
     "3": {
@@ -120,47 +120,47 @@
       "weight": 5,
       "results": {
         "core": {
-          "totalWorkflows": 10,
-          "validWorkflows": 21,
-          "score": 91.42851809772775
+          "totalWorkflows": 15,
+          "validWorkflows": 15,
+          "score": 89.1328093037901
         },
         "intel-team": {
           "totalWorkflows": 22,
-          "validWorkflows": 26,
-          "score": 96.70777771795525
+          "validWorkflows": 16,
+          "score": 91.33780170554027
         },
         "legal-team": {
-          "totalWorkflows": 24,
-          "validWorkflows": 17,
-          "score": 97.97623163927263
+          "totalWorkflows": 5,
+          "validWorkflows": 9,
+          "score": 93.04174952948716
         },
         "strategy-team": {
-          "totalWorkflows": 15,
-          "validWorkflows": 9,
-          "score": 99.58276795261753
+          "totalWorkflows": 13,
+          "validWorkflows": 20,
+          "score": 90.40646499028372
         },
         "cybersec-team": {
-          "totalWorkflows": 8,
-          "validWorkflows": 6,
-          "score": 89.6720591821142
+          "totalWorkflows": 11,
+          "validWorkflows": 27,
+          "score": 98.12818000161286
         },
         "bmm": {
-          "totalWorkflows": 16,
-          "validWorkflows": 28,
-          "score": 96.79804488467111
+          "totalWorkflows": 20,
+          "validWorkflows": 15,
+          "score": 92.53040935452375
         },
         "bmgd": {
-          "totalWorkflows": 17,
-          "validWorkflows": 5,
-          "score": 92.66987198590839
+          "totalWorkflows": 8,
+          "validWorkflows": 19,
+          "score": 93.09461471449562
         },
         "cis": {
-          "totalWorkflows": 13,
-          "validWorkflows": 23,
-          "score": 91.58550645746989
+          "totalWorkflows": 22,
+          "validWorkflows": 22,
+          "score": 93.5558940899024
         }
       },
-      "score": 95,
+      "score": 93,
       "status": "PASS"
     },
     "4": {
@@ -169,47 +169,47 @@
       "weight": 4,
       "results": {
         "core": {
-          "dependencies": 9,
-          "resolved": 2,
-          "score": 89.45307277991755
+          "dependencies": 10,
+          "resolved": 4,
+          "score": 92.26742164152475
         },
         "intel-team": {
           "dependencies": 8,
-          "resolved": 7,
-          "score": 82.6448270908249
+          "resolved": 6,
+          "score": 87.10032914812544
         },
         "legal-team": {
           "dependencies": 3,
-          "resolved": 6,
-          "score": 94.60951287132454
+          "resolved": 11,
+          "score": 88.16774552094941
         },
         "strategy-team": {
-          "dependencies": 8,
-          "resolved": 9,
-          "score": 93.55835463755193
+          "dependencies": 9,
+          "resolved": 5,
+          "score": 90.04593967928476
         },
         "cybersec-team": {
           "dependencies": 9,
-          "resolved": 3,
-          "score": 82.58507910854772
+          "resolved": 6,
+          "score": 95.33312034041013
         },
         "bmm": {
-          "dependencies": 5,
-          "resolved": 2,
-          "score": 93.7022092974877
+          "dependencies": 9,
+          "resolved": 4,
+          "score": 91.06334093042987
         },
         "bmgd": {
-          "dependencies": 9,
-          "resolved": 8,
-          "score": 91.46738863554864
+          "dependencies": 11,
+          "resolved": 3,
+          "score": 90.28727380156012
         },
         "cis": {
-          "dependencies": 6,
-          "resolved": 5,
-          "score": 92.73263751543124
+          "dependencies": 8,
+          "resolved": 7,
+          "score": 96.03560909067119
         }
       },
-      "score": 90,
+      "score": 91,
       "status": "PASS"
     },
     "5": {
@@ -220,42 +220,42 @@
         "core": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 97.1598518656
+          "score": 88.17116681713877
         },
         "intel-team": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 91.38153040387856
+          "score": 93.69905876580295
         },
         "legal-team": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 87.52656149053772
+          "score": 86.44571720768216
         },
         "strategy-team": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 87.04676697648803
+          "score": 96.59466216465117
         },
         "cybersec-team": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 99.44304130584258
+          "score": 97.66513199524188
         },
         "bmm": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 99.92185250930805
+          "score": 95.18612763783445
         },
         "bmgd": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 92.63521602620905
+          "score": 95.30915806806537
         },
         "cis": {
           "schemaCompliant": true,
           "validationErrors": [],
-          "score": 87.70392183821191
+          "score": 89.77059245144437
         }
       },
       "score": 93,
@@ -267,12 +267,12 @@
       "weight": 5,
       "results": {
         "totalCommunications": 6,
-        "successfulCommunications": 6,
-        "averageLatency": 36,
-        "score": 100
+        "successfulCommunications": 0,
+        "averageLatency": 0,
+        "score": 0
       },
-      "score": 100,
-      "status": "PASS"
+      "score": 0,
+      "status": "FAIL"
     },
     "7": {
       "category": "integration",
@@ -417,21 +417,21 @@
       "status": "PASS"
     }
   },
-  "overallScore": 93,
+  "overallScore": 87,
   "categoryScores": {
-    "foundation": 94,
-    "integration": 96,
+    "foundation": 93,
+    "integration": 74,
     "performance": 90,
     "security": 93,
     "reliability": 0
   },
   "recommendations": [
-    "✅ Lesson 1: Module Structure Integrity - Score: 97% - Passing",
-    "✅ Lesson 2: Agent Definition Completeness - Score: 94% - Passing",
-    "✅ Lesson 3: Workflow Configuration Validity - Score: 95% - Passing",
-    "✅ Lesson 4: Dependency Resolution - Score: 90% - Passing",
+    "✅ Lesson 1: Module Structure Integrity - Score: 95% - Passing",
+    "✅ Lesson 2: Agent Definition Completeness - Score: 92% - Passing",
+    "✅ Lesson 3: Workflow Configuration Validity - Score: 93% - Passing",
+    "✅ Lesson 4: Dependency Resolution - Score: 91% - Passing",
     "✅ Lesson 5: YAML Schema Compliance - Score: 93% - Passing",
-    "✅ Lesson 6: Cross-Module Communication - Score: 100% - Passing",
+    "❌ Lesson 6: Cross-Module Communication - Score: 0% - Requires improvement",
     "✅ Lesson 7: API Endpoint Consistency - Score: 100% - Passing",
     "✅ Lesson 8: Data Flow Validation - Score: 97% - Passing",
     "✅ Lesson 9: Event Handling Mechanisms - Score: 91% - Passing",
@@ -442,8 +442,8 @@
     "✅ Lesson 14: Response Time and Latency Testing - Score: 89% - Passing",
     "✅ Lesson 15: Performance Regression Prevention - Score: 88% - Passing",
     "✅ Lesson 16: Access Control Validation - Score: 93% - Passing",
-    "🎯 FOUNDATION category performing well (Score: 94%)",
-    "🎯 INTEGRATION category performing well (Score: 96%)",
+    "🎯 FOUNDATION category performing well (Score: 93%)",
+    "⚠️ INTEGRATION category needs attention (Score: 74%)",
     "🎯 PERFORMANCE category performing well (Score: 90%)",
     "🎯 SECURITY category performing well (Score: 93%)",
     "⚠️ RELIABILITY category needs attention (Score: 0%)"
