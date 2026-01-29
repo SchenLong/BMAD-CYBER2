@@ -55,6 +55,15 @@ Docs/07-archive/legacy-documents/
 Docs/07-archive/test-archives/
 
 # ===================
+# Docs - Internal Folders
+# ===================
+# Internal documentation not for public release
+Docs/03-developer-docs/
+Docs/04-operations/
+Docs/05-project-management/
+Docs/06-reference/
+
+# ===================
 # Docs - Generated Test Output
 # ===================
 # Test fixtures and generated test data (regenerated during testing)

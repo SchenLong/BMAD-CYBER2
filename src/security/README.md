@@ -376,11 +376,11 @@ const events = await auditLogger.query({
 
 ## 📚 Documentation
 
-- **[Architecture Guide](docs/ARCHITECTURE.md)**: Detailed system architecture
-- **[Configuration Guide](docs/CONFIGURATION.md)**: Setup and configuration
-- **[API Reference](docs/API.md)**: Complete API documentation
-- **[Security Policies](docs/POLICIES.md)**: Security policies and procedures
-- **[Deployment Guide](docs/DEPLOYMENT.md)**: Production deployment instructions
+- **[Architecture Guide](Docs/ARCHITECTURE.md)**: Detailed system architecture
+- **[Configuration Guide](Docs/CONFIGURATION.md)**: Setup and configuration
+- **[API Reference](Docs/API.md)**: Complete API documentation
+- **[Security Policies](Docs/POLICIES.md)**: Security policies and procedures
+- **[Deployment Guide](Docs/DEPLOYMENT.md)**: Production deployment instructions
 
 ## 🚀 Production Deployment
 
