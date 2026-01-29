@@ -5,7 +5,7 @@
  * Provides comprehensive security controls for template processing
  * including injection prevention, content validation, and access control.
  *
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @version 2.0.0
  * @security OWASP-A+
  */
