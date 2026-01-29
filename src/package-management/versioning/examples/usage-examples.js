@@ -6,7 +6,7 @@
  * BMAD Version Compatibility System with real-world scenarios.
  *
  * @version 2.4.0
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @license MIT
  * @security OWASP A+ Compliant
  */

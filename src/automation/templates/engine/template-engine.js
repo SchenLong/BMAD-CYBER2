@@ -11,7 +11,7 @@
  * - Caching and optimization
  * - Security sandboxing
  *
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @version 2.0.0
  */
 
