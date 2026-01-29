@@ -5,7 +5,7 @@
  * Provides comprehensive rollback capabilities for failed installations.
  * Creates system backups and can restore to previous state.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 
