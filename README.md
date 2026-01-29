@@ -25,6 +25,21 @@
 
 Get BMAD running in under 5 minutes:
 
+### Option A: NPX Install (Recommended for Existing Projects)
+
+```bash
+# Install to current directory
+npx bmad-cyber install
+
+# Or install to a new directory
+npx bmad-cyber install ./my-project
+
+# Start with Abdul (Master Project Manager)
+claude-code /agents/abdul
+```
+
+### Option B: Clone Repository (Full Installation)
+
 ```bash
 # 1. Clone the repository
 git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
@@ -118,12 +133,33 @@ claude-code /agents/abdul
 
 ### Prerequisites
 - [Claude Code CLI](https://github.com/anthropics/claude-code) (Sonnet 4.5+ recommended)
-- Git for cloning
 - Node.js 18+ (for TypeScript framework components and security validators)
+- Git (optional, for full clone installation)
 
-### Step-by-Step Installation
+### Installation Methods
 
-#### 1. Clone Repository
+#### Method 1: NPX Install (Recommended)
+
+The fastest way to add BMAD to any existing project:
+
+```bash
+# Install to current directory
+npx bmad-cyber install
+
+# Install specific version
+npx bmad-cyber install --version v2.0.0
+
+# Preview files without installing
+npx bmad-cyber install --dry-run
+
+# Non-interactive mode (for CI/CD)
+npx bmad-cyber install --yes --force
+```
+
+See [NPX Installer Documentation](tools/npx/README.md) for full options and troubleshooting.
+
+#### Method 2: Clone Repository (Full Installation)
+
 ```bash
 git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
 cd BMAD-CYBERSEC
