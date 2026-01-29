@@ -5,7 +5,7 @@
  * Provides automated quality gate enforcement with multi-dimensional scoring,
  * regression detection, and comprehensive validation for BMAD build processes.
  *
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @version 2.0.0
  * @module quality-gate-enforcer
  */

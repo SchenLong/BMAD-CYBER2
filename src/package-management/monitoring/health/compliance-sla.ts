@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - COMPLIANCE AND SLA TRACKING SYSTEM
  * Enterprise-grade compliance monitoring and SLA tracking with automated reporting
  *
- * @author Compliance & SLA Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.5

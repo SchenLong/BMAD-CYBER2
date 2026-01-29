@@ -3,7 +3,7 @@
  * Complete type system for package management with enterprise security integration
  * Provides type safety across all package management operations
  *
- * @author Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.1

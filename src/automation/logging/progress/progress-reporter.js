@@ -6,7 +6,7 @@
  * and build processes including visual progress bars, ETA estimation, milestone
  * tracking, and multi-format output support.
  *
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @version 2.0.0
  * @module progress-reporter
  */

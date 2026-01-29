@@ -3,7 +3,7 @@
  * AI-powered package recommendation engine with security-first approach
  * Provides intelligent suggestions based on context, usage patterns, and security analysis
  *
- * @author Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.1
