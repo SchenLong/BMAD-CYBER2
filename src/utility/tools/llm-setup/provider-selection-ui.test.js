@@ -3,7 +3,7 @@
  * Epic 3, Story 3 - Interactive Provider Selection
  *
  * @module llm-setup/provider-selection-ui.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

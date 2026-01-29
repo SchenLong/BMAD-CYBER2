@@ -6,7 +6,7 @@
  * interactive checkbox selection during the BMAD installation wizard.
  *
  * @module module-selection-ui.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

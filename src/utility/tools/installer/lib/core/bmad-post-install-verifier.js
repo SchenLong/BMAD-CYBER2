@@ -5,7 +5,7 @@
  * Comprehensive verification system that runs after module installation
  * to ensure everything is properly configured, accessible, and functional.
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

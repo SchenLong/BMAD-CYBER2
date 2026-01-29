@@ -4,7 +4,7 @@
  * Executive security reporting and audit log analytics engine
  * 
  * @fileoverview Audit Analytics Dashboard for security metrics and threat intelligence
- * @author Security Infrastructure Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

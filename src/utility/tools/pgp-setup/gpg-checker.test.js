@@ -3,7 +3,7 @@
  * Epic 4, Story - GPG Availability Detection
  *
  * @module pgp-setup/gpg-checker.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

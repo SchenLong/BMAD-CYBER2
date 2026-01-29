@@ -5,7 +5,7 @@
  * Detects naming conflicts, resource overlaps, and other potential issues
  * during module installation.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

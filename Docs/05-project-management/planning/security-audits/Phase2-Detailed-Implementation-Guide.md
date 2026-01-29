@@ -3,7 +3,7 @@
 **Project:** BMAD-Security-Review
 **Phase:** 2 of 4
 **Duration:** Weeks 4-6
-**Author:** Bastion (Security Architect)
+**Author:** BlackUnicorn.Tech
 **Date:** 2026-01-13
 
 ---

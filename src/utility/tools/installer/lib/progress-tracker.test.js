@@ -7,7 +7,7 @@
  * and rollback execution.
  *
  * @module progress-tracker.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -1,7 +1,7 @@
 # BMAD-CYBER2 Message Consistency Validation Framework
 *Quality Control & Brand Consistency Enforcement*
 
-**Author:** Giuseppe (Communications Director)
+**Author:** BlackUnicorn.Tech
 **Epic:** Epic 3 - Documentation Architecture Enhancement
 **Story:** 3.1 - Documentation Architecture & User Experience
 **Deliverable:** Message Consistency Validation Procedures & Quality Control

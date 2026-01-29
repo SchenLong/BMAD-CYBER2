@@ -4,7 +4,7 @@
  * Provides real-time log streaming and alert correlation
  * 
  * @fileoverview SIEM Integration System for security log forwarding
- * @author Security Infrastructure Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

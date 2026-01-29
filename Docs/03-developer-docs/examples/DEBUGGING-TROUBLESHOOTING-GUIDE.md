@@ -3,7 +3,7 @@
 > **Comprehensive Developer Support for Common Issues**
 > **Version:** 1.0.0
 > **Last Updated:** January 24, 2026
-> **Author:** Amelia, The Developer
+> **Author:** BlackUnicorn.Tech
 
 ---
 
@@ -2269,4 +2269,4 @@ Before contacting support, gather:
 
 **Last Updated:** January 24, 2026
 **Version:** 1.0.0
-**Author:** Amelia, The Developer
+**Author:** BlackUnicorn.Tech

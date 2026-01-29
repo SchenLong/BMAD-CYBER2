@@ -3,7 +3,7 @@
  * Epic 3, Story 4 - Interactive Model Selection
  *
  * @module llm-setup/model-selection-ui.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -6,7 +6,7 @@
  * by probing their standard API endpoints.
  *
  * @module llm-setup/local-detector
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -7,7 +7,7 @@
  * progressively more comprehensive security configurations.
  *
  * @module tier-definitions
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

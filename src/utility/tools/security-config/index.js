@@ -14,7 +14,7 @@
  *   npm run security:config --tier standard  - Apply tier without prompts
  *
  * @module security-config/index
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

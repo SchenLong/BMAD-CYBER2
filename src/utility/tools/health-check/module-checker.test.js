@@ -7,7 +7,7 @@
  * directory structures, agents, and workflows.
  *
  * @module module-checker.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

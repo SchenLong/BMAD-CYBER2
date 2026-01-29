@@ -7,7 +7,7 @@
  * and various execution modes.
  *
  * @module pgp-setup/index.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -1,7 +1,7 @@
 # BMAD Package Registry System
 
 **Epic 3: Story 3.3 - Package Registry System**
-**Author:** Morgan (Module Builder)
+**Author:** BlackUnicorn.Tech
 **Version:** 1.0.0
 
 ## Overview

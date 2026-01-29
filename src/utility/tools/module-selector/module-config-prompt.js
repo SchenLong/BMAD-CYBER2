@@ -7,7 +7,7 @@
  * prompts users for configuration values.
  *
  * @module module-config-prompt
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

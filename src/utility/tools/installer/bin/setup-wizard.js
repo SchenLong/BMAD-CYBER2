@@ -12,7 +12,7 @@
  *   npm run setup -- --skip-wizard  - Skip the wizard entirely
  *
  * @module installer/bin/setup-wizard
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

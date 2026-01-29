@@ -5,7 +5,7 @@
  * Provides comprehensive logging for installation operations with
  * multiple output formats and detailed error tracking.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

@@ -7,7 +7,7 @@
  * under _bmad/_config/modules/{moduleCode}.yaml
  *
  * @module module-config-persistence
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

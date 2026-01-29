@@ -6,7 +6,7 @@
  * Automated packaging of BMAD specialized team modules for distribution.
  * Converts source MD agents to bmad-builder format with YAML agents.
  *
- * Author: Morgan (Module Builder)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

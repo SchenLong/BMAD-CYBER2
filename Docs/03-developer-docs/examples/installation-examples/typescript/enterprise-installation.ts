@@ -9,7 +9,7 @@
  * - Rollback and conflict resolution
  * - Webhook notifications for external systems
  *
- * @author Amelia, The Developer
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

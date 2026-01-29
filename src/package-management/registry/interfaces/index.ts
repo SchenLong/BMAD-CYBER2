@@ -3,7 +3,7 @@
  * Central export point for all package management interface definitions
  * Provides organized access to type definitions, interfaces, and abstractions
  *
- * @author Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.1

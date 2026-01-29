@@ -6,7 +6,7 @@
  * Reports connection status, response times, and fallback availability.
  *
  * @module health-check/llm-checker
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -6,7 +6,7 @@
  * Uses atomic write pattern (temp file + rename) for safe file operations.
  *
  * @module security-writer
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

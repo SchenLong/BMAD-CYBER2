@@ -83,12 +83,12 @@
     "architecture": "arm64",
     "nodeVersion": "v25.2.1",
     "totalMemory": 65536,
-    "availableMemory": 734,
+    "availableMemory": 530,
     "cpuCores": 24,
     "loadAverage": [
-      3.54296875,
-      3.68505859375,
-      3.3173828125
+      4.92236328125,
+      3.8740234375,
+      3.46923828125
     ],
     "performanceIndex": 100,
     "bottlenecks": []

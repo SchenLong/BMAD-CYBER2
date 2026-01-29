@@ -3,7 +3,7 @@
  * Advanced conflict prevention system with predictive analytics and proactive measures
  * Enterprise-grade preventive conflict management with machine learning insights
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.6

@@ -10,7 +10,7 @@
  * - Contract testing for API compatibility
  * - Chaos engineering for resilience
  *
- * @author Amelia, The Developer
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

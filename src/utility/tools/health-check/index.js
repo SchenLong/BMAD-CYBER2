@@ -8,7 +8,7 @@
  * Flags: --json for machine-readable output
  *
  * @module health-check/index
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

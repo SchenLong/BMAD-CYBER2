@@ -3,7 +3,7 @@
  * Epic 4 - Installation Progress Visualization
  *
  * @module installer/lib/progress-display.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

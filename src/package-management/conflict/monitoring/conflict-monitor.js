@@ -3,7 +3,7 @@
  * Advanced monitoring system for real-time conflict detection and alerting
  * Enterprise-grade monitoring with comprehensive analytics and reporting
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.6

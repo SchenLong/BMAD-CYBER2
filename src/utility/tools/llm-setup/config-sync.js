@@ -7,7 +7,7 @@
  * - .claude/llm-provider.txt (Claude Code CLI)
  *
  * @module llm-setup/config-sync
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

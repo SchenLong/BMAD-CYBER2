@@ -11,7 +11,7 @@
  * - Performance monitoring during rollback
  * - Integration with security and audit systems
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 2.3.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.3

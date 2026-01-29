@@ -1,7 +1,7 @@
 # BMAD-CYBER2 Strategic Messaging Hierarchy
 *Complete Audience-Specific Communication Framework*
 
-**Author:** Giuseppe (Communications Director)
+**Author:** BlackUnicorn.Tech
 **Epic:** Epic 3 - Documentation Architecture Enhancement
 **Story:** 3.1 - Documentation Architecture & User Experience
 **Deliverable:** Strategic Communication Hierarchy for Multi-Audience Documentation

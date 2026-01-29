@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-01-29T16:38:05.353Z",
+  "timestamp": "2026-01-29T16:59:55.928Z",
   "system": {
     "platform": "darwin",
     "architecture": "arm64",
     "nodeVersion": "v25.2.1",
     "totalMemory": 65536,
-    "availableMemory": 734,
+    "availableMemory": 530,
     "cpuCores": 24
   },
   "testResults": {
     "coreModuleLoad": {
-      "duration": 0.0681250000000091,
+      "duration": 0.06899999999995998,
       "threshold": 1000,
       "passed": true
     },
@@ -44,54 +44,54 @@
       "passed": true
     },
     "fileSystemPerformance": {
-      "sequentialTime": 8.58120800000006,
-      "concurrentTime": 3.211999999999989,
-      "efficiency": 2.6716089663761178,
+      "sequentialTime": 7.483541999999943,
+      "concurrentTime": 2.7540840000000344,
+      "efficiency": 2.717252632817245,
       "threshold": 0.8,
       "passed": true
     },
     "crossModuleCommunication": {
       "core": {
-        "duration": 0.1499589999999671,
+        "duration": 0.11070899999992889,
         "passed": true
       },
       "intel-team": {
-        "duration": 0.12374999999997272,
+        "duration": 0.11079100000006292,
         "passed": true
       },
       "legal-team": {
-        "duration": 0.13154099999997015,
+        "duration": 0.1295830000000251,
         "passed": true
       },
       "strategy-team": {
-        "duration": 0.10295800000005784,
+        "duration": 0.0987920000000031,
         "passed": true
       },
       "cybersec-team": {
-        "duration": 0.10237499999993815,
+        "duration": 0.09704099999999016,
         "passed": true
       }
     },
     "scalability": {
       "1": {
-        "duration": 0.06749999999999545,
-        "throughput": 14815,
+        "duration": 0.06491699999992306,
+        "throughput": 15404,
         "efficiency": 1
       },
       "5": {
-        "duration": 0.25604199999997945,
-        "throughput": 19528,
-        "efficiency": 1.3181431171448603
+        "duration": 0.1946659999999838,
+        "throughput": 25685,
+        "efficiency": 1.6673944088831245
       },
       "10": {
-        "duration": 0.4765419999999949,
-        "throughput": 20985,
-        "efficiency": 1.4164543733814894
+        "duration": 0.37887499999999363,
+        "throughput": 26394,
+        "efficiency": 1.7134147146136365
       },
       "25": {
-        "duration": 1.062082999999916,
-        "throughput": 23539,
-        "efficiency": 1.5888588744947616
+        "duration": 0.9374589999999898,
+        "throughput": 26668,
+        "efficiency": 1.7311957109570597
       }
     }
   }

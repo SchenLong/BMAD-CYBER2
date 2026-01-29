@@ -6,7 +6,7 @@
  * Uses config-sync to detect drift and ensure atomic writes.
  *
  * @module llm-setup/provider-config
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -10,7 +10,7 @@
  * - Winston's dependency management system
  * - Morgan's package registry system
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

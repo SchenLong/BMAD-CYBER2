@@ -6,7 +6,7 @@
  * Validates URL format, collects model name and API key.
  *
  * @module llm-setup/custom-endpoint-ui
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

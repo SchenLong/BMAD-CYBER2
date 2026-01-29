@@ -7,7 +7,7 @@
  * for filtering, sorting, and applying recommendations.
  *
  * @module role-recommendations
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

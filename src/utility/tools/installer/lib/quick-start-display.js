@@ -6,7 +6,7 @@
  * including module summary, security features, commands, and documentation links.
  *
  * @module installer/lib/quick-start-display
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

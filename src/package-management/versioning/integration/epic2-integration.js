@@ -6,7 +6,7 @@
  * with existing Epic 2 components (security, dependency resolution, installation orchestration).
  *
  * @version 2.4.0
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @license MIT
  * @security OWASP A+ Compliant
  */

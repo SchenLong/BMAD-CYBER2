@@ -5,7 +5,7 @@
  * Converts distributed YAML packages to BMB-compliant MD agents in target BMAD installations.
  * Handles dependency validation, conflict resolution, and rollback capabilities.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

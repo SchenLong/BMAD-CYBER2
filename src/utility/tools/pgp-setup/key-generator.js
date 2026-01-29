@@ -16,7 +16,7 @@
  * - Displays key fingerprint on success
  *
  * @module pgp-setup/key-generator
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

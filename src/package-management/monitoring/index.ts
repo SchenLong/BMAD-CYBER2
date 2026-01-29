@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - MONITORING SYSTEM INTEGRATION
  * Comprehensive health monitoring integration with existing Epic 2 components
  *
- * @author Health Monitoring Integration Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.5

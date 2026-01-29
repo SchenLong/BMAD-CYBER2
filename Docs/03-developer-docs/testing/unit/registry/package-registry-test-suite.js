@@ -5,7 +5,7 @@
  * Comprehensive test suite for the package registry system
  * including unit tests, integration tests, and end-to-end scenarios.
  *
- * @author Morgan (Module Builder)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

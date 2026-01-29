@@ -5,7 +5,7 @@
  * Comprehensive validation system for BMAD module configurations,
  * ensuring compliance, security, and structural integrity.
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

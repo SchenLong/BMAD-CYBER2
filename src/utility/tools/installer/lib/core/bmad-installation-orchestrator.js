@@ -10,7 +10,7 @@
  * - Dependency Manager (Winston)
  * - Package Registry (Morgan)
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -3,7 +3,7 @@
  * Advanced conflict resolution system with multiple resolution strategies
  * Enterprise-grade automated conflict resolution with policy-based decision making
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.6

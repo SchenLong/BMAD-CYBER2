@@ -3,7 +3,7 @@
  * Epic 3, Story 1 - Local Provider Auto-Detection
  *
  * @module llm-setup/local-detector.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 
