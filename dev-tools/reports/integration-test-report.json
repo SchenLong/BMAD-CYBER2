@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-28T11:24:08.323Z",
+  "timestamp": "2026-01-29T07:41:48.199Z",
   "testType": "integration-validation",
   "targetCoverage": 90,
   "modules": [
@@ -88,51 +88,51 @@
       "intel-team-to-legal-team": {
         "moduleA": "intel-team",
         "moduleB": "legal-team",
-        "duration": 13,
-        "success": false,
-        "passed": false
+        "duration": 6,
+        "success": true,
+        "passed": true
       },
       "intel-team-to-strategy-team": {
         "moduleA": "intel-team",
         "moduleB": "strategy-team",
-        "duration": 7,
-        "success": false,
-        "passed": false
+        "duration": 1,
+        "success": true,
+        "passed": true
       },
       "intel-team-to-cybersec-team": {
         "moduleA": "intel-team",
         "moduleB": "cybersec-team",
-        "duration": 26,
-        "success": false,
-        "passed": false
+        "duration": 1,
+        "success": true,
+        "passed": true
       },
       "legal-team-to-strategy-team": {
         "moduleA": "legal-team",
         "moduleB": "strategy-team",
-        "duration": 12,
-        "success": false,
-        "passed": false
+        "duration": 1,
+        "success": true,
+        "passed": true
       },
       "legal-team-to-cybersec-team": {
         "moduleA": "legal-team",
         "moduleB": "cybersec-team",
-        "duration": 11,
-        "success": false,
-        "passed": false
+        "duration": 1,
+        "success": true,
+        "passed": true
       },
       "strategy-team-to-cybersec-team": {
         "moduleA": "strategy-team",
         "moduleB": "cybersec-team",
-        "duration": 15,
-        "success": false,
-        "passed": false
+        "duration": 1,
+        "success": true,
+        "passed": true
       }
     },
     "workflowIntegration": {
       "intel-team": {
         "totalWorkflows": 5,
-        "successfulWorkflows": 5,
-        "integrationScore": 100,
+        "successfulWorkflows": 4,
+        "integrationScore": 80,
         "passed": true
       },
       "legal-team": {
@@ -143,8 +143,8 @@
       },
       "strategy-team": {
         "totalWorkflows": 5,
-        "successfulWorkflows": 5,
-        "integrationScore": 100,
+        "successfulWorkflows": 4,
+        "integrationScore": 80,
         "passed": true
       },
       "cybersec-team": {
@@ -190,23 +190,23 @@
       "invalid-input": {
         "scenario": "invalid-input",
         "handledGracefully": true,
-        "recoveryTime": 18.8451040933435,
+        "recoveryTime": 244.30068219002638,
         "errorMessage": "Handled invalid-input successfully"
       },
       "module-unavailable": {
         "scenario": "module-unavailable",
         "handledGracefully": true,
-        "recoveryTime": 129.72804072742872,
+        "recoveryTime": 168.07474299810337,
         "errorMessage": "Handled module-unavailable successfully"
       },
       "timeout": {
         "scenario": "timeout",
         "handledGracefully": true,
-        "recoveryTime": 338.42855354790106,
+        "recoveryTime": 125.2997638445646,
         "errorMessage": "Handled timeout successfully"
       }
     }
   },
-  "overallScore": 74,
-  "passed": false
+  "overallScore": 93,
+  "passed": true
 }
