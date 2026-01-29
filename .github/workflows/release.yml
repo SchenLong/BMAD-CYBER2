@@ -1,0 +1,140 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for changelog
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Get version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Create version.json
+        run: |
+          mkdir -p _bmad
+          echo "{\"version\": \"${{ steps.version.outputs.VERSION }}\", \"buildDate\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > _bmad/version.json
+
+      - name: Create tarball
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+
+          # Create a staging directory
+          STAGING_DIR="bmad-cyber-${VERSION}"
+          mkdir -p "${STAGING_DIR}"
+
+          # Copy included files/directories
+          # Core framework
+          if [ -d "_bmad" ]; then
+            cp -r _bmad "${STAGING_DIR}/"
+          fi
+
+          # Claude configuration
+          if [ -d ".claude" ]; then
+            cp -r .claude "${STAGING_DIR}/"
+          fi
+
+          # Utility tools
+          if [ -d "src/utility/tools" ]; then
+            mkdir -p "${STAGING_DIR}/src/utility"
+            cp -r src/utility/tools "${STAGING_DIR}/src/utility/"
+          fi
+
+          # Root files
+          [ -f "CLAUDE.md" ] && cp CLAUDE.md "${STAGING_DIR}/"
+          [ -f "package.json" ] && cp package.json "${STAGING_DIR}/"
+          [ -f "tsconfig.json" ] && cp tsconfig.json "${STAGING_DIR}/"
+          [ -f "README.md" ] && cp README.md "${STAGING_DIR}/"
+
+          # Remove excluded patterns from staging
+          find "${STAGING_DIR}" -name "node_modules" -type d -exec rm -rf {} + 2>/dev/null || true
+          find "${STAGING_DIR}" -name ".git" -type d -exec rm -rf {} + 2>/dev/null || true
+          find "${STAGING_DIR}" -name ".github" -type d -exec rm -rf {} + 2>/dev/null || true
+          find "${STAGING_DIR}" -name "*.test.js" -delete 2>/dev/null || true
+          find "${STAGING_DIR}" -name "*.test.ts" -delete 2>/dev/null || true
+          find "${STAGING_DIR}" -name "*.spec.js" -delete 2>/dev/null || true
+          find "${STAGING_DIR}" -name "*.spec.ts" -delete 2>/dev/null || true
+          find "${STAGING_DIR}" -name "coverage" -type d -exec rm -rf {} + 2>/dev/null || true
+          find "${STAGING_DIR}" -name ".nyc_output" -type d -exec rm -rf {} + 2>/dev/null || true
+          find "${STAGING_DIR}" -name "__tests__" -type d -exec rm -rf {} + 2>/dev/null || true
+          find "${STAGING_DIR}" -name ".env" -delete 2>/dev/null || true
+          find "${STAGING_DIR}" -name ".env.local" -delete 2>/dev/null || true
+
+          # Create tarball from staging directory
+          tar -czvf "bmad-cyber-${VERSION}.tar.gz" "${STAGING_DIR}"
+
+          # Cleanup staging
+          rm -rf "${STAGING_DIR}"
+
+          echo "Created bmad-cyber-${VERSION}.tar.gz"
+          ls -la bmad-cyber-${VERSION}.tar.gz
+
+      - name: Generate checksum
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          sha256sum "bmad-cyber-${VERSION}.tar.gz" > "bmad-cyber-${VERSION}.tar.gz.sha256"
+          cat "bmad-cyber-${VERSION}.tar.gz.sha256"
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Get previous tag
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+
+          if [ -n "$PREV_TAG" ]; then
+            echo "Generating changelog from $PREV_TAG to ${{ steps.version.outputs.VERSION }}"
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" "$PREV_TAG"..HEAD)
+          else
+            echo "First release, using recent commits"
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" -10)
+          fi
+
+          # Save to file for multiline output
+          echo "$CHANGELOG" > CHANGELOG.txt
+          echo "changelog_file=CHANGELOG.txt" >> $GITHUB_OUTPUT
+
+      - name: Determine pre-release status
+        id: prerelease
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          if [[ "$VERSION" == *"-alpha"* ]] || [[ "$VERSION" == *"-beta"* ]] || [[ "$VERSION" == *"-rc"* ]]; then
+            echo "is_prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_prerelease=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
+          body_path: CHANGELOG.txt
+          prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify on success (optional)
+        if: success() && vars.DISCORD_WEBHOOK_URL != ''
+        run: |
+          curl -X POST "${{ vars.DISCORD_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"New BMAD-CYBER release: ${{ steps.version.outputs.VERSION }}\"}"
