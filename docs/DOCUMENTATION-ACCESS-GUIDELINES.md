@@ -15,15 +15,15 @@
 | **Public** | General platform information, user guides | All users | `/Docs/01-getting-started/`, `/Docs/02-user-guides/` |
 | **Technical** | Developer documentation, architecture | Developers, contributors | `/Docs/03-developer-docs/` |
 | **Operational** | System administration, deployment | System administrators | `/Docs/04-operations/` |
-| **Security** | Security features, compliance reports | Security teams, auditors | `/docs/security/` |
-| **Historical** | Testing logs, validation reports | Internal teams | `/docs/testing-reports/` |
+| **Security** | Security features, compliance reports | Security teams, auditors | `/Docs/security/` |
+| **Historical** | Testing logs, validation reports | Internal teams | `/Docs/testing-reports/` |
 
 ---
 
 ## 🎯 Documentation Navigation by User Type
 
 ### 🆕 New Users
-**Entry Point**: `/docs/README.md`
+**Entry Point**: `/Docs/README.md`
 **Recommended Path**:
 1. [Getting Started](01-getting-started/) - Installation and setup
 2. [User Guide](02-user-guides/) - Basic usage and workflows
@@ -47,11 +47,11 @@
 - [Extending BMAD](03-developer-docs/extending-bmad.md) - Custom development
 
 ### 🛡️ Security Teams
-**Entry Point**: `/docs/security/README.md`
+**Entry Point**: `/Docs/security/README.md`
 **Key Documents**:
-- [Security Features](docs/security/features/) - Security controls and validators
-- [Compliance Documentation](docs/security/compliance/) - Regulatory requirements
-- [Audit Reports](docs/security/audit-reports/) - Security assessments
+- [Security Features](Docs/security/features/) - Security controls and validators
+- [Compliance Documentation](Docs/security/compliance/) - Regulatory requirements
+- [Audit Reports](Docs/security/audit-reports/) - Security assessments
 - [Incident Response](04-operations/incident-response.md) - Emergency procedures
 
 ### 🔧 System Administrators
@@ -63,11 +63,11 @@
 - [Backup & Recovery](04-operations/backup-recovery.md) - Data protection
 
 ### 📊 Management & Auditors
-**Entry Point**: `/docs/README.md`
+**Entry Point**: `/Docs/README.md`
 **Key Documents**:
-- [Platform Overview](docs/README.md) - High-level capabilities
-- [Security Overview](docs/security/README.md) - Security posture
-- [Audit Reports](docs/security/audit-reports/) - Compliance validation
+- [Platform Overview](Docs/README.md) - High-level capabilities
+- [Security Overview](Docs/security/README.md) - Security posture
+- [Audit Reports](Docs/security/audit-reports/) - Compliance validation
 - [Operational Metrics](04-operations/README.md#performance-monitoring) - Performance data
 
 ---
