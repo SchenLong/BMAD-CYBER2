@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - SYSTEM METRICS COLLECTOR
  * Advanced system-level performance metrics collection
  *
- * @author System Metrics Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.5

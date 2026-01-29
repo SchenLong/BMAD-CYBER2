@@ -1,7 +1,7 @@
 /**
  * BMAD Installation Logger Module
  * Epic 5: Story 5.5 - Installation Logging System
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @version 2.0.0
  */
 

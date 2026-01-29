@@ -3,7 +3,7 @@
  * Enterprise-grade package registry system with tamper-evident security
  * Integrates with Epic 1 security infrastructure for OWASP A+ compliance
  *
- * @author Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.1
