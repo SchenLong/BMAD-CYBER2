@@ -3,7 +3,7 @@
  * Advanced analytics system for conflict trend analysis and business intelligence
  * Comprehensive reporting and insights for enterprise decision making
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.6

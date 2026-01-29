@@ -3,7 +3,7 @@
  * Epic 4 - Post-Install Health Check
  *
  * @module health-check/llm-checker.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

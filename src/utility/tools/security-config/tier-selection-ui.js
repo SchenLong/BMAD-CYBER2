@@ -6,7 +6,7 @@
  * Shows tier name, feature count, description, and handles default selection.
  *
  * @module tier-selection-ui
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

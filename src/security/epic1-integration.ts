@@ -3,7 +3,7 @@
  * Complete security framework integration and orchestration
  * Connects all 27 Epic 1 security components into unified system
  *
- * @author Security Integration Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

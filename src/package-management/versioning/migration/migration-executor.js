@@ -6,7 +6,7 @@
  * automated rollback, and comprehensive error recovery capabilities.
  *
  * @version 2.4.0
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @license MIT
  * @security OWASP A+ Compliant
  */

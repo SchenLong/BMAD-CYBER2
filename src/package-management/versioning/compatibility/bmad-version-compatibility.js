@@ -6,7 +6,7 @@
  * dependency conflict resolution, and intelligent compatibility matrix generation.
  *
  * @version 2.4.0
- * @author BMAD Development Team
+ * @author BlackUnicorn.Tech
  * @license MIT
  * @security OWASP A+ Compliant
  */

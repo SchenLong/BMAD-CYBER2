@@ -6,7 +6,7 @@
  * comprehensive health check results.
  *
  * @module health-check/summary-display.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

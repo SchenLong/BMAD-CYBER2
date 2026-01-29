@@ -17,81 +17,81 @@
       "results": {
         "concurrentUsers": {
           "userCount": 25,
-          "executionTime": 148.03062499999993,
-          "throughput": 168.88397248880096,
-          "memoryGrowth": 0.006948046734105777,
-          "success": 24,
-          "failures": 1,
+          "executionTime": 147.52254100000005,
+          "throughput": 169.46562762906854,
+          "memoryGrowth": 0.0068586364407471866,
+          "success": 25,
+          "failures": 0,
           "passed": true
         },
         "scalability": {
           "loadLevels": {
             "10": {
-              "executionTime": 5.765625,
-              "throughput": 1734.4173441734417,
+              "executionTime": 6.238292000000001,
+              "throughput": 1603.0028732223498,
               "efficiency": 1
             },
             "20": {
-              "executionTime": 5.3409580000000005,
-              "throughput": 3744.6465596621424,
-              "efficiency": 2.159022782055204
+              "executionTime": 6.320667000000071,
+              "throughput": 3164.2230163366894,
+              "efficiency": 1.9739347129029043
             },
             "30": {
-              "executionTime": 8.154333000000065,
-              "throughput": 3679.0256174232472,
-              "efficiency": 2.121188207545591
+              "executionTime": 7.736625000000004,
+              "throughput": 3877.6598322912105,
+              "efficiency": 2.4189974310503604
             },
             "50": {
-              "executionTime": 11.63737500000002,
-              "throughput": 4296.501573593694,
-              "efficiency": 2.4772016885251142
+              "executionTime": 8.87479200000007,
+              "throughput": 5633.934857290132,
+              "efficiency": 3.5146130748754176
             }
           },
-          "averageEfficiency": 1.9393531695314772,
+          "averageEfficiency": 2.226886304707171,
           "passed": true
         },
         "stressTest": {
           "results": [
             {
               "load": 50,
-              "executionTime": 2.428207999999927,
-              "memoryUsage": 21.21771240234375,
+              "executionTime": 2.391334000000029,
+              "memoryUsage": 21.488914489746094,
               "success": true
             },
             {
               "load": 75,
-              "executionTime": 2.6485420000000204,
-              "memoryUsage": 21.323410034179688,
+              "executionTime": 2.4896249999999327,
+              "memoryUsage": 21.592300415039062,
               "success": true
             },
             {
               "load": 100,
-              "executionTime": 1.8042500000000246,
-              "memoryUsage": 21.46326446533203,
+              "executionTime": 2.9347910000000184,
+              "memoryUsage": 21.728134155273438,
               "success": true
             },
             {
               "load": 125,
-              "executionTime": 3.436999999999898,
-              "memoryUsage": 21.6741943359375,
+              "executionTime": 3.4150000000000773,
+              "memoryUsage": 21.918212890625,
               "success": true
             },
             {
               "load": 150,
-              "executionTime": 3.4111670000000913,
-              "memoryUsage": 21.85346221923828,
+              "executionTime": 3.429875000000038,
+              "memoryUsage": 22.094985961914062,
               "success": true
             },
             {
               "load": 175,
-              "executionTime": 3.8121250000000373,
-              "memoryUsage": 22.04779052734375,
+              "executionTime": 3.665707999999995,
+              "memoryUsage": 22.294784545898438,
               "success": true
             },
             {
               "load": 200,
-              "executionTime": 3.864541999999915,
-              "memoryUsage": 22.254226684570312,
+              "executionTime": 3.8417499999999336,
+              "memoryUsage": 22.501197814941406,
               "success": true
             }
           ],
@@ -109,18 +109,18 @@
       "score": 100,
       "results": {
         "memoryAnalysis": {
-          "initialHeapMB": 22,
-          "finalHeapMB": 59,
-          "maxHeapMB": 388,
-          "heapGrowth": 1.6409377349463468,
+          "initialHeapMB": 23,
+          "finalHeapMB": 11,
+          "maxHeapMB": 480,
+          "heapGrowth": -0.5124919853839089,
           "snapshots": 10,
           "passed": true
         },
         "cpuAnalysis": {
-          "totalTimeSec": 0.001765583,
-          "cpuTimeSec": 0.003274,
-          "cpuUtilization": 185.43449953924568,
-          "efficiency": 0.5392739767868051,
+          "totalTimeSec": 0.001875833,
+          "cpuTimeSec": 0.003826,
+          "cpuUtilization": 203.96271949581867,
+          "efficiency": 0.4902856769472033,
           "passed": true
         },
         "gcAnalysis": {
@@ -138,24 +138,24 @@
       "results": {
         "responseTime": {
           "operationCount": 100,
-          "avgResponseTime": 49.58564133000001,
-          "p95ResponseTime": 83.05724999999984,
-          "maxResponseTime": 90.04416700000002,
-          "minResponseTime": 11.04425000000083,
+          "avgResponseTime": 46.64683663999999,
+          "p95ResponseTime": 87.08745799999997,
+          "maxResponseTime": 90.18304100000023,
+          "minResponseTime": 11.0459579999997,
           "passed": true
         },
         "latency": {
           "requestCount": 50,
-          "avgLatency": 20.652254100000064,
-          "maxLatency": 25.266625000000204,
-          "jitter": 2.796857680340709,
+          "avgLatency": 20.34629409999996,
+          "maxLatency": 25.062958000000435,
+          "jitter": 2.9024000151542038,
           "passed": true
         },
         "throughput": {
-          "operationCount": 1463,
-          "durationSec": 5.0013615840000005,
-          "throughputOPS": 292.520341796587,
-          "avgResponseTime": 3.4157453711551438,
+          "operationCount": 1460,
+          "durationSec": 5.0026775830000005,
+          "throughputOPS": 291.8437128471647,
+          "avgResponseTime": 3.425059691095911,
           "passed": true
         }
       },
@@ -169,56 +169,56 @@
         "baseline": {
           "metrics": {
             "dataProcessing": {
-              "avgTime": 3.809254099999998,
-              "variance": 2.8273888479598313,
-              "stdDev": 1.6814841206386195,
+              "avgTime": 4.583516699999928,
+              "variance": 1.8895508604510887,
+              "stdDev": 1.3746093483063064,
               "measurements": [
-                2.474292000000787,
-                5.110208000000057,
-                5.600833000000421,
-                4.948333000000275,
-                1.6029159999998228,
-                3.903667000000496,
-                6.663249999999607,
-                1.6951669999998558,
-                3.951999999999316,
-                2.141874999999345
+                5.978624999999738,
+                2.897167000000991,
+                5.2227920000004815,
+                4.803624999998647,
+                5.805332999998427,
+                4.873333999999886,
+                1.4807909999999538,
+                3.940500000000611,
+                4.849333000000115,
+                5.983667000000423
               ],
               "stability": true
             },
             "fileOperation": {
-              "avgTime": 14.262612500000069,
-              "variance": 22.337034640752837,
-              "stdDev": 4.726207215172948,
+              "avgTime": 11.767354000000159,
+              "variance": 22.848753736101788,
+              "stdDev": 4.780037001541075,
               "measurements": [
-                11.45783400000073,
-                17.8369160000002,
-                10.502124999999069,
-                19.136750000001484,
-                20.206874999999854,
-                5.844957999999679,
-                8.420874999999796,
-                19.080207999999402,
-                15.075749999999971,
-                15.063834000000497
+                5.7552080000004935,
+                6.792916000000332,
+                12.055083000001105,
+                7.939291999999114,
+                15.052499999999782,
+                13.046582999999373,
+                10.038625000001048,
+                19.04162499999984,
+                7.861417000000074,
+                20.090291000000434
               ],
               "stability": true
             },
             "computation": {
-              "avgTime": 1.3367667000002257,
-              "variance": 0.025848697718335516,
-              "stdDev": 0.16077530195379985,
+              "avgTime": 1.2641084999997474,
+              "variance": 0.17747898606678625,
+              "stdDev": 0.42128254897014933,
               "measurements": [
-                1.813916999999492,
-                1.3464170000006561,
-                1.2780000000002474,
-                1.2712499999997817,
-                1.267416000000594,
-                1.268500000000131,
-                1.2686250000006112,
-                1.263375000000451,
-                1.2943749999994907,
-                1.2957920000008016
+                2.0017079999997804,
+                1.4122500000012224,
+                1.3104589999984455,
+                1.2996669999993173,
+                0.16779200000019046,
+                1.29108400000041,
+                1.2844999999997526,
+                1.2832499999985885,
+                1.2988339999992604,
+                1.2915410000005068
               ],
               "stability": true
             }
@@ -228,59 +228,59 @@
         },
         "trendAnalysis": {
           "runs": 10,
-          "firstHalfAvg": 2.94117480000059,
-          "secondHalfAvg": 3.579142000000138,
-          "regressionRate": 0.21690897120409852,
+          "firstHalfAvg": 3.217300400000022,
+          "secondHalfAvg": 4.136333400000149,
+          "regressionRate": 0.28565346276030706,
           "trendData": [
             {
               "run": 1,
-              "time": 4.8052910000005795,
-              "timestamp": 1769704698258
+              "time": 1.4262089999992895,
+              "timestamp": 1769706008556
             },
             {
               "run": 2,
-              "time": 4.992291000000478,
-              "timestamp": 1769704698263
+              "time": 5.914999999999054,
+              "timestamp": 1769706008562
             },
             {
               "run": 3,
-              "time": 1.7133750000011787,
-              "timestamp": 1769704698265
+              "time": 2.426917000000685,
+              "timestamp": 1769706008564
             },
             {
               "run": 4,
-              "time": 1.4150420000005397,
-              "timestamp": 1769704698266
+              "time": 1.683958999999959,
+              "timestamp": 1769706008566
             },
             {
               "run": 5,
-              "time": 1.7798750000001746,
-              "timestamp": 1769704698268
+              "time": 4.634417000001122,
+              "timestamp": 1769706008570
             },
             {
               "run": 6,
-              "time": 4.855666999999812,
-              "timestamp": 1769704698273
+              "time": 3.6711669999986043,
+              "timestamp": 1769706008574
             },
             {
               "run": 7,
-              "time": 2.45245900000009,
-              "timestamp": 1769704698275
+              "time": 5.078125,
+              "timestamp": 1769706008579
             },
             {
               "run": 8,
-              "time": 1.3218749999996362,
-              "timestamp": 1769704698277
+              "time": 3.561542000001282,
+              "timestamp": 1769706008583
             },
             {
               "run": 9,
-              "time": 4.697292000000743,
-              "timestamp": 1769704698281
+              "time": 5.802541000000929,
+              "timestamp": 1769706008589
             },
             {
               "run": 10,
-              "time": 4.568417000000409,
-              "timestamp": 1769704698286
+              "time": 2.5682919999999285,
+              "timestamp": 1769706008591
             }
           ],
           "passed": true
@@ -293,7 +293,7 @@
               "time": 200,
               "threshold": 100,
               "severity": "warning",
-              "timestamp": 1769704698286
+              "timestamp": 1769706008591
             }
           ],
           "alertCount": 1,
@@ -308,12 +308,12 @@
     "architecture": "arm64",
     "nodeVersion": "v25.2.1",
     "totalMemory": 65536,
-    "availableMemory": 734,
+    "availableMemory": 530,
     "cpuCores": 24,
     "loadAverage": [
-      3.54296875,
-      3.68505859375,
-      3.3173828125
+      4.92236328125,
+      3.8740234375,
+      3.46923828125
     ]
   },
   "recommendations": [

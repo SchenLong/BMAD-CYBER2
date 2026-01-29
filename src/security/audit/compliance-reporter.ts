@@ -4,7 +4,7 @@
  * Regulatory audit trail generation and risk assessment
  * 
  * @fileoverview Compliance Reporter for automated regulatory reporting
- * @author Security Infrastructure Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

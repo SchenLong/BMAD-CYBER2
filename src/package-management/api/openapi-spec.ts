@@ -3,7 +3,7 @@
  * Comprehensive OpenAPI 3.0 specification for BMAD Package Registry API
  * Auto-generates documentation, validation schemas, and SDK specifications
  *
- * @author Epic 2 Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.7

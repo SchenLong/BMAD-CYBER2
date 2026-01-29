@@ -3,7 +3,7 @@
  * Comprehensive security integration between Package Management and Epic 1 Security Infrastructure
  * Ensures OWASP A+ compliance for all package operations with zero security regression
  *
- * @author Security Integration Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.1

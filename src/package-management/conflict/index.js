@@ -3,7 +3,7 @@
  * Main entry point for the conflict detection, resolution, and prevention system
  * Integrates all conflict management components with Epic 2 package management
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.6

@@ -3,7 +3,7 @@
  * Epic 3, Story 6 - Provider Connection Testing
  *
  * @module llm-setup/connection-tester.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

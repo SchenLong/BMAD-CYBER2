@@ -10,7 +10,7 @@
  * - Error conditions
  * - Basic installation flow
  *
- * @author Amelia, The Developer
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

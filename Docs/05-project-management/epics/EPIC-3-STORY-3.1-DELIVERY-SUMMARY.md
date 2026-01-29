@@ -1,7 +1,7 @@
 # BMAD Epic 3: Story 3.1 - Core Installation Framework
 ## Delivery Summary
 
-**Author:** Amelia (Developer)
+**Author:** BlackUnicorn.Tech
 **Epic:** Epic 3 - Module Distribution & Installation
 **Story:** 3.1 - Core Installation Framework
 **Story Points:** 21

@@ -6,7 +6,7 @@
  * checkboxes grouped by tier level.
  *
  * @module security-config/advanced-override
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -6,7 +6,7 @@
  * phase indicators, sub-step displays, and spinners.
  *
  * @module installer/lib/progress-display
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -6,7 +6,7 @@
  * BMAD installation wizard. Uses inquirer.js for interactive prompts.
  *
  * @module module-selection-ui
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -6,7 +6,7 @@
  * and creating security configurations.
  *
  * @module key-export.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -3,7 +3,7 @@
  * Enterprise API Gateway with rate limiting, caching, monitoring, and orchestration
  * Central entry point for all package management API operations
  *
- * @author Epic 2 Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.7

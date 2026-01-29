@@ -10,7 +10,7 @@
  * - Alerting and notification system
  * - Historical data analysis
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 2.3.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.3

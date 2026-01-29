@@ -1,7 +1,7 @@
 # BMAD-CYBER2 Communications Strategy Framework
 *EPIC 3, Story 3.1: Giuseppe's Strategic Communication Enhancement*
 
-**Author:** Giuseppe (Communications Director)
+**Author:** BlackUnicorn.Tech
 **Epic:** Epic 3 - Documentation Architecture Enhancement
 **Story:** 3.1 - Documentation Architecture & User Experience
 **Role:** Supporting Agent (Strategic Communications)

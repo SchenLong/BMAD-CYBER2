@@ -1,7 +1,7 @@
 # BMAD-CYBER2 Executive Value Proposition
 *C-Suite Messaging & Strategic Positioning Framework*
 
-**Author:** Giuseppe (Communications Director)
+**Author:** BlackUnicorn.Tech
 **Epic:** Epic 3 - Documentation Architecture Enhancement
 **Story:** 3.1 - Documentation Architecture & User Experience
 **Deliverable:** Executive Value Proposition Messaging & Key Talking Points

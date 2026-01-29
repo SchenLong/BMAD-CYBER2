@@ -3,7 +3,7 @@
  * Epic 3, Story 7 - Configuration File Writer
  *
  * @module llm-setup/provider-config.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - DASHBOARD MODULE EXPORTS
  * Unified exports for health monitoring dashboard system
  *
- * @author Health Dashboard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.5

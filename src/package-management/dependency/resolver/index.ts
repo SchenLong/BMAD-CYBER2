@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - DEPENDENCY RESOLVER EXPORTS
  * Central export point for dependency resolution components
  *
- * @author Dependency Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.2

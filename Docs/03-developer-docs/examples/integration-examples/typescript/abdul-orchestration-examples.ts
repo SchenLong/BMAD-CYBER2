@@ -10,7 +10,7 @@
  * - Cross-module workflow coordination
  * - Enterprise decision-making support
  *
- * @author Amelia, The Developer
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

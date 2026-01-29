@@ -3,7 +3,7 @@
  * Epic 3, Story 5 - Custom Endpoint Configuration
  *
  * @module llm-setup/custom-endpoint-ui.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

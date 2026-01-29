@@ -3,7 +3,7 @@
  * Epic 3, Story 8 - Main Orchestration
  *
  * @module llm-setup/index.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

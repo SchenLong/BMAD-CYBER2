@@ -6,7 +6,7 @@
  * Tests CI detection, argument parsing, and wizard orchestration.
  *
  * @module installer/bin/setup-wizard.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

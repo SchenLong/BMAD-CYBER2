@@ -3,7 +3,7 @@
  * Complete API system exports and initialization
  * Single entry point for all Epic 2 API components
  *
- * @author Epic 2 Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.7 (FINAL STORY)

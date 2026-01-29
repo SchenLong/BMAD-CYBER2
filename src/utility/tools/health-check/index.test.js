@@ -5,7 +5,7 @@
  * Tests the index.js entry point for running all health checks.
  *
  * @module health-check/index.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

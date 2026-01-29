@@ -6,7 +6,7 @@
  * ASCII banner, grouped sections, and recommendations.
  *
  * @module health-check/summary-display
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

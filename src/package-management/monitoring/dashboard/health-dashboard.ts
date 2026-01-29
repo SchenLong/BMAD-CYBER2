@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - INTERACTIVE HEALTH DASHBOARD
  * Real-time health monitoring dashboard with advanced visualizations
  *
- * @author Health Dashboard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.5

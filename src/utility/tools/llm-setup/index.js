@@ -14,7 +14,7 @@
  *   npm run llm:setup --provider  - Pre-select a provider
  *
  * @module llm-setup/index
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

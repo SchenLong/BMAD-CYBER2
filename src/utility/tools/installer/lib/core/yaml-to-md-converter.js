@@ -5,7 +5,7 @@
  * Converts distributed YAML agent and workflow packages back to BMB-compliant MD format
  * during installation in target BMAD installations.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

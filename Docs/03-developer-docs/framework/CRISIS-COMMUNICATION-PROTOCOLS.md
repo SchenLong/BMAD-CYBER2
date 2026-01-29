@@ -1,7 +1,7 @@
 # BMAD-CYBER2 Crisis Communication Protocols
 *Emergency Documentation & High-Pressure Communication Standards*
 
-**Author:** Giuseppe (Communications Director)
+**Author:** BlackUnicorn.Tech
 **Epic:** Epic 3 - Documentation Architecture Enhancement
 **Story:** 3.1 - Documentation Architecture & User Experience
 **Deliverable:** Crisis Communication Protocols for Emergency Operations

@@ -6,7 +6,7 @@
  * comprehensive quick start guide after installation.
  *
  * @module installer/lib/quick-start-display.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

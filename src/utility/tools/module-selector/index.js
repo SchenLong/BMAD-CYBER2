@@ -13,7 +13,7 @@
  *   npm run modules --current - Show current module selections only
  *
  * @module module-selector/index
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

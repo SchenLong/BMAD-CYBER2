@@ -6,7 +6,7 @@
  * the _bmad/_config/manifest.yaml file during the BMAD installation wizard.
  *
  * @module manifest-writer.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - PERFORMANCE METRICS COLLECTION SYSTEM
  * Advanced performance monitoring with real-time collection and analysis
  *
- * @author Performance Metrics Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.5

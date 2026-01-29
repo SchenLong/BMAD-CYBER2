@@ -3,7 +3,7 @@
  * Comprehensive RESTful API system for BMAD Package Management Platform
  * Complete integration layer connecting all Epic 2 components with Epic 1 security
  *
- * @author Epic 2 Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.7 (FINAL STORY)

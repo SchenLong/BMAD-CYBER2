@@ -3,7 +3,7 @@
 > **Fortune 500 Development Standards for BMAD Integration**
 > **Version:** 1.0.0
 > **Last Updated:** January 24, 2026
-> **Author:** Amelia, The Developer
+> **Author:** BlackUnicorn.Tech
 > **Compliance:** ISO 27001, SOX, GDPR, NIST Cybersecurity Framework
 
 ---
@@ -606,7 +606,7 @@ class BmadIntegrationError extends Error {
  *
  * @since 1.0.0
  * @version 2.1.0
- * @author Enterprise Integration Team
+ * @author BlackUnicorn.Tech
  *
  * @security
  * - All inputs are validated and sanitized
@@ -2510,5 +2510,5 @@ class EnterpriseLogger {
 **Document Status:** ✅ **COMPLETED**
 **Compliance:** ISO 27001, SOX, GDPR, NIST Cybersecurity Framework
 **Last Updated:** January 24, 2026
-**Author:** Amelia, The Developer
+**Author:** BlackUnicorn.Tech
 **Enterprise Grade:** Fortune 500 Standards

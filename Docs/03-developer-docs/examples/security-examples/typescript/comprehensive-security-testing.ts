@@ -9,7 +9,7 @@
  * - Compliance reporting (NIST, ISO 27001, SOX)
  * - Advanced threat detection and response
  *
- * @author Amelia, The Developer
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

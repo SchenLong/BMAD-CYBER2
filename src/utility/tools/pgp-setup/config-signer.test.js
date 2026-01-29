@@ -6,7 +6,7 @@
  * files with PGP keys and generating hash manifests.
  *
  * @module config-signer.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

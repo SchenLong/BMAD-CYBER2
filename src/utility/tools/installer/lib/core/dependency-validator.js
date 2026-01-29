@@ -5,7 +5,7 @@
  * Validates and resolves dependencies between BMAD modules.
  * Integrates with the installation validation logic and compatibility matrix.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

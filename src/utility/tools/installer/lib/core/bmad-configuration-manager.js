@@ -5,7 +5,7 @@
  * Handles advanced variable substitution, environment-specific configurations,
  * and configuration merging strategies for BMAD module installations.
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

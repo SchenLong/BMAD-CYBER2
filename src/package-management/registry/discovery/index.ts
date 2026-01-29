@@ -3,7 +3,7 @@
  * Central export point for all package discovery and recommendation systems
  * Provides intelligent package discovery, ML-powered recommendations, and advanced analytics
  *
- * @author Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.1

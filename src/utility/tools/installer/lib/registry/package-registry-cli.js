@@ -5,7 +5,7 @@
  * Command-line interface for managing the BMAD package registry,
  * providing administrators with tools to monitor and manage installed modules.
  *
- * @author Morgan (Module Builder)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -6,7 +6,7 @@
  * role-based module recommendations in the BMAD installation wizard.
  *
  * @module role-recommendations.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -6,7 +6,7 @@
  * user profile collection for use in token generation and signing.
  *
  * @module installer/lib/welcome-screen
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - PREDICTIVE ANALYTICS ENGINE
  * Advanced predictive analytics for health monitoring and proactive issue detection
  *
- * @author Predictive Analytics Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.5

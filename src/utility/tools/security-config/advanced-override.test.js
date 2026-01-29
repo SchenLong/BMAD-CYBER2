@@ -6,7 +6,7 @@
  * feature selection and customization.
  *
  * @module advanced-override.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

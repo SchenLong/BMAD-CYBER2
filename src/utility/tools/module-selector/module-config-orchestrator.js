@@ -6,7 +6,7 @@
  * Coordinates between prompt collection, directory creation, and config persistence.
  *
  * @module module-config-orchestrator
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

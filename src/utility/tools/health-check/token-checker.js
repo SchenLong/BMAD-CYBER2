@@ -6,7 +6,7 @@
  * encryption integrity, and expiration status.
  *
  * @module health-check/token-checker
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -372,4 +372,4 @@ cat $(trusted_path_generator)
 
 **Document Version:** 1.0
 **Last Updated:** 2026-01-16
-**Author:** Security Implementation Team
+**Author:** BlackUnicorn.Tech

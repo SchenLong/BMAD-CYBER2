@@ -3,7 +3,7 @@
  * Intelligent package discovery system with ML-enhanced search capabilities
  * Integrates with security infrastructure for safe package recommendations
  *
- * @author Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.1

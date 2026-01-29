@@ -7,7 +7,7 @@
  * Example CLI implementation showing how to use the installation framework
  * to install specialized team modules.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

@@ -7,7 +7,7 @@
  * manifest formats while adding new fields.
  *
  * @module manifest-writer
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

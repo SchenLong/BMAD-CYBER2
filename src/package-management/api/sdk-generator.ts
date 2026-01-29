@@ -3,7 +3,7 @@
  * Multi-language SDK generation system for BMAD Package Registry API
  * Generates client SDKs for TypeScript, JavaScript, Python, and Go
  *
- * @author Epic 2 Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.7

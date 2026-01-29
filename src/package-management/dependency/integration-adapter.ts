@@ -3,7 +3,7 @@
  * Ensures seamless integration between dependency resolution engine and existing systems
  * Bridges Epic 1 security infrastructure with Epic 2 package management
  *
- * @author Integration Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.2

@@ -3,7 +3,7 @@
  * Enterprise-grade dependency management system with advanced orchestration capabilities
  * Integrates with Epic 1 security infrastructure and package registry system
  *
- * @author BMAD Dependency Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.2

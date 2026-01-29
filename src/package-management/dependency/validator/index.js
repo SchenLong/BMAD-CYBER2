@@ -2,7 +2,7 @@
  * EPIC 2 PACKAGE MANAGEMENT - DEPENDENCY VALIDATOR EXPORTS
  * Central export point for dependency validation components
  *
- * @author Dependency Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.2

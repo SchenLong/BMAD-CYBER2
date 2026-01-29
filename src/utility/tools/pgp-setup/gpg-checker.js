@@ -6,7 +6,7 @@
  * lists existing keys, and provides installation instructions.
  *
  * @module pgp-setup/gpg-checker
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

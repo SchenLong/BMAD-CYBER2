@@ -7,7 +7,7 @@
  * for per-module configuration during the BMAD installation wizard.
  *
  * @module module-config-prompt.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

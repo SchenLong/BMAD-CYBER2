@@ -7,7 +7,7 @@
  * Creates detached signatures and a signed hash manifest.
  *
  * @module config-signer
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

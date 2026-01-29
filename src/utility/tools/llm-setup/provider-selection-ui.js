@@ -6,7 +6,7 @@
  * Groups: CLOUD PROVIDERS, LOCAL PROVIDERS, CUSTOM
  *
  * @module llm-setup/provider-selection-ui
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

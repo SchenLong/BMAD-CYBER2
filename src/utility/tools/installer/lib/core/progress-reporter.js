@@ -5,7 +5,7 @@
  * Provides real-time progress reporting for installation operations.
  * Tracks phases, substeps, and overall completion percentage.
  *
- * Author: Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

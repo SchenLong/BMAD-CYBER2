@@ -7,7 +7,7 @@
  * - Winston's dependency management system
  * - Specialized teams (cybersec, intel, legal, strategy)
  *
- * @author Morgan (Module Builder)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

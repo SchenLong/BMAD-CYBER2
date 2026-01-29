@@ -5,7 +5,7 @@
  * This file demonstrates how to use the complete installation system
  * for BMAD specialized teams.
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 

@@ -5,7 +5,7 @@
  * Clean, type-safe orchestrator implementing SOLID principles
  * and modern TypeScript patterns.
  *
- * @author Amelia (Dev) - Refactored from original implementation
+ * @author BlackUnicorn.Tech
  * @version 2.0.0
  */
 

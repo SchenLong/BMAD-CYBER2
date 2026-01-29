@@ -13,7 +13,7 @@
  * as a complete installation wizard flow.
  *
  * @module module-selection-integration.test
- * @author BMAD Installation Wizard Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  */
 
