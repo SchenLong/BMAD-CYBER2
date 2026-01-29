@@ -10,6 +10,8 @@
 [![Performance](https://img.shields.io/badge/startup-<1.5ms-brightgreen.svg)]()
 [![Teams](https://img.shields.io/badge/teams-4_specialized-teal.svg)]()
 [![Agents](https://img.shields.io/badge/agents-54_active-blue.svg)]()
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-4_workflows-blue.svg)](.github/workflows/)
+[![Tests](https://img.shields.io/badge/tests-232_suites-blue.svg)]()
 
 **Unified AI platform with Abdul Master Project Manager orchestrating specialized teams: Cybersecurity, Intelligence, Legal, and Strategy**
 
@@ -25,8 +27,9 @@ Get BMAD running in under 5 minutes:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/SchenLong/BMAD-CYBER2.git
-cd BMAD-CYBER2
+git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+cd BMAD-CYBERSEC
+git checkout BMAD-CYBEROPS-RP
 
 # 2. Verify integrity (recommended)
 ./_bmad/core/security/verify-integrity.sh
@@ -116,14 +119,15 @@ claude-code /agents/abdul
 ### Prerequisites
 - [Claude Code CLI](https://github.com/anthropics/claude-code) (Sonnet 4.5+ recommended)
 - Git for cloning
-- Node.js 18+ (for TypeScript framework components)
+- Node.js 18+ (for TypeScript framework components and security validators)
 
 ### Step-by-Step Installation
 
 #### 1. Clone Repository
 ```bash
-git clone https://github.com/SchenLong/BMAD-CYBER2.git
-cd BMAD-CYBER2
+git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+cd BMAD-CYBERSEC
+git checkout BMAD-CYBEROPS-RP
 ```
 
 #### 2. Verify Security (Recommended)
@@ -131,15 +135,18 @@ cd BMAD-CYBER2
 # Import signing key
 gpg --import _bmad/core/security/bmad-public-key.asc
 
-# Verify all files (679 agents/workflows/configs)
+# Verify all files
 ./_bmad/core/security/verify-integrity.sh
 ```
 
 #### 3. Install Framework Components
 ```bash
-# Install TypeScript framework (optional)
+# Install TypeScript framework and security validators
 npm install
 npm run build
+
+# Install security validators (recommended for production)
+cd .claude/validators-node && npm install && npm run build && cd ../..
 ```
 
 #### 4. Start with Abdul
@@ -233,11 +240,18 @@ vim _bmad/core/config.yaml
 - [Architecture Guide](docs/architecture/) - System design and components
 - [Security Reference](docs/UserGuide/Security/) - Comprehensive security documentation
 - [Developer Guide](docs/Developer/) - Contributing and extending the framework
+- [Security Validators](.claude/validators-node/) - Node.js security validation framework
 
 ### **Workflows**
 - [Workflow Directory](docs/WORKFLOWS.md) - All available workflows by team
 - [Workflow Creation](docs/UserGuide/Advanced/CUSTOM-WORKFLOW-CREATION.md) - Build custom workflows
 - [Workflow Best Practices](docs/UserGuide/Advanced/) - Design guidelines
+
+### **CI/CD & Testing**
+- [Continuous Testing](.github/workflows/bmad-continuous-testing.yml) - Automated test pipeline
+- [Extraction QA](.github/workflows/bmad-extraction-qa.yml) - Module extraction validation
+- [Quality Gate](.github/workflows/quality-gate.yml) - Production readiness checks
+- [Test Logs](docs/TestingLogs/) - Benchmark results, compliance reports, security audits
 
 ---
 
@@ -248,18 +262,29 @@ vim _bmad/core/config.yaml
 - **Production Certified**: 96.8% quality score across all components
 - **Zero-Trust Architecture**: Defense-in-depth with multi-layer security
 - **Audit Trail**: Tamper-evident logging with SHA256 hash chains
+- **Node.js Security Validators**: 139+ validation modules for jailbreak detection, prompt injection prevention, PII protection, and rate limiting
 
 ### **Performance & Scale**
 - **Sub-millisecond Startup**: <1.5ms initialization for enterprise workloads
 - **54 Active Agents**: Specialist teams covering cybersecurity, intelligence, legal, strategy
 - **64 Production Workflows**: Battle-tested automations for real-world operations
 - **Context Efficiency**: 8.75x token reduction with BMAD-CONCURA architecture
+- **232 Test Suites**: Comprehensive testing including performance benchmarks, compliance validation, and security audits
 
 ### **Enterprise Ready**
 - **ISO 27001 Compliance**: 100% compliance with enterprise security standards
 - **Multi-LLM Support**: Claude, OpenAI, Groq, Ollama, LM Studio, vLLM
 - **Zero-Downtime Updates**: Production deployment without service interruption
 - **Abdul Orchestration**: Master Project Manager coordinating all operations
+- **CI/CD Pipeline**: Automated quality gates, continuous testing, and extraction QA workflows
+
+### **New in This Release**
+- **Enterprise Security Testing Framework**: Comprehensive security monitoring with anomaly detection
+- **Release Readiness Validation**: Production deployment certification and testing
+- **Strategic Positioning Package**: Complete deployment automation with build orchestration
+- **Security Validators**: Full Node.js validator suite with audit logging, rate limiting, and recursion guards
+- **Package Management Tools**: Module selector, PGP signing setup, and security configuration utilities
+- **Sub-agent Permission Inheritance**: Fixed permission propagation for nested agent execution
 
 ---
 
@@ -272,30 +297,24 @@ vim _bmad/core/config.yaml
 - [Troubleshooting](docs/UserGuide/TROUBLESHOOTING.md) - Common issues and solutions
 - [Security Guide](docs/UserGuide/SECURITY-OVERVIEW.md) - Security best practices
 
-#### **Community Support**
-- [GitHub Issues](https://github.com/SchenLong/BMAD-CYBER2/issues) - Bug reports and feature requests
-- [Discussions](https://github.com/SchenLong/BMAD-CYBER2/discussions) - Community Q&A
-- [Security Issues](https://github.com/SchenLong/BMAD-CYBER2/security/advisories) - Security vulnerability reports
-
 ### **Contributing**
 - [Contributing Guide](CONTRIBUTING.md) - How to contribute to the project
 - [Development Setup](docs/Developer/) - Local development environment
 - [Code of Conduct](CODE_OF_CONDUCT.md) - Community guidelines
 
 ### **Professional Services**
-For enterprise deployments, custom integrations, or professional support, contact the BMAD team through the GitHub repository.
+For enterprise deployments, custom integrations, or professional support, contact blackunicorn.tech
 
 ---
 
 ## 📄 **License & Attribution**
 
-BMAD CYBERCOMMAND is licensed under the [MIT License](LICENSE).
+BMAD CYBER-COMMAND is licensed under the [MIT License](LICENSE).
 
 **Created with**:
 - Abdul (Master Project Manager) - Cross-module orchestration
-- BMAD Framework Team - Core infrastructure and specialized teams
-- Security-first design principles
-- Production deployment experience from enterprise customers
+- BMAD Method - Core infrastructure and specialized teams
+- Claude Code
 
 **Acknowledgments**:
 - Claude AI (Anthropic) - Core LLM capabilities
@@ -304,4 +323,14 @@ BMAD CYBERCOMMAND is licensed under the [MIT License](LICENSE).
 
 ---
 
-*Ready to transform your AI operations? [Get started](#-quick-start) or [choose your path](#-choose-your-path) based on your goals.*
+## 📋 **Changelog Highlights**
+
+### Integration-Prep Branch (Current)
+- **Sec and Perf Testing framework**: Enterprise Security Testing & Performance Framework
+- **Security Validators**: Complete Node.js validation suite (139+ modules)
+- **CI/CD**: 4 automated workflows for testing, QA, and quality gates
+- **Bug Fixes**: Sub-agent permission inheritance, STDIN hang resolution, performance testing
+
+---
+
+*Ready to transform your Cybersec operations? [Get started](#-quick-start) or [choose your path](#-choose-your-path) based on your goals.*

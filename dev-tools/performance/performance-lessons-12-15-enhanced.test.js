@@ -4,13 +4,14 @@
  * Target: 90%+ Performance category score
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-const { performance } = require('perf_hooks');
-const os = require('os');
+import { promises as fs } from 'fs';
+import path from 'path';
+import { performance } from 'perf_hooks';
+import os from 'os';
+import { fileURLToPath } from 'url';
 
-// Load test setup
-require('../config/test-setup.js');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 describe('Enhanced Performance Lessons 12-15: Optimized Validation', () => {
   let performanceResults = {};
