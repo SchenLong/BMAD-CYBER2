@@ -1,0 +1,42 @@
+# 🎖️ BMAD CYBERCOMMAND
+
+**Production-ready AI operations framework with security-first design**
+
+<div align="center">
+
+[![Production Ready](https://img.shields.io/badge/status-production-brightgreen.svg)]()
+[![Security Score](https://img.shields.io/badge/OWASP_AI-95%2F100-brightgreen.svg)](_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
+[![Quality Score](https://img.shields.io/badge/quality-96.8%25-brightgreen.svg)](Docs/stories/STORY-6.5-PRODUCTION-CERTIFICATION-REPORT.md)
+[![Performance](https://img.shields.io/badge/startup-<1.5ms-brightgreen.svg)]()
+[![Teams](https://img.shields.io/badge/teams-4_specialized-teal.svg)]()
+[![Agents](https://img.shields.io/badge/agents-54_active-blue.svg)]()
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-4_workflows-blue.svg)](.github/workflows/)
+[![Tests](https://img.shields.io/badge/tests-232_suites-blue.svg)]()
+
+**Unified AI platform with Abdul Master Project Manager orchestrating specialized teams: Cybersecurity, Intelligence, Legal, and Strategy**
+
+[Get Started](#-quick-start) • [Choose Your Path](#-choose-your-path) • [Documentation](Docs/)
+
+</div>
+
+---
+
+## 🚀 **Quick Start**
+
+Get BMAD running in under 5 minutes:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+cd BMAD-CYBERSEC
+git checkout BMAD-CYBEROPS-RP
+
+# 2. Verify integrity (recommended)
+./_bmad/core/security/verify-integrity.sh
+
+# 3. Start with Abdul (Master Project Manager)
+claude-code /agents/abdul
+```
+
+**Next:** [Choose your path](#-choose-your-path) based on what you want to accomplish.
+

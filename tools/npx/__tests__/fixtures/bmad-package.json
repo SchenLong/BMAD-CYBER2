@@ -1,0 +1,28 @@
+{
+  "name": "bmad-cyber-framework",
+  "version": "2.0.0",
+  "description": "BMAD-CYBER operations framework",
+  "type": "module",
+  "scripts": {
+    "bmad:setup": "node src/utility/tools/setup-wizard/index.js",
+    "bmad:modules": "node src/utility/tools/module-selector/index.js",
+    "bmad:security": "node src/utility/tools/security-config/index.js",
+    "bmad:llm": "node src/utility/tools/llm-setup/index.js",
+    "bmad:health": "node src/utility/tools/health-check/index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.0",
+    "zod": "^3.22.0",
+    "commander": "^12.0.0",
+    "ora": "^8.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
