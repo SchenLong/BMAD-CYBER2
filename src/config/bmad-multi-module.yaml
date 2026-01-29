@@ -293,8 +293,8 @@ permissions:
 
 # Metadata
 metadata:
-  author: "BMAD Development Team"
-  maintainers: ["Morgan (Module Builder)", "Amelia (Developer)", "Winston (Master Strategist)"]
+  author: "BlackUnicorn.Tech"
+  maintainers: ["BlackUnicorn.Tech"]
   license: "MIT"
   homepage: "https://github.com/bmad-code-org/BMAD-CYBERCOMMAND"
   bugs:

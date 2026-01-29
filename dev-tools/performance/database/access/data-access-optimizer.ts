@@ -2,7 +2,7 @@
  * BMAD CONCURA DATA ACCESS OPTIMIZER
  * Advanced data access optimization with CONCURA context-aware patterns
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

@@ -3,7 +3,7 @@
  * EPIC 5.2: Installation and Distribution Testing
  * Tests BMM + CyberSec team installation scenarios
  *
- * Test Author: Murat (Test Architect)
+ * Test Author: BlackUnicorn.Tech
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';

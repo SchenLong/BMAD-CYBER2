@@ -1,6 +1,6 @@
 # BMAD Specialized Teams - Version Compatibility Rules
 # Comprehensive specification for module version management
-# Author: Winston (System Architect)
+# Author: BlackUnicorn.Tech
 # Version: 1.0.0
 
 version: "1.0.0"
@@ -547,7 +547,7 @@ validation_schema:
 metadata:
   version: "1.0.0"
   created: "2025-01-23"
-  author: "Winston (System Architect)"
+  author: "BlackUnicorn.Tech"
   review_schedule: "quarterly"
   next_review: "2025-04-23"
   related_documents:

@@ -3,7 +3,7 @@
  * Advanced memory usage analysis and leak detection for BMAD infrastructure
  * Provides detailed memory profiling, garbage collection monitoring, and optimization insights
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

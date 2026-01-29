@@ -6,7 +6,7 @@
  * detects potential leaks, analyzes root causes, and provides automated prevention
  * strategies. Prevents memory-related performance degradation in CONCURA context.
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

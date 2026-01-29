@@ -2,7 +2,7 @@
  * BMAD CONCURA CONTEXT-AWARE CACHING SYSTEM
  * Intelligent context analysis and optimization for 60% performance improvement
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

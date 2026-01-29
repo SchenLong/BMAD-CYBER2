@@ -3,7 +3,7 @@
  * Advanced dependency validation with comprehensive security and compliance checks
  * Enhanced version of Python bmad-dependency-validator with enterprise-grade capabilities
  *
- * @author Dependency Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.2

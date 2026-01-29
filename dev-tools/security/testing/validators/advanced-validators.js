@@ -4,7 +4,7 @@
  *
  * @description Advanced security validators for enterprise-grade security compliance
  * @version 1.0.0
- * @author BMAD Security Team
+ * @author BlackUnicorn.Tech
  */
 
 const crypto = require('crypto');

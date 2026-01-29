@@ -5,7 +5,7 @@
 version: "2.1.0"
 framework_name: "BMAD-CYBER2-SECURITY-MONITOR"
 created: "2026-01-24T00:00:00Z"
-author: "Watchman (SOC-Analyst)"
+author: "BlackUnicorn.Tech"
 
 metadata:
   epic: "2"

@@ -4,7 +4,7 @@
  *
  * @description Integration test to verify all Epic 1 security testing components
  * @version 1.0.0
- * @author BMAD Security Team
+ * @author BlackUnicorn.Tech
  */
 
 // Note: Using dynamic imports for ES module compatibility

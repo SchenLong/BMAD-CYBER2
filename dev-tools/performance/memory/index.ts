@@ -6,7 +6,7 @@
  * leak detection, profiling, and analytics tools. Provides comprehensive memory
  * optimization capabilities for BMAD CONCURA context efficiency.
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  *

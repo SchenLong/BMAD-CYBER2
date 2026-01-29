@@ -1,6 +1,6 @@
 # BMAD Specialized Teams - Installation Validation Logic
 # Comprehensive specification for module installation validation and safety
-# Author: Winston (System Architect)
+# Author: BlackUnicorn.Tech
 # Version: 1.0.0
 
 version: "1.0.0"
@@ -859,7 +859,7 @@ maintenance:
 metadata:
   version: "1.0.0"
   created: "2025-01-23"
-  author: "Winston (System Architect)"
+  author: "BlackUnicorn.Tech"
 
   specification_dependencies:
     - "version-compatibility-rules.yaml v1.0.0"

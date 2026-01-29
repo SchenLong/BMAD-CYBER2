@@ -2,7 +2,7 @@
  * BMAD CONCURA MEMORY-OPTIMIZED CACHE MANAGEMENT
  * Advanced memory management with intelligent allocation and garbage collection optimization
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

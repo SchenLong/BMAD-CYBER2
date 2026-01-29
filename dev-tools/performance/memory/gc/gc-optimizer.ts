@@ -6,7 +6,7 @@
  * garbage collection behavior to minimize pause times and maximize throughput.
  * Provides automated GC tuning, pause prediction, and performance enhancement.
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

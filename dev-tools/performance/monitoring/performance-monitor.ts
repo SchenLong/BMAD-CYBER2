@@ -3,7 +3,7 @@
  * Real-time performance monitoring and alerting for BMAD infrastructure
  * Provides continuous monitoring, alerting, and dashboards for production systems
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

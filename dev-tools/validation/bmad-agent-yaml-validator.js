@@ -6,7 +6,7 @@
  * Validates agent YAML files against bmad-agent schema and ensures
  * proper conversion from MD to YAML format while preserving functionality.
  *
- * Author: Murat (Test Architect)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  * Epic: 4 - Packaging & Distribution Automation
  * Story: 4.3 - Quality Assurance for Distribution Packages

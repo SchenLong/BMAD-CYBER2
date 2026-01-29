@@ -6,7 +6,7 @@
  * Tests multiple installation scenarios, dependency resolution, configuration,
  * and runtime functionality across different environments and platforms.
  *
- * Author: Murat (Test Architect)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  * Epic: 4 - Packaging & Distribution Automation
  * Story: 4.3 - Quality Assurance for Distribution Packages

@@ -10,7 +10,7 @@
  * - Geographic routing optimization
  * - Protocol optimization (HTTP/2, HTTP/3)
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

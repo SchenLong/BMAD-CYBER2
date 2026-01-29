@@ -3,7 +3,7 @@
  * EPIC 5.2: CORRECTED CROSS-MODULE INTEGRATION TESTING
  * Comprehensive integration test suite for BMAD Cybercommand
  *
- * Test Author: Murat (Test Architect)
+ * Test Author: BlackUnicorn.Tech
  * Test Scope: Cross-module workflow validation and system integrity
  */
 

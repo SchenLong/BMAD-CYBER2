@@ -10,7 +10,7 @@
  * - Load balancing across connections
  * - Connection health monitoring
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

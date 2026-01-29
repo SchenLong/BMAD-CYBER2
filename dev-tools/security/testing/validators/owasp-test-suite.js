@@ -4,7 +4,7 @@
  *
  * @description Complete OWASP Top 10 validation test implementations
  * @version 1.0.0
- * @author BMAD Security Team
+ * @author BlackUnicorn.Tech
  */
 
 const { SecurityTestFramework } = require('../frameworks/security-test-framework');

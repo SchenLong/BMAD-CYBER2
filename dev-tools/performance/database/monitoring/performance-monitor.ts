@@ -2,7 +2,7 @@
  * BMAD CONCURA DATABASE PERFORMANCE MONITOR
  * Real-time database performance monitoring with intelligent analytics
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

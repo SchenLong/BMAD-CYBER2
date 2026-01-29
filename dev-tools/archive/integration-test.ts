@@ -8,7 +8,7 @@
  * - Epic 3.1-3.4 Performance systems (118.4% baseline)
  * - Full network optimization pipeline
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

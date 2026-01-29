@@ -2,7 +2,7 @@
  * BMAD CONCURA QUERY ANALYSIS ENGINE
  * Advanced query analysis with pattern detection and complexity assessment
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

@@ -2,7 +2,7 @@
  * BMAD CONCURA CACHING INTEGRATION TESTS
  * Comprehensive testing suite for Epic 3 Story 3.2 implementation
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

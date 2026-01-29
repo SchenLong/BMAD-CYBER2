@@ -3,7 +3,7 @@
  * Comprehensive integration test to verify all components work together
  * Tests dependency resolution, validation, management, and security integration
  *
- * @author Integration Test Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.2

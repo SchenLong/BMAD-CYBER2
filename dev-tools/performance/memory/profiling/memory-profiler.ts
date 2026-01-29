@@ -6,7 +6,7 @@
  * of memory usage patterns, object lifecycle, allocation tracking, and
  * performance optimization recommendations for CONCURA context efficiency.
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

@@ -6,7 +6,7 @@
  * memory usage patterns across BMAD components. Provides automated memory optimization,
  * leak detection, and performance enhancement for CONCURA context efficiency.
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

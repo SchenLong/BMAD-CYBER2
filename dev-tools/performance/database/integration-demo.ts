@@ -2,7 +2,7 @@
  * BMAD CONCURA DATABASE OPTIMIZATION INTEGRATION DEMO
  * Demonstration of Epic 3 Story 3.3 complete implementation
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */
