@@ -19,8 +19,7 @@ export default defineConfig({
       'dev-tools/reports/**',
       'dev-tools/coverage/**'
     ],
-    timeout: 300000, // 5 minutes for integration tests
-    testTimeout: 300000,
+    testTimeout: 300000, // 5 minutes for integration tests
     hookTimeout: 60000,
     teardownTimeout: 30000,
     coverage: {
@@ -39,7 +38,7 @@ export default defineConfig({
       ],
     },
     setupFiles: ['./dev-tools/config/test-setup.js'],
-    reporter: ['verbose', 'json'],
+    reporters: ['verbose', 'json'],
     outputFile: {
       json: './dev-tools/reports/integration-test-results.json'
     }
@@ -49,6 +48,8 @@ export default defineConfig({
       '@dev-tools': path.resolve(__dirname, '../../dev-tools'),
       '@framework': path.resolve(__dirname, '../../_bmad/framework'),
       '@validators': path.resolve(__dirname, '../../.claude/validators-node/src'),
+      '@bmad/validators': path.resolve(__dirname, '../../.claude/validators-node/src'),
+      '@bmad/framework': path.resolve(__dirname, '../../_bmad/framework'),
       '@bmad': path.resolve(__dirname, '../../_bmad'),
     },
   },

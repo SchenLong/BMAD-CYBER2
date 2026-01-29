@@ -147,7 +147,7 @@ jobs:
       - name: Run performance benchmarks
         run: |
           echo "⚡ Running performance tests and benchmarks"
-          npm run test:benchmarks
+          npm run test:performance
 
       - name: Run performance test suite
         run: |
