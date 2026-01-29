@@ -255,16 +255,16 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 
 | Control | Description | Location |
 |---------|-------------|----------|
-| **Prompt Injection Guard** | Multi-pattern detection with severity levels | `validators/prompt_injection_guard.py` |
-| **Jailbreak Detector** | Bypass attempt detection | `validators/jailbreak_detector.py` |
-| **PII Protector** | GDPR-compliant data protection | `validators/pii_protector.py` |
-| **Rate Limiter** | Sliding window algorithm | `validators/rate_limiter.py` |
-| **Supply Chain Verifier** | SHA256+GPG signing | `validators/supply_chain.py` |
-| **Plugin Permission Model** | Capability-based isolation | `validators/plugin_permissions.py` |
-| **Audit Logger** | Tamper-evident logging with SHA256 chains | `framework/audit/` |
+| **Prompt Injection Guard** | Multi-pattern detection with severity levels | `src/security/validators/` |
+| **Jailbreak Detector** | Bypass attempt detection | `src/security/validators/` |
+| **PII Protector** | GDPR-compliant data protection | `src/security/validators/` |
+| **Rate Limiter** | Sliding window algorithm | `src/security/validators/rate-limiter.js` |
+| **Supply Chain Verifier** | SHA256+GPG signing | `src/security/validators/` |
+| **Plugin Permission Model** | Capability-based isolation | `src/security/validators/` |
+| **Audit Logger** | Tamper-evident logging with SHA256 chains | `_bmad/framework/audit/` |
 
 **Integration Effort:** Medium-High
-**Dependencies:** TypeScript framework
+**Dependencies:** TypeScript/JavaScript framework
 **PR Priority:** HIGH
 
 ---
@@ -501,27 +501,37 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 
 ```
 src/
-├── cybersec-team/
-│   ├── agents/           # 15 security agents
-│   ├── workflows/        # 13 security workflows
-│   └── module.yaml
 ├── intel-team/
 │   ├── agents/           # 11 intelligence agents
 │   ├── workflows/        # 19 intel workflows
 │   └── module.yaml
+├── security/
+│   └── validators/       # Security validators (JS)
+├── utility/
+│   └── tools/            # Build and installer tools
+└── config/
+    └── dependencies.yaml
+
+_bmad/
+├── core/
+│   ├── agents/           # Core agents (Abdul, bmad-master)
+│   └── workflows/        # Core orchestration workflows
+├── cybersec-team/
+│   ├── agents/           # 15 security agents
+│   └── workflows/        # 13 security workflows
 ├── strategy-team/
 │   ├── agents/           # 14 strategy agents
-│   ├── workflows/        # 16 strategy workflows
-│   └── module.yaml
+│   └── workflows/        # 16 strategy workflows
 ├── legal-team/
 │   ├── agents/           # 13 legal agents
-│   ├── workflows/        # 7 legal workflows
-│   └── module.yaml
-├── framework/
-│   ├── audit/            # Tamper-evident logging
-│   ├── auth/             # Token-based auth
-│   └── validators/       # Validation pipeline
-└── validators-node/      # 139+ security validators
+│   └── workflows/        # 7 legal workflows
+├── bmm/
+│   └── workflows/        # BMM development workflows
+└── framework/
+    ├── audit/            # Tamper-evident logging (TS)
+    ├── auth/             # Token-based auth (TS)
+    ├── validators/       # Validation pipeline (TS)
+    └── hooks/            # Extension hooks (TS)
 ```
 
 ---
@@ -535,7 +545,8 @@ src/
 
 ### Breaking Changes
 - None anticipated for modular PR approach
-- Security validators may require Node.js 20+
+- Security validators require Node.js 18+ (Node.js 20+ recommended)
+- Framework components use TypeScript (compiled to JavaScript)
 
 ### Migration Path
 - Modules are additive (no existing functionality modified)
