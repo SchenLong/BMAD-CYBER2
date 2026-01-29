@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-24T20:32:15.248Z",
+  "timestamp": "2026-01-29T16:38:05.352Z",
   "epic": "PRD-SEC-EPIC-2",
   "phase": "Phase-2-Enhanced-Performance-Framework",
   "lead": "Enhanced-Performance-Lessons-Team",
@@ -11,11 +11,11 @@
       "results": {
         "concurrentUsers": {
           "userCount": 20,
-          "executionTime": 151.43008300000002,
-          "throughput": 132.07415332394686,
-          "memoryGrowth": 0.03367951555343536,
-          "success": 20,
-          "failures": 0,
+          "executionTime": 154.255083,
+          "throughput": 129.6553709027533,
+          "memoryGrowth": 0.006724054023056202,
+          "success": 19,
+          "failures": 1,
           "optimizations": [
             "pre-warming",
             "memory-stabilization",
@@ -26,27 +26,27 @@
         "scalability": {
           "loadLevels": {
             "5": {
-              "executionTime": 3.606625000000008,
-              "throughput": 1386.3376425328356,
+              "executionTime": 2.6800419999999576,
+              "throughput": 1865.6424041116068,
               "efficiency": 1
             },
             "10": {
-              "executionTime": 4.475165999999945,
-              "throughput": 2234.5539807909076,
-              "efficiency": 1.611839650194005
+              "executionTime": 2.623207999999977,
+              "throughput": 3812.1262210240625,
+              "efficiency": 2.043331676329122
             },
             "15": {
-              "executionTime": 6.382207999999991,
-              "throughput": 2350.2837889332372,
-              "efficiency": 1.6953184540522714
+              "executionTime": 2.814042000000086,
+              "throughput": 5330.410846746261,
+              "efficiency": 2.8571449893070633
             },
             "20": {
-              "executionTime": 8.602624999999989,
-              "throughput": 2324.8717687915055,
-              "efficiency": 1.6769881286235366
+              "executionTime": 3.0552079999999933,
+              "throughput": 6546.19914585195,
+              "efficiency": 3.508817730249415
             }
           },
-          "averageEfficiency": 1.4960365582174533,
+          "averageEfficiency": 2.3523235989714,
           "optimizations": [
             "data-size-optimization",
             "stabilization-pauses"
@@ -62,10 +62,10 @@
       "score": 100,
       "results": {
         "memoryAnalysis": {
-          "initialHeapMB": 26,
-          "finalHeapMB": 33,
-          "maxHeapMB": 33,
-          "heapGrowth": 0.24337544505053435,
+          "initialHeapMB": 16,
+          "finalHeapMB": 16,
+          "maxHeapMB": 18,
+          "heapGrowth": 0.01721488952647739,
           "snapshots": 3,
           "optimizations": [
             "double-gc",
@@ -75,11 +75,11 @@
           "passed": true
         },
         "cpuAnalysis": {
-          "totalTimeSec": 0.104751333,
-          "cpuTimeSec": 0.007713,
-          "cpuUtilization": 7.363152123324291,
+          "totalTimeSec": 0.100583458,
+          "cpuTimeSec": 0.1373,
+          "cpuUtilization": 100,
           "cores": 24,
-          "efficiency": 13.581140023337223,
+          "efficiency": 0.7325816314639475,
           "optimizations": [
             "pre-warming",
             "reduced-operations",
@@ -97,10 +97,10 @@
       "results": {
         "responseTime": {
           "operationCount": 30,
-          "avgResponseTime": 31.06525690000001,
-          "p95ResponseTime": 46.89666699999998,
-          "maxResponseTime": 47.968291000000136,
-          "minResponseTime": 10.071582999999919,
+          "avgResponseTime": 30.391991633333372,
+          "p95ResponseTime": 47.04641599999991,
+          "maxResponseTime": 48.093374999999924,
+          "minResponseTime": 9.061333000000104,
           "optimizations": [
             "pre-warming",
             "pacing",
@@ -109,10 +109,10 @@
           "passed": true
         },
         "throughput": {
-          "operationCount": 1701,
-          "durationSec": 2.500900459,
-          "throughputOPS": 680.1550193165845,
-          "avgResponseTime": 1.4570129223985855,
+          "operationCount": 1746,
+          "durationSec": 2.5017779579999995,
+          "throughputOPS": 697.9036626399122,
+          "avgResponseTime": 1.4190160406643755,
           "optimizations": [
             "micro-pauses",
             "optimized-duration",
@@ -131,15 +131,15 @@
         "baseline": {
           "metrics": {
             "dataProcessing": {
-              "avgTime": 2.401989749999757,
-              "variance": 0.00047293884319173074,
-              "stdDev": 0.021747157128961265,
-              "coefficientOfVariation": 0.009053809296631455,
+              "avgTime": 2.326312250000001,
+              "variance": 0.00004874317369307137,
+              "stdDev": 0.006981631162777891,
+              "coefficientOfVariation": 0.003001158233499346,
               "measurements": [
-                2.378458999999566,
-                2.383915999999772,
-                2.414249999999811,
-                2.431333999999879
+                2.3156249999992724,
+                2.3249580000001515,
+                2.3305410000002666,
+                2.334125000000313
               ],
               "outliers": 4,
               "stability": true,
@@ -150,15 +150,15 @@
               ]
             },
             "computation": {
-              "avgTime": 2.3560309999998026,
-              "variance": 0.05052609743855148,
-              "stdDev": 0.22478010908118956,
-              "coefficientOfVariation": 0.09540626124240657,
+              "avgTime": 1.187073250000367,
+              "variance": 0.000025943943686894154,
+              "stdDev": 0.005093519773878782,
+              "coefficientOfVariation": 0.004290821795434449,
               "measurements": [
-                2.0665829999998095,
-                2.2120829999994385,
-                2.5297920000002705,
-                2.615665999999692
+                1.179334000000381,
+                1.185750000000553,
+                1.1908750000002328,
+                1.1923340000003009
               ],
               "outliers": 4,
               "stability": true,
@@ -206,12 +206,12 @@
     "architecture": "arm64",
     "nodeVersion": "v25.2.1",
     "totalMemory": 65536,
-    "availableMemory": 874,
+    "availableMemory": 734,
     "cpuCores": 24,
     "loadAverage": [
-      3.31640625,
-      3.10595703125,
-      2.91455078125
+      3.54296875,
+      3.68505859375,
+      3.3173828125
     ]
   },
   "overallScore": 100,
