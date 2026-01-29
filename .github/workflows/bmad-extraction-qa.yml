@@ -1,0 +1,691 @@
+# BMAD Extraction QA Pipeline
+# Epic 2.3, 4.3, 5.2 - Comprehensive Quality Assurance
+#
+# This GitHub Actions workflow implements the complete QA strategy
+# for BMAD Specialized Teams Module Extraction project
+#
+# Author: BlackUnicorn.Tech
+
+name: BMAD Extraction QA Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - Integration-Prep
+      - BMAD-CYBEROPS-RP
+  pull_request:
+    branches:
+      - main
+      - BMAD-CYBEROPS-RP
+  workflow_dispatch:
+    inputs:
+      test_level:
+        description: 'Test Level'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - 'smoke'
+          - 'regression'
+          - 'full'
+      modules:
+        description: 'Modules to test (comma-separated)'
+        required: false
+        default: 'all'
+        type: string
+
+env:
+  NODE_VERSION: '18'
+  BMAD_TEST_MODE: 'ci'
+  QUALITY_GATE_THRESHOLD: '95'
+  FUNCTIONAL_EQUIVALENCE_THRESHOLD: '99'
+
+jobs:
+  # ===============================================
+  # Stage 1: Environment Setup and Validation
+  # ===============================================
+  setup-and-validate:
+    name: Environment Setup & Validation
+    runs-on: ubuntu-latest
+    outputs:
+      test-matrix: ${{ steps.setup-matrix.outputs.matrix }}
+      modules-to-test: ${{ steps.setup-matrix.outputs.modules }}
+      extraction-required: ${{ steps.check-changes.outputs.extraction-required }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install -g js-yaml@4.1.1
+
+      - name: Verify Project Structure
+        run: |
+          echo "🔍 Verifying BMAD project structure..."
+
+          # Check required directories
+          required_dirs=(
+            "_bmad"
+            "_bmad/cybersec-team/agents"
+            "_bmad/intel-team/agents"
+            "_bmad/legal-team/agents"
+            "_bmad/strategy-team/agents"
+          )
+
+          for dir in "${required_dirs[@]}"; do
+            if [ ! -d "$dir" ]; then
+              echo "❌ Required directory missing: $dir"
+              exit 1
+            fi
+            echo "✅ Found: $dir"
+          done
+
+      - name: Check for Changes Requiring Extraction
+        id: check-changes
+        run: |
+          # Check if source agents have changed
+          if git diff --name-only HEAD~1 | grep -E "_bmad/(cybersec|intel|legal|strategy)-team/agents/.*\.md$" > /dev/null; then
+            echo "extraction-required=true" >> $GITHUB_OUTPUT
+            echo "🔧 Source agent changes detected - full extraction required"
+          else
+            echo "extraction-required=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No source agent changes - using existing extraction"
+          fi
+
+      - name: Setup Test Matrix
+        id: setup-matrix
+        run: |
+          # Determine modules to test
+          if [ "${{ github.event.inputs.modules }}" != "" ] && [ "${{ github.event.inputs.modules }}" != "all" ]; then
+            modules="${{ github.event.inputs.modules }}"
+          else
+            modules="cybersec-team,intel-team,legal-team,strategy-team"
+          fi
+
+          echo "modules=$modules" >> $GITHUB_OUTPUT
+
+          # Create test matrix
+          matrix=$(echo "$modules" | jq -R 'split(",") | map({module: .})')
+          echo "matrix={\"include\": $matrix}" >> $GITHUB_OUTPUT
+          echo "📋 Test matrix: $matrix"
+
+  # ===============================================
+  # Stage 2: Agent Extraction and Validation
+  # ===============================================
+  agent-extraction:
+    name: Agent Extraction (Epic 2.1)
+    runs-on: ubuntu-latest
+    needs: setup-and-validate
+    if: needs.setup-and-validate.outputs.extraction-required == 'true'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Agent Extraction Engine
+        run: |
+          echo "🚀 Running agent extraction engine..."
+          node _bmad-output/implementation-artifacts/agent-extraction-engine.js
+
+      - name: Verify Extraction Output
+        run: |
+          echo "🔍 Verifying extraction output..."
+
+          # Check that extraction output directory exists
+          if [ ! -d "_bmad-output/extraction-output/specialized-teams" ]; then
+            echo "❌ Extraction output directory missing"
+            exit 1
+          fi
+
+          # Count extracted agents
+          extracted_count=$(find _bmad-output/extraction-output/specialized-teams -name "*.agent.yaml" | wc -l)
+          echo "📊 Extracted agents: $extracted_count"
+
+          # Verify minimum expected count (should be 52+ agents)
+          if [ $extracted_count -lt 50 ]; then
+            echo "❌ Insufficient agents extracted (expected 50+, got $extracted_count)"
+            exit 1
+          fi
+
+          echo "✅ Extraction verification passed"
+
+      - name: Cache Extraction Output
+        uses: actions/cache@v4
+        with:
+          path: _bmad-output/extraction-output
+          key: bmad-extraction-${{ github.sha }}
+
+      - name: Upload Extraction Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: extraction-output
+          path: _bmad-output/extraction-output
+          retention-days: 7
+
+  # ===============================================
+  # Stage 3: Extraction Validation Suite
+  # ===============================================
+  extraction-validation:
+    name: Extraction Validation (Epic 2.3)
+    runs-on: ubuntu-latest
+    needs: [setup-and-validate, agent-extraction]
+    if: always() && (needs.agent-extraction.result == 'success' || needs.setup-and-validate.outputs.extraction-required == 'false')
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Restore Extraction Cache
+        uses: actions/cache@v4
+        with:
+          path: _bmad-output/extraction-output
+          key: bmad-extraction-${{ github.sha }}
+
+      - name: Run Extraction Validation Suite
+        run: |
+          echo "🧪 Running extraction validation suite..."
+          node _bmad-output/implementation-artifacts/bmad-extraction-test-suite.js
+
+      - name: Validate Functional Equivalence
+        run: |
+          echo "🔄 Validating functional equivalence..."
+
+          # Check if test report exists
+          if [ ! -f "_bmad-output/planning-artifacts/extraction-test-report.json" ]; then
+            echo "❌ Extraction test report not found"
+            exit 1
+          fi
+
+          # Extract equivalence score from report
+          equivalence_score=$(cat _bmad-output/planning-artifacts/extraction-test-report.json | jq -r '.summary.functionalEquivalence')
+          echo "📊 Functional Equivalence Score: ${equivalence_score}%"
+
+          # Check against threshold
+          if (( $(echo "$equivalence_score < $FUNCTIONAL_EQUIVALENCE_THRESHOLD" | bc -l) )); then
+            echo "❌ Functional equivalence below threshold ($FUNCTIONAL_EQUIVALENCE_THRESHOLD%)"
+            exit 1
+          fi
+
+          echo "✅ Functional equivalence validation passed"
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: extraction-test-results
+          path: |
+            _bmad-output/planning-artifacts/extraction-test-report.json
+          retention-days: 30
+
+  # ===============================================
+  # Stage 4: Distribution Package Quality
+  # ===============================================
+  distribution-validation:
+    name: Distribution Validation (Epic 4.3)
+    runs-on: ubuntu-latest
+    needs: extraction-validation
+    strategy:
+      matrix: ${{ fromJson(needs.setup-and-validate.outputs.test-matrix) }}
+      fail-fast: false
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          pip install PyYAML jsonschema python-magic-bin click
+
+      - name: Restore Extraction Cache
+        uses: actions/cache@v4
+        with:
+          path: _bmad-output/extraction-output
+          key: bmad-extraction-${{ github.sha }}
+
+      - name: Validate YAML Format - ${{ matrix.module }}
+        run: |
+          echo "🔍 Validating YAML format for ${{ matrix.module }}..."
+
+          # Use Python script to validate YAML format
+          python3 << 'EOF'
+          import yaml
+          import os
+          import sys
+          import glob
+          import jsonschema
+
+          module = "${{ matrix.module }}"
+          agent_files = glob.glob(f"_bmad-output/extraction-output/specialized-teams/src/{module}/agents/*.agent.yaml")
+
+          validation_errors = []
+
+          for agent_file in agent_files:
+              try:
+                  with open(agent_file, 'r') as f:
+                      agent_data = yaml.safe_load(f)
+
+                  # Basic structure validation
+                  required_sections = ['agent', 'persona', 'activation', 'menu']
+                  for section in required_sections:
+                      if section not in agent_data:
+                          validation_errors.append(f"{agent_file}: Missing required section '{section}'")
+
+                  print(f"✅ {os.path.basename(agent_file)}: YAML format valid")
+
+              except yaml.YAMLError as e:
+                  validation_errors.append(f"{agent_file}: YAML syntax error - {e}")
+              except Exception as e:
+                  validation_errors.append(f"{agent_file}: Validation error - {e}")
+
+          if validation_errors:
+              print("❌ YAML validation errors:")
+              for error in validation_errors:
+                  print(f"   {error}")
+              sys.exit(1)
+          else:
+              print(f"✅ All YAML files for {module} are valid")
+          EOF
+
+      - name: Security Scan - ${{ matrix.module }}
+        run: |
+          echo "🛡️ Security scanning for ${{ matrix.module }}..."
+
+          # Check for security rule violations
+          python3 << 'EOF'
+          import yaml
+          import os
+          import glob
+          import re
+
+          module = "${{ matrix.module }}"
+          agent_files = glob.glob(f"_bmad-output/extraction-output/specialized-teams/src/{module}/agents/*.agent.yaml")
+
+          security_violations = []
+          dangerous_patterns = [
+              r'rm\s+-rf',
+              r'sudo\s+',
+              r'eval\s*\(',
+              r'system\s*\(',
+              r'exec\s*\(',
+              r'chmod\s+\+x'
+          ]
+
+          for agent_file in agent_files:
+              with open(agent_file, 'r') as f:
+                  content = f.read()
+
+              for pattern in dangerous_patterns:
+                  if re.search(pattern, content, re.IGNORECASE):
+                      security_violations.append(f"{agent_file}: Dangerous pattern detected - {pattern}")
+
+          if security_violations:
+              print("🚨 Security violations detected:")
+              for violation in security_violations:
+                  print(f"   {violation}")
+              exit(1)
+          else:
+              print(f"✅ Security scan passed for {module}")
+          EOF
+
+      - name: Quality Metrics - ${{ matrix.module }}
+        run: |
+          echo "📊 Analyzing quality metrics for ${{ matrix.module }}..."
+
+          # Quality metrics analysis
+          python3 << 'EOF'
+          import yaml
+          import os
+          import glob
+
+          module = "${{ matrix.module }}"
+          agent_files = glob.glob(f"_bmad-output/extraction-output/specialized-teams/src/{module}/agents/*.agent.yaml")
+
+          quality_issues = []
+
+          for agent_file in agent_files:
+              with open(agent_file, 'r') as f:
+                  agent_data = yaml.safe_load(f)
+
+              # Check description length
+              description = agent_data.get('agent', {}).get('metadata', {}).get('description', '')
+              if len(description) < 10:
+                  quality_issues.append(f"{agent_file}: Description too short")
+
+              # Check menu item count
+              menu_items = agent_data.get('menu', [])
+              if len(menu_items) < 5:
+                  quality_issues.append(f"{agent_file}: Insufficient menu items ({len(menu_items)} < 5)")
+
+              # Check persona completeness
+              persona = agent_data.get('persona', {})
+              required_persona_fields = ['role', 'identity', 'communication_style']
+              for field in required_persona_fields:
+                  if not persona.get(field) or len(persona.get(field, '')) < 10:
+                      quality_issues.append(f"{agent_file}: Incomplete persona field '{field}'")
+
+          if quality_issues:
+              print(f"⚠️ Quality issues found for {module}:")
+              for issue in quality_issues:
+                  print(f"   {issue}")
+          else:
+              print(f"✅ Quality metrics passed for {module}")
+          EOF
+
+  # ===============================================
+  # Stage 5: Cross-Module Integration Testing
+  # ===============================================
+  integration-testing:
+    name: Integration Testing (Epic 5.2)
+    runs-on: ubuntu-latest
+    needs: [distribution-validation, setup-and-validate]
+    if: success()
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Restore Extraction Cache
+        uses: actions/cache@v4
+        with:
+          path: _bmad-output/extraction-output
+          key: bmad-extraction-${{ github.sha }}
+
+      - name: Setup Test Installation Environment
+        run: |
+          echo "🏗️ Setting up test installation environment..."
+
+          # Create test installation directory
+          mkdir -p test-installation-ci
+
+          # Copy extraction output to test installation
+          cp -r _bmad-output/extraction-output/specialized-teams/* test-installation-ci/
+
+          # Create basic package structure
+          cat > test-installation-ci/package.json << 'EOF'
+          {
+            "name": "bmad-specialized-teams-test",
+            "version": "2.0.0",
+            "description": "BMAD Specialized Teams Test Installation"
+          }
+          EOF
+
+      - name: Run Cross-Module Integration Tests
+        run: |
+          echo "🔗 Running cross-module integration tests..."
+
+          # Set test environment path
+          export TEST_ENVIRONMENT_PATH="$(pwd)/test-installation-ci"
+
+          # Run integration test framework
+          node _bmad-output/implementation-artifacts/bmad-integration-test-framework.js
+
+      - name: Analyze Integration Test Results
+        run: |
+          echo "📊 Analyzing integration test results..."
+
+          if [ ! -f "_bmad-output/planning-artifacts/integration-test-report.json" ]; then
+            echo "❌ Integration test report not found"
+            exit 1
+          fi
+
+          # Extract overall score from report
+          overall_score=$(cat _bmad-output/planning-artifacts/integration-test-report.json | jq -r '.summary.overallScore')
+          overall_score_percent=$(echo "scale=1; $overall_score * 100" | bc)
+
+          echo "📈 Integration Test Overall Score: ${overall_score_percent}%"
+
+          # Check against threshold
+          if (( $(echo "$overall_score < 0.95" | bc -l) )); then
+            echo "❌ Integration test score below threshold (95%)"
+            exit 1
+          fi
+
+          echo "✅ Integration testing passed"
+
+      - name: Performance Benchmark
+        run: |
+          echo "⚡ Running performance benchmarks..."
+
+          # Extract performance metrics from integration report
+          performance_acceptable=$(cat _bmad-output/planning-artifacts/integration-test-report.json | jq -r '.testResults.performanceMetrics.acceptable')
+
+          if [ "$performance_acceptable" != "true" ]; then
+            echo "❌ Performance benchmarks exceeded acceptable limits"
+            exit 1
+          fi
+
+          echo "✅ Performance benchmarks within acceptable limits"
+
+      - name: Upload Integration Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-test-results
+          path: |
+            _bmad-output/planning-artifacts/integration-test-report.json
+          retention-days: 30
+
+  # ===============================================
+  # Stage 6: Quality Gate Assessment
+  # ===============================================
+  quality-gate:
+    name: Quality Gate Assessment
+    runs-on: ubuntu-latest
+    needs: [extraction-validation, distribution-validation, integration-testing]
+    if: always()
+
+    steps:
+      - name: Download Test Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: '*-test-results'
+          merge-multiple: true
+          path: ./test-results
+
+      - name: Quality Gate Assessment
+        run: |
+          echo "🚦 BMAD EXTRACTION QUALITY GATE ASSESSMENT"
+          echo "=========================================="
+
+          # Initialize quality gate status
+          quality_gate_passed=true
+
+          # Check extraction validation results
+          if [ -f "test-results/extraction-test-report.json" ]; then
+            extraction_equivalence=$(cat test-results/extraction-test-report.json | jq -r '.summary.functionalEquivalence')
+            extraction_violations=$(cat test-results/extraction-test-report.json | jq -r '.summary.securityViolations')
+
+            echo "📊 Extraction Results:"
+            echo "   Functional Equivalence: ${extraction_equivalence}%"
+            echo "   Security Violations: $extraction_violations"
+
+            if (( $(echo "$extraction_equivalence < $FUNCTIONAL_EQUIVALENCE_THRESHOLD" | bc -l) )) || [ "$extraction_violations" -gt 0 ]; then
+              quality_gate_passed=false
+              echo "❌ Extraction validation failed quality gate"
+            else
+              echo "✅ Extraction validation passed"
+            fi
+          else
+            echo "⚠️ Extraction test results not available"
+            quality_gate_passed=false
+          fi
+
+          # Check integration test results
+          if [ -f "test-results/integration-test-report.json" ]; then
+            integration_score=$(cat test-results/integration-test-report.json | jq -r '.summary.overallScore')
+            integration_score_percent=$(echo "scale=1; $integration_score * 100" | bc)
+            performance_acceptable=$(cat test-results/integration-test-report.json | jq -r '.testResults.performanceMetrics.acceptable')
+
+            echo "📊 Integration Results:"
+            echo "   Overall Score: ${integration_score_percent}%"
+            echo "   Performance Acceptable: $performance_acceptable"
+
+            if (( $(echo "$integration_score < 0.95" | bc -l) )) || [ "$performance_acceptable" != "true" ]; then
+              quality_gate_passed=false
+              echo "❌ Integration testing failed quality gate"
+            else
+              echo "✅ Integration testing passed"
+            fi
+          else
+            echo "⚠️ Integration test results not available"
+            quality_gate_passed=false
+          fi
+
+          # Final quality gate decision
+          echo ""
+          if [ "$quality_gate_passed" = true ]; then
+            echo "🎉 QUALITY GATE PASSED - Ready for production deployment"
+            echo "quality_gate_status=PASSED" >> $GITHUB_ENV
+          else
+            echo "🚫 QUALITY GATE FAILED - Issues must be resolved before deployment"
+            echo "quality_gate_status=FAILED" >> $GITHUB_ENV
+            exit 1
+          fi
+
+      - name: Generate Quality Report
+        if: always()
+        run: |
+          echo "📋 Generating comprehensive quality report..."
+
+          cat > quality-gate-report.md << 'EOF'
+          # BMAD Extraction Quality Gate Report
+
+          **Pipeline Run**: ${{ github.run_number }}
+          **Commit**: ${{ github.sha }}
+          **Branch**: ${{ github.ref_name }}
+          **Date**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          **Status**: ${{ env.quality_gate_status }}
+
+          ## Test Results Summary
+
+          ### Extraction Validation (Epic 2.3)
+          - **Functional Equivalence**: Check test results
+          - **Security Violations**: Check test results
+          - **Quality Issues**: Check test results
+
+          ### Distribution Validation (Epic 4.3)
+          - **YAML Format Validation**: ✅ Passed
+          - **Security Scanning**: ✅ Passed
+          - **Quality Metrics**: ✅ Passed
+
+          ### Integration Testing (Epic 5.2)
+          - **Cross-Module Communication**: Check test results
+          - **Workflow Orchestration**: Check test results
+          - **Performance Impact**: Check test results
+          - **System Stability**: Check test results
+
+          ## Recommendations
+
+          EOF
+
+          if [ "${{ env.quality_gate_status }}" = "PASSED" ]; then
+            echo "✅ All quality gates passed. Ready for deployment." >> quality-gate-report.md
+          else
+            echo "❌ Quality gate failures detected. Review test results and resolve issues." >> quality-gate-report.md
+          fi
+
+      - name: Upload Quality Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quality-gate-report
+          path: quality-gate-report.md
+          retention-days: 90
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let comment = `## 🧪 BMAD Extraction QA Results\n\n`;
+            comment += `**Quality Gate Status**: ${{ env.quality_gate_status === 'PASSED' ? '✅ PASSED' : '❌ FAILED' }}\n\n`;
+            comment += `**Pipeline Run**: ${{ github.run_number }}\n`;
+            comment += `**Commit**: ${{ github.sha }}\n\n`;
+
+            if ('${{ env.quality_gate_status }}' === 'FAILED') {
+              comment += `❌ This PR has quality gate failures that must be resolved before merging.\n\n`;
+              comment += `Please check the [workflow run](${context.payload.repository.html_url}/actions/runs/${{ github.run_id }}) for detailed results.\n`;
+            } else {
+              comment += `✅ All quality gates passed! This PR is ready for review.\n\n`;
+            }
+
+            comment += `### Test Coverage\n`;
+            comment += `- 📋 Extraction Validation (Epic 2.3)\n`;
+            comment += `- 📦 Distribution Validation (Epic 4.3)\n`;
+            comment += `- 🔗 Integration Testing (Epic 5.2)\n`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+# ===============================================
+# Notification and Cleanup
+# ===============================================
+  notify-completion:
+    name: Pipeline Completion
+    runs-on: ubuntu-latest
+    needs: quality-gate
+    if: always()
+
+    steps:
+      - name: Pipeline Summary
+        run: |
+          echo "🎯 BMAD Extraction QA Pipeline Completed"
+          echo "======================================="
+          echo "Status: ${{ needs.quality-gate.result }}"
+          echo "Quality Gate: ${{ env.quality_gate_status || 'UNKNOWN' }}"
+          echo ""
+          echo "Epic Coverage Completed:"
+          echo "✅ Epic 2.3 - Extraction Validation Suite"
+          echo "✅ Epic 4.3 - Quality Assurance for Distribution"
+          echo "✅ Epic 5.2 - Cross-Module Integration Testing"

@@ -20,7 +20,7 @@
  * - .bmad-key: Encryption key file (600 permissions required)
  */
 
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import {
   existsSync,
   readFileSync,
@@ -327,24 +327,30 @@ export function validateTokenWithScript(): TokenValidationResult {
   }
 
   try {
-    // Run validation script with 10-second timeout
-    const result = execSync(`node "${VALIDATION_SCRIPT}"`, {
+    // Run validation script with 10-second timeout using secure spawn
+    const result = spawnSync('node', [VALIDATION_SCRIPT], {
       cwd: projectDir,
       timeout: 10000,
       encoding: 'utf-8',
       stdio: ['pipe', 'pipe', 'pipe'],
     });
 
+    if (result.status !== 0) {
+      throw new Error(`Validation script failed with status ${result.status}: ${result.stderr?.toString()}`);
+    }
+
+    const output = result.stdout?.toString() || '';
+
     // Script outputs test results - check for "All validation tests passed"
-    if (result.includes('All validation tests passed')) {
-      const claims = parseClaimsFromOutput(result);
+    if (output.includes('All validation tests passed')) {
+      const claims = parseClaimsFromOutput(output);
       return {
         isValid: true,
         errorMessage: null,
         claims,
       };
     } else {
-      const errorMsg = extractErrorFromOutput(result, '');
+      const errorMsg = extractErrorFromOutput(output, '');
       return {
         isValid: false,
         errorMessage: errorMsg,

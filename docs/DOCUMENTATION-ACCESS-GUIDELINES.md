@@ -12,9 +12,9 @@
 
 | Classification | Description | Audience | Location |
 |---------------|-------------|----------|----------|
-| **Public** | General platform information, user guides | All users | `/docs/getting-started/`, `/docs/user-guide/` |
-| **Technical** | Developer documentation, architecture | Developers, contributors | `/docs/developer/` |
-| **Operational** | System administration, deployment | System administrators | `/docs/operations/` |
+| **Public** | General platform information, user guides | All users | `/Docs/01-getting-started/`, `/Docs/02-user-guides/` |
+| **Technical** | Developer documentation, architecture | Developers, contributors | `/Docs/03-developer-docs/` |
+| **Operational** | System administration, deployment | System administrators | `/Docs/04-operations/` |
 | **Security** | Security features, compliance reports | Security teams, auditors | `/docs/security/` |
 | **Historical** | Testing logs, validation reports | Internal teams | `/docs/testing-reports/` |
 
@@ -25,26 +25,26 @@
 ### 🆕 New Users
 **Entry Point**: `/docs/README.md`
 **Recommended Path**:
-1. [Getting Started](docs/getting-started/) - Installation and setup
-2. [User Guide](docs/user-guide/) - Basic usage and workflows
-3. [Examples](docs/user-guide/examples/) - Hands-on practice
-4. [Troubleshooting](docs/user-guide/troubleshooting.md) - Common issues
+1. [Getting Started](01-getting-started/) - Installation and setup
+2. [User Guide](02-user-guides/) - Basic usage and workflows
+3. [Examples](02-user-guides/examples/) - Hands-on practice
+4. [Troubleshooting](02-user-guides/TROUBLESHOOTING.md) - Common issues
 
 ### 👥 End Users
-**Entry Point**: `/docs/user-guide/README.md`
+**Entry Point**: `/Docs/02-user-guides/README.md`
 **Key Documents**:
-- [All Workflows](docs/user-guide/workflows/) - 143+ professional workflows
-- [Configuration Guide](docs/user-guide/configuration.md) - Platform customization
-- [Agents Reference](docs/user-guide/agents-reference.md) - 80+ agent descriptions
-- [Best Practices](docs/user-guide/best-practices.md) - Usage recommendations
+- [All Workflows](02-user-guides/workflows/) - 143+ professional workflows
+- [Configuration Guide](02-user-guides/CONFIGURATION-GUIDE.md) - Platform customization
+- [Agents Reference](02-user-guides/agents-reference.md) - 80+ agent descriptions
+- [Best Practices](02-user-guides/best-practices.md) - Usage recommendations
 
 ### 👨‍💻 Developers
-**Entry Point**: `/docs/developer/README.md`
+**Entry Point**: `/Docs/03-developer-docs/README.md`
 **Key Documents**:
-- [Architecture Guide](docs/developer/architecture.md) - System architecture
-- [Contributing Guide](docs/developer/contributing.md) - Development workflow
-- [API Reference](docs/developer/api-reference.md) - Integration endpoints
-- [Extending BMAD](docs/developer/extending-bmad.md) - Custom development
+- [Architecture Guide](03-developer-docs/ARCHITECTURE-DEEP-DIVE.md) - System architecture
+- [Contributing Guide](03-developer-docs/CONTRIBUTING-GUIDE.md) - Development workflow
+- [API Reference](03-developer-docs/api-reference.md) - Integration endpoints
+- [Extending BMAD](03-developer-docs/extending-bmad.md) - Custom development
 
 ### 🛡️ Security Teams
 **Entry Point**: `/docs/security/README.md`
@@ -52,15 +52,15 @@
 - [Security Features](docs/security/features/) - Security controls and validators
 - [Compliance Documentation](docs/security/compliance/) - Regulatory requirements
 - [Audit Reports](docs/security/audit-reports/) - Security assessments
-- [Incident Response](docs/operations/incident-response.md) - Emergency procedures
+- [Incident Response](04-operations/incident-response.md) - Emergency procedures
 
 ### 🔧 System Administrators
-**Entry Point**: `/docs/operations/README.md`
+**Entry Point**: `/Docs/04-operations/README.md`
 **Key Documents**:
-- [Deployment Guide](docs/operations/deployment.md) - Production deployment
-- [Performance Tuning](docs/operations/performance-tuning.md) - Optimization
-- [Monitoring Setup](docs/operations/monitoring.md) - Health checks and alerts
-- [Backup & Recovery](docs/operations/backup-recovery.md) - Data protection
+- [Deployment Guide](04-operations/deployment.md) - Production deployment
+- [Performance Tuning](04-operations/performance-tuning.md) - Optimization
+- [Monitoring Setup](04-operations/monitoring.md) - Health checks and alerts
+- [Backup & Recovery](04-operations/backup-recovery.md) - Data protection
 
 ### 📊 Management & Auditors
 **Entry Point**: `/docs/README.md`
@@ -68,7 +68,7 @@
 - [Platform Overview](docs/README.md) - High-level capabilities
 - [Security Overview](docs/security/README.md) - Security posture
 - [Audit Reports](docs/security/audit-reports/) - Compliance validation
-- [Operational Metrics](docs/operations/README.md#performance-monitoring) - Performance data
+- [Operational Metrics](04-operations/README.md#performance-monitoring) - Performance data
 
 ---
 
@@ -200,11 +200,11 @@ docs/
 ### Content Mapping
 | Original Location | New Location | Status |
 |------------------|--------------|---------|
-| `/docs/WORKFLOWS.md` | `/docs/user-guide/workflows/README.md` | ✅ Moved |
-| `/docs/Developer/` | `/docs/developer/` | ✅ Reorganized |
-| `/docs/UserGuide/` | `/docs/user-guide/` & `/docs/operations/` | ✅ Split and moved |
-| `/docs/Features/Security/` | `/docs/security/features/` | ✅ Moved |
-| `/docs/TestingLogs/` | `/docs/testing-reports/` | ✅ Organized |
+| `/docs/WORKFLOWS.md` | `/Docs/02-user-guides/workflows/README.md` | ✅ Moved |
+| `/docs/Developer/` | `/Docs/03-developer-docs/` | ✅ Reorganized |
+| `/docs/UserGuide/` | `/Docs/02-user-guides/` & `/Docs/04-operations/` | ✅ Split and moved |
+| `/docs/Features/Security/` | `/Docs/06-reference/features/Security/` | ✅ Moved |
+| `/docs/TestingLogs/` | `/Docs/testing/` | ✅ Organized |
 | `/docs/UserGuide/Security/` | `/docs/security/compliance/` | ✅ Moved |
 
 ---
@@ -218,7 +218,7 @@ docs/
 - **Update Requests**: Submit pull requests or GitHub issues
 
 ### Contribution Guidelines
-1. **Read [Contributing Guide](docs/developer/contributing.md)** first
+1. **Read [Contributing Guide](03-developer-docs/CONTRIBUTING-GUIDE.md)** first
 2. **Follow documentation standards** outlined in this guide
 3. **Use appropriate classification** for sensitive information
 4. **Provide clear commit messages** describing documentation changes

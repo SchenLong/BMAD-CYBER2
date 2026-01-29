@@ -1,0 +1,274 @@
+# BMAD Dependency Management System
+# Comprehensive dependency resolution for distributed BMAD modules
+# Designed by Winston (Architect) for Epic 3: Story 3.2
+
+# Distribution Package Configuration
+package:
+  name: "@bmad-cybercommand/cybersec-team"
+  version: "2.0.0"
+  type: "specialized-team"
+  license: "MIT"
+  repository: "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+
+# BMAD Core Dependencies (Required)
+bmad_core:
+  version: ">=2.0.0"
+  compatibility_matrix:
+    "2.0.0": ["2.0.0", "2.0.1", "2.0.2"]
+    "2.1.0": ["2.1.0", "2.1.1", "2.1.2"]
+    "2.2.0": ["2.2.0"]
+  critical_agents:
+    - "abdul"
+    - "bmad-master"
+  essential_workflows:
+    - "party-mode"
+    - "cross-module"
+    - "assign-task"
+    - "incident-response"
+
+# Node.js Runtime Requirements
+runtime:
+  node:
+    version: ">=18.0.0"
+    recommended: "20.x"
+    tested_versions: ["18.17.0", "20.10.0", "21.6.0"]
+  npm:
+    version: ">=8.0.0"
+    recommended: "10.x"
+
+# NPM Package Dependencies
+npm_dependencies:
+  production:
+    - name: "yaml"
+      version: "^2.3.4"
+      description: "YAML parsing and stringifying"
+      security_audit: true
+    - name: "semver"
+      version: "^7.5.4"
+      description: "Semantic versioning utility"
+      security_audit: true
+    - name: "joi"
+      version: "^17.11.0"
+      description: "Schema validation"
+      security_audit: true
+    - name: "lodash"
+      version: "^4.17.21"
+      description: "Utility library"
+      security_audit: true
+      alternatives: ["ramda", "underscore"]
+
+  development:
+    - name: "jest"
+      version: "^29.7.0"
+      description: "Testing framework"
+    - name: "eslint"
+      version: "^8.56.0"
+      description: "Code linting"
+
+# Cross-Module Dependencies (Peer Dependencies)
+cross_module:
+  required:
+    # No strictly required cross-module dependencies for cybersec-team
+
+  optional:
+    - module: "@bmad-cybercommand/intel-team"
+      version: ">=2.0.0"
+      condition: "threat_intelligence_integration"
+      provides:
+        workflows: ["threat-constellation", "attribution-chain"]
+        agents: ["threat-actor-profiler", "dark-web-analyst"]
+      integration_points:
+        - workflow: "cybersec-team:threat-assessment"
+          requires: "intel-team:threat-constellation"
+        - workflow: "cybersec-team:incident-response"
+          requires: "intel-team:attribution-chain"
+
+    - module: "@bmad-cybercommand/legal-team"
+      version: ">=2.0.0"
+      condition: "compliance_workflows_enabled"
+      provides:
+        workflows: ["legal-matter-intake", "contract-review"]
+        agents: ["counsel", "liberty"]
+      integration_points:
+        - workflow: "cybersec-team:incident-response"
+          requires: "legal-team:legal-matter-intake"
+        - workflow: "cybersec-team:compliance-audit"
+          requires: "legal-team:contract-review"
+
+    - module: "@bmad-cybercommand/strategy-team"
+      version: ">=2.0.0"
+      condition: "strategic_security_planning"
+      provides:
+        workflows: ["strategic-decision-workshop", "crisis-response-planning"]
+        agents: ["the-master-strategist", "communications-director"]
+      integration_points:
+        - workflow: "cybersec-team:security-strategy"
+          requires: "strategy-team:strategic-decision-workshop"
+
+# External System Dependencies
+external_systems:
+  optional:
+    - name: "docker"
+      version: ">=24.0.0"
+      description: "Container runtime for isolated security testing"
+      check_command: "docker --version"
+      install_docs: "https://docs.docker.com/get-docker/"
+
+    - name: "nmap"
+      version: ">=7.90"
+      description: "Network discovery and security auditing"
+      check_command: "nmap --version"
+      install_docs: "https://nmap.org/download.html"
+      security_note: "Required for penetration testing workflows"
+
+    - name: "burpsuite"
+      description: "Web application security testing platform"
+      optional: true
+      commercial: true
+      alternatives: ["owasp-zap", "w3af"]
+
+# Dependency Resolution Configuration
+resolution:
+  strategy: "highest_compatible"  # Options: strict, highest_compatible, flexible
+  allow_prerelease: false
+  lockfile_required: true
+  security_audit_required: true
+
+  conflict_resolution:
+    # How to handle version conflicts
+    peer_dependency_conflicts: "warn"  # Options: error, warn, ignore
+    version_mismatch: "error"         # Options: error, warn, ignore
+    missing_optional: "warn"          # Options: error, warn, ignore
+
+  update_policy:
+    auto_update_patches: true   # Auto-update patch versions (x.y.Z)
+    auto_update_minor: false    # Auto-update minor versions (x.Y.z)
+    auto_update_major: false    # Auto-update major versions (X.y.z)
+    security_updates: true      # Always apply security updates
+
+# Installation Order and Dependencies
+installation_order:
+  phases:
+    - name: "pre_install"
+      steps:
+        - action: "validate_node_version"
+          requirement: ">=18.0.0"
+          critical: true
+        - action: "validate_npm_version"
+          requirement: ">=8.0.0"
+          critical: true
+        - action: "check_bmad_core"
+          requirement: ">=2.0.0"
+          critical: true
+
+    - name: "core_dependencies"
+      steps:
+        - action: "install_npm_dependencies"
+          type: "production"
+          audit: true
+        - action: "verify_bmad_core_compatibility"
+          critical: true
+        - action: "load_core_agents"
+          agents: ["abdul", "bmad-master"]
+
+    - name: "module_installation"
+      steps:
+        - action: "extract_agents"
+          source: "dist/agents/"
+          target: "_bmad/cybersec-team/agents/"
+        - action: "extract_workflows"
+          source: "dist/workflows/"
+          target: "_bmad/cybersec-team/workflows/"
+        - action: "setup_permissions"
+          config: "permissions"
+
+    - name: "cross_module_integration"
+      steps:
+        - action: "detect_peer_modules"
+          optional: true
+        - action: "setup_integration_points"
+          optional: true
+        - action: "validate_cross_module_compatibility"
+          optional: true
+
+    - name: "post_install"
+      steps:
+        - action: "run_integration_tests"
+          optional: true
+        - action: "generate_dependency_report"
+          output: "_bmad-output/cybersec-team/dependency-report.json"
+
+# Circular Dependency Detection
+circular_dependency:
+  detection_enabled: true
+  max_depth: 10
+  resolution_strategy: "break_at_optional"
+
+  known_safe_cycles:
+    # Approved cycles that don't cause issues
+    - modules: ["cybersec-team", "intel-team"]
+      reason: "Bidirectional consultation workflows"
+      resolution: "lazy_loading"
+
+    - modules: ["legal-team", "strategy-team"]
+      reason: "Legal strategy consultation"
+      resolution: "conditional_loading"
+
+# Health Check and Monitoring
+health_check:
+  enabled: true
+  checks:
+    - name: "module_integrity"
+      frequency: "startup"
+      critical: true
+
+    - name: "dependency_versions"
+      frequency: "daily"
+      critical: false
+
+    - name: "security_vulnerabilities"
+      frequency: "weekly"
+      critical: true
+
+    - name: "cross_module_compatibility"
+      frequency: "on_update"
+      critical: false
+
+# Migration and Upgrade Paths
+migration:
+  supported_upgrades:
+    - from: "1.x.x"
+      to: "2.0.0"
+      breaking_changes: true
+      migration_guide: "docs/migration/v1-to-v2.md"
+      automated_migration: false
+
+    - from: "2.0.x"
+      to: "2.1.0"
+      breaking_changes: false
+      migration_guide: null
+      automated_migration: true
+
+# Security Configuration
+security:
+  dependency_scanning:
+    enabled: true
+    tools: ["npm_audit", "snyk", "github_dependabot"]
+    severity_threshold: "moderate"
+
+  signature_verification:
+    required: true
+    trusted_publishers: ["bmad-code-org", "bmad-specialized-teams"]
+
+  isolation:
+    sandbox_mode: "strict"
+    allowed_filesystem_access: ["_bmad-output/cybersec-team/**"]
+    network_restrictions: ["127.0.0.1", "localhost"]
+
+# Metadata for Dependency Resolution Engine
+metadata:
+  schema_version: "1.0.0"
+  generated_by: "bmad-dependency-manager"
+  generated_at: "2026-01-23T00:00:00.000Z"
+  last_updated: "2026-01-23T00:00:00.000Z"
+  checksum: "sha256:placeholder"

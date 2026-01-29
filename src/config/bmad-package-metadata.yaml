@@ -1,0 +1,664 @@
+# BMAD Package Management Metadata Schema v2.0.0
+# Comprehensive metadata specification for agent distribution
+# Designed by Winston (The Master Strategist) for Story 2.2
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://api.blackunicorn.tech/schemas/package-metadata-v2.0.0.json"
+
+title: "BMAD Package Metadata Schema"
+description: "Metadata schema for BMAD agent package distribution and management"
+version: "2.0.0"
+
+type: object
+required: ["code", "name", "version", "type", "category", "npm", "repository", "agents"]
+
+properties:
+  # ===== CORE PACKAGE IDENTIFICATION =====
+  code:
+    type: string
+    pattern: "^[a-z0-9-]+$"
+    description: "Unique package identifier code"
+    examples: ["cybersec-team", "intel-team", "legal-team"]
+
+  name:
+    type: string
+    description: "Human-readable package name"
+    minLength: 1
+    maxLength: 100
+
+  version:
+    type: string
+    pattern: "^\\d+\\.\\d+\\.\\d+(-[a-z0-9-]+)?$"
+    description: "Semantic version (semver)"
+
+  default_selected:
+    type: boolean
+    description: "Whether package is selected by default in bmad-builder"
+    default: false
+
+  type:
+    type: string
+    enum: ["specialized-team", "core-module", "plugin", "template", "extension"]
+    description: "Package type classification"
+
+  category:
+    type: string
+    enum: ["bmad-specialized-teams", "bmad-core", "bmad-plugins", "bmad-templates"]
+    description: "Package category for organization"
+
+  # ===== NPM DISTRIBUTION =====
+  npm:
+    type: object
+    required: ["scope", "package_name", "full_name"]
+    properties:
+      scope:
+        type: string
+        pattern: "^@[a-z0-9-]+$"
+        description: "NPM organization scope"
+        examples: ["@bmad-cybercommand", "@bmad-core"]
+
+      package_name:
+        type: string
+        pattern: "^[a-z0-9-]+$"
+        description: "NPM package name (without scope)"
+
+      full_name:
+        type: string
+        pattern: "^@[a-z0-9-]+/[a-z0-9-]+$"
+        description: "Full scoped NPM package name"
+
+      # Optional NPM metadata
+      registry:
+        type: string
+        format: "uri"
+        description: "NPM registry URL"
+        default: "https://registry.npmjs.org"
+
+      access:
+        type: string
+        enum: ["public", "private"]
+        description: "Package access level"
+        default: "public"
+
+      publish_config:
+        type: object
+        properties:
+          tag:
+            type: string
+            description: "NPM dist tag"
+            default: "latest"
+
+  # ===== SOURCE REPOSITORY =====
+  repository:
+    type: object
+    required: ["type", "url", "directory"]
+    properties:
+      type:
+        type: string
+        enum: ["git", "svn", "mercurial"]
+        description: "Version control system type"
+
+      url:
+        type: string
+        format: "uri"
+        description: "Repository URL"
+
+      directory:
+        type: string
+        description: "Subdirectory path within repository"
+        pattern: "^[a-zA-Z0-9/_-]+$"
+
+      branch:
+        type: string
+        description: "Default branch"
+        default: "main"
+
+      commit:
+        type: string
+        description: "Specific commit hash for pinned versions"
+
+  # ===== PACKAGE KEYWORDS =====
+  keywords:
+    type: array
+    items:
+      type: string
+      pattern: "^[a-z0-9-]+$"
+    description: "Search and categorization keywords"
+    examples: [["bmad", "agent", "cybersecurity"], ["bmad", "agent", "intelligence"]]
+
+  # ===== AGENT INVENTORY =====
+  agents:
+    type: object
+    required: ["count", "conversion_format", "source_path", "target_path"]
+    properties:
+      count:
+        type: integer
+        minimum: 1
+        description: "Number of agents in package"
+
+      conversion_format:
+        type: string
+        enum: ["agent.yaml", "agent.json", "agent.md"]
+        description: "Agent file format"
+
+      source_path:
+        type: string
+        description: "Source directory for agent files"
+        default: "agents/"
+
+      target_path:
+        type: string
+        description: "Distribution directory for agent files"
+        default: "dist/agents/"
+
+      # Agent inventory details
+      agent_list:
+        type: array
+        items:
+          type: object
+          required: ["id", "name", "team"]
+          properties:
+            id:
+              type: string
+              description: "Agent identifier"
+
+            name:
+              type: string
+              description: "Agent display name"
+
+            team:
+              type: string
+              description: "Team assignment"
+
+            specialization:
+              type: string
+              description: "Agent specialization"
+
+            complexity:
+              type: string
+              enum: ["beginner", "intermediate", "advanced", "expert"]
+
+            file_path:
+              type: string
+              description: "Relative path to agent file"
+
+  # ===== WORKFLOW INVENTORY (OPTIONAL) =====
+  workflows:
+    type: object
+    properties:
+      count:
+        type: integer
+        minimum: 0
+        description: "Number of workflows in package"
+
+      conversion_format:
+        type: string
+        enum: ["workflow.yaml", "workflow.json", "workflow.md"]
+        description: "Workflow file format"
+
+      source_path:
+        type: string
+        description: "Source directory for workflow files"
+        default: "workflows/"
+
+      target_path:
+        type: string
+        description: "Distribution directory for workflow files"
+        default: "dist/workflows/"
+
+      workflow_list:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            category:
+              type: string
+            complexity:
+              type: string
+
+  # ===== DEPENDENCIES =====
+  dependencies:
+    type: object
+    properties:
+      core:
+        type: array
+        items:
+          type: object
+          required: ["module", "version", "required"]
+          properties:
+            module:
+              type: string
+              description: "Dependency module identifier"
+
+            version:
+              type: string
+              description: "Version constraint (semver)"
+
+            required:
+              type: boolean
+              description: "Whether dependency is required"
+
+            agents:
+              type: array
+              items:
+                type: string
+              description: "Required agents from dependency"
+
+            workflows:
+              type: array
+              items:
+                type: string
+              description: "Required workflows from dependency"
+
+      peer_dependencies:
+        type: array
+        items:
+          type: object
+          required: ["module", "version", "required"]
+          properties:
+            module:
+              type: string
+              description: "Peer dependency module"
+
+            version:
+              type: string
+              description: "Version constraint"
+
+            required:
+              type: boolean
+              description: "Whether peer dependency is required"
+
+            condition:
+              type: string
+              description: "Condition for dependency requirement"
+
+  # ===== INTEGRATION CAPABILITIES =====
+  integration:
+    type: object
+    properties:
+      exposed_workflows:
+        type: array
+        items:
+          type: object
+          required: ["workflow_id", "trigger", "description", "access_level"]
+          properties:
+            workflow_id:
+              type: string
+              description: "Workflow identifier"
+
+            trigger:
+              type: string
+              enum: ["external", "urgent", "scheduled", "manual"]
+              description: "Workflow trigger type"
+
+            description:
+              type: string
+              description: "Workflow description"
+
+            access_level:
+              type: string
+              enum: ["internal", "cross_team", "public"]
+              description: "Access level for workflow"
+
+            parameters:
+              type: object
+              description: "Required workflow parameters"
+
+      api_endpoints:
+        type: array
+        items:
+          type: object
+          properties:
+            path:
+              type: string
+            method:
+              type: string
+            description:
+              type: string
+            authentication:
+              type: boolean
+
+      event_handlers:
+        type: array
+        items:
+          type: object
+          properties:
+            event_type:
+              type: string
+            handler:
+              type: string
+            description:
+              type: string
+
+  # ===== INSTALLATION PROMPTS =====
+  prompt:
+    type: array
+    items:
+      type: string
+    description: "Installation prompt lines for user display"
+
+  # ===== CONFIGURATION SCHEMA =====
+  configuration:
+    type: object
+    properties:
+      output_folder:
+        type: object
+        required: ["prompt", "default", "result"]
+        properties:
+          prompt:
+            type: string
+            description: "Configuration prompt text"
+
+          default:
+            type: string
+            description: "Default value"
+
+          result:
+            type: string
+            description: "Result template"
+
+          validation:
+            type: object
+            properties:
+              pattern:
+                type: string
+              message:
+                type: string
+
+      custom_configs:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            prompt:
+              type: string
+            default:
+              oneOf:
+                - type: string
+                - type: boolean
+                - type: number
+            result:
+              type: string
+            type:
+              type: string
+              enum: ["text", "boolean", "number", "select", "multi-select"]
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  label:
+                    type: string
+
+  # ===== COMPUTED PATHS =====
+  computed_paths:
+    type: object
+    properties:
+      module_code:
+        type: object
+        properties:
+          result:
+            type: string
+
+      agents_path:
+        type: object
+        properties:
+          result:
+            type: string
+
+      workflows_path:
+        type: object
+        properties:
+          result:
+            type: string
+
+      output_subdirectories:
+        type: object
+        additionalProperties:
+          type: string
+
+  # ===== PERMISSIONS =====
+  permissions:
+    type: object
+    properties:
+      filesystem:
+        type: object
+        properties:
+          read:
+            type: array
+            items:
+              type: string
+          write:
+            type: array
+            items:
+              type: string
+          execute:
+            type: array
+            items:
+              type: string
+
+      network:
+        type: boolean
+        description: "Network access permission"
+
+      shell:
+        type: object
+        properties:
+          allowed_commands:
+            type: array
+            items:
+              type: string
+          blocked_commands:
+            type: array
+            items:
+              type: string
+
+      sensitive_data:
+        type: boolean
+        description: "Sensitive data access permission"
+
+      external_apis:
+        type: array
+        items:
+          type: string
+        description: "Allowed external API domains"
+
+  # ===== PACKAGE METADATA =====
+  metadata:
+    type: object
+    properties:
+      author:
+        type: string
+        description: "Package author"
+
+      maintainers:
+        type: array
+        items:
+          type: string
+        description: "Package maintainers"
+
+      license:
+        type: string
+        description: "License type"
+        default: "MIT"
+
+      homepage:
+        type: string
+        format: "uri"
+        description: "Package homepage URL"
+
+      bugs:
+        type: object
+        properties:
+          url:
+            type: string
+            format: "uri"
+          email:
+            type: string
+            format: "email"
+
+      created_by:
+        type: string
+        description: "Creation workflow or tool"
+
+      total_agents:
+        type: integer
+        description: "Total number of agents"
+
+      total_workflows:
+        type: integer
+        description: "Total number of workflows"
+
+      total_step_files:
+        type: integer
+        description: "Total step files"
+
+      party_mode_presets:
+        type: integer
+        description: "Number of party mode presets"
+
+      production_ready:
+        type: boolean
+        description: "Production readiness status"
+
+      tested:
+        type: boolean
+        description: "Testing status"
+
+      documented:
+        type: boolean
+        description: "Documentation status"
+
+      # Quality metrics
+      quality_score:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Package quality score (0-100)"
+
+      complexity_rating:
+        type: string
+        enum: ["simple", "moderate", "complex", "advanced"]
+        description: "Package complexity rating"
+
+      security_audit_date:
+        type: string
+        format: "date"
+        description: "Last security audit date"
+
+      performance_rating:
+        type: string
+        enum: ["fast", "moderate", "slow"]
+        description: "Performance rating"
+
+  # ===== UPDATE TRACKING =====
+  update_info:
+    type: object
+    properties:
+      last_updated:
+        type: string
+        format: "date"
+        description: "Last update date"
+
+      update_notes:
+        type: string
+        description: "Update notes"
+
+      next_review_date:
+        type: string
+        format: "date"
+        description: "Next scheduled review date"
+
+      changelog_url:
+        type: string
+        format: "uri"
+        description: "Changelog URL"
+
+      breaking_changes:
+        type: array
+        items:
+          type: string
+        description: "Breaking changes in this version"
+
+  # ===== DISTRIBUTION SETTINGS =====
+  distribution:
+    type: object
+    properties:
+      channels:
+        type: array
+        items:
+          type: string
+          enum: ["stable", "beta", "alpha", "dev"]
+        description: "Distribution channels"
+
+      auto_update:
+        type: boolean
+        description: "Auto-update enabled"
+        default: false
+
+      update_check_interval:
+        type: string
+        description: "Update check interval"
+        default: "weekly"
+
+      minimum_bmad_version:
+        type: string
+        description: "Minimum BMAD core version required"
+
+      supported_platforms:
+        type: array
+        items:
+          type: string
+          enum: ["windows", "macos", "linux", "docker"]
+        description: "Supported platforms"
+
+# ===== VALIDATION RULES =====
+validation_rules:
+  package_naming:
+    - "Package codes must use kebab-case"
+    - "NPM package names must be lowercase alphanumeric with hyphens"
+    - "Scoped packages must follow @scope/package format"
+
+  versioning:
+    - "Must follow semantic versioning (semver)"
+    - "Pre-release versions must use hyphen notation"
+
+  agent_inventory:
+    - "Agent count must match actual agents in package"
+    - "All agents must have valid team assignments"
+    - "Agent IDs must be unique within package"
+
+  dependencies:
+    - "Core dependencies must specify minimum required version"
+    - "Peer dependencies should use version ranges"
+    - "Circular dependencies are not allowed"
+
+# ===== EXAMPLES =====
+examples:
+  minimal_package:
+    code: "example-team"
+    name: "Example Team Module"
+    version: "1.0.0"
+    type: "specialized-team"
+    category: "bmad-specialized-teams"
+    npm:
+      scope: "@bmad-cybercommand"
+      package_name: "example-team"
+      full_name: "@bmad-cybercommand/example-team"
+    repository:
+      type: "git"
+      url: "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+      directory: "src/example-team"
+    agents:
+      count: 5
+      conversion_format: "agent.yaml"
+      source_path: "agents/"
+      target_path: "dist/agents/"

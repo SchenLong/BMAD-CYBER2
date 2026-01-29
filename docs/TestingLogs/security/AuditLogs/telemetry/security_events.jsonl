@@ -1,3 +1,0 @@
-{"timestamp": "2026-01-16T10:07:42.574369", "session_id": "unknown", "validator": "supply_chain", "action": "MANIFEST_LOADED", "severity": "INFO", "target": "", "reason": "", "metadata": {"entries": 678}}
-{"timestamp": "2026-01-17T11:32:07.917498", "session_id": "unknown", "validator": "token_validator", "action": "AUTHENTICATED", "severity": "INFO", "target": "", "reason": "", "metadata": {"user": "J", "roles": ["admin"]}}
-{"timestamp": "2026-01-17T11:32:15.094008", "session_id": "unknown", "validator": "resource_limits", "action": "RESOURCE_BLOCKED", "severity": "BLOCKED", "target": "", "reason": "", "metadata": {"resource_type": "memory", "current": 21632.0, "limit": 4096, "percentage": 5.28125}}

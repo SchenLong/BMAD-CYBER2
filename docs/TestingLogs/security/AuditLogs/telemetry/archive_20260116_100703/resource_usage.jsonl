@@ -1,3 +1,0 @@
-{"timestamp": "2026-01-16T01:40:53.511794", "session_id": "unknown", "context_tokens_used": 10000, "context_tokens_max": 200000, "context_pct": 5.0, "context_status": "ok", "memory_mb": 256.5, "memory_limit_mb": 1024, "memory_pct": 25.05}
-{"timestamp": "2026-01-16T09:52:03.833011", "session_id": "unknown", "context_tokens_used": 10000, "context_tokens_max": 200000, "context_pct": 5.0, "context_status": "ok"}
-{"timestamp": "2026-01-16T09:52:26.353347", "session_id": "unknown", "context_tokens_used": 0, "context_tokens_max": 200000, "context_pct": 0.0, "context_status": "ok"}

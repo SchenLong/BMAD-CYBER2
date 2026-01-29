@@ -1,0 +1,242 @@
+# BMAD Intelligent Routing Workflow
+# Analyzes user requests and routes to appropriate specialized teams
+# Version: 2.0.0
+
+schema_version: "1.0"
+format_version: "workflow.yaml"
+
+# Workflow Metadata
+workflow:
+  metadata:
+    name: Intelligent Request Routing
+    id: intelligent-routing
+    version: "2.0.0"
+    description: "Analyzes user requests using keyword mappings and context to route to appropriate specialized teams"
+    category: "core-orchestration"
+    estimated_duration: "1-3 minutes"
+    complexity: "medium"
+
+  # Workflow Inputs
+  inputs:
+    - name: user_request
+      type: text
+      required: true
+      description: "The user's request to analyze and route"
+    - name: context
+      type: object
+      required: false
+      description: "Additional context about the request"
+    - name: priority
+      type: string
+      required: false
+      default: "normal"
+      options: ["low", "normal", "high", "critical"]
+
+  # Workflow Outputs
+  outputs:
+    - name: recommended_team
+      type: string
+      description: "Primary team recommendation"
+    - name: supporting_teams
+      type: array
+      description: "Supporting teams that should be involved"
+    - name: confidence_score
+      type: number
+      description: "Confidence in routing recommendation (0-1)"
+    - name: routing_rationale
+      type: text
+      description: "Explanation of routing decision"
+    - name: suggested_agents
+      type: array
+      description: "Specific agents recommended for the task"
+    - name: suggested_workflows
+      type: array
+      description: "Workflows that could be relevant"
+
+# Workflow Steps
+steps:
+  - number: 1
+    name: "Load Keyword Mappings"
+    description: "Load the comprehensive keyword mapping database"
+    action: "load_mappings"
+    inputs:
+      - "keyword-mappings.yaml"
+    outputs:
+      - "team_mappings"
+      - "keyword_database"
+
+  - number: 2
+    name: "Analyze Request"
+    description: "Parse and analyze the user request for keywords and context"
+    action: "analyze_request"
+    logic: |
+      1. Extract keywords from user request
+      2. Normalize text (lowercase, remove punctuation)
+      3. Identify compound keywords and phrases
+      4. Calculate keyword weights based on position and frequency
+      5. Extract context clues (urgency, complexity, scope)
+
+  - number: 3
+    name: "Keyword Matching"
+    description: "Match extracted keywords against team databases"
+    action: "match_keywords"
+    logic: |
+      For each team:
+      1. Calculate exact keyword matches
+      2. Calculate fuzzy matches (threshold 0.7)
+      3. Weight matches by keyword priority
+      4. Calculate team confidence score
+
+  - number: 4
+    name: "Multi-Team Analysis"
+    description: "Identify scenarios requiring multiple teams"
+    action: "analyze_multi_team"
+    logic: |
+      1. Check for multi-team scenario patterns
+      2. Identify primary and supporting teams
+      3. Look for cross-functional keywords
+      4. Calculate collaboration necessity score
+
+  - number: 5
+    name: "Context Evaluation"
+    description: "Evaluate request context for additional routing signals"
+    action: "evaluate_context"
+    logic: |
+      1. Analyze urgency indicators
+      2. Assess complexity markers
+      3. Identify jurisdiction/geographic factors
+      4. Check for regulatory/compliance implications
+
+  - number: 6
+    name: "Generate Recommendations"
+    description: "Create final routing recommendations with rationale"
+    action: "generate_recommendations"
+    logic: |
+      1. Rank teams by confidence score
+      2. Select primary team (highest score)
+      3. Identify supporting teams (score > 0.3)
+      4. Suggest specific agents based on keywords
+      5. Recommend relevant workflows
+      6. Generate explanation of decision
+
+  - number: 7
+    name: "Present Options"
+    description: "Present routing recommendations to user"
+    action: "present_recommendations"
+    output_format: |
+      ## 🎯 Intelligent Routing Analysis
+
+      **Request:** {user_request}
+
+      ### Primary Recommendation
+      **Team:** {recommended_team}
+      **Confidence:** {confidence_score * 100}%
+      **Rationale:** {routing_rationale}
+
+      **Suggested Agents:**
+      {for agent in suggested_agents}
+      - {agent}
+      {/for}
+
+      **Relevant Workflows:**
+      {for workflow in suggested_workflows}
+      - {workflow}
+      {/for}
+
+      ### Supporting Teams
+      {for team in supporting_teams}
+      - **{team}** - {team.role_description}
+      {/for}
+
+      ### Next Steps
+      1. **[P]** Proceed with primary recommendation
+      2. **[C]** Customize team selection
+      3. **[M]** Multi-team coordination approach
+      4. **[A]** Alternative routing options
+
+# Routing Logic Implementation
+routing_logic:
+  exact_match:
+    description: "Direct keyword matches get highest priority"
+    score_multiplier: 1.0
+
+  fuzzy_match:
+    description: "Approximate matches with configurable threshold"
+    threshold: 0.7
+    score_multiplier: 0.8
+
+  contextual_boost:
+    description: "Context clues can boost team scores"
+    factors:
+      urgency: 0.1
+      complexity: 0.15
+      jurisdiction: 0.2
+
+  multi_team_threshold:
+    description: "When to recommend multiple teams"
+    threshold: 0.4
+    max_teams: 3
+
+# Team Specialization Matrix
+team_specializations:
+  cybersec-team:
+    primary_domains: ["security", "cyber", "threat", "vulnerability"]
+    secondary_domains: ["compliance", "risk", "privacy"]
+    expertise_depth: "deep"
+
+  intel-team:
+    primary_domains: ["intelligence", "osint", "investigation", "reconnaissance"]
+    secondary_domains: ["research", "analysis", "attribution"]
+    expertise_depth: "deep"
+
+  legal-team:
+    primary_domains: ["legal", "contract", "compliance", "regulatory"]
+    secondary_domains: ["governance", "policy", "dispute"]
+    expertise_depth: "deep"
+
+  strategy-team:
+    primary_domains: ["strategy", "business", "leadership", "decision"]
+    secondary_domains: ["planning", "stakeholder", "communication"]
+    expertise_depth: "broad"
+
+# Escalation Rules
+escalation_rules:
+  no_clear_match:
+    action: "route_to_strategy"
+    threshold: 0.3
+    message: "Routing to strategic advisors for initial analysis"
+
+  multiple_high_matches:
+    action: "present_options"
+    threshold: 0.7
+    message: "Multiple teams could effectively handle this request"
+
+  critical_priority:
+    action: "multi_team_alert"
+    keywords: ["emergency", "critical", "urgent", "asap"]
+    message: "High priority request - alerting all relevant teams"
+
+# Integration Points
+integrations:
+  project_registry:
+    path: "{output_folder}/project-registry.yaml"
+    purpose: "Track routing decisions within project context"
+
+  team_manifests:
+    path: "{project-root}/_bmad/_config/workflow-manifest.csv"
+    purpose: "Access current team workflow capabilities"
+
+  agent_database:
+    path: "{project-root}/_bmad/_config/agent-manifest.csv"
+    purpose: "Access specific agent specializations"
+
+# Quality Assurance
+quality_assurance:
+  confidence_threshold: 0.5
+  fallback_team: "strategy-team"
+  max_processing_time: "30 seconds"
+  validation_rules:
+    - "At least one team must be recommended"
+    - "Confidence score must be calculated"
+    - "Rationale must be provided"
+    - "Specific agents should be suggested when confidence > 0.7"

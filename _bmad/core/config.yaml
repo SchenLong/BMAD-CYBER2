@@ -102,3 +102,257 @@ security:
       event_type: true
       details: true
       hash: true              # Previous log hash for chain verification
+
+# =============================================================================
+# BMAD MODULE CONFIGURATION
+# =============================================================================
+
+modules:
+  # ---------------------------------------------------------------------------
+  # Core Modules (Always Active)
+  # ---------------------------------------------------------------------------
+  core:
+    enabled: true
+    description: "Core BMAD functionality and orchestration"
+    agents:
+      - abdul
+      - bmad-master
+    workflows:
+      - create-project
+      - project-status
+      - whats-next
+      - assign-task
+      - party-mode
+      - select-template
+      - cross-module
+
+  bmm:
+    enabled: true
+    description: "Business Model Manager - Product development and architecture"
+    agents:
+      - product-manager
+      - technical-architect
+      - business-analyst
+    workflows:
+      - create-prd
+      - create-architecture
+      - create-epics-and-stories
+      - quick-dev
+      - dev-story
+      - sprint-planning
+
+  # ---------------------------------------------------------------------------
+  # Specialized Teams (Configurable)
+  # ---------------------------------------------------------------------------
+  cybersec-team:
+    enabled: true
+    description: "Cybersecurity specialists for threat analysis and security architecture"
+    agents:
+      - security-architect
+      - penetration-tester
+      - compliance-auditor
+      - incident-responder
+      - vulnerability-analyst
+    workflows:
+      - security-audit
+      - threat-modeling
+      - compliance-check
+      - incident-response
+      - vulnerability-assessment
+
+  intel-team:
+    enabled: true
+    description: "Intelligence operations and OSINT capabilities"
+    agents:
+      - osint-lead
+      - domain-intel-specialist
+      - social-media-analyst
+      - threat-actor-profiler
+      - technical-researcher
+      - corporate-intel-specialist
+      - humint-specialist
+      - sigint-specialist
+      - dark-web-analyst
+      - field-operative
+      - geospatial-analyst
+    workflows:
+      - campaign-planner-person
+      - campaign-planner-org
+      - flash-assessment
+      - operation-mosaic
+      - spider-web
+      - doppelganger-hunt
+      - attribution-chain
+      - digital-necromancy
+      - infrastructure-genealogy
+      - breach-archaeology
+      - pattern-of-life
+      - tripwire
+
+  legal-team:
+    enabled: true
+    description: "Legal counsel and compliance across multiple jurisdictions"
+    agents:
+      - counsel
+      - liberty
+      - europa
+      - iberia
+      - castile
+      - baltic
+      - tribute
+      - covenant
+      - charter
+      - insignia
+      - deed
+      - gremio
+      - advocate
+    workflows:
+      - legal-matter-intake
+      - contract-review
+      - contract-drafting
+      - corporate-formation
+      - dispute-strategy
+      - tax-planning
+      - cross-border-matter
+
+  strategy-team:
+    enabled: true
+    description: "Strategic planning and executive advisory"
+    agents:
+      - the-master-strategist
+      - the-realist
+      - the-conservative
+      - the-revolutionary
+      - the-principled-commander
+      - the-strategist-warrior
+      - the-liberator
+      - the-technocrat
+      - communications-director
+      - political-strategist
+      - policy-analyst
+      - ethics-advisor
+      - stakeholder-mediator
+      - debate-coach
+    workflows:
+      - strategic-decision-workshop
+      - strategic-planning-session
+      - competitive-warfare
+      - leadership-transition-planning
+      - board-presentation-prep
+      - crisis-response-planning
+      - ethical-dilemma-resolution
+      - conflict-resolution
+      - stakeholder-negotiation-prep
+
+# =============================================================================
+# PACKAGE MANAGEMENT SYSTEM (Optional)
+# =============================================================================
+
+package_manager:
+  # Master switch for package management functionality
+  enabled: false
+
+  # Development mode (enables additional debugging and validation)
+  development_mode: true
+
+  # Package repository configuration
+  repository:
+    # Local development repository
+    local:
+      enabled: true
+      path: "{project-root}/packages"
+      auto_discovery: true
+
+    # Enterprise repository (for licensed customers)
+    enterprise:
+      enabled: false
+      url: "https://packages.bmad.enterprise"
+      auth_required: true
+      api_key: null
+
+    # Public community repository (for open source packages)
+    community:
+      enabled: false
+      url: "https://packages.bmad.community"
+      auth_required: false
+
+  # Package validation and security
+  validation:
+    # Require digital signatures for all packages
+    require_signatures: true
+
+    # Allowed package sources (security whitelist)
+    trusted_sources:
+      - "blackunicorn.tech"
+      - "localhost"
+
+    # Security scanning
+    security_scan:
+      enabled: true
+      block_on_vulnerabilities: true
+      scan_timeout_seconds: 300
+
+  # Package activation/deactivation
+  activation:
+    # Allow dynamic loading/unloading of packages
+    dynamic_loading: true
+
+    # Require restart for package changes
+    require_restart: false
+
+    # Rollback capability
+    enable_rollback: true
+
+    # Backup configuration before changes
+    backup_config: true
+
+  # Licensing and monetization
+  licensing:
+    # License validation
+    validate_licenses: true
+
+    # Grace period for license violations (days)
+    grace_period_days: 7
+
+    # Telemetry for usage tracking
+    usage_telemetry:
+      enabled: false
+      endpoint: null
+      anonymize_data: true
+
+# =============================================================================
+# INTEGRATION CONFIGURATION
+# =============================================================================
+
+integrations:
+  # Cross-module collaboration settings
+  cross_module:
+    # Allow modules to invoke workflows from other modules
+    cross_workflow_calls: true
+
+    # Shared context between modules
+    shared_context: true
+
+    # Module dependency resolution
+    dependency_resolution: "auto"
+
+  # External system integrations
+  external:
+    # GitHub integration for code operations
+    github:
+      enabled: false
+      api_token: null
+      default_org: null
+
+    # Slack integration for notifications
+    slack:
+      enabled: false
+      webhook_url: null
+      default_channel: "#bmad-ops"
+
+    # Email notifications
+    email:
+      enabled: false
+      smtp_server: null
+      username: null
+      password: null

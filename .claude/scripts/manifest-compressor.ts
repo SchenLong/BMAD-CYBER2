@@ -3,7 +3,7 @@
  * Micro-Manifest Generator
  *
  * Story: CONCURA-3.1 - Implement Micro-Manifest Generator
- * Author: Amelia (Senior Developer)
+ * Author: BlackUnicorn.Tech
  *
  * Purpose: Generate compressed micro-manifests from full BMAD manifests
  * achieving 80%+ token reduction while preserving routing capability.
@@ -331,7 +331,7 @@ function generateAgentTags(agent: AgentEntry): string {
   }
 
   // Deduplicate and limit
-  const uniqueTags = [...new Set(tags)].slice(0, CONFIG.maxTags);
+  const uniqueTags = Array.from(new Set(tags)).slice(0, CONFIG.maxTags);
   const result = uniqueTags.join(' ');
 
   // Ensure we don't exceed max chars
@@ -364,7 +364,7 @@ function generateWorkflowTags(workflow: WorkflowEntry): string {
     }
   }
 
-  const uniqueTags = [...new Set(tags)].slice(0, CONFIG.maxTags);
+  const uniqueTags = Array.from(new Set(tags)).slice(0, CONFIG.maxTags);
   const result = uniqueTags.join(' ');
 
   if (result.length > CONFIG.maxTagChars) {

@@ -11,12 +11,18 @@
  * - Exponential backoff on violations
  * - Whitelist bypass for critical operations
  * - Persistent state across validator invocations
+ *
+ * Session-Aware Rate Limiting (NEW):
+ * - Rate limits are shared across all agents in a session
+ * - Subagents count against the same session-level limits
+ * - Configurable multiplier for parallel execution (BMAD_RATE_LIMIT_MULTIPLIER)
  */
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { getProjectDir } from '../common/path-utils.js';
 import { AuditLogger } from '../common/audit-logger.js';
+import { getToolInputFromStdinSync } from '../common/stdin-parser.js';
 import { EXIT_CODES } from '../types/index.js';
 
 // Try to import telemetry (graceful fallback)
@@ -48,8 +54,13 @@ const BACKOFF_MAX_SECONDS = 60;
 const BACKOFF_MULTIPLIER = 2;
 const BACKOFF_MAX_VIOLATIONS = 10;
 
-// Rate limits per minute
-const RATE_LIMITS: Record<string, number> = {
+// Rate limit multiplier for parallel/subagent execution
+// Default is 10x to support parallel workloads with subagents
+// Override with BMAD_RATE_LIMIT_MULTIPLIER env var if needed
+const RATE_LIMIT_MULTIPLIER = parseFloat(process.env['BMAD_RATE_LIMIT_MULTIPLIER'] || '10');
+
+// Base rate limits per minute (multiplied by RATE_LIMIT_MULTIPLIER)
+const BASE_RATE_LIMITS: Record<string, number> = {
   global: 150,
   bash: 60,
   write: 100,
@@ -62,6 +73,14 @@ const RATE_LIMITS: Record<string, number> = {
   websearch: 20,
   skill: 30,
 };
+
+// Apply multiplier to rate limits
+const RATE_LIMITS: Record<string, number> = Object.fromEntries(
+  Object.entries(BASE_RATE_LIMITS).map(([key, value]) => [
+    key,
+    Math.floor(value * RATE_LIMIT_MULTIPLIER),
+  ])
+);
 
 // Whitelist - operations that bypass rate limiting
 const WHITELIST: Record<string, string[]> = {
@@ -532,24 +551,23 @@ function printBlockMessage(result: RateLimitCheckResult): void {
 
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates rate limits.
+ * Reads tool input from stdin (sync) and validates rate limits.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export async function validateRateLimit(): Promise<number> {
+export function validateRateLimit(): number {
   try {
-    // Read from stdin
-    const chunks: Buffer[] = [];
-    for await (const chunk of process.stdin) {
-      chunks.push(chunk);
-    }
-    const input = Buffer.concat(chunks).toString('utf-8');
+    // Read from stdin synchronously (prevents hang on EOF issues)
+    const input = getToolInputFromStdinSync();
 
-    if (!input.trim()) {
+    if (!input.tool_name) {
       return EXIT_CODES.ALLOW;
     }
 
-    const data = JSON.parse(input);
-    const toolName = (data.tool_name || '').toLowerCase();
-    const toolInput = data.tool_input || {};
+    const toolName = input.tool_name.toLowerCase();
+    const toolInput = input.tool_input || {};
 
     // Map tool name to operation
     const operation = TOOL_MAPPING[toolName] || toolName;
@@ -557,13 +575,13 @@ export async function validateRateLimit(): Promise<number> {
     // Get target for whitelist checking
     let target = '';
     if (toolInput.command) {
-      target = toolInput.command;
+      target = String(toolInput.command);
     } else if (toolInput.file_path) {
-      target = toolInput.file_path;
+      target = String(toolInput.file_path);
     } else if (toolInput.path) {
-      target = toolInput.path;
+      target = String(toolInput.path);
     } else if (toolInput.url) {
-      target = toolInput.url;
+      target = String(toolInput.url);
     }
 
     const limiter = getRateLimiter();
@@ -597,7 +615,7 @@ export async function validateRateLimit(): Promise<number> {
  * CLI entry point for bin/ invocation.
  */
 export function main(): void {
-  validateRateLimit().then(code => process.exit(code));
+  process.exit(validateRateLimit());
 }
 
 // CLI entry point (direct execution)

@@ -1,0 +1,249 @@
+{
+  "sessionId": "1769591856363",
+  "tokensUsed": 4800,
+  "operations": [
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856363
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856363
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856364
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856365
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856367
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856367
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856368
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856369
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856369
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856370
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856373
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856374
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856375
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856376
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856376
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856378
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856378
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856379
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856380
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856380
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856380
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856381
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856381
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856382
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856382
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856383
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856383
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856384
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856385
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856385
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856385
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856386
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856387
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856387
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856387
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856388
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856388
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856389
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856389
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856389
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856390
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856390
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856391
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856391
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856391
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856392
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856392
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769591856392
+    }
+  ],
+  "warningsIssued": 0,
+  "lastUpdate": 1769591856392,
+  "createdAt": 1769591856363
+}

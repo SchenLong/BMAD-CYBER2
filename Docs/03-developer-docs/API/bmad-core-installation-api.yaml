@@ -1,0 +1,1033 @@
+openapi: 3.0.3
+info:
+  title: BMAD Core Installation API
+  version: 2.0.0
+  description: |
+    Enterprise-grade API for installing, managing, and orchestrating BMAD specialized team modules.
+
+    This API provides comprehensive installation capabilities for the BMAD-CYBER2 framework,
+    including module installation, dependency resolution, conflict detection, and rollback management.
+
+    ## Key Features
+
+    - **Multi-Module Installation**: Install individual or multiple specialized team modules
+    - **Dependency Management**: Automatic dependency resolution and version compatibility checking
+    - **Conflict Detection**: Pre-installation validation to prevent naming and resource conflicts
+    - **Rollback Support**: Automatic rollback on installation failures with backup management
+    - **Security Validation**: Enterprise-grade security checks and integrity verification
+    - **Progress Tracking**: Real-time installation progress with detailed phase reporting
+
+    ## Supported Modules
+
+    - **cybersec-team**: 15 agents, 13 workflows - Cybersecurity operations
+    - **intel-team**: 11 agents, 19 workflows - Intelligence operations
+    - **strategy-team**: 14 agents, 16 workflows - Executive leadership & strategy
+    - **legal-team**: 13 agents, 7 workflows - Legal support and compliance
+    - **bmm**: 9 agents, 32 workflows - Software product development
+    - **bmgd**: 6 agents, 29 workflows - Game development
+    - **bmb**: 3 agents, 8 workflows - Module and agent creation
+    - **cis**: 5 agents, 4 workflows - Creative innovation
+
+  contact:
+    name: BMAD Technical Support
+    url: https://api.blackunicorn.tech/support
+    email: support@blackunicorn.tech
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.blackunicorn.tech/v2
+    description: Production API Server
+  - url: https://staging-api.blackunicorn.tech/v2
+    description: Staging API Server
+  - url: http://localhost:3000/api/v2
+    description: Local Development Server
+
+security:
+  - BearerAuth: []
+  - ApiKeyAuth: []
+
+paths:
+  /installation:
+    post:
+      summary: Install BMAD Module(s)
+      description: |
+        Install one or more BMAD modules with comprehensive dependency resolution,
+        conflict detection, and automatic rollback on failure.
+
+        This endpoint orchestrates the complete installation pipeline:
+        1. Pre-validation (system requirements, module integrity)
+        2. Dependency resolution (version compatibility, conflicts)
+        3. Conflict detection (naming, resources, paths)
+        4. Backup creation (for rollback capability)
+        5. Installation execution (YAML to MD conversion)
+        6. Post-installation validation (functionality verification)
+
+      operationId: installModules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstallationRequest'
+            examples:
+              single_module:
+                summary: Install Single Module
+                value:
+                  modules: ["@bmad-cybercommand/cybersec-team"]
+                  options:
+                    validateDependencies: true
+                    enableRollback: true
+                    dryRun: false
+              multiple_modules:
+                summary: Install Multiple Modules
+                value:
+                  modules:
+                    - "@bmad-cybercommand/cybersec-team"
+                    - "@bmad-cybercommand/intel-team"
+                  options:
+                    validateDependencies: true
+                    enableRollback: true
+                    verbose: true
+      responses:
+        '200':
+          description: Installation completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallationResponse'
+              examples:
+                success:
+                  summary: Successful Installation
+                  value:
+                    success: true
+                    installationId: "bmad_install_1kz2m3p_a1b2c3d4"
+                    installedModules:
+                      - "@bmad-cybercommand/cybersec-team"
+                    duration: 15432
+                    phase: "completed"
+                    results:
+                      - moduleName: "@bmad-cybercommand/cybersec-team"
+                        agentPaths: ["/path/to/agents"]
+                        workflowPaths: ["/path/to/workflows"]
+                        success: true
+        '400':
+          description: Bad request - Invalid module names or options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict detected - Installation cannot proceed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorResponse'
+        '422':
+          description: Installation failed - Dependency or validation errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallationFailureResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /installation/{installationId}:
+    get:
+      summary: Get Installation Status
+      description: Retrieve the current status and details of an installation operation
+      operationId: getInstallationStatus
+      parameters:
+        - name: installationId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^bmad_install_[a-z0-9]+_[a-f0-9]{8}$'
+          example: "bmad_install_1kz2m3p_a1b2c3d4"
+      responses:
+        '200':
+          description: Installation status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallationStatusResponse'
+        '404':
+          description: Installation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: Cancel Installation
+      description: Cancel an in-progress installation and trigger rollback if necessary
+      operationId: cancelInstallation
+      parameters:
+        - name: installationId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "bmad_install_1kz2m3p_a1b2c3d4"
+      responses:
+        '200':
+          description: Installation cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancellationResponse'
+        '404':
+          description: Installation not found
+        '409':
+          description: Installation cannot be cancelled (completed or failed)
+
+  /rollback/{installationId}:
+    post:
+      summary: Manual Rollback
+      description: |
+        Manually trigger rollback for a failed or problematic installation.
+        This will restore the system to its state before the installation began.
+      operationId: rollbackInstallation
+      parameters:
+        - name: installationId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "bmad_install_1kz2m3p_a1b2c3d4"
+      responses:
+        '200':
+          description: Rollback completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RollbackResponse'
+        '404':
+          description: Installation or backup not found
+        '422':
+          description: Rollback failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /modules:
+    get:
+      summary: List Available Modules
+      description: |
+        Get a list of all available BMAD modules with their metadata,
+        including version information, dependencies, and installation status.
+      operationId: listAvailableModules
+      parameters:
+        - name: type
+          in: query
+          description: Filter modules by type
+          schema:
+            type: string
+            enum: [specialized-team, core-module, extension, workflow, agent]
+        - name: installed
+          in: query
+          description: Filter by installation status
+          schema:
+            type: boolean
+        - name: updates
+          in: query
+          description: Show only modules with available updates
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Modules retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModuleListResponse'
+
+  /modules/{moduleId}:
+    get:
+      summary: Get Module Details
+      description: Get detailed information about a specific module
+      operationId: getModuleDetails
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "@bmad-cybercommand/cybersec-team"
+      responses:
+        '200':
+          description: Module details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModuleDetails'
+        '404':
+          description: Module not found
+
+  /validation/pre-check:
+    post:
+      summary: Pre-Installation Validation
+      description: |
+        Perform comprehensive pre-installation validation without actually installing.
+        This includes system requirements, dependency resolution, and conflict detection.
+      operationId: preInstallationCheck
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+      responses:
+        '200':
+          description: Validation completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '422':
+          description: Validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorResponse'
+
+  /dependencies/resolve:
+    post:
+      summary: Resolve Dependencies
+      description: |
+        Analyze and resolve dependencies for a set of modules without installation.
+        Returns the complete dependency graph and any version conflicts.
+      operationId: resolveDependencies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependencyRequest'
+      responses:
+        '200':
+          description: Dependencies resolved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DependencyResponse'
+
+  /health:
+    get:
+      summary: API Health Check
+      description: Check the health status of the installation API service
+      operationId: healthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service is unhealthy
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  schemas:
+    InstallationRequest:
+      type: object
+      required:
+        - modules
+      properties:
+        modules:
+          type: array
+          items:
+            type: string
+          description: List of module names or NPM packages to install
+          example: ["@bmad-cybercommand/cybersec-team"]
+        options:
+          $ref: '#/components/schemas/InstallationOptions'
+
+    InstallationOptions:
+      type: object
+      properties:
+        validateDependencies:
+          type: boolean
+          default: true
+          description: Enable dependency validation
+        enableRollback:
+          type: boolean
+          default: true
+          description: Enable automatic rollback on failure
+        dryRun:
+          type: boolean
+          default: false
+          description: Perform validation without actual installation
+        verbose:
+          type: boolean
+          default: false
+          description: Enable verbose logging
+        projectRoot:
+          type: string
+          description: Project root directory path
+        skipBackup:
+          type: boolean
+          default: false
+          description: Skip backup creation (disables rollback)
+        forceInstall:
+          type: boolean
+          default: false
+          description: Force installation despite warnings
+
+    InstallationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Installation success status
+        installationId:
+          type: string
+          description: Unique installation identifier
+        installedModules:
+          type: array
+          items:
+            type: string
+          description: Successfully installed modules
+        duration:
+          type: integer
+          description: Installation duration in milliseconds
+        phase:
+          type: string
+          enum: [completed, failed]
+          description: Final installation phase
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleInstallationResult'
+
+    ModuleInstallationResult:
+      type: object
+      properties:
+        moduleName:
+          type: string
+          description: Name of the installed module
+        agentPaths:
+          type: array
+          items:
+            type: string
+          description: Paths to installed agents
+        workflowPaths:
+          type: array
+          items:
+            type: string
+          description: Paths to installed workflows
+        success:
+          type: boolean
+          description: Module installation success status
+        agentsInstalled:
+          type: integer
+          description: Number of agents installed
+        workflowsInstalled:
+          type: integer
+          description: Number of workflows installed
+        configurationPath:
+          type: string
+          description: Path to module configuration
+
+    InstallationStatusResponse:
+      type: object
+      properties:
+        installationId:
+          type: string
+        status:
+          type: string
+          enum: [pending, running, completed, failed, cancelled]
+        currentPhase:
+          type: string
+          enum: [pre-validation, dependency-resolution, conflict-detection, backup-creation, installation, post-validation]
+        progress:
+          type: object
+          properties:
+            percentage:
+              type: number
+              minimum: 0
+              maximum: 100
+            currentStep:
+              type: string
+            totalSteps:
+              type: integer
+            completedSteps:
+              type: integer
+        startTime:
+          type: string
+          format: date-time
+        estimatedCompletion:
+          type: string
+          format: date-time
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstallationLogEntry'
+
+    InstallationLogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        level:
+          type: string
+          enum: [debug, info, warn, error]
+        phase:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+
+    InstallationFailureResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        error:
+          type: string
+          description: Error message
+        phase:
+          type: string
+          description: Phase where installation failed
+        installationId:
+          type: string
+        rollbackAttempted:
+          type: boolean
+          description: Whether automatic rollback was attempted
+        rollbackSuccess:
+          type: boolean
+          description: Whether rollback succeeded
+        duration:
+          type: integer
+        details:
+          type: object
+          description: Additional error details
+        recommendations:
+          type: array
+          items:
+            type: string
+          description: Recommended actions to resolve the issue
+
+    ConflictErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        error:
+          type: string
+          default: "Conflicts detected"
+        conflicts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conflict'
+        canProceed:
+          type: boolean
+          description: Whether installation can proceed despite conflicts
+        resolutionOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConflictResolution'
+
+    Conflict:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [agent_name, workflow_id, file_path, dependency_version]
+        severity:
+          type: string
+          enum: [critical, warning, info]
+        description:
+          type: string
+        affectedModules:
+          type: array
+          items:
+            type: string
+        conflictingItems:
+          type: array
+          items:
+            type: string
+
+    ConflictResolution:
+      type: object
+      properties:
+        conflictId:
+          type: string
+        resolution:
+          type: string
+          enum: [skip, rename, overwrite, merge]
+        description:
+          type: string
+        automatic:
+          type: boolean
+
+    ValidationRequest:
+      type: object
+      required:
+        - modules
+      properties:
+        modules:
+          type: array
+          items:
+            type: string
+        options:
+          $ref: '#/components/schemas/InstallationOptions'
+
+    ValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        validationId:
+          type: string
+        checks:
+          type: object
+          properties:
+            systemRequirements:
+              $ref: '#/components/schemas/ValidationCheck'
+            moduleIntegrity:
+              $ref: '#/components/schemas/ValidationCheck'
+            dependencies:
+              $ref: '#/components/schemas/ValidationCheck'
+            conflicts:
+              $ref: '#/components/schemas/ValidationCheck'
+            resources:
+              $ref: '#/components/schemas/ValidationCheck'
+        warnings:
+          type: array
+          items:
+            type: string
+        estimatedDuration:
+          type: integer
+          description: Estimated installation duration in milliseconds
+
+    ValidationCheck:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [passed, failed, warning, skipped]
+        message:
+          type: string
+        details:
+          type: object
+        duration:
+          type: integer
+
+    ValidationErrorResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          default: false
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+        canProceed:
+          type: boolean
+
+    ValidationError:
+      type: object
+      properties:
+        check:
+          type: string
+        severity:
+          type: string
+          enum: [critical, warning]
+        message:
+          type: string
+        details:
+          type: object
+        resolution:
+          type: string
+
+    DependencyRequest:
+      type: object
+      required:
+        - modules
+      properties:
+        modules:
+          type: array
+          items:
+            type: string
+        includeOptional:
+          type: boolean
+          default: true
+
+    DependencyResponse:
+      type: object
+      properties:
+        resolved:
+          type: boolean
+        dependencyGraph:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ModuleDependencyInfo'
+        conflicts:
+          type: array
+          items:
+            $ref: '#/components/schemas/DependencyConflict'
+        installationOrder:
+          type: array
+          items:
+            type: string
+
+    ModuleDependencyInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        dependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'
+        devDependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'
+        peerDependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'
+
+    Dependency:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        required:
+          type: boolean
+        satisfied:
+          type: boolean
+        availableVersion:
+          type: string
+
+    DependencyConflict:
+      type: object
+      properties:
+        dependency:
+          type: string
+        requiredVersions:
+          type: array
+          items:
+            type: object
+            properties:
+              version:
+                type: string
+              requiredBy:
+                type: array
+                items:
+                  type: string
+        resolution:
+          type: string
+        impact:
+          type: string
+          enum: [breaking, compatible, warning]
+
+    ModuleListResponse:
+      type: object
+      properties:
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleSummary'
+        total:
+          type: integer
+        filters:
+          type: object
+
+    ModuleSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        type:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        installed:
+          type: boolean
+        installedVersion:
+          type: string
+        latestVersion:
+          type: string
+        updateAvailable:
+          type: boolean
+        agentsCount:
+          type: integer
+        workflowsCount:
+          type: integer
+
+    ModuleDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        category:
+          type: string
+        repository:
+          type: object
+        license:
+          type: string
+        keywords:
+          type: array
+          items:
+            type: string
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentInfo'
+        workflows:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowInfo'
+        dependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'
+        configuration:
+          type: object
+        permissions:
+          $ref: '#/components/schemas/ModulePermissions'
+        installation:
+          $ref: '#/components/schemas/InstallationInfo'
+
+    AgentInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        capabilities:
+          type: array
+          items:
+            type: string
+
+    WorkflowInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        trigger:
+          type: string
+        accessLevel:
+          type: string
+
+    ModulePermissions:
+      type: object
+      properties:
+        filesystem:
+          type: object
+          properties:
+            read:
+              type: array
+              items:
+                type: string
+            write:
+              type: array
+              items:
+                type: string
+        network:
+          type: boolean
+        shell:
+          type: object
+          properties:
+            allowedCommands:
+              type: array
+              items:
+                type: string
+        sensitiveData:
+          type: boolean
+
+    InstallationInfo:
+      type: object
+      properties:
+        installed:
+          type: boolean
+        installedAt:
+          type: string
+          format: date-time
+        installationId:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+        health:
+          type: string
+
+    CancellationResponse:
+      type: object
+      properties:
+        cancelled:
+          type: boolean
+        installationId:
+          type: string
+        rollbackPerformed:
+          type: boolean
+        message:
+          type: string
+
+    RollbackResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        installationId:
+          type: string
+        rollbackId:
+          type: string
+        restoredFiles:
+          type: integer
+        duration:
+          type: integer
+        message:
+          type: string
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        version:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        checks:
+          type: object
+          properties:
+            database:
+              type: string
+              enum: [up, down]
+            filesystem:
+              type: string
+              enum: [writable, readonly, error]
+            dependencies:
+              type: string
+              enum: [satisfied, missing, outdated]
+        uptime:
+          type: integer
+          description: Uptime in seconds
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        error:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        timestamp:
+          type: string
+          format: date-time
+        requestId:
+          type: string
+
+# API Usage Examples and Integration Patterns
+x-examples:
+  curl-install-module: |
+    # Install a single module
+    curl -X POST "https://api.blackunicorn.tech/v2/installation" \
+      -H "Authorization: Bearer YOUR_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "modules": ["@bmad-cybercommand/cybersec-team"],
+        "options": {
+          "validateDependencies": true,
+          "enableRollback": true
+        }
+      }'
+
+  curl-check-status: |
+    # Check installation status
+    curl -X GET "https://api.blackunicorn.tech/v2/installation/bmad_install_1kz2m3p_a1b2c3d4" \
+      -H "Authorization: Bearer YOUR_TOKEN"
+
+  curl-list-modules: |
+    # List available modules
+    curl -X GET "https://api.blackunicorn.tech/v2/modules?type=specialized-team" \
+      -H "Authorization: Bearer YOUR_TOKEN"
+
+# Enterprise Integration Guidelines
+x-integration-patterns:
+  enterprise-deployment: |
+    For enterprise deployments, implement the following patterns:
+
+    1. **Staged Deployments**: Use dry-run validation before production installation
+    2. **Health Monitoring**: Implement continuous health checking with /health endpoint
+    3. **Backup Strategy**: Always enable rollback for production installations
+    4. **Security**: Use Bearer token authentication with proper RBAC
+    5. **Monitoring**: Log all installation activities for audit compliance
+
+  cicd-integration: |
+    Integration with CI/CD pipelines:
+
+    1. Pre-deployment validation using /validation/pre-check
+    2. Automated module installation with /installation endpoint
+    3. Status monitoring until completion
+    4. Health verification post-installation
+    5. Rollback on failure using /rollback/{installationId}
+
+x-rate-limits:
+  installation: "5 requests per minute per API key"
+  status-check: "30 requests per minute per API key"
+  validation: "10 requests per minute per API key"
+  general: "100 requests per minute per API key"
