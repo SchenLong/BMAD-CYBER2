@@ -27,6 +27,10 @@ _bmad-output/
 .claude/*.lock
 .claude/dashboard.html
 
+# User preference files
+.claude/github-star-reminder.txt
+.claude/llm-provider.txt
+
 # Log files - contain sensitive runtime data
 .claude/logs/*.log
 .claude/logs/*.json
@@ -73,14 +77,10 @@ Docs/04-operations/security/testing/alerts/
 Docs/04-operations/security/testing/revalidation/
 
 # ===================
-# Dev Tools - Generated Output
+# Dev Tools
 # ===================
-# Coverage reports
-dev-tools/coverage/
-
-# Test reports and benchmarks output
-dev-tools/reports/*.json
-dev-tools/reports/*.html
+# Internal development, testing, and security tools (not for public release)
+dev-tools/
 
 # ===================
 # Private Projects
