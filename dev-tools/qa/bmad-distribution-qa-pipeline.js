@@ -6,7 +6,7 @@
  * Validates structural integrity, agent YAML formats, workflow completeness,
  * documentation quality, installation scenarios, and security compliance.
  *
- * Author: Murat (Test Architect)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  * Epic: 4 - Packaging & Distribution Automation
  * Story: 4.3 - Quality Assurance for Distribution Packages

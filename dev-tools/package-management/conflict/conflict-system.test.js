@@ -3,7 +3,7 @@
  * Test suite for the complete conflict detection, resolution, and prevention system
  * Validates integration with Epic 2 package management components
  *
- * @author BMAD Package Management Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.6

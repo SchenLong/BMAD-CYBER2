@@ -6,7 +6,7 @@
  * Validates workflow directory structures, required files, step completeness,
  * documentation quality, and cross-references with agent capabilities.
  *
- * Author: Murat (Test Architect)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  * Epic: 4 - Packaging & Distribution Automation
  * Story: 4.3 - Quality Assurance for Distribution Packages

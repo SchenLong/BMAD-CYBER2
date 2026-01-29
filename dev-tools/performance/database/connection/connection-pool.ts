@@ -2,7 +2,7 @@
  * BMAD CONCURA INTELLIGENT CONNECTION POOL
  * Advanced connection pool with auto-scaling and predictive optimization
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

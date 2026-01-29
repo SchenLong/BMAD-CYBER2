@@ -4,7 +4,7 @@
  * 
  * @description Core security testing framework implementing 89 validation tests
  * @version 1.0.0
- * @author BMAD Security Team
+ * @author BlackUnicorn.Tech
  */
 
 class SecurityTestFramework {

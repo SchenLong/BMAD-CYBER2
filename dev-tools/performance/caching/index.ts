@@ -2,7 +2,7 @@
  * BMAD CONCURA INTELLIGENT CACHING FRAMEWORK
  * Multi-layer caching system with context-aware optimization for 60% performance improvement
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

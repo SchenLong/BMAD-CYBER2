@@ -2,7 +2,7 @@
  * BMAD CONCURA PATTERN ANALYZER
  * Advanced pattern analysis for context-aware caching optimization
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

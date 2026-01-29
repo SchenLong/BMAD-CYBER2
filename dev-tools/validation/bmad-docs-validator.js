@@ -6,7 +6,7 @@
  * Validates the quality and completeness of generated documentation
  * to ensure it meets distribution standards.
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @license MIT
  */

@@ -6,7 +6,7 @@
  * comply with BMAD security policies, maintain audit trails, and protect sensitive
  * memory data while optimizing performance.
  *
- * @author BMAD Performance & Security Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

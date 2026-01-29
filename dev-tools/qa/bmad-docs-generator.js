@@ -6,7 +6,7 @@
  * Generates comprehensive documentation for BMAD specialized team modules
  * including README.md files, installation guides, API docs, and usage examples.
  *
- * @author Clara (Tech Writer)
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @license MIT
  */

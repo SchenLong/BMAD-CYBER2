@@ -7,7 +7,7 @@
  * Comprehensive testing framework for MD-to-YAML extraction validation
  * Ensures 100% functional equivalence across conversion pipeline
  *
- * Author: Murat (Master Test Architect)
+ * Author: BlackUnicorn.Tech
  * Epic: 2 - Agent Extraction & Conversion Pipeline
  */
 

@@ -3,7 +3,7 @@
  * Unified export interface for all performance monitoring and analysis tools
  * Provides comprehensive performance optimization capabilities for BMAD infrastructure
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

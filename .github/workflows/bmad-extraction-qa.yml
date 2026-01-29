@@ -4,7 +4,7 @@
 # This GitHub Actions workflow implements the complete QA strategy
 # for BMAD Specialized Teams Module Extraction project
 #
-# Author: Murat (Master Test Architect)
+# Author: BlackUnicorn.Tech
 
 name: BMAD Extraction QA Pipeline
 

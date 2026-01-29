@@ -7,7 +7,7 @@
  * Comprehensive testing framework for multi-module integration validation
  * Tests cross-team workflows, agent communication, and system stability
  *
- * Author: Murat (Master Test Architect)
+ * Author: BlackUnicorn.Tech
  * Epic: 5 - Pilot Implementation & End-to-End Validation
  */
 

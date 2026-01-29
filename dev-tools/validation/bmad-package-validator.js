@@ -6,7 +6,7 @@
  * Validates BMAD modules before packaging to ensure completeness and quality.
  * Integrates with bmad-validation-rules.yaml for comprehensive validation.
  *
- * Author: Morgan (Module Builder)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

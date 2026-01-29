@@ -2,7 +2,7 @@
  * BMAD CONCURA CACHE INVALIDATION ENGINE
  * Intelligent cache invalidation with event-driven and pattern-based strategies
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

@@ -6,7 +6,7 @@
  *
  * Converts source .md files from specialized team modules to bmad-builder .agent.yaml format
  *
- * Author: Abdul (Master Project Manager) & Amelia (Developer)
+ * Author: BlackUnicorn.Tech
  * Epic: 2 - Agent Extraction & Conversion Pipeline
  */
 

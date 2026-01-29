@@ -3,7 +3,7 @@
  * Advanced bottleneck detection and analysis for BMAD infrastructure optimization
  * Identifies performance bottlenecks across all system layers with CONCURA context efficiency focus
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

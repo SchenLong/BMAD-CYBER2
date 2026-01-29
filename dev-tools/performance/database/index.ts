@@ -2,7 +2,7 @@
  * BMAD CONCURA DATABASE OPTIMIZATION SUITE
  * Complete database performance optimization with integrated security and monitoring
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

@@ -4,7 +4,7 @@
  *
  * @description Advanced security report generation with executive summaries and detailed analysis
  * @version 1.0.0
- * @author BMAD Security Team
+ * @author BlackUnicorn.Tech
  */
 
 const fs = require('fs');

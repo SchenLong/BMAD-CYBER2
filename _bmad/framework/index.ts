@@ -7,7 +7,7 @@
  * scripts, authentication, and audit logging components.
  *
  * @version 1.0.0
- * @author Amelia (Dev) - Code Quality & Structure Specialist
+ * @author BlackUnicorn.Tech
  */
 
 // Namespace exports to avoid conflicts

@@ -136,5 +136,5 @@ The Core module automatically integrates with all installed modules:
 
 ## Credits
 
-**Author:** BMAD Team
+**Author:** BlackUnicorn.Tech
 **Framework:** BMAD Method v6.0

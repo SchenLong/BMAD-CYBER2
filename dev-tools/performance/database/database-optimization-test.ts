@@ -2,7 +2,7 @@
  * BMAD CONCURA DATABASE OPTIMIZATION COMPREHENSIVE TESTING SUITE
  * Complete validation and performance testing for database optimization components
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

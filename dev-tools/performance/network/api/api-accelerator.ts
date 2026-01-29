@@ -10,7 +10,7 @@
  * - Circuit breaker patterns
  * - Request prioritization
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

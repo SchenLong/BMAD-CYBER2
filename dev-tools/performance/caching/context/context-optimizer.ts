@@ -2,7 +2,7 @@
  * BMAD CONCURA CONTEXT OPTIMIZER
  * Advanced context optimization for maximum performance improvement
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

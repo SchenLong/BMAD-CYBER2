@@ -4,7 +4,7 @@
  * Simple test to verify core components are accessible and functional
  * Tests file existence, basic syntax, and module structure
  *
- * @author Integration Test Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.2

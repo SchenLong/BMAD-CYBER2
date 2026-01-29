@@ -6,7 +6,7 @@
  * performance monitoring, caching, and database optimization systems to achieve
  * cumulative performance improvements exceeding 113%.
  *
- * @author BMAD Performance Integration Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

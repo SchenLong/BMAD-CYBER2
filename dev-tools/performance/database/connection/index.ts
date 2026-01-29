@@ -2,7 +2,7 @@
  * BMAD CONCURA DATABASE CONNECTION OPTIMIZATION
  * Advanced connection pool management with intelligent optimization
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

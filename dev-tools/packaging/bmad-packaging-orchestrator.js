@@ -6,7 +6,7 @@
  * Coordinates the complete packaging workflow including validation, packaging,
  * version management, and testing for all BMAD specialized team modules.
  *
- * Author: Morgan (Module Builder)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

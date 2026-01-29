@@ -3,7 +3,7 @@
  * Real-time performance visualization and monitoring dashboard
  * Provides comprehensive performance insights and interactive visualizations
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

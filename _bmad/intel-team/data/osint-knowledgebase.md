@@ -786,6 +786,6 @@ DARK WEB
 
 **Document Control:**
 - Created: 2026-01-10
-- Author: Intel Team Module Builder
+- Author: BlackUnicorn.Tech
 - Review Cycle: Quarterly
 - Next Review: 2026-04-10

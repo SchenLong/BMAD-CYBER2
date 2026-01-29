@@ -3,7 +3,7 @@
  * EPIC 5.2: Performance and Resource Impact Testing
  * Benchmarks system performance with specialized teams
  *
- * Test Author: Murat (Test Architect)
+ * Test Author: BlackUnicorn.Tech
  */
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';

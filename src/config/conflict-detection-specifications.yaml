@@ -1,6 +1,6 @@
 # BMAD Specialized Teams - Conflict Detection & Resolution Specifications
 # Comprehensive specification for preventing and resolving module conflicts
-# Author: Winston (System Architect)
+# Author: BlackUnicorn.Tech
 # Version: 1.0.0
 
 version: "1.0.0"
@@ -620,7 +620,7 @@ user_guidance:
 metadata:
   version: "1.0.0"
   created: "2025-01-23"
-  author: "Winston (System Architect)"
+  author: "BlackUnicorn.Tech"
   review_schedule: "quarterly"
   next_review: "2025-04-23"
 

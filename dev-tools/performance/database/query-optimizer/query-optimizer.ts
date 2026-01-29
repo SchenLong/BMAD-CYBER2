@@ -2,7 +2,7 @@
  * BMAD CONCURA DATABASE QUERY OPTIMIZER
  * Advanced intelligent query optimization engine with machine learning capabilities
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

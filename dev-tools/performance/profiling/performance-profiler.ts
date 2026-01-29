@@ -3,7 +3,7 @@
  * Advanced performance profiling system for BMAD infrastructure optimization
  * Provides comprehensive performance metrics, bottleneck detection, and optimization insights
  *
- * @author BMAD Performance Team
+ * @author BlackUnicorn.Tech
  * @version 1.0.0
  * @classification PRODUCTION-READY
  */

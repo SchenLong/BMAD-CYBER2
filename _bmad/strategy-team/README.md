@@ -326,7 +326,7 @@ The module uses `_bmad/strategy-team/config.yaml` for configuration including:
 
 Created using the BMAD Framework Module Creator workflow.
 
-**Author:** J
+**Author:** BlackUnicorn.Tech
 **Created:** 2026-01-09
 **Updated:** 2026-01-11 (v1.3.0)
 **Framework:** BMAD + Claude Opus

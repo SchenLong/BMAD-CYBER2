@@ -3,7 +3,7 @@
  * EPIC 5.2: Rollback Scenario Testing
  * Tests system behavior during rollback scenarios
  *
- * Test Author: Murat (Test Architect)
+ * Test Author: BlackUnicorn.Tech
  */
 
 import { describe, it, expect } from 'vitest';

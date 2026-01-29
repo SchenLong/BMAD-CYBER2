@@ -6,7 +6,7 @@
  * Comprehensive testing of the packaging workflow for all 4 specialized team modules.
  * Validates the complete pipeline from source validation to distribution packaging.
  *
- * Author: Morgan (Module Builder)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 

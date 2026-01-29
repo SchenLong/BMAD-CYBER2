@@ -6,7 +6,7 @@
  * Manages version numbers for BMAD modules following semantic versioning.
  * Provides automated version bumping, changelog generation, and release tagging.
  *
- * Author: Morgan (Module Builder)
+ * Author: BlackUnicorn.Tech
  * Version: 1.0.0
  */
 
