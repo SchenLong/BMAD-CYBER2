@@ -379,34 +379,6 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 
 ---
 
-### 3.3 Creative Innovation Suite (CIS) Enhancements
-
-**Recommendation:** **OPTIONAL PR** - Extended creative capabilities
-
-#### New Agents
-
-| Agent | Role |
-|-------|------|
-| **Innovation Coach** | Structured ideation facilitation |
-| **Creative Presenter** | Presentation design and delivery |
-| **Storyteller** | Narrative construction |
-| **Design Thinker** | Human-centered problem solving |
-
-#### New Workflows
-
-| Workflow | Purpose |
-|----------|---------|
-| brainstorming | Multi-technique ideation sessions |
-| innovation-sprint | Rapid innovation cycles |
-| pitch-deck | Investor/stakeholder presentations |
-| story-arc | Narrative structure development |
-
-**Integration Effort:** Low
-**Dependencies:** None
-**PR Priority:** LOW
-
----
-
 ## Section 4: Infrastructure Improvements
 
 ### 4.1 TypeScript Framework
