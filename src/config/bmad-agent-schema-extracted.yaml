@@ -1,0 +1,203 @@
+# BMAD-Builder Agent YAML Schema v2.0.0 - Extracted Format
+# Schema matching the actual extracted agent structure from Story 2.1
+# Designed by Winston (The Master Strategist) for Story 2.2
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://api.blackunicorn.tech/schemas/agent-extracted-v2.0.0.json"
+
+title: "BMAD Agent Schema - Extracted Format"
+description: "Schema for validating extracted BMAD agents in their current format"
+version: "2.0.0"
+
+type: object
+required: ["agent", "persona", "activation", "menu", "rules", "menu_handlers", "extraction"]
+
+properties:
+  # ===== AGENT METADATA SECTION =====
+  agent:
+    type: object
+    required: ["metadata"]
+    properties:
+      metadata:
+        type: object
+        required: ["name", "id", "title", "icon", "team", "description", "source_file"]
+        properties:
+          name:
+            type: string
+            description: "Agent display name/codename"
+            minLength: 1
+            maxLength: 50
+
+          id:
+            type: string
+            description: "Unique agent identifier"
+            pattern: "^[a-z-]+\\.agent\\.(yaml|md)$"
+
+          title:
+            type: string
+            description: "Agent title/specialization"
+            minLength: 1
+            maxLength: 100
+
+          icon:
+            type: string
+            description: "Unicode emoji or HTML entity for agent"
+            minLength: 1
+
+          team:
+            type: string
+            enum: ["cybersec-team", "intel-team", "legal-team", "strategy-team", "core"]
+            description: "Team assignment"
+
+          description:
+            type: string
+            description: "Brief agent capability description"
+            minLength: 10
+            maxLength: 500
+
+          source_file:
+            type: string
+            description: "Original source markdown file"
+            pattern: "^[a-z-]+\\.md$"
+
+  # ===== PERSONA SECTION =====
+  persona:
+    type: object
+    required: ["role", "identity", "communication_style", "principles"]
+    properties:
+      role:
+        type: string
+        description: "Primary role definition"
+        minLength: 10
+
+      identity:
+        type: string
+        description: "Detailed character background and expertise"
+        minLength: 50
+
+      communication_style:
+        type: string
+        description: "How the agent communicates"
+        minLength: 20
+
+      principles:
+        type: string
+        description: "Core operating principles and values"
+        minLength: 20
+
+  # ===== ACTIVATION SECTION =====
+  activation:
+    type: object
+    required: ["critical", "steps"]
+    properties:
+      critical:
+        type: boolean
+        description: "Whether activation is critical/mandatory"
+
+      steps:
+        type: array
+        minItems: 1
+        items:
+          type: object
+          required: ["number", "content"]
+          properties:
+            number:
+              type: integer
+              minimum: 1
+              description: "Step sequence number"
+
+            content:
+              type: string
+              description: "Step instructions"
+              minLength: 10
+
+  # ===== MENU SECTION =====
+  menu:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: ["trigger", "description"]
+      properties:
+        trigger:
+          type: string
+          description: "Menu trigger text and fuzzy match patterns"
+          minLength: 1
+
+        description:
+          type: string
+          description: "Menu item description"
+          minLength: 1
+
+        action:
+          type: string
+          description: "Direct action to execute"
+
+        exec:
+          type: string
+          description: "File path to execute"
+
+        data:
+          type: string
+          description: "Data file path for context"
+
+  # ===== RULES SECTION =====
+  rules:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: ["content"]
+      properties:
+        content:
+          type: string
+          description: "Rule content"
+          minLength: 10
+
+        critical:
+          oneOf:
+            - type: boolean
+            - type: string
+              enum: ["SECURITY", "OPERATIONAL", "COMPLIANCE"]
+          description: "Rule criticality level"
+
+  # ===== MENU HANDLERS SECTION =====
+  menu_handlers:
+    type: array
+    items:
+      type: object
+      required: ["content"]
+      properties:
+        content:
+          type: string
+          description: "Handler implementation"
+
+        type:
+          type: string
+          enum: ["exec", "action", "workflow", "validation"]
+          description: "Handler type"
+
+  # ===== EXTRACTION METADATA SECTION =====
+  extraction:
+    type: object
+    required: ["converted_at", "engine_version", "source_format", "target_format"]
+    properties:
+      converted_at:
+        type: string
+        format: "date-time"
+        description: "Extraction timestamp (ISO 8601)"
+
+      engine_version:
+        type: string
+        pattern: "^\\d+\\.\\d+\\.\\d+$"
+        description: "Extraction engine version"
+
+      source_format:
+        type: string
+        enum: ["md_xml", "markdown", "xml", "json"]
+        description: "Original source format"
+
+      target_format:
+        type: string
+        enum: ["bmad_builder_yaml", "yaml", "json"]
+        description: "Target output format"

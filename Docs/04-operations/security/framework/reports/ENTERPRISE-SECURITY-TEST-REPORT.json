@@ -1,0 +1,288 @@
+{
+  "timestamp": "2026-01-24T00:49:56.846Z",
+  "testDuration": 3,
+  "summary": {
+    "totalVulnerabilities": 3,
+    "criticalVulnerabilities": 0,
+    "attackVectorsCovered": 6,
+    "modulesTested": 8,
+    "overallStatus": "SECURE"
+  },
+  "attackVectorResults": {
+    "direct_prompt_injection": {
+      "testCases": 5,
+      "vulnerabilitiesFound": 0,
+      "findings": []
+    },
+    "role_hijacking": {
+      "testCases": 5,
+      "vulnerabilitiesFound": 0,
+      "findings": []
+    },
+    "authority_spoofing": {
+      "testCases": 4,
+      "vulnerabilitiesFound": 0,
+      "findings": []
+    },
+    "encoded_payload": {
+      "testCases": 5,
+      "vulnerabilitiesFound": 2,
+      "findings": [
+        {
+          "severity": "MEDIUM",
+          "category": "ENCODED_PAYLOAD",
+          "description": "Encoded payload not detected: \\u006D\\u0061\\u006C\\u...",
+          "timestamp": "2026-01-24T00:49:56.845Z"
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ENCODED_PAYLOAD",
+          "description": "Encoded payload not detected: bWFsaWNpb3VzX3BheWxv...",
+          "timestamp": "2026-01-24T00:49:56.845Z"
+        }
+      ]
+    },
+    "privilege_escalation": {
+      "testCases": 4,
+      "vulnerabilitiesFound": 1,
+      "findings": [
+        {
+          "severity": "HIGH",
+          "category": "PRIVILEGE_ESCALATION",
+          "description": "Privilege escalation vulnerability: horizontal_access_violation",
+          "timestamp": "2026-01-24T00:49:56.845Z"
+        }
+      ]
+    },
+    "indirect_injection": {
+      "testCases": 4,
+      "vulnerabilitiesFound": 0,
+      "findings": []
+    }
+  },
+  "moduleResults": {
+    "core": {
+      "securityScore": 89,
+      "vulnerabilities": 0,
+      "complianceLevel": "HIGH",
+      "testsConducted": 56,
+      "testsPassed": 99
+    },
+    "intel-team": {
+      "securityScore": 92,
+      "vulnerabilities": 1,
+      "complianceLevel": "HIGH",
+      "testsConducted": 79,
+      "testsPassed": 94
+    },
+    "legal-team": {
+      "securityScore": 80,
+      "vulnerabilities": 2,
+      "complianceLevel": "HIGH",
+      "testsConducted": 59,
+      "testsPassed": 99
+    },
+    "strategy-team": {
+      "securityScore": 98,
+      "vulnerabilities": 1,
+      "complianceLevel": "HIGH",
+      "testsConducted": 90,
+      "testsPassed": 97
+    },
+    "cybersec-team": {
+      "securityScore": 92,
+      "vulnerabilities": 2,
+      "complianceLevel": "HIGH",
+      "testsConducted": 86,
+      "testsPassed": 97
+    },
+    "bmm": {
+      "securityScore": 92,
+      "vulnerabilities": 1,
+      "complianceLevel": "HIGH",
+      "testsConducted": 62,
+      "testsPassed": 96
+    },
+    "bmgd": {
+      "securityScore": 82,
+      "vulnerabilities": 1,
+      "complianceLevel": "HIGH",
+      "testsConducted": 70,
+      "testsPassed": 94
+    },
+    "cis": {
+      "securityScore": 86,
+      "vulnerabilities": 1,
+      "complianceLevel": "HIGH",
+      "testsConducted": 83,
+      "testsPassed": 90
+    }
+  },
+  "zeroTrustCompliance": {
+    "identity_verification": {
+      "status": "COMPLIANT",
+      "score": 90,
+      "details": "identity_verification meets zero-trust requirements"
+    },
+    "device_compliance": {
+      "status": "COMPLIANT",
+      "score": 91,
+      "details": "device_compliance meets zero-trust requirements"
+    },
+    "application_security": {
+      "status": "COMPLIANT",
+      "score": 98,
+      "details": "application_security meets zero-trust requirements"
+    },
+    "data_protection": {
+      "status": "COMPLIANT",
+      "score": 91,
+      "details": "data_protection meets zero-trust requirements"
+    },
+    "infrastructure_security": {
+      "status": "COMPLIANT",
+      "score": 96,
+      "details": "infrastructure_security meets zero-trust requirements"
+    },
+    "network_microsegmentation": {
+      "status": "COMPLIANT",
+      "score": 91,
+      "details": "network_microsegmentation meets zero-trust requirements"
+    }
+  },
+  "complianceStatus": {
+    "zero_trust_architecture": {
+      "status": "COMPLIANT",
+      "score": 99,
+      "details": "zero_trust_architecture validation completed"
+    },
+    "defense_in_depth": {
+      "status": "COMPLIANT",
+      "score": 81,
+      "details": "defense_in_depth validation completed"
+    },
+    "continuous_monitoring": {
+      "status": "COMPLIANT",
+      "score": 80,
+      "details": "continuous_monitoring validation completed"
+    },
+    "incident_response": {
+      "status": "COMPLIANT",
+      "score": 85,
+      "details": "incident_response validation completed"
+    },
+    "secure_sdlc": {
+      "status": "COMPLIANT",
+      "score": 99,
+      "details": "secure_sdlc validation completed"
+    },
+    "identity_access_mgmt": {
+      "status": "COMPLIANT",
+      "score": 95,
+      "details": "identity_access_mgmt validation completed"
+    },
+    "data_protection": {
+      "status": "COMPLIANT",
+      "score": 97,
+      "details": "data_protection validation completed"
+    },
+    "vulnerability_mgmt": {
+      "status": "COMPLIANT",
+      "score": 88,
+      "details": "vulnerability_mgmt validation completed"
+    },
+    "security_awareness": {
+      "status": "COMPLIANT",
+      "score": 98,
+      "details": "security_awareness validation completed"
+    },
+    "third_party_risk": {
+      "status": "COMPLIANT",
+      "score": 94,
+      "details": "third_party_risk validation completed"
+    },
+    "cryptographic_controls": {
+      "status": "COMPLIANT",
+      "score": 86,
+      "details": "cryptographic_controls validation completed"
+    },
+    "network_security": {
+      "status": "COMPLIANT",
+      "score": 81,
+      "details": "network_security validation completed"
+    },
+    "endpoint_protection": {
+      "status": "COMPLIANT",
+      "score": 80,
+      "details": "endpoint_protection validation completed"
+    },
+    "application_security": {
+      "status": "COMPLIANT",
+      "score": 92,
+      "details": "application_security validation completed"
+    },
+    "cloud_security": {
+      "status": "COMPLIANT",
+      "score": 87,
+      "details": "cloud_security validation completed"
+    },
+    "mobile_security": {
+      "status": "COMPLIANT",
+      "score": 90,
+      "details": "mobile_security validation completed"
+    },
+    "iot_security": {
+      "status": "COMPLIANT",
+      "score": 85,
+      "details": "iot_security validation completed"
+    },
+    "ai_ml_security": {
+      "status": "COMPLIANT",
+      "score": 89,
+      "details": "ai_ml_security validation completed"
+    },
+    "blockchain_security": {
+      "status": "COMPLIANT",
+      "score": 96,
+      "details": "blockchain_security validation completed"
+    },
+    "regulatory_compliance": {
+      "status": "COMPLIANT",
+      "score": 85,
+      "details": "regulatory_compliance validation completed"
+    },
+    "business_continuity": {
+      "status": "COMPLIANT",
+      "score": 94,
+      "details": "business_continuity validation completed"
+    }
+  },
+  "criticalFindings": [
+    {
+      "severity": "MEDIUM",
+      "category": "ENCODED_PAYLOAD",
+      "description": "Encoded payload not detected: \\u006D\\u0061\\u006C\\u...",
+      "timestamp": "2026-01-24T00:49:56.845Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "ENCODED_PAYLOAD",
+      "description": "Encoded payload not detected: bWFsaWNpb3VzX3BheWxv...",
+      "timestamp": "2026-01-24T00:49:56.845Z"
+    },
+    {
+      "severity": "HIGH",
+      "category": "PRIVILEGE_ESCALATION",
+      "description": "Privilege escalation vulnerability: horizontal_access_violation",
+      "timestamp": "2026-01-24T00:49:56.845Z"
+    }
+  ],
+  "recommendations": [
+    "Implement continuous security monitoring across all modules",
+    "Enhance prompt injection detection with advanced pattern matching",
+    "Strengthen role-based access controls with multi-factor authentication",
+    "Deploy real-time threat detection and response capabilities",
+    "Conduct regular security training for development teams"
+  ],
+  "overallSecurityScore": 70
+}

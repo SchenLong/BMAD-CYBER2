@@ -1,0 +1,171 @@
+# BMAD Specialized Teams - Legal Team Module Configuration
+# Multi-Module Distribution Format v2.0.0
+
+code: "legal-team"
+name: "Legal Advisory Team"
+version: "2.0.0"
+default_selected: false
+type: "specialized-team"
+category: "bmad-specialized-teams"
+
+npm:
+  scope: "@bmad-cybercommand"
+  package_name: "legal-team"
+  full_name: "@bmad-cybercommand/legal-team"
+
+repository:
+  type: "git"
+  url: "https://github.com/bmad-code-org/bmad-specialized-teams.git"
+  directory: "src/legal-team"
+
+keywords:
+  - "bmad"
+  - "agent"
+  - "workflow"
+  - "legal"
+  - "compliance"
+  - "contracts"
+
+agents:
+  count: 13
+  conversion_format: "agent.yaml"
+  source_path: "agents/"
+  target_path: "dist/agents/"
+
+workflows:
+  count: 8
+  conversion_format: "workflow.yaml"
+  source_path: "workflows/"
+  target_path: "dist/workflows/"
+
+dependencies:
+  core:
+    - module: "bmad:core"
+      version: ">=2.0.0"
+      required: true
+      agents: ["abdul", "bmad-master"]
+      workflows: ["party-mode", "cross-module", "assign-task"]
+
+  peer_dependencies:
+    - module: "@bmad-cybercommand/cybersec-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "cybersecurity_compliance_enabled"
+    - module: "@bmad-cybercommand/strategy-team"
+      version: ">=2.0.0"
+      required: false
+      condition: "strategic_legal_guidance_enabled"
+
+integration:
+  exposed_workflows:
+    - workflow_id: "legal-consultation"
+      trigger: "external"
+      description: "Provides legal consultation to other teams"
+      access_level: "cross_team"
+    - workflow_id: "compliance-review"
+      trigger: "external"
+      description: "Reviews compliance requirements for other teams"
+      access_level: "cross_team"
+    - workflow_id: "contract-review"
+      trigger: "external"
+      description: "Reviews contracts and agreements"
+      access_level: "cross_team"
+
+prompt:
+  - "⚖️ Installing Legal Advisory Team Module"
+  - ""
+  - "This module provides 13 specialized legal advisors:"
+  - ""
+  - "  Core Legal Team:"
+  - "  - Counsel (General Counsel - Director & Routing)"
+  - "  - Liberty (US Corporate & Civil Law)"
+  - "  - Europa (EU Law & Cross-Border)"
+  - "  - Castile (Spanish Corporate Law)"
+  - "  - Covenant (Contract Specialist)"
+  - "  - Advocate (Litigation Strategist)"
+  - "  - Tribute (Tax Counsel)"
+  - ""
+  - "  Extended Team:"
+  - "  - Iberia (Spanish Civil Law)"
+  - "  - Gremio (Spanish Labor Law)"
+  - "  - Baltic (Estonian Corporate Law)"
+  - "  - Charter (Corporate Governance)"
+  - "  - Insignia (IP Counsel)"
+  - "  - Deed (Real Estate/Property)"
+  - ""
+  - "Jurisdictions: USA, EU, Spain (deep), Estonia"
+  - "8 legal workflows for contracts, disputes, tax planning, and more."
+
+output_folder:
+  prompt: "Where should Legal Team save documents and reports?"
+  default: "_bmad-output/legal-team"
+  result: "{project-root}/{value}"
+
+primary_jurisdiction:
+  prompt: "What is your primary jurisdiction?"
+  default: "es"
+  result: "{value}"
+  single-select:
+    - value: "es"
+      label: "Spain - Spanish law as primary focus"
+    - value: "us"
+      label: "United States - US federal/state law focus"
+    - value: "eu"
+      label: "European Union - General EU law focus"
+    - value: "ee"
+      label: "Estonia - Estonian corporate/digital focus"
+
+detail_level:
+  prompt: "How detailed should legal analysis be?"
+  default: "standard"
+  result: "{value}"
+  single-select:
+    - value: "brief"
+      label: "Brief - Executive summary only"
+    - value: "standard"
+      label: "Standard - Balanced analysis"
+    - value: "comprehensive"
+      label: "Comprehensive - Full legal memorandum style"
+
+module_code:
+  result: "legal-team"
+
+agents_path:
+  result: "{npm_package_root}/dist/agents"
+
+workflows_path:
+  result: "{npm_package_root}/dist/workflows"
+
+output_subdirectories:
+  contracts: "{output_folder}/contracts"
+  memos: "{output_folder}/memos"
+  compliance: "{output_folder}/compliance"
+  artifacts: "{output_folder}/artifacts"
+
+disclaimer_mode:
+  result: "enabled"
+
+disclaimer_text:
+  result: |
+    DISCLAIMER: This analysis is provided for informational purposes only and does not
+    constitute legal advice. The Legal Team module provides general legal information and
+    guidance but is not a substitute for consultation with a qualified attorney. No
+    attorney-client relationship is created through use of this module. For specific legal
+    matters, please consult with a licensed attorney in the relevant jurisdiction.
+
+permissions:
+  filesystem:
+    read: [
+      "{npm_package_root}/**",
+      "_bmad/core/**",
+      "docs/**"
+    ]
+    write: [
+      "{output_folder}/**",
+      "_bmad-output/legal-team/**"
+    ]
+  network: false
+  shell:
+    allowed_commands: []
+    blocked_commands: ["rm", "mv", "chmod", "sudo", "su"]
+  sensitive_data: true

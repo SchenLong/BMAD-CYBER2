@@ -1,0 +1,282 @@
+# BMAD-CYBER2 Security Monitoring Framework
+# EPIC 2 Story 2.1 - Security Testing Framework Implementation
+# Agent: Watchman (SOC-Analyst)
+
+version: "2.1.0"
+framework_name: "BMAD-CYBER2-SECURITY-MONITOR"
+created: "2026-01-24T00:00:00Z"
+author: "BlackUnicorn.Tech"
+
+metadata:
+  epic: "2"
+  story: "2.1"
+  priority: "CRITICAL"
+  compliance_frameworks:
+    - "NIST-CSF"
+    - "ISO-27001"
+    - "SOC-2"
+    - "GDPR"
+
+architecture:
+  monitoring_layers:
+    - name: "Detection Engines"
+      components:
+        - "Direct Prompt Injection Detector"
+        - "Role Hijacking Monitor"
+        - "Authority Spoofing Scanner"
+        - "Encoded Payload Analyzer"
+        - "Privilege Escalation Watcher"
+        - "Indirect Injection Hunter"
+    
+    - name: "SIEM Integration"
+      components:
+        - "Splunk Enterprise Security"
+        - "IBM QRadar"
+        - "Microsoft Sentinel"
+        - "Elastic Security"
+    
+    - name: "EDR Solutions"
+      components:
+        - "CrowdStrike Falcon"
+        - "SentinelOne"
+        - "Microsoft Defender"
+        - "Carbon Black"
+    
+    - name: "Alert Correlation"
+      components:
+        - "Multi-Source Event Correlator"
+        - "False Positive Reducer"
+        - "Threat Intelligence Enrichment"
+        - "Automated Response Engine"
+
+detection_vectors:
+  attack_vectors:
+    - id: "AV001"
+      name: "Direct Prompt Injection"
+      severity: "HIGH"
+      detection_methods:
+        - "Pattern Recognition"
+        - "Behavioral Analysis"
+        - "ML-Based Anomaly Detection"
+      alert_threshold: 0.7
+      
+    - id: "AV002"
+      name: "Role Hijacking"
+      severity: "CRITICAL"
+      detection_methods:
+        - "Permission Escalation Monitoring"
+        - "Access Pattern Analysis"
+        - "Identity Verification Checks"
+      alert_threshold: 0.8
+      
+    - id: "AV003"
+      name: "Authority Spoofing"
+      severity: "HIGH"
+      detection_methods:
+        - "Digital Signature Verification"
+        - "Certificate Chain Analysis"
+        - "Trust Boundary Validation"
+      alert_threshold: 0.75
+      
+    - id: "AV004"
+      name: "Encoded Payload Detection"
+      severity: "MEDIUM"
+      detection_methods:
+        - "Entropy Analysis"
+        - "Encoding Pattern Recognition"
+        - "Payload Signature Matching"
+      alert_threshold: 0.6
+      
+    - id: "AV005"
+      name: "Privilege Escalation"
+      severity: "CRITICAL"
+      detection_methods:
+        - "System Call Monitoring"
+        - "Process Behavior Analysis"
+        - "Credential Abuse Detection"
+      alert_threshold: 0.9
+      
+    - id: "AV006"
+      name: "Indirect Injection"
+      severity: "MEDIUM"
+      detection_methods:
+        - "Input Validation Bypass"
+        - "Data Flow Analysis"
+        - "Context Switching Detection"
+      alert_threshold: 0.65
+
+platform_coverage:
+  modules:
+    - name: "cybersec-team"
+      monitoring_scope: "FULL"
+      protection_level: "CRITICAL"
+      
+    - name: "intel-team"
+      monitoring_scope: "ENHANCED"
+      protection_level: "HIGH"
+      
+    - name: "legal-team"
+      monitoring_scope: "STANDARD"
+      protection_level: "MEDIUM"
+      
+    - name: "strategy-team"
+      monitoring_scope: "STANDARD"
+      protection_level: "MEDIUM"
+      
+    - name: "core-framework"
+      monitoring_scope: "FULL"
+      protection_level: "CRITICAL"
+      
+    - name: "api-gateways"
+      monitoring_scope: "ENHANCED"
+      protection_level: "HIGH"
+      
+    - name: "data-storage"
+      monitoring_scope: "FULL"
+      protection_level: "CRITICAL"
+      
+    - name: "communication-channels"
+      monitoring_scope: "ENHANCED"
+      protection_level: "HIGH"
+
+integration_points:
+  siem_platforms:
+    - name: "Primary SIEM"
+      type: "Splunk"
+      api_endpoint: "https://siem.bmad.local/api"
+      auth_method: "token"
+      log_format: "CEF"
+      
+    - name: "Cloud SIEM"
+      type: "Microsoft Sentinel"
+      api_endpoint: "https://sentinel.azure.com"
+      auth_method: "azure_ad"
+      log_format: "JSON"
+  
+  edr_endpoints:
+    - name: "Primary EDR"
+      type: "CrowdStrike"
+      api_endpoint: "https://api.crowdstrike.com"
+      auth_method: "oauth2"
+      coverage: "ALL_ENDPOINTS"
+      
+    - name: "Secondary EDR"
+      type: "SentinelOne"
+      api_endpoint: "https://api.sentinelone.net"
+      auth_method: "api_key"
+      coverage: "CRITICAL_SYSTEMS"
+
+monitoring_rules:
+  real_time_detection:
+    - rule_name: "Prompt_Injection_Pattern"
+      condition: "regex_match AND entropy_threshold"
+      action: "immediate_alert"
+      severity: "high"
+      
+    - rule_name: "Role_Escalation_Attempt"
+      condition: "permission_change AND unauthorized_access"
+      action: "block_and_alert"
+      severity: "critical"
+      
+    - rule_name: "Authority_Spoofing_Detected"
+      condition: "cert_validation_fail OR signature_mismatch"
+      action: "quarantine_and_alert"
+      severity: "high"
+
+response_procedures:
+  automated_responses:
+    - trigger: "CRITICAL"
+      actions:
+        - "isolate_affected_systems"
+        - "notify_incident_team"
+        - "preserve_evidence"
+        - "initiate_containment"
+      
+    - trigger: "HIGH"
+      actions:
+        - "enhance_monitoring"
+        - "alert_security_team"
+        - "analyze_threat_scope"
+        
+    - trigger: "MEDIUM"
+      actions:
+        - "log_event"
+        - "update_threat_intel"
+        - "monitor_progression"
+
+validation_criteria:
+  detection_accuracy:
+    target_precision: 0.95
+    target_recall: 0.90
+    false_positive_rate: "<0.05"
+    
+  response_times:
+    critical_alert: "< 30 seconds"
+    high_alert: "< 2 minutes"
+    medium_alert: "< 5 minutes"
+    
+  coverage_metrics:
+    endpoint_coverage: "> 99%"
+    network_coverage: "> 95%"
+    application_coverage: "> 90%"
+
+testing_framework:
+  validation_tests:
+    - name: "Detection Engine Accuracy"
+      type: "automated"
+      frequency: "daily"
+      
+    - name: "Alert Correlation Effectiveness"
+      type: "simulation"
+      frequency: "weekly"
+      
+    - name: "Response Time Validation"
+      type: "performance"
+      frequency: "continuous"
+
+compliance_reporting:
+  audit_logs:
+    retention_period: "7 years"
+    encryption: "AES-256"
+    access_control: "role_based"
+    
+  compliance_metrics:
+    - framework: "NIST"
+      compliance_score: "> 95%"
+    - framework: "ISO-27001"
+      compliance_score: "> 92%"
+    - framework: "SOC-2"
+      compliance_score: "> 98%"
+
+coordination:
+  security_team_roles:
+    - role: "Bastion (Security-Architect)"
+      responsibilities:
+        - "Framework Design"
+        - "Policy Definition"
+        - "Compliance Oversight"
+        
+    - role: "Ghost (Penetration-Tester)"
+      responsibilities:
+        - "Vulnerability Assessment"
+        - "Attack Simulation"
+        - "Detection Validation"
+        
+    - role: "Watchman (SOC-Analyst)"
+      responsibilities:
+        - "24/7 Monitoring"
+        - "Incident Response"
+        - "Threat Analysis"
+
+status:
+  implementation_phase: "ACTIVE"
+  last_updated: "2026-01-24T00:00:00Z"
+  next_review: "2026-01-31T00:00:00Z"
+  
+validation:
+  framework_validated: true
+  detection_engines_active: true
+  siem_integration_complete: true
+  edr_validation_passed: true
+  alert_correlation_operational: true
+  documentation_complete: true

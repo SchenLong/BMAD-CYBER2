@@ -15,9 +15,8 @@
  */
 
 import { Command } from 'commander';
-import { LogArchiver, createLogArchiver, runDailyArchival } from '../src/observability/log-archiver.js';
+import { createLogArchiver } from '../src/observability/log-archiver.js';
 import {
-  ArchivalConfigManager,
   createConfigManager,
   checkConfiguration,
 } from '../src/observability/archival-config.js';

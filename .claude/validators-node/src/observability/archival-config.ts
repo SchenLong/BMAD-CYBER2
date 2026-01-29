@@ -85,7 +85,7 @@ export class ArchivalConfigManager {
   /**
    * Load configuration from environment and/or config file.
    */
-  async loadConfiguration(): Promise<ConfigValidationResult> {
+  async loadConfiguration(options?: { skipS3Verification?: boolean }): Promise<ConfigValidationResult> {
     const errors: string[] = [];
     const warnings: string[] = [];
     const recommendations: string[] = [];
@@ -101,7 +101,7 @@ export class ArchivalConfigManager {
       }
 
       // Validate the merged configuration
-      const validation = await this.validateConfiguration(config);
+      const validation = await this.validateConfiguration(config, options);
       return {
         isValid: validation.errors.length === 0,
         config: validation.errors.length === 0 && config.bucket ? config as ArchivalConfig : undefined,
@@ -200,7 +200,10 @@ export class ArchivalConfigManager {
   /**
    * Validate a configuration object.
    */
-  async validateConfiguration(config: Partial<ArchivalConfig>): Promise<{
+  async validateConfiguration(
+    config: Partial<ArchivalConfig>,
+    options: { skipS3Verification?: boolean } = {}
+  ): Promise<{
     errors: string[];
     warnings: string[];
     recommendations: string[];
@@ -247,8 +250,8 @@ export class ArchivalConfigManager {
       }
     }
 
-    // Additional validations if bucket is configured
-    if (config.bucket) {
+    // Additional validations if bucket is configured (skip in test environments)
+    if (config.bucket && !options?.skipS3Verification) {
       try {
         const s3Status = await this.verifyS3Bucket(config);
         if (!s3Status.exists) {

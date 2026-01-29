@@ -14,3 +14,15 @@ export { sendAlert, sendAlertSync, shouldAlert, alertCritical, alertBlocked, ale
 export type { AlertPayload } from './alerting.js';
 export { safeMatch, safeTest, safeBatchMatch, truncateForRegex, getMaxInputLength, getRegexTimeout } from './safe-regex.js';
 export type { SafeMatchResult } from './safe-regex.js';
+export {
+  SessionContext,
+  checkSessionPermission,
+  consumeSessionPermission,
+  initSession,
+  getSessionId,
+} from './session-context.js';
+export type {
+  PermissionGrant,
+  SessionContextState,
+  PermissionCheckResult as SessionPermissionCheckResult,  // Aliased to avoid conflict with token-validator
+} from './session-context.js';

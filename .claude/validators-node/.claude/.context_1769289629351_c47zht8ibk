@@ -1,0 +1,119 @@
+{
+  "sessionId": "1769289629341",
+  "tokensUsed": 2200,
+  "operations": [
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629341
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629342
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629342
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629343
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629343
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629344
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629344
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629345
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629345
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629346
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629346
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629346
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629347
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629347
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629348
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629348
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629349
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629349
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629350
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629350
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629351
+    },
+    {
+      "tool": "read",
+      "tokens": 100,
+      "timestamp": 1769289629351
+    }
+  ],
+  "warningsIssued": 0,
+  "lastUpdate": 1769289629351,
+  "createdAt": 1769289629341
+}

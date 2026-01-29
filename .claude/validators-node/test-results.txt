@@ -1,0 +1,706 @@
+
+> @bmad/validators@1.0.0 test
+> vitest run
+
+
+ RUN  v1.6.1 /Users/paultinp/BMAD-CYBER2/.claude/validators-node
+
+ ❯ tests/observability/log-archiver.test.ts  (0 test)
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > SEC-003-1: Audit Log Encryption Validation > should demonstrate robust encryption capabilities
+✓ SEC-003-1 Encryption Performance Results:
+  Basic audit entry:
+    Data size: 201 bytes
+    Encrypted size: 425 bytes
+    Encryption: 1ms
+    Decryption: 0ms
+    Size ratio: 211.4%
+  Complex nested data:
+    Data size: 10387 bytes
+    Encrypted size: 14013 bytes
+    Encryption: 0ms
+    Decryption: 0ms
+    Size ratio: 134.9%
+  High-frequency logging scenario:
+    Data size: 180 bytes
+    Encrypted size: 397 bytes
+    Encryption: 0ms
+    Decryption: 0ms
+    Size ratio: 220.6%
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > SEC-003-1: Audit Log Encryption Validation > should validate NIST cryptographic compliance
+✓ SEC-003-1 NIST Compliance Validated
+  Algorithm: aes-256-gcm (FIPS 197)
+  Key Derivation: pbkdf2/sha256/100000
+  Iterations: 100000 (OWASP 2024 compliant)
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > SEC-003-1: Audit Log Encryption Validation > should handle edge cases and error conditions
+✓ SEC-003-1 Edge Cases Validated
+  Large entry (1MB) processing: 0ms
+  Fallback to plaintext: Working
+
+ ✓ tests/observability/confidence-tracker.test.ts  (19 tests) 8ms
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Complete Pipeline Flow > should handle full audit log lifecycle: creation → encryption → storage → archival
+✓ End-to-end pipeline test completed successfully
+  Archive ID: bmad-audit-2026-01-21-to-2026-01-23-f1c6e714
+  Files archived: 1
+  Compression ratio: 29.7%
+
+ ✓ tests/permissions/token-validator.test.ts  (20 tests) 7ms
+ ✓ tests/guards/outside-repo.test.ts  (26 tests) 8ms
+ ✓ tests/permissions/plugin-permissions.test.ts  (45 tests) 9ms
+ ✓ tests/permissions/supply-chain.test.ts  (12 tests) 11ms
+ ✓ tests/guards/bash-safety.test.ts  (38 tests) 17ms
+stderr | tests/guards/bash-safety.test.ts > validateBashCommand (integration) > should block fork bomb
+
+============================================================
+BMAD GUARDRAIL: DANGEROUS PATTERN BLOCKED
+============================================================
+
+STRICT BLOCK: Fork bomb detected
+
+Target: :() { :|:& }; :
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_DANGEROUS=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+stderr | tests/guards/secret.test.ts > validateSecretGuard > should block content with Stripe secrets
+
+============================================================
+BMAD GUARDRAIL: HARDCODED SECRETS DETECTED
+============================================================
+
+Found 1 potential secret(s):
+- Stripe Secret Key (critical) at line 1
+
+Target: config.js
+
+============================================================
+RECOMMENDATIONS:
+  - Use environment variables for secrets
+  - Store secrets in a secure vault (AWS Secrets Manager, HashiCorp Vault)
+  - Use .env files that are gitignored
+  - If this is example content, rename file to .example or .template
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_SECRETS=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+stderr | tests/guards/secret.test.ts > validateSecretGuard > should block private keys
+
+============================================================
+BMAD GUARDRAIL: HARDCODED SECRETS DETECTED
+============================================================
+
+Found 1 potential secret(s):
+- Private Key (critical) at line 1
+
+Target: key.pem
+
+============================================================
+RECOMMENDATIONS:
+  - Use environment variables for secrets
+  - Store secrets in a secure vault (AWS Secrets Manager, HashiCorp Vault)
+  - Use .env files that are gitignored
+  - If this is example content, rename file to .example or .template
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_SECRETS=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+stderr | tests/guards/production.test.ts > validateProductionGuard > should block critical deploy commands
+
+============================================================
+BMAD GUARDRAIL: ABSOLUTE BLOCK - CRITICAL PRODUCTION OPERATION
+============================================================
+
+Critical production operation: Force push to main/master
+
+Target: git push --force origin main
+
+============================================================
+RECOMMENDATIONS:
+  - Never force push to main/master branches
+  - Use pull requests for production deployments
+  - Ensure proper CI/CD pipelines are in place
+
+This operation is BLOCKED and cannot be overridden.
+============================================================
+
+
+============================================================
+BMAD GUARDRAIL: ABSOLUTE BLOCK - CRITICAL PRODUCTION OPERATION
+============================================================
+
+Critical production operation: Deploy to production
+
+Target: deploy to prod now
+
+============================================================
+RECOMMENDATIONS:
+  - Never force push to main/master branches
+  - Use pull requests for production deployments
+  - Ensure proper CI/CD pipelines are in place
+
+This operation is BLOCKED and cannot be overridden.
+============================================================
+
+
+ ✓ tests/guards/secret.test.ts  (30 tests) 17ms
+stderr | tests/guards/production.test.ts > validateProductionGuard > should block production indicators
+
+============================================================
+BMAD GUARDRAIL: PRODUCTION TARGETING BLOCKED
+============================================================
+
+Detected 2 production indicator(s):
+  - Explicit "prod" keyword: "prod"
+  - Production database reference: "prod-db"
+
+Target: connecting to prod-db
+
+============================================================
+RECOMMENDATIONS:
+  - Use staging/development environments for testing
+  - Review the content to ensure it does not affect production
+  - If intentional, use the override with caution
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_PRODUCTION=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+============================================================
+BMAD GUARDRAIL: PRODUCTION TARGETING BLOCKED
+============================================================
+
+Detected 2 production indicator(s):
+  - Explicit "production" keyword: "production"
+  - Node.js production environment: "NODE_ENV=production"
+
+Target: NODE_ENV=production
+
+============================================================
+RECOMMENDATIONS:
+  - Use staging/development environments for testing
+  - Review the content to ensure it does not affect production
+  - If intentional, use the override with caution
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_PRODUCTION=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+ ✓ tests/guards/production.test.ts  (28 tests) 17ms
+stderr | tests/observability/audit-integrity.test.ts > HashChainManager > verifyChain > should detect broken chain
+
+============================================================
+SECURITY ALERT: AUDIT LOG TAMPERING DETECTED
+============================================================
+Log file: /var/folders/nc/1x_8_c310pq5s0p1vv03zp4h0000gn/T/audit-test-2NfYSI/test-security.log
+Entry index: 1
+Alert type: previous_hash_mismatch
+Time: 2026-01-24T21:18:23.680Z
+============================================================
+
+
+stderr | tests/observability/audit-integrity.test.ts > HashChainManager > verifyChain > should detect modified content
+
+============================================================
+SECURITY ALERT: AUDIT LOG TAMPERING DETECTED
+============================================================
+Log file: /var/folders/nc/1x_8_c310pq5s0p1vv03zp4h0000gn/T/audit-test-0n7eeV/test-security.log
+Entry index: 0
+Alert type: content_modified
+Time: 2026-01-24T21:18:23.683Z
+============================================================
+
+
+ ✓ tests/observability/audit-integrity.test.ts  (19 tests) 76ms
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Complete Pipeline Flow > should maintain data integrity throughout entire pipeline
+✓ Data integrity maintained through encryption + compression
+  Original size: 702 bytes
+  Compressed size: 372 bytes
+  Compression ratio: 53.0%
+
+ ✓ tests/resource-management/recursion-guard.test.ts  (28 tests) 61ms
+ ✓ tests/observability/anomaly-detector.test.ts  (14 tests) 4ms
+ ❯ tests/resource-management/resource-limits.test.ts  (25 tests | 1 failed) 63ms
+   ❯ tests/resource-management/resource-limits.test.ts > ResourceLimiter > checkMemory > should consider additional memory in projection
+     → expected 921.375 to be less than or equal to 916.9375
+ ✓ tests/ai-safety/session-tracker-p0-verification.test.ts  (11 tests | 1 skipped) 42ms
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Complete Pipeline Flow > should handle mixed encrypted and plaintext logs during archival
+✓ Successfully archived mixed encrypted/plaintext logs
+
+stderr | tests/guards/pii.test.ts > validatePiiGuard > should block critical PII
+
+============================================================
+BMAD GUARDRAIL: PII DETECTED - DATA PROTECTION BLOCK
+============================================================
+
+Found 1 sensitive PII pattern(s):
+- SSN (critical) at line 1: "234-56-7890"
+
+Target: data.json
+
+============================================================
+RECOMMENDATIONS:
+  - Remove or redact PII before committing
+  - Use anonymized or synthetic data for testing
+  - Store real PII in secure, encrypted storage
+  - Ensure GDPR/CCPA compliance for personal data
+  - If this is test data, use test_data/ or fixtures/ directory
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_PII=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+stderr | tests/guards/pii.test.ts > validatePiiGuard > should block credit cards
+
+============================================================
+BMAD GUARDRAIL: PII DETECTED - DATA PROTECTION BLOCK
+============================================================
+
+Found 1 sensitive PII pattern(s):
+- Credit_Card (critical) at line 1: "4532015112830366"
+
+Target: payment.txt
+
+============================================================
+RECOMMENDATIONS:
+  - Remove or redact PII before committing
+  - Use anonymized or synthetic data for testing
+  - Store real PII in secure, encrypted storage
+  - Ensure GDPR/CCPA compliance for personal data
+  - If this is test data, use test_data/ or fixtures/ directory
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_PII=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+ ✓ tests/guards/pii.test.ts  (43 tests) 17ms
+ ✓ tests/ai-safety/prompt-injection.test.ts  (42 tests) 57ms
+stderr | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Error Handling and Recovery > should handle encryption failure gracefully during archival
+Failed to parse log line: Expected ',' or '}' after property value in JSON at position 18 (line 1 column 19)
+Failed to parse log line: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+
+stdout | tests/integration/encryption-integration.test.ts > Audit Log Encryption Integration Tests > Performance and Efficiency > should encrypt/decrypt entries efficiently
+Encryption performance: 100 entries in 56ms (1785.7 ops/sec)
+Decryption performance: 100 entries in 2ms (50000.0 ops/sec)
+
+stderr | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Error Handling and Recovery > should handle encryption failure gracefully during archival
+<empty line>
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Error Handling and Recovery > should handle encryption failure gracefully during archival
+✓ Archival handled corrupted entries gracefully
+
+stdout | tests/integration/encryption-integration.test.ts > Audit Log Encryption Integration Tests > Performance and Efficiency > should handle large audit entries efficiently
+Large entry (100KB) encryption+decryption: 1ms
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > SEC-003-3: Log Archival System Validation > should demonstrate archival configuration and metadata management
+✓ SEC-003-3 Configuration Validation
+  Bucket: test-validation-bucket
+  Retention: 2557 days
+  Object Lock: Enabled
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > SEC-003-3: Log Archival System Validation > should validate compliance features and setup instructions
+✓ SEC-003-3 Compliance Features Validated
+  Default retention: 2557 days (7 years)
+  Object Lock: Required
+  Encryption: SSE-S3
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Error Handling and Recovery > should recover from S3 upload failures
+✓ S3 failure properly propagated to caller
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > SEC-003-3: Log Archival System Validation > should demonstrate archival metadata and listing functionality
+✓ SEC-003-3 Metadata Management Validated
+  Archives found: 2
+  Archive 1: validation-test-002
+    Files: 8, Size: 200.0KB
+    Compression: 40.0%
+  Archive 2: validation-test-001
+    Files: 5, Size: 100.0KB
+    Compression: 50.0%
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > System Integration and Interoperability > should demonstrate integration between encryption and archival systems
+✓ System Integration Validated
+  Encrypted entries: 2
+  Data integrity: Maintained
+  File size: 837 bytes
+
+stderr | tests/observability/archival-integration.test.ts > Archival System Integration > Archive Metadata Management > should handle corrupt metadata gracefully
+Failed to parse archive metadata corrupt.json: SyntaxError: Unexpected token 'i', "invalid json" is not valid JSON
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Error Handling and Recovery > should handle scheduler errors gracefully
+✓ Scheduler handled configuration errors gracefully
+
+ ✓ tests/resource-management/context-manager.test.ts  (33 tests) 155ms
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > System Integration and Interoperability > should validate scheduler integration
+✓ Scheduler Integration Validated
+  Health check: Issues detected
+  Issues: 2
+  Recommendations: 2
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Performance Integration > should handle high-volume log archival efficiently
+Generating 1000 encrypted log entries...
+
+stderr | tests/observability/archival-integration.test.ts > Archival System Integration > Scheduler Integration > should initialize scheduler and track status
+Audit encryption failed, using plaintext: [vitest] No "processEntryForStorage" export is defined on the "../../src/observability/audit-encryption.js" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > Error Handling and Resilience > should handle configuration errors gracefully
+✓ Error Handling Validated
+  Configuration errors: Handled gracefully
+  Scheduler errors: Properly propagated
+
+ ✓ tests/guards/env-protection.test.ts  (20 tests) 9ms
+stderr | tests/guards/env-protection.test.ts > validateEnvProtection > should block protected files
+
+============================================================
+BMAD GUARDRAIL: SENSITIVE FILE PROTECTION
+============================================================
+
+This file is protected: Matches protected pattern: .env
+
+Target: .env
+
+============================================================
+RECOMMENDATIONS:
+  - Use .env.example or .env.template for documentation
+  - Store actual secrets in a secure vault (AWS Secrets Manager, HashiCorp Vault)
+  - Use environment variables set outside the codebase
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_SENSITIVE_FILES=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+============================================================
+BMAD GUARDRAIL: SENSITIVE FILE PROTECTION
+============================================================
+
+This file is protected: Matches protected pattern: id_rsa
+
+Target: id_rsa
+
+============================================================
+RECOMMENDATIONS:
+  - Use .env.example or .env.template for documentation
+  - Store actual secrets in a secure vault (AWS Secrets Manager, HashiCorp Vault)
+  - Use environment variables set outside the codebase
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_SENSITIVE_FILES=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+============================================================
+BMAD GUARDRAIL: SENSITIVE FILE PROTECTION
+============================================================
+
+This file is protected: Matches protected pattern: credentials.*
+
+Target: credentials.json
+
+============================================================
+RECOMMENDATIONS:
+  - Use .env.example or .env.template for documentation
+  - Store actual secrets in a secure vault (AWS Secrets Manager, HashiCorp Vault)
+  - Use environment variables set outside the codebase
+
+To override (single-use, expires in 5 minutes):
+  export BMAD_ALLOW_SENSITIVE_FILES=true
+
+Note: Override must be set again for each operation.
+============================================================
+
+
+stdout | tests/integration/encryption-integration.test.ts > Audit Log Encryption Integration Tests > Performance and Efficiency > should use synchronous encryption efficiently for high-frequency logging
+Synchronous encryption performance: 1000 entries in 148ms (6756.8 ops/sec)
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > Error Handling and Resilience > should maintain data integrity under stress conditions
+✓ Stress Testing Validated
+  Concurrent operations: 20
+  Success rate: 20/20 (100.0%)
+
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > Production Readiness Assessment > should validate deployment readiness indicators
+✓ Production Readiness Validated
+  Encryption: Ready
+  Configuration: Complete
+  Documentation: Available
+
+ ✓ tests/common/path-utils.test.ts  (17 tests) 3ms
+stdout | tests/integration/p2-validation.test.ts > P2 Security Enhancement Validation Tests > Production Readiness Assessment > should validate monitoring and observability
+✓ Monitoring and Observability Validated
+  Health monitoring: Available
+  Job history: Tracked
+  Status reporting: Complete
+
+ ✓ tests/integration/p2-validation.test.ts  (12 tests) 360ms
+ ✓ tests/integration/encryption-integration.test.ts  (24 tests) 363ms
+ ❯ tests/observability/archival-integration.test.ts  (16 tests | 2 failed) 349ms
+   ❯ tests/observability/archival-integration.test.ts > Archival System Integration > Configuration System > should validate configuration requirements
+     → expected undefined to be 'test-bucket' // Object.is equality
+   ❯ tests/observability/archival-integration.test.ts > Archival System Integration > Compliance Features > should support compliance requirements
+     → expected [ Array(1) ] to include StringContaining{…}
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Performance Integration > should handle high-volume log archival efficiently
+Generated 1000 entries in 206ms
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Performance Integration > should handle high-volume log archival efficiently
+Starting archival of 1000 entries...
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Performance Integration > should handle high-volume log archival efficiently
+✓ High-volume archival performance test completed
+  Total entries: 1000
+  Generation time: 206ms
+  Archival time: 15ms
+  Total time: 224ms
+  Entries per second: 4464.3
+  Compression ratio: 3.4%
+  Upload size: 0.0 KB
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Performance Integration > should maintain encryption performance under concurrent access
+Testing concurrent encryption: 50 operations × 20 entries
+
+ ✓ tests/ai-safety/jailbreak.test.ts  (56 tests) 418ms
+stderr | tests/ai-safety/jailbreak.test.ts > Session Risk Tracking > should upgrade severity on escalation with high risk
+[session-tracker] Error saving sessions container: Error: ENOENT: no such file or directory, rename '/Users/paultinp/BMAD-CYBER2/.claude/validators-node/.claude/logs/.jailbreak_session.json.tmp.15438.1769289503750' -> '/Users/paultinp/BMAD-CYBER2/.claude/validators-node/.claude/logs/.jailbreak_session.json'
+    at Proxy.renameSync (node:fs:1014:11)
+    at saveSessionsContainer (/Users/paultinp/BMAD-CYBER2/.claude/validators-node/src/ai-safety/session-tracker.ts:224:8)
+    at saveSessionState (/Users/paultinp/BMAD-CYBER2/.claude/validators-node/src/ai-safety/session-tracker.ts:237:3)
+    at Module.updateSessionState (/Users/paultinp/BMAD-CYBER2/.claude/validators-node/src/ai-safety/session-tracker.ts:306:3)
+    at Module.analyzeContent (/Users/paultinp/BMAD-CYBER2/.claude/validators-node/src/ai-safety/jailbreak.ts:880:27)
+    at /Users/paultinp/BMAD-CYBER2/.claude/validators-node/tests/ai-safety/jailbreak.test.ts:398:5
+    at file:///Users/paultinp/BMAD-CYBER2/node_modules/@vitest/runner/dist/index.js:135:14
+    at file:///Users/paultinp/BMAD-CYBER2/node_modules/@vitest/runner/dist/index.js:60:26
+    at runTest (file:///Users/paultinp/BMAD-CYBER2/node_modules/@vitest/runner/dist/index.js:781:17)
+    at runSuite (file:///Users/paultinp/BMAD-CYBER2/node_modules/@vitest/runner/dist/index.js:909:15) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'rename',
+  path: '/Users/paultinp/BMAD-CYBER2/.claude/validators-node/.claude/logs/.jailbreak_session.json.tmp.15438.1769289503750',
+  dest: '/Users/paultinp/BMAD-CYBER2/.claude/validators-node/.claude/logs/.jailbreak_session.json'
+}
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Performance Integration > should maintain encryption performance under concurrent access
+✓ Concurrent encryption test completed
+  Total operations: 50
+  Total entries: 1000
+  Total time: 36ms
+  Entries per second: 27777.8
+  Average per operation: 0.7ms
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Security Controls Integration > should maintain security controls throughout pipeline
+✓ Security controls maintained throughout pipeline
+
+stdout | tests/integration/end-to-end-pipeline.test.ts > End-to-End Security Pipeline Integration > Security Controls Integration > should validate NIST compliance across integrated systems
+✓ NIST compliance validated across integrated systems
+
+ ✓ tests/integration/end-to-end-pipeline.test.ts  (10 tests) 573ms
+ ✓ tests/integration/hook-invocation.test.ts  (10 tests) 719ms
+ ✓ tests/observability/telemetry.test.ts  (10 tests) 5011ms
+ ❯ tests/resource-management/rate-limiter.test.ts  (23 tests | 5 failed) 18530ms
+   ❯ tests/resource-management/rate-limiter.test.ts > RateLimiter > checkLimit > should track request counts correctly
+     → expected 8 to be 5 // Object.is equality
+   ❯ tests/resource-management/rate-limiter.test.ts > RateLimiter > checkLimit > should block when operation limit exceeded
+     → expected true to be false // Object.is equality
+   ❯ tests/resource-management/rate-limiter.test.ts > RateLimiter > whitelist > should not whitelist non-matching operations
+     → expected true to be false // Object.is equality
+   ❯ tests/resource-management/rate-limiter.test.ts > RateLimiter > exponential backoff > should apply backoff after violation
+     → expected true to be false // Object.is equality
+   ❯ tests/resource-management/rate-limiter.test.ts > RateLimiter > getStatus > should calculate percentages correctly
+     → expected 56.666666666666664 to be 50 // Object.is equality
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/observability/log-archiver.test.ts [ tests/observability/log-archiver.test.ts ]
+Error: [vitest] There was an error when mocking a module. If you are using "vi.mock" factory, make sure there are no top level variables inside, since this call is hoisted to top of the file. Read more: https://vitest.dev/api/vi.html#vi-mock
+ ❯ tests/observability/log-archiver.test.ts:36:25
+     36| };
+     37| 
+     38| const mockS3Commands = {
+       |                     ^
+     39|   PutObjectCommand: vi.fn(),
+     40|   GetObjectCommand: vi.fn(),
+
+Caused by: ReferenceError: Cannot access 'mockSpawn' before initialization
+ ❯ tests/observability/log-archiver.test.ts:26:16
+ ❯ tests/observability/log-archiver.test.ts:36:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/observability/archival-integration.test.ts > Archival System Integration > Configuration System > should validate configuration requirements
+AssertionError: expected undefined to be 'test-bucket' // Object.is equality
+
+- Expected: 
+"test-bucket"
+
++ Received: 
+undefined
+
+ ❯ tests/observability/archival-integration.test.ts:79:38
+     77|       const freshConfigManager = new FreshConfigManager();
+     78|       const result2 = await freshConfigManager.loadConfiguration();
+     79|       expect(result2.config?.bucket).toBe('test-bucket');
+       |                                      ^
+     80|     });
+     81| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/observability/archival-integration.test.ts > Archival System Integration > Compliance Features > should support compliance requirements
+AssertionError: expected [ Array(1) ] to include StringContaining{…}
+ ❯ tests/observability/archival-integration.test.ts:375:35
+    373|       const freshConfigManager2 = new FreshConfigManager2();
+    374|       const validation = await freshConfigManager2.loadConfiguration();
+    375|       expect(validation.warnings).toContain(
+       |                                   ^
+    376|         expect.stringContaining('below regulatory recommendation')
+    377|       );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/resource-management/rate-limiter.test.ts > RateLimiter > checkLimit > should track request counts correctly
+AssertionError: expected 8 to be 5 // Object.is equality
+
+- Expected
++ Received
+
+- 5
++ 8
+
+ ❯ tests/resource-management/rate-limiter.test.ts:63:28
+     61|       const result = limiter.checkLimit('bash', 'echo test');
+     62|       expect(result.allowed).toBe(true);
+     63|       expect(result.count).toBe(5);
+       |                            ^
+     64|     });
+     65| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/resource-management/rate-limiter.test.ts > RateLimiter > checkLimit > should block when operation limit exceeded
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/resource-management/rate-limiter.test.ts:73:30
+     71| 
+     72|       const result = limiter.checkLimit('bash', 'echo blocked');
+     73|       expect(result.allowed).toBe(false);
+       |                              ^
+     74|       expect(result.reason).toContain('Operation limit exceeded');
+     75|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/resource-management/rate-limiter.test.ts > RateLimiter > whitelist > should not whitelist non-matching operations
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/resource-management/rate-limiter.test.ts:123:30
+    121|       // Non-whitelisted command should be blocked
+    122|       const result = limiter.checkLimit('bash', 'ls -la');
+    123|       expect(result.allowed).toBe(false);
+       |                              ^
+    124|     });
+    125|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  tests/resource-management/rate-limiter.test.ts > RateLimiter > exponential backoff > should apply backoff after violation
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/resource-management/rate-limiter.test.ts:136:31
+    134|       // First check triggers backoff
+    135|       const result1 = limiter.checkLimit('bash', 'echo test');
+    136|       expect(result1.allowed).toBe(false);
+       |                               ^
+    137| 
+    138|       // Immediate retry should be blocked by backoff
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  tests/resource-management/rate-limiter.test.ts > RateLimiter > getStatus > should calculate percentages correctly
+AssertionError: expected 56.666666666666664 to be 50 // Object.is equality
+
+- Expected
++ Received
+
+- 50
++ 56.666666666666664
+
+ ❯ tests/resource-management/rate-limiter.test.ts:198:52
+    196| 
+    197|       const status = limiter.getStatus();
+    198|       expect(status.operations['bash'].percentage).toBe(50); // 30/60 …
+       |                                                    ^
+    199|     });
+    200|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  tests/resource-management/resource-limits.test.ts > ResourceLimiter > checkMemory > should consider additional memory in projection
+AssertionError: expected 921.375 to be less than or equal to 916.9375
+ ❯ tests/resource-management/resource-limits.test.ts:69:31
+     67|       // The key behavior we're testing is that additional memory is a…
+     68|       expect(result2.current).toBeGreaterThanOrEqual(result1.current +…
+     69|       expect(result2.current).toBeLessThanOrEqual(result1.current + 11…
+       |                               ^
+     70|       expect(result2.percentage).toBeGreaterThan(result1.percentage);
+     71|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+ Test Files  4 failed | 23 passed (27)
+      Tests  8 failed | 622 passed | 1 skipped (631)
+   Start at  22:18:23
+   Duration  19.02s (transform 2.74s, setup 0ms, collect 4.81s, tests 26.90s, environment 4ms, prepare 2.62s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/paultinp/BMAD-CYBER2/.claude/validators-node
+npm error workspace @bmad/validators@1.0.0
+npm error location /Users/paultinp/BMAD-CYBER2/.claude/validators-node
+npm error command failed
+npm error command sh -c vitest run

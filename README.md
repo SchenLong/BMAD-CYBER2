@@ -336,7 +336,3 @@ BMAD CYBER-COMMAND is licensed under the [MIT License](LICENSE).
 *Ready to transform your Cybersec operations? [Get started](#-quick-start) or [choose your path](#-choose-your-path) based on your goals.*
 
 **Made with ❤️ by the BMAD Community**
-
-*Powered by [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD)*
-
-</div>
