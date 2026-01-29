@@ -1,9 +1,0 @@
-# Mocha Configuration for BMAD Testing
-# Alternative test runner configuration
-
---timeout 30000
---recursive
---reporter spec
---require test/config/test-setup.js
-test/**/*.test.js
-test/**/*.spec.js
