@@ -6,4 +6,4 @@ description: Comprehensive blockchain and Web3 security assessment covering smar
 # Blockchain Security Assessment
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/cybersec-team/workflows/blockchain-security-assessment/workflow.md`
+`@_bmad/cybersec-team/workflows/blockchain-security-assessment/workflow.md`

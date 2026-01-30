@@ -9,6 +9,7 @@ import { cloneRepository, copyRelevantFiles, cleanupClone } from '../lib/git-clo
 import { extractFramework } from '../lib/extractor.js';
 import { mergePackageJson } from '../lib/package-merger.js';
 import { logger } from '../lib/logger.js';
+import { assertValidRepoUrl } from '../lib/url-validator.js';
 
 const execAsync = promisify(exec);
 
@@ -44,6 +45,11 @@ export async function installCommand(options) {
 
     let sourcePath;
     if (options.fromGit) {
+      // Validate repo URL before passing to cloneRepository (defense in depth)
+      if (options.repo) {
+        assertValidRepoUrl(options.repo);
+      }
+
       sourcePath = await cloneRepository({
         branch: options.branch || 'main',
         repoUrl: options.repo

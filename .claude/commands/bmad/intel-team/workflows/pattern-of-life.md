@@ -6,4 +6,4 @@ description: Behavioral Analysis & Prediction through Multi-Source Pattern Analy
 # Pattern of Life
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/intel-team/workflows/pattern-of-life/workflow.md`
+`@_bmad/intel-team/workflows/pattern-of-life/workflow.md`

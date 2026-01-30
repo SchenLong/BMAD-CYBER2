@@ -6,4 +6,4 @@ description: Multi-Source Intelligence Fusion - Correlate, resolve conflicts, as
 # The Synthesis
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/intel-team/workflows/the-synthesis/workflow.md`
+`@_bmad/intel-team/workflows/the-synthesis/workflow.md`

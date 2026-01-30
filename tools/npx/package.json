@@ -43,5 +43,13 @@
     "type": "git",
     "url": "https://github.com/SchenLong/BMAD-CYBERSEC.git"
   },
+  "homepage": "https://github.com/SchenLong/BMAD-CYBERSEC#readme",
+  "bugs": {
+    "url": "https://github.com/SchenLong/BMAD-CYBERSEC/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "license": "MIT"
 }

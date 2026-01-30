@@ -6,6 +6,7 @@ import { mkdir, rm, cp, readdir, stat } from 'fs/promises';
 import ora from 'ora';
 import { CONFIG } from './config.js';
 import { logger } from './logger.js';
+import { assertValidRepoUrl } from './url-validator.js';
 
 const execAsync = promisify(exec);
 
@@ -41,6 +42,9 @@ export async function cloneRepository(options = {}) {
   const spinner = ora();
 
   try {
+    // 0. Validate repository URL to prevent command injection
+    assertValidRepoUrl(repoUrl);
+
     // 1. Check git availability
     spinner.start('Checking git availability...');
     if (!await isGitAvailable()) {

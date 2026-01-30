@@ -6,4 +6,4 @@ description: Build evidence-based attribution from indicators to actor identity 
 # Attribution Chain
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/intel-team/workflows/attribution-chain/workflow.md`
+`@_bmad/intel-team/workflows/attribution-chain/workflow.md`

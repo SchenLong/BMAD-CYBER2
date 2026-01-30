@@ -6,4 +6,4 @@ description: Network mapping and expansion - start with single node, systematica
 # Spider Web
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/intel-team/workflows/spider-web/workflow.md`
+`@_bmad/intel-team/workflows/spider-web/workflow.md`

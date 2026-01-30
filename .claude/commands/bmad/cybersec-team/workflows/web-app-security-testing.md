@@ -6,4 +6,4 @@ description: Comprehensive web application penetration testing following OWASP T
 # Web App Security Testing
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/cybersec-team/workflows/web-app-security-testing/workflow.md`
+`@_bmad/cybersec-team/workflows/web-app-security-testing/workflow.md`

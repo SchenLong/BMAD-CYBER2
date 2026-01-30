@@ -12,7 +12,6 @@ version: "1.0"
 
 # Active provider (can be overridden by .claude/llm-provider.txt)
 active_provider: claude
-
 # Provider definitions
 providers:
 

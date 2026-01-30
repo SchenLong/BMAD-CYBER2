@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitest/config';
 import path from 'path';
+import fs from 'fs';
 
 export default defineConfig({
   test: {
@@ -54,7 +55,8 @@ export default defineConfig({
       }
     },
     testTimeout: 30000,
-    hookTimeout: 30000
+    hookTimeout: 30000,
+    setupFiles: ['./tests/vitest-setup.js']
   },
   resolve: {
     alias: {
@@ -63,8 +65,52 @@ export default defineConfig({
       '@validators': path.resolve(__dirname, '.claude/validators-node/src'),
       '@bmad/validators': path.resolve(__dirname, '.claude/validators-node/src'),
       '@bmad': path.resolve(__dirname, '_bmad'),
+      '@src': path.resolve(__dirname, 'src'),
+      '@tools': path.resolve(__dirname, 'src/utility/tools'),
+      // Map test file relative imports to source implementations
+      // Tests in tests/utility/tools/*/*.test.js import from './*.js'
+      // These aliases resolve those imports to src/utility/tools/*/*.js
     },
   },
+  plugins: [
+    {
+      name: 'resolve-test-imports',
+      resolveId(source, importer) {
+        // Only handle imports from test files in tests/utility/tools/
+        if (!importer || !importer.includes('/tests/utility/tools/')) {
+          return null;
+        }
+
+        // Handle relative imports (both ./ and ../)
+        if (!source.startsWith('./') && !source.startsWith('../')) {
+          return null;
+        }
+
+        // Skip if already resolving a .test.js file
+        if (source.endsWith('.test.js')) {
+          return null;
+        }
+
+        // Get the directory containing the importer
+        const importerDir = path.dirname(importer);
+
+        // Resolve the relative path
+        const resolvedTestPath = path.resolve(importerDir, source);
+
+        // Map the resolved path from tests/ to src/
+        if (resolvedTestPath.includes('/tests/utility/tools/')) {
+          const sourcePath = resolvedTestPath.replace('/tests/utility/tools/', '/src/utility/tools/');
+
+          // Check if source file exists
+          if (fs.existsSync(sourcePath)) {
+            return sourcePath;
+          }
+        }
+
+        return null;
+      }
+    }
+  ],
   esbuild: {
     target: 'node18'
   }
