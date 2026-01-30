@@ -89,6 +89,9 @@
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
+  "overrides": {
+    "fast-xml-parser": "5.3.4"
+  },
   "dependencies": {
     "@bmad/validators": "file:.claude/validators-node",
     "chalk": "^5.6.2",

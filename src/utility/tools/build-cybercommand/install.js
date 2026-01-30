@@ -19,7 +19,7 @@ class MultiModuleInstaller {
 
   loadConfig() {
     const configPath = path.join(this.packageRoot, 'bmad-multi-module.yaml');
-    return yaml.load(fs.readFileSync(configPath, 'utf8'));
+    return yaml.load(fs.readFileSync(configPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
   }
 
   async install() {

@@ -24,7 +24,7 @@ class MultiModuleValidator {
 
   loadConfig() {
     const configPath = path.join(this.packageRoot, 'bmad-multi-module.yaml');
-    return yaml.load(fs.readFileSync(configPath, 'utf8'));
+    return yaml.load(fs.readFileSync(configPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
   }
 
   async validate() {
@@ -146,7 +146,7 @@ class MultiModuleValidator {
 
         if (fs.existsSync(yamlPath)) {
           try {
-            const agentYaml = yaml.load(fs.readFileSync(yamlPath, 'utf8'));
+            const agentYaml = yaml.load(fs.readFileSync(yamlPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
             if (agentYaml.id && agentYaml.name && agentYaml.team) {
               this.addResult('passed', `${teamName}/${sourceAgent}: Valid YAML structure`);
             } else {
@@ -209,7 +209,7 @@ class MultiModuleValidator {
 
         if (fs.existsSync(workflowYamlPath)) {
           try {
-            const workflowYaml = yaml.load(fs.readFileSync(workflowYamlPath, 'utf8'));
+            const workflowYaml = yaml.load(fs.readFileSync(workflowYamlPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
             if (workflowYaml.id && workflowYaml.name) {
               this.addResult('passed', `${teamName}/${workflowName}: Valid workflow YAML`);
             } else {
@@ -260,7 +260,7 @@ class MultiModuleValidator {
       const modulePath = path.join(this.packageRoot, 'modules', `${teamName}.yaml`);
       if (fs.existsSync(modulePath)) {
         try {
-          const moduleConfig = yaml.load(fs.readFileSync(modulePath, 'utf8'));
+          const moduleConfig = yaml.load(fs.readFileSync(modulePath, 'utf8'), { schema: yaml.CORE_SCHEMA });
           if (moduleConfig.code === teamName) {
             this.addResult('passed', `${teamName}: Module configuration valid`);
           } else {
