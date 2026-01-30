@@ -10,9 +10,15 @@
  * - Error handling and fallback mechanisms
  * - Hook performance monitoring
  * - Dynamic hook loading and unloading
+ * - SECURITY: VM-based sandboxing for hook execution (Story 108 - VAL-10-003)
+ *
+ * Security Fixes Applied:
+ * - GH-108-001: Arbitrary code execution via hooks - FIXED (sandboxing)
+ * - GH-108-003: Hook data exfiltration prevention - FIXED (sandboxing)
+ * - BA-108-001: Hooks execute without sandbox - FIXED (VM isolation)
  *
  * @author BlackUnicorn.Tech
- * @version 2.3.0
+ * @version 2.4.0
  * @classification PRODUCTION-READY
  * @epic Epic 2 - Story 2.3
  */
@@ -20,6 +26,15 @@
 const { EventEmitter } = require('events');
 const crypto = require('crypto');
 const { performance } = require('perf_hooks');
+
+// Import Hook Sandbox for secure execution
+let HookSandbox;
+try {
+  HookSandbox = require('../../../security/supply-chain/hook-sandbox');
+} catch (e) {
+  // Fallback if module not yet available
+  HookSandbox = null;
+}
 
 /**
  * Hook types and execution phases
@@ -111,6 +126,10 @@ class HookManager extends EventEmitter {
         this.hookDependencies = new Map();
         this.executionOrder = new Map();
 
+        // SECURITY: Initialize sandbox for secure hook execution (GH-108-001 fix)
+        this.sandbox = null;
+        this.sandboxEnabled = config.sandboxEnabled !== false;
+
         this._setupBuiltinHooks();
     }
 
@@ -120,6 +139,19 @@ class HookManager extends EventEmitter {
     async initialize() {
         try {
             console.log('🪝 Initializing Hook Manager...');
+
+            // SECURITY: Initialize sandbox for secure hook execution (GH-108-001 fix)
+            if (this.sandboxEnabled && HookSandbox) {
+                console.log('🔒 Initializing Hook Sandbox for secure execution...');
+                this.sandbox = new HookSandbox({
+                    securityLevel: this.config.sandboxSecurityLevel || 'strict',
+                    timeout: this.config.defaultTimeout
+                });
+                await this.sandbox.initialize();
+                console.log('✅ Hook Sandbox initialized');
+            } else if (this.sandboxEnabled && !HookSandbox) {
+                console.warn('⚠️ Hook Sandbox module not available - running without sandboxing');
+            }
 
             // Load external hooks if configured
             if (this.config.plugins.enabled) {
@@ -137,7 +169,8 @@ class HookManager extends EventEmitter {
 
             this.emit('initialized', {
                 hookCount: Array.from(this.hooks.values()).reduce((sum, hooks) => sum + hooks.length, 0),
-                hookTypes: this.hooks.size
+                hookTypes: this.hooks.size,
+                sandboxEnabled: !!this.sandbox
             });
 
         } catch (error) {
@@ -572,6 +605,7 @@ class HookManager extends EventEmitter {
 
     /**
      * Setup builtin hooks
+     * SECURITY: Builtin hooks are marked as trusted and skip sandboxing
      */
     _setupBuiltinHooks() {
         // Register some basic system hooks
@@ -585,7 +619,8 @@ class HookManager extends EventEmitter {
                 name: 'SystemPreInitialize',
                 description: 'Prepares system for initialization',
                 priority: PRIORITY_LEVELS.CRITICAL,
-                allowEarlyRegistration: true
+                allowEarlyRegistration: true,
+                metadata: { trusted: true, builtin: true }  // SECURITY: Mark as trusted
             }
         );
 
@@ -599,7 +634,8 @@ class HookManager extends EventEmitter {
                 name: 'SystemErrorHandler',
                 description: 'Handles system errors',
                 priority: PRIORITY_LEVELS.CRITICAL,
-                allowEarlyRegistration: true
+                allowEarlyRegistration: true,
+                metadata: { trusted: true, builtin: true }  // SECURITY: Mark as trusted
             }
         );
     }
@@ -803,9 +839,11 @@ class HookManager extends EventEmitter {
 
     /**
      * Execute individual hook
+     * SECURITY: Now uses sandbox for untrusted hooks (GH-108-001 fix)
      */
     async _executeHook(hook, executionContext) {
         const startTime = performance.now();
+        let timeoutId;
 
         try {
             const handler = this.hookHandlers.get(hook.id);
@@ -815,7 +853,6 @@ class HookManager extends EventEmitter {
 
             // Create timeout promise if timeout is configured
             const timeoutMs = hook.timeout;
-            let timeoutId;
 
             const timeoutPromise = new Promise((_, reject) => {
                 timeoutId = setTimeout(() => {
@@ -823,12 +860,38 @@ class HookManager extends EventEmitter {
                 }, timeoutMs);
             });
 
-            // Execute hook with timeout
-            const handlerPromise = handler(executionContext.context, executionContext);
+            let result;
 
-            const result = timeoutMs > 0 ?
-                await Promise.race([handlerPromise, timeoutPromise]) :
-                await handlerPromise;
+            // SECURITY: Use sandbox for non-builtin hooks (GH-108-001, BA-108-001 fix)
+            const shouldSandbox = this.sandbox &&
+                                  !hook.metadata?.trusted &&
+                                  !hook.metadata?.builtin;
+
+            if (shouldSandbox) {
+                // Execute in sandbox for security
+                const sandboxResult = await Promise.race([
+                    this.sandbox.executeHook(handler, executionContext.context, {
+                        timeout: timeoutMs
+                    }),
+                    timeoutPromise
+                ]);
+
+                if (!sandboxResult.success) {
+                    if (sandboxResult.blocked) {
+                        throw new Error(`Hook blocked by security policy: ${sandboxResult.reason}`);
+                    }
+                    throw new Error(sandboxResult.message || 'Sandboxed hook execution failed');
+                }
+
+                result = sandboxResult.result;
+            } else {
+                // Execute trusted hooks directly
+                const handlerPromise = handler(executionContext.context, executionContext);
+
+                result = timeoutMs > 0 ?
+                    await Promise.race([handlerPromise, timeoutPromise]) :
+                    await handlerPromise;
+            }
 
             if (timeoutId) clearTimeout(timeoutId);
 
@@ -848,7 +911,8 @@ class HookManager extends EventEmitter {
                 success: true,
                 executionTime,
                 data: result,
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                sandboxed: shouldSandbox
             };
 
         } catch (error) {

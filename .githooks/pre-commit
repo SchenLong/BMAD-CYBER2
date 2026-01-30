@@ -1,0 +1,27 @@
+#!/bin/bash
+# BMAD Security Pre-commit Hook
+# Validates repository security before commits
+
+echo "🔐 Running security validation..."
+
+# Run security validation if script exists
+if [[ -f "security-validation.js" ]]; then
+    if ! node security-validation.js --quiet; then
+        echo "❌ Security validation failed!"
+        echo "   Review security-validation-results.json for details"
+        echo "   Fix security issues before committing"
+        exit 1
+    fi
+fi
+
+# Check for sensitive files
+SENSITIVE_FILES=(".bmad-key" ".bmad-token")
+for file in "${SENSITIVE_FILES[@]}"; do
+    if git diff --cached --name-only | grep -q "^$file$"; then
+        echo "❌ Attempting to commit sensitive file: $file"
+        echo "   Remove from staging area and use environment variables"
+        exit 1
+    fi
+done
+
+echo "✅ Security validation passed"
