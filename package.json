@@ -52,6 +52,8 @@
     "type-check": "tsc --noEmit && cd _bmad/framework && tsc --noEmit && cd ../../.claude/validators-node && tsc --noEmit",
     "security:scan": "npm audit --audit-level=moderate",
     "security:validate-framework": "node scripts/validate-security.js",
+    "security:verify-validators": "node src/security/verify-validators.js",
+    "security:generate-checksums": "node src/security/generate-validator-checksums.js",
     "check:bundle-size": "node scripts/check-bundle-size.js",
     "validate:exports": "node scripts/validate-exports.js",
     "docs:generate": "typedoc --options typedoc.json",
