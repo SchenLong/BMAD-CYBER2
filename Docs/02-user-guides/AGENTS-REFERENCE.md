@@ -1,1323 +1,298 @@
 # BMAD Agents Reference
 
-Complete catalog of all 80 AI agents across the BMAD-CYBER2 framework.
+Complete catalog of all **53 specialized AI agents** across the four primary operational teams in the BMAD-CYBER2 framework.
 
 ---
 
-## Context Efficiency
+## Table of Contents
 
-BMAD implements a tiered context loading system (CONCURA) that reduces token consumption by **8.75x** while preserving agent quality.
+- [Overview](#overview)
+- [Intel Team (11 Agents)](#intel-team-11-agents)
+- [Legal Team (13 Agents)](#legal-team-13-agents)
+- [Strategy Team (14 Agents)](#strategy-team-14-agents)
+- [Cybersec Team (15 Agents)](#cybersec-team-15-agents)
+- [Cross-Team Collaboration](#cross-team-collaboration)
+- [Agent Invocation Reference](#agent-invocation-reference)
 
-### Agent File Types
-
-| Type | Location | Size | Purpose |
-|------|----------|------|---------|
-| **Full Agent** | `_bmad/{module}/agents/{agent}.md` | ~5,500 tokens | Complete persona, workflows, rules |
-| **Compact Agent** | `_bmad/_compact/agents/{module}/{agent}.compact.md` | ~200 tokens | Essential persona for Tier 1 loading |
-
-### Using Compact Agents
-
-Compact agents are loaded automatically in Tier 1 (standard) interactions. They contain:
-- Essential role description
-- Voice/communication style
-- Core operating principle
-- Cross-module routing hints
-
-The system automatically escalates to full agent context when complex queries are detected.
-
----
-
-## Quick Navigation
-
-- [Core Module](#core-module-2-agents)
-- [Cybersec-Team](#cybersec-team-15-agents)
-- [Intel-Team](#intel-team-11-agents)
-- [Strategy-Team](#strategy-team-14-agents)
-- [Legal-Team](#legal-team-13-agents)
-- [BMM (Software Development)](#bmm-module-9-agents)
-- [BMGD (Game Development)](#bmgd-module-6-agents)
-- [BMB (Builder)](#bmb-module-3-agents)
-- [CIS (Creative Innovation)](#cis-module-6-agents)
-
----
-
-## Core Module (2 Agents)
-
-### Abdul - Project Manager
-> *Cross-Module Orchestrator*
-
-**Codename:** Abdul
-**Role:** Master Project Manager
-**Specialty:** Cross-module task assignment, project creation, "What's Next" routing
-
-**Capabilities:**
-- Create and manage projects across all modules
-- Assign tasks to appropriate agents
-- Route requests to the right module/agent
-- Track project status and progress
-- Coordinate Party Mode team assembly
-
-**Invoke:** `/bmad:core:agents:abdul`
-
----
-
-### BMAD Master - System Orchestrator
-> *Framework Administrator*
-
-**Codename:** BMAD Master
-**Role:** System Orchestrator
-**Specialty:** Framework configuration, system administration
-
-**Capabilities:**
-- Framework configuration and management
-- Cross-module workflow orchestration
-- System health monitoring
-- Configuration validation
-
-**Invoke:** `/bmad:core:agents:bmad-master`
-
----
-
-## Cybersec-Team (15 Agents)
-
-### Core Security Team (6 Agents)
-
----
-
-#### Bastion - Security Architect
-> *"Every layer tells a story... Where's the trust boundary here?"*
-
-**Codename:** Bastion
-**Role:** Defense & Infrastructure Design Specialist
-**Experience:** 18+ years designing secure systems at scale
-**Certifications:** CISSP, SABSA, TOGAF
-
-**Capabilities:**
-- Zero-trust architecture design
-- STRIDE threat modeling
-- Cloud security (AWS/Azure/GCP)
-- Network segmentation strategies
-- IAM architecture design
-
-**Persona:** Principal security architect who brings deep understanding of how systems actually get built. Former software architect turned security expert.
-
-**Invoke:** `/security-architect`
-
----
-
-#### Cipher - Threat Intelligence Analyst
-> *"The adversary's fingerprint suggests... Based on the TTPs observed..."*
-
-**Codename:** Cipher
-**Role:** Threat Intelligence & Adversary Behavior Specialist
-**Experience:** 15+ years tracking nation-state actors
-**Background:** Former intelligence community member
-
-**Capabilities:**
-- MITRE ATT&CK framework mapping
-- APT tracking and attribution
-- Threat hunting guidance
-- Intelligence correlation
-- TTP analysis
-
-**Persona:** Elite threat intelligence analyst who has tracked nation-state actors and turned private sector defender.
-
-**Invoke:** `/threat-analyst`
-
----
-
-#### Ghost - Penetration Tester
-> *"If I were attacking this, I'd... Oh, this is juicy--look at this trust relationship..."*
-
-**Codename:** Ghost
-**Role:** Offensive Security & Red Team Expert
-**Experience:** Fortune 500 penetration testing
-**Certifications:** OSCP, OSCE, GXPN
-
-**Capabilities:**
-- Attack surface analysis
-- Penetration test planning
-- Exploit chain mapping
-- Vulnerability assessment
-- Red team operations
-
-**Persona:** Senior penetration tester and former bug bounty hunter turned red team lead.
-
-**Invoke:** `/penetration-tester`
-
----
-
-#### Phoenix - Incident Commander
-> *"Containment first. Then we hunt. What's our current blast radius?"*
-
-**Codename:** Phoenix
-**Role:** Incident Response & Crisis Management Lead
-**Experience:** 12+ years leading breach responses
-**Background:** Former SOC director
-
-**Capabilities:**
-- PICERL methodology execution
-- Incident triage and classification
-- Containment strategy design
-- Crisis communications
-- Post-incident review
-
-**Persona:** Battle-tested incident commander who has managed incidents from ransomware to nation-state intrusions.
-
-**Invoke:** `/incident-commander`
-
----
-
-#### Sentinel - Compliance Guardian
-> *"Per NIST 800-53 control AC-2... What's the business justification for this risk acceptance?"*
-
-**Codename:** Sentinel
-**Role:** Risk & Regulatory Compliance Expert
-**Experience:** 14+ years in highly regulated industries
-**Certifications:** CISM, CRISC, CISA
-
-**Capabilities:**
-- Multi-framework compliance (NIST/SOC2/PCI/HIPAA/GDPR)
-- Gap assessments and control mapping
-- Audit preparation and coordination
-- Risk quantification and reporting
-- Vendor risk management
-
-**Persona:** Senior GRC professional and former Big 4 auditor turned CISO advisor.
-
-**Invoke:** `/compliance-guardian`
-
----
-
-#### Trace - Forensic Investigator
-> *"The logs don't lie, but they do omit... Let's establish a timeline..."*
-
-**Codename:** Trace
-**Role:** Digital Forensics & Evidence Analysis Specialist
-**Experience:** 16+ years spanning law enforcement and corporate
-**Certifications:** EnCE, GCFE, GNFA
-**Background:** Former FBI cyber division special agent
-
-**Capabilities:**
-- Disk, memory, and network forensics
-- Timeline reconstruction
-- Evidence collection and preservation
-- Malware triage
-- Chain of custody management
-
-**Invoke:** `/forensic-investigator`
-
----
-
-### Extended Security Team (9 Agents)
-
----
-
-#### Watchman - SOC Analyst
-> *"Alert correlation is telling us something... Let me tune that detection rule..."*
-
-**Codename:** Watchman
-**Role:** Security Operations Center Specialist
-**Experience:** 12+ years in 24/7 security operations
-**Certifications:** GCIA, GCIH, Splunk certified
-
-**Capabilities:**
-- SIEM management and alert triage
-- EDR/XDR operations
-- Detection engineering
-- Threat hunting
-- Incident escalation
-
-**Invoke:** `/soc-analyst`
-
----
-
-#### Nimbus - Cloud Security Specialist
-> *"That IAM policy is way too permissive... Let's check the cloud trail..."*
-
-**Codename:** Nimbus
-**Role:** Cloud Security Architect
-**Experience:** 15+ years across all major cloud platforms
-**Certifications:** AWS Security Specialty, Azure Security Engineer, GCP Professional
-
-**Capabilities:**
-- Multi-cloud security (AWS, Azure, GCP)
-- IAM and identity governance
-- CSPM and cloud posture
-- Container and serverless security
-- Cloud-native security architecture
-
-**Invoke:** `/cloud-security`
-
----
-
-#### Ledger - Blockchain Security Expert
-> *"That reentrancy pattern is classic... Show me the token approval flow..."*
-
-**Codename:** Ledger
-**Role:** Web3 Security Specialist
-**Background:** Multiple critical vulnerability discoveries across top protocols
-
-**Capabilities:**
-- Smart contract auditing (Solidity, Vyper, Rust)
-- DeFi protocol security
-- Bridge and cross-chain security
-- Token economics analysis
-- Web3 wallet security
-
-**Invoke:** `/blockchain-security`
-
----
-
-#### Weaver - Web Application Security Expert
-> *"That input sanitization is incomplete... Let me check the authentication flow..."*
-
-**Codename:** Weaver
-**Role:** Web Application Security Specialist
-**Experience:** 16+ years securing web applications at scale
-**Certifications:** OSWE, GWAPT, CSSLP
-
-**Capabilities:**
-- OWASP Top 10 assessment
-- Authentication and session security
-- API security testing
-- Client-side security
-- Secure SDLC integration
-
-**Invoke:** `/webapp-security`
-
----
-
-#### Gateway - API Security Expert
-> *"That authorization model needs work... Let me trace the data flow..."*
-
-**Codename:** Gateway
-**Role:** API Security Specialist
-**Experience:** 14+ years designing secure API ecosystems
-**Background:** OWASP API Security Project contributor
-
-**Capabilities:**
-- REST, GraphQL, gRPC security
-- OAuth/OIDC implementation review
-- API gateway security
-- Rate limiting and abuse prevention
-- API inventory and discovery
-
-**Invoke:** `/api-security`
-
----
-
-#### Oracle - LLM/AI Security Expert
-> *"That prompt template is injectable... Let's review the guardrails..."*
-
-**Codename:** Oracle
-**Role:** AI/ML Security Specialist
-**Background:** Published researcher on adversarial attacks and AI safety
-**Contributions:** OWASP LLM Top 10 contributor
-
-**Capabilities:**
-- LLM security and prompt injection
-- AI model security
-- Training data security
-- AI governance and ethics
-- Adversarial ML defense
-
-**Invoke:** `/llm-security`
-
----
-
-#### Shield - Blue Team Lead
-> *"Detection coverage has gaps... Let's run a purple team exercise..."*
-
-**Codename:** Shield
-**Role:** Defensive Operations Lead
-**Experience:** 18+ years building defensive security programs
-**Certifications:** GREM, GCTI
-**Background:** Former red teamer turned blue team leader, SANS instructor
-
-**Capabilities:**
-- Detection engineering
-- Purple team operations
-- Security automation
-- Threat hunting programs
-- Blue team mentorship
-
-**Invoke:** `/blue-team-lead`
-
----
-
-#### Phantom - Mobile Security Expert
-> *"That certificate pinning is bypassable... Check the local storage encryption..."*
-
-**Codename:** Phantom
-**Role:** Mobile Application Security Specialist
-**Experience:** 13+ years across iOS and Android platforms
-**Certifications:** GMOB, OSCE3
-
-**Capabilities:**
-- iOS and Android security testing
-- Mobile app reverse engineering
-- OWASP MSTG methodology
-- Mobile device management security
-- Mobile malware analysis
-
-**Invoke:** `/mobile-security`
-
----
-
-#### Specter - Social Engineer
-> *"That pretext needs refinement... The authority trigger isn't strong enough..."*
-
-**Codename:** Specter
-**Role:** Human-Centric Security Specialist
-**Experience:** 15+ years in authorized adversarial human testing
-**Certifications:** SEPP certified, Chris Hadnagy trained
-**Background:** Former law enforcement interview techniques
-
-**Capabilities:**
-- Social engineering assessments
-- Phishing campaign design
-- Vishing and pretexting
-- Physical security testing
-- Security awareness program design
-
-**Invoke:** `/social-engineer`
-
----
-
-## Intel-Team (11 Agents)
-
-### Core Intelligence Team (8 Agents)
-
----
-
-#### Vector - Intelligence Operations Director
-> *All-source intelligence coordination*
-
-**Codename:** Vector
-**Role:** Intelligence Operations Director
-**Specialty:** Multi-INT coordination, collection management, intelligence fusion
-
-**Capabilities:**
-- All-source intelligence coordination
-- Collection management and prioritization
-- Intelligence product development
-- Team coordination across disciplines
-- Strategic intelligence briefings
-
-**Invoke:** `/intel-team:osint-lead`
-
----
-
-#### Resolver - Domain Intelligence Specialist
-> *DNS archaeology and infrastructure mapping*
-
-**Codename:** Resolver
-**Role:** Network & Domain Intelligence Specialist
-**Specialty:** DNS analysis, infrastructure mapping, network reconnaissance
-
-**Capabilities:**
-- DNS historical analysis
-- Infrastructure ownership tracking
-- Network topology mapping
-- Domain reputation assessment
-- Passive reconnaissance
-
-**Invoke:** `/intel-team:domain-intel-specialist`
-
----
-
-#### Echo - Social Media Intelligence Analyst
-> *Platform analysis and influence detection*
-
-**Codename:** Echo
-**Role:** Social Media Intelligence Analyst
-**Specialty:** Platform analysis, influence operations, persona identification
-
-**Capabilities:**
-- Social media platform analysis
-- Influence operation detection
-- Persona and bot identification
-- Sentiment analysis
-- Network relationship mapping
-
-**Invoke:** `/intel-team:social-media-analyst`
-
----
-
-#### Shadow - Dark Web Intelligence Analyst
-> *Underground operations and crypto tracing*
-
-**Codename:** Shadow
-**Role:** Dark Web Intelligence Analyst
-**Specialty:** Tor/I2P navigation, marketplace monitoring, cryptocurrency tracing
-
-**Capabilities:**
-- Dark web marketplace monitoring
-- Cryptocurrency transaction tracing
-- Underground forum analysis
-- Credential leak monitoring
-- Threat actor marketplace activity
-
-**Access:** Requires credential verification
-
-**Invoke:** `/intel-team:dark-web-analyst`
-
----
-
-#### Atlas - Geospatial Intelligence Analyst
-> *Imagery analysis and geolocation*
-
-**Codename:** Atlas
-**Role:** Geospatial Intelligence Analyst
-**Specialty:** Imagery analysis, geolocation, pattern of life mapping
-
-**Capabilities:**
-- Satellite imagery analysis
-- Geolocation verification
-- Pattern of life mapping
-- Physical security assessment
-- Location intelligence
-
-**Invoke:** `/intel-team:geospatial-analyst`
-
----
-
-#### Probe - Technical Reconnaissance Specialist
-> *Technology fingerprinting and vulnerability research*
-
-**Codename:** Probe
-**Role:** Technical Intelligence Researcher
-**Specialty:** Technology fingerprinting, API reconnaissance, vulnerability research
-
-**Capabilities:**
-- Technology stack identification
-- API discovery and analysis
-- Vulnerability correlation
-- Technical footprinting
-- Code repository analysis
-
-**Invoke:** `/intel-team:technical-researcher`
-
----
-
-#### Dossier - Threat Actor Profiler
-> *APT attribution and campaign analysis*
-
-**Codename:** Dossier
-**Role:** Threat Actor Profiler
-**Specialty:** APT attribution, MITRE ATT&CK mapping, campaign analysis
-
-**Capabilities:**
-- Threat actor profiling
-- Attribution analysis
-- MITRE ATT&CK mapping
-- Campaign tracking
-- Behavioral pattern analysis
-
-**Invoke:** `/intel-team:threat-actor-profiler`
-
----
-
-#### Proxy - Corporate Intelligence Specialist
-> *Business registries and financial intelligence*
-
-**Codename:** Proxy
-**Role:** Corporate Intelligence Specialist
-**Specialty:** Business registries, beneficial ownership, financial intelligence
-
-**Capabilities:**
-- Corporate structure mapping
-- Beneficial ownership research
-- Financial intelligence analysis
-- Supply chain mapping
-- Competitor analysis
-
-**Invoke:** `/intel-team:corporate-intel-specialist`
-
----
-
-### Extended Intelligence Disciplines (3 Agents)
-
----
-
-#### Viper - Human Intelligence Specialist
-> *Elicitation and source development*
-
-**Codename:** Viper
-**Role:** Human Intelligence Specialist
-**Specialty:** Elicitation, source assessment, rapport building, MICE framework
-
-**Capabilities:**
-- Elicitation techniques
-- Source development and assessment
-- Rapport building
-- MICE framework analysis
-- Interview preparation
-
-**Access:** Requires credential verification
-
-**Invoke:** `/intel-team:humint-specialist`
-
----
-
-#### Sigil - Signals Intelligence Specialist
-> *RF reconnaissance and communications analysis*
-
-**Codename:** Sigil
-**Role:** Signals Intelligence Specialist
-**Specialty:** RF reconnaissance, communications analysis, TSCM
-
-**Capabilities:**
-- RF spectrum analysis
-- Communications pattern analysis
-- Technical surveillance countermeasures
-- Signal identification
-- Electronic surveillance assessment
-
-**Invoke:** `/intel-team:sigint-specialist`
-
----
-
-#### Specter - Field Operations Specialist
-> *Surveillance and site reconnaissance*
-
-**Codename:** Specter (Intel)
-**Role:** Field Operations Specialist
-**Specialty:** Surveillance, SDRs, site reconnaissance, cover development
-
-**Capabilities:**
-- Physical surveillance planning
-- Site reconnaissance
-- Cover story development
-- Counter-surveillance
-- Field operation preparation
-
-**Access:** Requires credential verification
-
-**Invoke:** `/intel-team:field-operative`
-
----
-
-## Strategy-Team (14 Agents)
-
-### Modern Professional Advisors (6 Agents)
-
----
-
-#### Augustus - Policy Analyst
-> *Evidence-based policy development*
-
-**Codename:** Augustus
-**Role:** Evidence-Based Policy Expert
-**Specialty:** Policy analysis, evidence evaluation, regulatory impact
-
-**Capabilities:**
-- Evidence-based policy analysis
-- Regulatory impact assessment
-- Stakeholder analysis
-- Policy options development
-- Implementation planning
-
-**Invoke:** `/strategy-team:policy-analyst`
-
----
-
-#### Magnus - Political Strategist
-> *Campaign and political landscape navigation*
-
-**Codename:** Magnus
-**Role:** Campaign & Political Strategy Expert
-**Specialty:** Political strategy, coalition building, power dynamics
-
-**Capabilities:**
-- Political landscape analysis
-- Coalition building strategy
-- Stakeholder power mapping
-- Campaign planning
-- Influence strategy
-
-**Invoke:** `/strategy-team:political-strategist`
-
----
-
-#### Cicero - Debate Coach
-> *Argumentation and rhetorical excellence*
-
-**Codename:** Cicero
-**Role:** Argumentation & Rhetoric Master
-**Specialty:** Debate preparation, persuasion, logical analysis
-
-**Capabilities:**
-- Argument construction and analysis
-- Debate preparation
-- Rhetorical strategy
-- Devil's advocate challenges
-- Presentation coaching
-
-**Invoke:** `/strategy-team:debate-coach`
-
----
-
-#### Geneva - Stakeholder Mediator
-> *Negotiation and consensus building*
-
-**Codename:** Geneva
-**Role:** Negotiation & Consensus Builder
-**Specialty:** Mediation, negotiation, conflict resolution
-
-**Capabilities:**
-- Negotiation strategy
-- Mediation facilitation
-- Consensus building
-- Conflict resolution
-- Stakeholder alignment
-
-**Invoke:** `/strategy-team:stakeholder-mediator`
-
----
-
-#### Sophia - Ethics Advisor
-> *Moral dimensions and values counsel*
-
-**Codename:** Sophia
-**Role:** Political Ethics & Values Counsel
-**Specialty:** Ethical analysis, values alignment, moral reasoning
-
-**Capabilities:**
-- Ethical dilemma analysis
-- Values-based decision support
-- Moral reasoning frameworks
-- Stakeholder ethics assessment
-- Principled decision guidance
-
-**Invoke:** `/strategy-team:ethics-advisor`
-
----
-
-#### Giuseppe - Communications Director
-> *Public messaging and media strategy*
-
-**Codename:** Giuseppe
-**Role:** Public Messaging & Media Strategy Expert
-**Specialty:** Communications strategy, crisis messaging, stakeholder communications
-
-**Capabilities:**
-- Communications strategy development
-- Crisis communications
-- Media relations planning
-- Stakeholder messaging
-- Narrative development
-
-**Invoke:** `/strategy-team:communications-director`
-
----
-
-### Historical Archetype Advisors (8 Agents)
-
-These agents channel historical figures to provide distinct ideological perspectives with documented inherent biases for self-awareness.
-
----
-
-#### Niccolo - The Realist
-> *Inspired by Machiavelli and Bismarck*
-
-**Codename:** Niccolo
-**Role:** Master of Realpolitik
-**Archetype:** Pragmatic power analysis
-
-**Philosophy:** Focus on power dynamics, practical outcomes, and strategic positioning. Accepts moral ambiguity in pursuit of effective results.
-
-**Best for:** Power analysis, competitive strategy, political maneuvering
-
-**Invoke:** `/strategy-team:the-realist`
-
----
-
-#### Charles - The Liberator
-> *Inspired by Lincoln and de Gaulle*
-
-**Codename:** Charles
-**Role:** Moral Transformer
-**Archetype:** Principled change leadership
-
-**Philosophy:** Lead through moral clarity, unite through shared purpose, transform through conviction while maintaining pragmatic execution.
-
-**Best for:** Transformational change, moral leadership, unifying divided stakeholders
-
-**Invoke:** `/strategy-team:the-liberator`
-
----
-
-#### Maximilien - The Revolutionary
-> *Inspired by Robespierre*
-
-**Codename:** Maximilien
-**Role:** Agent of Change
-**Archetype:** Radical transformation advocate
-
-**Philosophy:** Challenge existing structures, pursue fundamental change, accept disruption as necessary for progress.
-
-**Best for:** Disruption strategy, challenging status quo, radical innovation
-
-**Invoke:** `/strategy-team:the-revolutionary`
-
----
-
-#### Burke - The Conservative
-> *Inspired by Edmund Burke and Metternich*
-
-**Codename:** Burke
-**Role:** Guardian of Tradition
-**Archetype:** Prudent preservation
-
-**Philosophy:** Value stability, respect established institutions, prefer incremental change over radical disruption.
-
-**Best for:** Risk assessment, institutional preservation, stability analysis
-
-**Invoke:** `/strategy-team:the-conservative`
-
----
-
-#### Lee - The Technocrat
-> *Inspired by Lee Kuan Yew and Deng Xiaoping*
-
-**Codename:** Lee
-**Role:** Builder of Systems
-**Archetype:** Systematic efficiency
-
-**Philosophy:** Optimize systems, measure outcomes, build institutions that deliver results regardless of ideology.
-
-**Best for:** Systems design, operational efficiency, institutional development
-
-**Invoke:** `/strategy-team:the-technocrat`
-
----
-
-#### Musashi - The Strategist-Warrior
-> *Inspired by Miyamoto Musashi*
-
-**Codename:** Musashi
-**Role:** Master of Timing
-**Archetype:** Strategic timing and execution
-
-**Philosophy:** Master timing, adapt to circumstances, combine preparation with decisive action.
-
-**Best for:** Timing decisions, tactical execution, competitive confrontation
-
-**Invoke:** `/strategy-team:the-strategist-warrior`
-
----
-
-#### Sun - The Master Strategist
-> *Inspired by Sun Tzu*
-
-**Codename:** Sun
-**Role:** Supreme Strategist
-**Archetype:** Strategic wisdom
-
-**Philosophy:** Win without fighting when possible, know yourself and your adversary, turn weakness into strength.
-
-**Best for:** Strategic planning, competitive positioning, long-term strategy
-
-**Invoke:** `/strategy-team:the-master-strategist`
-
----
-
-#### Jean-Luc - The Principled Commander
-> *Inspired by Captain Jean-Luc Picard*
-
-**Codename:** Jean-Luc
-**Role:** Diplomat Captain
-**Archetype:** Principled leadership
-
-**Philosophy:** Lead with integrity, seek diplomatic solutions, make hard decisions while maintaining ethical standards.
-
-**Best for:** Ethical leadership, diplomatic challenges, principled decision-making
-
-**Invoke:** `/strategy-team:the-principled-commander`
-
----
-
-## Legal-Team (13 Agents)
-
-> **IMPORTANT DISCLAIMER**: Legal-Team agents are designed **exclusively for Party Mode support**. Always consult qualified legal counsel for actual legal matters.
-
-### Core Legal Team (7 Agents)
-
----
-
-#### Counsel - General Counsel
-> *Legal team director and case routing*
-
-**Codename:** Counsel
-**Role:** General Counsel & Legal Team Director
-**Specialty:** Case intake, jurisdiction routing, team coordination
-
-**Capabilities:**
-- Legal matter intake and classification
-- Jurisdiction determination
-- Team coordination and assignment
-- Strategic legal guidance
-- Cross-module legal support
-
-**Invoke:** `/legal-team:counsel`
-
----
-
-#### Liberty - US Law Specialist
-> *Federal and state corporate/civil law*
-
-**Codename:** Liberty
-**Role:** US Counsel
-**Specialty:** Federal and state corporate law, regulatory compliance
-
-**Jurisdictions:** United States (Federal and State)
-
-**Invoke:** `/legal-team:liberty`
-
----
-
-#### Europa - EU Law Specialist
-> *GDPR, cross-border commerce, EU regulations*
-
-**Codename:** Europa
-**Role:** EU Counsel
-**Specialty:** GDPR, cross-border commerce, EU directives
-
-**Jurisdictions:** European Union
-
-**Invoke:** `/legal-team:europa`
-
----
-
-#### Castile - Spanish Law Specialist
-> *National and autonomous community law*
-
-**Codename:** Castile
-**Role:** Spain Corporate Counsel
-**Specialty:** Spanish business law, corporate, commercial, M&A
-
-**Jurisdictions:** Spain (National and Autonomous Communities)
-
-**Invoke:** `/legal-team:castile`
-
----
-
-#### Covenant - Contract Specialist
-> *Cross-jurisdictional contract expert*
-
-**Codename:** Covenant
-**Role:** Contract Specialist
-**Specialty:** Contract drafting, review, negotiation across jurisdictions
-
-**Invoke:** `/legal-team:covenant`
-
----
-
-#### Tribute - Tax Counsel
-> *Cross-jurisdictional tax planning*
-
-**Codename:** Tribute
-**Role:** Tax Counsel
-**Specialty:** US, EU, Spain, Estonia tax planning and compliance
-
-**Invoke:** `/legal-team:tribute`
-
----
-
-#### Advocate - Litigation Strategist
-> *Dispute resolution and arbitration*
-
-**Codename:** Advocate
-**Role:** Litigation Strategist
-**Specialty:** Pre-litigation, settlement strategy, arbitration, mediation
-
-**Invoke:** `/legal-team:advocate`
-
----
-
-### Extended Legal Team (6 Agents)
-
----
-
-#### Iberia - Spain Civil Law Counsel
-> *Family law, property, inheritance*
-
-**Codename:** Iberia
-**Role:** Spain Civil Law Counsel
-**Specialty:** Family law, property, inheritance, foral law variations
-
-**Invoke:** `/legal-team:iberia`
-
----
-
-#### Gremio - Spain Labor Law Counsel
-> *Employment contracts and labor law*
-
-**Codename:** Gremio
-**Role:** Spain Labor Law Counsel
-**Specialty:** Employment contracts, dismissals, collective labor
-
-**Invoke:** `/legal-team:gremio`
-
----
-
-#### Baltic - Estonia Corporate Counsel
-> *e-Residency and digital business*
-
-**Codename:** Baltic
-**Role:** Estonia Corporate Counsel
-**Specialty:** e-Residency, OU formation, digital business
-
-**Invoke:** `/legal-team:baltic`
-
----
-
-#### Charter - Corporate Governance Counsel
-> *Board matters and fiduciary duties*
-
-**Codename:** Charter
-**Role:** Corporate Governance Counsel
-**Specialty:** Board matters, fiduciary duties, shareholder rights
-
-**Invoke:** `/legal-team:charter`
-
----
-
-#### Insignia - IP Counsel
-> *Trademarks, patents, copyrights*
-
-**Codename:** Insignia
-**Role:** IP Counsel
-**Specialty:** Trademarks, patents, copyrights, licensing
-
-**Invoke:** `/legal-team:insignia`
-
----
-
-#### Deed - Real Estate Counsel
-> *Property transactions and leases*
-
-**Codename:** Deed
-**Role:** Real Estate Counsel
-**Specialty:** Property transactions, leases, development
-
-**Invoke:** `/legal-team:deed`
-
----
-
-## BMM Module (9 Agents)
-
-### Product & Business
-
----
-
-#### John - Product Manager
-> *Product vision and prioritization*
-
-**Codename:** John
-**Role:** Product Manager
-**Specialty:** Product strategy, roadmap, prioritization
-
-**Invoke:** `/bmad:bmm:agents:pm`
-
----
-
-#### Sarah - Business Analyst
-> *Requirements analysis and discovery*
-
-**Codename:** Sarah
-**Role:** Business Analyst
-**Specialty:** Requirements gathering, user research, domain analysis
-
-**Invoke:** `/bmad:bmm:agents:analyst`
-
----
-
-#### Emma - UX Designer
-> *User experience design*
-
-**Codename:** Emma
-**Role:** UX Designer
-**Specialty:** User research, wireframing, interaction design
-
-**Invoke:** `/bmad:bmm:agents:ux-designer`
-
----
-
-### Technical
-
----
-
-#### Winston - Architect
-> *System design and technical decisions*
-
-**Codename:** Winston
-**Role:** System Architect
-**Specialty:** Architecture design, technology selection, technical strategy
-
-**Invoke:** `/bmad:bmm:agents:architect`
-
----
-
-#### Devon - Developer
-> *Implementation and coding*
-
-**Codename:** Devon
-**Role:** Developer
-**Specialty:** Code implementation, technical problem-solving
-
-**Invoke:** `/bmad:bmm:agents:dev`
-
----
-
-#### Murat - Test Engineer
-> *Test engineering and automation*
-
-**Codename:** Murat (TEA)
-**Role:** Test Engineer
-**Specialty:** Test strategy, automation, quality assurance
-
-**Invoke:** `/bmad:bmm:agents:tea`
-
----
-
-### Delivery
-
----
-
-#### Alex - Scrum Master
-> *Agile facilitation*
-
-**Codename:** Alex
-**Role:** Scrum Master
-**Specialty:** Sprint planning, ceremony facilitation, team coaching
-
-**Invoke:** `/bmad:bmm:agents:sm`
-
----
-
-#### Clara - Tech Writer
-> *Documentation specialist*
-
-**Codename:** Clara
-**Role:** Tech Writer
-**Specialty:** Technical documentation, API docs, user guides
-
-**Invoke:** `/bmad:bmm:agents:tech-writer`
-
----
-
-#### Solo Dev
-> *Quick development flow*
-
-**Role:** Solo Developer
-**Specialty:** End-to-end development for smaller projects
-
-**Invoke:** `/bmad:bmm:agents:solo-dev`
-
 ---
 
-## BMGD Module (6 Agents)
+## Overview
 
----
+The BMAD-CYBER2 framework provides 53 specialized AI agents organized into four operational teams, each designed for specific domains of expertise:
 
-#### Samus Shepard - Game Designer
-> *Mechanics, systems, GDD creation*
+| Team | Agent Count | Primary Focus |
+|------|-------------|---------------|
+| **Intel Team** | 11 | Intelligence gathering, OSINT, threat profiling, and reconnaissance |
+| **Legal Team** | 13 | Multi-jurisdictional legal counsel, contracts, and compliance |
+| **Strategy Team** | 14 | Strategic decision-making, political analysis, and leadership counsel |
+| **Cybersec Team** | 15 | Cybersecurity operations, penetration testing, and incident response |
 
-**Codename:** Samus Shepard
-**Role:** Game Designer
-**Specialty:** Game mechanics, systems design, GDD creation
+### Agent Architecture
 
-**Invoke:** `/bmad:bmgd:agents:game-designer`
+Each agent follows a consistent structure:
+- **Persona Definition**: Unique identity with codename, title, and specialization
+- **Activation Protocol**: Mandatory configuration loading and session initialization
+- **Menu System**: Interactive command interface for agent capabilities
+- **Workflow Integration**: Access to team-specific and cross-team workflows
 
 ---
 
-#### Max - Game Scrum Master
-> *Game sprint management*
+## Intel Team (11 Agents)
 
-**Codename:** Max
-**Role:** Game Scrum Master
-**Specialty:** Game sprint planning, milestone tracking
+The Intelligence Team provides comprehensive OSINT, HUMINT, SIGINT, and technical intelligence capabilities for investigation, reconnaissance, and threat analysis operations.
 
-**Invoke:** `/bmad:bmgd:agents:game-scrum-master`
+**Location:** `src/intel-team/agents/`
 
----
+### Agent Directory
 
-#### Winston - Game Architect
-> *Engine-specific architecture*
+| Agent | Codename | Title | Description |
+|-------|----------|-------|-------------|
+| [osint-lead.md](../../../src/intel-team/agents/osint-lead.md) | Vector | Intelligence Operations Director | Expert in all-source fusion and multi-INT coordination, leads intelligence operations |
+| [domain-intel-specialist.md](../../../src/intel-team/agents/domain-intel-specialist.md) | Resolver | Network & Domain Intelligence Specialist | Expert in infrastructure reconnaissance and DNS archaeology |
+| [threat-actor-profiler.md](../../../src/intel-team/agents/threat-actor-profiler.md) | Dossier | Threat Actor Profiler | Expert in adversary attribution and MITRE ATT&CK framework mapping |
+| [corporate-intel-specialist.md](../../../src/intel-team/agents/corporate-intel-specialist.md) | Proxy | Corporate Intelligence Specialist | Expert in business registries, financial records, and entity verification |
+| [social-media-analyst.md](../../../src/intel-team/agents/social-media-analyst.md) | Echo | Social Media Intelligence Analyst | Expert in SOCMINT collection and influence operation detection |
+| [sigint-specialist.md](../../../src/intel-team/agents/sigint-specialist.md) | Sigil | Signals Intelligence Specialist | Expert in RF analysis and communications pattern exploitation |
+| [technical-researcher.md](../../../src/intel-team/agents/technical-researcher.md) | Probe | Technical Intelligence Researcher | Expert in technology fingerprinting and API reconnaissance |
+| [humint-specialist.md](../../../src/intel-team/agents/humint-specialist.md) | Viper | Human Intelligence Specialist | Expert in elicitation techniques and source recruitment |
+| [dark-web-analyst.md](../../../src/intel-team/agents/dark-web-analyst.md) | Shadow | Dark Web Intelligence Analyst | Expert in underground operations and cryptocurrency tracing |
+| [field-operative.md](../../../src/intel-team/agents/field-operative.md) | Specter | Field Operations Specialist | Expert in surveillance, counter-surveillance, and tactical intelligence collection |
+| [geospatial-analyst.md](../../../src/intel-team/agents/geospatial-analyst.md) | Atlas | Geospatial Intelligence Analyst | Expert in imagery analysis and geolocation |
 
-**Codename:** Winston
-**Role:** Game Architect
-**Specialty:** Unity/Unreal/Godot architecture, technical design
+### Intel Team Specializations
 
-**Invoke:** `/bmad:bmgd:agents:game-architect`
+- **OSINT Operations**: Open-source intelligence collection and analysis
+- **HUMINT Operations**: Human intelligence and social engineering assessment
+- **SIGINT Operations**: Signals intelligence and communications analysis
+- **Technical Intelligence**: Infrastructure, API, and technology reconnaissance
+- **Threat Profiling**: Adversary attribution and behavior mapping
 
 ---
-
-#### Devon - Game Developer
-> *Game implementation*
-
-**Codename:** Devon
-**Role:** Game Developer
-**Specialty:** Game programming, engine-specific implementation
 
-**Invoke:** `/bmad:bmgd:agents:game-dev`
+## Legal Team (13 Agents)
 
----
+The Legal Team provides comprehensive multi-jurisdictional legal counsel spanning US, EU, Spain, and Estonia law, with specialists in corporate, civil, tax, IP, and employment matters.
 
-#### GLaDOS - Game QA
-> *Game quality assurance*
+**Location:** `src/legal-team/agents/`
 
-**Codename:** GLaDOS
-**Role:** Game QA
-**Specialty:** Game testing, bug tracking, certification preparation
+### Agent Directory
 
-**Invoke:** `/bmad:bmgd:agents:game-qa`
+| Agent | Codename | Title | Description |
+|-------|----------|-------|-------------|
+| [counsel.md](../../../src/legal-team/agents/counsel.md) | Counsel | General Counsel - Legal Team Director | Case intake, jurisdiction routing, and team coordination |
+| [liberty.md](../../../src/legal-team/agents/liberty.md) | Liberty | US Counsel | American Corporate and Civil Law Specialist for federal and state jurisdictions |
+| [europa.md](../../../src/legal-team/agents/europa.md) | Europa | EU Counsel | European Union Law Specialist and Cross-Border Coordinator |
+| [castile.md](../../../src/legal-team/agents/castile.md) | Castile | Spain Corporate Counsel | Spanish Business Law Specialist for corporate, commercial, and M&A matters |
+| [iberia.md](../../../src/legal-team/agents/iberia.md) | Iberia | Spain Civil Law Counsel | Spanish Civil Code Specialist for family, property, inheritance, and personal matters |
+| [gremio.md](../../../src/legal-team/agents/gremio.md) | Gremio | Spain Labor Law Counsel | Spanish Employment and Labor Law Specialist |
+| [baltic.md](../../../src/legal-team/agents/baltic.md) | Baltic | Estonia Corporate Counsel | Estonian e-Residency and Digital Business Specialist |
+| [tribute.md](../../../src/legal-team/agents/tribute.md) | Tribute | Tax Counsel | Cross-Jurisdictional Tax Specialist for US, EU, Spain, and Estonia tax planning |
+| [covenant.md](../../../src/legal-team/agents/covenant.md) | Covenant | Contract Specialist | Cross-Jurisdictional Contract Expert for drafting, review, and negotiation |
+| [charter.md](../../../src/legal-team/agents/charter.md) | Charter | Corporate Governance Counsel | Board Matters, Fiduciary Duties, and Corporate Compliance Specialist |
+| [insignia.md](../../../src/legal-team/agents/insignia.md) | Insignia | IP Counsel | Intellectual Property Specialist for Trademarks, Patents, Copyrights, and Licensing |
+| [deed.md](../../../src/legal-team/agents/deed.md) | Deed | Real Estate Counsel | Property Transactions, Leases, and Real Property Law Specialist |
+| [advocate.md](../../../src/legal-team/agents/advocate.md) | Advocate | Litigation Strategist | Civil Dispute Resolution Expert for pre-litigation and settlement strategy |
 
----
+### Legal Team Jurisdictions
 
-#### Solo Dev - Game Solo Developer
-> *Indie game development flow*
+- **United States**: Federal and state corporate/civil law
+- **European Union**: EU regulations, GDPR, cross-border coordination
+- **Spain**: Corporate, civil, labor, and personal law
+- **Estonia**: e-Residency, digital business, and EU digital services
 
-**Role:** Game Solo Developer
-**Specialty:** End-to-end indie game development
+### Practice Areas
+
+- Corporate Formation & Governance
+- Contract Drafting & Review
+- Intellectual Property Protection
+- Tax Planning & Compliance
+- Real Estate Transactions
+- Employment & Labor Law
+- Dispute Resolution & Litigation Strategy
+
+---
+
+## Strategy Team (14 Agents)
+
+The Strategy Team provides strategic counsel through diverse philosophical perspectives, political strategy, communications, and ethical frameworks for complex decision-making.
 
-**Invoke:** `/bmad:bmgd:agents:solo-dev`
+**Location:** `src/strategy-team/agents/`
+
+### Agent Directory
+
+| Agent | Codename | Title | Description |
+|-------|----------|-------|-------------|
+| [the-master-strategist.md](../../../src/strategy-team/agents/the-master-strategist.md) | Sun | Supreme Strategist | Channeling Sun Tzu - ancient wisdom on winning without fighting through superior positioning |
+| [the-realist.md](../../../src/strategy-team/agents/the-realist.md) | Niccolo | Master of Realpolitik | Channeling Machiavelli and Bismarck - sees power as it is, not as we wish |
+| [the-conservative.md](../../../src/strategy-team/agents/the-conservative.md) | Burke | Guardian of Tradition | Channeling Burke and Metternich - values accumulated wisdom over abstract theory |
+| [the-revolutionary.md](../../../src/strategy-team/agents/the-revolutionary.md) | Maximilien | Agent of Change | Channeling Robespierre - believes corrupt systems must be swept away for transformation |
+| [the-technocrat.md](../../../src/strategy-team/agents/the-technocrat.md) | Lee | Builder of Systems | Channeling Lee Kuan Yew and Deng Xiaoping - pragmatic results over ideology |
+| [the-liberator.md](../../../src/strategy-team/agents/the-liberator.md) | Charles | Moral Transformer | Channeling Lincoln and de Gaulle - leaders who held nations through crisis by moral force |
+| [the-principled-commander.md](../../../src/strategy-team/agents/the-principled-commander.md) | Jean-Luc | Diplomat Captain | Channeling Jean-Luc Picard - principled leadership under impossible circumstances |
+| [the-strategist-warrior.md](../../../src/strategy-team/agents/the-strategist-warrior.md) | Musashi | Master of Timing | Channeling Miyamoto Musashi - undefeated ronin who transcended technique to understand the void |
+| [political-strategist.md](../../../src/strategy-team/agents/political-strategist.md) | Magnus | Campaign & Political Strategy | Expert in coalition building, stakeholder mapping, and strategic positioning |
+| [policy-analyst.md](../../../src/strategy-team/agents/policy-analyst.md) | Augustus | Evidence-Based Policy Expert | Specializing in quantitative analysis and structured decision frameworks |
+| [ethics-advisor.md](../../../src/strategy-team/agents/ethics-advisor.md) | Sophia | Political Ethics & Values Counsel | Specializing in ethical frameworks and moral philosophy |
+| [communications-director.md](../../../src/strategy-team/agents/communications-director.md) | Giuseppe | Public Messaging & Media Strategy | Expert in narrative control and crisis communications |
+| [stakeholder-mediator.md](../../../src/strategy-team/agents/stakeholder-mediator.md) | Geneva | Negotiation & Consensus Builder | Specializing in multi-party mediation and conflict resolution |
+| [debate-coach.md](../../../src/strategy-team/agents/debate-coach.md) | Cicero | Argumentation & Rhetoric Master | Specializing in persuasion, logical structure, and debate preparation |
+
+### Strategic Archetypes
 
----
+The Strategy Team includes historical and philosophical archetypes representing diverse strategic perspectives:
 
-## BMB Module (3 Agents)
+| Archetype | Philosophy | Best Used For |
+|-----------|-----------|---------------|
+| **The Master Strategist** | Indirect approach, positioning | Long-term strategic planning |
+| **The Realist** | Power dynamics, pragmatism | Navigating complex political situations |
+| **The Conservative** | Tradition, incremental change | Stability and risk management |
+| **The Revolutionary** | Transformation, disruption | Major organizational change |
+| **The Technocrat** | Systems, efficiency | Operational excellence |
+| **The Liberator** | Moral leadership, crisis | Values-driven decisions |
+| **The Principled Commander** | Ethics under pressure | Difficult ethical dilemmas |
+| **The Strategist-Warrior** | Timing, mastery | Competitive situations |
 
 ---
 
-#### Agent Builder
-> *Create new BMAD agents*
-
-**Role:** Agent Builder
-**Specialty:** Agent definition, persona design, capability specification
-
-**Invoke:** `/bmad:bmb:agents:agent-builder`
-
----
+## Cybersec Team (15 Agents)
 
-#### Workflow Builder
-> *Design and create workflows*
+The Cybersecurity Team provides comprehensive security capabilities spanning offensive testing, defensive operations, compliance, incident response, and specialized domain security.
 
-**Role:** Workflow Builder
-**Specialty:** Workflow design, step creation, validation
+**Location:** `src/cybersec-team/agents/`
 
-**Invoke:** `/bmad:bmb:agents:workflow-builder`
+### Agent Directory
 
----
+| Agent | Codename | Title | Description |
+|-------|----------|-------|-------------|
+| [security-architect.md](../../../src/cybersec-team/agents/security-architect.md) | Bastion | Defense & Infrastructure Design | Specializing in defense-in-depth design, zero-trust architecture, and threat modeling |
+| [threat-analyst.md](../../../src/cybersec-team/agents/threat-analyst.md) | Cipher | Threat Intelligence Specialist | Expert in adversary behavior analysis and MITRE ATT&CK framework |
+| [penetration-tester.md](../../../src/cybersec-team/agents/penetration-tester.md) | Spectre | Offensive Security Expert | Specializing in penetration testing and red team operations |
+| [incident-commander.md](../../../src/cybersec-team/agents/incident-commander.md) | Phoenix | Incident Response Lead | Specializing in crisis management and breach response coordination |
+| [blue-team-lead.md](../../../src/cybersec-team/agents/blue-team-lead.md) | Shield | Defensive Security Operations Leader | Expert in detection engineering, purple teaming, and SOC program management |
+| [soc-analyst.md](../../../src/cybersec-team/agents/soc-analyst.md) | Watchman | Security Operations Center Analyst | Expert in monitoring, alert triage, detection engineering, and SOC operations |
+| [forensic-investigator.md](../../../src/cybersec-team/agents/forensic-investigator.md) | Trace | Digital Forensics & Evidence Analyst | Expert in evidence analysis and chain of custody |
+| [compliance-guardian.md](../../../src/cybersec-team/agents/compliance-guardian.md) | Sentinel | Risk & Regulatory Compliance Expert | Specializing in GRC, audit, and control frameworks |
+| [cloud-security-specialist.md](../../../src/cybersec-team/agents/cloud-security-specialist.md) | Nimbus | Cloud Security Architect | Expert in AWS, Azure, GCP security, IAM, and cloud-native security architecture |
+| [web-app-security-expert.md](../../../src/cybersec-team/agents/web-app-security-expert.md) | Weaver | Web Application Security Specialist | Expert in OWASP Top 10, secure SDLC, and modern web framework security |
+| [api-security-expert.md](../../../src/cybersec-team/agents/api-security-expert.md) | Gateway | API & Integration Security Specialist | Expert in OAuth, REST/GraphQL security, and API gateway architecture |
+| [mobile-security-expert.md](../../../src/cybersec-team/agents/mobile-security-expert.md) | Phantom | Mobile Application Security Specialist | Expert in iOS/Android security, OWASP Mobile Top 10, and mobile app penetration testing |
+| [blockchain-security-expert.md](../../../src/cybersec-team/agents/blockchain-security-expert.md) | Ledger | Web3 & Smart Contract Security Specialist | Expert in DeFi security, smart contract auditing, and blockchain protocol analysis |
+| [llm-ai-security-expert.md](../../../src/cybersec-team/agents/llm-ai-security-expert.md) | Oracle | AI & Machine Learning Security Specialist | Expert in prompt injection, model security, and AI governance |
+| [social-engineer.md](../../../src/cybersec-team/agents/social-engineer.md) | Ghost | Social Engineering Specialist | Expert in human-factor security, phishing simulations, pretexting, and security awareness |
 
-#### Module Builder
-> *Assemble complete modules*
+### Cybersec Team Capabilities
 
-**Role:** Module Builder
-**Specialty:** Module assembly, configuration, packaging
+#### Offensive Security
+- Penetration Testing (Network, Web, Mobile, API)
+- Red Team Operations
+- Social Engineering Assessments
+- Smart Contract Auditing
 
-**Invoke:** `/bmad:bmb:agents:module-builder`
+#### Defensive Security
+- Security Architecture Design
+- Detection Engineering
+- SOC Operations
+- Incident Response
 
----
+#### Specialized Domains
+- Cloud Security (AWS/Azure/GCP)
+- AI/ML Security
+- Blockchain/Web3 Security
+- Mobile Application Security
 
-## CIS Module (6 Agents)
+#### Governance & Compliance
+- Risk Assessment
+- Regulatory Compliance (GDPR, SOC2, PCI-DSS, HIPAA)
+- Security Audit
+- Digital Forensics
 
 ---
-
-#### Carson - Brainstorming Coach
-> *Creative ideation facilitation*
 
-**Codename:** Carson
-**Role:** Brainstorming Coach
-**Specialty:** Brainstorming facilitation, creative techniques
+## Cross-Team Collaboration
 
-**Invoke:** `/bmad:cis:agents:brainstorming-coach`
+The BMAD framework supports seamless collaboration between teams through Party Mode and cross-module workflows.
 
----
-
-#### Victor - Innovation Strategist
-> *Innovation methodology*
+### Common Collaboration Patterns
 
-**Codename:** Victor
-**Role:** Innovation Strategist
-**Specialty:** Innovation strategy, opportunity identification
+| Scenario | Teams Involved | Key Agents |
+|----------|---------------|------------|
+| **Incident Response** | Cybersec + Intel + Legal | Phoenix, Vector, Counsel |
+| **Threat Attribution** | Intel + Cybersec | Dossier, Cipher |
+| **Compliance Audit** | Legal + Cybersec | Charter, Sentinel |
+| **Crisis Communication** | Strategy + Legal | Giuseppe, Counsel |
+| **M&A Due Diligence** | Legal + Intel + Strategy | Counsel, Proxy, Augustus |
+| **Security Architecture Review** | Cybersec + Legal | Bastion, Charter |
 
-**Invoke:** `/bmad:cis:agents:innovation-strategist`
-
----
+### Cross-Team Workflows
 
-#### Dr. Quinn - Creative Problem Solver
-> *Problem-solving frameworks*
+Party Mode enables multi-agent collaboration:
 
-**Codename:** Dr. Quinn
-**Role:** Creative Problem Solver
-**Specialty:** Problem analysis, solution generation
+```
+/bmad:core:workflows:party-mode
+```
 
-**Invoke:** `/bmad:cis:agents:problem-solver`
+Available presets for cross-team operations:
+- **Incident Response Team**: Cybersec + Intel + Legal coordination
+- **Strategic Decision Workshop**: All Strategy Team archetypes
+- **Compliance Review Board**: Legal + Cybersec specialists
+- **Threat Intelligence Fusion**: Intel + Cybersec analysts
 
 ---
 
-#### Maya - Design Thinking Coach
-> *Design thinking methodology*
+## Agent Invocation Reference
 
-**Codename:** Maya
-**Role:** Design Thinking Coach
-**Specialty:** Design thinking workshops, empathy mapping
+### Invoking Agents
 
-**Invoke:** `/bmad:cis:agents:design-thinking-coach`
+Agents can be invoked using the skill system:
 
----
+```
+/bmad:{module}:agents:{agent-name}
+```
 
-#### Sophia - Storyteller
-> *Narrative development*
+### Examples
 
-**Codename:** Sophia
-**Role:** Storyteller
-**Specialty:** Narrative crafting, story structure
+```bash
+# Intel Team
+/bmad:intel-team:agents:osint-lead
+/bmad:intel-team:agents:threat-actor-profiler
 
-**Invoke:** `/bmad:cis:agents:storyteller`
+# Legal Team
+/bmad:legal-team:agents:counsel
+/bmad:legal-team:agents:liberty
 
----
+# Strategy Team
+/bmad:strategy-team:agents:the-master-strategist
+/bmad:strategy-team:agents:political-strategist
 
-#### Caravaggio - Presentation Master
-> *Presentation excellence*
+# Cybersec Team
+/bmad:cybersec-team:agents:security-architect
+/bmad:cybersec-team:agents:penetration-tester
+```
 
-**Codename:** Caravaggio
-**Role:** Presentation Master
-**Specialty:** Presentation design, delivery coaching
+### Agent File Locations
 
-**Invoke:** `/bmad:cis:agents:presentation-master`
+| Team | Full Agent Path | Compact Agent Path |
+|------|-----------------|-------------------|
+| Intel | `src/intel-team/agents/*.md` | `_bmad/_compact/agents/intel-team/*.compact.md` |
+| Legal | `src/legal-team/agents/*.md` | `_bmad/_compact/agents/legal-team/*.compact.md` |
+| Strategy | `src/strategy-team/agents/*.md` | `_bmad/_compact/agents/strategy-team/*.compact.md` |
+| Cybersec | `src/cybersec-team/agents/*.md` | `_bmad/_compact/agents/cybersec-team/*.compact.md` |
 
 ---
-
-## Agent Access Control
-
-Agent access is controlled by RBAC. Some agents have additional restrictions:
 
-### Restricted Agents (Require Credential Verification)
+## Summary Statistics
 
-| Agent | Module | Reason |
-|-------|--------|--------|
-| Field Operative | intel-team | Field operations guidance |
-| HUMINT Specialist | intel-team | Human intelligence techniques |
-| Dark Web Analyst | intel-team | Underground operations |
+| Metric | Count |
+|--------|-------|
+| Total Agents | 53 |
+| Intel Team | 11 |
+| Legal Team | 13 |
+| Strategy Team | 14 |
+| Cybersec Team | 15 |
+| Jurisdictions Covered | 4 (US, EU, Spain, Estonia) |
+| Security Domains | 10+ |
+| Strategic Archetypes | 8 |
 
-### Restricted Agents (Require Authorization)
-
-| Agent | Module | Reason |
-|-------|--------|--------|
-| Red Team Operator | cybersec-team | Offensive security testing |
-| Social Engineer | cybersec-team | Social engineering techniques |
-
-See [RBAC-ROLES-GUIDE.md](RBAC-ROLES-GUIDE.md) for complete access control details.
-
 ---
-
-## Related Documentation
 
-- [MODULES-OVERVIEW.md](MODULES-OVERVIEW.md) - Module descriptions
-- [WORKFLOWS-REFERENCE.md](WORKFLOWS-REFERENCE.md) - Complete workflow reference
-- [PARTY-MODE-GUIDE.md](PARTY-MODE-GUIDE.md) - Multi-agent collaboration
-- [GETTING-STARTED.md](GETTING-STARTED.md) - Quick start guide
+*Last Updated: January 2026*

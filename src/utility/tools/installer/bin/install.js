@@ -21,6 +21,8 @@ const ConflictDetector = require('../lib/core/conflict-detector');
 const ProgressReporter = require('../lib/core/progress-reporter');
 const RollbackManager = require('../lib/core/rollback-manager');
 const InstallationLogger = require('../lib/core/installation-logger');
+const { NetworkResilience } = require('../lib/core/network-resilience.js');
+const { OfflineSupport, isOfflineFlagSet } = require('../lib/core/offline-support.js');
 
 /**
  * Main Installation Framework Class
@@ -36,6 +38,9 @@ class BMAdInstaller extends EventEmitter {
       enableRollback: options.enableRollback !== false,
       verbose: options.verbose || false,
       dryRun: options.dryRun || false,
+      offline: options.offline || isOfflineFlagSet(),
+      retryAttempts: options.retryAttempts || 3,
+      retryDelay: options.retryDelay || 1000,
       ...options
     };
 
@@ -46,6 +51,18 @@ class BMAdInstaller extends EventEmitter {
     this.progressReporter = new ProgressReporter();
     this.rollbackManager = new RollbackManager();
     this.logger = new InstallationLogger(this.options.verbose);
+
+    // Network resilience for retry logic and proxy support (VAL-03-016, VAL-03-018)
+    this.networkResilience = new NetworkResilience({
+      retryAttempts: this.options.retryAttempts,
+      retryDelay: this.options.retryDelay,
+      offlineMode: this.options.offline
+    });
+
+    // Offline support (VAL-03-008)
+    this.offlineSupport = new OfflineSupport({
+      projectRoot: this.options.projectRoot
+    });
 
     // Installation state
     this.installationId = this.generateInstallationId();
@@ -149,21 +166,53 @@ class BMAdInstaller extends EventEmitter {
   /**
    * Phase 1: Pre-validation checks
    * Validates system requirements and module integrity
+   * Includes offline mode detection (VAL-03-008) and network checks (VAL-03-016, VAL-03-018)
    */
   async preValidation(modules) {
-    this.progressReporter.startPhase('Pre-validation', 4);
+    this.progressReporter.startPhase('Pre-validation', 5);
 
     try {
       // Check system requirements
-      this.progressReporter.updateProgress('Checking system requirements...', 25);
+      this.progressReporter.updateProgress('Checking system requirements...', 20);
       await this.checkSystemRequirements();
 
+      // Initialize offline support and check mode (VAL-03-008)
+      this.progressReporter.updateProgress('Checking network and offline status...', 40);
+      await this.offlineSupport.initialize();
+
+      if (this.options.offline) {
+        this.logger.info('Running in offline mode - using cached packages only');
+        const bundledStatus = await this.offlineSupport.checkBundledDependencies();
+        this.logger.info(`Bundled dependencies: ${bundledStatus.available}/${bundledStatus.total} available`);
+
+        if (bundledStatus.missing.length > 0) {
+          this.logger.warn(`Missing bundled packages: ${bundledStatus.missing.join(', ')}`);
+        }
+      } else {
+        // Check network connectivity with retry logic (VAL-03-016, VAL-03-018)
+        const connectivity = await this.networkResilience.checkConnectivity();
+
+        if (!connectivity.online) {
+          this.logger.warn(`Network unavailable: ${connectivity.error}`);
+          this.logger.info('Switching to offline mode automatically');
+          this.networkResilience.enableOfflineMode();
+        } else {
+          this.logger.debug(`Network available (latency: ${connectivity.latency}ms)`);
+
+          // Log proxy configuration if present
+          const netConfig = this.networkResilience.getConfigSummary();
+          if (netConfig.proxyConfig.httpProxy || netConfig.proxyConfig.httpsProxy) {
+            this.logger.info('Using proxy configuration for network requests');
+          }
+        }
+      }
+
       // Validate BMAD core presence
-      this.progressReporter.updateProgress('Validating BMAD Core...', 50);
+      this.progressReporter.updateProgress('Validating BMAD Core...', 60);
       await this.validateBmadCore();
 
       // Check module package integrity
-      this.progressReporter.updateProgress('Validating module packages...', 75);
+      this.progressReporter.updateProgress('Validating module packages...', 80);
       await this.validateModulePackages(modules);
 
       // Check disk space and permissions

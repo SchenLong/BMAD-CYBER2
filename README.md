@@ -6,10 +6,11 @@
 
 [![Production Ready](https://img.shields.io/badge/status-production-brightgreen.svg)]()
 [![Security Score](https://img.shields.io/badge/OWASP_AI-95%2F100-brightgreen.svg)](_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md)
-[![Quality Score](https://img.shields.io/badge/quality-96.8%25-brightgreen.svg)](Docs/stories/STORY-6.5-PRODUCTION-CERTIFICATION-REPORT.md)
+[![Quality Score](https://img.shields.io/badge/quality-96.8%25-brightgreen.svg)](Docs/03-developer-docs/archive/legacy-documents/stories/STORY-6.5-PRODUCTION-CERTIFICATION-REPORT.md)
 [![Performance](https://img.shields.io/badge/startup-<1.5ms-brightgreen.svg)]()
 [![Teams](https://img.shields.io/badge/teams-4_specialized-teal.svg)]()
-[![Agents](https://img.shields.io/badge/agents-54_active-blue.svg)]()
+[![Agents](https://img.shields.io/badge/agents-53_active-blue.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-55_production-blue.svg)]()
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-4_workflows-blue.svg)](.github/workflows/)
 [![Tests](https://img.shields.io/badge/tests-232_suites-blue.svg)]()
 
@@ -63,33 +64,33 @@ claude-code /agents/abdul
 **Start here if you're learning AI automation and want to understand the fundamentals.**
 
 - **Goal**: Learn BMAD methodology and basic automation
-- **Start with**: [Getting Started Guide](Docs/UserGuide/GETTING-STARTED.md)
-- **First agent**: [Abdul (Master PM)](Docs/AGENTS.md#abdul-master-project-manager) - Your guide through the platform
-- **Next step**: [Core Concepts Tutorial](Docs/UserGuide/GETTING-STARTED.md#core-concepts)
+- **Start with**: [Getting Started Guide](Docs/02-user-guides/GETTING-STARTED.md)
+- **First agent**: [Abdul (Master PM)](Docs/02-user-guides/AGENTS-REFERENCE.md#abdul-master-project-manager) - Your guide through the platform
+- **Next step**: [Core Concepts Tutorial](Docs/02-user-guides/GETTING-STARTED.md#core-concepts)
 
 ### 🏢 **Enterprise Implementation?**
 **Start here if you need production-ready AI operations for your organization.**
 
 - **Goal**: Deploy secure, scalable AI automation
-- **Start with**: [Enterprise Deployment Guide](Docs/UserGuide/GETTING-STARTED.md#enterprise-setup)
-- **Security focus**: [Security Overview](Docs/UserGuide/SECURITY-OVERVIEW.md)
-- **First workflow**: [Security Assessment](Docs/WORKFLOWS.md#security-workflows)
+- **Start with**: [Enterprise Deployment Guide](Docs/02-user-guides/GETTING-STARTED.md#enterprise-setup)
+- **Security focus**: [Security Overview](Docs/02-user-guides/SECURITY-OVERVIEW.md)
+- **First workflow**: [Security Assessment](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#security-workflows)
 
 ### 🎯 **Specific Domain Expertise?**
 **Start here if you need specialized knowledge in cybersecurity, intelligence, legal, or strategy.**
 
-- **Cybersecurity**: [🔐 Cybersec Team](Docs/AGENTS.md#cybersec-team) - 15 security specialists
-- **Intelligence**: [🕵️ Intel Team](Docs/AGENTS.md#intel-team) - 11 OSINT & analysis experts
-- **Legal**: [⚖️ Legal Team](Docs/AGENTS.md#legal-team) - 13 multi-jurisdictional attorneys
-- **Strategy**: [👔 Strategy Team](Docs/AGENTS.md#strategy-team) - 14 executive advisors
+- **Cybersecurity**: [🔐 Cybersec Team](Docs/02-user-guides/AGENTS-REFERENCE.md#cybersec-team) - 15 security specialists
+- **Intelligence**: [🕵️ Intel Team](Docs/02-user-guides/AGENTS-REFERENCE.md#intel-team) - 11 OSINT & analysis experts
+- **Legal**: [⚖️ Legal Team](Docs/02-user-guides/AGENTS-REFERENCE.md#legal-team) - 13 multi-jurisdictional attorneys
+- **Strategy**: [👔 Strategy Team](Docs/02-user-guides/AGENTS-REFERENCE.md#strategy-team) - 14 executive advisors
 
 ### 💻 **Software Development?**
 **Start here if you're building applications or need development automation.**
 
 - **Goal**: Automated software development and project management
-- **Start with**: [BMM (Software Development)](Docs/AGENTS.md#bmm-software-development)
-- **First workflow**: [Create Project](Docs/WORKFLOWS.md#bmm-workflows)
-- **Development**: [Developer Guide](Docs/GETTING-STARTED.md#developer-setup)
+- **Start with**: [BMM (Software Development)](Docs/02-user-guides/AGENTS-REFERENCE.md#bmm-software-development)
+- **First workflow**: [Create Project](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#bmm-workflows)
+- **Development**: [Developer Guide](Docs/01-getting-started/README.md#developer-setup)
 
 ---
 
@@ -222,66 +223,66 @@ vim _bmad/core/config.yaml
 ### **After Installation**
 
 #### **Learn the Basics** (New Users)
-1. [Talk to Abdul](Docs/AGENTS.md#abdul-master-project-manager) - Your AI project manager
-2. [First Workflow](Docs/UserGuide/GETTING-STARTED.md#your-first-workflow) - Complete your first automation
-3. [Understanding Teams](Docs/AGENTS.md) - How specialist teams work
-4. [Security Basics](Docs/UserGuide/SECURITY-OVERVIEW.md) - Essential security concepts
+1. [Talk to Abdul](Docs/02-user-guides/AGENTS-REFERENCE.md#abdul-master-project-manager) - Your AI project manager
+2. [First Workflow](Docs/02-user-guides/GETTING-STARTED.md#your-first-workflow) - Complete your first automation
+3. [Understanding Teams](Docs/02-user-guides/AGENTS-REFERENCE.md) - How specialist teams work
+4. [Security Basics](Docs/02-user-guides/SECURITY-OVERVIEW.md) - Essential security concepts
 
 #### **Production Deployment** (Enterprise Users)
-1. [Security Hardening](Docs/UserGuide/SECURITY-OVERVIEW.md#security-hardening) - Lock down your deployment
-2. [Team Configuration](Docs/UserGuide/GETTING-STARTED.md#team-configuration) - Configure specialist teams
-3. [Workflow Customization](Docs/WORKFLOWS.md) - Adapt to your processes
-4. [Monitoring Setup](Docs/UserGuide/SECURITY-OVERVIEW.md#monitoring) - Track operations and performance
+1. [Security Hardening](Docs/02-user-guides/SECURITY-OVERVIEW.md#security-hardening) - Lock down your deployment
+2. [Team Configuration](Docs/02-user-guides/GETTING-STARTED.md#team-configuration) - Configure specialist teams
+3. [Workflow Customization](Docs/02-user-guides/WORKFLOWS-REFERENCE.md) - Adapt to your processes
+4. [Monitoring Setup](Docs/02-user-guides/SECURITY-OVERVIEW.md#monitoring) - Track operations and performance
 
 #### **Advanced Usage** (Power Users)
-1. [Party Mode](Docs/WORKFLOWS.md#party-mode) - Multi-agent coordination
-2. [Custom Workflows](Docs/UserGuide/Advanced/CUSTOM-WORKFLOW-CREATION.md) - Build your own automations
-3. [API Integration](Docs/UserGuide/Integration/INTEGRATION-GUIDE.md) - Connect external systems
-4. [Performance Tuning](Docs/UserGuide/Operations/PERFORMANCE-TUNING.md) - Optimize for your workload
+1. [Party Mode](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#party-mode) - Multi-agent coordination
+2. [Custom Workflows](Docs/02-user-guides/Advanced/CUSTOM-WORKFLOW-CREATION.md) - Build your own automations
+3. [API Integration](Docs/02-user-guides/Integration/INTEGRATION-GUIDE.md) - Connect external systems
+4. [Performance Tuning](Docs/02-user-guides/Operations/PERFORMANCE-TUNING.md) - Optimize for your workload
 
 ### **Common Tasks**
 
 #### **Security Operations**
-- [Run Security Assessment](Docs/WORKFLOWS.md#cybersec-workflows)
-- [Incident Response](Docs/WORKFLOWS.md#incident-response)
-- [Penetration Testing](Docs/WORKFLOWS.md#penetration-testing)
+- [Run Security Assessment](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#cybersec-workflows)
+- [Incident Response](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#incident-response)
+- [Penetration Testing](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#penetration-testing)
 
 #### **Intelligence Gathering**
-- [OSINT Investigation](Docs/WORKFLOWS.md#intel-workflows)
-- [Corporate Research](Docs/WORKFLOWS.md#corporate-intelligence)
-- [Threat Analysis](Docs/WORKFLOWS.md#threat-analysis)
+- [OSINT Investigation](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#intel-workflows)
+- [Corporate Research](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#corporate-intelligence)
+- [Threat Analysis](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#threat-analysis)
 
 #### **Project Management**
-- [Create New Project](Docs/WORKFLOWS.md#bmm-workflows)
-- [Sprint Planning](Docs/WORKFLOWS.md#sprint-planning)
-- [Code Review](Docs/WORKFLOWS.md#code-review)
+- [Create New Project](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#bmm-workflows)
+- [Sprint Planning](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#sprint-planning)
+- [Code Review](Docs/02-user-guides/WORKFLOWS-REFERENCE.md#code-review)
 
 ---
 
 ## 📚 **Documentation**
 
 ### **User Guides**
-- [Getting Started](Docs/UserGuide/GETTING-STARTED.md) - Complete setup guide
-- [Security Overview](Docs/UserGuide/SECURITY-OVERVIEW.md) - Security features and best practices
-- [Troubleshooting](Docs/UserGuide/TROUBLESHOOTING.md) - Common issues and solutions
+- [Getting Started](Docs/02-user-guides/GETTING-STARTED.md) - Complete setup guide
+- [Security Overview](Docs/02-user-guides/SECURITY-OVERVIEW.md) - Security features and best practices
+- [Troubleshooting](Docs/02-user-guides/TROUBLESHOOTING.md) - Common issues and solutions
 
 ### **Team Documentation**
-- [🔐 Cybersec Team](Docs/AGENTS.md#cybersec-team) - Security operations specialists
-- [🕵️ Intel Team](Docs/AGENTS.md#intel-team) - Intelligence and research experts
-- [⚖️ Legal Team](Docs/AGENTS.md#legal-team) - Multi-jurisdictional legal support
-- [👔 Strategy Team](Docs/AGENTS.md#strategy-team) - Executive decision support
+- [🔐 Cybersec Team](Docs/02-user-guides/AGENTS-REFERENCE.md#cybersec-team) - Security operations specialists
+- [🕵️ Intel Team](Docs/02-user-guides/AGENTS-REFERENCE.md#intel-team) - Intelligence and research experts
+- [⚖️ Legal Team](Docs/02-user-guides/AGENTS-REFERENCE.md#legal-team) - Multi-jurisdictional legal support
+- [👔 Strategy Team](Docs/02-user-guides/AGENTS-REFERENCE.md#strategy-team) - Executive decision support
 
 ### **Technical Reference**
-- [API Documentation](Docs/api/) - Framework APIs and integration
-- [Architecture Guide](Docs/architecture/) - System design and components
-- [Security Reference](Docs/UserGuide/Security/) - Comprehensive security documentation
-- [Developer Guide](Docs/Developer/) - Contributing and extending the framework
+- [API Documentation](Docs/03-developer-docs/API/) - Framework APIs and integration
+- [Architecture Guide](Docs/03-developer-docs/) - System design and components
+- [Security Reference](Docs/02-user-guides/Security/) - Comprehensive security documentation
+- [Developer Guide](Docs/03-developer-docs/) - Contributing and extending the framework
 - [Security Validators](.claude/validators-node/) - Node.js security validation framework
 
 ### **Workflows**
-- [Workflow Directory](Docs/WORKFLOWS.md) - All available workflows by team
-- [Workflow Creation](Docs/UserGuide/Advanced/CUSTOM-WORKFLOW-CREATION.md) - Build custom workflows
-- [Workflow Best Practices](Docs/UserGuide/Advanced/) - Design guidelines
+- [Workflow Directory](Docs/02-user-guides/WORKFLOWS-REFERENCE.md) - All available workflows by team
+- [Workflow Creation](Docs/02-user-guides/Advanced/CUSTOM-WORKFLOW-CREATION.md) - Build custom workflows
+- [Workflow Best Practices](Docs/02-user-guides/Advanced/) - Design guidelines
 
 ### **CI/CD & Testing**
 - [Continuous Testing](.github/workflows/bmad-continuous-testing.yml) - Automated test pipeline
@@ -302,8 +303,8 @@ vim _bmad/core/config.yaml
 
 ### **Performance & Scale**
 - **Sub-millisecond Startup**: <1.5ms initialization for enterprise workloads
-- **54 Active Agents**: Specialist teams covering cybersecurity, intelligence, legal, strategy
-- **64 Production Workflows**: Battle-tested automations for real-world operations
+- **53 Active Agents**: Specialist teams covering cybersecurity, intelligence, legal, strategy
+- **55 Production Workflows**: Battle-tested automations for real-world operations
 - **Context Efficiency**: 8.75x token reduction with BMAD-CONCURA architecture
 - **232 Test Suites**: Comprehensive testing including performance benchmarks, compliance validation, and security audits
 
@@ -329,13 +330,13 @@ vim _bmad/core/config.yaml
 ### **Getting Help**
 
 #### **Documentation First**
-- [FAQ](Docs/UserGuide/FAQ.md) - Frequently asked questions
-- [Troubleshooting](Docs/UserGuide/TROUBLESHOOTING.md) - Common issues and solutions
-- [Security Guide](Docs/UserGuide/SECURITY-OVERVIEW.md) - Security best practices
+- [FAQ](Docs/02-user-guides/FAQ.md) - Frequently asked questions
+- [Troubleshooting](Docs/02-user-guides/TROUBLESHOOTING.md) - Common issues and solutions
+- [Security Guide](Docs/02-user-guides/SECURITY-OVERVIEW.md) - Security best practices
 
 ### **Contributing**
 - [Contributing Guide](CONTRIBUTING.md) - How to contribute to the project
-- [Development Setup](Docs/Developer/) - Local development environment
+- [Development Setup](Docs/03-developer-docs/) - Local development environment
 - [Code of Conduct](CODE_OF_CONDUCT.md) - Community guidelines
 
 ### **Professional Services**

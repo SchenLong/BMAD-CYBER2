@@ -40,10 +40,10 @@ This directory contains all implementation guides and technical documentation fo
 ## 📖 Navigation
 
 - [⬅️ Back to Main Docs](../)
-- [📋 Epic Documentation](../epics/)
-- [📚 Stories Documentation](../stories/)
-- [🏗️ System Documentation](../systems/)
-- [🚀 Deployment Documentation](../deployment/)
+- [📋 Epic Documentation](../03-developer-docs/archive/)
+- [📚 Stories Documentation](../03-developer-docs/archive/legacy-documents/stories/)
+- [🏗️ System Documentation](../03-developer-docs/)
+- [🚀 Deployment Documentation](../04-operations/)
 
 ---
 

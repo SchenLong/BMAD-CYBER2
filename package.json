@@ -65,6 +65,9 @@
     "quality:check": "npm run lint && npm run type-check && npm run test:coverage",
     "ci:quality": "npm run quality:check && npm run security:scan && npm run build",
     "modules": "node src/utility/tools/module-selector/index.js",
+    "modules:offline": "node src/utility/tools/module-selector/index.js --offline",
+    "install:offline": "npm install --offline --prefer-offline",
+    "cache:prepare": "npm pack && npm cache add *.tgz",
     "security:config": "node src/utility/tools/security-config/index.js",
     "llm:setup": "node src/utility/tools/llm-setup/index.js",
     "health": "node src/utility/tools/health-check/index.js",
@@ -99,6 +102,12 @@
     "inquirer": "^13.2.1",
     "zod": "^3.22.0"
   },
+  "bundledDependencies": [
+    "chalk",
+    "commander",
+    "inquirer",
+    "zod"
+  ],
   "devDependencies": {
     "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^6.15.0",

@@ -1,0 +1,16 @@
+{
+  "name": "@bmad/installer",
+  "version": "1.0.0",
+  "description": "BMAD Core Installation Framework",
+  "type": "commonjs",
+  "main": "bin/install.js",
+  "author": "BlackUnicorn.Tech",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "semver": "^7.5.0"
+  }
+}

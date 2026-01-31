@@ -418,5 +418,5 @@ curl http://localhost:8000/v1/chat/completions \
 
 - [Data Sensitivity Guide](DATA-SENSITIVITY-GUIDE.md) - When to use local vs cloud
 - [Getting Started](GETTING-STARTED.md) - Initial setup and usage
-- [Agents Overview](../AGENTS.md) - All 80 agents
-- [Workflows Overview](../WORKFLOWS.md) - All 143 workflows
+- [Agents Overview](./AGENTS-REFERENCE.md) - All 53 agents
+- [Workflows Overview](./WORKFLOWS-REFERENCE.md) - All 55 workflows
