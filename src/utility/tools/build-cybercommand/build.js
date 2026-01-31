@@ -14,16 +14,20 @@
  * @version 2.0.0
  */
 
-const fs = require('fs-extra');
-const path = require('path');
-const yaml = require('js-yaml');
-const chalk = require('chalk');
-const crypto = require('crypto');
+import fs from 'fs-extra';
+import path from 'path';
+import yaml from 'js-yaml';
+import chalk from 'chalk';
+import crypto from 'crypto';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import security modules
 let ArtifactSigner, CacheIntegrity, BuildIsolation;
 try {
-  const supplyChain = require('../../../security/supply-chain');
+  const supplyChain = await import('../../../security/supply-chain/index.js');
   ArtifactSigner = supplyChain.ArtifactSigner;
   CacheIntegrity = supplyChain.CacheIntegrity;
   BuildIsolation = supplyChain.BuildIsolation;
@@ -433,9 +437,10 @@ class MultiModuleBuilder {
 }
 
 // Run builder if called directly
-if (require.main === module) {
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename);
+if (isMain) {
   const builder = new MultiModuleBuilder();
   builder.build().catch(console.error);
 }
 
-module.exports = MultiModuleBuilder;
+export default MultiModuleBuilder;

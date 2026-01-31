@@ -104,6 +104,56 @@ get_agent_config() {
     fi
 }
 
+# @function validate_sox_effects
+# @intent Validate sox effects string to prevent command injection
+# @param $1 Sox effects string
+# @returns 0 if valid, 1 if invalid/dangerous
+validate_sox_effects() {
+    local effects="$1"
+
+    # Empty effects are valid (no-op)
+    if [[ -z "$effects" ]]; then
+        return 0
+    fi
+
+    # Allowed SOX effect names (safe subset)
+    local allowed_effects="reverb|gain|speed|pitch|tempo|vol|norm|pad|trim|silence|compand|equalizer|bass|treble|chorus|echo|flanger|phaser"
+
+    # Check for shell injection patterns: ; | & $() `` < > ( ) { }
+    if [[ "$effects" =~ [\;\|\&\$\`\<\>\(\)\{\}] ]]; then
+        echo "Warning: Sox effects contain dangerous characters, skipping effects" >&2
+        return 1
+    fi
+
+    # Check for newlines or carriage returns
+    if [[ "$effects" =~ $'\n' ]] || [[ "$effects" =~ $'\r' ]]; then
+        echo "Warning: Sox effects contain newlines, skipping effects" >&2
+        return 1
+    fi
+
+    # Validate each word is either a known effect or a safe parameter
+    for word in $effects; do
+        # Skip if it's a number (integer or decimal, optionally negative)
+        if [[ "$word" =~ ^-?[0-9]+\.?[0-9]*$ ]]; then
+            continue
+        fi
+        # Check if it's a known effect name
+        if [[ "$word" =~ ^($allowed_effects)$ ]]; then
+            continue
+        fi
+        # Allow simple alphanumeric strings with dash/underscore as parameters
+        # (e.g., for effect options like "bass -6")
+        if [[ "$word" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+            continue
+        fi
+        # Unknown or dangerous pattern
+        echo "Warning: Sox effects contain invalid parameter '$word', skipping effects" >&2
+        return 1
+    done
+
+    return 0
+}
+
 # @function apply_sox_effects
 # @intent Apply sox effect chain to audio file
 # @param $1 Input file
@@ -115,6 +165,12 @@ apply_sox_effects() {
     local effects="$3"
 
     if [[ -z "$effects" ]]; then
+        cp "$input" "$output"
+        return 0
+    fi
+
+    # Validate effects string before applying to prevent command injection
+    if ! validate_sox_effects "$effects"; then
         cp "$input" "$output"
         return 0
     fi

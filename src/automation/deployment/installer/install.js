@@ -7,11 +7,11 @@
  * @epic Epic 5 - Story 5.2: Deployment Automation Export
  */
 
-const EventEmitter = require('events');
-const path = require('path');
-const fs = require('fs').promises;
-const { spawn } = require('child_process');
-const crypto = require('crypto');
+import EventEmitter from 'events';
+import path from 'path';
+import fs from 'fs/promises';
+import { spawn } from 'child_process';
+import crypto from 'crypto';
 
 /**
  * Deployment Installer - Blue-green deployment orchestration
@@ -287,12 +287,45 @@ class DeploymentInstaller extends EventEmitter {
   }
 
   /**
-   * Run a shell command
+   * Run a shell command securely
+   * SECURITY: GH-103-001 fix - Removed shell: true to prevent command injection
+   * Only allows commands from a strict allowlist of safe executables
    */
   async _runCommand(command, cwd) {
+    // SECURITY: Command allowlist to prevent arbitrary command execution
+    const ALLOWED_COMMANDS = new Set([
+      'npm', 'node', 'yarn', 'pnpm', 'npx',
+      'git', 'mkdir', 'cp', 'mv', 'rm', 'ls', 'cat',
+      'chmod', 'chown', 'tar', 'gzip', 'gunzip', 'unzip'
+    ]);
+
+    // SECURITY: Dangerous shell metacharacters that indicate injection attempts
+    const DANGEROUS_CHARS = /[;&|`$(){}[\]<>\\!*?~#]/;
+
     return new Promise((resolve, reject) => {
-      const [cmd, ...args] = command.split(' ');
-      const proc = spawn(cmd, args, { cwd, shell: true });
+      // Parse command safely - handle quoted arguments
+      const parts = this._parseCommand(command);
+      if (parts.length === 0) {
+        return reject(new Error('Empty command'));
+      }
+
+      const [cmd, ...args] = parts;
+
+      // SECURITY: Validate command against allowlist
+      const cmdBasename = path.basename(cmd);
+      if (!ALLOWED_COMMANDS.has(cmdBasename)) {
+        return reject(new Error(`Command '${cmdBasename}' not in allowed list. Allowed: ${[...ALLOWED_COMMANDS].join(', ')}`));
+      }
+
+      // SECURITY: Check for shell metacharacters in arguments
+      for (const arg of args) {
+        if (DANGEROUS_CHARS.test(arg)) {
+          return reject(new Error(`Argument contains dangerous characters: ${arg}`));
+        }
+      }
+
+      // SECURITY: shell: false prevents shell interpretation of metacharacters
+      const proc = spawn(cmd, args, { cwd, shell: false });
 
       let stdout = '', stderr = '';
       proc.stdout.on('data', data => { stdout += data; });
@@ -304,6 +337,42 @@ class DeploymentInstaller extends EventEmitter {
       });
       proc.on('error', reject);
     });
+  }
+
+  /**
+   * Parse a command string into arguments, handling quoted strings
+   * SECURITY: Safe argument parsing without shell interpretation
+   */
+  _parseCommand(command) {
+    const args = [];
+    let current = '';
+    let inQuote = false;
+    let quoteChar = '';
+
+    for (let i = 0; i < command.length; i++) {
+      const char = command[i];
+
+      if (!inQuote && (char === '"' || char === "'")) {
+        inQuote = true;
+        quoteChar = char;
+      } else if (inQuote && char === quoteChar) {
+        inQuote = false;
+        quoteChar = '';
+      } else if (!inQuote && char === ' ') {
+        if (current) {
+          args.push(current);
+          current = '';
+        }
+      } else {
+        current += char;
+      }
+    }
+
+    if (current) {
+      args.push(current);
+    }
+
+    return args;
   }
 
   /**
@@ -357,4 +426,4 @@ class DeploymentInstaller extends EventEmitter {
   }
 }
 
-module.exports = { DeploymentInstaller };
+export { DeploymentInstaller };

@@ -1,0 +1,19 @@
+code: "test-module"
+name: "Test Module"
+default_selected: false
+
+output_folder:
+  prompt: "Where should output files be saved?"
+  default: "_bmad-output/test"
+  result: "{project-root}/{value}"
+
+custom_setting:
+  prompt: "Enter custom setting value:"
+  default: "default-value"
+  result: "{value}"
+
+module_version:
+  result: "1.0.0"
+
+agents_path:
+  result: "{project-root}/_bmad/test-module/agents"

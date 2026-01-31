@@ -28,13 +28,34 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/../config/audio-effects.cfg"
 
 # Reverb level mappings (reverberance HF-damping room-scale)
-declare -A REVERB_LEVELS=(
-    ["off"]=""
-    ["light"]="reverb 20 50 50"
-    ["medium"]="reverb 40 50 70"
-    ["heavy"]="reverb 70 50 100"
-    ["cathedral"]="reverb 90 30 100"
-)
+# Bash 3.2 compatible - using case statement instead of associative arrays
+# @function get_reverb_effect
+# @intent Get SOX reverb effect string for a given level
+# @param $1 Reverb level name
+# @returns Echoes the reverb effect string or empty for "off"
+get_reverb_effect() {
+    local level="$1"
+    case "$level" in
+        off)       echo "" ;;
+        light)     echo "reverb 20 50 50" ;;
+        medium)    echo "reverb 40 50 70" ;;
+        heavy)     echo "reverb 70 50 100" ;;
+        cathedral) echo "reverb 90 30 100" ;;
+        *)         return 1 ;;
+    esac
+}
+
+# @function is_valid_reverb_level
+# @intent Validate that a reverb level is supported
+# @param $1 Reverb level to validate
+# @returns 0 if valid, 1 if invalid
+is_valid_reverb_level() {
+    local level="$1"
+    case "$level" in
+        off|light|medium|heavy|cathedral) return 0 ;;
+        *) return 1 ;;
+    esac
+}
 
 # @function get_agent_effects
 # @intent Get current effects configuration for an agent
@@ -73,14 +94,15 @@ set_reverb() {
     local agent_name="${2:-default}"
     local apply_all="${3:-}"
 
-    # Validate level
-    if [[ ! -v REVERB_LEVELS[$level] ]]; then
+    # Validate level (Bash 3.2 compatible)
+    if ! is_valid_reverb_level "$level"; then
         echo "❌ Invalid reverb level: $level"
         echo "Valid levels: off, light, medium, heavy, cathedral"
         return 1
     fi
 
-    local reverb_effect="${REVERB_LEVELS[$level]}"
+    local reverb_effect
+    reverb_effect="$(get_reverb_effect "$level")"
 
     if [[ "$apply_all" == "--all" ]]; then
         # Apply to all agents in config

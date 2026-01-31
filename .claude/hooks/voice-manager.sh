@@ -37,6 +37,36 @@
 # Get script directory (physical path for sourcing files)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
+# Load input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
+# Safe write function - prevents symlink attacks
+safe_write_file() {
+    local file="$1"
+    local content="$2"
+    
+    # Check for symlinks (security)
+    if [[ -L "$file" ]]; then
+        echo "Error: $file is a symlink (security risk)" >&2
+        return 1
+    fi
+    
+    # Ensure parent directory exists and is safe
+    local dir
+    dir=$(dirname "$file")
+    if [[ -L "$dir" ]]; then
+        echo "Error: Parent directory is a symlink" >&2
+        return 1
+    fi
+    
+    # Write atomically via temp file
+    local temp_file
+    temp_file="${file}.tmp.$$"
+    printf '%s\n' "$content" > "$temp_file" && mv "$temp_file" "$file"
+}
+
 # Bash 3.2 compatible lowercase function (macOS ships with bash 3.2)
 # ${var,,} syntax requires bash 4.0+
 to_lower() {
@@ -207,6 +237,12 @@ case "$1" in
       exit 1
     fi
 
+    # Validate voice name
+    if type validate_voice_name &>/dev/null && ! validate_voice_name "$VOICE_NAME"; then
+        echo "Error: Invalid voice name" >&2
+        exit 1
+    fi
+
     # Detect active TTS provider
     PROVIDER_FILE=""
     if [[ -f "$CLAUDE_DIR/tts-provider.txt" ]]; then
@@ -277,12 +313,21 @@ case "$1" in
 
           # Verify the model file exists
           if [[ -f "$VOICE_DIR/${MODEL}.onnx" ]]; then
-            # Store speaker name in tts-voice.txt
-            echo "$VOICE_NAME" > "$VOICE_FILE"
+            # Store speaker name in tts-voice.txt (using safe write)
+            if ! safe_write_file "$VOICE_FILE" "$VOICE_NAME"; then
+              echo "Error: Failed to save voice setting" >&2
+              exit 1
+            fi
 
-            # Store model and speaker ID separately for play-tts-piper.sh
-            echo "$MODEL" > "$CLAUDE_DIR/tts-piper-model.txt"
-            echo "$SPEAKER_ID" > "$CLAUDE_DIR/tts-piper-speaker-id.txt"
+            # Store model and speaker ID separately for play-tts-piper.sh (using safe write)
+            if ! safe_write_file "$CLAUDE_DIR/tts-piper-model.txt" "$MODEL"; then
+              echo "Error: Failed to save model setting" >&2
+              exit 1
+            fi
+            if ! safe_write_file "$CLAUDE_DIR/tts-piper-speaker-id.txt" "$SPEAKER_ID"; then
+              echo "Error: Failed to save speaker ID setting" >&2
+              exit 1
+            fi
 
             DESCRIPTION=$(get_multispeaker_description "$VOICE_NAME")
             echo "✅ Multi-speaker voice switched to: $VOICE_NAME"
@@ -350,7 +395,10 @@ case "$1" in
 
     # In test mode, use the requested voice name even if not found
     VOICE_TO_SAVE="${FOUND:-$VOICE_NAME}"
-    echo "$VOICE_TO_SAVE" > "$VOICE_FILE"
+    if ! safe_write_file "$VOICE_FILE" "$VOICE_TO_SAVE"; then
+      echo "Error: Failed to save voice setting" >&2
+      exit 1
+    fi
     echo "✅ Voice switched to: $VOICE_TO_SAVE"
 
     # Have the new voice introduce itself (unless silent mode)

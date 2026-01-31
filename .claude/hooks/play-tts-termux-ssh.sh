@@ -69,6 +69,19 @@ VOICE_OVERRIDE="$2"  # Not used for termux-ssh, but kept for interface compatibi
 # Script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Load input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
+# Validate TEXT input before processing
+if type validate_dialogue &>/dev/null; then
+    if ! validate_dialogue "$TEXT"; then
+        echo "Error: Invalid text input provided" >&2
+        exit 1
+    fi
+fi
+
 # @function get_ssh_host
 # @intent Determine SSH host alias for Android device
 # @why Allows users to configure their own SSH connection without hardcoded values

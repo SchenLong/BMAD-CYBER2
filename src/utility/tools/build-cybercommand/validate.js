@@ -5,10 +5,14 @@
  * Validates the complete extraction and conversion pipeline
  */
 
-const fs = require('fs-extra');
-const path = require('path');
-const yaml = require('js-yaml');
-const chalk = require('chalk');
+import fs from 'fs-extra';
+import path from 'path';
+import yaml from 'js-yaml';
+import chalk from 'chalk';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class MultiModuleValidator {
   constructor() {
@@ -380,9 +384,10 @@ class MultiModuleValidator {
 }
 
 // Run validator if called directly
-if (require.main === module) {
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename);
+if (isMain) {
   const validator = new MultiModuleValidator();
   validator.validate().catch(console.error);
 }
 
-module.exports = MultiModuleValidator;
+export default MultiModuleValidator;

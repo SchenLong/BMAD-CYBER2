@@ -404,6 +404,81 @@ class BMADDependencyManager extends EventEmitter {
   }
 
   /**
+   * Verify package integrity using SHA512 hash
+   * @param {string} packagePath - Path to the package directory
+   * @param {string} expectedIntegrity - Expected integrity hash (sha512-base64)
+   * @returns {Promise<{valid: boolean, computed?: string, error?: string}>}
+   */
+  async verifyPackageIntegrity(packagePath, expectedIntegrity) {
+    if (!expectedIntegrity) {
+      return { valid: true, skipped: true, reason: 'No integrity hash provided' };
+    }
+
+    // Parse the integrity string (format: "sha512-base64hash")
+    const integrityMatch = expectedIntegrity.match(/^(sha512)-(.+)$/);
+    if (!integrityMatch) {
+      return {
+        valid: false,
+        error: `Invalid integrity format: expected sha512-<base64hash>, got ${expectedIntegrity}`
+      };
+    }
+
+    const [, algorithm, expectedHash] = integrityMatch;
+
+    try {
+      // Resolve the full path to the package
+      const fullPackagePath = packagePath.startsWith('node_modules/')
+        ? path.join(this.projectRoot, packagePath)
+        : packagePath;
+
+      // Check if package.json exists in the package directory
+      const packageJsonPath = path.join(fullPackagePath, 'package.json');
+
+      try {
+        await fs.access(packageJsonPath);
+      } catch (accessError) {
+        // Package directory doesn't exist yet (not installed)
+        return { valid: true, skipped: true, reason: 'Package not yet installed' };
+      }
+
+      // Read the package.json file to compute its hash
+      const packageJsonContent = await fs.readFile(packageJsonPath);
+
+      // Compute SHA512 hash
+      const hash = crypto.createHash('sha512');
+      hash.update(packageJsonContent);
+      const computedHash = hash.digest('base64');
+
+      // Compare hashes
+      if (computedHash === expectedHash) {
+        return { valid: true, computed: computedHash };
+      } else {
+        await this.auditLogger.logSecurityEvent(
+          'package-integrity-mismatch',
+          {
+            packagePath,
+            expectedHash: expectedHash.substring(0, 16) + '...',
+            computedHash: computedHash.substring(0, 16) + '...',
+            timestamp: new Date().toISOString()
+          }
+        );
+
+        return {
+          valid: false,
+          expected: expectedHash,
+          computed: computedHash,
+          error: 'Integrity hash mismatch - package may have been tampered with'
+        };
+      }
+    } catch (error) {
+      return {
+        valid: false,
+        error: `Integrity verification failed: ${error.message}`
+      };
+    }
+  }
+
+  /**
    * Load installed packages information
    */
   async loadInstalledPackages() {
@@ -416,24 +491,75 @@ class BMADDependencyManager extends EventEmitter {
         const lockData = JSON.parse(lockContent);
 
         if (lockData.packages) {
+          const integrityErrors = [];
+
           for (const [packagePath, packageInfo] of Object.entries(lockData.packages)) {
             if (packagePath === '') continue; // Skip root
 
             const packageName = packageInfo.name || packagePath.split('node_modules/').pop();
+
+            // Verify package integrity if hash is present
+            if (packageInfo.integrity) {
+              const integrityResult = await this.verifyPackageIntegrity(
+                packagePath,
+                packageInfo.integrity
+              );
+
+              if (!integrityResult.valid && !integrityResult.skipped) {
+                integrityErrors.push({
+                  package: packageName,
+                  path: packagePath,
+                  error: integrityResult.error
+                });
+
+                // Emit security violation event
+                this.emit('security-violation', {
+                  type: 'integrity-mismatch',
+                  package: packageName,
+                  path: packagePath,
+                  details: integrityResult
+                });
+
+                // Skip loading this package due to integrity failure
+                continue;
+              }
+            }
+
             this.installedPackages.set(packageName, {
               version: packageInfo.version,
               path: packagePath,
               dependencies: packageInfo.dependencies || {},
               integrity: packageInfo.integrity,
+              integrityVerified: packageInfo.integrity ? true : false,
               resolved: packageInfo.resolved,
               dev: packageInfo.dev || false
             });
+          }
+
+          // Log integrity verification summary
+          if (integrityErrors.length > 0) {
+            await this.auditLogger.logSecurityEvent(
+              'package-integrity-verification-failures',
+              {
+                failureCount: integrityErrors.length,
+                packages: integrityErrors.map(e => e.package),
+                timestamp: new Date().toISOString()
+              }
+            );
+
+            throw new Error(
+              `Package integrity verification failed for ${integrityErrors.length} package(s): ` +
+              integrityErrors.map(e => `${e.package}: ${e.error}`).join('; ')
+            );
           }
         }
 
         this.packageLock.set('package-lock', lockData);
 
       } catch (error) {
+        if (error.message.includes('integrity verification failed')) {
+          throw error; // Re-throw integrity errors
+        }
         this.auditLogger.info('No package-lock.json found, starting fresh');
       }
 
