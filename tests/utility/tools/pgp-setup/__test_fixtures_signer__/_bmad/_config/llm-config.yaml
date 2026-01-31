@@ -1,4 +1,0 @@
-llm:
-  provider: anthropic
-  model: claude-3-opus
-  api_key_env: ANTHROPIC_API_KEY

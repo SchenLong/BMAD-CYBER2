@@ -1,8 +1,0 @@
-code: "no-interactive"
-name: "No Interactive Fields Module"
-
-module_version:
-  result: "2.0.0"
-
-agents_path:
-  result: "{project-root}/_bmad/no-interactive/agents"

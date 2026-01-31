@@ -33,7 +33,10 @@ import {
   getFeaturesByCategory,
   isValidTierId,
   getAllTierIds,
-  getTierDisplayInfo
+  getTierDisplayInfo,
+  isSecurityDowngrade,
+  getDowngradeWarning,
+  getMostRestrictiveTier
 } from './tier-definitions.js';
 
 // ESM equivalent of __dirname
@@ -54,10 +57,10 @@ describe('Security Tier Definitions - INST-007', () => {
       expect(SECURITY_TIERS[4].id).toBe('beta');
     });
 
-    it('should have exactly one default tier', () => {
+    it('should have exactly one default tier (enterprise - most restrictive stable)', () => {
       const defaults = SECURITY_TIERS.filter(t => t.isDefault);
       expect(defaults).toHaveLength(1);
-      expect(defaults[0].id).toBe('standard');
+      expect(defaults[0].id).toBe('enterprise');
     });
 
     it('should have exactly one beta tier', () => {
@@ -205,10 +208,10 @@ describe('Security Tier Definitions - INST-007', () => {
   });
 
   describe('getDefaultTier()', () => {
-    it('should return the standard tier', () => {
+    it('should return the enterprise tier (most restrictive stable)', () => {
       const defaultTier = getDefaultTier();
       expect(defaultTier).toBeDefined();
-      expect(defaultTier.id).toBe('standard');
+      expect(defaultTier.id).toBe('enterprise');
       expect(defaultTier.isDefault).toBe(true);
     });
   });
@@ -472,12 +475,22 @@ describe('Security Tier Definitions - INST-007', () => {
 
   describe('getTierDisplayInfo()', () => {
     it('should return display info for valid tier', () => {
+      const info = getTierDisplayInfo('enterprise');
+      expect(info).toBeDefined();
+      expect(info.id).toBe('enterprise');
+      expect(info.name).toBe('Enterprise');
+      expect(info.featureCount).toBe(8);
+      expect(info.isDefault).toBe(true);
+      expect(info.isBeta).toBe(false);
+    });
+
+    it('should return display info for non-default tier', () => {
       const info = getTierDisplayInfo('standard');
       expect(info).toBeDefined();
       expect(info.id).toBe('standard');
       expect(info.name).toBe('Standard');
       expect(info.featureCount).toBe(2);
-      expect(info.isDefault).toBe(true);
+      expect(info.isDefault).toBe(false);
       expect(info.isBeta).toBe(false);
     });
 
@@ -488,6 +501,74 @@ describe('Security Tier Definitions - INST-007', () => {
     it('should include order in display info', () => {
       const info = getTierDisplayInfo('advanced');
       expect(info.order).toBe(3);
+    });
+  });
+
+  describe('isSecurityDowngrade()', () => {
+    it('should return true for downgrade', () => {
+      expect(isSecurityDowngrade('enterprise', 'standard')).toBe(true);
+      expect(isSecurityDowngrade('advanced', 'essential')).toBe(true);
+      expect(isSecurityDowngrade('standard', 'essential')).toBe(true);
+    });
+
+    it('should return false for upgrade', () => {
+      expect(isSecurityDowngrade('standard', 'enterprise')).toBe(false);
+      expect(isSecurityDowngrade('essential', 'advanced')).toBe(false);
+    });
+
+    it('should return false for same tier', () => {
+      expect(isSecurityDowngrade('standard', 'standard')).toBe(false);
+      expect(isSecurityDowngrade('enterprise', 'enterprise')).toBe(false);
+    });
+
+    it('should return false for initial configuration', () => {
+      expect(isSecurityDowngrade(null, 'standard')).toBe(false);
+      expect(isSecurityDowngrade(undefined, 'enterprise')).toBe(false);
+    });
+  });
+
+  describe('getDowngradeWarning()', () => {
+    it('should return warning for downgrade', () => {
+      const warning = getDowngradeWarning('enterprise', 'standard');
+      expect(warning).not.toBeNull();
+      expect(warning).toContain('WARNING');
+      expect(warning).toContain('Lowering security tier');
+      expect(warning).toContain('Enterprise');
+      expect(warning).toContain('Standard');
+    });
+
+    it('should mention number of features being disabled', () => {
+      const warning = getDowngradeWarning('enterprise', 'essential');
+      expect(warning).toContain('feature(s)');
+    });
+
+    it('should return null for upgrade', () => {
+      const warning = getDowngradeWarning('standard', 'enterprise');
+      expect(warning).toBeNull();
+    });
+
+    it('should return null for same tier', () => {
+      const warning = getDowngradeWarning('standard', 'standard');
+      expect(warning).toBeNull();
+    });
+
+    it('should return null for invalid tiers', () => {
+      const warning = getDowngradeWarning('invalid1', 'invalid2');
+      expect(warning).toBeNull();
+    });
+  });
+
+  describe('getMostRestrictiveTier()', () => {
+    it('should return enterprise tier', () => {
+      const tier = getMostRestrictiveTier();
+      expect(tier).toBeDefined();
+      expect(tier.id).toBe('enterprise');
+    });
+
+    it('should not return beta tier (experimental/unstable)', () => {
+      const tier = getMostRestrictiveTier();
+      expect(tier.id).not.toBe('beta');
+      expect(tier.isBeta).toBe(false);
     });
   });
 

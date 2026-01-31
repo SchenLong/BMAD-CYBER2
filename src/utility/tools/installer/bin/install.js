@@ -23,6 +23,7 @@ const RollbackManager = require('../lib/core/rollback-manager');
 const InstallationLogger = require('../lib/core/installation-logger');
 const { NetworkResilience } = require('../lib/core/network-resilience.js');
 const { OfflineSupport, isOfflineFlagSet } = require('../lib/core/offline-support.js');
+const { SignatureVerification } = require('../lib/core/signature-verification.js');
 
 /**
  * Main Installation Framework Class
@@ -41,6 +42,9 @@ class BMAdInstaller extends EventEmitter {
       offline: options.offline || isOfflineFlagSet(),
       retryAttempts: options.retryAttempts || 3,
       retryDelay: options.retryDelay || 1000,
+      verifySignatures: options.verifySignatures !== false, // INST-001: Enable signature verification by default
+      allowUntrustedKeys: options.allowUntrustedKeys || false,
+      requiredTrustLevel: options.requiredTrustLevel || 'marginal',
       ...options
     };
 
@@ -62,6 +66,13 @@ class BMAdInstaller extends EventEmitter {
     // Offline support (VAL-03-008)
     this.offlineSupport = new OfflineSupport({
       projectRoot: this.options.projectRoot
+    });
+
+    // Signature verification (INST-001)
+    this.signatureVerification = new SignatureVerification({
+      verificationRequired: this.options.verifySignatures,
+      allowUntrustedKeys: this.options.allowUntrustedKeys,
+      requiredTrustLevel: this.options.requiredTrustLevel
     });
 
     // Installation state
@@ -593,9 +604,118 @@ class BMAdInstaller extends EventEmitter {
     this.logger.debug('BMAD Core validation passed');
   }
 
+  /**
+   * Validate module packages including signature verification (INST-001)
+   * Verifies GPG signatures (.sig, .asc) or Sigstore bundles (.bundle)
+   *
+   * @param {Array} modules - Module names to validate
+   * @throws {Error} If signature verification fails for any module
+   */
   async validateModulePackages(modules) {
-    // TODO: Verify package integrity and signatures
+    if (!this.options.verifySignatures) {
+      this.logger.info('Signature verification disabled - skipping');
+      return;
+    }
+
+    this.logger.info('Verifying package signatures (INST-001)...');
+
+    const verificationResults = [];
+    const failures = [];
+
+    for (const module of modules) {
+      try {
+        // Get the package path for this module
+        const packagePath = await this.resolvePackagePath(module);
+
+        if (!packagePath) {
+          this.logger.warn(`Could not resolve package path for ${module}`);
+          continue;
+        }
+
+        // Verify the package signature
+        const result = await this.signatureVerification.verifyPackage(packagePath);
+
+        verificationResults.push({
+          module,
+          packagePath,
+          ...result
+        });
+
+        if (result.valid) {
+          this.logger.debug(`Signature verified for ${module}: ${result.signatureType || 'checksum'}`);
+          if (result.signer) {
+            this.logger.debug(`  Signed by: ${result.signer}`);
+          }
+          if (result.keyId) {
+            this.logger.debug(`  Key ID: ${result.keyId}`);
+          }
+        } else {
+          failures.push({
+            module,
+            error: result.message,
+            errorCode: result.error
+          });
+          this.logger.error(`Signature verification failed for ${module}: ${result.message}`);
+        }
+      } catch (error) {
+        failures.push({
+          module,
+          error: error.message,
+          errorCode: error.code
+        });
+        this.logger.error(`Signature verification error for ${module}: ${error.message}`);
+      }
+    }
+
+    // Log summary
+    const verified = verificationResults.filter(r => r.valid).length;
+    this.logger.info(`Signature verification: ${verified}/${modules.length} packages verified`);
+
+    // Reject if any failures and verification is required
+    if (failures.length > 0 && this.options.verifySignatures) {
+      const failedModules = failures.map(f => f.module).join(', ');
+      throw new Error(
+        `Package signature verification failed for: ${failedModules}. ` +
+        `Use --no-verify-signatures to skip (NOT RECOMMENDED)`
+      );
+    }
+
     this.logger.debug('Module package validation passed');
+  }
+
+  /**
+   * Resolve the local package path for a module
+   * Checks node_modules and cache directories
+   *
+   * @param {string} module - Module name
+   * @returns {Promise<string|null>} Path to package or null
+   */
+  async resolvePackagePath(module) {
+    const fs = require('fs').promises;
+    const path = require('path');
+
+    // Check common locations
+    const possiblePaths = [
+      // Local node_modules
+      path.join(this.options.projectRoot, 'node_modules', module),
+      // Scoped package
+      path.join(this.options.projectRoot, 'node_modules', '@bmad', module),
+      // Offline cache
+      path.join(this.options.projectRoot, '.bmad-offline-cache', `${module.replace('/', '-')}.tgz`),
+      // Global cache (npm)
+      path.join(process.env.npm_config_cache || path.join(require('os').homedir(), '.npm'), '_cacache')
+    ];
+
+    for (const pkgPath of possiblePaths) {
+      try {
+        await fs.access(pkgPath);
+        return pkgPath;
+      } catch {
+        // Continue checking
+      }
+    }
+
+    return null;
   }
 
   async checkResourceAvailability() {

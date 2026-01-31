@@ -5,14 +5,23 @@
  * Discovers and parses module.yaml files to enable interactive module selection
  * during the BMAD installation wizard.
  *
+ * Security features (MOD-001, MOD-002, MOD-003):
+ * - SHA256 hash verification for module files
+ * - Path traversal prevention
+ * - Module allowlist enforcement
+ *
  * @module module-loader
  * @author BlackUnicorn.Tech
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import {
+  createSecurityContext,
+  validatePathSecurity
+} from './module-integrity.js';
 
 // ESM equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -20,6 +29,57 @@ const __dirname = path.dirname(__filename);
 
 // Default project root - can be overridden
 const DEFAULT_BMAD_PATH = '_bmad';
+
+// Security context cache with associated bmadPath
+let securityContext = null;
+let securityContextBmadPath = null;
+
+/**
+ * @typedef {Object} SecurityOptions
+ * @property {string} [manifestPath] - Path to integrity manifest file
+ * @property {string[]} [allowlist] - Module allowlist (overrides manifest)
+ * @property {boolean} [strictAllowlist=false] - Enable strict allowlist enforcement
+ * @property {boolean} [requireIntegrity=false] - Require integrity verification to pass
+ * @property {function} [logger] - Logger function for security messages
+ */
+
+/**
+ * Initializes the security context for module loading
+ * @param {string} bmadPath - Base _bmad directory path
+ * @param {SecurityOptions} [options={}] - Security options
+ */
+export function initializeSecurity(bmadPath, options = {}) {
+  securityContext = createSecurityContext(bmadPath, options);
+  securityContextBmadPath = path.resolve(bmadPath);
+}
+
+/**
+ * Gets the current security context
+ * @returns {Object|null} Security context or null if not initialized
+ */
+export function getSecurityContext() {
+  return securityContext;
+}
+
+/**
+ * Resets the security context (useful for testing)
+ */
+export function resetSecurityContext() {
+  securityContext = null;
+  securityContextBmadPath = null;
+}
+
+/**
+ * Checks if security context needs to be reinitialized for a different bmadPath
+ * @param {string} bmadPath - The bmadPath to check
+ * @returns {boolean} True if context needs reinitialization
+ */
+function needsSecurityContextReinit(bmadPath) {
+  if (!securityContext || !securityContextBmadPath) {
+    return true;
+  }
+  return path.resolve(bmadPath) !== securityContextBmadPath;
+}
 
 /**
  * @typedef {Object} ModuleMetadata
@@ -41,6 +101,7 @@ const DEFAULT_BMAD_PATH = '_bmad';
 
 /**
  * Scans the _bmad directory for subdirectories containing module.yaml files
+ * MOD-002: Validates paths to prevent traversal attacks
  * @param {string} [projectRoot=process.cwd()] - Root directory of the project
  * @returns {string[]} Array of directory paths containing module.yaml files
  */
@@ -54,12 +115,24 @@ export function scanModuleDirectories(projectRoot = process.cwd()) {
     return moduleDirectories;
   }
 
+  // Initialize security context if not already done or if bmadPath changed
+  if (needsSecurityContextReinit(bmadPath)) {
+    initializeSecurity(bmadPath, { logger: null }); // Silent logger for default init
+  }
+
   try {
     const entries = fs.readdirSync(bmadPath, { withFileTypes: true });
 
     for (const entry of entries) {
       // Skip non-directories and special directories (starting with _)
       if (!entry.isDirectory() || entry.name.startsWith('_')) {
+        continue;
+      }
+
+      // MOD-002: Validate path to prevent traversal attacks
+      const pathValidation = validatePathSecurity(entry.name, bmadPath);
+      if (!pathValidation.valid) {
+        console.warn(`[SECURITY] Skipping directory with invalid path: ${entry.name} - ${pathValidation.error}`);
         continue;
       }
 
@@ -199,10 +272,14 @@ function parseYamlValue(value) {
 
 /**
  * Parses a module.yaml file and extracts module metadata
+ * MOD-001, MOD-002, MOD-003: Applies security checks before loading
  * @param {string} modulePath - Path to the module directory
+ * @param {Object} [options={}] - Parsing options
+ * @param {boolean} [options.skipSecurityChecks=false] - Skip security checks (for testing only)
  * @returns {ModuleMetadata|null} Parsed module metadata or null if parsing fails
  */
-export function parseModuleYaml(modulePath) {
+export function parseModuleYaml(modulePath, options = {}) {
+  const { skipSecurityChecks = false } = options;
   const yamlPath = path.join(modulePath, 'module.yaml');
 
   if (!fs.existsSync(yamlPath)) {
@@ -220,6 +297,30 @@ export function parseModuleYaml(modulePath) {
     const defaultSelected = parsedYaml.default_selected ?? false;
     const required = parsedYaml.required ?? false;
     const prompt = Array.isArray(parsedYaml.prompt) ? parsedYaml.prompt : [];
+
+    // MOD-002, MOD-003: Apply security checks if context exists and not skipped
+    if (!skipSecurityChecks && securityContext) {
+      // Validate module path
+      if (!securityContext.validatePath(modulePath)) {
+        console.error(`[SECURITY] Module path validation failed for: ${modulePath}`);
+        return null;
+      }
+
+      // Check allowlist
+      if (!securityContext.isModuleAllowed(code)) {
+        console.error(`[SECURITY] Module '${code}' is not in the allowlist`);
+        return null;
+      }
+
+      // MOD-001: Verify integrity
+      const integrityResult = securityContext.verifyIntegrity(modulePath, code);
+      if (!integrityResult.valid) {
+        // Log errors but don't fail by default (requireIntegrity option controls this)
+        for (const error of integrityResult.errors) {
+          console.warn(`[SECURITY] Integrity warning: ${error}`);
+        }
+      }
+    }
 
     // Extract description from prompt (first non-empty line)
     let description = '';
@@ -433,9 +534,17 @@ export function calculateEstimatedSize(agentCount, workflowCount) {
 /**
  * Loads all available modules from the _bmad directory
  * @param {string} [projectRoot=process.cwd()] - Root directory of the project
+ * @param {SecurityOptions} [securityOptions={}] - Security options for module loading
  * @returns {ModuleMetadata[]} Array of module metadata objects
  */
-export function loadAllModules(projectRoot = process.cwd()) {
+export function loadAllModules(projectRoot = process.cwd(), securityOptions = {}) {
+  const bmadPath = path.join(projectRoot, DEFAULT_BMAD_PATH);
+
+  // Initialize security context with provided options
+  if (Object.keys(securityOptions).length > 0) {
+    initializeSecurity(bmadPath, securityOptions);
+  }
+
   const moduleDirs = scanModuleDirectories(projectRoot);
   const modules = [];
 
