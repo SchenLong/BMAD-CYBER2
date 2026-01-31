@@ -1,0 +1,5 @@
+security:
+  tier: standard
+  features:
+    - auth
+    - validators-6

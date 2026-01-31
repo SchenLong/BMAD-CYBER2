@@ -68,12 +68,12 @@ BMAD-CYBER2 implements Role-Based Access Control (RBAC) to manage access to modu
 node _bmad/core/security/generate-token.js
 
 # Quick method for subsequent users
-node _bmad/core/security/quick-token.js "UserName" "role_name" [hours]
+node _bmad/core/security/quick-token.cjs "UserName" "role_name" [hours]
 
 # Examples:
-node _bmad/core/security/quick-token.js "Alice" "developer" 168
-node _bmad/core/security/quick-token.js "Bob" "security_analyst" 24
-node _bmad/core/security/quick-token.js "Carol" "admin" 8
+node _bmad/core/security/quick-token.cjs "Alice" "developer" 168
+node _bmad/core/security/quick-token.cjs "Bob" "security_analyst" 24
+node _bmad/core/security/quick-token.cjs "Carol" "admin" 8
 ```
 
 **Step 2: Verify Token Creation**
@@ -99,7 +99,7 @@ To change a user's role, you must regenerate their token:
 
 ```bash
 # Generate new token with updated role
-node _bmad/core/security/quick-token.js "UserName" "new_role" 168
+node _bmad/core/security/quick-token.cjs "UserName" "new_role" 168
 
 # Verify the change
 node _bmad/core/security/check-authorization.js
@@ -272,7 +272,7 @@ rbac:
 #    - Strategy: strategist
 
 # 2. Generate token with appropriate role
-node _bmad/core/security/quick-token.js "NewUser" "developer" 168
+node _bmad/core/security/quick-token.cjs "NewUser" "developer" 168
 
 # 3. Provide token file to user (.bmad-token)
 # 4. Verify access
@@ -299,11 +299,11 @@ For temporary elevated access (e.g., incident response):
 
 ```bash
 # 1. Generate temporary token with elevated role
-node _bmad/core/security/quick-token.js "User" "security_lead" 4  # 4 hours
+node _bmad/core/security/quick-token.cjs "User" "security_lead" 4  # 4 hours
 
 # 2. Document the elevation in security log
 # 3. After incident, regenerate normal token
-node _bmad/core/security/quick-token.js "User" "security_analyst" 168
+node _bmad/core/security/quick-token.cjs "User" "security_analyst" 168
 ```
 
 ### Viewing All Defined Roles
@@ -347,7 +347,7 @@ node _bmad/core/security/generate-token.js
 node _bmad/core/security/validate-token.js
 
 # Regenerate if expired
-node _bmad/core/security/quick-token.js "User" "role" 168
+node _bmad/core/security/quick-token.cjs "User" "role" 168
 ```
 
 **Issue: Permission Denied for Workflow**
@@ -452,7 +452,7 @@ node _bmad/core/security/check-authorization.js agent <module/agent>
 node _bmad/core/security/generate-token.js
 
 # Generate token (quick)
-node _bmad/core/security/quick-token.js "Name" "role" hours
+node _bmad/core/security/quick-token.cjs "Name" "role" hours
 
 # Validate token
 node _bmad/core/security/validate-token.js

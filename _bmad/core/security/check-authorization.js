@@ -371,7 +371,7 @@ function main() {
     console.log('  Could not find a valid authentication token.');
     console.log('');
     console.log('  To generate a token:');
-    console.log('    node _bmad/core/security/quick-token.js "YourName" "admin"');
+    console.log('    node _bmad/core/security/quick-token.cjs "YourName" "admin"');
     console.log('');
     console.log('  Or run interactively:');
     console.log('    node _bmad/core/security/generate-token.js');

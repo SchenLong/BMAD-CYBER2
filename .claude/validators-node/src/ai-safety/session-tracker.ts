@@ -147,8 +147,9 @@ export function getSessionState(sessionId: string): SessionPatternState {
   const now = Date.now();
 
   // Check if session exists
-  if (container.sessions[sessionId]) {
-    const session = container.sessions[sessionId];
+  const existingSession = container.sessions[sessionId];
+  if (existingSession) {
+    const session = existingSession;
     const elapsed = now - session.last_updated;
 
     // Apply temporal decay to accumulated weight only if significant time has passed (>1 minute)

@@ -41,11 +41,11 @@ export interface PermissionGrant {
   grantedAt: number;      // Unix timestamp
   expiresAt: number;      // Unix timestamp
   grantedBy: string;      // Process/agent that granted it
-  reason?: string;        // Optional reason for audit
+  reason?: string | undefined;        // Optional reason for audit
   consumable: boolean;    // If true, consumed after first use
   consumed: boolean;      // Has it been consumed?
-  consumedBy?: string;    // Who consumed it
-  consumedAt?: number;    // When was it consumed
+  consumedBy?: string | undefined;    // Who consumed it
+  consumedAt?: number | undefined;    // When was it consumed
 }
 
 /**
@@ -53,7 +53,7 @@ export interface PermissionGrant {
  */
 export interface SessionContextState {
   sessionId: string;
-  parentSessionId?: string;       // For nested sessions
+  parentSessionId?: string | undefined;       // For nested sessions
   createdAt: number;
   expiresAt: number;
   lastActivity: number;
@@ -67,9 +67,9 @@ export interface SessionContextState {
   // Session metadata
   metadata: {
     projectDir: string;
-    userId?: string;
-    hostname?: string;
-    startedBy?: string;
+    userId?: string | undefined;
+    hostname?: string | undefined;
+    startedBy?: string | undefined;
   };
 }
 
@@ -552,7 +552,7 @@ export function checkSessionPermission(
   }
   const result = SessionContext.checkPermission(permissionType, {
     consume: false,  // Don't consume by default - session-wide
-    validatorName,
+    ...(validatorName !== undefined && { validatorName }),
   });
   if (process.env['DEBUG_SESSION']) {
     console.error(`[DEBUG session-context] checkSessionPermission result:`, JSON.stringify(result));
@@ -569,7 +569,7 @@ export function consumeSessionPermission(
 ): PermissionCheckResult {
   return SessionContext.checkPermission(permissionType, {
     consume: true,
-    validatorName,
+    ...(validatorName !== undefined && { validatorName }),
   });
 }
 

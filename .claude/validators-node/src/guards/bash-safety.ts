@@ -167,7 +167,7 @@ export function checkDirectoryEscape(cmd: string, cwd: string): { isEscape: bool
     const cdMatch = cmd.match(/\bcd\s+([^\s;&|]+)/);
     if (cdMatch) {
         const target = cdMatch[1];
-        if (target.startsWith('/') && !isPathInRepo(target, cwd)) {
+        if (target !== undefined && target.startsWith('/') && !isPathInRepo(target, cwd)) {
             return {
                 isEscape: true,
                 message: `Directory escape attempt: cd to ${target} (outside repository)`,

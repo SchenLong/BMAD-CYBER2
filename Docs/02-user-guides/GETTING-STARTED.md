@@ -56,7 +56,7 @@ BMAD includes 19 security validators protecting against OWASP Top 10 for LLM App
 
 ```bash
 # Generate authentication token (valid for 7 days)
-node _bmad/core/security/quick-token.js "YourName" "developer" 168
+node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
 
 # Set token for session
 export BMAD_AUTH_TOKEN="<generated-token>"

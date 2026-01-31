@@ -156,9 +156,8 @@ export class BMADScriptManager {
       description: 'Compress BMAD agent files for distribution',
       requiredArgs: ['inputPath'],
       optionalArgs: ['outputPath', 'compressionLevel'],
-      execute: async (args, config) => {
-        const inputPath = args[0];
-        const outputPath = args[1] || config.outputPath || './compressed';
+      execute: async (args, _config) => {
+        const outputPath = args[1] || './compressed';
 
         try {
           // Invoke the agent-compressor CLI script
@@ -185,7 +184,7 @@ export class BMADScriptManager {
       description: 'Compress BMAD manifest files',
       requiredArgs: ['manifestPath'],
       optionalArgs: ['outputPath'],
-      execute: async (args, config) => {
+      execute: async (_args, _config) => {
         try {
           // Invoke the manifest-compressor CLI script
           const result = await runScript('manifest-compressor.ts', []);
@@ -210,7 +209,7 @@ export class BMADScriptManager {
       name: 'build',
       description: 'Build BMAD modules for production',
       optionalArgs: ['target', 'environment'],
-      execute: async (args, config) => {
+      execute: async (args, _config) => {
         const target = args[0] || 'all';
         const environment = args[1] || 'production';
 

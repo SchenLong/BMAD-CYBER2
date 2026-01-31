@@ -343,8 +343,8 @@ export class ArchivalScheduler {
     healthy: boolean;
     issues: string[];
     recommendations: string[];
-    lastArchival?: string;
-    nextArchival?: string;
+    lastArchival?: string | undefined;
+    nextArchival?: string | undefined;
   }> {
     const issues: string[] = [];
     const recommendations: string[] = [];

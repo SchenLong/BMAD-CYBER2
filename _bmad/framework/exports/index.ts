@@ -65,7 +65,7 @@ export class BMADFramework {
     this.config = config;
 
     // Initialize framework core
-    const frameworkConfig = initializeFramework(config.framework);
+    initializeFramework(config.framework);
 
     // Initialize all components
     this.validators = createValidatorSuite(config.validators);

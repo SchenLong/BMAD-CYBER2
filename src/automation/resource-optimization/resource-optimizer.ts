@@ -660,9 +660,10 @@ export class ResourceOptimizer extends EventEmitter {
     let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
 
     for (let i = 0; i < n; i++) {
+      const value = values[i] ?? 0;
       sumX += i;
-      sumY += values[i];
-      sumXY += i * values[i];
+      sumY += value;
+      sumXY += i * value;
       sumX2 += i * i;
     }
 

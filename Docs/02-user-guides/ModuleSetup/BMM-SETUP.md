@@ -65,7 +65,7 @@ yolo_mode: false
 
 ```bash
 # Generate token with developer role
-node _bmad/core/security/quick-token.js "YourName" "developer" 168
+node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
 
 # Set token
 export BMAD_AUTH_TOKEN="<generated-token>"

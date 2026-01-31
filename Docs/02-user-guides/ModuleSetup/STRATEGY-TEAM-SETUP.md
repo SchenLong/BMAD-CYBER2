@@ -62,7 +62,7 @@ yolo_mode: false
 
 ```bash
 # Generate token with executive or strategy role
-node _bmad/core/security/quick-token.js "YourName" "executive" 168
+node _bmad/core/security/quick-token.cjs "YourName" "executive" 168
 
 # Set token
 export BMAD_AUTH_TOKEN="<generated-token>"

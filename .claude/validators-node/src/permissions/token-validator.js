@@ -421,7 +421,7 @@ export function printAuthFailure(error) {
         target: 'Session authentication',
         isAbsolute: true,
         recommendations: [
-            'Generate a token: node _bmad/core/security/quick-token.js "YourName" "role" 168',
+            'Generate a token: node _bmad/core/security/quick-token.cjs "YourName" "role" 168',
             'Or set environment variable: export BMAD_AUTH_TOKEN=<your-token>',
             'Validate your token: node _bmad/core/security/validate-token.js',
             'To disable enforcement (NOT RECOMMENDED): export BMAD_TOKEN_REQUIRED=false',

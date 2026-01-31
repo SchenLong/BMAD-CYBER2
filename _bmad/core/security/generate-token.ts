@@ -22,7 +22,7 @@ import * as readline from 'readline';
 export interface TokenClaims {
   sub: string;       // Subject (unique user ID)
   name: string;      // Display name
-  email?: string;    // Email address
+  email?: string | undefined;    // Email address
   roles: string[];   // User roles
   modules: string[]; // Accessible modules
   iat: string;       // Issued at
@@ -196,10 +196,10 @@ async function interactiveGeneration(): Promise<void> {
     '8': 'guest'
   };
 
-  const roles = roleInput.split(',')
+  const roles: string[] = roleInput.split(',')
     .map(s => s.trim())
-    .filter(s => roleMap[s])
-    .map(s => roleMap[s]);
+    .map(s => roleMap[s])
+    .filter((role): role is string => role !== undefined);
 
   if (roles.length === 0) {
     roles.push('viewer');
@@ -218,7 +218,10 @@ async function interactiveGeneration(): Promise<void> {
     'guest': ['core']
   };
 
-  const modules = [...new Set(roles.flatMap(r => moduleMap[r] || ['core']))];
+  const modules = [...new Set(roles.flatMap(r => {
+    const mappedModules = moduleMap[r];
+    return mappedModules !== undefined ? mappedModules : ['core'];
+  }))];
 
   const expiresHours = await question('\nToken validity in hours (default 168 = 7 days): ');
   const hours = parseInt(expiresHours) || 168;

@@ -8,8 +8,11 @@
  * @version 1.0.0
  */
 
-import { AuditLogger, AuditEvent, SecurityLevel } from "./audit-logger";
+import { TamperEvidentAuditLogger, SecurityLevel } from "./audit-logger";
 import { SiemIntegration } from "./siem-integration";
+
+// Type alias for compatibility
+type AuditLogger = TamperEvidentAuditLogger;
 
 /**
  * Compliance framework types
@@ -174,7 +177,8 @@ export interface RiskRating {
  */
 export class ComplianceReporter {
   private auditLogger: AuditLogger;
-  private siemIntegration?: SiemIntegration;
+  // siemIntegration is stored for potential future use in compliance forwarding
+  protected siemIntegration: SiemIntegration | undefined;
   private controls: Map<string, ComplianceControl> = new Map();
   private findings: Map<string, ComplianceFinding> = new Map();
   private riskAssessments: Map<string, RiskAssessment> = new Map();
@@ -182,7 +186,7 @@ export class ComplianceReporter {
 
   constructor(auditLogger: AuditLogger, siemIntegration?: SiemIntegration) {
     this.auditLogger = auditLogger;
-    this.siemIntegration = siemIntegration;
+    this.siemIntegration = siemIntegration ?? undefined;
     this.initializeControlLibrary();
   }
 
@@ -406,7 +410,7 @@ export class ComplianceReporter {
         outcome: "failure",
         securityLevel: SecurityLevel.HIGH,
         details: {
-          error: error.message,
+          error: (error as Error).message,
           framework,
           reportType
         }
@@ -448,7 +452,7 @@ export class ComplianceReporter {
           securityLevel: SecurityLevel.MEDIUM,
           details: {
             controlId: control.controlId,
-            error: error.message
+            error: (error as Error).message
           }
         });
       }
@@ -458,7 +462,7 @@ export class ComplianceReporter {
   /**
    * Execute control test
    */
-  private async executeControlTest(control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] }> {
+  private async executeControlTest(control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     // Implementation would vary by control type
     switch (control.controlId) {
       case "CC6.1": // SOC 2 Logical Access
@@ -479,7 +483,7 @@ export class ComplianceReporter {
   /**
    * Test logical access control
    */
-  private async testLogicalAccess(control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] }> {
+  private async testLogicalAccess(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
     let compliant = true;
 
@@ -494,7 +498,7 @@ export class ComplianceReporter {
       compliant = false;
       findings.push({
         id: `finding-${Date.now()}-weak-passwords`,
-        controlId: control.id,
+        controlId: _control.id,
         severity: SecurityLevel.HIGH,
         title: "Weak Password Policies Detected",
         description: "Some user accounts do not meet minimum password complexity requirements",
@@ -514,7 +518,7 @@ export class ComplianceReporter {
   /**
    * Test system monitoring control
    */
-  private async testSystemMonitoring(control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] }> {
+  private async testSystemMonitoring(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
     let compliant = true;
 
@@ -529,7 +533,7 @@ export class ComplianceReporter {
   /**
    * Test network access control
    */
-  private async testNetworkAccess(control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] }> {
+  private async testNetworkAccess(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
     let compliant = true;
 
@@ -544,7 +548,7 @@ export class ComplianceReporter {
   /**
    * Test account management control
    */
-  private async testAccountManagement(control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] }> {
+  private async testAccountManagement(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
     let compliant = true;
 
@@ -559,7 +563,7 @@ export class ComplianceReporter {
   /**
    * Test audit events control
    */
-  private async testAuditEvents(control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] }> {
+  private async testAuditEvents(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
     let compliant = true;
 
@@ -642,7 +646,7 @@ export class ComplianceReporter {
   /**
    * Generate executive summary
    */
-  private generateExecutiveSummary(metrics: ComplianceMetrics, findings: ComplianceFinding[]): string {
+  private generateExecutiveSummary(metrics: ComplianceMetrics, _findings: ComplianceFinding[]): string {
     const summary = [];
     
     summary.push(`Compliance Score: ${metrics.complianceScore}% (${metrics.compliantControls}/${metrics.totalControls} controls)`);
@@ -753,7 +757,7 @@ export class ComplianceReporter {
   /**
    * Identify threats for asset type
    */
-  private identifyThreats(assetType: string): ThreatScenario[] {
+  private identifyThreats(_assetType: string): ThreatScenario[] {
     const commonThreats: ThreatScenario[] = [
       {
         id: "threat-malware",

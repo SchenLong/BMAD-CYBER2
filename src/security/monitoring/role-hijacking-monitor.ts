@@ -339,8 +339,13 @@ export class RoleHijackingMonitor {
     }
 
     // Calculate level jump risk
-    const currentLevel = roles[currentRole].level;
-    const requestedLevel = roles[requestedRole].level;
+    const currentRoleDef = roles[currentRole];
+    const requestedRoleDef = roles[requestedRole];
+    if (!currentRoleDef || !requestedRoleDef) {
+      return 0.9; // High risk if role definitions not found
+    }
+    const currentLevel = currentRoleDef.level;
+    const requestedLevel = requestedRoleDef.level;
     const levelJump = requestedLevel - currentLevel;
 
     // Risk based on level jump
@@ -350,7 +355,7 @@ export class RoleHijackingMonitor {
       return 0.6; // Medium risk for moderate jumps
     } else if (levelJump === 1) {
       // Check if transition is allowed
-      const allowedElevations = roles[currentRole].canElevateTo;
+      const allowedElevations = currentRoleDef.canElevateTo;
       if (allowedElevations.includes(requestedRole)) {
         return 0.2; // Low risk for allowed transitions
       } else {
@@ -498,7 +503,8 @@ export class RoleHijackingMonitor {
     }
 
     // Check if authorizer has sufficient privilege level
-    const authorizerLevel = roles[authorizer].level;
+    const authorizerDef = roles[authorizer];
+    const authorizerLevel = authorizerDef?.level ?? 0;
     const newRoleLevel = roles[newRole]?.level ?? 10;
 
     if (authorizerLevel <= newRoleLevel) {

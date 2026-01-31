@@ -252,7 +252,7 @@ jobs:
   distribution-validation:
     name: Distribution Validation (Epic 4.3)
     runs-on: ubuntu-latest
-    needs: extraction-validation
+    needs: [setup-and-validate, extraction-validation]
     strategy:
       matrix: ${{ fromJson(needs.setup-and-validate.outputs.test-matrix) }}
       fail-fast: false

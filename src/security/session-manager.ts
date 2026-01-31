@@ -8,7 +8,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
-import { TokenGenerator, TokenClaims } from './generate-token';
+import { TokenGenerator, TokenClaims } from './encryption/generate-token';
 
 // ============================================================================
 // Types
@@ -18,7 +18,7 @@ export interface Session {
   id: string;
   userId: string;
   userName: string;
-  email?: string;
+  email?: string | undefined;
   roles: string[];
   modules: string[];
   createdAt: Date;
@@ -36,21 +36,21 @@ export interface AuthenticationResult {
 
 export interface UserContext {
   authenticated: boolean;
-  userId?: string;
-  userName?: string;
-  email?: string;
-  roles?: string[];
-  modules?: string[];
-  sessionId?: string;
+  userId?: string | undefined;
+  userName?: string | undefined;
+  email?: string | undefined;
+  roles?: string[] | undefined;
+  modules?: string[] | undefined;
+  sessionId?: string | undefined;
 }
 
 export interface AuthStatus {
   keyExists: boolean;
   tokenExists: boolean;
   tokenValid: boolean;
-  expiresAt?: Date;
-  hoursUntilExpiry?: number;
-  userName?: string;
+  expiresAt?: Date | undefined;
+  hoursUntilExpiry?: number | undefined;
+  userName?: string | undefined;
 }
 
 // ============================================================================
@@ -286,6 +286,53 @@ export class SessionManager {
    */
   endAllSessions(): void {
     this.sessions.clear();
+  }
+
+  /**
+   * Regenerate session on privilege change (VAL-05-004-003 fix)
+   * Creates a new session with updated claims while preserving user identity.
+   * The old session is invalidated to prevent session fixation attacks.
+   *
+   * @param oldSessionId - The current session ID to regenerate
+   * @param newClaims - Updated token claims with new privileges
+   * @returns New session or null if old session not found
+   */
+  regenerateSessionOnPrivilegeChange(oldSessionId: string, newClaims: TokenClaims): Session | null {
+    const oldSession = this.sessions.get(oldSessionId);
+    if (!oldSession) {
+      return null;
+    }
+
+    // Invalidate old session immediately
+    this.sessions.delete(oldSessionId);
+
+    // Create new session with updated claims
+    const newSession = this.createSession(newClaims);
+
+    // Log privilege change for audit trail
+    console.log(`[SECURITY] Session regenerated on privilege change: ${oldSessionId} -> ${newSession.id}`);
+    console.log(`[SECURITY] User: ${newClaims.name}, New roles: ${newClaims.roles.join(', ')}`);
+
+    return newSession;
+  }
+
+  /**
+   * Check if session roles have changed (utility for detecting privilege changes)
+   */
+  hasPrivilegeChanged(sessionId: string, newRoles: string[]): boolean {
+    const session = this.getSession(sessionId);
+    if (!session) return true; // No session = privilege change
+
+    const currentRoles = new Set(session.roles);
+    const updatedRoles = new Set(newRoles);
+
+    // Check if roles differ
+    if (currentRoles.size !== updatedRoles.size) return true;
+    for (const role of currentRoles) {
+      if (!updatedRoles.has(role)) return true;
+    }
+
+    return false;
   }
 
   /**

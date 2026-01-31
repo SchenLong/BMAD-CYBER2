@@ -112,7 +112,7 @@ export class BMADHookManager {
       this.registry.register('session:init', {
         name: 'security-init',
         priority: 100,
-        execute: async (context) => {
+        execute: async (_context) => {
           // Session security initialization
           await sessionSecurityInit();
         }

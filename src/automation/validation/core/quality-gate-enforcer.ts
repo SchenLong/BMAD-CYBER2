@@ -340,9 +340,10 @@ export class QualityGateEnforcer extends EventEmitter {
         const n = scores.length;
         let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
         for (let i = 0; i < n; i++) {
+            const score = scores[i] ?? 0;
             sumX += i;
-            sumY += scores[i];
-            sumXY += i * scores[i];
+            sumY += score;
+            sumXY += i * score;
             sumX2 += i * i;
         }
         const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
@@ -502,7 +503,7 @@ export class QualityGateEnforcer extends EventEmitter {
     private _evaluateDimension(
         dimension: QualityDimension,
         metrics: QualityMetric[],
-        weight: number,
+        _weight: number,
         context: ValidationContext,
         violations: QualityViolation[],
         evaluatedMetrics: QualityMetric[]
@@ -564,16 +565,19 @@ export class QualityGateEnforcer extends EventEmitter {
             try {
                 const passed = rule.condition(context);
                 if (!passed) {
-                    violations.push({
+                    const violation: QualityViolation = {
                         id: rule.id,
                         metric: rule.id,
                         dimension: rule.dimension,
                         severity: rule.severity,
                         message: rule.message,
                         expected: 1,
-                        actual: 0,
-                        suggestion: rule.suggestion
-                    });
+                        actual: 0
+                    };
+                    if (rule.suggestion !== undefined) {
+                        violation.suggestion = rule.suggestion;
+                    }
+                    violations.push(violation);
                 }
             } catch (error) {
                 violations.push({

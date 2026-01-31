@@ -26,20 +26,21 @@ export class AESEncryption {
 
   static encrypt(plaintext: string, key: Buffer): EncryptedData {
     this.validateKey(key);
-    
+
     // Generate a cryptographically secure random IV (16 bytes for AES)
     const iv = generateSecureRandom(CRYPTO_CONFIG.ivLength);
-    
+
     // SECURITY FIX: Use createCipheriv instead of deprecated createCipher
     // createCipher derives IV from password which is insecure and deprecated
-    const cipher = crypto.createCipheriv(CRYPTO_CONFIG.algorithm, key, iv);
-    
+    // Type assertion needed for GCM mode methods
+    const cipher = crypto.createCipheriv(CRYPTO_CONFIG.algorithm, key, iv) as crypto.CipherGCM;
+
     let encrypted = cipher.update(plaintext, "utf8", "base64");
     encrypted += cipher.final("base64");
-    
+
     // Get the authentication tag (required for GCM mode)
     const tag = cipher.getAuthTag();
-    
+
     return {
       encrypted,
       iv: iv.toString("base64"),
@@ -49,20 +50,21 @@ export class AESEncryption {
 
   static decrypt(data: EncryptedData, key: Buffer): string {
     this.validateKey(key);
-    
+
     const iv = Buffer.from(data.iv, "base64");
     this.validateIV(iv);
-    
+
     const tag = Buffer.from(data.tag, "base64");
     const encrypted = data.encrypted;
-    
+
     // SECURITY FIX: Use createDecipheriv instead of deprecated createDecipher
-    const decipher = crypto.createDecipheriv(CRYPTO_CONFIG.algorithm, key, iv);
+    // Type assertion needed for GCM mode methods
+    const decipher = crypto.createDecipheriv(CRYPTO_CONFIG.algorithm, key, iv) as crypto.DecipherGCM;
     decipher.setAuthTag(tag);
-    
+
     let decrypted = decipher.update(encrypted, "base64", "utf8");
     decrypted += decipher.final("utf8");
-    
+
     return decrypted;
   }
 

@@ -7,7 +7,7 @@
  */
 
 import { EventEmitter } from 'events';
-import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
+import { Worker } from 'worker_threads';
 import * as os from 'os';
 import * as crypto from 'crypto';
 
@@ -149,7 +149,6 @@ export class ParallelCoordinator extends EventEmitter {
   private healthCheckTimer: NodeJS.Timeout | null = null;
   private stats: CoordinatorStats;
   private isRunning = false;
-  private taskQueue: string[] = [];
 
   constructor(config: Partial<CoordinatorConfig> = {}) {
     super();
@@ -311,7 +310,7 @@ export class ParallelCoordinator extends EventEmitter {
         phases.push({
           id: `phase_${phaseNum++}`,
           tasks: [...currentLevel],
-          dependencies: phases.length > 0 ? [phases[phases.length - 1].id] : [],
+          dependencies: phases.length > 0 ? [phases[phases.length - 1]!.id] : [],
           estimatedDuration: phaseDuration
         });
 
@@ -412,7 +411,7 @@ export class ParallelCoordinator extends EventEmitter {
   }
 
   private async terminateWorkers(): Promise<void> {
-    for (const [workerId, state] of this.workers) {
+    for (const [_workerId, state] of this.workers) {
       if (state.worker) {
         state.worker.terminate();
       }
@@ -483,15 +482,15 @@ export class ParallelCoordinator extends EventEmitter {
     return Array.from(this.workers.values()).filter(w => w.status === 'idle');
   }
 
-  private selectWorker(available: WorkerState[], task: BuildTask): WorkerState | null {
+  private selectWorker(available: WorkerState[], _task: BuildTask): WorkerState | null {
     if (available.length === 0) return null;
 
     if (this.config.enableLoadBalancing) {
       // Select worker with lowest total duration (least loaded)
-      return available.sort((a, b) => a.totalDuration - b.totalDuration)[0];
+      return available.sort((a, b) => a.totalDuration - b.totalDuration)[0] ?? null;
     }
 
-    return available[0];
+    return available[0] ?? null;
   }
 
   private canAllocateResources(requirements: ResourceRequirements): boolean {
@@ -518,7 +517,6 @@ export class ParallelCoordinator extends EventEmitter {
   }
 
   private async assignTaskToWorker(taskId: string, workerId: string): Promise<void> {
-    const task = this.tasks.get(taskId)!;
     const worker = this.workers.get(workerId)!;
 
     // Update state
@@ -541,7 +539,6 @@ export class ParallelCoordinator extends EventEmitter {
 
   private async executeTask(taskId: string, workerId: string): Promise<void> {
     const task = this.tasks.get(taskId)!;
-    const worker = this.workers.get(workerId)!;
     const startTime = Date.now();
 
     const context: TaskContext = {
@@ -611,7 +608,7 @@ export class ParallelCoordinator extends EventEmitter {
     });
   }
 
-  private async executeDefault(task: BuildTask, context: TaskContext): Promise<TaskResult> {
+  private async executeDefault(task: BuildTask, _context: TaskContext): Promise<TaskResult> {
     const startTime = Date.now();
     return {
       success: true,

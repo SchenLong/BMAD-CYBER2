@@ -43,8 +43,8 @@ export interface AlertPayload {
   event_type: string;
   validator: string;
   message: string;
-  details?: Record<string, unknown>;
-  timestamp?: string;
+  details?: Record<string, unknown> | undefined;
+  timestamp?: string | undefined;
 }
 
 /**

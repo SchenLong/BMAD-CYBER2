@@ -81,7 +81,7 @@ export interface ContextStatus {
   tokensUsed: number;
   tokensRemaining: number;
   maxTokens: number;
-  message?: string;
+  message?: string | undefined;
 }
 
 export interface OperationRecord {

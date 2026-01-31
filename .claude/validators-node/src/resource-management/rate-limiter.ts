@@ -220,13 +220,17 @@ export class RateLimiter {
     const windowStart = currentTime - WINDOW_SECONDS;
 
     for (const operation of Object.keys(state.requests)) {
-      state.requests[operation] = state.requests[operation].filter(
-        req => req.timestamp > windowStart
-      );
+      const opRequests = state.requests[operation];
+      if (opRequests) {
+        state.requests[operation] = opRequests.filter(
+          req => req.timestamp > windowStart
+        );
 
-      // Remove empty arrays
-      if (state.requests[operation].length === 0) {
-        delete state.requests[operation];
+        // Remove empty arrays
+        const updatedRequests = state.requests[operation];
+        if (updatedRequests && updatedRequests.length === 0) {
+          delete state.requests[operation];
+        }
       }
     }
 
@@ -283,6 +287,7 @@ export class RateLimiter {
    */
   checkLimit(operation: string, target: string = ''): RateLimitCheckResult {
     const currentTime = Date.now() / 1000;
+    const globalLimitVal = RATE_LIMITS['global'] ?? 1500;
 
     // Check whitelist first
     if (this.isWhitelisted(operation, target)) {
@@ -291,7 +296,7 @@ export class RateLimiter {
         reason: 'Whitelisted operation',
         operation,
         count: 0,
-        limit: RATE_LIMITS[operation] || RATE_LIMITS['global'],
+        limit: RATE_LIMITS[operation] ?? globalLimitVal,
       };
     }
 
@@ -307,14 +312,14 @@ export class RateLimiter {
         reason: `Backoff active. Retry in ${remaining}s`,
         operation,
         count: this.getRequestsInWindow(state, operation, currentTime),
-        limit: RATE_LIMITS[operation] || RATE_LIMITS['global'],
+        limit: RATE_LIMITS[operation] ?? globalLimitVal,
         retryAfter: remaining,
       };
     }
 
     // Check global limit
     const globalCount = this.getGlobalRequestsInWindow(state, currentTime);
-    const globalLimit = RATE_LIMITS['global'];
+    const globalLimit = globalLimitVal;
     if (globalCount >= globalLimit) {
       this.handleViolation(state, 'global', currentTime);
       return {
@@ -328,7 +333,7 @@ export class RateLimiter {
     }
 
     // Check operation-specific limit
-    const opLimit = RATE_LIMITS[operation] || RATE_LIMITS['global'];
+    const opLimit = RATE_LIMITS[operation] ?? globalLimitVal;
     const opCount = this.getRequestsInWindow(state, operation, currentTime);
 
     if (opCount >= opLimit) {
@@ -383,16 +388,20 @@ export class RateLimiter {
       state.requests[operation] = [];
     }
 
-    state.requests[operation].push({
-      timestamp: currentTime,
-      target: target.slice(0, 200), // Truncate long targets
-    });
+    const opRequests = state.requests[operation];
+    if (opRequests) {
+      opRequests.push({
+        timestamp: currentTime,
+        target: target.slice(0, 200), // Truncate long targets
+      });
+    }
 
     this.saveState(state);
 
     // Record telemetry
     if (recordRateLimitMetrics) {
-      const limit = RATE_LIMITS[operation] || RATE_LIMITS['global'];
+      const globalLimitVal = RATE_LIMITS['global'] ?? 1500;
+      const limit = RATE_LIMITS[operation] ?? globalLimitVal;
       const count = this.getRequestsInWindow(state, operation, currentTime);
       const backoffUntil = state.backoff_until[operation] || 0;
 
@@ -465,13 +474,13 @@ export class RateLimiter {
     }
 
     const globalCount = this.getGlobalRequestsInWindow(state, currentTime);
-    const globalLimit = RATE_LIMITS['global'];
+    const globalLimitVal = RATE_LIMITS['global'] ?? 1500;
 
     return {
       operations,
       globalCount,
-      globalLimit,
-      globalPercentage: globalLimit > 0 ? (globalCount / globalLimit) * 100 : 0,
+      globalLimit: globalLimitVal,
+      globalPercentage: globalLimitVal > 0 ? (globalCount / globalLimitVal) * 100 : 0,
     };
   }
 
