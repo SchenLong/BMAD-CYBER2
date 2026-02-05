@@ -181,16 +181,16 @@ export const SECURITY_TIERS = [
   {
     id: 'standard',
     name: 'Standard',
-    description: 'Recommended baseline - includes all 6 standard validators.',
+    description: 'Basic security - includes all 6 standard validators.',
     features: ['auth', 'validators-6'],
-    isDefault: true,
+    isDefault: false,
     isBeta: false,
     order: 2
   },
   {
     id: 'advanced',
     name: 'Advanced',
-    description: 'Full security suite - adds RBAC, session, and token management.',
+    description: 'Enhanced security - adds RBAC, session, and token management.',
     features: ['auth', 'validators-6', 'rbac', 'session-management', 'token-management'],
     isDefault: false,
     isBeta: false,
@@ -199,12 +199,12 @@ export const SECURITY_TIERS = [
   {
     id: 'enterprise',
     name: 'Enterprise',
-    description: 'Maximum protection - adds audit logging and integrity verification.',
+    description: 'Maximum protection (RECOMMENDED) - adds audit logging and integrity verification.',
     features: [
       'auth', 'validators-6', 'rbac', 'session-management', 'token-management',
       'audit-logging', 'integrity-verification', 'pii-advanced'
     ],
-    isDefault: false,
+    isDefault: true,
     isBeta: false,
     order: 4
   },
@@ -398,6 +398,52 @@ export function getTierDisplayInfo(tierId) {
     isBeta: tier.isBeta,
     order: tier.order
   };
+}
+
+/**
+ * Checks if changing from one tier to another is a downgrade (lowering security)
+ * @param {string} fromTierId - Current tier ID
+ * @param {string} toTierId - Target tier ID
+ * @returns {boolean} True if this is a security downgrade
+ */
+export function isSecurityDowngrade(fromTierId, toTierId) {
+  if (!fromTierId) return false;
+  return compareTiers(fromTierId, toTierId) > 0;
+}
+
+/**
+ * Gets a warning message for security tier downgrades
+ * @param {string} fromTierId - Current tier ID
+ * @param {string} toTierId - Target tier ID
+ * @returns {string|null} Warning message or null if not a downgrade
+ */
+export function getDowngradeWarning(fromTierId, toTierId) {
+  if (!isSecurityDowngrade(fromTierId, toTierId)) {
+    return null;
+  }
+
+  const fromTier = getTierById(fromTierId);
+  const toTier = getTierById(toTierId);
+
+  if (!fromTier || !toTier) {
+    return null;
+  }
+
+  const fromFeatures = new Set(fromTier.features);
+  const toFeatures = new Set(toTier.features);
+  const removedFeatures = [...fromFeatures].filter(f => !toFeatures.has(f));
+
+  return `WARNING: Lowering security tier from ${fromTier.name} to ${toTier.name} will disable ${removedFeatures.length} security feature(s). This action reduces your security protections and requires authentication.`;
+}
+
+/**
+ * Gets the most restrictive (highest security) tier
+ * Note: Beta tier has experimental features, so Enterprise is the most restrictive stable tier
+ * @returns {SecurityTier}
+ */
+export function getMostRestrictiveTier() {
+  // Enterprise is the most restrictive stable tier (beta has experimental/unstable features)
+  return getTierById('enterprise');
 }
 
 // ESM Entry point detection for testing

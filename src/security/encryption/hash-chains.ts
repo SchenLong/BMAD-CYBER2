@@ -1,6 +1,6 @@
 // SHA-256 Hash Chain Implementation
 import crypto from "crypto";
-import { CRYPTO_CONFIG, CryptoError } from "./crypto-utils";
+import { CRYPTO_CONFIG } from "./crypto-utils";
 
 export interface HashChainLink {
   index: number;
@@ -72,13 +72,21 @@ export class HashChain {
   }
 
   getLatestLink(): HashChainLink {
-    return this.chain[this.chain.length - 1];
+    const link = this.chain[this.chain.length - 1];
+    if (!link) {
+      throw new Error("Chain is empty");
+    }
+    return link;
   }
 
   validateChain(): boolean {
     for (let i = 1; i < this.chain.length; i++) {
       const currentLink = this.chain[i];
       const previousLink = this.chain[i - 1];
+
+      if (!currentLink || !previousLink) {
+        return false;
+      }
 
       // Validate current link hash
       if (currentLink.hash !== this.calculateHash(currentLink)) {
@@ -118,22 +126,25 @@ export class HashChain {
 
   static createMerkleTree(data: string[]): string {
     if (data.length === 0) return "";
-    if (data.length === 1) return this.hashData(data[0]);
+    const firstItem = data[0];
+    if (data.length === 1 && firstItem) return this.hashData(firstItem);
 
     const hashes = data.map(item => this.hashData(item));
-    
+
     while (hashes.length > 1) {
       const newLevel: string[] = [];
-      
+
       for (let i = 0; i < hashes.length; i += 2) {
         const left = hashes[i];
-        const right = hashes[i + 1] || left; // Duplicate if odd number
-        newLevel.push(this.hashData(left + right));
+        const right = hashes[i + 1] ?? left; // Duplicate if odd number
+        if (left && right) {
+          newLevel.push(this.hashData(left + right));
+        }
       }
-      
+
       hashes.splice(0, hashes.length, ...newLevel);
     }
 
-    return hashes[0];
+    return hashes[0] ?? "";
   }
 }

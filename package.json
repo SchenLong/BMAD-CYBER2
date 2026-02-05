@@ -42,6 +42,10 @@
     "test:unit": "vitest run --config dev-tools/config/vitest.config.unit.ts",
     "test:integration": "vitest run --config dev-tools/config/vitest.config.integration.ts",
     "test:performance": "vitest run --config dev-tools/config/vitest.config.performance.ts",
+    "test:regression": "vitest run --config dev-tools/config/vitest.config.regression.ts",
+    "test:regression:critical": "vitest run --config dev-tools/config/vitest.config.regression-critical.ts",
+    "test:memory": "vitest run --config dev-tools/config/vitest.config.performance.ts tests/performance/memory.test.ts",
+    "test:bench": "vitest bench --config dev-tools/config/vitest.config.performance.ts",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
@@ -52,6 +56,8 @@
     "type-check": "tsc --noEmit && cd _bmad/framework && tsc --noEmit && cd ../../.claude/validators-node && tsc --noEmit",
     "security:scan": "npm audit --audit-level=moderate",
     "security:validate-framework": "node scripts/validate-security.js",
+    "security:verify-validators": "node src/security/verify-validators.js",
+    "security:generate-checksums": "node src/security/generate-validator-checksums.js",
     "check:bundle-size": "node scripts/check-bundle-size.js",
     "validate:exports": "node scripts/validate-exports.js",
     "docs:generate": "typedoc --options typedoc.json",
@@ -63,6 +69,9 @@
     "quality:check": "npm run lint && npm run type-check && npm run test:coverage",
     "ci:quality": "npm run quality:check && npm run security:scan && npm run build",
     "modules": "node src/utility/tools/module-selector/index.js",
+    "modules:offline": "node src/utility/tools/module-selector/index.js --offline",
+    "install:offline": "npm install --offline --prefer-offline",
+    "cache:prepare": "npm pack && npm cache add *.tgz",
     "security:config": "node src/utility/tools/security-config/index.js",
     "llm:setup": "node src/utility/tools/llm-setup/index.js",
     "health": "node src/utility/tools/health-check/index.js",
@@ -87,13 +96,23 @@
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
+  "overrides": {
+    "fast-xml-parser": "5.3.4"
+  },
   "dependencies": {
     "@bmad/validators": "file:.claude/validators-node",
     "chalk": "^5.6.2",
     "commander": "^11.0.0",
+    "fs-extra": "^11.3.3",
     "inquirer": "^13.2.1",
     "zod": "^3.22.0"
   },
+  "bundledDependencies": [
+    "chalk",
+    "commander",
+    "inquirer",
+    "zod"
+  ],
   "devDependencies": {
     "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
@@ -131,5 +150,11 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "bundleDependencies": [
+    "chalk",
+    "commander",
+    "inquirer",
+    "zod"
+  ]
 }

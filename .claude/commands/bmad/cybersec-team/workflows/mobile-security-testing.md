@@ -6,4 +6,4 @@ description: Comprehensive mobile application security testing for iOS and Andro
 # Mobile Security Testing
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/cybersec-team/workflows/mobile-security-testing/workflow.md`
+`@_bmad/cybersec-team/workflows/mobile-security-testing/workflow.md`

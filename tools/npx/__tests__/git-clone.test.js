@@ -2,9 +2,9 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { join } from 'path';
 import { tmpdir } from 'os';
 
-// Mock child_process
+// Mock child_process - use execFile for security (no shell injection)
 vi.mock('child_process', () => ({
-  exec: vi.fn()
+  execFile: vi.fn()
 }));
 
 // Mock util
@@ -21,15 +21,17 @@ vi.mock('fs/promises', () => ({
   stat: vi.fn().mockResolvedValue({ isDirectory: () => false })
 }));
 
-// Mock ora
-vi.mock('ora', () => ({
-  default: vi.fn(() => ({
-    start: vi.fn().mockReturnThis(),
-    succeed: vi.fn().mockReturnThis(),
-    fail: vi.fn().mockReturnThis(),
-    stop: vi.fn().mockReturnThis()
-  }))
-}));
+// Mock ora - use factory function to avoid memory issues
+vi.mock('ora', () => {
+  const mockSpinner = {
+    start: vi.fn(function() { return this; }),
+    succeed: vi.fn(function() { return this; }),
+    fail: vi.fn(function() { return this; }),
+    stop: vi.fn(function() { return this; }),
+    text: ''
+  };
+  return { default: vi.fn(() => mockSpinner) };
+});
 
 // Mock logger
 vi.mock('../lib/logger.js', () => ({
@@ -52,7 +54,7 @@ vi.mock('../lib/config.js', () => ({
 }));
 
 describe('git-clone', () => {
-  let exec;
+  let execFile;
   let mkdir;
   let rm;
   let cp;
@@ -69,7 +71,7 @@ describe('git-clone', () => {
     const childProcess = await import('child_process');
     const fsPromises = await import('fs/promises');
 
-    exec = childProcess.exec;
+    execFile = childProcess.execFile;
     mkdir = fsPromises.mkdir;
     rm = fsPromises.rm;
     cp = fsPromises.cp;
@@ -88,71 +90,76 @@ describe('git-clone', () => {
 
   describe('cloneRepository', () => {
     it('should clone with shallow depth by default', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' }); // git --version
-      exec.mockResolvedValueOnce({ stdout: '' }); // git clone
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' }); // git --version
+      execFile.mockResolvedValueOnce({ stdout: '' }); // git clone
 
       const result = await cloneRepository();
 
       expect(result).toMatch(/test-prefix-clone-\d+/);
-      expect(exec).toHaveBeenCalledTimes(2);
+      expect(execFile).toHaveBeenCalledTimes(2);
 
-      const cloneCall = exec.mock.calls[1][0];
-      expect(cloneCall).toContain('--depth 1');
+      // Check second call (clone) uses correct depth argument
+      const cloneArgs = execFile.mock.calls[1][1];
+      expect(cloneArgs).toContain('--depth');
+      expect(cloneArgs).toContain('1');
     });
 
     it('should clone with custom depth when specified', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository({ depth: 5 });
 
-      const cloneCall = exec.mock.calls[1][0];
-      expect(cloneCall).toContain('--depth 5');
+      const cloneArgs = execFile.mock.calls[1][1];
+      expect(cloneArgs).toContain('--depth');
+      expect(cloneArgs).toContain('5');
     });
 
     it('should support specific branch', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository({ branch: 'develop' });
 
-      const cloneCall = exec.mock.calls[1][0];
-      expect(cloneCall).toContain('--branch develop');
+      const cloneArgs = execFile.mock.calls[1][1];
+      expect(cloneArgs).toContain('--branch');
+      expect(cloneArgs).toContain('develop');
     });
 
     it('should use default branch "main" when not specified', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository();
 
-      const cloneCall = exec.mock.calls[1][0];
-      expect(cloneCall).toContain('--branch main');
+      const cloneArgs = execFile.mock.calls[1][1];
+      expect(cloneArgs).toContain('--branch');
+      expect(cloneArgs).toContain('main');
     });
 
     it('should use default repository URL from config', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository();
 
-      const cloneCall = exec.mock.calls[1][0];
-      expect(cloneCall).toContain('https://github.com/TestOwner/TestRepo.git');
+      const cloneArgs = execFile.mock.calls[1][1];
+      expect(cloneArgs).toContain('https://github.com/TestOwner/TestRepo.git');
     });
 
     it('should use custom repository URL when provided', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository({ repoUrl: 'https://github.com/custom/repo.git' });
 
-      const cloneCall = exec.mock.calls[1][0];
-      expect(cloneCall).toContain('https://github.com/custom/repo.git');
+      const cloneArgs = execFile.mock.calls[1][1];
+      expect(cloneArgs).toContain('https://github.com/custom/repo.git');
     });
 
     it('should create temp directory for clone', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository();
 
@@ -163,8 +170,8 @@ describe('git-clone', () => {
     });
 
     it('should return the temp directory path', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       const result = await cloneRepository();
 
@@ -175,23 +182,24 @@ describe('git-clone', () => {
   });
 
   describe('isGitAvailable (via cloneRepository)', () => {
-    it('should detect git availability', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+    it('should detect git availability using execFile', async () => {
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository();
 
-      expect(exec).toHaveBeenCalledWith('git --version');
+      // First call should be git --version using execFile
+      expect(execFile).toHaveBeenCalledWith('git', ['--version']);
     });
 
     it('should throw error when git is not installed', async () => {
-      exec.mockRejectedValueOnce(new Error('command not found: git'));
+      execFile.mockRejectedValueOnce(new Error('command not found: git'));
 
       await expect(cloneRepository()).rejects.toThrow('Git is not installed or not in PATH');
     });
 
     it('should include helpful message when git not installed', async () => {
-      exec.mockRejectedValueOnce(new Error('command not found: git'));
+      execFile.mockRejectedValueOnce(new Error('command not found: git'));
 
       await expect(cloneRepository()).rejects.toThrow('--from-git');
     });
@@ -199,35 +207,35 @@ describe('git-clone', () => {
 
   describe('error handling', () => {
     it('should handle network failures gracefully', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockRejectedValueOnce(new Error('fatal: unable to access repository'));
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockRejectedValueOnce(new Error('fatal: unable to access repository'));
 
       await expect(cloneRepository()).rejects.toThrow('unable to access repository');
     });
 
     it('should handle invalid repository URL', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockRejectedValueOnce(new Error('fatal: repository not found'));
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockRejectedValueOnce(new Error('fatal: repository not found'));
 
       await expect(cloneRepository({ repoUrl: 'https://github.com/invalid/repo.git' }))
         .rejects.toThrow('repository not found');
     });
 
     it('should handle branch not found error', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
       const error = new Error('Remote branch not found');
       error.stderr = 'error: not found';
-      exec.mockRejectedValueOnce(error);
+      execFile.mockRejectedValueOnce(error);
 
       await expect(cloneRepository({ branch: 'nonexistent' }))
         .rejects.toThrow("Branch 'nonexistent' not found in repository");
     });
 
     it('should handle timeout on slow network', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
       const timeoutError = new Error('Command timed out');
       timeoutError.killed = true;
-      exec.mockRejectedValueOnce(timeoutError);
+      execFile.mockRejectedValueOnce(timeoutError);
 
       await expect(cloneRepository()).rejects.toThrow('timed out');
     });
@@ -472,10 +480,10 @@ describe('git-clone', () => {
     });
   });
 
-  describe('git clone command construction', () => {
-    it('should construct proper git clone command', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+  describe('git clone command construction (execFile security)', () => {
+    it('should use execFile with array arguments for security', async () => {
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository({
         branch: 'feature',
@@ -483,21 +491,104 @@ describe('git-clone', () => {
         repoUrl: 'https://github.com/test/repo.git'
       });
 
-      const cloneCall = exec.mock.calls[1][0];
-      expect(cloneCall).toContain('git clone');
-      expect(cloneCall).toContain('--depth 3');
-      expect(cloneCall).toContain('--branch feature');
-      expect(cloneCall).toContain('https://github.com/test/repo.git');
+      // Verify execFile is called with command and args separately (no shell)
+      expect(execFile).toHaveBeenCalledWith(
+        'git',
+        expect.arrayContaining([
+          'clone',
+          '--depth', '3',
+          '--branch', 'feature',
+          'https://github.com/test/repo.git'
+        ]),
+        expect.any(Object)
+      );
     });
 
     it('should set timeout on clone command', async () => {
-      exec.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
-      exec.mockResolvedValueOnce({ stdout: '' });
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
 
       await cloneRepository();
 
-      const cloneOptions = exec.mock.calls[1][1];
+      const cloneOptions = execFile.mock.calls[1][2];
       expect(cloneOptions).toEqual({ timeout: 120000 });
+    });
+
+    it('should pass arguments as array to prevent shell injection', async () => {
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
+
+      // Even with suspicious-looking branch name, it should be safe because
+      // execFile doesn't use shell interpolation
+      await cloneRepository({
+        branch: 'feature-branch',
+        repoUrl: 'https://github.com/test/repo.git'
+      });
+
+      // The branch is passed as a separate array element, not interpolated into a string
+      const cloneArgs = execFile.mock.calls[1][1];
+      expect(Array.isArray(cloneArgs)).toBe(true);
+      expect(cloneArgs).toContain('feature-branch');
+    });
+  });
+
+  // ========================================================================
+  // SECURITY TESTS - VAL-11-003: Defense-in-depth with execFile
+  // ========================================================================
+  describe('security - execFile defense-in-depth (VAL-11-003)', () => {
+    it('should use execFile instead of exec for git operations', async () => {
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
+
+      await cloneRepository();
+
+      // Verify all git operations use execFile
+      expect(execFile).toHaveBeenCalledWith('git', ['--version']);
+      expect(execFile).toHaveBeenCalledWith(
+        'git',
+        expect.arrayContaining(['clone']),
+        expect.any(Object)
+      );
+    });
+
+    it('should pass all arguments as array elements, not a single command string', async () => {
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
+
+      await cloneRepository({
+        branch: 'main',
+        depth: 1,
+        repoUrl: 'https://github.com/test/repo.git'
+      });
+
+      // Second call is the clone command
+      const [cmd, args] = execFile.mock.calls[1];
+
+      expect(cmd).toBe('git');
+      expect(Array.isArray(args)).toBe(true);
+
+      // Each argument should be a separate array element
+      expect(args).toEqual(expect.arrayContaining([
+        'clone',
+        '--depth',
+        '1',
+        '--branch',
+        'main',
+        'https://github.com/test/repo.git'
+      ]));
+    });
+
+    it('should not concatenate arguments into a shell command', async () => {
+      execFile.mockResolvedValueOnce({ stdout: 'git version 2.40.0' });
+      execFile.mockResolvedValueOnce({ stdout: '' });
+
+      await cloneRepository();
+
+      // Verify the first argument is just 'git', not 'git clone ...'
+      expect(execFile.mock.calls[1][0]).toBe('git');
+      // The command should not be a concatenated string
+      expect(typeof execFile.mock.calls[1][0]).toBe('string');
+      expect(execFile.mock.calls[1][0]).not.toContain(' ');
     });
   });
 });

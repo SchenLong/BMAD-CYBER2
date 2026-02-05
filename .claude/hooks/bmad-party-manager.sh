@@ -1,4 +1,17 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+# Source input validation library for security
+SCRIPT_DIR_VAL="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -f "$SCRIPT_DIR_VAL/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR_VAL/lib/input-validation.sh"
+fi
+
+# Source audit logging library for security tracking
+if [[ -f "$SCRIPT_DIR_VAL/lib/audit-logging.sh" ]]; then
+  source "$SCRIPT_DIR_VAL/lib/audit-logging.sh"
+  init_audit_logging "bmad-party-manager"
+fi
 #
 # File: .claude/hooks/bmad-party-manager.sh
 #
@@ -161,6 +174,10 @@ enable_party_mode() {
   # Remove opt-out flag if it exists
   if [[ -f "$DISABLE_FLAG" ]]; then
     rm -f "$DISABLE_FLAG"
+    # Audit log the configuration change
+    if command -v audit_log &>/dev/null; then
+      audit_log "PARTY_MODE_ENABLED" "Removed disable flag: $DISABLE_FLAG"
+    fi
     echo -e "${GREEN}✅ Party mode voices enabled${NC}"
     echo ""
     echo -e "${CYAN}🎭 Multi-agent voice switching activated!${NC}"
@@ -188,6 +205,11 @@ disable_party_mode() {
 
   # Create opt-out flag
   touch "$DISABLE_FLAG"
+
+  # Audit log the configuration change
+  if command -v audit_log &>/dev/null; then
+    audit_log "PARTY_MODE_DISABLED" "Created disable flag: $DISABLE_FLAG"
+  fi
 
   echo -e "${GREEN}✅ Party mode voices disabled${NC}"
   echo ""

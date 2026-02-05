@@ -36,7 +36,7 @@ node _bmad/core/security/check-authorization.js
 
 ```bash
 # Generate new token
-node _bmad/core/security/quick-token.js "YourName" "your_role" 168
+node _bmad/core/security/quick-token.cjs "YourName" "your_role" 168
 
 # Or use interactive generation
 node _bmad/core/security/generate-token.js
@@ -74,7 +74,7 @@ node _bmad/core/security/generate-token.js
 
 ```bash
 # Generate new token with longer validity
-node _bmad/core/security/quick-token.js "YourName" "role" 720  # 30 days
+node _bmad/core/security/quick-token.cjs "YourName" "role" 720  # 30 days
 ```
 
 ---
@@ -100,7 +100,7 @@ intel_analyst, security_lead, admin
 
 2. **Generate token with correct role:**
    ```bash
-   node _bmad/core/security/quick-token.js "YourName" "security_lead" 168
+   node _bmad/core/security/quick-token.cjs "YourName" "security_lead" 168
    ```
 
 3. **Check specific access:**

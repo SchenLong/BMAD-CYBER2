@@ -5,10 +5,14 @@
  * Handles installation of all 4 specialized team modules
  */
 
-const fs = require('fs-extra');
-const path = require('path');
-const yaml = require('js-yaml');
-const chalk = require('chalk');
+import fs from 'fs-extra';
+import path from 'path';
+import yaml from 'js-yaml';
+import chalk from 'chalk';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class MultiModuleInstaller {
   constructor() {
@@ -19,7 +23,7 @@ class MultiModuleInstaller {
 
   loadConfig() {
     const configPath = path.join(this.packageRoot, 'bmad-multi-module.yaml');
-    return yaml.load(fs.readFileSync(configPath, 'utf8'));
+    return yaml.load(fs.readFileSync(configPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
   }
 
   async install() {
@@ -177,9 +181,10 @@ class MultiModuleInstaller {
 }
 
 // Run installer if called directly
-if (require.main === module) {
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename);
+if (isMain) {
   const installer = new MultiModuleInstaller();
   installer.install().catch(console.error);
 }
 
-module.exports = MultiModuleInstaller;
+export default MultiModuleInstaller;

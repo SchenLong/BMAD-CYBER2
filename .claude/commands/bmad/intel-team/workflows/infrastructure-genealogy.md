@@ -6,4 +6,4 @@ description: Trace complete history of digital infrastructure - ownership chains
 # Infrastructure Genealogy
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/intel-team/workflows/infrastructure-genealogy/workflow.md`
+`@_bmad/intel-team/workflows/infrastructure-genealogy/workflow.md`

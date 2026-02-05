@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { tmpdir } from 'os';
 import { join } from 'path';
@@ -6,8 +6,9 @@ import { mkdir, rm, cp, readdir, stat } from 'fs/promises';
 import ora from 'ora';
 import { CONFIG } from './config.js';
 import { logger } from './logger.js';
+import { assertValidRepoUrl } from './url-validator.js';
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 const DEFAULT_REPO_URL = `https://github.com/${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}.git`;
 
@@ -41,6 +42,9 @@ export async function cloneRepository(options = {}) {
   const spinner = ora();
 
   try {
+    // 0. Validate repository URL to prevent command injection
+    assertValidRepoUrl(repoUrl);
+
     // 1. Check git availability
     spinner.start('Checking git availability...');
     if (!await isGitAvailable()) {
@@ -56,12 +60,30 @@ export async function cloneRepository(options = {}) {
     const tempDir = join(tmpdir(), `${CONFIG.TEMP_DIR_PREFIX}-clone-${Date.now()}`);
     await mkdir(tempDir, { recursive: true });
 
-    // 3. Clone repository
+    // 3. Validate branch name to prevent command injection
+    // Branch names can contain alphanumeric, -, _, ., and /
+    // See: https://git-scm.com/docs/git-check-ref-format
+    const SAFE_BRANCH_PATTERN = /^[a-zA-Z0-9][\w.\-\/]*$/;
+    if (!SAFE_BRANCH_PATTERN.test(branch)) {
+      throw new Error(
+        `Invalid branch name: "${branch}". Branch names must start with alphanumeric ` +
+        `and contain only letters, numbers, hyphens, underscores, dots, and forward slashes.`
+      );
+    }
+
+    // 4. Clone repository using execFile for safer execution (no shell injection)
     spinner.start(`Cloning from ${branch} branch...`);
-    const cloneCmd = `git clone --depth ${depth} --branch ${branch} "${repoUrl}" "${tempDir}"`;
+    // Use execFile with array arguments - no shell interpolation, prevents command injection
+    const gitArgs = [
+      'clone',
+      '--depth', String(depth),
+      '--branch', branch,
+      repoUrl,
+      tempDir
+    ];
 
     try {
-      await execAsync(cloneCmd, { timeout: 120000 }); // 2 min timeout
+      await execFileAsync('git', gitArgs, { timeout: 120000 }); // 2 min timeout
     } catch (error) {
       if (error.message.includes('not found') || error.stderr?.includes('not found')) {
         throw new Error(`Branch '${branch}' not found in repository`);
@@ -81,7 +103,7 @@ export async function cloneRepository(options = {}) {
 
 async function isGitAvailable() {
   try {
-    await execAsync('git --version');
+    await execFileAsync('git', ['--version']);
     return true;
   } catch {
     return false;

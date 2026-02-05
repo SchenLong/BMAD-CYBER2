@@ -1,4 +1,6 @@
 // AES-256-GCM Encryption System
+// SECURITY FIX (BLOCK-002): Replaced deprecated createCipher/createDecipher with createCipheriv/createDecipheriv
+// Using proper IV generation with crypto.randomBytes(16) for AES-256-GCM
 import crypto from "crypto";
 import { CRYPTO_CONFIG, CryptoError, generateSecureRandom } from "./crypto-utils";
 
@@ -16,17 +18,29 @@ export class AESEncryption {
     }
   }
 
+  private static validateIV(iv: Buffer): void {
+    if (iv.length !== CRYPTO_CONFIG.ivLength) {
+      throw new CryptoError(`Invalid IV length: expected ${CRYPTO_CONFIG.ivLength}, got ${iv.length}`, "INVALID_IV_LENGTH");
+    }
+  }
+
   static encrypt(plaintext: string, key: Buffer): EncryptedData {
     this.validateKey(key);
-    
+
+    // Generate a cryptographically secure random IV (16 bytes for AES)
     const iv = generateSecureRandom(CRYPTO_CONFIG.ivLength);
-    const cipher = crypto.createCipher(CRYPTO_CONFIG.algorithm, key, { iv });
-    
+
+    // SECURITY FIX: Use createCipheriv instead of deprecated createCipher
+    // createCipher derives IV from password which is insecure and deprecated
+    // Type assertion needed for GCM mode methods
+    const cipher = crypto.createCipheriv(CRYPTO_CONFIG.algorithm, key, iv) as crypto.CipherGCM;
+
     let encrypted = cipher.update(plaintext, "utf8", "base64");
     encrypted += cipher.final("base64");
-    
+
+    // Get the authentication tag (required for GCM mode)
     const tag = cipher.getAuthTag();
-    
+
     return {
       encrypted,
       iv: iv.toString("base64"),
@@ -36,17 +50,21 @@ export class AESEncryption {
 
   static decrypt(data: EncryptedData, key: Buffer): string {
     this.validateKey(key);
-    
+
     const iv = Buffer.from(data.iv, "base64");
+    this.validateIV(iv);
+
     const tag = Buffer.from(data.tag, "base64");
     const encrypted = data.encrypted;
-    
-    const decipher = crypto.createDecipher(CRYPTO_CONFIG.algorithm, key, { iv });
+
+    // SECURITY FIX: Use createDecipheriv instead of deprecated createDecipher
+    // Type assertion needed for GCM mode methods
+    const decipher = crypto.createDecipheriv(CRYPTO_CONFIG.algorithm, key, iv) as crypto.DecipherGCM;
     decipher.setAuthTag(tag);
-    
+
     let decrypted = decipher.update(encrypted, "base64", "utf8");
     decrypted += decipher.final("utf8");
-    
+
     return decrypted;
   }
 

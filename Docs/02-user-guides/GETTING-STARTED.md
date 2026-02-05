@@ -56,7 +56,7 @@ BMAD includes 19 security validators protecting against OWASP Top 10 for LLM App
 
 ```bash
 # Generate authentication token (valid for 7 days)
-node _bmad/core/security/quick-token.js "YourName" "developer" 168
+node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
 
 # Set token for session
 export BMAD_AUTH_TOKEN="<generated-token>"
@@ -427,7 +427,7 @@ Agents: Sun + Augustus + Counsel + Europa
 Purpose: Strategic planning with legal and regulatory input
 ```
 
-> ⚠️ **Note:** Legal-Team agents are designed for Party Mode support only. See the Legal-Team disclaimer in [AGENTS.md](./AGENTS.md).
+> ⚠️ **Note:** Legal-Team agents are designed for Party Mode support only. See the Legal-Team disclaimer in [AGENTS-REFERENCE.md](./AGENTS-REFERENCE.md).
 
 ---
 
@@ -471,8 +471,8 @@ Load workflow: _bmad/cybersec-team/workflows/[workflow-name]/workflow.md
 
 ## Next Steps
 
-1. **Explore Agents:** Read [AGENTS.md](./AGENTS.md) for complete agent details
-2. **Review Workflows:** See [WORKFLOWS.md](./WORKFLOWS.md) for all workflow documentation
+1. **Explore Agents:** Read [AGENTS-REFERENCE.md](./AGENTS-REFERENCE.md) for complete agent details
+2. **Review Workflows:** See [WORKFLOWS-REFERENCE.md](./WORKFLOWS-REFERENCE.md) for all workflow documentation
 3. **Try Party Mode:** Combine agents for complex scenarios
 4. **Customize:** Adjust agent preferences for your needs
 

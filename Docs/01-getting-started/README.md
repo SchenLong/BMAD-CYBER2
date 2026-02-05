@@ -94,19 +94,19 @@ cp _bmad/core/configs/security/secure-defaults.yaml .claude/config.yaml
 ## Next Steps
 
 ### For End Users
-1. **[Browse Available Workflows](../user-guide/workflows/)** - See all 143+ workflows
-2. **[Try Examples](../user-guide/examples/)** - Hands-on guided examples
-3. **[Configuration Guide](../user-guide/configuration.md)** - Customize your setup
+1. **[Browse Available Workflows](../02-user-guides/WORKFLOWS-REFERENCE.md)** - See all 143+ workflows
+2. **[Try Examples](../02-user-guides/GETTING-STARTED.md)** - Hands-on guided examples
+3. **[Configuration Guide](../02-user-guides/CONFIGURATION-GUIDE.md)** - Customize your setup
 
 ### For Security Teams
-1. **[Security Overview](../security/)** - Understand security features
-2. **[Compliance Guide](../security/compliance/)** - Meet your compliance requirements
-3. **[Audit Reports](../security/audit-reports/)** - Review security validations
+1. **[Security Overview](../02-user-guides/SECURITY-OVERVIEW.md)** - Understand security features
+2. **[Compliance Guide](../02-user-guides/SECURITY-OVERVIEW.md#compliance)** - Meet your compliance requirements
+3. **[Audit Reports](../02-user-guides/SECURITY-OVERVIEW.md#security-audits)** - Review security validations
 
 ### For Developers
-1. **[Architecture Guide](../developer/architecture.md)** - Understand the platform
-2. **[Contributing Guide](../developer/contributing.md)** - Extend and contribute
-3. **[API Reference](../developer/api-reference.md)** - Build integrations
+1. **[Architecture Guide](../03-developer-docs/architecture.md)** - Understand the platform
+2. **[Contributing Guide](../03-developer-docs/contributing.md)** - Extend and contribute
+3. **[API Reference](../03-developer-docs/API/API-DOCUMENTATION-INDEX.md)** - Build integrations
 
 ---
 
@@ -117,14 +117,14 @@ cp _bmad/core/configs/security/secure-defaults.yaml .claude/config.yaml
 | Issue | Solution |
 |-------|----------|
 | "Workflow not found" | Run `/core-skills-index` to refresh agent index |
-| Security validator errors | Check [Security Configuration](../security/features/) |
-| Performance issues | See [Performance Tuning](../operations/performance-tuning.md) |
-| Authentication errors | Review [Token Management](../security/compliance/token-management.md) |
+| Security validator errors | Check [Security Configuration](../02-user-guides/SECURITY-OVERVIEW.md) |
+| Performance issues | See [Performance Tuning](../04-operations/PERFORMANCE-TUNING.md) |
+| Authentication errors | Review [Token Management](../02-user-guides/SECURITY-OVERVIEW.md#token-management) |
 
 ### Getting Help
 
-- **User Issues** → [Troubleshooting Guide](../user-guide/troubleshooting.md)
-- **Security Questions** → [Security Documentation](../security/)
+- **User Issues** → [Troubleshooting Guide](../02-user-guides/TROUBLESHOOTING.md)
+- **Security Questions** → [Security Documentation](../02-user-guides/SECURITY-OVERVIEW.md)
 - **Technical Issues** → [GitHub Issues](https://github.com/SchenLong/BMAD-CYBER2/issues)
 
 ---
@@ -138,9 +138,9 @@ cp _bmad/core/configs/security/secure-defaults.yaml .claude/config.yaml
 4. **Legal Review** → `/contract-review`
 
 ### Advanced Features
-- **[Party Mode Presets](../user-guide/workflows/#party-mode)** - Multi-agent collaboration
-- **[Custom Agents](../developer/extending-bmad.md)** - Build your own agents
-- **[Local LLM Integration](../user-guide/configuration.md#local-llms)** - Use local models
+- **[Party Mode Presets](../02-user-guides/PARTY-MODE-GUIDE.md)** - Multi-agent collaboration
+- **[Custom Agents](../02-user-guides/Advanced/CUSTOM-AGENT-CREATION.md)** - Build your own agents
+- **[Local LLM Integration](../02-user-guides/CONFIGURATION-GUIDE.md#local-llms)** - Use local models
 
 ---
 
@@ -148,4 +148,4 @@ cp _bmad/core/configs/security/secure-defaults.yaml .claude/config.yaml
 >
 > You now have access to a professional-grade AI orchestration platform with 143+ specialized workflows spanning cybersecurity, intelligence, strategy, and legal operations.
 >
-> **Ready to begin?** Try your first workflow or explore the [User Guide](../user-guide/) for comprehensive documentation.
+> **Ready to begin?** Try your first workflow or explore the [User Guide](../02-user-guides/) for comprehensive documentation.

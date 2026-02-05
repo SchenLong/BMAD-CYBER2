@@ -6,4 +6,4 @@ description: Dual-mode workflow for creating incident response playbooks (Mode A
 # Incident Response Playbook
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/cybersec-team/workflows/incident-response-playbook/workflow.md`
+`@_bmad/cybersec-team/workflows/incident-response-playbook/workflow.md`

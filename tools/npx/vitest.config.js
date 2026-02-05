@@ -9,6 +9,17 @@ export default defineConfig({
     include: ['**/*.test.js', '**/*.spec.js'],
     exclude: ['node_modules', 'dist'],
 
+    // VAL-11-001: Memory optimization to prevent OOM
+    pool: 'forks',
+    poolOptions: {
+      forks: {
+        singleFork: true,
+        execArgv: ['--max-old-space-size=4096']
+      }
+    },
+    isolate: true,
+    maxConcurrency: 1,
+
     // Coverage configuration
     coverage: {
       provider: 'v8',

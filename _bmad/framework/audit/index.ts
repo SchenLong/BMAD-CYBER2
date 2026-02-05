@@ -113,7 +113,6 @@ export interface ComplianceReport {
  */
 export class BMADAuditLogger {
   private config: Required<AuditConfig>;
-  private auditLogger: any; // Will be the actual AuditLogger instance
   private events: AuditEvent[] = [];
 
   constructor(config: AuditConfig = {}) {
@@ -292,7 +291,10 @@ export class BMADAuditLogger {
    * Get audit statistics
    */
   async getStatistics(startTime?: Date, endTime?: Date): Promise<AuditStatistics> {
-    const filteredEvents = await this.queryEvents({ startTime, endTime });
+    const query: AuditQuery = {};
+    if (startTime !== undefined) query.startTime = startTime;
+    if (endTime !== undefined) query.endTime = endTime;
+    const filteredEvents = await this.queryEvents(query);
 
     const eventsByType = filteredEvents.reduce((acc, event) => {
       acc[event.eventType] = (acc[event.eventType] || 0) + 1;

@@ -220,7 +220,7 @@ class BMAdModulePackager {
 
     try {
       const moduleContent = await fs.readFile(moduleYamlPath, 'utf8');
-      const moduleConfig = yaml.load(moduleContent);
+      const moduleConfig = yaml.load(moduleContent, { schema: yaml.CORE_SCHEMA });
 
       // Check required fields
       const requiredFields = ['code', 'name', 'output_folder', 'module_code'];
@@ -464,7 +464,7 @@ class BMAdModulePackager {
         i++;
       }
       try {
-        frontmatter = yaml.load(frontmatterLines.join('\n')) || {};
+        frontmatter = yaml.load(frontmatterLines.join('\n'), { schema: yaml.CORE_SCHEMA }) || {};
       } catch (e) {
         console.warn(`Warning: Failed to parse frontmatter in agent: ${e.message}`);
       }

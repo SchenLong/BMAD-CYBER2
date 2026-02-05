@@ -596,5 +596,289 @@ describe('package-merger', () => {
         expect(merged.main).toBe('index.js');
       });
     });
+
+    // ========================================================================
+    // SECURITY TESTS - GH-091-001: Prototype Pollution Prevention
+    // ========================================================================
+    describe('security - prototype pollution prevention (GH-091-001)', () => {
+      // NOTE: To test __proto__ properly, we must write RAW JSON strings to files
+      // because JavaScript object literals with __proto__ set the prototype, not an own property
+
+      it('should block __proto__ key in dependencies', async () => {
+        // Write raw JSON to ensure __proto__ is an actual key in the file
+        const maliciousJson = `{
+          "name": "malicious-project",
+          "dependencies": {
+            "express": "^4.18.0",
+            "__proto__": { "polluted": "true" }
+          }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await mergePackageJson(tempDir, { yes: true });
+
+        const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
+        // __proto__ should be removed - check it's not an own property
+        expect(Object.hasOwnProperty.call(merged.dependencies, '__proto__')).toBe(false);
+        // Legitimate dependency should remain
+        expect(merged.dependencies.express).toBe('^4.18.0');
+      });
+
+      it('should block constructor key in dependencies', async () => {
+        const maliciousJson = `{
+          "name": "malicious-project",
+          "dependencies": {
+            "express": "^4.18.0",
+            "constructor": { "polluted": "true" }
+          }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await mergePackageJson(tempDir, { yes: true });
+
+        const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
+        // constructor should be removed as own property
+        expect(Object.hasOwnProperty.call(merged.dependencies, 'constructor')).toBe(false);
+      });
+
+      it('should block prototype key in dependencies', async () => {
+        const maliciousJson = `{
+          "name": "malicious-project",
+          "dependencies": {
+            "prototype": "malicious-value"
+          }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await mergePackageJson(tempDir, { yes: true });
+
+        const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
+        expect(Object.hasOwnProperty.call(merged.dependencies, 'prototype')).toBe(false);
+      });
+
+      it('should block __proto__ key in devDependencies', async () => {
+        const maliciousJson = `{
+          "name": "malicious-project",
+          "devDependencies": {
+            "__proto__": "malicious"
+          }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await mergePackageJson(tempDir, { yes: true });
+
+        const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
+        expect(Object.hasOwnProperty.call(merged.devDependencies, '__proto__')).toBe(false);
+      });
+
+      it('should block __proto__ key in scripts', async () => {
+        const maliciousJson = `{
+          "name": "malicious-project",
+          "scripts": {
+            "start": "node app.js",
+            "__proto__": "rm -rf /"
+          }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await mergePackageJson(tempDir, { yes: true });
+
+        const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
+        expect(Object.hasOwnProperty.call(merged.scripts, '__proto__')).toBe(false);
+        // Legitimate script should remain
+        expect(merged.scripts.start).toBe('node app.js');
+      });
+
+      it('should block dangerous keys in top-level package.json', async () => {
+        const maliciousJson = `{
+          "name": "normal-project",
+          "__proto__": { "malicious": true },
+          "constructor": { "malicious": true },
+          "prototype": { "malicious": true }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await mergePackageJson(tempDir, { yes: true });
+
+        const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
+        // Dangerous keys should be removed
+        expect(Object.hasOwnProperty.call(merged, '__proto__')).toBe(false);
+        expect(Object.hasOwnProperty.call(merged, 'constructor')).toBe(false);
+        expect(Object.hasOwnProperty.call(merged, 'prototype')).toBe(false);
+        // Legitimate data should remain
+        expect(merged.name).toBe('normal-project');
+      });
+
+      it('should preserve Object.prototype after merging malicious package.json', async () => {
+        // Ensure prototype pollution doesn't actually pollute Object.prototype
+        const maliciousJson = `{
+          "name": "malicious-project",
+          "dependencies": {
+            "__proto__": { "isAdmin": true }
+          }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await mergePackageJson(tempDir, { yes: true });
+
+        // Check that Object.prototype was not polluted
+        const testObj = {};
+        expect(testObj.isAdmin).toBeUndefined();
+        expect(testObj.polluted).toBeUndefined();
+      });
+    });
+
+    // ========================================================================
+    // SECURITY TESTS - Dependency Injection Detection
+    // ========================================================================
+    describe('security - suspicious dependency detection', () => {
+      it('should still merge but warn about typosquatting patterns', async () => {
+        // Note: The function warns but doesn't block - this test just verifies
+        // that merge still works with suspicious names present
+        const existingPkg = {
+          name: 'my-project',
+          dependencies: {
+            'express': '^4.18.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(existingPkg, null, 2));
+
+        const result = await mergePackageJson(tempDir, { yes: true });
+
+        expect(result.success).toBe(true);
+      });
+    });
+
+    // ========================================================================
+    // SECURITY TESTS - VAL-11-005: Path Traversal Prevention
+    // ========================================================================
+    describe('security - path traversal prevention (VAL-11-005)', () => {
+      it('should reject dependencies with .. path traversal', async () => {
+        const maliciousPkg = {
+          name: 'my-project',
+          dependencies: {
+            '../../../etc/passwd': '^1.0.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
+
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/path traversal/i);
+      });
+
+      it('should reject dependencies with absolute Unix paths', async () => {
+        const maliciousPkg = {
+          name: 'my-project',
+          dependencies: {
+            '/etc/passwd': '^1.0.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
+
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/path traversal/i);
+      });
+
+      it('should reject dependencies with absolute Windows paths', async () => {
+        const maliciousPkg = {
+          name: 'my-project',
+          dependencies: {
+            'C:\\Windows\\System32': '^1.0.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
+
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/path traversal|Windows path/i);
+      });
+
+      it('should reject devDependencies with path traversal', async () => {
+        const maliciousPkg = {
+          name: 'my-project',
+          devDependencies: {
+            '../../malicious': '^1.0.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
+
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/path traversal/i);
+      });
+
+      it('should allow valid scoped package names', async () => {
+        const validPkg = {
+          name: 'my-project',
+          dependencies: {
+            '@scope/package': '^1.0.0',
+            '@angular/core': '^15.0.0',
+            '@types/node': '^20.0.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(validPkg, null, 2));
+
+        const result = await mergePackageJson(tempDir, { yes: true });
+
+        expect(result.success).toBe(true);
+      });
+
+      it('should allow valid package names with hyphens and dots', async () => {
+        const validPkg = {
+          name: 'my-project',
+          dependencies: {
+            'some-package': '^1.0.0',
+            'another.package': '^2.0.0',
+            'lodash': '^4.17.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(validPkg, null, 2));
+
+        const result = await mergePackageJson(tempDir, { yes: true });
+
+        expect(result.success).toBe(true);
+      });
+
+      it('should reject dependency names with backslash path separators', async () => {
+        const maliciousPkg = {
+          name: 'my-project',
+          dependencies: {
+            '..\\..\\windows\\system32': '^1.0.0'
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
+
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/path traversal/i);
+      });
+
+      it('should reject dependency names with null bytes', async () => {
+        // Write raw JSON to include null byte
+        const maliciousJson = `{
+          "name": "my-project",
+          "dependencies": {
+            "legit-package\\u0000malicious": "^1.0.0"
+          }
+        }`;
+        writeFileSync(join(tempDir, 'package.json'), maliciousJson);
+
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/null bytes|path traversal/i);
+      });
+
+      it('should not be fooled by encoded path traversal', async () => {
+        // Even if someone tries URL-encoded patterns in the name
+        const maliciousPkg = {
+          name: 'my-project',
+          dependencies: {
+            '..%2F..%2Fetc%2Fpasswd': '^1.0.0'  // This is actually a valid (weird) npm name
+          }
+        };
+        writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
+
+        // URL-encoded dots don't trigger path traversal, but the package is still weird
+        // The test verifies our pattern doesn't have false positives
+        const result = await mergePackageJson(tempDir, { yes: true });
+        expect(result.success).toBe(true);
+      });
+    });
   });
 });

@@ -6,4 +6,4 @@ description: Comprehensive executive performance review preparation using strate
 # Performance Review Preparation
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/strategy-team/workflows/performance-review-preparation/workflow.md`
+`@_bmad/strategy-team/workflows/performance-review-preparation/workflow.md`

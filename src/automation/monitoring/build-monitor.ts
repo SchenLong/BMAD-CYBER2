@@ -241,7 +241,7 @@ export class BuildMonitor extends EventEmitter {
         status.duration = duration;
       }
 
-      if (duration > this.config.alertThresholds.buildDuration) {
+      if (this.config.alertThresholds.buildDuration !== undefined && duration > this.config.alertThresholds.buildDuration) {
         this.createAlert('warning', 'buildDuration', duration, this.config.alertThresholds.buildDuration,
           `Build ${buildId} exceeded duration threshold: ${(duration / 1000).toFixed(1)}s`);
       }
@@ -412,7 +412,7 @@ export class BuildMonitor extends EventEmitter {
     let filtered = this.events;
     if (options.buildId) filtered = filtered.filter(e => e.buildId === options.buildId);
     if (options.type) filtered = filtered.filter(e => e.type === options.type);
-    if (options.since) filtered = filtered.filter(e => e.timestamp >= options.since);
+    if (options.since !== undefined) filtered = filtered.filter(e => e.timestamp >= options.since!);
     if (options.limit) filtered = filtered.slice(-options.limit);
     return filtered;
   }
@@ -463,11 +463,12 @@ export class BuildMonitor extends EventEmitter {
     }
 
     const memUsage = process.memoryUsage();
+    const cpus = os.cpus();
     return {
       status,
       uptime,
       memoryUsage: memUsage.heapUsed / memUsage.heapTotal,
-      cpuUsage: os.loadavg()[0] / os.cpus().length,
+      cpuUsage: cpus.length > 0 ? (os.loadavg()[0] ?? 0) / cpus.length : 0,
       eventRate,
       errorRate
     };
@@ -488,13 +489,13 @@ export class BuildMonitor extends EventEmitter {
       this.snapshots.shift();
     }
 
-    if (snapshot.memoryUsage > this.config.alertThresholds.memoryUsage) {
+    if (this.config.alertThresholds.memoryUsage !== undefined && snapshot.memoryUsage > this.config.alertThresholds.memoryUsage) {
       this.createAlert('warning', 'memoryUsage', snapshot.memoryUsage,
         this.config.alertThresholds.memoryUsage,
         `Memory usage at ${(snapshot.memoryUsage * 100).toFixed(1)}%`);
     }
 
-    if (snapshot.cpuUsage > this.config.alertThresholds.cpuUsage) {
+    if (this.config.alertThresholds.cpuUsage !== undefined && snapshot.cpuUsage > this.config.alertThresholds.cpuUsage) {
       this.createAlert('warning', 'cpuUsage', snapshot.cpuUsage,
         this.config.alertThresholds.cpuUsage,
         `CPU usage at ${(snapshot.cpuUsage * 100).toFixed(1)}%`);
@@ -508,7 +509,10 @@ export class BuildMonitor extends EventEmitter {
     let totalIdle = 0, totalTick = 0;
     for (const cpu of cpus) {
       for (const type in cpu.times) {
-        totalTick += (cpu.times as Record<string, number>)[type];
+        const timeValue = (cpu.times as Record<string, number>)[type];
+        if (timeValue !== undefined) {
+          totalTick += timeValue;
+        }
       }
       totalIdle += cpu.times.idle;
     }

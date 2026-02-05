@@ -40,10 +40,46 @@ export async function updateCommand(options) {
 
     spinner.succeed(`Current version: ${currentVersion}`);
 
+    // Security: Validate version format if specific version requested
+    if (options.version && options.version !== 'latest') {
+      if (!isValidVersionFormat(options.version)) {
+        spinner.fail('Invalid version format');
+        logger.error('Version must be in format: v1.2.3 or 1.2.3');
+        process.exit(1);
+      }
+    }
+
     // 2. Check for updates (AC-007.2)
     spinner.start('Checking for updates...');
     const latestRelease = await getLatestVersion(options.version);
     spinner.succeed(`Latest version: ${latestRelease.tag}`);
+
+    // Security: Prevent downgrade attacks (GH-093-001)
+    if (options.version && options.version !== 'latest' && currentVersion !== 'unknown') {
+      if (isDowngrade(latestRelease.tag, currentVersion)) {
+        logger.warn('\n⚠️  SECURITY WARNING: Downgrade detected!');
+        logger.warn(`You are attempting to install ${latestRelease.tag} which is OLDER than your current version ${currentVersion}.`);
+        logger.warn('Downgrading to older versions may expose you to known security vulnerabilities.\n');
+
+        if (!options.force) {
+          const { confirmDowngrade } = await inquirer.prompt([
+            {
+              type: 'confirm',
+              name: 'confirmDowngrade',
+              message: 'Are you SURE you want to downgrade? (This is not recommended)',
+              default: false
+            }
+          ]);
+
+          if (!confirmDowngrade) {
+            logger.info('Downgrade cancelled for security reasons.');
+            return;
+          }
+
+          logger.warn('Proceeding with downgrade at user request...');
+        }
+      }
+    }
 
     // 3. --check flag only checks without installing (AC-007.3)
     if (options.check) {
@@ -223,6 +259,12 @@ async function getLatestVersion(specificVersion) {
   };
 }
 
+/**
+ * Compares two semver versions
+ * @param {string} latest - Latest version string
+ * @param {string} current - Current version string
+ * @returns {boolean} True if latest is newer than current
+ */
 function isNewerVersion(latest, current) {
   if (current === 'unknown') return true;
 
@@ -237,6 +279,45 @@ function isNewerVersion(latest, current) {
     if (latestPart < currentPart) return false;
   }
   return false;
+}
+
+/**
+ * Security: Checks if a version would be a downgrade
+ * Prevents downgrade attacks where attacker tricks user into installing older vulnerable version
+ * @param {string} targetVersion - Version to install
+ * @param {string} currentVersion - Currently installed version
+ * @returns {boolean} True if this would be a downgrade
+ */
+function isDowngrade(targetVersion, currentVersion) {
+  if (currentVersion === 'unknown') return false;
+
+  const targetParts = targetVersion.replace('v', '').split('.').map(Number);
+  const currentParts = currentVersion.replace('v', '').split('.').map(Number);
+
+  for (let i = 0; i < 3; i++) {
+    const targetPart = targetParts[i] || 0;
+    const currentPart = currentParts[i] || 0;
+    if (targetPart < currentPart) return true;
+    if (targetPart > currentPart) return false;
+  }
+  return false;
+}
+
+/**
+ * Security: Validates that the version format is legitimate
+ * Prevents injection via malformed version strings
+ * @param {string} version - Version string to validate
+ * @returns {boolean} True if version format is valid
+ */
+function isValidVersionFormat(version) {
+  if (!version || typeof version !== 'string') return false;
+
+  // Must be either 'latest' or a valid semver-like format (v1.2.3 or 1.2.3)
+  if (version === 'latest') return true;
+
+  // Check for valid semver pattern (with optional 'v' prefix)
+  const semverPattern = /^v?\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$/;
+  return semverPattern.test(version);
 }
 
 function showVersionComparison(current, latest) {

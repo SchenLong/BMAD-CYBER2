@@ -393,6 +393,21 @@ class ProgressDashboard extends EventEmitter {
     // Private methods
 
     /**
+     * Escape HTML special characters to prevent XSS
+     * @param {string} text - Text to escape
+     * @returns {string} Escaped text
+     */
+    _escapeHtml(text) {
+        if (typeof text !== 'string') return String(text);
+        return text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    /**
      * Merge configuration with defaults
      */
     _mergeConfig(userConfig) {
@@ -661,8 +676,8 @@ class ProgressDashboard extends EventEmitter {
         <div class="alerts">
             <h3>Recent Alerts</h3>
             ${data.alerts.slice(0, 5).map(alert => `
-            <div class="alert alert-${alert.level}">
-                <strong>${alert.level.toUpperCase()}:</strong> ${alert.message}
+            <div class="alert alert-${this._escapeHtml(alert.level)}">
+                <strong>${this._escapeHtml(alert.level).toUpperCase()}:</strong> ${this._escapeHtml(alert.message)}
                 <div class="timestamp">${new Date(alert.timestamp).toLocaleString()}</div>
             </div>
             `).join('')}
@@ -690,12 +705,12 @@ class ProgressDashboard extends EventEmitter {
         return Array.from(installations.values()).map(inst => `
             <div class="installation-item">
                 <div>
-                    <div class="installation-name">${inst.packageId}@${inst.version}</div>
-                    <div style="color: #7f8c8d; font-size: 0.9em;">${inst.message}</div>
+                    <div class="installation-name">${this._escapeHtml(inst.packageId)}@${this._escapeHtml(inst.version)}</div>
+                    <div style="color: #7f8c8d; font-size: 0.9em;">${this._escapeHtml(inst.message)}</div>
                 </div>
                 <div>
-                    <div class="installation-status status-${inst.state}">
-                        ${inst.state.toUpperCase()}
+                    <div class="installation-status status-${this._escapeHtml(inst.state)}">
+                        ${this._escapeHtml(inst.state).toUpperCase()}
                     </div>
                     <div style="margin-top: 5px; text-align: center;">
                         ${Math.round(inst.percentage)}%

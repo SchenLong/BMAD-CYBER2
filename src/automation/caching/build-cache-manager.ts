@@ -97,7 +97,8 @@ export class BuildCacheManager extends EventEmitter {
   private diskIndex: Map<string, CacheEntry> = new Map();
   private stats: CacheStats;
   private cleanupTimer: NodeJS.Timeout | null = null;
-  private writeQueue: Promise<void>[] = [];
+  // Reserved for future parallel write batching
+  // private writeQueue: Promise<void>[] = [];
   private invalidationRules: Map<string, InvalidationRule> = new Map();
   private dependencyGraph: Map<string, Set<string>> = new Map();
 
@@ -309,7 +310,7 @@ export class BuildCacheManager extends EventEmitter {
   /**
    * Invalidate cache entries matching a pattern
    */
-  public async invalidate(pattern: string | RegExp, options: { cascade?: boolean } = {}): Promise<number> {
+  public async invalidate(pattern: string | RegExp, _options: { cascade?: boolean } = {}): Promise<number> {
     const keys = this.getMatchingKeys(pattern);
     let invalidated = 0;
 
@@ -659,13 +660,13 @@ export class BuildCacheManager extends EventEmitter {
     }
   }
 
-  private async checkRemoteCache(key: string): Promise<CacheEntry | null> {
+  private async checkRemoteCache(_key: string): Promise<CacheEntry | null> {
     if (!this.config.remoteEndpoint) return null;
     // Placeholder for remote cache implementation
     return null;
   }
 
-  private async fetchFromRemote(key: string): Promise<Buffer | null> {
+  private async fetchFromRemote(_key: string): Promise<Buffer | null> {
     if (!this.config.remoteEndpoint) return null;
     // Placeholder for remote fetch implementation
     return null;

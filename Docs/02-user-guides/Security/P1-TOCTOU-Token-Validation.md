@@ -123,7 +123,7 @@ class OverrideManager {
 
 ```bash
 # Generate a token for a user
-node _bmad/core/security/quick-token.js "UserName" "developer" 168
+node _bmad/core/security/quick-token.cjs "UserName" "developer" 168
 
 # Token contains:
 # - name: User identifier
@@ -238,7 +238,7 @@ Result: ✅ PASS
 
 1. **Generate a token:**
    ```bash
-   node _bmad/core/security/quick-token.js "YourName" "developer" 168
+   node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
    ```
 
 2. **Set the token:**

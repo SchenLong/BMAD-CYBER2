@@ -46,7 +46,7 @@ export interface BuildContext {
   target: BuildTarget;
   changedInputs: string[];
   allInputs: FileState[];
-  previousBuild?: BuildRecord;
+  previousBuild?: BuildRecord | undefined;
   environment: Record<string, string>;
   workspace: string;
 }
@@ -56,7 +56,7 @@ export interface BuildResult {
   outputs: string[];
   duration: number;
   cached: boolean;
-  error?: string;
+  error?: string | undefined;
   warnings: string[];
   logs: string[];
 }
@@ -129,7 +129,8 @@ export class IncrementalBuilder extends EventEmitter {
   private watchQueue: WatchEvent[] = [];
   private watchTimer: NodeJS.Timeout | null = null;
   private isBuilding = false;
-  private buildQueue: string[] = [];
+  // Reserved for future queued builds
+  // private buildQueue: string[] = [];
 
   constructor(config: Partial<IncrementalConfig> = {}) {
     super();
@@ -386,8 +387,8 @@ export class IncrementalBuilder extends EventEmitter {
   /**
    * Get build status for all targets
    */
-  public getStatus(): Map<string, { state: string; lastBuild?: BuildRecord }> {
-    const status = new Map<string, { state: string; lastBuild?: BuildRecord }>();
+  public getStatus(): Map<string, { state: string; lastBuild?: BuildRecord | undefined }> {
+    const status = new Map<string, { state: string; lastBuild?: BuildRecord | undefined }>();
 
     for (const [id, node] of this.dependencyGraph) {
       status.set(id, {
@@ -714,7 +715,10 @@ export class IncrementalBuilder extends EventEmitter {
       while (groups.length <= level) {
         groups.push([]);
       }
-      groups[level].push(id);
+      const group = groups[level];
+      if (group) {
+        group.push(id);
+      }
     }
 
     return groups;

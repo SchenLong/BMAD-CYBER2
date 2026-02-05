@@ -197,7 +197,10 @@ export class BuildTimeProfiler extends EventEmitter {
       status: 'running'
     };
     if (this.phaseStack.length > 0) {
-      this.phaseStack[this.phaseStack.length - 1].children.push(phase);
+      const parentPhase = this.phaseStack[this.phaseStack.length - 1];
+      if (parentPhase) {
+        parentPhase.children.push(phase);
+      }
     } else {
       this.currentProfile.phases.push(phase);
     }
@@ -211,13 +214,16 @@ export class BuildTimeProfiler extends EventEmitter {
     phase.endTime = Date.now();
     phase.duration = phase.endTime - phase.startTime;
     phase.status = status === 'auto_completed' ? 'completed' : status;
-    phase.errorMessage = errorMessage;
+    if (errorMessage !== undefined) {
+      phase.errorMessage = errorMessage;
+    }
     this.emit('phase:end', { name: phase.name, duration: phase.duration, status: phase.status });
   }
 
   public checkpoint(name: string, data: Record<string, unknown> = {}): void {
     if (!this.currentProfile || this.phaseStack.length === 0) return;
     const currentPhase = this.phaseStack[this.phaseStack.length - 1];
+    if (!currentPhase) return;
     currentPhase.children.push({
       name: `checkpoint:${name}`,
       startTime: Date.now(),
@@ -411,7 +417,7 @@ export class BuildTimeProfiler extends EventEmitter {
       memory: 'Implement streaming processing',
       cpu: 'Use worker threads'
     };
-    return fixes[this.classifyBottleneckType(phase)];
+    return fixes[this.classifyBottleneckType(phase)] ?? 'Review and optimize';
   }
   private comparePhases(p1: BuildPhase[], p2: BuildPhase[]): PhaseComparisonResult[] {
     const flat1 = this.flattenPhases(p1), flat2 = this.flattenPhases(p2);

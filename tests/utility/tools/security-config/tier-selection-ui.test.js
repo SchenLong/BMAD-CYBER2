@@ -148,9 +148,9 @@ describe('Tier Selection UI - INST-008', () => {
   });
 
   describe('getDefaultTierIndex()', () => {
-    it('should return index of standard tier', () => {
+    it('should return index of enterprise tier (most restrictive stable)', () => {
       const index = getDefaultTierIndex();
-      expect(index).toBe(1); // standard is the second tier (index 1)
+      expect(index).toBe(3); // enterprise is the fourth tier (index 3)
     });
 
     it('should match the default tier in SECURITY_TIERS', () => {

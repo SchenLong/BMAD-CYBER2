@@ -29,7 +29,7 @@ const mkdir = promisify(fs.mkdir);
  */
 export interface ConfigValidationResult {
   isValid: boolean;
-  config?: ArchivalConfig;
+  config?: ArchivalConfig | undefined;
   errors: string[];
   warnings: string[];
   recommendations: string[];
@@ -54,11 +54,11 @@ export interface S3BucketStatus {
 export interface GPGKeyInfo {
   valid: boolean;
   keyId: string;
-  name?: string;
-  email?: string;
-  fingerprint?: string;
-  expires?: string;
-  error?: string;
+  name?: string | undefined;
+  email?: string | undefined;
+  fingerprint?: string | undefined;
+  expires?: string | undefined;
+  error?: string | undefined;
 }
 
 /**
@@ -444,13 +444,14 @@ export class ArchivalConfigManager {
           // Extract name and email from UID
           let name: string | undefined;
           let email: string | undefined;
-          if (uidFields[9]) {
-            const uidString = uidFields[9];
+          const uidField = uidFields[9];
+          if (uidField !== undefined) {
+            const uidString = uidField;
             const emailMatch = uidString.match(/<([^>]+)>/);
             const nameMatch = uidString.match(/^([^<]+)/);
 
-            email = emailMatch ? emailMatch[1] : undefined;
-            name = nameMatch ? nameMatch[1].trim() : undefined;
+            email = emailMatch?.[1];
+            name = nameMatch?.[1]?.trim();
           }
 
           resolve({
@@ -507,11 +508,13 @@ export class ArchivalConfigManager {
       ];
 
       for (let i = 0; i < Math.min(fields.length, patterns.length); i++) {
-        if (!patterns[i].test(fields[i])) {
+        const pattern = patterns[i];
+        const field = fields[i];
+        if (pattern && field && !pattern.test(field)) {
           return {
             valid: false,
             expression,
-            error: `Invalid field ${i + 1}: ${fields[i]}`,
+            error: `Invalid field ${i + 1}: ${field}`,
           };
         }
       }
@@ -538,7 +541,7 @@ export class ArchivalConfigManager {
    * Generate human-readable description of cron expression.
    */
   private describeCronExpression(fields: string[]): string {
-    const [minute, hour, day, month, dayOfWeek] = fields;
+    const [minute = '*', hour = '*', day = '*', month = '*', dayOfWeek = '*'] = fields;
 
     // Common patterns
     if (minute === '0' && hour === '2' && day === '*' && month === '*' && dayOfWeek === '*') {
@@ -575,8 +578,9 @@ export class ArchivalConfigManager {
     }
 
     if (dayOfWeek !== '*') {
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      const dayName = days[parseInt(dayOfWeek)] || dayOfWeek;
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as const;
+      const dayIndex = parseInt(dayOfWeek);
+      const dayName = (dayIndex >= 0 && dayIndex < days.length) ? days[dayIndex] : dayOfWeek;
       desc += ` on ${dayName}`;
     }
 

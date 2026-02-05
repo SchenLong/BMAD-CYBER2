@@ -16,8 +16,8 @@ import type {
   InstallationResult,
   InstallationStep,
   InstallationStatistics,
-  DependencyGraph,
-  ValidationResult
+  ValidationResult,
+  TemplateData
 } from './types.js';
 import type {
   ITemplateEngine,
@@ -30,26 +30,26 @@ import type {
 /**
  * Result type for error handling without exceptions
  */
-export class Result<T, E = Error> {
+export class Result<T, E extends Error = Error> {
   private constructor(
-    private readonly _value?: T,
-    private readonly _error?: E,
-    private readonly _isOk: boolean = true
+    private readonly _value: T | undefined,
+    private readonly _error: E | undefined,
+    private readonly _isOk: boolean
   ) {}
 
-  static ok<T>(value: T): Result<T> {
-    return new Result(value, undefined, true);
+  static ok<T>(value: T): Result<T, Error> {
+    return new Result<T, Error>(value, undefined, true);
   }
 
   static error<E extends Error>(error: E): Result<never, E> {
-    return new Result(undefined, error, false);
+    return new Result<never, E>(undefined, error, false);
   }
 
-  isOk(): this is { _value: T } {
+  isOk(): boolean {
     return this._isOk && this._error === undefined;
   }
 
-  isError(): this is { _error: E } {
+  isError(): boolean {
     return !this._isOk && this._error !== undefined;
   }
 
@@ -57,19 +57,25 @@ export class Result<T, E = Error> {
     if (!this.isOk()) {
       throw this._error || new Error('Result contains an error');
     }
-    return this._value!;
+    return this._value as T;
   }
 
   unwrapOr(defaultValue: T): T {
-    return this.isOk() ? this._value! : defaultValue;
+    return this.isOk() ? (this._value as T) : defaultValue;
   }
 
   map<U>(fn: (value: T) => U): Result<U, E> {
-    return this.isOk() ? Result.ok(fn(this._value!)) : Result.error(this._error!);
+    if (this.isOk()) {
+      return Result.ok(fn(this._value as T)) as Result<U, E>;
+    }
+    return Result.error(this._error as E) as Result<U, E>;
   }
 
   mapError<F extends Error>(fn: (error: E) => F): Result<T, F> {
-    return this.isError() ? Result.error(fn(this._error!)) : Result.ok(this._value!);
+    if (this.isError()) {
+      return Result.error(fn(this._error as E)) as Result<T, F>;
+    }
+    return Result.ok(this._value as T) as Result<T, F>;
   }
 
   get error(): E | undefined {
@@ -111,7 +117,7 @@ export class InstallationStepExecutor {
   }
 
   private async executeValidation(
-    step: InstallationStep,
+    _step: InstallationStep,
     context: InstallationSession
   ): Promise<Result<void>> {
     const validationResult = await this.configManager.validateConfiguration(context.config);
@@ -121,7 +127,7 @@ export class InstallationStepExecutor {
   }
 
   private async executeDependencyResolution(
-    step: InstallationStep,
+    _step: InstallationStep,
     context: InstallationSession
   ): Promise<Result<void>> {
     const resolutionResult = await this.dependencyManager.resolveDependencies(context.dependencies);
@@ -136,7 +142,8 @@ export class InstallationStepExecutor {
   ): Promise<Result<void>> {
     const templates = step.metadata?.templates as string[] || [];
     for (const template of templates) {
-      const result = await this.templateEngine.processTemplate(template, context.templateData);
+      const templateData = context.templateData as unknown as TemplateData;
+      const result = await this.templateEngine.processTemplate(template, templateData);
       if (!result.success) {
         return Result.error(new Error(`Template processing failed: ${result.error}`));
       }
@@ -145,8 +152,8 @@ export class InstallationStepExecutor {
   }
 
   private async executeFileGeneration(
-    step: InstallationStep,
-    context: InstallationSession
+    _step: InstallationStep,
+    _context: InstallationSession
   ): Promise<Result<void>> {
     // File generation logic would go here
     return Result.ok(undefined);
@@ -235,28 +242,28 @@ export class BMADInstallationOrchestrator extends EventEmitter {
       // Create installation session
       const session = await this.createInstallationSession(sessionId, moduleName, moduleConfig);
       if (session.isError()) {
-        return session;
+        return Result.error(session.error ?? new Error('Session creation failed'));
       }
 
       // Pre-installation validation
       const validationResult = await this.validateInstallation(session.unwrap());
       if (validationResult.isError()) {
         await this.cleanupFailedInstallation(sessionId);
-        return validationResult;
+        return Result.error(validationResult.error ?? new Error('Validation failed'));
       }
 
       // Execute installation steps
       const installationResult = await this.executeInstallationSteps(session.unwrap());
       if (installationResult.isError()) {
         await this.cleanupFailedInstallation(sessionId);
-        return installationResult;
+        return Result.error(installationResult.error ?? new Error('Installation steps failed'));
       }
 
       // Post-installation verification
       const verificationResult = await this.verifyInstallation(session.unwrap());
       if (verificationResult.isError()) {
         await this.cleanupFailedInstallation(sessionId);
-        return verificationResult;
+        return Result.error(verificationResult.error ?? new Error('Verification failed'));
       }
 
       // Complete installation
@@ -330,17 +337,25 @@ export class BMADInstallationOrchestrator extends EventEmitter {
     activeSessions: number;
   }> {
     const components = {
-      templateEngine: await this.checkComponentHealth(() =>
-        this.templateEngine.healthCheck?.()
+      templateEngine: await this.checkComponentHealth(
+        this.templateEngine.healthCheck
+          ? () => this.templateEngine.healthCheck!()
+          : undefined
       ),
-      configManager: await this.checkComponentHealth(() =>
-        this.configManager.healthCheck?.()
+      configManager: await this.checkComponentHealth(
+        this.configManager.healthCheck
+          ? () => this.configManager.healthCheck!()
+          : undefined
       ),
-      dependencyManager: await this.checkComponentHealth(() =>
-        this.dependencyManager.healthCheck?.()
+      dependencyManager: await this.checkComponentHealth(
+        this.dependencyManager.healthCheck
+          ? () => this.dependencyManager.healthCheck!()
+          : undefined
       ),
-      postInstallVerifier: await this.checkComponentHealth(() =>
-        this.postInstallVerifier.healthCheck?.()
+      postInstallVerifier: await this.checkComponentHealth(
+        this.postInstallVerifier.healthCheck
+          ? () => this.postInstallVerifier.healthCheck!()
+          : undefined
       )
     };
 
@@ -381,7 +396,7 @@ export class BMADInstallationOrchestrator extends EventEmitter {
         config: moduleConfig,
         steps: await this.generateInstallationSteps(moduleName, moduleConfig),
         dependencies: await this.dependencyManager.analyzeDependencies(moduleName),
-        templateData: await this.configManager.prepareTemplateData(moduleConfig),
+        templateData: await this.configManager.prepareTemplateData(moduleConfig) as unknown as Record<string, unknown>,
         startTime: Date.now(),
         status: 'initializing'
       };
@@ -412,7 +427,7 @@ export class BMADInstallationOrchestrator extends EventEmitter {
       if (this.config.strictMode) {
         const systemValidation = await this.validateSystemRequirements(session);
         if (systemValidation.isError()) {
-          return systemValidation;
+          return Result.error(systemValidation.error ?? new Error('System requirements validation failed'));
         }
       }
 
@@ -432,8 +447,9 @@ export class BMADInstallationOrchestrator extends EventEmitter {
 
       const stepResult = await this.stepExecutor.executeStep(step, session);
       if (stepResult.isError()) {
-        this.progressTracker.error(stepResult.error!, step.name);
-        this.emit('step:error', { sessionId: session.id, step: step.name, error: stepResult.error });
+        const err = stepResult.error ?? new Error('Unknown step error');
+        this.progressTracker.error(err, step.name);
+        this.emit('step:error', { sessionId: session.id, step: step.name, error: err });
         return stepResult;
       }
 
@@ -500,8 +516,8 @@ export class BMADInstallationOrchestrator extends EventEmitter {
   }
 
   private async generateInstallationSteps(
-    moduleName: string,
-    config: Record<string, unknown>
+    _moduleName: string,
+    _config: Record<string, unknown>
   ): Promise<InstallationStep[]> {
     // This would be implemented based on module requirements
     return [
@@ -512,7 +528,7 @@ export class BMADInstallationOrchestrator extends EventEmitter {
     ];
   }
 
-  private async validateSystemRequirements(session: InstallationSession): Promise<Result<void>> {
+  private async validateSystemRequirements(_session: InstallationSession): Promise<Result<void>> {
     // System requirements validation logic
     return Result.ok(undefined);
   }
@@ -549,7 +565,7 @@ export class BMADInstallationOrchestrator extends EventEmitter {
     });
   }
 
-  private async checkComponentHealth(healthCheckFn?: () => Promise<boolean> | boolean): Promise<boolean> {
+  private async checkComponentHealth(healthCheckFn?: () => Promise<boolean>): Promise<boolean> {
     try {
       return healthCheckFn ? await healthCheckFn() : true;
     } catch {

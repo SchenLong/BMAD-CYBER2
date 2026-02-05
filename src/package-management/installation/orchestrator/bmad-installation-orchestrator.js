@@ -23,6 +23,7 @@ const { EventEmitter } = require('events');
 const crypto = require('crypto');
 const { performance } = require('perf_hooks');
 const path = require('path');
+const os = require('os');
 const fs = require('fs').promises;
 
 // Import components
@@ -123,8 +124,45 @@ class BMADInstallationOrchestrator extends EventEmitter {
         this.isShuttingDown = false;
         this.shutdownPromise = null;
 
+        // ORCH-003: Mutex for atomic counter operations
+        this._counterLock = Promise.resolve();
+
+        // ORCH-001: State transition lock for atomic operations
+        this._stateTransitionLock = false;
+
         this._setupEventHandlers();
         this._setupCleanupHandlers();
+    }
+
+    /**
+     * Atomic state transition mechanism to prevent TOCTOU race conditions (ORCH-001 fix)
+     * @param {string[]} allowedFromStates - Array of states from which transition is allowed
+     * @param {string} toState - Target state to transition to
+     * @param {Function} [operation] - Optional operation to execute within the atomic block
+     * @returns {Promise<*>} Result of the operation if provided
+     */
+    async _atomicStateTransition(allowedFromStates, toState, operation) {
+        // Spin-wait for lock (with timeout)
+        const maxWait = 5000;
+        const start = Date.now();
+        while (this._stateTransitionLock) {
+            if (Date.now() - start > maxWait) {
+                throw new Error('State transition timeout - possible deadlock');
+            }
+            await new Promise(resolve => setTimeout(resolve, 10));
+        }
+        this._stateTransitionLock = true;
+        try {
+            if (!allowedFromStates.includes(this.state)) {
+                throw new Error(`Cannot transition to ${toState} from state: ${this.state}`);
+            }
+            const fromState = this.state;
+            this.state = toState;
+            this.emit('state.changed', { from: fromState, to: toState });
+            if (operation) return await operation();
+        } finally {
+            this._stateTransitionLock = false;
+        }
     }
 
     /**
@@ -136,6 +174,31 @@ class BMADInstallationOrchestrator extends EventEmitter {
 
             this.state = ORCHESTRATOR_STATES.INITIALIZING;
             this.emit('state.changed', { from: null, to: this.state });
+
+            // ORCH-002: Acquire lock file to prevent multiple orchestrator instances
+            const lockPath = path.join(this.config.workingDirectory || os.tmpdir(), '.bmad-orchestrator.lock');
+            try {
+                // Check if lock exists and is stale (older than 1 hour)
+                try {
+                    const stat = await fs.stat(lockPath);
+                    const age = Date.now() - stat.mtimeMs;
+                    if (age > 3600000) {
+                        await fs.unlink(lockPath); // Remove stale lock
+                    }
+                } catch (e) { /* Lock doesn't exist */ }
+
+                await fs.writeFile(lockPath, JSON.stringify({
+                    pid: process.pid,
+                    timestamp: Date.now(),
+                    id: this.id
+                }), { flag: 'wx' }); // wx = exclusive create
+                this._lockPath = lockPath;
+            } catch (err) {
+                if (err.code === 'EEXIST') {
+                    throw new Error('Another orchestrator instance is already running');
+                }
+                throw err;
+            }
 
             // Initialize components
             await this.progressTracker.initialize();
@@ -242,20 +305,21 @@ class BMADInstallationOrchestrator extends EventEmitter {
 
     /**
      * Start installation execution
+     * ORCH-001: Uses atomic state transition to prevent TOCTOU race conditions
      */
     async startExecution(options = {}) {
-        if (this.state !== ORCHESTRATOR_STATES.READY && this.state !== ORCHESTRATOR_STATES.PAUSED) {
-            throw new Error(`Cannot start execution from state: ${this.state}`);
-        }
-
         try {
             console.log('🚀 Starting installation execution...');
 
-            this.state = ORCHESTRATOR_STATES.INSTALLING;
-            this.isPaused = false;
-            this.performanceMetrics.startTime = Date.now();
-
-            this.emit('state.changed', { from: ORCHESTRATOR_STATES.READY, to: this.state });
+            // ORCH-001: Atomic state transition prevents race condition between check and modification
+            await this._atomicStateTransition(
+                [ORCHESTRATOR_STATES.READY, ORCHESTRATOR_STATES.PAUSED],
+                ORCHESTRATOR_STATES.INSTALLING,
+                async () => {
+                    this.isPaused = false;
+                    this.performanceMetrics.startTime = Date.now();
+                }
+            );
 
             // Execute pre-execution hooks
             await this.hookManager.executeHook('pre:execution', {
@@ -276,8 +340,12 @@ class BMADInstallationOrchestrator extends EventEmitter {
             this.emit('execution.started', { orchestratorId: this.id });
 
         } catch (error) {
-            this.state = ORCHESTRATOR_STATES.FAILED;
-            this.emit('state.changed', { from: ORCHESTRATOR_STATES.INSTALLING, to: this.state });
+            // Only transition to FAILED if we successfully entered INSTALLING state
+            if (this.state === ORCHESTRATOR_STATES.INSTALLING) {
+                const fromState = this.state;
+                this.state = ORCHESTRATOR_STATES.FAILED;
+                this.emit('state.changed', { from: fromState, to: this.state });
+            }
 
             console.error('❌ Failed to start execution:', error);
             this.emit('error', { type: 'execution', error });
@@ -287,18 +355,20 @@ class BMADInstallationOrchestrator extends EventEmitter {
 
     /**
      * Pause installation execution
+     * ORCH-001: Uses atomic state transition to prevent TOCTOU race conditions
      */
     async pause() {
-        if (this.state !== ORCHESTRATOR_STATES.INSTALLING) {
-            throw new Error(`Cannot pause from state: ${this.state}`);
-        }
-
         try {
             console.log('⏸️ Pausing installation execution...');
 
-            this.isPaused = true;
-            this.state = ORCHESTRATOR_STATES.PAUSED;
-            this.emit('state.changed', { from: ORCHESTRATOR_STATES.INSTALLING, to: this.state });
+            // ORCH-001: Atomic state transition prevents race condition between check and modification
+            await this._atomicStateTransition(
+                [ORCHESTRATOR_STATES.INSTALLING],
+                ORCHESTRATOR_STATES.PAUSED,
+                async () => {
+                    this.isPaused = true;
+                }
+            );
 
             // Pause active installations gracefully
             for (const installation of this.activeInstallations.values()) {
@@ -319,18 +389,20 @@ class BMADInstallationOrchestrator extends EventEmitter {
 
     /**
      * Resume installation execution
+     * ORCH-001: Uses atomic state transition to prevent TOCTOU race conditions
      */
     async resume() {
-        if (this.state !== ORCHESTRATOR_STATES.PAUSED) {
-            throw new Error(`Cannot resume from state: ${this.state}`);
-        }
-
         try {
             console.log('▶️ Resuming installation execution...');
 
-            this.isPaused = false;
-            this.state = ORCHESTRATOR_STATES.INSTALLING;
-            this.emit('state.changed', { from: ORCHESTRATOR_STATES.PAUSED, to: this.state });
+            // ORCH-001: Atomic state transition prevents race condition between check and modification
+            await this._atomicStateTransition(
+                [ORCHESTRATOR_STATES.PAUSED],
+                ORCHESTRATOR_STATES.INSTALLING,
+                async () => {
+                    this.isPaused = false;
+                }
+            );
 
             // Resume paused installations
             for (const installation of this.activeInstallations.values()) {
@@ -403,6 +475,7 @@ class BMADInstallationOrchestrator extends EventEmitter {
 
     /**
      * Rollback installation
+     * ORCH-001: Fixed state change event bug where fromState was captured after state change
      */
     async rollback(installationId, options = {}) {
         try {
@@ -422,8 +495,10 @@ class BMADInstallationOrchestrator extends EventEmitter {
                 orchestrator: this
             });
 
+            // ORCH-001: Capture fromState BEFORE state change to fix event bug
+            const fromState = this.state;
             this.state = ORCHESTRATOR_STATES.ROLLING_BACK;
-            this.emit('state.changed', { from: this.state, to: ORCHESTRATOR_STATES.ROLLING_BACK });
+            this.emit('state.changed', { from: fromState, to: ORCHESTRATOR_STATES.ROLLING_BACK });
 
             // Perform rollback
             const rollbackResult = await this.rollbackManager.rollback(installation, options);
@@ -439,9 +514,12 @@ class BMADInstallationOrchestrator extends EventEmitter {
                 orchestrator: this
             });
 
+            // ORCH-001: Capture fromState BEFORE state change
+            const postRollbackFromState = this.state;
             this.state = this.activeInstallations.size > 0 ?
                          ORCHESTRATOR_STATES.INSTALLING :
                          ORCHESTRATOR_STATES.READY;
+            this.emit('state.changed', { from: postRollbackFromState, to: this.state });
 
             console.log(`✅ Rollback completed: ${installationId}`);
             this.emit('installation.rolledback', {
@@ -549,6 +627,11 @@ class BMADInstallationOrchestrator extends EventEmitter {
                 await this.progressTracker.shutdown();
                 await this.rollbackManager.shutdown();
                 await this.hookManager.shutdown();
+
+                // ORCH-002: Remove lock file on shutdown
+                if (this._lockPath) {
+                    try { await fs.unlink(this._lockPath); } catch (e) { /* ignore */ }
+                }
 
                 // Execute post-shutdown hooks
                 await this.hookManager.executeHook('post:shutdown', {
@@ -826,7 +909,12 @@ class BMADInstallationOrchestrator extends EventEmitter {
             console.log(`🚀 Starting installation: ${installation.id}`);
 
             this.activeInstallations.set(installation.id, installation);
-            this.currentConcurrentInstallations++;
+
+            // ORCH-003: Atomic counter increment using mutex
+            this._counterLock = this._counterLock.then(() => {
+                this.currentConcurrentInstallations++;
+            });
+            await this._counterLock;
 
             installation.status = 'starting';
             installation.metrics.startTime = Date.now();
@@ -946,7 +1034,12 @@ class BMADInstallationOrchestrator extends EventEmitter {
             // Move to completed installations
             this.activeInstallations.delete(installation.id);
             this.completedInstallations.set(installation.id, installation);
-            this.currentConcurrentInstallations--;
+
+            // ORCH-003: Atomic counter decrement using mutex
+            this._counterLock = this._counterLock.then(() => {
+                this.currentConcurrentInstallations--;
+            });
+            await this._counterLock;
 
             // Update metrics
             this.performanceMetrics.totalInstallations++;
@@ -1000,7 +1093,12 @@ class BMADInstallationOrchestrator extends EventEmitter {
             // Move to failed installations
             this.activeInstallations.delete(installation.id);
             this.failedInstallations.set(installation.id, installation);
-            this.currentConcurrentInstallations--;
+
+            // ORCH-003: Atomic counter decrement using mutex
+            this._counterLock = this._counterLock.then(() => {
+                this.currentConcurrentInstallations--;
+            });
+            await this._counterLock;
 
             // Update metrics
             this.performanceMetrics.totalInstallations++;

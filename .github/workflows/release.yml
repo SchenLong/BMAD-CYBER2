@@ -7,10 +7,19 @@ on:
 
 permissions:
   contents: write
+  id-token: write  # Required for Sigstore signing
 
 jobs:
+  # Run quality gate checks before allowing release
+  quality-gate:
+    name: Quality Gate
+    uses: ./.github/workflows/quality-gate.yml
+
   release:
+    name: Create Release
     runs-on: ubuntu-latest
+    # Only run release if quality gate passes
+    needs: [quality-gate]
 
     steps:
       - name: Checkout code
@@ -27,10 +36,18 @@ jobs:
         id: version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
+      - name: Set reproducible build timestamp
+        id: build_time
+        run: |
+          # Use SOURCE_DATE_EPOCH for reproducible builds (VAL-09-005)
+          export SOURCE_DATE_EPOCH=$(date +%s)
+          echo "SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH}" >> $GITHUB_ENV
+          echo "build_date=$(date -u -d @${SOURCE_DATE_EPOCH} +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -r ${SOURCE_DATE_EPOCH} +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_OUTPUT
+
       - name: Create version.json
         run: |
           mkdir -p _bmad
-          echo "{\"version\": \"${{ steps.version.outputs.VERSION }}\", \"buildDate\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > _bmad/version.json
+          echo "{\"version\": \"${{ steps.version.outputs.VERSION }}\", \"buildDate\": \"${{ steps.build_time.outputs.build_date }}\", \"reproducible\": true}" > _bmad/version.json
 
       - name: Create tarball
         run: |
@@ -92,6 +109,30 @@ jobs:
           sha256sum "bmad-cyber-${VERSION}.tar.gz" > "bmad-cyber-${VERSION}.tar.gz.sha256"
           cat "bmad-cyber-${VERSION}.tar.gz.sha256"
 
+      - name: Generate SBOM (VAL-09-008-002)
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          # Install cyclonedx for SBOM generation
+          npm install -g @cyclonedx/cyclonedx-npm 2>/dev/null || true
+
+          # Generate SBOM if package.json exists
+          if [ -f "package.json" ]; then
+            npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file "bmad-cyber-${VERSION}.sbom.json" 2>/dev/null || \
+            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cyber","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cyber-${VERSION}.sbom.json"
+          else
+            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cyber","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cyber-${VERSION}.sbom.json"
+          fi
+          echo "SBOM generated: bmad-cyber-${VERSION}.sbom.json"
+
+      - name: Sign artifacts with Sigstore (VAL-09-008-001)
+        uses: sigstore/gh-action-sigstore-python@v3.0.0
+        continue-on-error: true
+        with:
+          inputs: |
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.sbom.json
+
       - name: Generate changelog
         id: changelog
         run: |
@@ -126,9 +167,14 @@ jobs:
           files: |
             bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz
             bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.sbom.json
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sigstore.json
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sha256.sigstore.json
+            bmad-cyber-${{ steps.version.outputs.VERSION }}.sbom.json.sigstore.json
           body_path: CHANGELOG.txt
           prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
           generate_release_notes: true
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

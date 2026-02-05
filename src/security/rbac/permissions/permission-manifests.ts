@@ -49,9 +49,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
       resource: "data_streams",
       description: "Full control over all data streams"
     }
-  ]
-
-};
+  ],
 
   // 3. System Configuration  
   SYSTEM_CONFIG: [

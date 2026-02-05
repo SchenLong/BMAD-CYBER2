@@ -236,7 +236,7 @@ Party Mode enables multi-agent collaboration.
 
 ```bash
 # Generate authentication token
-node _bmad/core/security/quick-token.js "<name>" "<role>" <hours>
+node _bmad/core/security/quick-token.cjs "<name>" "<role>" <hours>
 
 # Validate token
 node _bmad/core/security/validate-token.js

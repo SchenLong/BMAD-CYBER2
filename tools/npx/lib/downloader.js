@@ -11,6 +11,72 @@ import { logger } from './logger.js';
 const GITHUB_API = 'https://api.github.com';
 
 /**
+ * Allowed URL hosts for SSRF protection
+ * Only URLs from these domains are permitted for downloads
+ */
+const ALLOWED_HOSTS = [
+  'api.github.com',
+  'github.com',
+  'objects.githubusercontent.com',
+  'github-releases.githubusercontent.com',
+  'codeload.github.com'
+];
+
+/**
+ * Validates a URL against the allowed hosts to prevent SSRF attacks
+ * @param {string} urlString - The URL to validate
+ * @returns {{ valid: boolean, error?: string }}
+ */
+function validateDownloadUrl(urlString) {
+  try {
+    const url = new URL(urlString);
+
+    // Must be HTTPS
+    if (url.protocol !== 'https:') {
+      return {
+        valid: false,
+        error: `Only HTTPS URLs are allowed. Received: ${url.protocol}`
+      };
+    }
+
+    // Must be from allowed host
+    const hostname = url.hostname.toLowerCase();
+    const isAllowed = ALLOWED_HOSTS.some(allowed =>
+      hostname === allowed || hostname.endsWith('.' + allowed)
+    );
+
+    if (!isAllowed) {
+      return {
+        valid: false,
+        error: `URL host "${hostname}" is not in the allowed list: ${ALLOWED_HOSTS.join(', ')}`
+      };
+    }
+
+    return { valid: true };
+  } catch {
+    return {
+      valid: false,
+      error: `Invalid URL format: ${urlString}`
+    };
+  }
+}
+
+/**
+ * Validates and fetches from a URL with SSRF protection
+ * @param {string} url - URL to fetch
+ * @param {Object} options - Fetch options
+ * @returns {Promise<Response>}
+ * @throws {Error} If URL validation fails
+ */
+async function safeFetch(url, options = {}) {
+  const validation = validateDownloadUrl(url);
+  if (!validation.valid) {
+    throw new Error(`Security: ${validation.error}`);
+  }
+  return fetch(url, options);
+}
+
+/**
  * Downloads a release tarball from GitHub
  * @description Fetches release information from GitHub API, downloads the tarball asset,
  * and optionally verifies the checksum. Falls back to source tarball if no release asset found.
@@ -56,13 +122,20 @@ export async function downloadRelease(options = {}) {
     );
     spinner.succeed('Download complete');
 
-    // 4. Verify checksum if available
+    // 4. Verify checksum - MANDATORY for release assets
     if (checksumAsset) {
       spinner.start('Verifying checksum...');
       await verifyChecksum(tarballPath, checksumAsset.browser_download_url);
       spinner.succeed('Checksum verified');
     } else {
-      logger.warn('No checksum file found, skipping verification');
+      // Security: Checksum verification is MANDATORY for release tarballs
+      spinner.fail('Security: No checksum file found');
+      await rm(tarballPath, { force: true });
+      throw new Error(
+        'Security: Checksum verification is mandatory for release downloads. ' +
+        'The release is missing a .sha256 checksum file. ' +
+        'Use --from-git to clone directly if this is intentional.'
+      );
     }
 
     return tarballPath;
@@ -165,26 +238,39 @@ async function verifyChecksum(filePath, checksumUrl) {
     headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
   }
 
-  // Download checksum file
-  const response = await fetch(checksumUrl, { headers });
+  // Download checksum file (with SSRF protection)
+  const response = await safeFetch(checksumUrl, { headers });
+  if (!response.ok) {
+    throw new Error(`Failed to download checksum file: ${response.status}`);
+  }
   const checksumContent = await response.text();
   const expectedHash = checksumContent.split(' ')[0].trim();
+
+  // Validate hash format (should be 64 hex characters for SHA256)
+  if (!/^[a-fA-F0-9]{64}$/.test(expectedHash)) {
+    throw new Error('Invalid checksum format in checksum file');
+  }
 
   // Calculate actual hash
   const fileBuffer = await readFile(filePath);
   const hash = createHash('sha256').update(fileBuffer).digest('hex');
 
-  if (hash !== expectedHash) {
+  if (hash.toLowerCase() !== expectedHash.toLowerCase()) {
     await rm(filePath);
-    throw new Error('Checksum verification failed. File may be corrupted.');
+    throw new Error('Checksum verification failed. File may be corrupted or tampered with.');
   }
 }
 
 async function fetchWithRetry(url, options = {}, retries = 3) {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      return await fetch(url, options);
+      // Use safeFetch for SSRF protection
+      return await safeFetch(url, options);
     } catch (error) {
+      // Don't retry security validation errors
+      if (error.message.startsWith('Security:')) {
+        throw error;
+      }
       if (attempt === retries) throw error;
       const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
       logger.info(`Retry ${attempt}/${retries} after ${delay}ms...`);

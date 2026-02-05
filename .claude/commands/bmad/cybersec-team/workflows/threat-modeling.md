@@ -6,4 +6,4 @@ description: STRIDE-based threat modeling workflow for identifying, assessing, a
 # Threat Modeling
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/cybersec-team/workflows/threat-modeling/workflow.md`
+`@_bmad/cybersec-team/workflows/threat-modeling/workflow.md`

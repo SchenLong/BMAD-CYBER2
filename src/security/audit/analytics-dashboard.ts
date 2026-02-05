@@ -9,9 +9,12 @@
  */
 
 import { EventEmitter } from "events";
-import { AuditLogger, AuditEvent, SecurityLevel } from "./audit-logger";
+import { TamperEvidentAuditLogger, SecurityLevel } from "./audit-logger";
 import { SiemIntegration } from "./siem-integration";
 import { ComplianceReporter, ComplianceMetrics } from "./compliance-reporter";
+
+// Type alias for compatibility
+type AuditLogger = TamperEvidentAuditLogger;
 
 /**
  * Dashboard widget types
@@ -204,24 +207,25 @@ export interface Recommendation {
  */
 export class AuditAnalyticsDashboard extends EventEmitter {
   private auditLogger: AuditLogger;
-  private siemIntegration?: SiemIntegration;
-  private complianceReporter?: ComplianceReporter;
+  // siemIntegration is stored for potential future use in SIEM forwarding
+  protected siemIntegration: SiemIntegration | undefined;
+  private complianceReporter: ComplianceReporter | undefined;
   private widgets: Map<string, DashboardWidget> = new Map();
   private metrics: Map<string, SecurityMetric> = new Map();
   private threatPatterns: Map<string, ThreatPattern> = new Map();
   private executiveReports: Map<string, ExecutiveReport> = new Map();
-  private refreshTimers: Map<string, NodeJS.Timer> = new Map();
+  private refreshTimers: Map<string, ReturnType<typeof setInterval>> = new Map();
   private analyticsCache: Map<string, { data: any; expiry: Date }> = new Map();
 
   constructor(
     auditLogger: AuditLogger,
-    siemIntegration?: SiemIntegration,
+    _siemIntegration?: SiemIntegration,
     complianceReporter?: ComplianceReporter
   ) {
     super();
     this.auditLogger = auditLogger;
-    this.siemIntegration = siemIntegration;
-    this.complianceReporter = complianceReporter;
+    this.siemIntegration = _siemIntegration ?? undefined;
+    this.complianceReporter = complianceReporter ?? undefined;
     this.initializeDefaultMetrics();
     this.initializeDefaultWidgets();
     this.initializeThreatDetection();
@@ -471,7 +475,7 @@ export class AuditAnalyticsDashboard extends EventEmitter {
         action: "analyze_patterns",
         outcome: "failure",
         securityLevel: SecurityLevel.HIGH,
-        details: { error: error.message }
+        details: { error: (error as Error).message }
       });
     }
   }
@@ -597,7 +601,7 @@ export class AuditAnalyticsDashboard extends EventEmitter {
       const complianceScore = this.metrics.get("compliance-score");
       if (complianceScore) {
         const dashboard = this.complianceReporter.getComplianceDashboard();
-        const overallScore = dashboard.frameworks.reduce((avg, f) => avg + f.complianceScore, 0) / dashboard.frameworks.length;
+        const overallScore = dashboard.frameworks.reduce((avg: number, f: { complianceScore: number }) => avg + f.complianceScore, 0) / dashboard.frameworks.length;
         
         const previousValue = complianceScore.value;
         complianceScore.value = Math.round(overallScore || 85);
@@ -688,7 +692,7 @@ export class AuditAnalyticsDashboard extends EventEmitter {
         securityLevel: SecurityLevel.MEDIUM,
         details: {
           queryName: query.name,
-          error: error.message
+          error: (error as Error).message
         }
       });
       throw error;
@@ -893,7 +897,7 @@ export class AuditAnalyticsDashboard extends EventEmitter {
         action: "generate_report",
         outcome: "failure",
         securityLevel: SecurityLevel.HIGH,
-        details: { error: error.message }
+        details: { error: (error as Error).message }
       });
       throw error;
     }
@@ -1103,7 +1107,7 @@ export class AuditAnalyticsDashboard extends EventEmitter {
       this.emit("widget_refreshed", { widgetId, timestamp: new Date() });
       return true;
     } catch (error) {
-      this.emit("widget_refresh_error", { widgetId, error: error.message });
+      this.emit("widget_refresh_error", { widgetId, error: (error as Error).message });
       return false;
     }
   }
@@ -1133,9 +1137,12 @@ export class AuditAnalyticsDashboard extends EventEmitter {
   /**
    * Generate metric card data
    */
-  private generateMetricCardData(widget: DashboardWidget): any {
-    const metrics = widget.configuration.metricIds?.map(id => this.metrics.get(id)).filter(Boolean) || [];
-    
+  private generateMetricCardData(_widget: DashboardWidget): any {
+    const metricIds = _widget.configuration.metricIds || [];
+    const metrics = metricIds
+      .map(id => this.metrics.get(id))
+      .filter((m): m is SecurityMetric => m !== undefined);
+
     return {
       metrics: metrics.map(metric => ({
         id: metric.id,
@@ -1153,15 +1160,15 @@ export class AuditAnalyticsDashboard extends EventEmitter {
   /**
    * Generate time series data
    */
-  private generateTimeSeriesData(widget: DashboardWidget): any {
-    const timeRange = this.getTimeRange(widget.configuration.timeRange || "24h");
+  private generateTimeSeriesData(_widget: DashboardWidget): any {
+    const timeRange = this.getTimeRange(_widget.configuration.timeRange || "24h");
     return this.generateMetricsData(timeRange);
   }
 
   /**
    * Generate pie chart data
    */
-  private generatePieChartData(widget: DashboardWidget): any {
+  private generatePieChartData(_widget: DashboardWidget): any {
     return {
       data: [
         { label: "Brute Force", value: 45, color: "#FF6B6B" },
@@ -1195,7 +1202,7 @@ export class AuditAnalyticsDashboard extends EventEmitter {
   /**
    * Generate alert list data
    */
-  private generateAlertListData(widget: DashboardWidget): any {
+  private generateAlertListData(_widget: DashboardWidget): any {
     const activeThreats = Array.from(this.threatPatterns.values()).slice(0, 10);
     
     return {
@@ -1214,7 +1221,7 @@ export class AuditAnalyticsDashboard extends EventEmitter {
   /**
    * Generate geo map data
    */
-  private generateGeoMapData(widget: DashboardWidget): any {
+  private generateGeoMapData(_widget: DashboardWidget): any {
     return {
       threatSources: [
         { country: "US", lat: 39.8283, lng: -98.5795, threatCount: 45 },

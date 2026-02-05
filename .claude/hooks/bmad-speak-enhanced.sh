@@ -20,6 +20,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+# Load input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Arguments
 AGENT_NAME_OR_ID="${1:-}"
 DIALOGUE="${2:-}"
@@ -27,6 +32,21 @@ DIALOGUE="${2:-}"
 if [[ -z "$AGENT_NAME_OR_ID" ]] || [[ -z "$DIALOGUE" ]]; then
     echo "Usage: $0 \"Agent Name\" \"dialogue text\"" >&2
     exit 1
+fi
+
+# Validate inputs before processing
+if type validate_agent_name &>/dev/null; then
+    if ! validate_agent_name "$AGENT_NAME_OR_ID"; then
+        echo "Error: Invalid agent name provided" >&2
+        exit 1
+    fi
+fi
+
+if type validate_dialogue &>/dev/null; then
+    if ! validate_dialogue "$DIALOGUE"; then
+        echo "Error: Invalid dialogue provided" >&2
+        exit 1
+    fi
 fi
 
 # Remove backslash escaping that Claude might add for special chars like ! and $

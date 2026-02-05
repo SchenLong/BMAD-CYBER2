@@ -16,6 +16,11 @@ export LC_ALL=C
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Load input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 TEXT="${1:-}"
 AGENT_NAME="${2:-default}"
 VOICE_OVERRIDE="${3:-}"
@@ -23,6 +28,28 @@ VOICE_OVERRIDE="${3:-}"
 if [[ -z "$TEXT" ]]; then
     echo "Usage: $0 \"text to speak\" [agent_name] [voice_override]" >&2
     exit 1
+fi
+
+# Validate inputs before processing
+if type validate_dialogue &>/dev/null; then
+    if ! validate_dialogue "$TEXT"; then
+        echo "Error: Invalid text input provided" >&2
+        exit 1
+    fi
+fi
+
+if type validate_agent_name &>/dev/null; then
+    if ! validate_agent_name "$AGENT_NAME"; then
+        echo "Error: Invalid agent name provided" >&2
+        exit 1
+    fi
+fi
+
+if type validate_voice_name &>/dev/null; then
+    if ! validate_voice_name "$VOICE_OVERRIDE"; then
+        echo "Error: Invalid voice name provided" >&2
+        exit 1
+    fi
 fi
 
 # Determine which config to use

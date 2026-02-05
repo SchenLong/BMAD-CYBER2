@@ -4,10 +4,15 @@
  * NIST CSF: Detect, Respond
  */
 
-import { EventEmitter } from "events";
-import { createHash } from "crypto";
-import { promises as fs } from "fs";
-import path from "path";
+// Note: EventEmitter, createHash, fs, path may be used by extended functionality
+// Keeping imports for potential future use but prefixing with underscore pattern
+
+export enum SeverityLevel {
+  LOW = "low",
+  MEDIUM = "medium",
+  HIGH = "high",
+  CRITICAL = "critical"
+}
 
 export interface SecurityEvent {
   id: string;

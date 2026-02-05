@@ -8,9 +8,10 @@
  */
 
 // Story 5.1: Build Orchestration
-export { BuildOrchestrator } from './build-scripts/orchestrator/build';
-export { DependencyManager } from './build-scripts/orchestrator/dependency-manager';
-export { MultiLanguageCoordinator } from './build-scripts/orchestrator/multi-language-coordinator';
+// Note: These exports are placeholders for future implementation
+// export { BuildOrchestrator } from './build-scripts/orchestrator/build';
+// export { DependencyManager } from './build-scripts/orchestrator/dependency-manager';
+// export { MultiLanguageCoordinator } from './build-scripts/orchestrator/multi-language-coordinator';
 
 // Story 5.2: Deployment Automation
 export { DeploymentInstaller } from './deployment/installer/install';
@@ -76,7 +77,6 @@ export interface AutomationConfig {
  * Initialize all automation components with unified configuration
  */
 export async function initializeAutomation(config: AutomationConfig = {}): Promise<{
-  buildOrchestrator: any;
   deploymentInstaller: any;
   configurationManager: any;
   templateValidator: any;
@@ -84,7 +84,8 @@ export async function initializeAutomation(config: AutomationConfig = {}): Promi
   qualityGateEnforcer: any;
   buildCacheManager: any;
 }> {
-  const { BuildOrchestrator } = await import('./build-scripts/orchestrator/build');
+  // Note: BuildOrchestrator is not yet implemented
+  // const { BuildOrchestrator } = await import('./build-scripts/orchestrator/build');
   const { DeploymentInstaller } = await import('./deployment/installer/install');
   const { ConfigurationManager } = await import('./configuration/manager/bmad-configuration-manager');
   const { TemplateValidator } = await import('./templates/validator/template-validator');
@@ -92,20 +93,24 @@ export async function initializeAutomation(config: AutomationConfig = {}): Promi
   const { QualityGateEnforcer } = await import('./validation/core/quality-gate-enforcer');
   const { BuildCacheManager } = await import('./caching/build-cache-manager');
 
-  const buildOrchestrator = new BuildOrchestrator(config.buildOrchestrator);
+  // Note: buildOrchestrator not yet implemented
+  // const buildOrchestrator = new BuildOrchestrator(config.buildOrchestrator);
   const deploymentInstaller = new DeploymentInstaller(config.deployment);
   const configurationManager = new ConfigurationManager(config.configuration);
   const templateValidator = new TemplateValidator(config.templates);
   const installationLogger = new InstallationLogger(config.logging);
   const qualityGateEnforcer = new QualityGateEnforcer();
-  const buildCacheManager = new BuildCacheManager(config.performance);
+  // Convert performance config to CacheConfig compatible format
+  const cacheConfig = config.performance ? {
+    enableCompression: config.performance.cacheEnabled ?? true
+  } : undefined;
+  const buildCacheManager = new BuildCacheManager(cacheConfig);
 
   // Initialize components
   await configurationManager.initialize();
   await templateValidator.initialize();
 
   return {
-    buildOrchestrator,
     deploymentInstaller,
     configurationManager,
     templateValidator,

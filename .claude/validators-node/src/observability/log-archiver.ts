@@ -84,14 +84,14 @@ export class GPGSigningError extends ArchivalError {
  */
 export interface ArchivalConfig {
   bucket: string;
-  prefix?: string;
-  region?: string;
-  retentionDays?: number;
-  gpgSigningKey?: string;
-  scheduleExpression?: string;
-  enableObjectLock?: boolean;
-  encryptionType?: 'SSE-S3' | 'SSE-KMS';
-  kmsKeyId?: string;
+  prefix?: string | undefined;
+  region?: string | undefined;
+  retentionDays?: number | undefined;
+  gpgSigningKey?: string | undefined;
+  scheduleExpression?: string | undefined;
+  enableObjectLock?: boolean | undefined;
+  encryptionType?: 'SSE-S3' | 'SSE-KMS' | undefined;
+  kmsKeyId?: string | undefined;
 }
 
 /**
@@ -104,8 +104,8 @@ export interface ArchiveMetadata {
   totalSize: number;
   compressedSize: number;
   sha256Hash: string;
-  previousArchiveHash?: string;
-  gpgSignature?: string;
+  previousArchiveHash?: string | undefined;
+  gpgSignature?: string | undefined;
   s3ObjectKey: string;
   retentionUntil: string;
   encryptionEnabled: boolean;
@@ -299,7 +299,7 @@ export class LogArchiver {
         sha256Hash,
         previousArchiveHash: previousHash,
         s3ObjectKey: this.generateS3Key(archiveId),
-        retentionUntil: new Date(Date.now() + this.config.retentionDays * 24 * 60 * 60 * 1000).toISOString(),
+        retentionUntil: new Date(Date.now() + (this.config.retentionDays ?? 90) * 24 * 60 * 60 * 1000).toISOString(),
         encryptionEnabled: isEncryptionEnabled(),
         compressionRatio: archiveBuffer.length / Math.max(1, logFiles.reduce((sum, file) => sum + file.size, 0)),
       };
@@ -479,9 +479,10 @@ export class LogArchiver {
         .sort()
         .reverse();
 
-      if (sortedFiles.length === 0) return undefined;
+      const firstFile = sortedFiles[0];
+      if (sortedFiles.length === 0 || firstFile === undefined) return undefined;
 
-      const lastMetadataFile = path.join(metadataDir, sortedFiles[0]);
+      const lastMetadataFile = path.join(metadataDir, firstFile);
       const metadataContent = await readFile(lastMetadataFile, 'utf8');
       const metadata: ArchiveMetadata = JSON.parse(metadataContent);
 
@@ -501,13 +502,18 @@ export class LogArchiver {
       throw new GPGSigningError('GPG signing key not configured', undefined);
     }
 
+    const gpgKey = this.config.gpgSigningKey;
+    if (!gpgKey) {
+      throw new GPGSigningError('GPG signing key not configured', new Error('Missing key'));
+    }
+
     return new Promise((resolve, reject) => {
       const gpg = spawn('gpg', [
         '--batch',
         '--yes',
         '--armor',
         '--detach-sign',
-        '--local-user', this.config.gpgSigningKey,
+        '--local-user', gpgKey,
         '--output', '-',
         '-'
       ], {
@@ -517,15 +523,15 @@ export class LogArchiver {
       let signature = '';
       let error = '';
 
-      gpg.stdout.on('data', (chunk) => {
+      gpg.stdout.on('data', (chunk: Buffer) => {
         signature += chunk.toString();
       });
 
-      gpg.stderr.on('data', (chunk) => {
+      gpg.stderr.on('data', (chunk: Buffer) => {
         error += chunk.toString();
       });
 
-      gpg.on('close', (code) => {
+      gpg.on('close', (code: number | null) => {
         if (code === 0 && signature.trim()) {
           resolve(signature.trim());
         } else {
@@ -536,7 +542,7 @@ export class LogArchiver {
         }
       });
 
-      gpg.on('error', (err) => {
+      gpg.on('error', (err: Error) => {
         reject(new GPGSigningError(`Failed to execute GPG: ${err.message}`, err));
       });
 
@@ -579,7 +585,7 @@ export class LogArchiver {
         Tagging: [
           'Purpose=audit-log-archival',
           'Compliance=NIST-ISO27001',
-          `RetentionYears=${Math.ceil(this.config.retentionDays / 365)}`,
+          `RetentionYears=${Math.ceil((this.config.retentionDays ?? 90) / 365)}`,
           'DataClassification=sensitive'
         ].join('&'),
       });
@@ -633,7 +639,7 @@ export class LogArchiver {
   private async cleanupOldLogFiles(): Promise<void> {
     try {
       const logDir = path.join(getProjectDir(), '.claude', 'logs');
-      const cutoffDate = new Date(Date.now() - this.config.retentionDays * 24 * 60 * 60 * 1000);
+      const cutoffDate = new Date(Date.now() - (this.config.retentionDays ?? 90) * 24 * 60 * 60 * 1000);
 
       const files = await readdir(logDir);
 
@@ -666,7 +672,7 @@ export class LogArchiver {
       compressedSize: 0,
       sha256Hash: crypto.createHash('sha256').update('').digest('hex'),
       s3ObjectKey: this.generateS3Key(archiveId),
-      retentionUntil: new Date(Date.now() + this.config.retentionDays * 24 * 60 * 60 * 1000).toISOString(),
+      retentionUntil: new Date(Date.now() + (this.config.retentionDays ?? 90) * 24 * 60 * 60 * 1000).toISOString(),
       encryptionEnabled: isEncryptionEnabled(),
       compressionRatio: 0,
     };
@@ -675,7 +681,7 @@ export class LogArchiver {
   /**
    * Verify archive integrity by downloading and checking hash.
    */
-  async verifyArchiveIntegrity(archiveId: string): Promise<{isValid: boolean, error?: string}> {
+  async verifyArchiveIntegrity(archiveId: string): Promise<{isValid: boolean, error?: string | undefined}> {
     try {
       await this.initialize();
 
@@ -759,12 +765,12 @@ export class LogArchiver {
    */
   getConfigurationStatus(): {
     configured: boolean;
-    bucket?: string;
-    region?: string;
-    retentionDays?: number;
-    objectLockEnabled?: boolean;
-    gpgSigningEnabled?: boolean;
-    issues?: string[];
+    bucket?: string | undefined;
+    region?: string | undefined;
+    retentionDays?: number | undefined;
+    objectLockEnabled?: boolean | undefined;
+    gpgSigningEnabled?: boolean | undefined;
+    issues?: string[] | undefined;
   } {
     const issues: string[] = [];
 
@@ -772,7 +778,7 @@ export class LogArchiver {
       issues.push('S3 bucket not configured');
     }
 
-    if (this.config.retentionDays < 1) {
+    if ((this.config.retentionDays ?? 90) < 1) {
       issues.push('Invalid retention period');
     }
 

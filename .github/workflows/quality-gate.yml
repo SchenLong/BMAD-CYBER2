@@ -4,6 +4,12 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  # Allow this workflow to be called by other workflows (e.g., release.yml)
+  workflow_call:
+    outputs:
+      quality_passed:
+        description: "Whether all quality checks passed"
+        value: ${{ jobs.quality-gate.outputs.passed }}
 
 env:
   NODE_VERSION: '18'
@@ -146,12 +152,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: [quality-check, security-scan, performance-check, documentation-check]
     timeout-minutes: 5
+    outputs:
+      passed: ${{ steps.gate-status.outputs.passed }}
 
     steps:
       - name: Quality Gate Passed
+        id: gate-status
         run: |
           echo "✅ All quality checks passed!"
           echo "Code is ready for production deployment."
+          echo "passed=true" >> $GITHUB_OUTPUT
 
       - name: Generate quality report
         run: |

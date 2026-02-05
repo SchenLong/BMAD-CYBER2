@@ -39,7 +39,7 @@ Generate and set a token before starting Claude Code:
 
 ```bash
 # Generate token (valid for 168 hours)
-node _bmad/core/security/quick-token.js "YourName" "developer" 168
+node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
 
 # Set token
 export BMAD_AUTH_TOKEN="<generated-token>"

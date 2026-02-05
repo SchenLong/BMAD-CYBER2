@@ -15,11 +15,11 @@ export interface BlockMessageOptions {
   /** The command or file that was blocked */
   target: string;
   /** Environment variable for override (if applicable) */
-  overrideVar?: string;
+  overrideVar?: string | undefined;
   /** List of recommendation strings */
-  recommendations?: string[];
+  recommendations?: string[] | undefined;
   /** If true, indicates no override is possible */
-  isAbsolute?: boolean;
+  isAbsolute?: boolean | undefined;
 }
 
 /**

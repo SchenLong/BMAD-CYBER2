@@ -16,6 +16,7 @@ const yaml = require('js-yaml');
 const semver = require('semver');
 const BMADVersionChecker = require('./bmad-version-compatibility.js');
 const BMADCircularDetector = require('./bmad-circular-detection.js');
+const { NetworkResilience } = require('./network-resilience.js');
 
 class BMADDependencyManager {
     constructor(options = {}) {
@@ -28,8 +29,18 @@ class BMADDependencyManager {
             npmRegistry: options.npmRegistry || 'https://registry.npmjs.org',
             maxRetries: options.maxRetries || 3,
             timeout: options.timeout || 30000,
+            retryDelay: options.retryDelay || 1000,
+            offlineMode: options.offlineMode || false,
             ...options
         };
+
+        // Network resilience for retry logic, proxy, and offline support (VAL-03-016, VAL-03-018, VAL-03-008)
+        this.networkResilience = new NetworkResilience({
+            retryAttempts: this.config.maxRetries,
+            retryDelay: this.config.retryDelay,
+            timeout: this.config.timeout,
+            offlineMode: this.config.offlineMode
+        });
 
         // Dependency graph and state
         this.dependencyGraph = new Map();
@@ -364,14 +375,48 @@ class BMADDependencyManager {
 
     /**
      * Load module configuration from NPM registry
+     * Uses network resilience for retry logic and proxy support (VAL-03-016, VAL-03-018)
      */
     async loadFromNPMRegistry(moduleName, version) {
-        // In a real implementation, this would make HTTP requests to NPM registry
-        // For now, return mock configuration for specialized teams
+        // Check offline mode (VAL-03-008)
+        if (this.networkResilience.isOfflineMode()) {
+            console.log(`[BMAD Dependency Manager] Offline mode - skipping NPM registry lookup for ${moduleName}`);
+            return null;
+        }
+
+        // For specialized teams, return mock configuration (existing behavior)
         if (this.specializedTeams.has(moduleName) || moduleName.includes('@bmad-cybercommand')) {
             return this.createMockSpecializedTeamConfig(moduleName, version);
         }
-        return null;
+
+        // For real NPM packages, fetch with retry logic
+        try {
+            const packageUrl = `${this.config.npmRegistry}/${encodeURIComponent(moduleName)}`;
+
+            const response = await this.networkResilience.withRetry(
+                () => this.networkResilience.makeRequest(packageUrl),
+                {
+                    operationName: `npm-registry-lookup:${moduleName}`,
+                    onRetry: ({ attempt, totalAttempts, error }) => {
+                        console.log(
+                            `[BMAD Dependency Manager] Retry ${attempt}/${totalAttempts} for ${moduleName}: ${error.message}`
+                        );
+                    }
+                }
+            );
+
+            const packageInfo = JSON.parse(response.data);
+            const targetVersion = version === 'latest' ? packageInfo['dist-tags']?.latest : version;
+
+            if (packageInfo.versions && packageInfo.versions[targetVersion]) {
+                return this.parseModuleConfig(packageInfo.versions[targetVersion]);
+            }
+
+            return null;
+        } catch (error) {
+            console.warn(`[BMAD Dependency Manager] Failed to load ${moduleName} from NPM registry: ${error.message}`);
+            return null;
+        }
     }
 
     /**
@@ -948,6 +993,7 @@ class BMADDependencyManager {
 
     /**
      * Install a single module (integration point with Amelia's installation framework)
+     * Uses network resilience for retry logic (VAL-03-016)
      */
     async installModule(moduleId, options = {}) {
         try {
@@ -958,20 +1004,43 @@ class BMADDependencyManager {
 
             console.log(`[BMAD Dependency Manager] Installing module: ${moduleId}`);
 
-            // This is where we would integrate with Amelia's installation framework
-            // For now, we'll simulate the installation process
+            // Use retry logic for installation (VAL-03-016)
+            const installResult = await this.networkResilience.withRetry(
+                async () => {
+                    // This is where we would integrate with Amelia's installation framework
+                    // For now, we'll simulate the installation process
+                    const result = await this.simulateModuleInstallation(node, options);
 
-            const installResult = await this.simulateModuleInstallation(node, options);
+                    if (!result.success) {
+                        const error = new Error(result.error || 'Installation failed');
+                        // Mark certain errors as retryable
+                        if (result.error?.includes('network') || result.error?.includes('timeout')) {
+                            error.code = 'ECONNRESET';
+                        }
+                        throw error;
+                    }
+
+                    return result;
+                },
+                {
+                    operationName: `install-module:${moduleId}`,
+                    retryAttempts: options.retryAttempts || this.config.maxRetries,
+                    onRetry: ({ attempt, totalAttempts, error }) => {
+                        console.log(
+                            `[BMAD Dependency Manager] Installation retry ${attempt}/${totalAttempts} for ${moduleId}: ${error.message}`
+                        );
+                    }
+                }
+            );
 
             if (installResult.success) {
                 console.log(`[BMAD Dependency Manager] Successfully installed: ${moduleId}`);
-            } else {
-                console.error(`[BMAD Dependency Manager] Failed to install: ${moduleId} - ${installResult.error}`);
             }
 
             return installResult;
 
         } catch (error) {
+            console.error(`[BMAD Dependency Manager] Failed to install: ${moduleId} - ${error.message}`);
             return {
                 success: false,
                 error: error.message
@@ -1027,6 +1096,36 @@ class BMADDependencyManager {
         this.resolvedDependencies.clear();
         this.conflicts = [];
         this.installationQueue = [];
+    }
+
+    /**
+     * Check network connectivity and return status
+     * @returns {Promise<Object>} - Connectivity status
+     */
+    async checkNetworkConnectivity() {
+        return this.networkResilience.checkConnectivity(this.config.npmRegistry + '/-/ping');
+    }
+
+    /**
+     * Enable offline mode for installations
+     */
+    enableOfflineMode() {
+        this.networkResilience.enableOfflineMode();
+    }
+
+    /**
+     * Disable offline mode
+     */
+    disableOfflineMode() {
+        this.networkResilience.disableOfflineMode();
+    }
+
+    /**
+     * Get network configuration summary for diagnostics
+     * @returns {Object} - Network configuration summary
+     */
+    getNetworkConfig() {
+        return this.networkResilience.getConfigSummary();
     }
 }
 

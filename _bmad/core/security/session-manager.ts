@@ -14,16 +14,27 @@ import { TokenGenerator, TokenClaims } from './generate-token';
 // Types
 // ============================================================================
 
+/**
+ * Client fingerprint for session binding (VAL-05-004-001)
+ * Binds sessions to client characteristics to prevent session hijacking
+ */
+export interface ClientFingerprint {
+  ipAddress?: string;
+  userAgent?: string;
+  fingerprintHash: string;  // SHA-256 hash of combined characteristics
+}
+
 export interface Session {
   id: string;
   userId: string;
   userName: string;
-  email?: string;
+  email?: string | undefined;
   roles: string[];
   modules: string[];
   createdAt: Date;
   lastActivity: Date;
   expiresAt: Date;
+  clientFingerprint?: ClientFingerprint;  // Session binding (VAL-05-004-001)
 }
 
 export interface AuthenticationResult {
@@ -36,21 +47,21 @@ export interface AuthenticationResult {
 
 export interface UserContext {
   authenticated: boolean;
-  userId?: string;
-  userName?: string;
-  email?: string;
-  roles?: string[];
-  modules?: string[];
-  sessionId?: string;
+  userId?: string | undefined;
+  userName?: string | undefined;
+  email?: string | undefined;
+  roles?: string[] | undefined;
+  modules?: string[] | undefined;
+  sessionId?: string | undefined;
 }
 
 export interface AuthStatus {
   keyExists: boolean;
   tokenExists: boolean;
   tokenValid: boolean;
-  expiresAt?: Date;
-  hoursUntilExpiry?: number;
-  userName?: string;
+  expiresAt?: Date | undefined;
+  hoursUntilExpiry?: number | undefined;
+  userName?: string | undefined;
 }
 
 // ============================================================================
@@ -59,6 +70,7 @@ export interface AuthStatus {
 
 export class SessionManager {
   private sessions: Map<string, Session> = new Map();
+  private userSessions: Map<string, Set<string>> = new Map();  // userId -> sessionIds (VAL-05-004-002)
   private tokenGenerator: TokenGenerator | null = null;
   private config: {
     tokenPath: string;
@@ -66,6 +78,7 @@ export class SessionManager {
     timeoutMinutes: number;
     maxLifetimeHours: number;
     refreshThresholdHours: number;
+    maxConcurrentSessions: number;  // VAL-05-004-002: Concurrent session limit
   };
 
   constructor(projectRoot: string) {
@@ -74,7 +87,8 @@ export class SessionManager {
       keyPath: path.join(projectRoot, '.bmad-key'),
       timeoutMinutes: 480,  // 8 hours
       maxLifetimeHours: 24,
-      refreshThresholdHours: 24
+      refreshThresholdHours: 24,
+      maxConcurrentSessions: 3  // VAL-05-004-002: Max 3 concurrent sessions per user
     };
 
     // Initialize token generator if key exists
@@ -173,9 +187,82 @@ export class SessionManager {
   }
 
   /**
-   * Create a new session from validated claims
+   * Generate client fingerprint for session binding (VAL-05-004-001)
+   * Creates a hash of client characteristics to bind the session
    */
-  private createSession(claims: TokenClaims): Session {
+  generateClientFingerprint(ipAddress?: string, userAgent?: string): ClientFingerprint {
+    // Combine available characteristics for fingerprinting
+    const fingerprintData = [
+      ipAddress || 'local-cli',
+      userAgent || 'bmad-cli',
+      // For CLI tools, add process-level identifiers as additional binding
+      process.pid.toString(),
+      process.ppid?.toString() || 'unknown'
+    ].join('|');
+
+    const fingerprintHash = crypto
+      .createHash('sha256')
+      .update(fingerprintData)
+      .digest('hex');
+
+    return {
+      ipAddress,
+      userAgent,
+      fingerprintHash
+    };
+  }
+
+  /**
+   * Enforce concurrent session limit for a user (VAL-05-004-002)
+   * Removes oldest sessions if limit is exceeded
+   */
+  private enforceSessionLimit(userId: string): void {
+    const userSessionIds = this.userSessions.get(userId) || new Set<string>();
+    const toDelete: string[] = [];
+
+    // Clean up expired sessions first
+    userSessionIds.forEach(sessionId => {
+      const session = this.sessions.get(sessionId);
+      if (!session || session.expiresAt < new Date()) {
+        toDelete.push(sessionId);
+        if (session) this.sessions.delete(sessionId);
+      }
+    });
+    toDelete.forEach(id => userSessionIds.delete(id));
+
+    // If still over limit, remove oldest sessions
+    while (userSessionIds.size >= this.config.maxConcurrentSessions) {
+      let oldestSessionId: string | null = null;
+      let oldestTime = Date.now();
+
+      userSessionIds.forEach(sessionId => {
+        const session = this.sessions.get(sessionId);
+        if (session && session.createdAt.getTime() < oldestTime) {
+          oldestTime = session.createdAt.getTime();
+          oldestSessionId = sessionId;
+        }
+      });
+
+      if (oldestSessionId) {
+        console.log(`[SECURITY] Concurrent session limit reached for user ${userId}. Removing oldest session: ${oldestSessionId}`);
+        userSessionIds.delete(oldestSessionId);
+        this.sessions.delete(oldestSessionId);
+      } else {
+        break;  // Safety: prevent infinite loop
+      }
+    }
+
+    this.userSessions.set(userId, userSessionIds);
+  }
+
+  /**
+   * Create a new session from validated claims
+   * Now includes session binding and concurrent session enforcement
+   */
+  private createSession(claims: TokenClaims, clientFingerprint?: ClientFingerprint): Session {
+    // Enforce concurrent session limit before creating new session (VAL-05-004-002)
+    this.enforceSessionLimit(claims.sub);
+
     const now = new Date();
     const session: Session = {
       id: crypto.randomUUID(),
@@ -186,10 +273,17 @@ export class SessionManager {
       modules: claims.modules,
       createdAt: now,
       lastActivity: now,
-      expiresAt: new Date(now.getTime() + this.config.timeoutMinutes * 60 * 1000)
+      expiresAt: new Date(now.getTime() + this.config.timeoutMinutes * 60 * 1000),
+      clientFingerprint: clientFingerprint || this.generateClientFingerprint()  // VAL-05-004-001
     };
 
     this.sessions.set(session.id, session);
+
+    // Track user sessions for concurrent limit enforcement (VAL-05-004-002)
+    const userSessionIds = this.userSessions.get(claims.sub) || new Set();
+    userSessionIds.add(session.id);
+    this.userSessions.set(claims.sub, userSessionIds);
+
     return session;
   }
 
@@ -275,9 +369,66 @@ export class SessionManager {
   }
 
   /**
+   * Validate session fingerprint against current client (VAL-05-004-001)
+   * Returns true if fingerprint matches, false if potential session hijacking detected
+   */
+  validateSessionFingerprint(
+    sessionId: string,
+    currentIpAddress?: string,
+    currentUserAgent?: string
+  ): boolean {
+    const session = this.sessions.get(sessionId);
+    if (!session || !session.clientFingerprint) {
+      return false;
+    }
+
+    // Generate fingerprint for current request
+    const currentFingerprint = this.generateClientFingerprint(currentIpAddress, currentUserAgent);
+
+    // Compare fingerprint hashes
+    if (session.clientFingerprint.fingerprintHash !== currentFingerprint.fingerprintHash) {
+      console.warn(`[SECURITY] Session fingerprint mismatch detected for session ${sessionId}`);
+      console.warn(`[SECURITY] Expected: ${session.clientFingerprint.fingerprintHash.substring(0, 16)}...`);
+      console.warn(`[SECURITY] Received: ${currentFingerprint.fingerprintHash.substring(0, 16)}...`);
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Get user's concurrent session count (VAL-05-004-002)
+   */
+  getUserSessionCount(userId: string): number {
+    const userSessionIds = this.userSessions.get(userId);
+    if (!userSessionIds) return 0;
+
+    // Clean and count valid sessions
+    let validCount = 0;
+    userSessionIds.forEach(sessionId => {
+      const session = this.sessions.get(sessionId);
+      if (session && session.expiresAt >= new Date()) {
+        validCount++;
+      }
+    });
+    return validCount;
+  }
+
+  /**
    * End session
    */
   endSession(sessionId: string): void {
+    const session = this.sessions.get(sessionId);
+    if (session) {
+      // Clean up userSessions tracking (VAL-05-004-002)
+      const userSessionIds = this.userSessions.get(session.userId);
+      if (userSessionIds) {
+        userSessionIds.delete(sessionId);
+        if (userSessionIds.size === 0) {
+          this.userSessions.delete(session.userId);
+        }
+      }
+    }
     this.sessions.delete(sessionId);
   }
 
@@ -286,6 +437,56 @@ export class SessionManager {
    */
   endAllSessions(): void {
     this.sessions.clear();
+    this.userSessions.clear();  // Clean up user session tracking (VAL-05-004-002)
+  }
+
+  /**
+   * Regenerate session on privilege change (VAL-05-004-003 fix)
+   * Creates a new session with updated claims while preserving user identity.
+   * The old session is invalidated to prevent session fixation attacks.
+   *
+   * @param oldSessionId - The current session ID to regenerate
+   * @param newClaims - Updated token claims with new privileges
+   * @returns New session or null if old session not found
+   */
+  regenerateSessionOnPrivilegeChange(oldSessionId: string, newClaims: TokenClaims): Session | null {
+    const oldSession = this.sessions.get(oldSessionId);
+    if (!oldSession) {
+      return null;
+    }
+
+    // Invalidate old session immediately
+    this.sessions.delete(oldSessionId);
+
+    // Create new session with updated claims
+    const newSession = this.createSession(newClaims);
+
+    // Log privilege change for audit trail
+    console.log(`[SECURITY] Session regenerated on privilege change: ${oldSessionId} -> ${newSession.id}`);
+    console.log(`[SECURITY] User: ${newClaims.name}, New roles: ${newClaims.roles.join(', ')}`);
+
+    return newSession;
+  }
+
+  /**
+   * Check if session roles have changed (utility for detecting privilege changes)
+   */
+  hasPrivilegeChanged(sessionId: string, newRoles: string[]): boolean {
+    const session = this.getSession(sessionId);
+    if (!session) return true; // No session = privilege change
+
+    const currentRoles = new Set(session.roles);
+    const updatedRoles = new Set(newRoles);
+
+    // Check if roles differ
+    if (currentRoles.size !== updatedRoles.size) return true;
+
+    let rolesChanged = false;
+    currentRoles.forEach(role => {
+      if (!updatedRoles.has(role)) rolesChanged = true;
+    });
+
+    return rolesChanged;
   }
 
   /**
@@ -363,11 +564,13 @@ export class SessionManager {
   getActiveSessionCount(): number {
     // Clean expired sessions first
     const now = new Date();
-    for (const [id, session] of this.sessions) {
+    const expiredIds: string[] = [];
+    this.sessions.forEach((session, id) => {
       if (session.expiresAt < now) {
-        this.sessions.delete(id);
+        expiredIds.push(id);
       }
-    }
+    });
+    expiredIds.forEach(id => this.sessions.delete(id));
     return this.sessions.size;
   }
 }

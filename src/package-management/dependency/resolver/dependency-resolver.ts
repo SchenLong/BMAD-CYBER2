@@ -165,11 +165,17 @@ export interface ResolutionResult {
 }
 
 export interface ResolutionWarning {
-  readonly type: 'version-mismatch' | 'security-advisory' | 'deprecation' | 'license' | 'performance';
+  readonly type: 'version-mismatch' | 'security-advisory' | 'deprecation' | 'license' | 'performance' | 'typosquatting';
   readonly severity: 'low' | 'medium' | 'high';
   readonly package: PackageIdentifier;
   readonly message: string;
   readonly suggestion?: string;
+}
+
+export interface TyposquattingResult {
+  readonly isSuspicious: boolean;
+  readonly similarTo?: string;
+  readonly distance?: number;
 }
 
 export interface ResolutionError {
@@ -207,6 +213,31 @@ export class DependencyResolver extends EventEmitter {
   private static readonly MAX_DEPTH = 100;
   private static readonly CACHE_TTL = 3600000; // 1 hour
 
+  /**
+   * DEP-001: Internal package scope prefixes for dependency confusion prevention
+   * All packages from internal registries MUST use one of these scope prefixes
+   * to prevent supply chain attacks via malicious public package shadowing
+   */
+  private static readonly INTERNAL_SCOPE_PREFIXES: readonly string[] = [
+    '@bmad/',
+    '@bmad-cyber/',
+    '@intel-team/',
+    '@legal-team/',
+    '@strategy-team/'
+  ];
+
+  /**
+   * Registry identifiers that require scoped package names
+   */
+  private static readonly INTERNAL_REGISTRY_PATTERNS: readonly string[] = [
+    'internal',
+    'private',
+    'enterprise',
+    'corporate',
+    'bmad',
+    'localhost'
+  ];
+
   private readonly auditLogger: AuditLogger;
   private readonly securityMonitor: SecurityMonitor;
   private readonly cache: Map<string, ResolutionResult>;
@@ -238,6 +269,10 @@ export class DependencyResolver extends EventEmitter {
         'dependency-resolution-started',
         { sessionId, rootPackage }
       );
+
+      // DEP-001: Validate package scope for dependency confusion prevention
+      // This must be called before resolution to block malicious packages early
+      this.validatePackageScope(rootPackage);
 
       // Create resolution context
       const context = await this.createResolutionContext(
@@ -522,6 +557,28 @@ export class DependencyResolver extends EventEmitter {
           scope: dep.scope,
           registry: packageId.registry
         };
+
+        // Check for potential typosquatting
+        const typosquatResult = this.checkTyposquatting(dep.name);
+        if (typosquatResult.isSuspicious) {
+          this.emit('typosquatting-warning', {
+            package: depId,
+            similarTo: typosquatResult.similarTo,
+            distance: typosquatResult.distance,
+            path: [...path, packageKey]
+          });
+
+          await this.auditLogger.logSecurityEvent(
+            'typosquatting-detected',
+            {
+              packageName: dep.name,
+              similarTo: typosquatResult.similarTo,
+              levenshteinDistance: typosquatResult.distance,
+              requestedBy: packageId.name,
+              resolutionPath: [...path, packageKey]
+            }
+          );
+        }
 
         // Create edge
         const edge: DependencyEdge = {
@@ -972,9 +1029,21 @@ export class DependencyResolver extends EventEmitter {
       resolution_complexity: graph.depth
     });
 
-    // Check for known vulnerabilities
+    // Check for known vulnerabilities and typosquatting
     for (const [nodeKey, node] of graph.nodes) {
       try {
+        // Check for typosquatting
+        const typosquatResult = this.checkTyposquatting(node.package.name);
+        if (typosquatResult.isSuspicious) {
+          warnings.push({
+            type: 'typosquatting',
+            severity: 'high',
+            package: node.package,
+            message: `Potential typosquatting detected: "${node.package.name}" is similar to popular package "${typosquatResult.similarTo}" (Levenshtein distance: ${typosquatResult.distance})`,
+            suggestion: `Verify this is the intended package. If you meant "${typosquatResult.similarTo}", update your dependency.`
+          });
+        }
+
         const vulnerabilities = await this.checkVulnerabilities(node.package);
 
         for (const vuln of vulnerabilities) {
@@ -1263,6 +1332,124 @@ export class DependencyResolver extends EventEmitter {
   private isNewerVersion(version1: string, version2: string): boolean {
     // Implementation would compare semantic versions
     return false;
+  }
+
+  /**
+   * DEP-001: Validate package scope for dependency confusion prevention
+   * Ensures internal packages use proper scope prefixes to prevent supply chain attacks
+   * where malicious public packages could shadow internal package names
+   *
+   * @param packageId - The package identifier to validate
+   * @throws Error if internal package doesn't use required scope prefix
+   */
+  private validatePackageScope(packageId: PackageIdentifier): void {
+    // Check if this package is from an internal registry
+    const registryName = packageId.registry?.toLowerCase() || '';
+    const isInternalRegistry = DependencyResolver.INTERNAL_REGISTRY_PATTERNS.some(
+      pattern => registryName.includes(pattern)
+    );
+
+    if (!isInternalRegistry) {
+      // Public registry packages don't require scope validation
+      return;
+    }
+
+    // Check if the package name uses a valid internal scope prefix
+    const packageName = packageId.name;
+    const hasValidScope = DependencyResolver.INTERNAL_SCOPE_PREFIXES.some(
+      prefix => packageName.startsWith(prefix)
+    );
+
+    if (!hasValidScope) {
+      const allowedPrefixes = DependencyResolver.INTERNAL_SCOPE_PREFIXES.join(', ');
+
+      // Log the security violation
+      this.auditLogger.logSecurityEvent(
+        'dependency-confusion-attempt-blocked',
+        {
+          packageName: packageId.name,
+          packageVersion: packageId.version,
+          registry: packageId.registry,
+          reason: 'Internal package missing required scope prefix',
+          allowedPrefixes: DependencyResolver.INTERNAL_SCOPE_PREFIXES
+        }
+      );
+
+      throw new Error(
+        `DEP-001 Security Violation: Internal package "${packageName}" must use a scoped name. ` +
+        `Allowed scope prefixes for internal packages: ${allowedPrefixes}. ` +
+        `This prevents dependency confusion attacks where malicious public packages shadow internal ones.`
+      );
+    }
+  }
+
+  /**
+   * Check if a package name might be a typosquatting attempt
+   * Uses Levenshtein distance to detect names similar to popular packages
+   */
+  private checkTyposquatting(packageName: string): TyposquattingResult {
+    const popularPackages = [
+      'lodash', 'express', 'react', 'axios', 'moment', 'webpack', 'typescript',
+      'jquery', 'underscore', 'chalk', 'commander', 'debug', 'async', 'request',
+      'bluebird', 'uuid', 'fs-extra', 'glob', 'semver', 'minimist', 'yargs',
+      'dotenv', 'babel', 'eslint', 'prettier', 'jest', 'mocha', 'chai',
+      'mongoose', 'sequelize', 'redis', 'socket.io', 'next', 'vue', 'angular',
+      'passport', 'jsonwebtoken', 'bcrypt', 'crypto-js', 'node-fetch', 'cheerio'
+    ];
+
+    // Skip if exact match with a popular package
+    if (popularPackages.includes(packageName.toLowerCase())) {
+      return { isSuspicious: false };
+    }
+
+    // Levenshtein distance calculation
+    const levenshtein = (a: string, b: string): number => {
+      const aLen = a.length;
+      const bLen = b.length;
+
+      // Create matrix with explicit initialization
+      const matrix: number[][] = [];
+      for (let i = 0; i <= bLen; i++) {
+        matrix[i] = [];
+        for (let j = 0; j <= aLen; j++) {
+          matrix[i]![j] = 0;
+        }
+      }
+
+      // Initialize first column
+      for (let i = 0; i <= bLen; i++) {
+        matrix[i]![0] = i;
+      }
+
+      // Initialize first row
+      for (let j = 0; j <= aLen; j++) {
+        matrix[0]![j] = j;
+      }
+
+      // Fill in the rest of the matrix
+      for (let i = 1; i <= bLen; i++) {
+        for (let j = 1; j <= aLen; j++) {
+          const cost = b.charAt(i - 1) === a.charAt(j - 1) ? 0 : 1;
+          const deletion = matrix[i - 1]![j]! + 1;
+          const insertion = matrix[i]![j - 1]! + 1;
+          const substitution = matrix[i - 1]![j - 1]! + cost;
+          matrix[i]![j] = Math.min(deletion, insertion, substitution);
+        }
+      }
+
+      return matrix[bLen]![aLen]!;
+    };
+
+    // Check against all popular packages
+    for (const popular of popularPackages) {
+      const distance = levenshtein(packageName.toLowerCase(), popular);
+      // Flag as suspicious if distance is 1-2 (very similar but not exact)
+      if (distance > 0 && distance <= 2) {
+        return { isSuspicious: true, similarTo: popular, distance };
+      }
+    }
+
+    return { isSuspicious: false };
   }
 }
 

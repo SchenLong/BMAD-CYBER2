@@ -6,4 +6,4 @@ description: Prepare for critical negotiations with stakeholder analysis and str
 # Stakeholder Negotiation Prep
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/strategy-team/workflows/stakeholder-negotiation-prep/workflow.md`
+`@_bmad/strategy-team/workflows/stakeholder-negotiation-prep/workflow.md`

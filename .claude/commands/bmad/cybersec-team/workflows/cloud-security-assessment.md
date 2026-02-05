@@ -6,4 +6,4 @@ description: Comprehensive cloud security assessment covering IAM, network, data
 # Cloud Security Assessment
 
 Load, read the full file, and then execute the workflow at:
-`{project-root}/_bmad/cybersec-team/workflows/cloud-security-assessment/workflow.md`
+`@_bmad/cybersec-team/workflows/cloud-security-assessment/workflow.md`

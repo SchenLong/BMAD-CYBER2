@@ -89,12 +89,12 @@ Prompts for:
 **Quick Method (For Scripted Operations):**
 
 ```bash
-node _bmad/core/security/quick-token.js "Name" "role" [hours]
+node _bmad/core/security/quick-token.cjs "Name" "role" [hours]
 
 # Examples:
-node _bmad/core/security/quick-token.js "Alice" "developer" 168
-node _bmad/core/security/quick-token.js "Bob" "admin" 8
-node _bmad/core/security/quick-token.js "Carol" "security_analyst" 24
+node _bmad/core/security/quick-token.cjs "Alice" "developer" 168
+node _bmad/core/security/quick-token.cjs "Bob" "admin" 8
+node _bmad/core/security/quick-token.cjs "Carol" "security_analyst" 24
 ```
 
 **Output:**
@@ -172,7 +172,7 @@ Generate a new token before expiration:
 node _bmad/core/security/validate-token.js
 
 # Generate replacement token with same role
-node _bmad/core/security/quick-token.js "Alice" "developer" 168
+node _bmad/core/security/quick-token.cjs "Alice" "developer" 168
 ```
 
 ### 5. Token Revocation
@@ -267,7 +267,7 @@ Rotate tokens on a regular schedule to limit exposure window.
 CURRENT_USER=$(node _bmad/core/security/get-current-user.js)
 CURRENT_ROLE=$(node _bmad/core/security/get-current-role.js)
 
-node _bmad/core/security/quick-token.js "$CURRENT_USER" "$CURRENT_ROLE" 168
+node _bmad/core/security/quick-token.cjs "$CURRENT_USER" "$CURRENT_ROLE" 168
 
 # 2. Log rotation
 echo "$(date): Token rotated for $CURRENT_USER" >> /var/log/bmad-token-rotation.log
@@ -306,8 +306,8 @@ node _bmad/core/security/generate-key.js
 
 # 3. Regenerate all user tokens
 # (coordinate with all users)
-node _bmad/core/security/quick-token.js "Alice" "developer" 168
-node _bmad/core/security/quick-token.js "Bob" "security_analyst" 168
+node _bmad/core/security/quick-token.cjs "Alice" "developer" 168
+node _bmad/core/security/quick-token.cjs "Bob" "security_analyst" 168
 # ... etc
 ```
 
@@ -426,7 +426,7 @@ ERROR: Token expired at 2026-01-15T12:00:00Z
 
 **Solution:**
 ```bash
-node _bmad/core/security/quick-token.js "User" "role" 168
+node _bmad/core/security/quick-token.cjs "User" "role" 168
 ```
 
 ### Permission Denied
@@ -471,7 +471,7 @@ ERROR: Role 'invalid_role' is not defined in RBAC configuration
 node _bmad/core/security/check-authorization.js roles
 
 # Regenerate with valid role
-node _bmad/core/security/quick-token.js "User" "developer" 168
+node _bmad/core/security/quick-token.cjs "User" "developer" 168
 ```
 
 ---
@@ -501,7 +501,7 @@ grep "FAILED\|DENIED\|ERROR" .claude/logs/security.log
 |---------|---------|
 | `node _bmad/core/security/generate-key.js` | Generate encryption key |
 | `node _bmad/core/security/generate-token.js` | Interactive token generation |
-| `node _bmad/core/security/quick-token.js "Name" "role" hours` | Quick token generation |
+| `node _bmad/core/security/quick-token.cjs "Name" "role" hours` | Quick token generation |
 | `node _bmad/core/security/validate-token.js` | Validate current token |
 | `node _bmad/core/security/check-authorization.js` | Check permissions |
 

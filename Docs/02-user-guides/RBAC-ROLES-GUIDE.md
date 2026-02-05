@@ -40,7 +40,7 @@ node _bmad/core/security/check-authorization.js agent intel-team/osint-lead
 
 ```bash
 # Generate token with specific role
-node _bmad/core/security/quick-token.js "YourName" "developer" 168
+node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
 ```
 
 ---
@@ -367,7 +367,7 @@ node _bmad/core/security/check-authorization.js role security_analyst
 ### Generate New Token with Different Role
 
 ```bash
-node _bmad/core/security/quick-token.js "YourName" "new_role" 168
+node _bmad/core/security/quick-token.cjs "YourName" "new_role" 168
 ```
 
 ### Multiple Roles
@@ -431,7 +431,7 @@ Some resources require credential verification:
 
 Generate a new token:
 ```bash
-node _bmad/core/security/quick-token.js "YourName" "your_role" 168
+node _bmad/core/security/quick-token.cjs "YourName" "your_role" 168
 ```
 
 ---

@@ -172,6 +172,8 @@ export class RecursionGuard {
     for (let i = 0; i < indices.length - 1; i++) {
       const patternStart = indices[i];
       const patternEnd = indices[i + 1];
+      if (patternStart === undefined || patternEnd === undefined) continue;
+
       const patternLength = patternEnd - patternStart;
 
       if (patternLength < 2) continue;

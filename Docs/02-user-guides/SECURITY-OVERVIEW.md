@@ -30,7 +30,7 @@ BMAD-CYBER2 implements an 8-phase security framework providing defense-in-depth 
 node _bmad/core/security/generate-token.js
 
 # Quick token generation (non-interactive)
-node _bmad/core/security/quick-token.js "YourName" "admin" 168
+node _bmad/core/security/quick-token.cjs "YourName" "admin" 168
 ```
 
 ### 2. Validate Token
@@ -95,7 +95,7 @@ node _bmad/core/security/check-authorization.js
 node _bmad/core/security/generate-token.js
 
 # Generate token (quick)
-node _bmad/core/security/quick-token.js "Name" "role" hours
+node _bmad/core/security/quick-token.cjs "Name" "role" hours
 
 # Validate token
 node _bmad/core/security/validate-token.js

@@ -21,7 +21,8 @@ res.json({ token, expiresAt: new Date(Date.now() + 2 * 60 * 60 * 1000) });
 
 ### Session Management
 ```typescript
-import { SessionManager } from "../../session-manager";
+// SessionManager is now in the canonical _bmad/core/security location
+import { SessionManager } from "../../../../_bmad/core/security/session-manager";
 
 const sessionMgr = new SessionManager();
 

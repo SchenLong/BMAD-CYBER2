@@ -99,6 +99,9 @@ class ProgressTracker extends EventEmitter {
         // WebSocket connections for real-time updates
         this.webSocketConnections = new Set();
 
+        // Rate limiting tracking for WebSocket connections
+        this.connectionAttempts = new Map();  // clientId -> { count, firstAttemptTime }
+
         // Historical data
         this.history = {
             updates: [],
@@ -130,6 +133,11 @@ class ProgressTracker extends EventEmitter {
 
             // Setup cleanup timers
             this._setupCleanupTimers();
+
+            // Setup rate limit cleanup if enabled
+            if (this.config.realTime.webSocket.rateLimit?.enabled) {
+                this._setupRateLimitCleanup();
+            }
 
             this.isInitialized = true;
             console.log('✅ Progress Tracker initialized');
@@ -601,34 +609,311 @@ class ProgressTracker extends EventEmitter {
 
     /**
      * Add WebSocket connection for real-time updates
+     * @param {WebSocket} ws - The WebSocket connection
+     * @param {Object} credentials - Authentication credentials (token, clientId, etc.)
+     * @param {Object} metadata - Additional connection metadata
+     * @returns {string|null} Connection ID if successful, null if rejected
      */
-    addWebSocketConnection(ws, metadata = {}) {
+    addWebSocketConnection(ws, credentials = null, metadata = {}) {
         if (!this.config.realTime.webSocket.enabled) {
             throw new Error('WebSocket support not enabled');
+        }
+
+        const wsConfig = this.config.realTime.webSocket;
+        const clientId = credentials?.clientId || metadata?.ip || 'unknown';
+        const timestamp = Date.now();
+
+        // Check rate limiting first
+        if (wsConfig.rateLimit?.enabled) {
+            const rateLimitResult = this._checkWebSocketRateLimit(clientId);
+            if (!rateLimitResult.allowed) {
+                this._logAuthAttempt({
+                    clientId,
+                    success: false,
+                    reason: 'rate_limit_exceeded',
+                    message: `Rate limit exceeded: ${rateLimitResult.currentCount}/${wsConfig.rateLimit.maxConnectionsPerClient} connections`,
+                    timestamp
+                });
+
+                // Close connection with 4429 (Too Many Requests equivalent)
+                ws.close(4429, 'Rate limit exceeded');
+                return null;
+            }
+        }
+
+        // Check authentication if enabled
+        if (wsConfig.authentication?.enabled) {
+            const authResult = this._validateWebSocketCredentials(credentials);
+
+            this._logAuthAttempt({
+                clientId,
+                success: authResult.valid,
+                reason: authResult.valid ? 'authenticated' : authResult.reason,
+                message: authResult.message,
+                timestamp
+            });
+
+            if (!authResult.valid) {
+                // Close connection with 4401 (Unauthorized equivalent)
+                ws.close(4401, authResult.message || 'Authentication required');
+                return null;
+            }
+        } else {
+            // Log unauthenticated connection when auth is disabled
+            this._logAuthAttempt({
+                clientId,
+                success: true,
+                reason: 'auth_disabled',
+                message: 'Authentication disabled - connection accepted',
+                timestamp
+            });
         }
 
         const connection = {
             id: crypto.randomUUID(),
             ws,
+            clientId,
             metadata,
-            connected: Date.now(),
-            lastPing: Date.now()
+            authenticated: wsConfig.authentication?.enabled ? true : false,
+            connected: timestamp,
+            lastPing: timestamp
         };
 
         this.webSocketConnections.add(connection);
 
+        // Track connection for rate limiting
+        if (wsConfig.rateLimit?.enabled) {
+            this._trackWebSocketConnection(clientId);
+        }
+
         // Setup WebSocket event handlers
         ws.on('close', () => {
             this.webSocketConnections.delete(connection);
+            // Decrement connection count on close
+            if (wsConfig.rateLimit?.enabled) {
+                this._decrementConnectionCount(clientId);
+            }
         });
 
         ws.on('pong', () => {
             connection.lastPing = Date.now();
         });
 
-        console.log(`📡 WebSocket connection added: ${connection.id}`);
+        console.log(`📡 WebSocket connection added: ${connection.id} (client: ${clientId}, authenticated: ${connection.authenticated})`);
+
+        this.emit('websocket.connected', {
+            connectionId: connection.id,
+            clientId,
+            authenticated: connection.authenticated,
+            timestamp
+        });
 
         return connection.id;
+    }
+
+    /**
+     * Validate WebSocket credentials
+     * @param {Object} credentials - The credentials to validate
+     * @returns {Object} Validation result { valid: boolean, reason?: string, message?: string }
+     */
+    _validateWebSocketCredentials(credentials) {
+        const authConfig = this.config.realTime.webSocket.authentication;
+
+        // Check if credentials provided
+        if (!credentials) {
+            return {
+                valid: false,
+                reason: 'no_credentials',
+                message: 'No credentials provided'
+            };
+        }
+
+        // Extract token from credentials
+        const token = credentials.token ||
+                      credentials[authConfig.tokenHeader] ||
+                      credentials['X-Auth-Token'];
+
+        if (!token) {
+            return {
+                valid: false,
+                reason: 'no_token',
+                message: 'No authentication token provided'
+            };
+        }
+
+        // Use custom validator if provided
+        if (typeof authConfig.validator === 'function') {
+            try {
+                const customResult = authConfig.validator(credentials, token);
+                // Handle both boolean and object returns
+                if (typeof customResult === 'boolean') {
+                    return {
+                        valid: customResult,
+                        reason: customResult ? 'custom_validator_passed' : 'custom_validator_failed',
+                        message: customResult ? 'Authenticated via custom validator' : 'Custom validator rejected credentials'
+                    };
+                }
+                return {
+                    valid: customResult.valid === true,
+                    reason: customResult.reason || (customResult.valid ? 'custom_validator_passed' : 'custom_validator_failed'),
+                    message: customResult.message || (customResult.valid ? 'Authenticated' : 'Authentication failed')
+                };
+            } catch (error) {
+                console.error('❌ Custom WebSocket validator error:', error);
+                return {
+                    valid: false,
+                    reason: 'validator_error',
+                    message: 'Authentication validator error'
+                };
+            }
+        }
+
+        // Default token validation (basic format check)
+        // In production, this should be replaced with proper JWT validation or similar
+        if (!this._isValidTokenFormat(token)) {
+            return {
+                valid: false,
+                reason: 'invalid_token_format',
+                message: 'Invalid token format'
+            };
+        }
+
+        return {
+            valid: true,
+            reason: 'token_validated',
+            message: 'Token validated successfully'
+        };
+    }
+
+    /**
+     * Basic token format validation
+     * @param {string} token - The token to validate
+     * @returns {boolean} True if token has valid format
+     */
+    _isValidTokenFormat(token) {
+        if (typeof token !== 'string') return false;
+        if (token.length < 16) return false;  // Minimum token length
+        if (token.length > 4096) return false;  // Maximum token length (prevent DoS)
+
+        // Check for basic alphanumeric + common token characters
+        // This is a basic check - production should use proper JWT/token validation
+        const validTokenPattern = /^[A-Za-z0-9\-_\.]+$/;
+        return validTokenPattern.test(token);
+    }
+
+    /**
+     * Check WebSocket rate limit for a client
+     * @param {string} clientId - The client identifier
+     * @returns {Object} { allowed: boolean, currentCount: number }
+     */
+    _checkWebSocketRateLimit(clientId) {
+        const rateLimitConfig = this.config.realTime.webSocket.rateLimit;
+        const now = Date.now();
+
+        // Get or create tracking entry
+        let tracking = this.connectionAttempts.get(clientId);
+
+        if (!tracking) {
+            return { allowed: true, currentCount: 0 };
+        }
+
+        // Reset if window expired
+        if (now - tracking.firstAttemptTime > rateLimitConfig.windowMs) {
+            this.connectionAttempts.delete(clientId);
+            return { allowed: true, currentCount: 0 };
+        }
+
+        // Check current connection count
+        const currentCount = tracking.activeConnections || 0;
+        const allowed = currentCount < rateLimitConfig.maxConnectionsPerClient;
+
+        return { allowed, currentCount };
+    }
+
+    /**
+     * Track a new WebSocket connection for rate limiting
+     * @param {string} clientId - The client identifier
+     */
+    _trackWebSocketConnection(clientId) {
+        const now = Date.now();
+        let tracking = this.connectionAttempts.get(clientId);
+
+        if (!tracking) {
+            tracking = {
+                firstAttemptTime: now,
+                activeConnections: 0
+            };
+            this.connectionAttempts.set(clientId, tracking);
+        }
+
+        tracking.activeConnections = (tracking.activeConnections || 0) + 1;
+        tracking.lastAttemptTime = now;
+    }
+
+    /**
+     * Decrement connection count when a connection closes
+     * @param {string} clientId - The client identifier
+     */
+    _decrementConnectionCount(clientId) {
+        const tracking = this.connectionAttempts.get(clientId);
+        if (tracking && tracking.activeConnections > 0) {
+            tracking.activeConnections--;
+            if (tracking.activeConnections === 0) {
+                this.connectionAttempts.delete(clientId);
+            }
+        }
+    }
+
+    /**
+     * Log authentication attempt
+     * @param {Object} attempt - The authentication attempt details
+     */
+    _logAuthAttempt(attempt) {
+        const logEntry = {
+            type: 'websocket_auth',
+            clientId: attempt.clientId,
+            success: attempt.success,
+            reason: attempt.reason,
+            message: attempt.message,
+            timestamp: attempt.timestamp || Date.now()
+        };
+
+        // Emit event for external logging/monitoring
+        this.emit('websocket.auth', logEntry);
+
+        // Console log based on success/failure
+        if (attempt.success) {
+            console.log(`🔐 WebSocket auth success: ${attempt.clientId} - ${attempt.reason}`);
+        } else {
+            console.warn(`🚫 WebSocket auth failed: ${attempt.clientId} - ${attempt.reason}: ${attempt.message}`);
+        }
+    }
+
+    /**
+     * Setup rate limit cleanup timer
+     */
+    _setupRateLimitCleanup() {
+        const cleanupInterval = this.config.realTime.webSocket.rateLimit?.cleanupIntervalMs || 300000;
+
+        setInterval(() => {
+            this._cleanupRateLimitTracking();
+        }, cleanupInterval);
+    }
+
+    /**
+     * Cleanup stale rate limit tracking entries
+     */
+    _cleanupRateLimitTracking() {
+        const windowMs = this.config.realTime.webSocket.rateLimit?.windowMs || 60000;
+        const now = Date.now();
+
+        for (const [clientId, tracking] of this.connectionAttempts.entries()) {
+            // Remove entries with no active connections and expired window
+            if (tracking.activeConnections === 0 &&
+                now - tracking.firstAttemptTime > windowMs) {
+                this.connectionAttempts.delete(clientId);
+            }
+        }
     }
 
     /**
@@ -695,7 +980,18 @@ class ProgressTracker extends EventEmitter {
                 webSocket: {
                     enabled: false,
                     port: 8080,
-                    path: '/progress'
+                    path: '/progress',
+                    authentication: {
+                        enabled: true,
+                        tokenHeader: 'X-Auth-Token',
+                        validator: null  // Optional custom validator function
+                    },
+                    rateLimit: {
+                        enabled: true,
+                        maxConnectionsPerClient: 5,
+                        windowMs: 60000,  // 1 minute window
+                        cleanupIntervalMs: 300000  // 5 minutes cleanup interval
+                    }
                 },
                 broadcast: true
             },

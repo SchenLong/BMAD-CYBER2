@@ -5,10 +5,29 @@
  * Validates the complete extraction and conversion pipeline
  */
 
-const fs = require('fs-extra');
-const path = require('path');
-const yaml = require('js-yaml');
-const chalk = require('chalk');
+import fs from 'fs-extra';
+import path from 'path';
+import yaml from 'js-yaml';
+import chalk from 'chalk';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/**
+ * Reproducible timestamp utility (VAL-09-005-003)
+ * Uses SOURCE_DATE_EPOCH if set for reproducible validation reports
+ */
+const getReproducibleTimestamp = () => {
+  const sourceEpoch = process.env.SOURCE_DATE_EPOCH;
+  if (sourceEpoch) {
+    const epochSeconds = parseInt(sourceEpoch, 10);
+    if (!isNaN(epochSeconds)) {
+      return new Date(epochSeconds * 1000).toISOString();
+    }
+  }
+  return new Date().toISOString();
+};
 
 class MultiModuleValidator {
   constructor() {
@@ -24,7 +43,7 @@ class MultiModuleValidator {
 
   loadConfig() {
     const configPath = path.join(this.packageRoot, 'bmad-multi-module.yaml');
-    return yaml.load(fs.readFileSync(configPath, 'utf8'));
+    return yaml.load(fs.readFileSync(configPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
   }
 
   async validate() {
@@ -146,7 +165,7 @@ class MultiModuleValidator {
 
         if (fs.existsSync(yamlPath)) {
           try {
-            const agentYaml = yaml.load(fs.readFileSync(yamlPath, 'utf8'));
+            const agentYaml = yaml.load(fs.readFileSync(yamlPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
             if (agentYaml.id && agentYaml.name && agentYaml.team) {
               this.addResult('passed', `${teamName}/${sourceAgent}: Valid YAML structure`);
             } else {
@@ -209,7 +228,7 @@ class MultiModuleValidator {
 
         if (fs.existsSync(workflowYamlPath)) {
           try {
-            const workflowYaml = yaml.load(fs.readFileSync(workflowYamlPath, 'utf8'));
+            const workflowYaml = yaml.load(fs.readFileSync(workflowYamlPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
             if (workflowYaml.id && workflowYaml.name) {
               this.addResult('passed', `${teamName}/${workflowName}: Valid workflow YAML`);
             } else {
@@ -260,7 +279,7 @@ class MultiModuleValidator {
       const modulePath = path.join(this.packageRoot, 'modules', `${teamName}.yaml`);
       if (fs.existsSync(modulePath)) {
         try {
-          const moduleConfig = yaml.load(fs.readFileSync(modulePath, 'utf8'));
+          const moduleConfig = yaml.load(fs.readFileSync(modulePath, 'utf8'), { schema: yaml.CORE_SCHEMA });
           if (moduleConfig.code === teamName) {
             this.addResult('passed', `${teamName}: Module configuration valid`);
           } else {
@@ -365,7 +384,7 @@ class MultiModuleValidator {
     // Save detailed report
     const reportPath = path.join(this.packageRoot, 'validation-report.json');
     fs.writeFileSync(reportPath, JSON.stringify({
-      timestamp: new Date().toISOString(),
+      timestamp: getReproducibleTimestamp(),
       summary: {
         passed: this.validationResults.passed,
         warnings: this.validationResults.warnings,
@@ -380,9 +399,10 @@ class MultiModuleValidator {
 }
 
 // Run validator if called directly
-if (require.main === module) {
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename);
+if (isMain) {
   const validator = new MultiModuleValidator();
   validator.validate().catch(console.error);
 }
 
-module.exports = MultiModuleValidator;
+export default MultiModuleValidator;

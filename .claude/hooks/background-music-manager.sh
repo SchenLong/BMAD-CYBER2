@@ -22,6 +22,11 @@ export LC_ALL=C
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+# Load input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+    source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Config file location
 CONFIG_DIR="$SCRIPT_DIR/../config"
 ENABLED_FILE="$CONFIG_DIR/background-music-enabled.txt"
@@ -32,6 +37,57 @@ DEFAULT_VOLUME="0.34"
 
 # Ensure config directory exists
 mkdir -p "$CONFIG_DIR"
+
+# @function validate_safe_path
+# @intent Validate path stays within allowed directory (prevent path traversal)
+# @param $1 Path to validate
+# @param $2 Allowed base directory
+# @returns 0 if safe, 1 if not
+validate_safe_path() {
+    local path="$1"
+    local allowed_dir="$2"
+    
+    # Check for path traversal patterns
+    if [[ "$path" == *".."* ]]; then
+        echo "Error: Path traversal not allowed" >&2
+        return 1
+    fi
+    
+    # Check for absolute paths (they bypass the allowed directory)
+    if [[ "$path" == /* ]]; then
+        echo "Error: Absolute paths not allowed" >&2
+        return 1
+    fi
+    
+    # Check for dangerous characters
+    if [[ "$path" =~ [';|&$\`<>(){}!\\'] ]]; then
+        echo "Error: Path contains invalid characters" >&2
+        return 1
+    fi
+    
+    # Resolve to absolute and verify stays in allowed dir
+    local resolved
+    if [[ -d "$allowed_dir" ]]; then
+        resolved=$(cd "$allowed_dir" && realpath -m "$path" 2>/dev/null) || {
+            echo "Error: Cannot resolve path" >&2
+            return 1
+        }
+        
+        # Ensure resolved path starts with allowed directory
+        local resolved_allowed
+        resolved_allowed=$(realpath -m "$allowed_dir" 2>/dev/null) || {
+            echo "Error: Cannot resolve allowed directory" >&2
+            return 1
+        }
+        
+        if [[ "$resolved" != "$resolved_allowed"* ]]; then
+            echo "Error: Path escapes allowed directory" >&2
+            return 1
+        fi
+    fi
+    
+    return 0
+}
 
 # @function is_enabled
 # @intent Check if background music is enabled
@@ -147,6 +203,12 @@ set_default_track() {
         return 1
     fi
 
+    # Validate path for path traversal attacks
+    if ! validate_safe_path "$track" "$bg_dir"; then
+        echo "❌ Error: Invalid track path" >&2
+        return 1
+    fi
+
     # Check if track exists
     if [[ ! -f "$bg_dir/$track" ]]; then
         echo "❌ Error: Track '$track' not found in tracks folder"
@@ -244,6 +306,7 @@ set_agent_track() {
     local agent="$1"
     local track="$2"
     local config_file="$SCRIPT_DIR/../config/audio-effects.cfg"
+    local bg_dir="$SCRIPT_DIR/../audio/tracks"
 
     if [[ -z "$agent" ]] || [[ -z "$track" ]]; then
         echo "❌ Error: Agent name and track required"
@@ -251,8 +314,21 @@ set_agent_track() {
         exit 1
     fi
 
+    # Validate agent name using input-validation library if available
+    if type -t validate_agent_name &>/dev/null; then
+        if ! validate_agent_name "$agent"; then
+            echo "❌ Error: Invalid agent name" >&2
+            exit 1
+        fi
+    fi
+
+    # Validate track path for path traversal attacks
+    if ! validate_safe_path "$track" "$bg_dir"; then
+        echo "❌ Error: Invalid track path" >&2
+        exit 1
+    fi
+
     # Verify track exists
-    local bg_dir="$SCRIPT_DIR/../audio/tracks"
     if [[ ! -f "$bg_dir/$track" ]]; then
         echo "❌ Error: Track not found: $track"
         echo "Run '$0 list' to see available tracks"
@@ -290,6 +366,7 @@ set_agent_track() {
 set_all_agents_track() {
     local track="$1"
     local config_file="$SCRIPT_DIR/../config/audio-effects.cfg"
+    local bg_dir="$SCRIPT_DIR/../audio/tracks"
 
     if [[ -z "$track" ]]; then
         echo "❌ Error: Track name required"
@@ -297,8 +374,13 @@ set_all_agents_track() {
         exit 1
     fi
 
+    # Validate track path for path traversal attacks
+    if ! validate_safe_path "$track" "$bg_dir"; then
+        echo "❌ Error: Invalid track path" >&2
+        exit 1
+    fi
+
     # Verify track exists
-    local bg_dir="$SCRIPT_DIR/../audio/tracks"
     if [[ ! -f "$bg_dir/$track" ]]; then
         echo "❌ Error: Track not found: $track"
         echo "Run '$0 list' to see available tracks"

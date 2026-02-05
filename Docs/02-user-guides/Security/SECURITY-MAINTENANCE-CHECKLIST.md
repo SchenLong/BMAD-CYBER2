@@ -90,7 +90,7 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 - [ ] Rotate tokens expiring within 24 hours
   ```bash
   # If token expires soon:
-  node _bmad/core/security/quick-token.js "User" "role" 168
+  node _bmad/core/security/quick-token.cjs "User" "role" 168
   ```
 
 ### RBAC Audit (15 minutes)
@@ -277,8 +277,8 @@ echo "Access Denied: $(grep -c 'access.denied' _bmad-output/.audit/audit.log)"
 
   # 3. Regenerate all user tokens
   # (coordinate with each user)
-  node _bmad/core/security/quick-token.js "User1" "role1" 168
-  node _bmad/core/security/quick-token.js "User2" "role2" 168
+  node _bmad/core/security/quick-token.cjs "User1" "role1" 168
+  node _bmad/core/security/quick-token.cjs "User2" "role2" 168
   # ...
   ```
 

@@ -90,8 +90,8 @@ interface PluginManifest {
   name: string;
   version: string;
   permissions: PluginPermissions;
-  signature?: string;
-  checksum?: string;
+  signature?: string | undefined;
+  checksum?: string | undefined;
 }
 
 /**
@@ -437,7 +437,7 @@ class PluginPermissionChecker {
    */
   private getRBACPermissions(): RBACPermissions | null {
     if (this.currentRole && this.currentRole in RBAC_PERMISSIONS) {
-      return RBAC_PERMISSIONS[this.currentRole];
+      return RBAC_PERMISSIONS[this.currentRole] ?? null;
     }
     return null;
   }
@@ -554,11 +554,12 @@ class PluginPermissionChecker {
 
     // Extract command name
     const cmdParts = command.trim().split(/\s+/);
-    if (cmdParts.length === 0) {
+    const firstPart = cmdParts[0];
+    if (cmdParts.length === 0 || firstPart === undefined) {
       return [false, 'Empty command'];
     }
 
-    const cmdName = path.basename(cmdParts[0]);
+    const cmdName = path.basename(firstPart);
 
     // Check allowed commands first
     const allowed = shellPerms.allowed_commands || [];
@@ -668,7 +669,8 @@ class PluginPermissionChecker {
       const shellPerms = rbacPerms.shell;
       if (shellPerms) {
         const allowed = shellPerms.allowed_commands || [];
-        const cmdName = target ? path.basename(target.split(/\s+/)[0]) : '';
+        const targetParts = target ? target.split(/\s+/) : [];
+        const cmdName = targetParts[0] ? path.basename(targetParts[0]) : '';
         if (allowed.includes('*') || allowed.includes(cmdName)) {
           return [true, `RBAC override (${this.currentRole})`];
         }
@@ -713,8 +715,9 @@ class PluginPermissionChecker {
     }
 
     // Validate operation
-    const validOps = CAPABILITIES[capability].operations;
-    if (!validOps.includes(operation)) {
+    const capabilityDef = CAPABILITIES[capability];
+    const validOps = capabilityDef?.operations;
+    if (!validOps || !validOps.includes(operation)) {
       return {
         allowed: false,
         reason: `Unknown operation '${operation}' for capability '${capability}'`,
@@ -1041,11 +1044,9 @@ export function detectPluginFromPath(filePath: string): string | null {
 
   if (normalized.startsWith('_bmad/') || normalized.startsWith('_bmad\\')) {
     const parts = normalized.split(/[/\\]/);
-    if (parts.length >= 2) {
-      const pluginName = parts[1];
-      if (!pluginName.startsWith('_')) {
-        return pluginName;
-      }
+    const pluginName = parts[1];
+    if (parts.length >= 2 && pluginName !== undefined && !pluginName.startsWith('_')) {
+      return pluginName;
     }
   }
 
@@ -1075,11 +1076,12 @@ export function validatePluginPermission(): number {
   const cwd = data.cwd || PROJECT_DIR;
 
   // Map tool to capability/operation
-  if (!(toolName in CAPABILITY_MAPPING)) {
+  const mapping = CAPABILITY_MAPPING[toolName];
+  if (!mapping) {
     return EXIT_CODES.ALLOW; // Unknown tool, allow
   }
 
-  const [capability, operation] = CAPABILITY_MAPPING[toolName];
+  const [capability, operation] = mapping;
 
   // Get target
   let target = '';
@@ -1150,10 +1152,10 @@ export function main(): void {
         console.error('Usage: plugin-permissions check <plugin> <capability> <operation> [target]');
         process.exit(EXIT_CODES.SOFT_BLOCK);
       }
-      const plugin = args[1];
-      const capability = args[2];
-      const operation = args[3];
-      const target = args[4] || '';
+      const plugin = args[1] ?? '';
+      const capability = args[2] ?? '';
+      const operation = args[3] ?? '';
+      const target = args[4] ?? '';
 
       const [allowed, message] = checkPluginPermission(plugin, capability, operation, target);
       console.log(`Allowed: ${allowed}`);

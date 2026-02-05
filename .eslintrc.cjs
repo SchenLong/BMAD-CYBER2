@@ -6,8 +6,8 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    '@typescript-eslint/recommended',
-    '@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -139,6 +139,13 @@ module.exports = {
     '**/*.d.ts',
     '_bmad-backup-*/',
     '_bmad-output/dist/',
-    'test-installation/node_modules/'
+    'test-installation/node_modules/',
+    'Docs/',
+    // Files outside tsconfig include paths (not part of TypeScript compilation)
+    '_bmad/bmb/',
+    '_bmad/core/',
+    'examples/',
+    'tests/',
+    'tools/'
   ]
 };

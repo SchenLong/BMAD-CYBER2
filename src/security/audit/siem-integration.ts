@@ -9,7 +9,10 @@
  */
 
 import { EventEmitter } from "events";
-import { AuditLogger, AuditEvent, SecurityLevel } from "./audit-logger";
+import { TamperEvidentAuditLogger, AuditEvent, SecurityLevel } from "./audit-logger";
+
+// Type alias for compatibility
+type AuditLogger = TamperEvidentAuditLogger;
 
 /**
  * SIEM Provider types supported
@@ -78,10 +81,11 @@ export interface CorrelationAction {
  * SIEM event interface
  */
 export interface SiemEvent extends AuditEvent {
-  siemEventId?: string;
-  correlationId?: string;
-  enrichmentData?: Record<string, any>;
-  alertTriggered?: boolean;
+  eventId?: string | undefined;
+  siemEventId?: string | undefined;
+  correlationId?: string | undefined;
+  enrichmentData?: Record<string, any> | undefined;
+  alertTriggered?: boolean | undefined;
 }
 
 /**
@@ -94,7 +98,7 @@ export class SiemIntegration extends EventEmitter {
   private eventBuffer: SiemEvent[] = [];
   private correlationRules: Map<string, CorrelationRule> = new Map();
   private eventHistory: SiemEvent[] = [];
-  private flushTimer: NodeJS.Timer | null = null;
+  private flushTimer: ReturnType<typeof setInterval> | null = null;
   private isConnected: boolean = false;
   private retryCount: number = 0;
 
@@ -217,6 +221,7 @@ export class SiemIntegration extends EventEmitter {
 
       return connected;
     } catch (error) {
+      const err = error as Error;
       await this.auditLogger.logEvent({
         eventId: `siem-connect-error-${Date.now()}`,
         eventType: "siem_connection_error",
@@ -231,7 +236,7 @@ export class SiemIntegration extends EventEmitter {
         securityLevel: SecurityLevel.HIGH,
         details: {
           provider: this.config.provider,
-          error: error.message
+          error: err.message
         }
       });
       this.emit("error", error);
@@ -270,6 +275,7 @@ export class SiemIntegration extends EventEmitter {
 
       return true;
     } catch (error) {
+      const err = error as Error;
       await this.auditLogger.logEvent({
         eventId: `siem-send-error-${Date.now()}`,
         eventType: "siem_send_error",
@@ -283,7 +289,7 @@ export class SiemIntegration extends EventEmitter {
         outcome: "failure",
         securityLevel: SecurityLevel.MEDIUM,
         details: {
-          error: error.message,
+          error: err.message,
           eventId: event.eventId
         }
       });
@@ -319,7 +325,7 @@ export class SiemIntegration extends EventEmitter {
   /**
    * Check correlation rules against event
    */
-  private async checkCorrelationRules(event: SiemEvent): Promise<{ alertTriggered: boolean; correlationId?: string }> {
+  private async checkCorrelationRules(event: SiemEvent): Promise<{ alertTriggered: boolean; correlationId?: string | undefined }> {
     for (const rule of this.correlationRules.values()) {
       if (!rule.enabled) continue;
 
@@ -425,7 +431,7 @@ export class SiemIntegration extends EventEmitter {
   /**
    * Execute correlation action
    */
-  private async executeAction(action: CorrelationAction, rule: CorrelationRule, events: SiemEvent[], correlationId: string): Promise<void> {
+  private async executeAction(action: CorrelationAction, rule: CorrelationRule, _events: SiemEvent[], correlationId: string): Promise<void> {
     try {
       // Implementation would depend on specific action type
       console.log(`Executing action: ${action.type} for rule: ${rule.name} (${correlationId})`);
@@ -451,6 +457,7 @@ export class SiemIntegration extends EventEmitter {
         }
       });
     } catch (error) {
+      const err = error as Error;
       await this.auditLogger.logEvent({
         eventId: `action-error-${Date.now()}`,
         eventType: "correlation_action_error",
@@ -464,7 +471,7 @@ export class SiemIntegration extends EventEmitter {
         outcome: "failure",
         securityLevel: SecurityLevel.HIGH,
         details: {
-          error: error.message,
+          error: err.message,
           actionType: action.type,
           correlationId
         }
@@ -582,7 +589,7 @@ export class SiemIntegration extends EventEmitter {
     } catch (error) {
       // Return events to buffer for retry
       this.eventBuffer.unshift(...this.eventBuffer);
-      await this.handleRetry(error);
+      await this.handleRetry(error as Error);
     }
   }
 

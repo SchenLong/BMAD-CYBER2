@@ -143,7 +143,7 @@ integration_points:
   siem_platforms:
     - name: "Primary SIEM"
       type: "Splunk"
-      api_endpoint: "https://siem.bmad.local/api"
+      api_endpoint: "https://siem.example.com/api"
       auth_method: "token"
       log_format: "CEF"
       

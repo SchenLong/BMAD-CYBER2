@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ============================================================================
 # BMAD LLM Provider Manager
 # ============================================================================
@@ -16,6 +16,12 @@
 # ============================================================================
 
 set -euo pipefail
+
+# Source input validation library for security
+SCRIPT_DIR_VAL="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -f "$SCRIPT_DIR_VAL/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR_VAL/lib/input-validation.sh"
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
