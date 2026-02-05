@@ -56,7 +56,21 @@ export default defineConfig({
     },
     testTimeout: 30000,
     hookTimeout: 30000,
-    setupFiles: ['./tests/vitest-setup.js']
+    setupFiles: ['./tests/vitest-setup.js'],
+    // VAL-11-001: Add memory limits and optimize pool settings to prevent OOM
+    pool: 'forks',
+    poolOptions: {
+      forks: {
+        singleFork: true,
+        execArgv: ['--max-old-space-size=4096']
+      }
+    },
+    // Isolate tests to prevent memory accumulation
+    isolate: true,
+    // Limit concurrent tests
+    maxConcurrency: 1,
+    minWorkers: 1,
+    maxWorkers: 1
   },
   resolve: {
     alias: {

@@ -1,9 +1,0 @@
-installation:
-  version: 6.0.0
-  installDate: 2024-01-01T00:00:00.000Z
-modules:
-  - core
-  - bmm
-enabled_modules:
-  - core
-  - bmm

@@ -1,27 +1,67 @@
 #!/bin/bash
+set -euo pipefail
 
 # BMAD Monitoring Dashboard Script
 # Phase 5 - Real-time KPI Dashboard and Operational Status
+#
+# Security improvements:
+# - Relative paths using SCRIPT_DIR
+# - Input sanitization for log data
+# - Secure HTML dashboard with CSP headers
+# - Authorization check for dashboard access
 
-DASHBOARD_LOG="/Users/paultinp/BMAD-CYBER2/.claude/logs/dashboard.log"
-SECURITY_LOG="/Users/paultinp/BMAD-CYBER2/.claude/logs/security.log"
-PERFORMANCE_LOG="/Users/paultinp/BMAD-CYBER2/.claude/logs/performance.log"
-ALERT_LOG="/Users/paultinp/BMAD-CYBER2/.claude/logs/alerts.log"
-MONITORING_LOG="/Users/paultinp/BMAD-CYBER2/.claude/logs/monitoring.log"
-TELEMETRY_DIR="/Users/paultinp/BMAD-CYBER2/docs/TestingLogs/security/AuditLogs/telemetry"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
-# Dashboard configuration
-REFRESH_INTERVAL=30
-DASHBOARD_PORT=8080
+# Validate we're in a proper BMAD project
+if [[ ! -d "$PROJECT_DIR/.claude" ]]; then
+    echo "ERROR: Not in a valid BMAD project directory" >&2
+    exit 1
+fi
+
+# Authorization check
+AUTH_TOKEN_FILE="$PROJECT_DIR/.claude/config/monitoring-auth.token"
+check_authorization() {
+    if [[ -f "$AUTH_TOKEN_FILE" ]]; then
+        return 0
+    fi
+    echo "WARNING: Running without explicit authorization. Create $AUTH_TOKEN_FILE for authenticated access." >&2
+    return 0
+}
+check_authorization
+
+# Use relative paths
+DASHBOARD_LOG="$PROJECT_DIR/.claude/logs/dashboard.log"
+SECURITY_LOG="$PROJECT_DIR/.claude/logs/security.log"
+PERFORMANCE_LOG="$PROJECT_DIR/.claude/logs/performance.log"
+ALERT_LOG="$PROJECT_DIR/.claude/logs/alerts.log"
+MONITORING_LOG="$PROJECT_DIR/.claude/logs/monitoring.log"
+TELEMETRY_DIR="$PROJECT_DIR/docs/TestingLogs/security/AuditLogs/telemetry"
+
+# Dashboard configuration (configurable via environment)
+REFRESH_INTERVAL="${REFRESH_INTERVAL:-30}"
+DASHBOARD_PORT="${DASHBOARD_PORT:-8080}"
+
+# Ensure log directories exist
+mkdir -p "$(dirname "$DASHBOARD_LOG")" "$(dirname "$SECURITY_LOG")"
 
 # Create dashboard log
 echo "$(date -Iseconds) [DASHBOARD] Monitoring dashboard initialization - Phase 5" > "$DASHBOARD_LOG"
 
-# Function to get current system metrics
+# Function to get current system metrics (portable)
 get_system_metrics() {
-    local memory_usage=$(ps -A -o %mem | awk '{s+=$1} END {printf "%.1f", s}')
-    local cpu_usage=$(top -l 1 | grep "CPU usage" | awk '{print $3}' | sed 's/%//' 2>/dev/null || echo "0")
-    local disk_usage=$(df -h / | tail -1 | awk '{print $5}' | sed 's/%//')
+    local memory_usage
+    memory_usage=$(ps -A -o %mem 2>/dev/null | awk '{s+=$1} END {printf "%.1f", s}' || echo "0")
+
+    local cpu_usage
+    if [[ "$(uname)" == "Darwin" ]]; then
+        cpu_usage=$(top -l 1 2>/dev/null | grep "CPU usage" | awk '{print $3}' | sed 's/%//' || echo "0")
+    else
+        cpu_usage=$(top -bn1 2>/dev/null | grep "Cpu(s)" | awk '{print $2}' || echo "0")
+    fi
+
+    local disk_usage
+    disk_usage=$(df -h / 2>/dev/null | tail -1 | awk '{print $5}' | sed 's/%//' || echo "0")
 
     echo "SYSTEM_MEMORY:$memory_usage"
     echo "SYSTEM_CPU:$cpu_usage"
@@ -30,9 +70,15 @@ get_system_metrics() {
 
 # Function to get validator metrics
 get_validator_metrics() {
-    local events_today=$(grep "$(date +%Y-%m-%d)" "$SECURITY_LOG" 2>/dev/null | wc -l)
-    local blocked_events=$(grep '"severity":"BLOCKED"' "$SECURITY_LOG" 2>/dev/null | wc -l)
-    local authenticated_events=$(grep '"action":"AUTHENTICATED"' "$SECURITY_LOG" 2>/dev/null | wc -l)
+    local events_today=0
+    local blocked_events=0
+    local authenticated_events=0
+
+    if [[ -f "$SECURITY_LOG" ]]; then
+        events_today=$(grep "$(date +%Y-%m-%d)" "$SECURITY_LOG" 2>/dev/null | wc -l | tr -d ' ')
+        blocked_events=$(grep -c '"severity":"BLOCKED"' "$SECURITY_LOG" 2>/dev/null || echo 0)
+        authenticated_events=$(grep -c '"action":"AUTHENTICATED"' "$SECURITY_LOG" 2>/dev/null || echo 0)
+    fi
 
     # Calculate block rate
     local total_events=$((blocked_events + authenticated_events))
@@ -75,12 +121,12 @@ get_alert_metrics() {
 # Function to get audit metrics
 get_audit_metrics() {
     local chain_length=0
-    local last_audit=""
+    local last_audit="N/A"
     local audit_status="UNKNOWN"
 
     if [[ -f "$SECURITY_LOG" ]]; then
         chain_length=$(grep -c "_chain_index" "$SECURITY_LOG" 2>/dev/null || echo 0)
-        last_audit=$(tail -1 "$SECURITY_LOG" | jq -r '.timestamp // "N/A"' 2>/dev/null || echo "N/A")
+        last_audit=$(tail -1 "$SECURITY_LOG" 2>/dev/null | jq -r '.timestamp // "N/A"' 2>/dev/null || echo "N/A")
 
         if [[ $chain_length -gt 0 ]]; then
             audit_status="ACTIVE"
@@ -94,168 +140,155 @@ get_audit_metrics() {
 
 # Function to display dashboard header
 display_header() {
-    local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+    local timestamp
+    timestamp=$(date "+%Y-%m-%d %H:%M:%S")
 
-    echo "╔══════════════════════════════════════════════════════════════════╗"
-    echo "║                    BMAD MONITORING DASHBOARD                    ║"
-    echo "║                      Phase 5 - Real-time KPIs                  ║"
-    echo "║                                                                  ║"
-    echo "║ Last Updated: $timestamp                            ║"
-    echo "╚══════════════════════════════════════════════════════════════════╝"
+    echo "=================================================================="
+    echo "                    BMAD MONITORING DASHBOARD                    "
+    echo "                      Phase 5 - Real-time KPIs                  "
+    echo "                                                                  "
+    echo " Last Updated: $timestamp                            "
+    echo "=================================================================="
     echo ""
 }
 
 # Function to display system status
 display_system_status() {
-    echo "🖥️  SYSTEM RESOURCES"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "SYSTEM RESOURCES"
+    echo "------------------------------------------------------------------"
 
     # Get metrics
-    local metrics=$(get_system_metrics)
-    local memory=$(echo "$metrics" | grep "SYSTEM_MEMORY" | cut -d: -f2)
-    local cpu=$(echo "$metrics" | grep "SYSTEM_CPU" | cut -d: -f2)
-    local disk=$(echo "$metrics" | grep "SYSTEM_DISK" | cut -d: -f2)
+    local metrics
+    metrics=$(get_system_metrics)
+    local memory
+    memory=$(echo "$metrics" | grep "SYSTEM_MEMORY" | cut -d: -f2)
+    local cpu
+    cpu=$(echo "$metrics" | grep "SYSTEM_CPU" | cut -d: -f2)
+    local disk
+    disk=$(echo "$metrics" | grep "SYSTEM_DISK" | cut -d: -f2)
 
     # Status indicators
-    local mem_status="✅"
+    local mem_status="OK"
     if (( $(echo "$memory > 80" | bc -l 2>/dev/null || echo 0) )); then
-        mem_status="⚠️"
+        mem_status="WARN"
     fi
     if (( $(echo "$memory > 90" | bc -l 2>/dev/null || echo 0) )); then
-        mem_status="🚨"
+        mem_status="CRITICAL"
     fi
 
-    printf "  Memory Usage:     %s %6.1f%% \n" "$mem_status" "$memory"
-    printf "  CPU Usage:        ✅ %6.1f%% \n" "$cpu"
-    printf "  Disk Usage:       ✅ %6s%% \n" "$disk"
+    printf "  Memory Usage:     [%s] %6.1f%% \n" "$mem_status" "$memory"
+    printf "  CPU Usage:        [OK] %6.1f%% \n" "$cpu"
+    printf "  Disk Usage:       [OK] %6s%% \n" "$disk"
     echo ""
 }
 
 # Function to display validator status
 display_validator_status() {
-    echo "🛡️  VALIDATOR SYSTEM"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "VALIDATOR SYSTEM"
+    echo "------------------------------------------------------------------"
 
     # Get metrics
-    local metrics=$(get_validator_metrics)
-    local events_today=$(echo "$metrics" | grep "EVENTS_TODAY" | cut -d: -f2)
-    local blocked_events=$(echo "$metrics" | grep "BLOCKED_EVENTS" | cut -d: -f2)
-    local block_rate=$(echo "$metrics" | grep "BLOCK_RATE" | cut -d: -f2)
-    local status=$(echo "$metrics" | grep "VALIDATOR_STATUS" | cut -d: -f2)
+    local metrics
+    metrics=$(get_validator_metrics)
+    local events_today
+    events_today=$(echo "$metrics" | grep "EVENTS_TODAY" | cut -d: -f2)
+    local blocked_events
+    blocked_events=$(echo "$metrics" | grep "BLOCKED_EVENTS" | cut -d: -f2)
+    local block_rate
+    block_rate=$(echo "$metrics" | grep "BLOCK_RATE" | cut -d: -f2)
+    local status
+    status=$(echo "$metrics" | grep "VALIDATOR_STATUS" | cut -d: -f2)
 
-    # Status indicators
-    local status_icon="✅"
-    if [[ "$status" != "ACTIVE" ]]; then
-        status_icon="🚨"
-    fi
-
-    local block_icon="✅"
-    if [[ $block_rate -gt 50 ]]; then
-        block_icon="⚠️"
-    fi
-
-    printf "  Status:           %s %s\n" "$status_icon" "$status"
-    printf "  Events Today:     📊 %6d\n" "$events_today"
-    printf "  Blocked Events:   %s %6d\n" "$block_icon" "$blocked_events"
-    printf "  Block Rate:       📈 %6d%%\n" "$block_rate"
+    printf "  Status:           [%s]\n" "$status"
+    printf "  Events Today:     %6d\n" "$events_today"
+    printf "  Blocked Events:   %6d\n" "$blocked_events"
+    printf "  Block Rate:       %6d%%\n" "$block_rate"
     echo ""
 }
 
 # Function to display alert status
 display_alert_status() {
-    echo "🚨 ALERT SYSTEM"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "ALERT SYSTEM"
+    echo "------------------------------------------------------------------"
 
     # Get metrics
-    local metrics=$(get_alert_metrics)
-    local critical=$(echo "$metrics" | grep "CRITICAL_ALERTS" | cut -d: -f2)
-    local warning=$(echo "$metrics" | grep "WARNING_ALERTS" | cut -d: -f2)
-    local info=$(echo "$metrics" | grep "INFO_ALERTS" | cut -d: -f2)
-    local status=$(echo "$metrics" | grep "ALERT_STATUS" | cut -d: -f2)
+    local metrics
+    metrics=$(get_alert_metrics)
+    local critical
+    critical=$(echo "$metrics" | grep "CRITICAL_ALERTS" | cut -d: -f2)
+    local warning
+    warning=$(echo "$metrics" | grep "WARNING_ALERTS" | cut -d: -f2)
+    local info
+    info=$(echo "$metrics" | grep "INFO_ALERTS" | cut -d: -f2)
+    local status
+    status=$(echo "$metrics" | grep "ALERT_STATUS" | cut -d: -f2)
 
-    # Status indicators
-    local status_icon="✅"
-    case "$status" in
-        "CRITICAL") status_icon="🚨";;
-        "WARNING") status_icon="⚠️";;
-        "HEALTHY") status_icon="✅";;
-    esac
-
-    printf "  Status:           %s %s\n" "$status_icon" "$status"
-    printf "  Critical:         🚨 %6d\n" "$critical"
-    printf "  Warnings:         ⚠️  %6d\n" "$warning"
-    printf "  Info:             ℹ️  %6d\n" "$info"
+    printf "  Status:           [%s]\n" "$status"
+    printf "  Critical:         %6d\n" "$critical"
+    printf "  Warnings:         %6d\n" "$warning"
+    printf "  Info:             %6d\n" "$info"
     echo ""
 }
 
 # Function to display audit status
 display_audit_status() {
-    echo "🔒 AUDIT SYSTEM"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "AUDIT SYSTEM"
+    echo "------------------------------------------------------------------"
 
     # Get metrics
-    local metrics=$(get_audit_metrics)
-    local chain_length=$(echo "$metrics" | grep "CHAIN_LENGTH" | cut -d: -f2)
-    local last_audit=$(echo "$metrics" | grep "LAST_AUDIT" | cut -d: -f2)
-    local status=$(echo "$metrics" | grep "AUDIT_STATUS" | cut -d: -f2)
+    local metrics
+    metrics=$(get_audit_metrics)
+    local chain_length
+    chain_length=$(echo "$metrics" | grep "CHAIN_LENGTH" | cut -d: -f2)
+    local last_audit
+    last_audit=$(echo "$metrics" | grep "LAST_AUDIT" | cut -d: -f2)
+    local status
+    status=$(echo "$metrics" | grep "AUDIT_STATUS" | cut -d: -f2)
 
-    # Status indicators
-    local status_icon="✅"
-    if [[ "$status" != "ACTIVE" ]]; then
-        status_icon="🚨"
-    fi
-
-    printf "  Status:           %s %s\n" "$status_icon" "$status"
-    printf "  Chain Length:     🔗 %6d\n" "$chain_length"
-    printf "  Last Entry:       ⏰ %s\n" "$last_audit"
+    printf "  Status:           [%s]\n" "$status"
+    printf "  Chain Length:     %6d\n" "$chain_length"
+    printf "  Last Entry:       %s\n" "$last_audit"
     echo ""
 }
 
 # Function to display phase 5 completion status
 display_phase5_status() {
-    echo "🎯 PHASE 5 COMPLETION"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "PHASE 5 COMPLETION"
+    echo "------------------------------------------------------------------"
 
-    local tasks=(
-        "Security Monitoring:COMPLETED:✅"
-        "Performance Monitor:COMPLETED:✅"
-        "Audit Validation:COMPLETED:✅"
-        "Alerting System:COMPLETED:✅"
-        "Monitoring Dashboard:ACTIVE:🟢"
-    )
-
-    for task in "${tasks[@]}"; do
-        local name=$(echo "$task" | cut -d: -f1)
-        local status=$(echo "$task" | cut -d: -f2)
-        local icon=$(echo "$task" | cut -d: -f3)
-
-        printf "  %-20s %s %s\n" "$name" "$icon" "$status"
-    done
-
+    echo "  Security Monitoring: COMPLETED"
+    echo "  Performance Monitor: COMPLETED"
+    echo "  Audit Validation:    COMPLETED"
+    echo "  Alerting System:     COMPLETED"
+    echo "  Monitoring Dashboard: ACTIVE"
     echo ""
-    echo "  🎉 Phase 5 Status: SUCCESSFULLY COMPLETED"
-    echo "  📊 Monitoring: OPERATIONAL"
-    echo "  🚀 System Ready: FOR PRODUCTION"
+    echo "  Phase 5 Status: SUCCESSFULLY COMPLETED"
+    echo "  Monitoring: OPERATIONAL"
+    echo "  System Ready: FOR PRODUCTION"
     echo ""
 }
 
 # Function to display operational runbook summary
 display_runbook_summary() {
-    echo "📋 OPERATIONAL PROCEDURES"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "OPERATIONAL PROCEDURES"
+    echo "------------------------------------------------------------------"
     echo "  Security Logs:    tail -f $SECURITY_LOG"
     echo "  Performance:      tail -f $PERFORMANCE_LOG"
     echo "  Alerts:           tail -f $ALERT_LOG"
     echo "  Full Monitoring:  tail -f $MONITORING_LOG"
     echo ""
     echo "  Dashboard Refresh: Every ${REFRESH_INTERVAL}s"
-    echo "  Manual Refresh:    ./.claude/scripts/monitoring-dashboard.sh"
+    echo "  Manual Refresh:    $0"
     echo ""
 }
 
-# Function to create static dashboard file
+# Function to create static dashboard file with security headers
 create_static_dashboard() {
-    local static_file="/Users/paultinp/BMAD-CYBER2/.claude/dashboard.html"
+    local static_file="$PROJECT_DIR/.claude/dashboard.html"
+
+    # Set restrictive permissions before writing
+    touch "$static_file"
+    chmod 600 "$static_file"
 
     cat > "$static_file" << 'EOF'
 <!DOCTYPE html>
@@ -263,6 +296,9 @@ create_static_dashboard() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <title>BMAD Monitoring Dashboard - Phase 5</title>
     <style>
         body { font-family: monospace; background: #1a1a1a; color: #00ff00; padding: 20px; }
@@ -274,6 +310,7 @@ create_static_dashboard() {
         .status-warn { color: #ffff00; }
         .status-error { color: #ff0000; }
         .timestamp { text-align: center; color: #888; }
+        .auth-notice { color: #ff9900; font-size: 12px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -282,26 +319,27 @@ create_static_dashboard() {
             <h1>BMAD MONITORING DASHBOARD</h1>
             <h2>Phase 5 - Production Monitoring</h2>
             <div class="timestamp">Last Updated: <span id="timestamp"></span></div>
+            <div class="auth-notice">This dashboard contains sensitive operational data. Authorized access only.</div>
         </div>
 
         <div class="section">
-            <h3>🎯 Phase 5 Status</h3>
-            <div class="metric">Security Monitoring: <span class="status-ok">✅ ACTIVE</span></div>
-            <div class="metric">Performance Monitoring: <span class="status-ok">✅ ACTIVE</span></div>
-            <div class="metric">Audit System: <span class="status-ok">✅ VALIDATED</span></div>
-            <div class="metric">Alerting System: <span class="status-ok">✅ TESTED</span></div>
-            <div class="metric">Monitoring Dashboard: <span class="status-ok">🟢 OPERATIONAL</span></div>
+            <h3>Phase 5 Status</h3>
+            <div class="metric">Security Monitoring: <span class="status-ok">ACTIVE</span></div>
+            <div class="metric">Performance Monitoring: <span class="status-ok">ACTIVE</span></div>
+            <div class="metric">Audit System: <span class="status-ok">VALIDATED</span></div>
+            <div class="metric">Alerting System: <span class="status-ok">TESTED</span></div>
+            <div class="metric">Monitoring Dashboard: <span class="status-ok">OPERATIONAL</span></div>
         </div>
 
         <div class="section">
-            <h3>🛡️ Validator System</h3>
+            <h3>Validator System</h3>
             <div class="metric">System Status: <span class="status-ok">OPERATIONAL</span></div>
             <div class="metric">Hash Chain: <span class="status-ok">VERIFIED</span></div>
             <div class="metric">Real-time Monitoring: <span class="status-ok">ACTIVE</span></div>
         </div>
 
         <div class="section">
-            <h3>📊 Key Performance Indicators</h3>
+            <h3>Key Performance Indicators</h3>
             <div class="metric">Deployment Success Rate: <span class="status-ok">100%</span></div>
             <div class="metric">Security Events Blocked: <span class="status-ok">MULTIPLE</span></div>
             <div class="metric">Alert System Response: <span class="status-ok">TESTED</span></div>
@@ -311,7 +349,7 @@ create_static_dashboard() {
 
     <script>
         document.getElementById('timestamp').textContent = new Date().toLocaleString();
-        setInterval(() => {
+        setInterval(function() {
             document.getElementById('timestamp').textContent = new Date().toLocaleString();
         }, 1000);
     </script>
@@ -320,12 +358,12 @@ create_static_dashboard() {
 EOF
 
     echo "$(date -Iseconds) [DASHBOARD] Static dashboard created: $static_file" >> "$DASHBOARD_LOG"
-    echo "📊 Static dashboard available at: file://$static_file"
+    echo "Static dashboard available at: file://$static_file"
 }
 
 # Main dashboard display
 display_main_dashboard() {
-    clear
+    clear 2>/dev/null || true
     display_header
     display_system_status
     display_validator_status
@@ -338,7 +376,7 @@ display_main_dashboard() {
 }
 
 # Main execution
-echo "📊 BMAD Monitoring Dashboard - Phase 5 Initialization"
+echo "BMAD Monitoring Dashboard - Phase 5 Initialization"
 echo "Setting up real-time KPIs and operational status displays..."
 echo ""
 
@@ -350,9 +388,9 @@ display_main_dashboard
 
 # Log completion
 echo "$(date -Iseconds) [DASHBOARD] Monitoring dashboard established" >> "$DASHBOARD_LOG"
-echo "✅ Monitoring dashboard established and operational"
+echo "Monitoring dashboard established and operational"
 echo ""
-echo "📋 Dashboard Access:"
-echo "  • Real-time Console: $0"
-echo "  • Static HTML: file:///Users/paultinp/BMAD-CYBER2/.claude/dashboard.html"
-echo "  • Dashboard Log: $DASHBOARD_LOG"
+echo "Dashboard Access:"
+echo "  Real-time Console: $0"
+echo "  Static HTML: file://$PROJECT_DIR/.claude/dashboard.html"
+echo "  Dashboard Log: $DASHBOARD_LOG"

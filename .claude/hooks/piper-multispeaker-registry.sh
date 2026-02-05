@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 #
 # File: .claude/hooks/piper-multispeaker-registry.sh
 #

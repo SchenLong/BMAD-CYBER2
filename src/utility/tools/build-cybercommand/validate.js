@@ -14,6 +14,21 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * Reproducible timestamp utility (VAL-09-005-003)
+ * Uses SOURCE_DATE_EPOCH if set for reproducible validation reports
+ */
+const getReproducibleTimestamp = () => {
+  const sourceEpoch = process.env.SOURCE_DATE_EPOCH;
+  if (sourceEpoch) {
+    const epochSeconds = parseInt(sourceEpoch, 10);
+    if (!isNaN(epochSeconds)) {
+      return new Date(epochSeconds * 1000).toISOString();
+    }
+  }
+  return new Date().toISOString();
+};
+
 class MultiModuleValidator {
   constructor() {
     this.packageRoot = path.dirname(__dirname);
@@ -369,7 +384,7 @@ class MultiModuleValidator {
     // Save detailed report
     const reportPath = path.join(this.packageRoot, 'validation-report.json');
     fs.writeFileSync(reportPath, JSON.stringify({
-      timestamp: new Date().toISOString(),
+      timestamp: getReproducibleTimestamp(),
       summary: {
         passed: this.validationResults.passed,
         warnings: this.validationResults.warnings,

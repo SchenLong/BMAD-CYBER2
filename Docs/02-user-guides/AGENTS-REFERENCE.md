@@ -47,17 +47,17 @@ The Intelligence Team provides comprehensive OSINT, HUMINT, SIGINT, and technica
 
 | Agent | Codename | Title | Description |
 |-------|----------|-------|-------------|
-| [osint-lead.md](../../../src/intel-team/agents/osint-lead.md) | Vector | Intelligence Operations Director | Expert in all-source fusion and multi-INT coordination, leads intelligence operations |
-| [domain-intel-specialist.md](../../../src/intel-team/agents/domain-intel-specialist.md) | Resolver | Network & Domain Intelligence Specialist | Expert in infrastructure reconnaissance and DNS archaeology |
-| [threat-actor-profiler.md](../../../src/intel-team/agents/threat-actor-profiler.md) | Dossier | Threat Actor Profiler | Expert in adversary attribution and MITRE ATT&CK framework mapping |
-| [corporate-intel-specialist.md](../../../src/intel-team/agents/corporate-intel-specialist.md) | Proxy | Corporate Intelligence Specialist | Expert in business registries, financial records, and entity verification |
-| [social-media-analyst.md](../../../src/intel-team/agents/social-media-analyst.md) | Echo | Social Media Intelligence Analyst | Expert in SOCMINT collection and influence operation detection |
-| [sigint-specialist.md](../../../src/intel-team/agents/sigint-specialist.md) | Sigil | Signals Intelligence Specialist | Expert in RF analysis and communications pattern exploitation |
-| [technical-researcher.md](../../../src/intel-team/agents/technical-researcher.md) | Probe | Technical Intelligence Researcher | Expert in technology fingerprinting and API reconnaissance |
-| [humint-specialist.md](../../../src/intel-team/agents/humint-specialist.md) | Viper | Human Intelligence Specialist | Expert in elicitation techniques and source recruitment |
-| [dark-web-analyst.md](../../../src/intel-team/agents/dark-web-analyst.md) | Shadow | Dark Web Intelligence Analyst | Expert in underground operations and cryptocurrency tracing |
-| [field-operative.md](../../../src/intel-team/agents/field-operative.md) | Specter | Field Operations Specialist | Expert in surveillance, counter-surveillance, and tactical intelligence collection |
-| [geospatial-analyst.md](../../../src/intel-team/agents/geospatial-analyst.md) | Atlas | Geospatial Intelligence Analyst | Expert in imagery analysis and geolocation |
+| [osint-lead.md](../../src/intel-team/agents/osint-lead.md) | Vector | Intelligence Operations Director | Expert in all-source fusion and multi-INT coordination, leads intelligence operations |
+| [domain-intel-specialist.md](../../src/intel-team/agents/domain-intel-specialist.md) | Resolver | Network & Domain Intelligence Specialist | Expert in infrastructure reconnaissance and DNS archaeology |
+| [threat-actor-profiler.md](../../src/intel-team/agents/threat-actor-profiler.md) | Dossier | Threat Actor Profiler | Expert in adversary attribution and MITRE ATT&CK framework mapping |
+| [corporate-intel-specialist.md](../../src/intel-team/agents/corporate-intel-specialist.md) | Proxy | Corporate Intelligence Specialist | Expert in business registries, financial records, and entity verification |
+| [social-media-analyst.md](../../src/intel-team/agents/social-media-analyst.md) | Echo | Social Media Intelligence Analyst | Expert in SOCMINT collection and influence operation detection |
+| [sigint-specialist.md](../../src/intel-team/agents/sigint-specialist.md) | Sigil | Signals Intelligence Specialist | Expert in RF analysis and communications pattern exploitation |
+| [technical-researcher.md](../../src/intel-team/agents/technical-researcher.md) | Probe | Technical Intelligence Researcher | Expert in technology fingerprinting and API reconnaissance |
+| [humint-specialist.md](../../src/intel-team/agents/humint-specialist.md) | Viper | Human Intelligence Specialist | Expert in elicitation techniques and source recruitment |
+| [dark-web-analyst.md](../../src/intel-team/agents/dark-web-analyst.md) | Shadow | Dark Web Intelligence Analyst | Expert in underground operations and cryptocurrency tracing |
+| [field-operative.md](../../src/intel-team/agents/field-operative.md) | Specter | Field Operations Specialist | Expert in surveillance, counter-surveillance, and tactical intelligence collection |
+| [geospatial-analyst.md](../../src/intel-team/agents/geospatial-analyst.md) | Atlas | Geospatial Intelligence Analyst | Expert in imagery analysis and geolocation |
 
 ### Intel Team Specializations
 
@@ -79,19 +79,19 @@ The Legal Team provides comprehensive multi-jurisdictional legal counsel spannin
 
 | Agent | Codename | Title | Description |
 |-------|----------|-------|-------------|
-| [counsel.md](../../../src/legal-team/agents/counsel.md) | Counsel | General Counsel - Legal Team Director | Case intake, jurisdiction routing, and team coordination |
-| [liberty.md](../../../src/legal-team/agents/liberty.md) | Liberty | US Counsel | American Corporate and Civil Law Specialist for federal and state jurisdictions |
-| [europa.md](../../../src/legal-team/agents/europa.md) | Europa | EU Counsel | European Union Law Specialist and Cross-Border Coordinator |
-| [castile.md](../../../src/legal-team/agents/castile.md) | Castile | Spain Corporate Counsel | Spanish Business Law Specialist for corporate, commercial, and M&A matters |
-| [iberia.md](../../../src/legal-team/agents/iberia.md) | Iberia | Spain Civil Law Counsel | Spanish Civil Code Specialist for family, property, inheritance, and personal matters |
-| [gremio.md](../../../src/legal-team/agents/gremio.md) | Gremio | Spain Labor Law Counsel | Spanish Employment and Labor Law Specialist |
-| [baltic.md](../../../src/legal-team/agents/baltic.md) | Baltic | Estonia Corporate Counsel | Estonian e-Residency and Digital Business Specialist |
-| [tribute.md](../../../src/legal-team/agents/tribute.md) | Tribute | Tax Counsel | Cross-Jurisdictional Tax Specialist for US, EU, Spain, and Estonia tax planning |
-| [covenant.md](../../../src/legal-team/agents/covenant.md) | Covenant | Contract Specialist | Cross-Jurisdictional Contract Expert for drafting, review, and negotiation |
-| [charter.md](../../../src/legal-team/agents/charter.md) | Charter | Corporate Governance Counsel | Board Matters, Fiduciary Duties, and Corporate Compliance Specialist |
-| [insignia.md](../../../src/legal-team/agents/insignia.md) | Insignia | IP Counsel | Intellectual Property Specialist for Trademarks, Patents, Copyrights, and Licensing |
-| [deed.md](../../../src/legal-team/agents/deed.md) | Deed | Real Estate Counsel | Property Transactions, Leases, and Real Property Law Specialist |
-| [advocate.md](../../../src/legal-team/agents/advocate.md) | Advocate | Litigation Strategist | Civil Dispute Resolution Expert for pre-litigation and settlement strategy |
+| [counsel.md](../../src/legal-team/agents/counsel.md) | Counsel | General Counsel - Legal Team Director | Case intake, jurisdiction routing, and team coordination |
+| [liberty.md](../../src/legal-team/agents/liberty.md) | Liberty | US Counsel | American Corporate and Civil Law Specialist for federal and state jurisdictions |
+| [europa.md](../../src/legal-team/agents/europa.md) | Europa | EU Counsel | European Union Law Specialist and Cross-Border Coordinator |
+| [castile.md](../../src/legal-team/agents/castile.md) | Castile | Spain Corporate Counsel | Spanish Business Law Specialist for corporate, commercial, and M&A matters |
+| [iberia.md](../../src/legal-team/agents/iberia.md) | Iberia | Spain Civil Law Counsel | Spanish Civil Code Specialist for family, property, inheritance, and personal matters |
+| [gremio.md](../../src/legal-team/agents/gremio.md) | Gremio | Spain Labor Law Counsel | Spanish Employment and Labor Law Specialist |
+| [baltic.md](../../src/legal-team/agents/baltic.md) | Baltic | Estonia Corporate Counsel | Estonian e-Residency and Digital Business Specialist |
+| [tribute.md](../../src/legal-team/agents/tribute.md) | Tribute | Tax Counsel | Cross-Jurisdictional Tax Specialist for US, EU, Spain, and Estonia tax planning |
+| [covenant.md](../../src/legal-team/agents/covenant.md) | Covenant | Contract Specialist | Cross-Jurisdictional Contract Expert for drafting, review, and negotiation |
+| [charter.md](../../src/legal-team/agents/charter.md) | Charter | Corporate Governance Counsel | Board Matters, Fiduciary Duties, and Corporate Compliance Specialist |
+| [insignia.md](../../src/legal-team/agents/insignia.md) | Insignia | IP Counsel | Intellectual Property Specialist for Trademarks, Patents, Copyrights, and Licensing |
+| [deed.md](../../src/legal-team/agents/deed.md) | Deed | Real Estate Counsel | Property Transactions, Leases, and Real Property Law Specialist |
+| [advocate.md](../../src/legal-team/agents/advocate.md) | Advocate | Litigation Strategist | Civil Dispute Resolution Expert for pre-litigation and settlement strategy |
 
 ### Legal Team Jurisdictions
 
@@ -122,20 +122,20 @@ The Strategy Team provides strategic counsel through diverse philosophical persp
 
 | Agent | Codename | Title | Description |
 |-------|----------|-------|-------------|
-| [the-master-strategist.md](../../../src/strategy-team/agents/the-master-strategist.md) | Sun | Supreme Strategist | Channeling Sun Tzu - ancient wisdom on winning without fighting through superior positioning |
-| [the-realist.md](../../../src/strategy-team/agents/the-realist.md) | Niccolo | Master of Realpolitik | Channeling Machiavelli and Bismarck - sees power as it is, not as we wish |
-| [the-conservative.md](../../../src/strategy-team/agents/the-conservative.md) | Burke | Guardian of Tradition | Channeling Burke and Metternich - values accumulated wisdom over abstract theory |
-| [the-revolutionary.md](../../../src/strategy-team/agents/the-revolutionary.md) | Maximilien | Agent of Change | Channeling Robespierre - believes corrupt systems must be swept away for transformation |
-| [the-technocrat.md](../../../src/strategy-team/agents/the-technocrat.md) | Lee | Builder of Systems | Channeling Lee Kuan Yew and Deng Xiaoping - pragmatic results over ideology |
-| [the-liberator.md](../../../src/strategy-team/agents/the-liberator.md) | Charles | Moral Transformer | Channeling Lincoln and de Gaulle - leaders who held nations through crisis by moral force |
-| [the-principled-commander.md](../../../src/strategy-team/agents/the-principled-commander.md) | Jean-Luc | Diplomat Captain | Channeling Jean-Luc Picard - principled leadership under impossible circumstances |
-| [the-strategist-warrior.md](../../../src/strategy-team/agents/the-strategist-warrior.md) | Musashi | Master of Timing | Channeling Miyamoto Musashi - undefeated ronin who transcended technique to understand the void |
-| [political-strategist.md](../../../src/strategy-team/agents/political-strategist.md) | Magnus | Campaign & Political Strategy | Expert in coalition building, stakeholder mapping, and strategic positioning |
-| [policy-analyst.md](../../../src/strategy-team/agents/policy-analyst.md) | Augustus | Evidence-Based Policy Expert | Specializing in quantitative analysis and structured decision frameworks |
-| [ethics-advisor.md](../../../src/strategy-team/agents/ethics-advisor.md) | Sophia | Political Ethics & Values Counsel | Specializing in ethical frameworks and moral philosophy |
-| [communications-director.md](../../../src/strategy-team/agents/communications-director.md) | Giuseppe | Public Messaging & Media Strategy | Expert in narrative control and crisis communications |
-| [stakeholder-mediator.md](../../../src/strategy-team/agents/stakeholder-mediator.md) | Geneva | Negotiation & Consensus Builder | Specializing in multi-party mediation and conflict resolution |
-| [debate-coach.md](../../../src/strategy-team/agents/debate-coach.md) | Cicero | Argumentation & Rhetoric Master | Specializing in persuasion, logical structure, and debate preparation |
+| [the-master-strategist.md](../../src/strategy-team/agents/the-master-strategist.md) | Sun | Supreme Strategist | Channeling Sun Tzu - ancient wisdom on winning without fighting through superior positioning |
+| [the-realist.md](../../src/strategy-team/agents/the-realist.md) | Niccolo | Master of Realpolitik | Channeling Machiavelli and Bismarck - sees power as it is, not as we wish |
+| [the-conservative.md](../../src/strategy-team/agents/the-conservative.md) | Burke | Guardian of Tradition | Channeling Burke and Metternich - values accumulated wisdom over abstract theory |
+| [the-revolutionary.md](../../src/strategy-team/agents/the-revolutionary.md) | Maximilien | Agent of Change | Channeling Robespierre - believes corrupt systems must be swept away for transformation |
+| [the-technocrat.md](../../src/strategy-team/agents/the-technocrat.md) | Lee | Builder of Systems | Channeling Lee Kuan Yew and Deng Xiaoping - pragmatic results over ideology |
+| [the-liberator.md](../../src/strategy-team/agents/the-liberator.md) | Charles | Moral Transformer | Channeling Lincoln and de Gaulle - leaders who held nations through crisis by moral force |
+| [the-principled-commander.md](../../src/strategy-team/agents/the-principled-commander.md) | Jean-Luc | Diplomat Captain | Channeling Jean-Luc Picard - principled leadership under impossible circumstances |
+| [the-strategist-warrior.md](../../src/strategy-team/agents/the-strategist-warrior.md) | Musashi | Master of Timing | Channeling Miyamoto Musashi - undefeated ronin who transcended technique to understand the void |
+| [political-strategist.md](../../src/strategy-team/agents/political-strategist.md) | Magnus | Campaign & Political Strategy | Expert in coalition building, stakeholder mapping, and strategic positioning |
+| [policy-analyst.md](../../src/strategy-team/agents/policy-analyst.md) | Augustus | Evidence-Based Policy Expert | Specializing in quantitative analysis and structured decision frameworks |
+| [ethics-advisor.md](../../src/strategy-team/agents/ethics-advisor.md) | Sophia | Political Ethics & Values Counsel | Specializing in ethical frameworks and moral philosophy |
+| [communications-director.md](../../src/strategy-team/agents/communications-director.md) | Giuseppe | Public Messaging & Media Strategy | Expert in narrative control and crisis communications |
+| [stakeholder-mediator.md](../../src/strategy-team/agents/stakeholder-mediator.md) | Geneva | Negotiation & Consensus Builder | Specializing in multi-party mediation and conflict resolution |
+| [debate-coach.md](../../src/strategy-team/agents/debate-coach.md) | Cicero | Argumentation & Rhetoric Master | Specializing in persuasion, logical structure, and debate preparation |
 
 ### Strategic Archetypes
 
@@ -164,21 +164,21 @@ The Cybersecurity Team provides comprehensive security capabilities spanning off
 
 | Agent | Codename | Title | Description |
 |-------|----------|-------|-------------|
-| [security-architect.md](../../../src/cybersec-team/agents/security-architect.md) | Bastion | Defense & Infrastructure Design | Specializing in defense-in-depth design, zero-trust architecture, and threat modeling |
-| [threat-analyst.md](../../../src/cybersec-team/agents/threat-analyst.md) | Cipher | Threat Intelligence Specialist | Expert in adversary behavior analysis and MITRE ATT&CK framework |
-| [penetration-tester.md](../../../src/cybersec-team/agents/penetration-tester.md) | Spectre | Offensive Security Expert | Specializing in penetration testing and red team operations |
-| [incident-commander.md](../../../src/cybersec-team/agents/incident-commander.md) | Phoenix | Incident Response Lead | Specializing in crisis management and breach response coordination |
-| [blue-team-lead.md](../../../src/cybersec-team/agents/blue-team-lead.md) | Shield | Defensive Security Operations Leader | Expert in detection engineering, purple teaming, and SOC program management |
-| [soc-analyst.md](../../../src/cybersec-team/agents/soc-analyst.md) | Watchman | Security Operations Center Analyst | Expert in monitoring, alert triage, detection engineering, and SOC operations |
-| [forensic-investigator.md](../../../src/cybersec-team/agents/forensic-investigator.md) | Trace | Digital Forensics & Evidence Analyst | Expert in evidence analysis and chain of custody |
-| [compliance-guardian.md](../../../src/cybersec-team/agents/compliance-guardian.md) | Sentinel | Risk & Regulatory Compliance Expert | Specializing in GRC, audit, and control frameworks |
-| [cloud-security-specialist.md](../../../src/cybersec-team/agents/cloud-security-specialist.md) | Nimbus | Cloud Security Architect | Expert in AWS, Azure, GCP security, IAM, and cloud-native security architecture |
-| [web-app-security-expert.md](../../../src/cybersec-team/agents/web-app-security-expert.md) | Weaver | Web Application Security Specialist | Expert in OWASP Top 10, secure SDLC, and modern web framework security |
-| [api-security-expert.md](../../../src/cybersec-team/agents/api-security-expert.md) | Gateway | API & Integration Security Specialist | Expert in OAuth, REST/GraphQL security, and API gateway architecture |
-| [mobile-security-expert.md](../../../src/cybersec-team/agents/mobile-security-expert.md) | Phantom | Mobile Application Security Specialist | Expert in iOS/Android security, OWASP Mobile Top 10, and mobile app penetration testing |
-| [blockchain-security-expert.md](../../../src/cybersec-team/agents/blockchain-security-expert.md) | Ledger | Web3 & Smart Contract Security Specialist | Expert in DeFi security, smart contract auditing, and blockchain protocol analysis |
-| [llm-ai-security-expert.md](../../../src/cybersec-team/agents/llm-ai-security-expert.md) | Oracle | AI & Machine Learning Security Specialist | Expert in prompt injection, model security, and AI governance |
-| [social-engineer.md](../../../src/cybersec-team/agents/social-engineer.md) | Ghost | Social Engineering Specialist | Expert in human-factor security, phishing simulations, pretexting, and security awareness |
+| [security-architect.md](../../src/cybersec-team/agents/security-architect.md) | Bastion | Defense & Infrastructure Design | Specializing in defense-in-depth design, zero-trust architecture, and threat modeling |
+| [threat-analyst.md](../../src/cybersec-team/agents/threat-analyst.md) | Cipher | Threat Intelligence Specialist | Expert in adversary behavior analysis and MITRE ATT&CK framework |
+| [penetration-tester.md](../../src/cybersec-team/agents/penetration-tester.md) | Spectre | Offensive Security Expert | Specializing in penetration testing and red team operations |
+| [incident-commander.md](../../src/cybersec-team/agents/incident-commander.md) | Phoenix | Incident Response Lead | Specializing in crisis management and breach response coordination |
+| [blue-team-lead.md](../../src/cybersec-team/agents/blue-team-lead.md) | Shield | Defensive Security Operations Leader | Expert in detection engineering, purple teaming, and SOC program management |
+| [soc-analyst.md](../../src/cybersec-team/agents/soc-analyst.md) | Watchman | Security Operations Center Analyst | Expert in monitoring, alert triage, detection engineering, and SOC operations |
+| [forensic-investigator.md](../../src/cybersec-team/agents/forensic-investigator.md) | Trace | Digital Forensics & Evidence Analyst | Expert in evidence analysis and chain of custody |
+| [compliance-guardian.md](../../src/cybersec-team/agents/compliance-guardian.md) | Sentinel | Risk & Regulatory Compliance Expert | Specializing in GRC, audit, and control frameworks |
+| [cloud-security-specialist.md](../../src/cybersec-team/agents/cloud-security-specialist.md) | Nimbus | Cloud Security Architect | Expert in AWS, Azure, GCP security, IAM, and cloud-native security architecture |
+| [web-app-security-expert.md](../../src/cybersec-team/agents/web-app-security-expert.md) | Weaver | Web Application Security Specialist | Expert in OWASP Top 10, secure SDLC, and modern web framework security |
+| [api-security-expert.md](../../src/cybersec-team/agents/api-security-expert.md) | Gateway | API & Integration Security Specialist | Expert in OAuth, REST/GraphQL security, and API gateway architecture |
+| [mobile-security-expert.md](../../src/cybersec-team/agents/mobile-security-expert.md) | Phantom | Mobile Application Security Specialist | Expert in iOS/Android security, OWASP Mobile Top 10, and mobile app penetration testing |
+| [blockchain-security-expert.md](../../src/cybersec-team/agents/blockchain-security-expert.md) | Ledger | Web3 & Smart Contract Security Specialist | Expert in DeFi security, smart contract auditing, and blockchain protocol analysis |
+| [llm-ai-security-expert.md](../../src/cybersec-team/agents/llm-ai-security-expert.md) | Oracle | AI & Machine Learning Security Specialist | Expert in prompt injection, model security, and AI governance |
+| [social-engineer.md](../../src/cybersec-team/agents/social-engineer.md) | Ghost | Social Engineering Specialist | Expert in human-factor security, phishing simulations, pretexting, and security awareness |
 
 ### Cybersec Team Capabilities
 

@@ -10,15 +10,18 @@ BMB provides a complete toolkit for extending BMad Method with disciplined, syst
 
 ## Documentation
 
-For complete documentation, architecture guides, and reference materials:
+### Workflow Documentation
 
-**[→ BMB Documentation](./docs/index.md)**
+- [Workflow Architecture](./docs/workflows/architecture.md) - Core architecture and design patterns
+- [Step File Rules](./docs/workflows/step-file-rules.md) - Step file structure and conventions
+- [CSV Data Standards](./docs/workflows/csv-data-file-standards.md) - Data file formatting
+- [Terms & Concepts](./docs/workflows/terms.md) - Terminology reference
 
-## Quick Links
+### Reference Examples
 
-- [Agent Creation Guide](./docs/agents/index.md) - Build custom agents
-- [Workflow Architecture](./docs/workflows/index.md) - Design workflows
-- [Reference Examples](./reference/) - Working examples and templates
+- [Reference Overview](./reference/readme.md) - Working examples and templates
+- [Simple Agent Example](./reference/agents/simple-examples/README.md) - Build custom agents
+- [Meal Prep Workflow](./reference/workflows/meal-prep-nutrition/workflow.md) - Complete workflow example
 
 ---
 

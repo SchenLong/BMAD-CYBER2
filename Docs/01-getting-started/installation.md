@@ -400,6 +400,6 @@ To completely remove BMAD-CYBER from your project:
 ## Related Documentation
 
 - [Quick Start Guide](./quick-start.md) - Get up and running quickly
-- [Troubleshooting](./troubleshooting.md) - Common issues and solutions
-- [Module Selection](../02-user-guides/module-selection.md) - Detailed module configuration
-- [Security Configuration](../06-reference/features/Security/README.md) - Security tier details
+- [Troubleshooting](../02-user-guides/TROUBLESHOOTING.md) - Common issues and solutions
+- [Module Selection](../02-user-guides/MODULES-OVERVIEW.md) - Detailed module configuration
+- [Security Configuration](../02-user-guides/SECURITY-OVERVIEW.md) - Security tier details

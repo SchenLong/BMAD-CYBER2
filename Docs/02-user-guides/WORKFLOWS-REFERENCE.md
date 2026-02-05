@@ -27,7 +27,7 @@ The BMAD system provides **55 specialized workflows** organized across four prof
 |------|-------|------------|
 | Intel Team | 19 | Open source intelligence, threat analysis, field operations |
 | Legal Team | 7 | Contract law, corporate formation, tax planning, disputes |
-| Strategy Team | 15 | Executive decision-making, leadership, negotiations |
+| Strategy Team | 16 | Executive decision-making, leadership, negotiations |
 | Cybersecurity Team | 13 | Security testing, compliance, incident response |
 
 ### Workflow Types
@@ -592,7 +592,7 @@ Cross-jurisdiction tax optimization for businesses and individuals with operatio
 
 ---
 
-## Strategy-Team Workflows (15)
+## Strategy-Team Workflows (16)
 
 **Module Path:** `src/strategy-team/workflows/`
 **Focus:** Executive decision-making, leadership development, negotiations, corporate governance, and strategic planning.

@@ -9,8 +9,8 @@
 [![Quality Score](https://img.shields.io/badge/quality-96.8%25-brightgreen.svg)](Docs/03-developer-docs/archive/legacy-documents/stories/STORY-6.5-PRODUCTION-CERTIFICATION-REPORT.md)
 [![Performance](https://img.shields.io/badge/startup-<1.5ms-brightgreen.svg)]()
 [![Teams](https://img.shields.io/badge/teams-4_specialized-teal.svg)]()
-[![Agents](https://img.shields.io/badge/agents-53_active-blue.svg)]()
-[![Workflows](https://img.shields.io/badge/workflows-55_production-blue.svg)]()
+[![Agents](https://img.shields.io/badge/agents-79_active-blue.svg)]()
+[![Workflows](https://img.shields.io/badge/workflows-135_production-blue.svg)]()
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-4_workflows-blue.svg)](.github/workflows/)
 [![Tests](https://img.shields.io/badge/tests-232_suites-blue.svg)]()
 
@@ -303,8 +303,8 @@ vim _bmad/core/config.yaml
 
 ### **Performance & Scale**
 - **Sub-millisecond Startup**: <1.5ms initialization for enterprise workloads
-- **53 Active Agents**: Specialist teams covering cybersecurity, intelligence, legal, strategy
-- **55 Production Workflows**: Battle-tested automations for real-world operations
+- **79 Active Agents**: Specialist teams covering cybersecurity, intelligence, legal, strategy, plus core, BMM, BMB, BMGD, and CIS modules
+- **135 Production Workflows**: Battle-tested automations for real-world operations
 - **Context Efficiency**: 8.75x token reduction with BMAD-CONCURA architecture
 - **232 Test Suites**: Comprehensive testing including performance benchmarks, compliance validation, and security audits
 

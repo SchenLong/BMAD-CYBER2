@@ -277,6 +277,6 @@ For explicit module targeting, use the fully qualified name:
 
 ## Related Documentation
 
-- [CLI Command Reference](/Docs/02-user-guides/CLI-COMMAND-REFERENCE.md) - Complete command reference
-- [Getting Started](/Docs/02-user-guides/GETTING-STARTED.md) - Initial setup guide
-- Module Setup Guides in `/Docs/02-user-guides/ModuleSetup/` - Module-specific configuration
+- [CLI Command Reference](./02-user-guides/CLI-COMMAND-REFERENCE.md) - Complete command reference
+- [Getting Started](./02-user-guides/GETTING-STARTED.md) - Initial setup guide
+- Module Setup Guides in `./02-user-guides/ModuleSetup/` - Module-specific configuration

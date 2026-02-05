@@ -36,6 +36,19 @@ try {
   HookSandbox = null;
 }
 
+// Import ArtifactSigner for external hook verification (VAL-10-003)
+let ArtifactSigner;
+try {
+  ArtifactSigner = require('../../../security/supply-chain/artifact-signer');
+} catch (e) {
+  // Fallback if module not yet available
+  ArtifactSigner = null;
+}
+
+// Import fs-extra for file operations
+const fs = require('fs-extra');
+const path = require('path');
+
 /**
  * Hook types and execution phases
  */
@@ -1011,11 +1024,255 @@ class HookManager extends EventEmitter {
     }
 
     /**
-     * Load external hooks
+     * Load external hooks with signature verification (VAL-10-003)
+     *
+     * External hooks must have a corresponding .sig file for signature verification.
+     * Only hooks that pass signature verification will be loaded and registered.
+     *
+     * Security Fixes:
+     * - BA-085-004: External hook code must be signed/verified
+     * - VAL-10-003: Integrate ArtifactSigner for external hook verification
+     *
+     * @returns {number} Number of successfully loaded hooks
      */
     async _loadExternalHooks() {
-        // Implementation would load hooks from external plugins
-        console.log('🔌 Loading external hooks...');
+        console.log('🔌 Loading external hooks with signature verification...');
+
+        const pluginDir = this.config.plugins.directory;
+        let loadedCount = 0;
+        let skippedCount = 0;
+        let failedCount = 0;
+
+        // Check if ArtifactSigner is available
+        if (!ArtifactSigner) {
+            console.error('❌ ArtifactSigner not available - cannot load external hooks securely');
+            this.emit('external-hooks.error', {
+                error: 'SIGNER_UNAVAILABLE',
+                message: 'ArtifactSigner module not available for hook verification'
+            });
+            return 0;
+        }
+
+        // Check if plugin directory exists
+        if (!await fs.pathExists(pluginDir)) {
+            console.log(`📁 External hooks directory does not exist: ${pluginDir}`);
+            return 0;
+        }
+
+        // Initialize ArtifactSigner for verification
+        const signer = new ArtifactSigner({
+            strictVerification: true
+        });
+
+        try {
+            // Initialize signer with trusted keys path from config
+            const trustedKeysPath = this.config.plugins.trustedKeysPath ||
+                                    path.join(pluginDir, '.trusted-keys');
+
+            await signer.initialize({
+                trustedKeysPath: await fs.pathExists(trustedKeysPath) ? trustedKeysPath : null
+            });
+
+            // List all .js files in the plugin directory
+            const files = await fs.readdir(pluginDir);
+            const hookFiles = files.filter(f => f.endsWith('.js') && !f.startsWith('.'));
+
+            console.log(`📂 Found ${hookFiles.length} potential hook files in ${pluginDir}`);
+
+            for (const hookFile of hookFiles) {
+                const hookPath = path.join(pluginDir, hookFile);
+                const signaturePath = `${hookPath}.sig`;
+
+                try {
+                    // Log verification attempt
+                    this._logVerificationAttempt(hookFile, 'STARTED');
+
+                    // Check if signature file exists
+                    if (!await fs.pathExists(signaturePath)) {
+                        console.warn(`⚠️ Skipping unsigned hook: ${hookFile} (no .sig file)`);
+                        this._logVerificationAttempt(hookFile, 'FAILED', 'SIGNATURE_MISSING',
+                            'No signature file found - hook must be signed');
+                        this.emit('external-hooks.unsigned', {
+                            hookFile,
+                            message: 'No signature file found - hook must be signed before loading'
+                        });
+                        skippedCount++;
+                        continue;
+                    }
+
+                    // Verify signature using ArtifactSigner
+                    const verificationResult = await signer.verifyArtifact(hookPath, signaturePath);
+
+                    if (!verificationResult.valid) {
+                        console.error(`❌ Signature verification failed for ${hookFile}: ${verificationResult.message}`);
+                        this._logVerificationAttempt(hookFile, 'FAILED', verificationResult.error,
+                            verificationResult.message);
+
+                        // Emit security event for failed verification
+                        this.emit('security.verification-failed', {
+                            hookFile,
+                            hookPath,
+                            error: verificationResult.error,
+                            message: verificationResult.message,
+                            timestamp: new Date().toISOString()
+                        });
+
+                        failedCount++;
+                        continue;
+                    }
+
+                    // Verification successful - load the hook
+                    console.log(`✅ Signature verified for ${hookFile} (signed by: ${verificationResult.signedBy})`);
+                    this._logVerificationAttempt(hookFile, 'SUCCESS', null,
+                        `Verified - signed by ${verificationResult.signedBy}`);
+
+                    // Load and register the hook
+                    const hookModule = require(hookPath);
+                    const hookConfig = this._parseHookModule(hookModule, hookFile, verificationResult);
+
+                    if (hookConfig) {
+                        this.registerHook(
+                            hookConfig.type,
+                            hookConfig.handler,
+                            {
+                                name: hookConfig.name,
+                                description: hookConfig.description,
+                                priority: hookConfig.priority,
+                                timeout: hookConfig.timeout,
+                                pluginId: `external:${hookFile}`,
+                                allowEarlyRegistration: true,
+                                metadata: {
+                                    external: true,
+                                    signedBy: verificationResult.signedBy,
+                                    signedAt: verificationResult.signedAt,
+                                    hash: verificationResult.hash,
+                                    verifiedAt: new Date().toISOString()
+                                }
+                            }
+                        );
+
+                        loadedCount++;
+                        console.log(`🪝 Loaded external hook: ${hookConfig.name} (${hookFile})`);
+
+                        this.emit('external-hooks.loaded', {
+                            hookFile,
+                            hookName: hookConfig.name,
+                            signedBy: verificationResult.signedBy,
+                            signedAt: verificationResult.signedAt
+                        });
+                    } else {
+                        console.warn(`⚠️ Invalid hook module format: ${hookFile}`);
+                        this._logVerificationAttempt(hookFile, 'FAILED', 'INVALID_MODULE',
+                            'Hook module does not export required properties');
+                        failedCount++;
+                    }
+
+                } catch (error) {
+                    console.error(`❌ Error loading external hook ${hookFile}:`, error.message);
+                    this._logVerificationAttempt(hookFile, 'FAILED', 'LOAD_ERROR', error.message);
+
+                    this.emit('external-hooks.error', {
+                        hookFile,
+                        error: error.message,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    failedCount++;
+                }
+            }
+
+        } catch (error) {
+            console.error('❌ Failed to initialize ArtifactSigner for hook verification:', error.message);
+            this.emit('external-hooks.error', {
+                error: 'SIGNER_INIT_FAILED',
+                message: error.message
+            });
+            return 0;
+        }
+
+        // Summary logging
+        console.log(`📊 External hooks summary: ${loadedCount} loaded, ${skippedCount} unsigned, ${failedCount} failed`);
+
+        this.emit('external-hooks.summary', {
+            loaded: loadedCount,
+            skipped: skippedCount,
+            failed: failedCount,
+            total: loadedCount + skippedCount + failedCount
+        });
+
+        return loadedCount;
+    }
+
+    /**
+     * Parse hook module to extract configuration
+     * @private
+     */
+    _parseHookModule(hookModule, hookFile, verificationResult) {
+        // Support multiple export formats
+
+        // Format 1: Direct export { type, handler, name, ... }
+        if (hookModule.type && typeof hookModule.handler === 'function') {
+            return {
+                type: hookModule.type,
+                handler: hookModule.handler,
+                name: hookModule.name || path.basename(hookFile, '.js'),
+                description: hookModule.description || '',
+                priority: hookModule.priority || PRIORITY_LEVELS.NORMAL,
+                timeout: hookModule.timeout || this.config.defaultTimeout
+            };
+        }
+
+        // Format 2: Factory function that returns hook config
+        if (typeof hookModule === 'function') {
+            const config = hookModule();
+            if (config && config.type && typeof config.handler === 'function') {
+                return {
+                    type: config.type,
+                    handler: config.handler,
+                    name: config.name || path.basename(hookFile, '.js'),
+                    description: config.description || '',
+                    priority: config.priority || PRIORITY_LEVELS.NORMAL,
+                    timeout: config.timeout || this.config.defaultTimeout
+                };
+            }
+        }
+
+        // Format 3: Default export
+        if (hookModule.default && hookModule.default.type && typeof hookModule.default.handler === 'function') {
+            return {
+                type: hookModule.default.type,
+                handler: hookModule.default.handler,
+                name: hookModule.default.name || path.basename(hookFile, '.js'),
+                description: hookModule.default.description || '',
+                priority: hookModule.default.priority || PRIORITY_LEVELS.NORMAL,
+                timeout: hookModule.default.timeout || this.config.defaultTimeout
+            };
+        }
+
+        return null;
+    }
+
+    /**
+     * Log verification attempt to audit trail
+     * @private
+     */
+    _logVerificationAttempt(hookFile, status, errorCode = null, message = null) {
+        const logEntry = {
+            timestamp: new Date().toISOString(),
+            hookFile,
+            status,
+            errorCode,
+            message,
+            action: 'EXTERNAL_HOOK_VERIFICATION'
+        };
+
+        // Emit audit event for security logging
+        this.emit('audit.verification', logEntry);
+
+        // Also log to console in debug mode
+        if (this.config.plugins.debug) {
+            console.log(`📋 Audit: ${JSON.stringify(logEntry)}`);
+        }
     }
 
     /**

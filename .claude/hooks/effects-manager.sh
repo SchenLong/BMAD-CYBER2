@@ -23,6 +23,12 @@
 
 set -euo pipefail
 
+# Source input validation library for security
+SCRIPT_DIR_VAL="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -f "$SCRIPT_DIR_VAL/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR_VAL/lib/input-validation.sh"
+fi
+
 # Get script directory and config file path
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/../config/audio-effects.cfg"

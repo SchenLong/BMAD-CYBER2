@@ -104,9 +104,9 @@ cp _bmad/core/configs/security/secure-defaults.yaml .claude/config.yaml
 3. **[Audit Reports](../02-user-guides/SECURITY-OVERVIEW.md#security-audits)** - Review security validations
 
 ### For Developers
-1. **[Architecture Guide](../03-developer-docs/ARCHITECTURE.md)** - Understand the platform
-2. **[Contributing Guide](../03-developer-docs/CONTRIBUTING.md)** - Extend and contribute
-3. **[API Reference](../03-developer-docs/API-REFERENCE.md)** - Build integrations
+1. **[Architecture Guide](../03-developer-docs/architecture.md)** - Understand the platform
+2. **[Contributing Guide](../03-developer-docs/contributing.md)** - Extend and contribute
+3. **[API Reference](../03-developer-docs/API/API-DOCUMENTATION-INDEX.md)** - Build integrations
 
 ---
 
@@ -139,7 +139,7 @@ cp _bmad/core/configs/security/secure-defaults.yaml .claude/config.yaml
 
 ### Advanced Features
 - **[Party Mode Presets](../02-user-guides/PARTY-MODE-GUIDE.md)** - Multi-agent collaboration
-- **[Custom Agents](../03-developer-docs/EXTENDING-BMAD.md)** - Build your own agents
+- **[Custom Agents](../02-user-guides/Advanced/CUSTOM-AGENT-CREATION.md)** - Build your own agents
 - **[Local LLM Integration](../02-user-guides/CONFIGURATION-GUIDE.md#local-llms)** - Use local models
 
 ---

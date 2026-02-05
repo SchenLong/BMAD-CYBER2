@@ -352,6 +352,72 @@ This shows:
 - Changes to package.json
 - No actual modifications made
 
+## Security
+
+### For Maintainers
+
+#### NPM Publishing Requirements
+
+**Two-Factor Authentication (2FA) is REQUIRED** for publishing to npm.
+
+Before publishing any release:
+1. Enable 2FA on your npm account: https://docs.npmjs.com/configuring-two-factor-authentication
+2. Use an authentication app (not SMS) for security
+3. The npm account must have **publish** 2FA level enabled
+
+```bash
+# Verify 2FA is enabled before publishing
+npm profile get
+
+# Should show:
+# two-factor auth: auth-and-writes
+```
+
+#### Token Security
+
+- NPM tokens are stored in GitHub Secrets (never in code)
+- Tokens are never logged or displayed in workflow outputs
+- Use scoped tokens with minimal permissions
+- Rotate tokens periodically (recommended: every 90 days)
+
+#### Release Signing
+
+All releases include:
+- SHA256 checksums for tarball verification
+- Provenance attestation via `--provenance` flag
+- Git tags for version tracking
+
+### For Users
+
+#### Download Verification
+
+The installer automatically verifies downloads:
+- **Mandatory checksum verification** - all downloads are validated against SHA256 checksums
+- **HTTPS only** - all network requests use secure connections
+- **Trusted hosts only** - downloads restricted to github.com domains
+
+#### Safe Installation Practices
+
+```bash
+# Always verify the package source
+npm view bmad-cyber
+
+# Check package integrity
+npm audit
+
+# Review what will be installed before proceeding
+npx bmad-cyber install --dry-run
+```
+
+#### Reporting Security Issues
+
+For security vulnerabilities, please:
+1. **DO NOT** create a public GitHub issue
+2. Email security concerns to the maintainers directly
+3. Include reproduction steps and impact assessment
+
+---
+
 ## Development
 
 ### Running Tests

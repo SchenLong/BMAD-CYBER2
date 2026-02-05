@@ -21,6 +21,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
+ * Get a reproducible timestamp based on SOURCE_DATE_EPOCH (VAL-09-005)
+ * @returns {string} ISO format timestamp
+ */
+function getReproducibleTimestamp() {
+  const sourceEpoch = process.env.SOURCE_DATE_EPOCH;
+  if (sourceEpoch) {
+    const epochSeconds = parseInt(sourceEpoch, 10);
+    if (!isNaN(epochSeconds)) {
+      return new Date(epochSeconds * 1000).toISOString();
+    }
+  }
+  return new Date().toISOString();
+}
+
+/**
  * Path to the manifest file relative to project root
  * @type {string}
  */
@@ -278,7 +293,7 @@ export function getCurrentUserName() {
  * @returns {Object} New manifest object ready for serialization
  */
 export function createManifestStructure(selectedModules, userProfile = {}, existingManifest = {}) {
-  const now = new Date().toISOString();
+  const now = getReproducibleTimestamp();
   const userName = (userProfile && userProfile.name) || getCurrentUserName();
 
   // Build the new manifest structure

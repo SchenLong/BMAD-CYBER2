@@ -24,6 +24,55 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * Build Reproducibility Utilities (VAL-09-005)
+ * Supports SOURCE_DATE_EPOCH and BMAD_BUILD_ID for deterministic builds
+ */
+const ReproducibleBuild = {
+  /**
+   * Get a reproducible timestamp based on SOURCE_DATE_EPOCH or current time
+   * @returns {Date} The timestamp to use for build artifacts
+   */
+  getTimestamp() {
+    const sourceEpoch = process.env.SOURCE_DATE_EPOCH;
+    if (sourceEpoch) {
+      const epochSeconds = parseInt(sourceEpoch, 10);
+      if (!isNaN(epochSeconds)) {
+        return new Date(epochSeconds * 1000);
+      }
+    }
+    return new Date();
+  },
+
+  /**
+   * Get a reproducible ISO timestamp string
+   * @returns {string} ISO format timestamp
+   */
+  getISOTimestamp() {
+    return this.getTimestamp().toISOString();
+  },
+
+  /**
+   * Get a reproducible build ID from environment or generate one
+   * @returns {string} Build ID (hex string)
+   */
+  getBuildId() {
+    const envBuildId = process.env.BMAD_BUILD_ID;
+    if (envBuildId && /^[a-f0-9]{8,64}$/i.test(envBuildId)) {
+      return envBuildId.toLowerCase();
+    }
+    return crypto.randomBytes(8).toString('hex');
+  },
+
+  /**
+   * Check if reproducible mode is enabled
+   * @returns {boolean} True if reproducible build mode is active
+   */
+  isReproducibleMode() {
+    return !!(process.env.SOURCE_DATE_EPOCH || process.env.BMAD_BUILD_ID || process.env.BMAD_REPRODUCIBLE);
+  }
+};
+
 // Import security modules
 let ArtifactSigner, CacheIntegrity, BuildIsolation;
 try {
@@ -84,7 +133,18 @@ class MultiModuleBuilder {
     console.log(chalk.gray('Building distribution packages...\n'));
 
     const buildStartTime = Date.now();
-    const buildId = crypto.randomBytes(8).toString('hex');
+    const buildId = ReproducibleBuild.getBuildId();
+    const isReproducible = ReproducibleBuild.isReproducibleMode();
+
+    if (isReproducible) {
+      console.log(chalk.cyan('🔒 Reproducible build mode enabled'));
+      if (process.env.SOURCE_DATE_EPOCH) {
+        console.log(chalk.gray(`   SOURCE_DATE_EPOCH: ${process.env.SOURCE_DATE_EPOCH}`));
+      }
+      if (process.env.BMAD_BUILD_ID) {
+        console.log(chalk.gray(`   BMAD_BUILD_ID: ${process.env.BMAD_BUILD_ID}`));
+      }
+    }
 
     try {
       // 0. Initialize security features
@@ -194,7 +254,7 @@ class MultiModuleBuilder {
       capabilities: this.extractCapabilities(content),
       source_format: 'markdown',
       source_path: `agents/${filename}`,
-      converted_at: new Date().toISOString()
+      converted_at: ReproducibleBuild.getISOTimestamp()
     };
   }
 
@@ -206,7 +266,7 @@ class MultiModuleBuilder {
       steps: this.extractSteps(content),
       source_format: 'markdown',
       source_path: `workflows/${workflowId}/instructions.md`,
-      converted_at: new Date().toISOString()
+      converted_at: ReproducibleBuild.getISOTimestamp()
     };
   }
 
@@ -284,7 +344,7 @@ class MultiModuleBuilder {
     const metadata = {
       package: this.config.code,
       version: this.config.version,
-      built_at: new Date().toISOString(),
+      built_at: ReproducibleBuild.getISOTimestamp(),
       modules: {},
       totals: {
         agents: 0,
@@ -329,7 +389,7 @@ class MultiModuleBuilder {
         'verify_installation'
       ],
       dependencies: this.config.dependencies,
-      created_at: new Date().toISOString()
+      created_at: ReproducibleBuild.getISOTimestamp()
     };
 
     fs.writeFileSync(path.join(this.distPath, 'manifest.json'), JSON.stringify(manifest, null, 2));
@@ -347,7 +407,8 @@ class MultiModuleBuilder {
       version: '1.0.0',
       buildId,
       algorithm: 'sha256',
-      generatedAt: new Date().toISOString(),
+      generatedAt: ReproducibleBuild.getISOTimestamp(),
+      reproducible: ReproducibleBuild.isReproducibleMode(),
       files: {}
     };
 

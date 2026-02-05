@@ -42,6 +42,10 @@
     "test:unit": "vitest run --config dev-tools/config/vitest.config.unit.ts",
     "test:integration": "vitest run --config dev-tools/config/vitest.config.integration.ts",
     "test:performance": "vitest run --config dev-tools/config/vitest.config.performance.ts",
+    "test:regression": "vitest run --config dev-tools/config/vitest.config.regression.ts",
+    "test:regression:critical": "vitest run --config dev-tools/config/vitest.config.regression-critical.ts",
+    "test:memory": "vitest run --config dev-tools/config/vitest.config.performance.ts tests/performance/memory.test.ts",
+    "test:bench": "vitest bench --config dev-tools/config/vitest.config.performance.ts",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
@@ -99,6 +103,7 @@
     "@bmad/validators": "file:.claude/validators-node",
     "chalk": "^5.6.2",
     "commander": "^11.0.0",
+    "fs-extra": "^11.3.3",
     "inquirer": "^13.2.1",
     "zod": "^3.22.0"
   },
@@ -145,5 +150,11 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "bundleDependencies": [
+    "chalk",
+    "commander",
+    "inquirer",
+    "zod"
+  ]
 }

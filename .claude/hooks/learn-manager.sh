@@ -36,10 +36,15 @@
 
 # Only set strict mode when executed directly, not when sourced
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    set -e
+    set -euo pipefail
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source input validation library for security
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
 
 # Bash 3.2 compatible lowercase function (macOS ships with bash 3.2)
 # ${var,,} syntax requires bash 4.0+

@@ -115,16 +115,33 @@ export async function installCommand(options) {
     spinner.succeed('Step 3/6: Package.json configured');
 
     // Step 4: npm install
+    // Security: GH-092-002 - npm postinstall scripts can execute arbitrary code
+    // We use --ignore-scripts in secure mode to prevent privilege escalation
     if (!options.skipNpmInstall && !options.dryRun) {
       spinner.start('Step 4/6: Installing dependencies (this may take a moment)...');
 
       try {
-        await execAsync('npm install', {
+        // Security: Use --ignore-scripts to prevent postinstall script attacks
+        // unless user explicitly opts out with --allow-scripts
+        const npmCommand = options.allowScripts
+          ? 'npm install'
+          : 'npm install --ignore-scripts';
+
+        if (!options.allowScripts) {
+          logger.info('Running npm install with --ignore-scripts for security (use --allow-scripts to enable)');
+        }
+
+        await execAsync(npmCommand, {
           cwd: targetDir,
           timeout: 300000 // 5 min timeout
         });
         installState.npmInstalled = true;
         spinner.succeed('Step 4/6: Dependencies installed');
+
+        // If we used --ignore-scripts, warn user about potential missing setup
+        if (!options.allowScripts) {
+          logger.info('Note: Postinstall scripts were skipped. If you need them, run: npm rebuild');
+        }
       } catch (error) {
         spinner.warn('Step 4/6: npm install had issues (you may need to run manually)');
         logger.warn(`npm install error: ${error.message}`);

@@ -41,6 +41,11 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Source input validation library for security
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Use PWD for project dir when called from project context, fall back to script-relative
 if [[ -d "$PWD/.claude" ]]; then
     PROJECT_DIR="$PWD"

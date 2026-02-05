@@ -1,9 +1,68 @@
 import tar from 'tar';
-import { existsSync, promises as fs } from 'fs';
-import { join, dirname, basename } from 'path';
+import { existsSync, promises as fs, realpathSync } from 'fs';
+import { join, dirname, basename, resolve, relative, normalize } from 'path';
 import inquirer from 'inquirer';
 import ora from 'ora';
 import { logger } from './logger.js';
+
+/**
+ * Validates that a path does not escape the target directory (zip-slip protection)
+ * @param {string} targetDir - The target extraction directory (absolute path)
+ * @param {string} entryPath - The path from the archive entry
+ * @returns {{ safe: boolean, resolvedPath?: string, error?: string }}
+ */
+function validatePathSafety(targetDir, entryPath) {
+  // Normalize and resolve the full path
+  const normalizedEntry = normalize(entryPath).replace(/\\/g, '/');
+
+  // Reject paths with suspicious patterns BEFORE resolution
+  if (normalizedEntry.includes('..') ||
+      normalizedEntry.startsWith('/') ||
+      normalizedEntry.includes('//')) {
+    return {
+      safe: false,
+      error: `Path traversal detected: "${entryPath}"`
+    };
+  }
+
+  // Resolve to absolute path
+  const resolvedPath = resolve(targetDir, normalizedEntry);
+
+  // Ensure the resolved path is within the target directory
+  const relativePath = relative(targetDir, resolvedPath);
+  if (relativePath.startsWith('..') || resolve(targetDir, relativePath) !== resolvedPath) {
+    return {
+      safe: false,
+      error: `Path escapes target directory: "${entryPath}" resolves to "${resolvedPath}"`
+    };
+  }
+
+  return { safe: true, resolvedPath };
+}
+
+/**
+ * Validates that a symlink target stays within the extraction directory
+ * @param {string} targetDir - The target extraction directory
+ * @param {string} linkPath - The path where the symlink will be created
+ * @param {string} linkTarget - The target of the symlink
+ * @returns {{ safe: boolean, error?: string }}
+ */
+function validateSymlinkSafety(targetDir, linkPath, linkTarget) {
+  // Resolve the symlink target relative to the link's directory
+  const linkDir = dirname(linkPath);
+  const resolvedTarget = resolve(linkDir, linkTarget);
+
+  // Ensure the target stays within the extraction directory
+  const relativePath = relative(targetDir, resolvedTarget);
+  if (relativePath.startsWith('..')) {
+    return {
+      safe: false,
+      error: `Symlink "${linkPath}" points outside target directory to "${linkTarget}"`
+    };
+  }
+
+  return { safe: true };
+}
 
 const ALWAYS_SKIP = [
   '.git/',
@@ -103,20 +162,53 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
     return { dryRun: true, files, filesExtracted: 0 };
   }
 
-  // 4. Extract
+  // 4. Extract with security validations
   spinner.start('Extracting framework files...');
   let fileCount = 0;
+  const securityViolations = [];
+  const absoluteTargetDir = resolve(targetDir);
 
   await tar.extract({
     file: tarballPath,
     cwd: targetDir,
     strip: 1, // Remove top-level directory
-    filter: (path) => {
-      if (shouldExtract(path, filter)) {
-        fileCount++;
-        return true;
+    filter: (path, entry) => {
+      // First check normal filtering
+      if (!shouldExtract(path, filter)) {
+        return false;
       }
-      return false;
+
+      // Security: Validate path does not escape target directory (zip-slip protection)
+      // After strip:1, we need to check the resulting path
+      const parts = path.split('/');
+      parts.shift(); // Remove top-level directory (strip: 1)
+      const strippedPath = parts.join('/');
+
+      if (strippedPath) {
+        const pathValidation = validatePathSafety(absoluteTargetDir, strippedPath);
+        if (!pathValidation.safe) {
+          securityViolations.push(pathValidation.error);
+          logger.warn(`Security: Skipping unsafe path - ${pathValidation.error}`);
+          return false;
+        }
+
+        // Security: Validate symlinks don't point outside target directory
+        if (entry.type === 'SymbolicLink' && entry.linkpath) {
+          const symlinkValidation = validateSymlinkSafety(
+            absoluteTargetDir,
+            pathValidation.resolvedPath,
+            entry.linkpath
+          );
+          if (!symlinkValidation.safe) {
+            securityViolations.push(symlinkValidation.error);
+            logger.warn(`Security: Skipping unsafe symlink - ${symlinkValidation.error}`);
+            return false;
+          }
+        }
+      }
+
+      fileCount++;
+      return true;
     },
     onentry: (entry) => {
       // Preserve permissions
@@ -125,6 +217,10 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
       }
     }
   });
+
+  if (securityViolations.length > 0) {
+    logger.warn(`\nSecurity: ${securityViolations.length} potentially malicious entries were blocked during extraction.`);
+  }
 
   spinner.succeed(`Extracted ${fileCount} files`);
 

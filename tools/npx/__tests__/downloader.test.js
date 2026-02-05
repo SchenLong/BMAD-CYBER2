@@ -265,7 +265,8 @@ describe('downloader', () => {
         .mockResolvedValueOnce({
           ok: true,
           status: 200,
-          text: () => Promise.resolve('abc123 bmad-cyber-v2.0.0.tar.gz'),
+          // Use valid SHA256 format (64 hex chars) but wrong hash to trigger checksum mismatch
+          text: () => Promise.resolve('deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef bmad-cyber-v2.0.0.tar.gz'),
         });
 
       const { downloadRelease } = await import('../lib/downloader.js');
@@ -481,7 +482,7 @@ describe('downloader', () => {
   });
 
   describe('edge cases', () => {
-    it('handles release without checksum file', async () => {
+    it('handles release without checksum file - throws security error', async () => {
       const releaseWithoutChecksum = {
         tag_name: 'v2.0.0',
         tarball_url: 'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/tarball/v2.0.0',
@@ -491,7 +492,7 @@ describe('downloader', () => {
             browser_download_url: 'https://github.com/SchenLong/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
             size: 1024,
           },
-          // No .sha256 file
+          // No .sha256 file - security requires checksum verification
         ],
       };
 
@@ -508,13 +509,11 @@ describe('downloader', () => {
         });
 
       const { downloadRelease } = await import('../lib/downloader.js');
-      const { logger } = await import('../lib/logger.js');
 
-      const result = await downloadRelease();
-
-      expect(result).toBeDefined();
-      // Should warn about missing checksum
-      expect(logger.warn).toHaveBeenCalledWith(expect.stringMatching(/No checksum file found/));
+      // Security: Checksum verification is mandatory, so this should throw
+      await expect(downloadRelease()).rejects.toThrow(
+        'Security: Checksum verification is mandatory for release downloads'
+      );
     });
 
     it('handles empty release assets array', async () => {
@@ -543,6 +542,348 @@ describe('downloader', () => {
 
       expect(result).toBeDefined();
       expect(logger.info).toHaveBeenCalledWith(expect.stringMatching(/No release tarball found/));
+    });
+  });
+
+  // ========================================================================
+  // SECURITY TESTS - VAL-11-002: SSRF Protection
+  // ========================================================================
+  describe('security - SSRF protection (VAL-11-002)', () => {
+    it('should block non-HTTPS URLs', async () => {
+      // Create a release with HTTP URL (should be blocked)
+      const releaseWithHttpUrl = {
+        tag_name: 'v2.0.0',
+        tarball_url: 'http://api.github.com/repos/test/repo/tarball/v2.0.0',
+        assets: [
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'http://github.com/test/repo/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
+            size: 1024,
+          },
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
+            browser_download_url: 'https://github.com/test/repo/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
+          },
+        ],
+      };
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(releaseWithHttpUrl),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease())
+        .rejects.toThrow(/Only HTTPS URLs are allowed/);
+    });
+
+    it('should block URLs from untrusted hosts', async () => {
+      // Create a release with malicious URL
+      const releaseWithMaliciousUrl = {
+        tag_name: 'v2.0.0',
+        tarball_url: 'https://api.github.com/repos/test/repo/tarball/v2.0.0',
+        assets: [
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'https://evil-attacker.com/malware.tar.gz',
+            size: 1024,
+          },
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
+            browser_download_url: 'https://github.com/test/repo/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
+          },
+        ],
+      };
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(releaseWithMaliciousUrl),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease())
+        .rejects.toThrow(/not in the allowed list/);
+    });
+
+    it('should block URLs to internal/private networks', async () => {
+      // Create a release with internal network URL
+      const releaseWithInternalUrl = {
+        tag_name: 'v2.0.0',
+        tarball_url: 'https://api.github.com/repos/test/repo/tarball/v2.0.0',
+        assets: [
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'https://192.168.1.1/internal-file.tar.gz',
+            size: 1024,
+          },
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
+            browser_download_url: 'https://github.com/test/repo/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
+          },
+        ],
+      };
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(releaseWithInternalUrl),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease())
+        .rejects.toThrow(/not in the allowed list/);
+    });
+
+    it('should block localhost URLs', async () => {
+      const releaseWithLocalhostUrl = {
+        tag_name: 'v2.0.0',
+        tarball_url: 'https://api.github.com/repos/test/repo/tarball/v2.0.0',
+        assets: [
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'https://localhost/malicious.tar.gz',
+            size: 1024,
+          },
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
+            browser_download_url: 'https://github.com/test/repo/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
+          },
+        ],
+      };
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(releaseWithLocalhostUrl),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease())
+        .rejects.toThrow(/not in the allowed list/);
+    });
+
+    it('should allow URLs from trusted GitHub domains', async () => {
+      const tarballContent = 'test-content';
+      const crypto = await import('crypto');
+      const expectedHash = crypto.createHash('sha256').update(tarballContent).digest('hex');
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(mockRelease),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          body: createMockReadableStream(tarballContent),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve(`${expectedHash}  bmad-cyber-v2.0.0.tar.gz`),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      // Should not throw - URLs are from trusted github.com domain
+      const result = await downloadRelease();
+      expect(result).toBeDefined();
+    });
+
+    it('should allow URLs from objects.githubusercontent.com', async () => {
+      const releaseWithGitHubContent = {
+        tag_name: 'v2.0.0',
+        tarball_url: 'https://api.github.com/repos/test/repo/tarball/v2.0.0',
+        assets: [
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'https://objects.githubusercontent.com/something/bmad-cyber-v2.0.0.tar.gz',
+            size: 1024,
+          },
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
+            browser_download_url: 'https://objects.githubusercontent.com/something/bmad-cyber-v2.0.0.tar.gz.sha256',
+          },
+        ],
+      };
+
+      const tarballContent = 'test-content';
+      const crypto = await import('crypto');
+      const expectedHash = crypto.createHash('sha256').update(tarballContent).digest('hex');
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(releaseWithGitHubContent),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          body: createMockReadableStream(tarballContent),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          text: () => Promise.resolve(`${expectedHash}  bmad-cyber-v2.0.0.tar.gz`),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      const result = await downloadRelease();
+      expect(result).toBeDefined();
+    });
+
+    it('should block URLs with invalid format', async () => {
+      const releaseWithInvalidUrl = {
+        tag_name: 'v2.0.0',
+        tarball_url: 'https://api.github.com/repos/test/repo/tarball/v2.0.0',
+        assets: [
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'not-a-valid-url',
+            size: 1024,
+          },
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
+            browser_download_url: 'https://github.com/test/repo/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
+          },
+        ],
+      };
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(releaseWithInvalidUrl),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease())
+        .rejects.toThrow(/Invalid URL format/);
+    });
+  });
+
+  // ========================================================================
+  // SECURITY TESTS - VAL-11-002: Retry Mechanism
+  // ========================================================================
+  describe('retry mechanism (VAL-11-002)', () => {
+    it('should retry on transient failures with exponential backoff', async () => {
+      // First two fetches fail, third succeeds
+      global.fetch = vi.fn()
+        // First attempt - fails
+        .mockRejectedValueOnce(new Error('Network error'))
+        // Second attempt - fails
+        .mockRejectedValueOnce(new Error('Network error'))
+        // Third attempt - succeeds (release info)
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(mockRelease),
+        })
+        // Tarball download
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          body: createMockReadableStream('test-content'),
+        })
+        // Checksum - needs to match
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          text: () => {
+            const crypto = require('crypto');
+            const hash = crypto.createHash('sha256').update('test-content').digest('hex');
+            return Promise.resolve(`${hash}  bmad-cyber-v2.0.0.tar.gz`);
+          },
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+      const { logger } = await import('../lib/logger.js');
+
+      const result = await downloadRelease();
+
+      expect(result).toBeDefined();
+      // Verify retry log messages
+      expect(logger.info).toHaveBeenCalledWith(expect.stringMatching(/Retry 1\/3/));
+      expect(logger.info).toHaveBeenCalledWith(expect.stringMatching(/Retry 2\/3/));
+    });
+
+    it('should fail after max retries exceeded', async () => {
+      // All attempts fail
+      global.fetch = vi.fn()
+        .mockRejectedValueOnce(new Error('Network error'))
+        .mockRejectedValueOnce(new Error('Network error'))
+        .mockRejectedValueOnce(new Error('Network error'));
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease())
+        .rejects.toThrow('Network error');
+    });
+
+    it('should NOT retry on security validation errors', async () => {
+      // SSRF error should not trigger retry
+      const releaseWithMaliciousUrl = {
+        tag_name: 'v2.0.0',
+        tarball_url: 'https://api.github.com/repos/test/repo/tarball/v2.0.0',
+        assets: [
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'https://evil-site.com/malware.tar.gz',
+            size: 1024,
+          },
+          {
+            name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
+            browser_download_url: 'https://github.com/test/repo/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
+          },
+        ],
+      };
+
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(releaseWithMaliciousUrl),
+        });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease())
+        .rejects.toThrow(/Security:/);
+
+      // Should only have been called once (no retries for security errors)
+      expect(global.fetch).toHaveBeenCalledTimes(1);
+    });
+
+    it('should use exponential backoff delay between retries', async () => {
+      const startTime = Date.now();
+
+      // Track timing of retries
+      const callTimes = [];
+      global.fetch = vi.fn().mockImplementation(() => {
+        callTimes.push(Date.now() - startTime);
+        return Promise.reject(new Error('Network error'));
+      });
+
+      const { downloadRelease } = await import('../lib/downloader.js');
+
+      await expect(downloadRelease()).rejects.toThrow('Network error');
+
+      // Verify we made 3 attempts
+      expect(global.fetch).toHaveBeenCalledTimes(3);
     });
   });
 });

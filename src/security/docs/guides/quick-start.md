@@ -13,8 +13,9 @@ export SESSION_TIMEOUT="3600"
 ### 2. Initialize Security Components
 ```typescript
 import { SecurityManager } from "../security-manager";
-import { TokenGenerator } from "../generate-token";
-import { SessionManager } from "../session-manager";
+import { TokenGenerator } from "../encryption/generate-token";
+// SessionManager is now in the canonical _bmad/core/security location
+import { SessionManager } from "../../../../_bmad/core/security/session-manager";
 
 // Initialize security
 const security = new SecurityManager();

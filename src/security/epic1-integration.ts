@@ -18,7 +18,9 @@ import { SiemIntegration, SiemProvider } from './audit/siem-integration';
 import { ComplianceReporter } from './audit/compliance-reporter';
 import { AuditAnalyticsDashboard } from './audit/analytics-dashboard';
 
-import { SessionManager } from './session-manager';
+// Import SessionManager from canonical location in _bmad/core/security
+// Note: The duplicate in src/security has been removed (VAL-05-004-004)
+import { SessionManager } from '../../_bmad/core/security/session-manager';
 
 // Stub types for modules that may not exist yet
 type RBACConfig = Record<string, unknown>;
