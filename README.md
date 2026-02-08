@@ -31,7 +31,7 @@ You → Abdul → Right Team → Expert Agent(s) → Results
 ### Install via NPX (Recommended)
 
 ```bash
-npx bmad-cyber install
+npx bmad-cybersec install
 ```
 
 ### Or Clone the Repository

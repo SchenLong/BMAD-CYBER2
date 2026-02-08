@@ -1,9 +1,9 @@
-# BMAD-CYBER NPX Installer
+# BMAD-CYBERSEC NPX Installer
 
-**One-command installation for BMAD-CYBER framework**
+**One-command installation for BMAD-CYBERSEC framework**
 
 ```bash
-npx bmad-cyber install
+npx bmad-cybersecsec install
 ```
 
 ## Overview
@@ -16,33 +16,33 @@ The NPX installer provides a streamlined way to add BMAD-CYBER framework to any 
 
 ```bash
 # Install latest release to current directory
-npx bmad-cyber install
+npx bmad-cybersec install
 
 # Install to a specific directory
-npx bmad-cyber install ./my-project
+npx bmad-cybersec install ./my-project
 
 # Install specific version
-npx bmad-cyber install --version v2.0.0
+npx bmad-cybersec install --version v2.0.0
 ```
 
 ### From Git (Development)
 
 ```bash
 # Install from main branch
-npx bmad-cyber install --from-git
+npx bmad-cybersec install --from-git
 
 # Install from specific branch
-npx bmad-cyber install --from-git --branch develop
+npx bmad-cybersec install --from-git --branch develop
 ```
 
 ### Non-Interactive Mode
 
 ```bash
 # Skip all prompts and use defaults
-npx bmad-cyber install --yes
+npx bmad-cybersec install --yes
 
 # Force overwrite existing files
-npx bmad-cyber install --force
+npx bmad-cybersec install --force
 ```
 
 ## Command Reference
@@ -52,7 +52,7 @@ npx bmad-cyber install --force
 Installs BMAD-CYBER framework files to a target directory.
 
 ```
-npx bmad-cyber install [target-dir] [options]
+npx bmad-cybersec install [target-dir] [options]
 ```
 
 **Arguments:**
@@ -75,13 +75,13 @@ npx bmad-cyber install [target-dir] [options]
 
 ```bash
 # Preview what would be installed
-npx bmad-cyber install --dry-run
+npx bmad-cybersec install --dry-run
 
 # Install with documentation
-npx bmad-cyber install --with-docs
+npx bmad-cybersec install --with-docs
 
 # CI/CD installation (non-interactive)
-npx bmad-cyber install --yes --force
+npx bmad-cybersec install --yes --force
 ```
 
 ### `version` Command
@@ -89,7 +89,7 @@ npx bmad-cyber install --yes --force
 Display the installer version.
 
 ```bash
-npx bmad-cyber --version
+npx bmad-cybersec --version
 ```
 
 ### `help` Command
@@ -97,8 +97,8 @@ npx bmad-cyber --version
 Display help information.
 
 ```bash
-npx bmad-cyber --help
-npx bmad-cyber install --help
+npx bmad-cybersec --help
+npx bmad-cybersec install --help
 ```
 
 ## What Gets Installed
@@ -173,11 +173,11 @@ Error: GitHub API rate limit exceeded. Set GITHUB_TOKEN or try again later.
 2. Set a GitHub token:
    ```bash
    export GITHUB_TOKEN=your_personal_access_token
-   npx bmad-cyber install
+   npx bmad-cybersec install
    ```
 3. Use Git clone method instead:
    ```bash
-   npx bmad-cyber install --from-git
+   npx bmad-cybersec install --from-git
    ```
 
 #### "Checksum verification failed" Error
@@ -191,16 +191,16 @@ Error: Checksum verification failed. File may be corrupted.
 **Solutions:**
 1. Retry the installation (network issue):
    ```bash
-   npx bmad-cyber install
+   npx bmad-cybersec install
    ```
 2. Clear npm cache and retry:
    ```bash
    npm cache clean --force
-   npx bmad-cyber install
+   npx bmad-cybersec install
    ```
 3. Use Git clone as fallback:
    ```bash
-   npx bmad-cyber install --from-git
+   npx bmad-cybersec install --from-git
    ```
 
 #### "Git is not installed" Error
@@ -215,7 +215,7 @@ Error: Git is not installed or not in PATH.
 1. Install Git: https://git-scm.com/downloads
 2. Use release download method (without `--from-git`):
    ```bash
-   npx bmad-cyber install
+   npx bmad-cybersec install
    ```
 
 #### "Download failed: 500" Error
@@ -231,7 +231,7 @@ Error: Download failed: 500
 2. Check GitHub status: https://www.githubstatus.com/
 3. Use Git clone as fallback:
    ```bash
-   npx bmad-cyber install --from-git
+   npx bmad-cybersec install --from-git
    ```
 
 ### File Conflict Issues
@@ -253,10 +253,10 @@ Found 5 existing files that would be overwritten:
 **To avoid prompt:**
 ```bash
 # Skip existing files automatically
-npx bmad-cyber install --yes
+npx bmad-cybersec install --yes
 
 # Overwrite all files automatically
-npx bmad-cyber install --force
+npx bmad-cybersec install --force
 ```
 
 ### Package.json Issues
@@ -285,10 +285,10 @@ The installer preserves your existing dependency versions. If you need BMAD's ex
 
 ```bash
 # Increase timeout (default is 2 minutes for git clone)
-npx bmad-cyber install --from-git
+npx bmad-cybersec install --from-git
 
 # Or use release download which has automatic retries
-npx bmad-cyber install
+npx bmad-cybersec install
 ```
 
 #### Behind Corporate Proxy
@@ -299,7 +299,7 @@ npm config set proxy http://proxy.company.com:8080
 npm config set https-proxy http://proxy.company.com:8080
 
 # Then install
-npx bmad-cyber install
+npx bmad-cybersec install
 ```
 
 ### Environment Issues
@@ -325,7 +325,7 @@ Error: EACCES: permission denied
 2. Fix npm permissions: https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
 3. Install to a directory you own:
    ```bash
-   npx bmad-cyber install ~/my-project
+   npx bmad-cybersec install ~/my-project
    ```
 
 ### Getting More Information
@@ -333,7 +333,7 @@ Error: EACCES: permission denied
 #### Enable Verbose Logging
 
 ```bash
-npx bmad-cyber install --verbose
+npx bmad-cybersec install --verbose
 ```
 
 This shows:
@@ -344,7 +344,7 @@ This shows:
 #### Preview Before Installing
 
 ```bash
-npx bmad-cyber install --dry-run
+npx bmad-cybersec install --dry-run
 ```
 
 This shows:
@@ -400,13 +400,13 @@ The installer automatically verifies downloads:
 
 ```bash
 # Always verify the package source
-npm view bmad-cyber
+npm view bmad-cybersec
 
 # Check package integrity
 npm audit
 
 # Review what will be installed before proceeding
-npx bmad-cyber install --dry-run
+npx bmad-cybersec install --dry-run
 ```
 
 #### Reporting Security Issues

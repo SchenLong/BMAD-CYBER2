@@ -15,11 +15,24 @@ Complete guide to installing and using BMAD modules.
 
 ## Installation
 
+### NPX Install (Recommended)
+
+```bash
+# Install to current directory
+npx bmad-cybersec install
+
+# Install to a specific directory
+npx bmad-cybersec install ./my-project
+
+# Preview what will be installed
+npx bmad-cybersec install --dry-run
+```
+
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/SchenLong/BMAD-CYBER2.git
-cd BMAD-CYBER2
+git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+cd BMAD-CYBERSEC && git checkout BMAD-CYBEROPS-RP
 
 # The modules are ready to use!
 # Agents and workflows are pre-configured
