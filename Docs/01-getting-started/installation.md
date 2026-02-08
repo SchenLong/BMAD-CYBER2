@@ -42,7 +42,7 @@ The simplest way to install BMAD-CYBER using the NPX installer:
 cd your-project
 
 # Run the installer
-npx bmad-cyber install
+npx bmad-cybersec install
 ```
 
 The installer will:
@@ -74,7 +74,7 @@ npm run security:config
 
 ## Installation Options Reference
 
-The `npx bmad-cyber install` command supports the following options:
+The `npx bmad-cybersec install` command supports the following options:
 
 | Option | Description | Default |
 |--------|-------------|---------|
@@ -95,25 +95,25 @@ The `npx bmad-cyber install` command supports the following options:
 
 ```bash
 # Install with default settings
-npx bmad-cyber install
+npx bmad-cybersec install
 
 # Install a specific version
-npx bmad-cyber install --version v2.0.0
+npx bmad-cybersec install --version v2.0.0
 
 # Install from a specific branch
-npx bmad-cyber install --from-git --branch develop
+npx bmad-cybersec install --from-git --branch develop
 
 # Non-interactive installation with pre-selected modules
-npx bmad-cyber install -y --modules cybersec-team,intel-team --security-tier standard
+npx bmad-cybersec install -y --modules cybersec-team,intel-team --security-tier standard
 
 # Preview installation without making changes
-npx bmad-cyber install --dry-run
+npx bmad-cybersec install --dry-run
 
 # Install with documentation and dev tools
-npx bmad-cyber install --with-docs --with-dev
+npx bmad-cybersec install --with-docs --with-dev
 
 # Force reinstall over existing files
-npx bmad-cyber install --force
+npx bmad-cybersec install --force
 ```
 
 ---
@@ -138,7 +138,7 @@ npx bmad-cyber install --force
 3. **Run BMAD-CYBER installer:**
 
    ```bash
-   npx bmad-cyber install
+   npx bmad-cybersec install
    ```
 
 4. **Follow the setup wizard:**
@@ -157,7 +157,7 @@ npx bmad-cyber install --force
 2. **Run the installer:**
 
    ```bash
-   npx bmad-cyber install
+   npx bmad-cybersec install
    ```
 
    The installer will:
@@ -178,10 +178,10 @@ For automated deployments and CI/CD pipelines:
 
 ```bash
 # Full non-interactive install with all defaults
-npx bmad-cyber install -y
+npx bmad-cybersec install -y
 
 # Non-interactive with specific configuration
-npx bmad-cyber install -y \
+npx bmad-cybersec install -y \
   --modules cybersec-team,intel-team \
   --security-tier standard \
   --skip-wizard
@@ -191,7 +191,7 @@ npx bmad-cyber install -y \
 
 ```yaml
 - name: Install BMAD-CYBER
-  run: npx bmad-cyber install -y --skip-wizard
+  run: npx bmad-cybersec install -y --skip-wizard
 ```
 
 ---
@@ -283,7 +283,7 @@ The health check verifies:
 Check if a newer version is available without installing:
 
 ```bash
-npx bmad-cyber update --check
+npx bmad-cybersec update --check
 ```
 
 ### Update to Latest Version
@@ -291,7 +291,7 @@ npx bmad-cyber update --check
 Update your installation to the latest version:
 
 ```bash
-npx bmad-cyber update
+npx bmad-cybersec update
 ```
 
 The update process:
@@ -316,16 +316,16 @@ The update process:
 
 ```bash
 # Check for available updates
-npx bmad-cyber update --check
+npx bmad-cybersec update --check
 
 # Update to latest version
-npx bmad-cyber update
+npx bmad-cybersec update
 
 # Update to a specific version
-npx bmad-cyber update --version v2.1.0
+npx bmad-cybersec update --version v2.1.0
 
 # Force reinstall current version
-npx bmad-cyber update --force
+npx bmad-cybersec update --force
 ```
 
 ### Preserved During Updates

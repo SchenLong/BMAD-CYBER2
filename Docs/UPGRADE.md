@@ -26,19 +26,19 @@ For most upgrades, follow these 5 steps:
 
 ```bash
 # 1. Check your current version
-npx @bmad-cybercommand/installer --version
+npx bmad-cybersec --version
 
 # 2. Create a backup
-npx @bmad-cybercommand/installer backup create --name "pre-upgrade-$(date +%Y%m%d)"
+npx bmad-cybersec backup create --name "pre-upgrade-$(date +%Y%m%d)"
 
 # 3. Run the upgrade
-npx @bmad-cybercommand/installer update
+npx bmad-cybersec update
 
 # 4. Verify the installation
-npx @bmad-cybercommand/installer validate
+npx bmad-cybersec validate
 
 # 5. Run post-upgrade tests
-npx @bmad-cybercommand/installer test --scope=smoke
+npx bmad-cybersec test --scope=smoke
 ```
 
 > **Note**: Major version upgrades (e.g., 1.x to 2.x) require additional steps. See [Major Upgrades](#major-version-upgrades-1x--2x) below.
@@ -84,11 +84,11 @@ Complete this checklist before starting any upgrade:
 
 ```bash
 # Create a full backup
-npx @bmad-cybercommand/installer backup create --full
+npx bmad-cybersec backup create --full
 
 # Verify backup was created successfully
-npx @bmad-cybercommand/installer backup list
-npx @bmad-cybercommand/installer backup verify --latest
+npx bmad-cybersec backup list
+npx bmad-cybersec backup verify --latest
 ```
 
 **Critical files to backup manually**:
@@ -108,17 +108,17 @@ node --version
 npm --version
 
 # Check current BMAD installation
-npx @bmad-cybercommand/installer doctor
+npx bmad-cybersec doctor
 ```
 
 ### 3. Dependency Verification
 
 ```bash
 # Verify all modules are compatible
-npx @bmad-cybercommand/installer check-compatibility
+npx bmad-cybersec check-compatibility
 
 # List installed modules and versions
-npx @bmad-cybercommand/installer list
+npx bmad-cybersec list
 ```
 
 ### 4. Pre-flight Checks
@@ -143,13 +143,13 @@ Patch upgrades contain bug fixes, documentation updates, and security patches. T
 
 ```bash
 # Option 1: Automatic upgrade (recommended)
-npx @bmad-cybercommand/installer update --patch
+npx bmad-cybersec update --patch
 
 # Option 2: Specific version
-npx @bmad-cybercommand/installer update --version 2.0.1
+npx bmad-cybersec update --version 2.0.1
 
 # Verify upgrade
-npx @bmad-cybercommand/installer validate
+npx bmad-cybersec validate
 ```
 
 **What happens during patch upgrade**:
@@ -169,19 +169,19 @@ Minor upgrades add new features, agents, or workflows while maintaining backward
 
 ```bash
 # Step 1: Create recovery point
-npx @bmad-cybercommand/installer backup create --type pre_migration
+npx bmad-cybersec backup create --type pre_migration
 
 # Step 2: Run pre-upgrade compatibility check
-npx @bmad-cybercommand/installer check-compatibility --target 2.1.0
+npx bmad-cybersec check-compatibility --target 2.1.0
 
 # Step 3: Install new version
-npx @bmad-cybercommand/installer update --minor
+npx bmad-cybersec update --minor
 
 # Step 4: Run post-install validation
-npx @bmad-cybercommand/installer validate --comprehensive
+npx bmad-cybersec validate --comprehensive
 
 # Step 5: Update documentation references (if needed)
-npx @bmad-cybercommand/installer update-docs
+npx bmad-cybersec update-docs
 ```
 
 **What to expect**:
@@ -207,42 +207,42 @@ Major upgrades contain breaking changes and require coordinated module upgrades.
 pkill -f "bmad"
 
 # 2. Create full system backup
-npx @bmad-cybercommand/installer backup create --full --name "v1-final-backup"
+npx bmad-cybersec backup create --full --name "v1-final-backup"
 
 # 3. Export current configurations
-npx @bmad-cybercommand/installer config export --output ./backup/config-export.json
+npx bmad-cybersec config export --output ./backup/config-export.json
 ```
 
 #### Upgrade Process
 
 ```bash
 # 4. Upgrade BMAD Core first
-npx @bmad-cybercommand/installer update core --major
+npx bmad-cybersec update core --major
 
 # 5. Run migration scripts
-npx @bmad-cybercommand/installer migrate --from 1.x --to 2.x
+npx bmad-cybersec migrate --from 1.x --to 2.x
 
 # 6. Upgrade all team modules together
-npx @bmad-cybercommand/installer update cybersec-team intel-team legal-team strategy-team --major
+npx bmad-cybersec update cybersec-team intel-team legal-team strategy-team --major
 
 # 7. Validate all integrations
-npx @bmad-cybercommand/installer validate --comprehensive --cross-module
+npx bmad-cybersec validate --comprehensive --cross-module
 
 # 8. Run post-upgrade tests
-npx @bmad-cybercommand/installer test --scope=full
+npx bmad-cybersec test --scope=full
 ```
 
 #### Post-Upgrade Verification
 
 ```bash
 # Verify agents are accessible
-npx @bmad-cybercommand/installer agent list
+npx bmad-cybersec agent list
 
 # Verify Party Mode presets
-npx @bmad-cybercommand/installer party-mode list
+npx bmad-cybersec party-mode list
 
 # Verify cross-module workflows
-npx @bmad-cybercommand/installer workflow validate --cross-module
+npx bmad-cybersec workflow validate --cross-module
 ```
 
 #### Upgrade Order (Important)
@@ -285,7 +285,7 @@ For major upgrades, follow this dependency order:
 
 ```bash
 # Run comprehensive migration from 1.x to 2.x
-npx @bmad-cybercommand/installer migrate \
+npx bmad-cybersec migrate \
   --from 1.x \
   --to 2.x \
   --include-configs \
@@ -318,7 +318,7 @@ For patch upgrades, rollback happens automatically on failure:
 
 ```bash
 # Automatic rollback is enabled by default
-npx @bmad-cybercommand/installer update --patch
+npx bmad-cybersec update --patch
 # If validation fails, system automatically restores previous version
 ```
 
@@ -328,16 +328,16 @@ For minor and major upgrades, use manual rollback:
 
 ```bash
 # List available recovery points
-npx @bmad-cybercommand/installer rollback list
+npx bmad-cybersec rollback list
 
 # Rollback to specific recovery point
-npx @bmad-cybercommand/installer rollback --to <recovery-point-id>
+npx bmad-cybersec rollback --to <recovery-point-id>
 
 # Rollback to previous version (latest recovery point)
-npx @bmad-cybercommand/installer rollback --latest
+npx bmad-cybersec rollback --latest
 
 # Force rollback (skip validation)
-npx @bmad-cybercommand/installer rollback --latest --strategy emergency
+npx bmad-cybersec rollback --latest --strategy emergency
 ```
 
 ### Rollback from Major Upgrade
@@ -349,13 +349,13 @@ If a 1.x to 2.x upgrade fails:
 pkill -f "bmad"
 
 # 2. Restore from backup
-npx @bmad-cybercommand/installer backup restore --name "v1-final-backup"
+npx bmad-cybersec backup restore --name "v1-final-backup"
 
 # 3. Reinstall packages
 npm ci
 
 # 4. Verify restoration
-npx @bmad-cybercommand/installer validate
+npx bmad-cybersec validate
 ```
 
 ### Emergency Recovery
@@ -364,7 +364,7 @@ If standard rollback fails:
 
 ```bash
 # Emergency recovery (minimal validation, force restore)
-npx @bmad-cybercommand/installer rollback --emergency
+npx bmad-cybersec rollback --emergency
 
 # If emergency recovery fails, manual restore required:
 # 1. Remove node_modules
@@ -404,7 +404,7 @@ cp -r backup/_bmad .
 **Solution**:
 ```bash
 # Upgrade BMAD Core first
-npx @bmad-cybercommand/installer update core
+npx bmad-cybersec update core
 ```
 
 #### COMPAT_002: Agent Name Conflict
@@ -423,7 +423,7 @@ npx @bmad-cybercommand/installer update core
 **Solution**:
 ```bash
 # List conflicting workflows
-npx @bmad-cybercommand/installer workflow list --conflicts
+npx bmad-cybersec workflow list --conflicts
 
 # Update workflow naming to use unique IDs
 # Format: {module_code}:{workflow_name}
@@ -436,7 +436,7 @@ npx @bmad-cybercommand/installer workflow list --conflicts
 **Solution**:
 ```bash
 # Upgrade all modules to same major version
-npx @bmad-cybercommand/installer update --all --major
+npx bmad-cybersec update --all --major
 ```
 
 #### VER_003: Security Vulnerability
@@ -446,46 +446,46 @@ npx @bmad-cybercommand/installer update --all --major
 **Solution**:
 ```bash
 # Upgrade affected module immediately
-npx @bmad-cybercommand/installer update <module-name> --security
+npx bmad-cybersec update <module-name> --security
 ```
 
 ### Upgrade Fails at Validation
 
 ```bash
 # Check validation logs
-npx @bmad-cybercommand/installer logs --validation
+npx bmad-cybersec logs --validation
 
 # Run detailed diagnostics
-npx @bmad-cybercommand/installer doctor --verbose
+npx bmad-cybersec doctor --verbose
 
 # Attempt repair
-npx @bmad-cybercommand/installer repair
+npx bmad-cybersec repair
 ```
 
 ### Module Not Loading After Upgrade
 
 ```bash
 # Verify module paths exist
-npx @bmad-cybercommand/installer verify-paths
+npx bmad-cybersec verify-paths
 
 # Check for missing dependencies
-npx @bmad-cybercommand/installer check-deps
+npx bmad-cybersec check-deps
 
 # Reinstall specific module
-npx @bmad-cybercommand/installer reinstall <module-name>
+npx bmad-cybersec reinstall <module-name>
 ```
 
 ### Party Mode Presets Not Working
 
 ```bash
 # Validate presets
-npx @bmad-cybercommand/installer party-mode validate
+npx bmad-cybersec party-mode validate
 
 # Check cross-module references
-npx @bmad-cybercommand/installer party-mode check-refs
+npx bmad-cybersec party-mode check-refs
 
 # Regenerate preset cache
-npx @bmad-cybercommand/installer party-mode rebuild-cache
+npx bmad-cybersec party-mode rebuild-cache
 ```
 
 ### Getting Help
@@ -496,7 +496,7 @@ npx @bmad-cybercommand/installer party-mode rebuild-cache
 
 2. **Run Diagnostics**:
    ```bash
-   npx @bmad-cybercommand/installer doctor --full-report > diagnostic-report.txt
+   npx bmad-cybersec doctor --full-report > diagnostic-report.txt
    ```
 
 3. **Contact Support**:

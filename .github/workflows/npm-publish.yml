@@ -1,4 +1,4 @@
-# NPM Publishing Pipeline for bmad-cyber NPX package
+# NPM Publishing Pipeline for bmad-cybersec NPX package
 # Triggered when a GitHub release is published
 # Publishes to npm with provenance attestation for supply chain security
 
@@ -74,7 +74,7 @@ jobs:
 
       - name: Publish to npm
         run: |
-          echo "Publishing bmad-cyber@${{ steps.version.outputs.VERSION }} with tag: ${{ steps.version.outputs.DIST_TAG }}"
+          echo "Publishing bmad-cybersec@${{ steps.version.outputs.VERSION }} with tag: ${{ steps.version.outputs.DIST_TAG }}"
           npm publish \
             --provenance \
             --access public \
@@ -88,14 +88,14 @@ jobs:
           sleep 15
 
           echo "=== Verifying package on npm ==="
-          npm view bmad-cyber@${{ steps.version.outputs.VERSION }} || echo "Package may take a moment to appear"
+          npm view bmad-cybersec@${{ steps.version.outputs.VERSION }} || echo "Package may take a moment to appear"
 
           echo ""
           echo "=== Installation command ==="
           if [ "${{ steps.version.outputs.IS_PRERELEASE }}" = "true" ]; then
-            echo "npx bmad-cyber@next install"
+            echo "npx bmad-cybersec@next install"
           else
-            echo "npx bmad-cyber install"
+            echo "npx bmad-cybersec install"
           fi
         working-directory: ${{ github.workspace }}
 
@@ -108,14 +108,14 @@ jobs:
             const isPrerelease = '${{ steps.version.outputs.IS_PRERELEASE }}' === 'true';
 
             const installCmd = isPrerelease
-              ? `npx bmad-cyber@next install`
-              : `npx bmad-cyber install`;
+              ? `npx bmad-cybersec@next install`
+              : `npx bmad-cybersec install`;
 
             const body = context.payload.release.body || '';
-            const npmBadge = `\n\n---\n\n**npm:** [\`bmad-cyber@${version}\`](https://www.npmjs.com/package/bmad-cyber/v/${version})\n\n**Install:**\n\`\`\`bash\n${installCmd}\n\`\`\``;
+            const npmBadge = `\n\n---\n\n**npm:** [\`bmad-cybersec@${version}\`](https://www.npmjs.com/package/bmad-cybersec/v/${version})\n\n**Install:**\n\`\`\`bash\n${installCmd}\n\`\`\``;
 
             // Only update if not already containing npm info
-            if (!body.includes('npmjs.com/package/bmad-cyber')) {
+            if (!body.includes('npmjs.com/package/bmad-cybersec')) {
               await github.rest.repos.updateRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,

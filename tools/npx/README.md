@@ -3,7 +3,7 @@
 **One-command installation for BMAD-CYBERSEC framework**
 
 ```bash
-npx bmad-cybersecsec install
+npx bmad-cybersec install
 ```
 
 ## Overview

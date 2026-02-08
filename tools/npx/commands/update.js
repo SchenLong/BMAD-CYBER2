@@ -34,7 +34,7 @@ export async function updateCommand(options) {
     if (!currentVersion) {
       spinner.fail('BMAD-CYBER not detected in current directory');
       logger.error('Run this command from a directory with BMAD-CYBER installed.');
-      logger.info('You can install BMAD-CYBER with: npx bmad-cyber install');
+      logger.info('You can install BMAD-CYBER with: npx bmad-cybersec install');
       process.exit(1);
     }
 
@@ -86,7 +86,7 @@ export async function updateCommand(options) {
       showVersionComparison(currentVersion, latestRelease);
 
       if (isNewerVersion(latestRelease.tag, currentVersion)) {
-        logger.info('\nRun `npx bmad-cyber update` to update.');
+        logger.info('\nRun `npx bmad-cybersec update` to update.');
       } else {
         logger.success('\nYou are on the latest version!');
       }
