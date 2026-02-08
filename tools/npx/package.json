@@ -1,16 +1,17 @@
 {
-  "name": "bmad-cyber",
+  "name": "bmad-cybersec",
   "version": "2.0.0",
-  "description": "Install BMAD-CYBER operations framework",
+  "description": "Install BMAD-CYBERSEC operations framework",
   "type": "module",
   "bin": {
-    "bmad-cyber": "./cli.js"
+    "bmad-cybersec": "cli.js"
   },
   "files": [
     "cli.js",
     "index.js",
     "commands/",
-    "lib/"
+    "lib/",
+    "README.md"
   ],
   "scripts": {
     "test": "vitest run",
@@ -41,15 +42,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/SchenLong/BMAD-CYBERSEC.git"
+    "url": "git+https://github.com/SchenLong/BMAD-CYBERSEC.git"
   },
   "homepage": "https://github.com/SchenLong/BMAD-CYBERSEC#readme",
   "bugs": {
     "url": "https://github.com/SchenLong/BMAD-CYBERSEC/issues"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "license": "MIT"
 }
