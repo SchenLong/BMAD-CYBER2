@@ -426,7 +426,7 @@ npx bmad-cybersec update core
 npx bmad-cybersec workflow list --conflicts
 
 # Update workflow naming to use unique IDs
-# Format: {module_code}:{workflow_name}
+# Format: {module_code}:{workflow-name}
 ```
 
 #### VER_001: Mixed Major Versions

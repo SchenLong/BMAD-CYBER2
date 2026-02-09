@@ -245,7 +245,7 @@ Update frontmatter: add `step-05b-risk-validation` to stepsCompleted
 
 ### 9. Proceed to Ethics Check
 
-When user selects [C], load and execute {nextStepFile} (step-06-ethics-check.md) with cross-module validation context incorporated.
+When user selects [C], load and follow {nextStepFile} (step-06-ethics-check.md) with cross-module validation context incorporated.
 
 ---
 

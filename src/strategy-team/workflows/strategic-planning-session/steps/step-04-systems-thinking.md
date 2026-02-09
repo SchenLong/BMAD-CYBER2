@@ -231,7 +231,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [S] Deep Dive on S
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Augustus for data on capabilities, when finished redisplay the menu
 - IF S: Deep dive on a specific system or capability, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 #### EXECUTION RULES:

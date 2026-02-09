@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: Decision framing from Step 1, user's organizational knowledge
 - Focus: Facts, data, research, precedents
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Step 1 decision framing complete
 
 ---
@@ -166,7 +166,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [D] Dive Deeper on
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Magnus for political context data or Lee for efficiency metrics, when finished redisplay the menu
 - IF D: Explore specific data area in more depth, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 #### EXECUTION RULES:

@@ -82,9 +82,9 @@ Severity [1-4]:</ask>
 ---
 </output>
 
-<ask>Do you have initial incident details, or should we invoke the incident playbook?
+<ask>Do you have initial incident details, or should we load and follow the incident playbook?
 
-1. **Invoke incident playbook** - Start formal incident response
+1. **Load incident playbook** - Start formal incident response
 2. **Provide summary** - I have initial facts ready
 3. **War Room mode** - Assemble team for live discussion
 
@@ -97,7 +97,7 @@ Choice [1/2/3]:</ask>
 
 Starting incident detection and analysis phase...</output>
 
-  <action>Invoke {cybersec_workflows.incident_playbook}</action>
+  <action>Load and follow{cybersec_workflows.incident_playbook}</action>
   <action>Wait for initial findings</action>
   <action>Store incident_summary_path</action>
   <action>Store iocs_path</action>
@@ -128,7 +128,7 @@ Summary:</ask>
 
 Starting Party Mode with incident context...</output>
 
-  <action>Invoke party-mode with preset=incident-war-room and context=incident_summary</action>
+  <action>Load and followparty-mode with preset=incident-war-room and context=incident_summary</action>
   <action>After war room, capture key decisions and action items</action>
 </check>
 
@@ -167,7 +167,7 @@ Initiating attribution workflow...</output>
 
 <ask>Should we proceed with attribution analysis?
 
-1. **Yes, start attribution** - Invoke intel-team attribution workflow
+1. **Yes, start attribution** - Load and follow intel-team attribution workflow
 2. **Skip attribution** - Not needed for this incident
 3. **Later** - Continue with other tracks, return to attribution
 
@@ -181,7 +181,7 @@ Choice [1/2/3]:</ask>
 
 Starting threat actor attribution...</output>
 
-  <action>Invoke {intel_workflows.attribution} with iocs context</action>
+  <action>Load and follow{intel_workflows.attribution} with iocs context</action>
   <action>Set attribution_status = "in_progress"</action>
   <action>Note: This runs in parallel with legal track</action>
 </check>
@@ -248,7 +248,7 @@ Choice [1-6]:</ask>
 
 Invoking Legal-Team compliance workflow...</output>
 
-  <action>Invoke {legal_workflows.matter_intake} with incident context</action>
+  <action>Load and follow{legal_workflows.matter_intake} with incident context</action>
   <action>Wait for notification requirements document</action>
   <action>Store notification_requirements_path</action>
 </check>
@@ -307,7 +307,7 @@ Exposure level [1-4]:</ask>
 
 <ask>Ready to develop communications plan?
 
-1. **Yes, start planning** - Invoke crisis communications workflow
+1. **Yes, start planning** - Load and follow crisis communications workflow
 2. **War Room discussion** - Discuss messaging with full team first
 3. **Hold** - Wait for more information
 
@@ -324,7 +324,7 @@ Choice [1/2/3]:</ask>
 
 Starting communications planning...</output>
 
-  <action>Invoke {strategy_workflows.crisis_response} with incident context</action>
+  <action>Load and follow{strategy_workflows.crisis_response} with incident context</action>
   <action>Store communications_plan_path</action>
 </check>
 
@@ -338,7 +338,7 @@ Starting communications planning...</output>
 
 Starting focused discussion on messaging...</output>
 
-  <action>Invoke party-mode with limited agents for messaging discussion</action>
+  <action>Load and followparty-mode with limited agents for messaging discussion</action>
 </check>
 
 <action>Goto step 6</action>
@@ -483,7 +483,7 @@ All incident teams will participate in structured review.
 
 Starting comprehensive debrief...</output>
 
-  <action>Invoke party-mode with all incident teams</action>
+  <action>Load and followparty-mode with all incident teams</action>
   <action>Capture lessons learned document</action>
 </check>
 

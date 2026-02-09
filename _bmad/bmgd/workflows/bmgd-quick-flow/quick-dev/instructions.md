@@ -8,9 +8,9 @@
 <critical>ALWAYS respect {project_context} if it exists - it defines project standards</critical>
 
 <checkpoint-handlers>
-  <on-select key="a">Load and execute {advanced_elicitation}, then return</on-select>
-  <on-select key="p">Load and execute {party_mode_exec}, then return</on-select>
-  <on-select key="r">Load and execute {quick_prototype_workflow}</on-select>
+  <on-select key="a">Load and follow {advanced_elicitation}, then return</on-select>
+  <on-select key="p">Load and follow {party_mode_exec}, then return</on-select>
+  <on-select key="r">Load and follow {quick_prototype_workflow}</on-select>
 </checkpoint-handlers>
 
 <step n="1" goal="Load context and determine execution mode">
@@ -74,12 +74,12 @@
     </check>
 
     <check if="r">
-      <action>Load and execute {quick_prototype_workflow}</action>
+      <action>Load and follow {quick_prototype_workflow}</action>
       <action>Return here after prototype complete</action>
     </check>
 
     <check if="w">
-      <action>Load and execute {workflow_init}</action>
+      <action>Load and follow {workflow_init}</action>
       <action>EXIT quick-dev - user routed to full workflow</action>
     </check>
 

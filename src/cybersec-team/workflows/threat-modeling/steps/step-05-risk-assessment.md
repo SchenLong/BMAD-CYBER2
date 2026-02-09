@@ -291,7 +291,7 @@ Display: **Select an Option:** [P] Party Mode [C] Continue to Mitigation Strateg
 #### Menu Handling Logic:
 
 - IF P: Execute {partyModeWorkflow} with focus: "Review the risk assessment for {currentComponent} - are the likelihood and impact ratings accurate? Should any risk scores be adjusted?"
-- IF C: Verify all threats have been assessed, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify all threats have been assessed, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
 ---
@@ -321,4 +321,4 @@ Display: **Select an Option:** [P] Party Mode [C] Continue to Mitigation Strateg
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected AND all threats are risk-assessed in the threat model will you load, read entire file, then execute {nextStepFile} to begin mitigation strategy development.
+ONLY WHEN C is selected AND all threats are risk-assessed in the threat model will you load, read entire file, then follow {nextStepFile} to begin mitigation strategy development.

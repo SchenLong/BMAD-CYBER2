@@ -453,12 +453,12 @@ Display: **Select an Option:** [P] Party Mode [C] Continue to Evidence Collectio
 #### Menu Handling Logic:
 
 - IF P: Execute {partyModeWorkflow} - Recommend Bastion (architecture expert) for containment validation and additional containment strategies
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and containment is validated will you load, read entire file, then execute `{nextStepFile}` to begin evidence collection.
+ONLY WHEN C is selected and containment is validated will you load, read entire file, then follow `{nextStepFile}` to begin evidence collection.
 
 ---
 

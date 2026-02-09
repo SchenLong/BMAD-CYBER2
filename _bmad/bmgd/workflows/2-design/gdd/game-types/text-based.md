@@ -1,7 +1,7 @@
 ## Text-Based Game Specific Elements
 
 <narrative-workflow-critical>
-This game type is **narrative-critical**. You MUST run the Narrative Design workflow after completing the GDD to create:
+This game type is **narrative-critical**. You MUST load and follow the Narrative Design workflow after completing the GDD to create:
 - Complete story and all narrative paths
 - Room descriptions and atmosphere
 - Puzzle solutions and hints

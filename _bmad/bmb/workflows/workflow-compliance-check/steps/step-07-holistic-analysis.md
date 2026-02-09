@@ -9,7 +9,7 @@ workflow_path: '{project-root}/_bmad/bmb/workflows/workflow-compliance-check'
 thisStepFile: '{workflow_path}/steps/step-07-holistic-analysis.md'
 nextStepFile: '{workflow_path}/steps/step-08-generate-report.md'
 workflowFile: '{workflow_path}/workflow.md'
-complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow_name}.md'
+complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow-name}.md'
 targetWorkflowFile: '{target_workflow_path}'
 
 # Template References
@@ -227,7 +227,7 @@ Evaluate workflow from user perspective:
 
 ## Menu Handling Logic:
 
-- IF C: Save holistic analysis findings to report, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save holistic analysis findings to report, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF X: Save current findings and end with guidance for resuming
 - IF Any other comments or queries: respond and redisplay menu
 

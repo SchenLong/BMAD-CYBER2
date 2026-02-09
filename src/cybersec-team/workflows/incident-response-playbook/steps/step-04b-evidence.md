@@ -524,12 +524,12 @@ Display: **Select an Option:** [P] Party Mode [W] Web-Browsing [C] Continue to A
   - IOC threat intelligence lookup (VirusTotal, AbuseIPDB, ThreatCrowd)
   - Malware analysis reports
   - Similar campaign research
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and all evidence is collected will you load, read entire file, then execute `{nextStepFile}` to begin analysis.
+ONLY WHEN C is selected and all evidence is collected will you load, read entire file, then follow `{nextStepFile}` to begin analysis.
 
 ---
 

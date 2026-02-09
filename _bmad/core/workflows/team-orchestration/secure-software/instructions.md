@@ -66,7 +66,7 @@ Choice [1/2]:</ask>
 
 <ask>How would you like to proceed?
 
-1. **Create PRD now** - Invoke BMM create-prd workflow
+1. **Create PRD now** - Load and followBMM create-prd workflow
 2. **Use existing PRD** - Point to existing prd.md
 3. **Skip** - I'll create it later
 
@@ -82,7 +82,7 @@ Choice [1/2/3]:</ask>
 
 Starting BMM PRD workflow...</output>
 
-  <action>Invoke {bmm_workflows.prd}</action>
+  <action>Load and follow{bmm_workflows.prd}</action>
   <action>Wait for PRD completion</action>
   <action>Store prd_path</action>
 </check>
@@ -129,7 +129,7 @@ Starting BMM PRD workflow...</output>
 
 <ask>Ready to begin threat modeling?
 
-1. **Start threat model** - Invoke STRIDE workflow
+1. **Start threat model** - Load and followSTRIDE workflow
 2. **Use existing threat model** - Point to existing file
 3. **Skip** - Proceed without formal threat model (NOT RECOMMENDED)
 
@@ -145,7 +145,7 @@ Choice [1/2/3]:</ask>
 
 Starting Cybersec threat modeling...</output>
 
-  <action>Invoke {cybersec_workflows.threat_model} with prd_path context</action>
+  <action>Load and follow{cybersec_workflows.threat_model} with prd_path context</action>
   <action>Wait for completion</action>
   <action>Store threat_model_path</action>
 </check>
@@ -223,7 +223,7 @@ Choice [1-6]:</ask>
 
 Starting Legal-Team compliance workflow...</output>
 
-  <action>Invoke {legal_workflows.compliance_audit} with frameworks and threat_model context</action>
+  <action>Load and follow{legal_workflows.compliance_audit} with frameworks and threat_model context</action>
   <action>Wait for completion</action>
   <action>Store compliance_requirements_path</action>
 </check>
@@ -310,7 +310,7 @@ Proceeding to architecture phase...</output>
 
 <ask>Ready to begin architecture design?
 
-1. **Create architecture** - Invoke BMM create-architecture with security context
+1. **Create architecture** - Load and followBMM create-architecture with security context
 2. **Use existing architecture** - Point to existing file and get security review
 3. **Skip** - Proceed to stories (NOT RECOMMENDED)
 
@@ -327,7 +327,7 @@ Choice [1/2/3]:</ask>
 
 Starting BMM architecture workflow...</output>
 
-    <action>Invoke {bmm_workflows.architecture} with security context</action>
+    <action>Load and follow{bmm_workflows.architecture} with security context</action>
     <action>Wait for completion</action>
     <action>Store architecture_path</action>
   </check>
@@ -347,7 +347,7 @@ Now invoking security architecture review...
 
 Starting Cybersec security review...</output>
 
-  <action>Invoke {cybersec_workflows.security_review} with architecture_path</action>
+  <action>Load and follow{cybersec_workflows.security_review} with architecture_path</action>
   <action>Wait for completion</action>
   <action>Store security_review_path</action>
 
@@ -442,7 +442,7 @@ Proceeding to epics and stories creation...</output>
 
 <ask>Ready to create epics and stories?
 
-1. **Create epics/stories** - Invoke BMM workflow with security context
+1. **Create epics/stories** - Load and followBMM workflow with security context
 2. **Use existing** - Point to existing epics file
 3. **Skip** - End orchestration here
 
@@ -458,7 +458,7 @@ Choice [1/2/3]:</ask>
 
 Starting BMM epics workflow...</output>
 
-  <action>Invoke {bmm_workflows.epics} with security context from all phases</action>
+  <action>Load and follow{bmm_workflows.epics} with security context from all phases</action>
   <action>Wait for completion</action>
   <action>Store epics_path</action>
 </check>

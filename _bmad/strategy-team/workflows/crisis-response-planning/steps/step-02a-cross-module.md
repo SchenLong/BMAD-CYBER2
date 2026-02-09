@@ -122,8 +122,8 @@ This step should be invoked when Step 1 crisis assessment indicates ANY of:
 Choice:"
 
 #### Handling:
-- IF 1: Load crisis-response-party preset, invoke party mode with all agents
-- IF 2: Load incident-war-room preset, invoke party mode
+- IF 1: Load crisis-response-party preset, load party mode with all agents
+- IF 2: Load incident-war-room preset, load party mode
 - IF 3: Note parallel IR activation, establish sync protocol, continue to step-02
 - IF 4: Continue to step-02 without cross-module activation
 
@@ -154,7 +154,7 @@ Choice:"
 
 ### 6. Continue to Immediate Actions
 
-After cross-module coordination is established (or skipped), load and execute `{nextStepFile}` (step-02-immediate-actions.md).
+After cross-module coordination is established (or skipped), load and follow `{nextStepFile}` (step-02-immediate-actions.md).
 
 ---
 

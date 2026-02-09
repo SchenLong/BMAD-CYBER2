@@ -154,7 +154,7 @@ Choice:"
 
 ### 6. Continue to Immediate Actions
 
-After cross-module coordination is established (or skipped), load and execute `{nextStepFile}` (step-02-immediate-actions.md).
+After cross-module coordination is established (or skipped), load and follow `{nextStepFile}` (step-02-immediate-actions.md).
 
 ---
 

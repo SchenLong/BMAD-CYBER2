@@ -353,7 +353,7 @@ Update frontmatter: add `step-02b-intelligence-integration` to stepsCompleted
 
 ### 12. Continue to Self-Assessment
 
-When user selects [C], load and execute {nextStepFile} (step-03-self-assessment.md) with intelligence-enhanced competitor understanding.
+When user selects [C], load and follow {nextStepFile} (step-03-self-assessment.md) with intelligence-enhanced competitor understanding.
 
 ---
 

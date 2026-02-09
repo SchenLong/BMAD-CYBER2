@@ -265,4 +265,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and component plan is saved to module-plan.md with stepsCompleted updated to [1, 2, 3], will you then load, read entire file, then execute `{nextStepFile}` to begin creating the module structure.
+ONLY WHEN C is selected and component plan is saved to module-plan.md with stepsCompleted updated to [1, 2, 3], will you then load, read entire file, then follow `{nextStepFile}` to begin creating the module structure.

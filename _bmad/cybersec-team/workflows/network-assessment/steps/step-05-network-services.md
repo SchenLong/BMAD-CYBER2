@@ -281,4 +281,4 @@ Display: [C] Continue to Wireless Security [R] Review/Add Findings [E] Exploit F
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then follow {nextStepFile}.

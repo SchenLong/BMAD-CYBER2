@@ -80,7 +80,7 @@ Each party will present their perspective.
 
 Starting discussion...</output>
 
-  <action>Invoke {party_mode_workflow} with relevant agents from involved_teams</action>
+  <action>Load and follow{party_mode_workflow} with relevant agents from involved_teams</action>
   <action>Capture perspectives from discussion</action>
 </check>
 
@@ -214,7 +214,7 @@ Ground rules:
 
 Starting mediation...</output>
 
-  <action>Invoke party-mode for mediation</action>
+  <action>Load and followparty-mode for mediation</action>
 </check>
 
 <check if="choice == 4">

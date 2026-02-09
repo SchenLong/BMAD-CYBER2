@@ -372,4 +372,4 @@ Before proceeding to Step 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-05-threat-timeline.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-05-threat-timeline.md`

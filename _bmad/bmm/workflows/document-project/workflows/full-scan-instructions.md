@@ -1088,7 +1088,7 @@ Enter number(s) separated by commas (e.g., "1,3,5"), or type 'all':
 - Recommended next checks before PR: {{next_checks}}
 
 **Brownfield PRD Command:**
-When ready to plan new features, run the PRD workflow and provide this index as input.
+When ready to plan new features, load and follow the PRD workflow and provide this index as input.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 </action>

@@ -13,6 +13,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require("js-yaml");
 const os = require('os');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 class BMADConfigurationManager {
     constructor(options = {}) {
@@ -233,7 +234,7 @@ class BMADConfigurationManager {
         try {
             const userConfigPath = path.join(os.homedir(), '.bmad', 'user-config.yaml');
             if (fs.existsSync(userConfigPath)) {
-                const userConfig = yaml.parse(fs.readFileSync(userConfigPath, 'utf8'));
+                const userConfig = yaml.parse(normalizeLineEndings(fs.readFileSync(userConfigPath, 'utf8')));
 
                 if (userConfig.variables) {
                     for (const [key, value] of Object.entries(userConfig.variables)) {

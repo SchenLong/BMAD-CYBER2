@@ -18,6 +18,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('yaml');
 const crypto = require('crypto');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 class BMADTemplateEngine {
     constructor(options = {}) {
@@ -716,7 +717,7 @@ class BMADTemplateEngine {
                 return newConfig;
             }
 
-            const existingConfig = yaml.parse(fs.readFileSync(existingConfigPath, 'utf8'));
+            const existingConfig = yaml.parse(normalizeLineEndings(fs.readFileSync(existingConfigPath, 'utf8')));
 
             switch (mergeStrategy) {
                 case 'replace':
@@ -991,7 +992,7 @@ class BMADTemplateEngine {
         try {
             const templatePath = path.join(__dirname, 'module.yaml.template');
             if (fs.existsSync(templatePath)) {
-                const content = fs.readFileSync(templatePath, 'utf8');
+                const content = normalizeLineEndings(fs.readFileSync(templatePath, 'utf8'));
                 const template = yaml.parse(content);
                 this.templates.set('team-module-base', template);
             } else {

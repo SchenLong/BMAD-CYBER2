@@ -106,7 +106,7 @@ The GDD provides:
 - Technical requirements and constraints
 - Platform targets and performance needs
 
-Please run the GDD workflow first: `create-gdd`"
+Please load and follow the GDD workflow first: `create-gdd`"
 
 **Exit workflow - GDD required**
 

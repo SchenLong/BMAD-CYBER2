@@ -11,6 +11,7 @@
 
 const yaml = require('js-yaml');
 const path = require('path');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 /**
  * YAML to MD Conversion Engine
@@ -42,7 +43,7 @@ class YamlToMdConverter {
     try {
       // Parse YAML if string
       const agentData = typeof yamlAgent === 'string'
-        ? yaml.load(yamlAgent, { schema: yaml.CORE_SCHEMA })
+        ? yaml.load(normalizeLineEndings(yamlAgent), { schema: yaml.CORE_SCHEMA })
         : yamlAgent;
 
       // Validate YAML structure
@@ -92,7 +93,7 @@ class YamlToMdConverter {
     try {
       // Parse YAML if string
       const workflowData = typeof yamlWorkflow === 'string'
-        ? yaml.load(yamlWorkflow, { schema: yaml.CORE_SCHEMA })
+        ? yaml.load(normalizeLineEndings(yamlWorkflow), { schema: yaml.CORE_SCHEMA })
         : yamlWorkflow;
 
       // Validate YAML structure

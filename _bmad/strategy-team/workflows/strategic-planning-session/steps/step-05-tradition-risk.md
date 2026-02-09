@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: Strategic context from Steps 1-4
 - Focus: Tradition, preservation, risk, prudence
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1-4 complete
 
 ---
@@ -241,7 +241,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Explore Specif
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Lee for debate on pace, or Sophia for ethical risks, when finished redisplay the menu
 - IF R: Deep dive on a specific risk or preservation concern, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 #### EXECUTION RULES:

@@ -9,7 +9,7 @@ workflow_path: '{project-root}/_bmad/bmb/workflows/workflow-compliance-check'
 thisStepFile: '{workflow_path}/steps/step-05-intent-spectrum-validation.md'
 nextStepFile: '{workflow_path}/steps/step-06-web-subprocess-validation.md'
 workflowFile: '{workflow_path}/workflow.md'
-complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow_name}.md'
+complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow-name}.md'
 targetWorkflowPath: '{target_workflow_path}'
 
 # Template References
@@ -233,7 +233,7 @@ Append to {complianceReportFile}:
 
 ## Menu Handling Logic:
 
-- IF C: Save spectrum decision to report, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save spectrum decision to report, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF X: Save current spectrum findings and end with guidance for resuming
 - IF Any other comments or queries: respond and redisplay menu
 

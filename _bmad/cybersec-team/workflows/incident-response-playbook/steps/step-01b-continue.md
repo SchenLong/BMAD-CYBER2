@@ -192,7 +192,7 @@ lastUpdated: '{current timestamp}'
 continuedAt: '{current timestamp}'
 ```
 
-**Immediately load, read entire file, then execute the next step file.**
+**Immediately load and follow the next step file.**
 
 **If Option 2 (Review):**
 
@@ -297,4 +297,4 @@ Handle user selection appropriately.
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN user selects to continue (Option 1 or after review/modify), will you then load, read entire file, then execute the mode-appropriate next step file based on the stepsCompleted array.
+ONLY WHEN user selects to continue (Option 1 or after review/modify), will you then load and follow the mode-appropriate next step file based on the stepsCompleted array.

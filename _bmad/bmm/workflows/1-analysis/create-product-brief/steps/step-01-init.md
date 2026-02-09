@@ -146,7 +146,7 @@ Display: "**Proceeding to product vision discovery...**"
 
 #### Menu Handling Logic:
 
-- After setup report is presented, immediately load, read entire file, then execute {nextStepFile}
+- After setup report is presented, immediately load, read entire file, then follow {nextStepFile}
 
 #### EXECUTION RULES:
 

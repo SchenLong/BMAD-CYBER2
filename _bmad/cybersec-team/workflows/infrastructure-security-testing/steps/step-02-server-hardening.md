@@ -272,4 +272,4 @@ Display: [C] Continue to Container Security [R] Review/Add Findings [S] Skip to 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2]`, then follow {nextStepFile}.

@@ -359,7 +359,7 @@ Type 'done' when notifications complete:"
 
 {Wait 3 seconds for dramatic effect}"
 
-**Automatically load, read entire file, then execute {nextStepFile}**
+**Automatically load, read entire file, then follow {nextStepFile}**
 
 NO MENU - AUTO-PROCEED for speed during incident response.
 

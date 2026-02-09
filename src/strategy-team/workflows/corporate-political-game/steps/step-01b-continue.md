@@ -86,7 +86,7 @@ Based on stepsCompleted, load the appropriate step file:
 | step-07-reputation-management | step-08-execution-playbook.md |
 | step-08-execution-playbook | Workflow complete |
 
-**Execute:** Load, read entire file, then execute the determined next step file.
+**Execute:** Load and follow the determined next step file.
 
 ---
 

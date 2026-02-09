@@ -159,7 +159,7 @@ Display: **Workflow Creation Complete!** [T] Test Workflow [M] Make Adjustments 
 
 ### Menu Handling Logic:
 
-- IF T: Offer to run the newly created workflow with sample data
+- IF T: Offer to load and follow the newly created workflow with sample data
 - IF M: Offer to make specific adjustments to the workflow
 - IF D: Provide additional help and resources
 - IF Any other: Respond to user needs

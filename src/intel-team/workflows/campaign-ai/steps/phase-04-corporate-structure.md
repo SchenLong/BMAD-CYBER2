@@ -451,4 +451,4 @@ Before proceeding to Phase 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/phase-05-personnel-organization.md`
+Upon completion, load and follow: `{workflow_path}/steps/phase-05-personnel-organization.md`

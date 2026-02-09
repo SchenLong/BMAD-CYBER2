@@ -171,13 +171,13 @@ Display: **Select an Option:** [A] Meal Variety Optimization [P] Chef & Dietitia
 - IF A: Execute `{project-root}/_bmad/core/workflows/advanced-elicitation/workflow.xml`
 - IF P: Execute `{project-root}/_bmad/core/workflows/party-mode/workflow.md` with a chef and dietitian expert also as part of the party
 - IF C: Save content to nutrition-plan.md, update frontmatter `stepsCompleted` to add 4 at the end of the array before loading next step, check cooking frequency:
-  - IF cooking frequency > 2x/week: load, read entire file, then execute `{workflow_path}/step-05-shopping.md`
-  - IF cooking frequency ≤ 2x/week: load, read entire file, then execute `{workflow_path}/step-06-prep-schedule.md`
+  - IF cooking frequency > 2x/week: load, read entire file, then follow `{workflow_path}/step-05-shopping.md`
+  - IF cooking frequency ≤ 2x/week: load, read entire file, then follow `{workflow_path}/step-06-prep-schedule.md`
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#5-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
 ONLY WHEN C is selected and content is saved to document and frontmatter is updated:
 
-- IF cooking frequency > 2x/week: load, read entire file, then execute `{workflow_path}/step-05-shopping.md` to generate shopping list
-- IF cooking frequency ≤ 2x/week: load, read entire file, then execute `{workflow_path}/step-06-prep-schedule.md` to skip shopping list
+- IF cooking frequency > 2x/week: load, read entire file, then follow `{workflow_path}/step-05-shopping.md` to generate shopping list
+- IF cooking frequency ≤ 2x/week: load, read entire file, then follow `{workflow_path}/step-06-prep-schedule.md` to skip shopping list

@@ -197,7 +197,7 @@ Show the generated inspiration analysis content and present choices:
 
 - Append the final content to `{planning_artifacts}/ux-design-specification.md`
 - Update frontmatter: append step to end of stepsCompleted array
-- Load and execute`./step-06-design-system.md`
+- Load and follow`./step-06-design-system.md`
 
 ## APPEND TO DOCUMENT:
 

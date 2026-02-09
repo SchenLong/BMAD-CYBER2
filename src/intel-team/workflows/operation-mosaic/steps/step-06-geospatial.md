@@ -388,4 +388,4 @@ Steps 2-6 (parallel collection) are now complete. Proceed to Phase 3 for special
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-07-threat-correlation.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-07-threat-correlation.md`

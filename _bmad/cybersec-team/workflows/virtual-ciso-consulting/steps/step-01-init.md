@@ -387,7 +387,7 @@ Proceeding to budget planning..."
 
 ### 5. Route to Next Step
 
-Immediately load, read entire file, then execute `{nextStepFile}` to begin budget planning.
+Immediately load, read entire file, then follow `{nextStepFile}` to begin budget planning.
 
 ---
 
@@ -417,4 +417,4 @@ Immediately load, read entire file, then execute `{nextStepFile}` to begin budge
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization is complete and document created (OR continuation routed) will you immediately load, read entire file, then execute `{nextStepFile}` to begin budget & resource planning.
+ONLY WHEN initialization is complete and document created (OR continuation routed) will you immediately load, read entire file, then follow `{nextStepFile}` to begin budget & resource planning.

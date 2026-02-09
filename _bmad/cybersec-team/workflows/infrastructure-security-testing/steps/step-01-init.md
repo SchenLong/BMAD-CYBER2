@@ -19,7 +19,7 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 ## CONTINUATION CHECK
 
-IF {outputFile} exists: Load and execute {continueStepFile}
+IF {outputFile} exists: Load and follow {continueStepFile}
 IF NOT: Continue with fresh initialization below
 
 ## INITIALIZATION SEQUENCE:
@@ -173,4 +173,4 @@ Display: [C] Continue to Server Hardening [R] Review/Revise Scope
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1]`, then follow {nextStepFile}.

@@ -294,4 +294,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and all agents are created with placeholder workflows and stepsCompleted updated, will you then load, read entire file, then execute `{nextStepFile}` to begin workflow plan review.
+ONLY WHEN C is selected and all agents are created with placeholder workflows and stepsCompleted updated, will you then load, read entire file, then follow `{nextStepFile}` to begin workflow plan review.

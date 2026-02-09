@@ -80,7 +80,7 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Show detailed before/after comparison, then redisplay menu
-- IF C: Save validation summary to {editPlan}, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save validation summary to {editPlan}, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#4-present-menu-options)
 
 #### EXECUTION RULES:

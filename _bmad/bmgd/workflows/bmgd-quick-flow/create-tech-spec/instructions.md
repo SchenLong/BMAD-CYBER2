@@ -9,9 +9,9 @@
 <critical>Focus on game-specific considerations: performance, feel, engine patterns</critical>
 
 <checkpoint-handlers>
-  <on-select key="a">Load and execute {advanced_elicitation}, then return to current step</on-select>
-  <on-select key="p">Load and execute {party_mode_workflow}, then return to current step</on-select>
-  <on-select key="b">Load and execute {quick_dev_workflow} with the tech-spec file</on-select>
+  <on-select key="a">Load and follow {advanced_elicitation}, then return to current step</on-select>
+  <on-select key="p">Load and follow {party_mode_workflow}, then return to current step</on-select>
+  <on-select key="b">Load and follow {quick_dev_workflow} with the tech-spec file</on-select>
 </checkpoint-handlers>
 
 <step n="1" goal="Understand what the user wants to build">

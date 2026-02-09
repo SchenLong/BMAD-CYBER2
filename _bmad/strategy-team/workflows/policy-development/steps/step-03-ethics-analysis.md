@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: Policy framing from Step 1, evidence from Step 2
 - Focus: Values, fairness, rights, impacts
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1 and 2 complete
 
 ---
@@ -223,7 +223,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [E] Explore Ethica
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Jean-Luc for principled leadership lens or Charles for moral framing, when finished redisplay the menu
 - IF E: Explore a specific ethical dimension deeper, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 #### EXECUTION RULES:

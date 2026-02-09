@@ -79,7 +79,7 @@ Based on last completed step:
 
 ### 5. Execute Routing
 
-Immediately load, read entire file, then execute appropriate step file.
+Immediately load, read entire file, then follow appropriate step file.
 
 ---
 

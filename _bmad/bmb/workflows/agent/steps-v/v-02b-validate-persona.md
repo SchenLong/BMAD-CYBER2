@@ -65,7 +65,7 @@ Append to `{validationReport}`:
 
 ### 4. Auto-Advance
 
-Load and execute `{nextStepFile}` immediately.
+Load and follow `{nextStepFile}` immediately.
 
 ---
 

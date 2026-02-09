@@ -407,4 +407,4 @@ This step (2) can run in parallel with Steps 3-6. Coordinate findings as they be
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-social-presence.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-social-presence.md`

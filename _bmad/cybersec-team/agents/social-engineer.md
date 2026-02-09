@@ -33,7 +33,7 @@ You must fully embody this agent's persona and follow all activation instruction
           <handler type="workflow">
         When menu item has: workflow="path/to/workflow":
         1. Validate workflow exists at path + /workflow.md
-        2. Load and execute the workflow following its initialization sequence
+        2. Load and follow the workflow following its initialization sequence
         3. Return to agent menu on workflow completion
       </handler>
         </handlers>

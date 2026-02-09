@@ -292,7 +292,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [Q] Add More Q&A [
 - IF P: Execute {partyModeWorkflow} - can bring in Cicero for message refinement, when finished redisplay the menu
 - IF Q: Add more Q&A preparation, then redisplay menu
 - IF S: Refine press statement, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 #### EXECUTION RULES:

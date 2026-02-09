@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: Narrative arc from Step 2, audience from Step 1
 - Focus: Data, facts, benchmarks, research
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1-2 complete
 
 ---
@@ -223,7 +223,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [D] Dive Deeper on
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Lee for metrics perspective, when finished redisplay the menu
 - IF D: Explore specific data area in more depth, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 #### EXECUTION RULES:

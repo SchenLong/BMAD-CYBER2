@@ -123,6 +123,6 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4, 5, 6]`
 - **[Q]** Questions about documents
 
 #### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF U: Review specific documents, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

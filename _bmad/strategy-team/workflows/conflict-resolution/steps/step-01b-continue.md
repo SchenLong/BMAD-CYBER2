@@ -87,7 +87,7 @@ Let me refresh my understanding of the situation..."
 Display: "**Select:** [C] Continue from [next step] [R] Review previous step [S] Start over"
 
 #### Menu Handling Logic:
-- IF C: Load and execute appropriate next step file
+- IF C: Load and follow appropriate next step file
 - IF R: Return to previous step for review
 - IF S: Restart from step-01-init.md (confirm first)
 

@@ -113,7 +113,7 @@ After user makes choice:
 **Load the selected step file:**
 
 - Update frontmatter `lastStep` to reflect current navigation
-- Execute the selected step file
+- Load and follow the selected step file
 - Let that step handle the detailed continuation logic
 
 **State Preservation:**

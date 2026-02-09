@@ -152,7 +152,7 @@ Use **[NP] Create New Project** to get started.</output>
 {next_action}
 
 **Agent:** {agent_display_name} ({agent_name})
-**Workflow:** {workflow_name}
+**Workflow:** {workflow-name}
 
 **Why:** {reason}
 
@@ -170,7 +170,7 @@ Use **[NP] Create New Project** to get started.</output>
 
 <ask>Would you like to:
 
-1. **Proceed** - I'll provide the command to invoke the recommended workflow
+1. **Proceed** - I'll provide the command to load and follow the recommended workflow
 2. **Choose alternative** - Select from the alternatives listed
 3. **Return to menu** - Go back to Abdul's menu
 

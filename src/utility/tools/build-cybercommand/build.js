@@ -20,6 +20,7 @@ import yaml from 'js-yaml';
 import chalk from 'chalk';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import { normalizeLineEndings } from '../../normalize-line-endings.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -101,7 +102,7 @@ class MultiModuleBuilder {
   loadConfig() {
     const configPath = path.join(this.packageRoot, 'bmad-multi-module.yaml');
     // SECURITY: Validate YAML before parsing (GH-101-002 fix)
-    const content = fs.readFileSync(configPath, 'utf8');
+    const content = normalizeLineEndings(fs.readFileSync(configPath, 'utf8'));
     return yaml.load(content, { schema: yaml.CORE_SCHEMA }); // Disable unsafe types
   }
 

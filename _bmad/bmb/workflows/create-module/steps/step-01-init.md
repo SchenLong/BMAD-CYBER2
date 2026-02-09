@@ -125,7 +125,7 @@ Display: **Proceeding to define your module concept...**
 
 #### Menu Handling Logic:
 
-- After setup completion, add step-01-init to the end of the stepsCompleted array in module plan frontmatter, then load, read entire file, then execute `{nextStepFile}` to define the module concept
+- After setup completion, add step-01-init to the end of the stepsCompleted array in module plan frontmatter, then load, read entire file, then follow `{nextStepFile}` to define the module concept
 
 ---
 
@@ -153,4 +153,4 @@ Display: **Proceeding to define your module concept...**
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete and module plan document is created (OR continuation is properly routed), will you then immediately load, read entire file, then execute `{nextStepFile}` to begin defining the module concept.
+ONLY WHEN initialization setup is complete and module plan document is created (OR continuation is properly routed), will you then immediately load, read entire file, then follow `{nextStepFile}` to begin defining the module concept.

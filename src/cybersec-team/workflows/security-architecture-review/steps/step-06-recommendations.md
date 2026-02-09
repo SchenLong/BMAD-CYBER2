@@ -450,7 +450,7 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 - IF A: Execute {advancedElicitationTask} with prompt: "Review our recommendations for completeness and actionability. Are they specific enough? Do they address root causes? Are there better alternatives? Challenge the implementation approach and timelines."
 - IF P: Execute {partyModeWorkflow} with prompt: "Invite Sentinel (compliance expert) to validate recommendations against compliance requirements, or Phoenix (incident response) to review from operational resilience perspective."
-- IF C: Verify recommendations are specific and actionable, save to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify recommendations are specific and actionable, save to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 #### EXECUTION RULES:
@@ -465,7 +465,7 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 ONLY WHEN 'C' is selected AND risk matrix is complete AND recommendations are specific (not generic) AND roadmap is phased AND documented in Sections 5, 6, 7 of {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2, 3, 4, 5, 6]`, `lastStep: 'recommendations'`
-2. Load, read entire file, then execute {nextStepFile} to generate final executive summary and complete report
+2. Load, read entire file, then follow {nextStepFile} to generate final executive summary and complete report
 
 ---
 

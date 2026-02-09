@@ -800,12 +800,12 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [B] Brain
 - IF A: Execute {advancedElicitationTask} with focus on "completeness and safety of recovery procedures"
 - IF P: Execute {partyModeWorkflow} - Recommend Bastion (architecture expert) for recovery validation and monitoring strategies
 - IF B: Execute {brainstormingWorkflow} with focus on "innovative recovery strategies that minimize downtime and risk"
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Section 5 is complete will you load, read entire file, then execute `{nextStepFile}` to begin defining post-incident activities.
+ONLY WHEN C is selected and Section 5 is complete will you load, read entire file, then follow `{nextStepFile}` to begin defining post-incident activities.
 
 ---
 

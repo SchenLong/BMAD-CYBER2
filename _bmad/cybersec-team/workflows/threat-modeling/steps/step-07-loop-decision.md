@@ -137,7 +137,7 @@ componentsAnalyzed: [...updated-array...]
 currentComponent: ''
 ```
 
-Load, read entire file, then execute {componentSelectionFile} to select next component.
+Load, read entire file, then follow {componentSelectionFile} to select next component.
 
 #### IF user selects 'C':
 
@@ -158,7 +158,7 @@ componentsAnalyzed: [...updated-array...]
 currentComponent: ''
 ```
 
-Load, read entire file, then execute {summaryFile} to create summary.
+Load, read entire file, then follow {summaryFile} to create summary.
 
 **IF `componentsAnalyzed.length === components.length`:**
 
@@ -187,7 +187,7 @@ componentsAnalyzed: [...all-components...]
 currentComponent: ''
 ```
 
-Immediately load, read entire file, then execute {summaryFile} to create summary.
+Immediately load, read entire file, then follow {summaryFile} to create summary.
 
 ### 6. Update Frontmatter
 
@@ -244,4 +244,4 @@ Based on decision:
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN progress is updated in frontmatter AND routing decision is made (more components OR proceed to summary) will you load, read entire file, then execute the appropriate next step file ({componentSelectionFile} or {summaryFile}).
+ONLY WHEN progress is updated in frontmatter AND routing decision is made (more components OR proceed to summary) will you load and follow the appropriate next step file ({componentSelectionFile} or {summaryFile}).

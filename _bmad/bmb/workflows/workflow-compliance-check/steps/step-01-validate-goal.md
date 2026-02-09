@@ -9,7 +9,7 @@ workflow_path: '{project-root}/_bmad/bmb/workflows/workflow-compliance-check'
 thisStepFile: '{workflow_path}/steps/step-01-validate-goal.md'
 nextStepFile: '{workflow_path}/steps/step-02-workflow-validation.md'
 workflowFile: '{workflow_path}/workflow.md'
-complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow_name}.md'
+complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow-name}.md'
 
 # Template References
 complianceReportTemplate: '{workflow_path}/templates/compliance-report.md'
@@ -115,7 +115,7 @@ Once user provides path:
 
 "**Ready to proceed with compliance check of:**
 
-- **Workflow:** `{workflow_name}`
+- **Workflow:** `{workflow-name}`
 - **Validation:** Full systematic compliance analysis
 - **Output:** Detailed compliance report with fix recommendations
 
@@ -123,7 +123,7 @@ Once user provides path:
 
 ## Menu Handling Logic:
 
-- IF C: Initialize compliance report, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Initialize compliance report, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF X: End workflow gracefully with guidance on running again later
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#4-final-confirmation)
 

@@ -5,7 +5,7 @@
  */
 export { AuditLogger } from './audit-logger.js';
 export { OverrideManager } from './override-manager.js';
-export { resolvePath, isPathInRepo, getProjectDir, normalizePath, getRelativePath } from './path-utils.js';
+export { resolvePath, isPathInRepo, getProjectDir, normalizePath, getRelativePath, sanitizePath, sanitizeErrorMessage, preprocessPath, PROJECT_ROOT_PLACEHOLDER, EXTERNAL_PLACEHOLDER } from './path-utils.js';
 export { getToolInputFromStdin, getToolInputFromStdinSync } from './stdin-parser.js';
 export { printBlockMessage, printWarning, printOverrideConsumed } from './block-message.js';
 export { sendAlert, sendAlertSync, shouldAlert, alertCritical, alertBlocked, alertWarning } from './alerting.js';

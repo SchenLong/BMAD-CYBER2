@@ -184,4 +184,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and installer info is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5, 6, 7, 8], will you then load, read entire file, then execute `{nextStepFile}` to begin documentation creation.
+ONLY WHEN C is selected and installer info is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5, 6, 7, 8], will you then load, read entire file, then follow `{nextStepFile}` to begin documentation creation.

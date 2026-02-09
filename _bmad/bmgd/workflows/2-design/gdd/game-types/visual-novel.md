@@ -1,7 +1,7 @@
 ## Visual Novel Specific Elements
 
 <narrative-workflow-critical>
-This game type is **narrative-critical**. You MUST run the Narrative Design workflow after completing the GDD to create:
+This game type is **narrative-critical**. You MUST load and follow the Narrative Design workflow after completing the GDD to create:
 - Complete story structure and script
 - All character profiles and development arcs
 - Branching story flowcharts

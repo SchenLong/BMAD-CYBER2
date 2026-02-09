@@ -86,7 +86,7 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
-- IF C: Save to {editPlan}, determine routing based on targetType, then only then load and execute the appropriate type-specific edit step
+- IF C: Save to {editPlan}, determine routing based on targetType, then only then load and follow the appropriate type-specific edit step
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#5-present-menu-options)
 
 #### EXECUTION RULES:
@@ -97,7 +97,7 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 
 ## CRITICAL STEP COMPLETION NOTE
 
-This is the **ROUTING HUB** for edit flow. ONLY WHEN [C continue option] is selected and [routing determined], load and execute the appropriate type-specific edit step:
+This is the **ROUTING HUB** for edit flow. ONLY WHEN [C continue option] is selected and [routing determined], load and follow the appropriate type-specific edit step:
 
 - targetType: simple → e-08a-edit-simple.md
 - targetType: expert → e-08b-edit-expert.md

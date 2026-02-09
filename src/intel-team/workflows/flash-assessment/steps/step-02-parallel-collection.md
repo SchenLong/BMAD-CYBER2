@@ -375,6 +375,6 @@ If over time budget:
 
 ## NEXT STEP
 
-Upon completion of all four collections, load and execute: `{workflow_path}/steps/step-03-synthesis.md`
+Upon completion of all four collections, load and follow: `{workflow_path}/steps/step-03-synthesis.md`
 
 Vector will synthesize all findings into the Flash Assessment Report.

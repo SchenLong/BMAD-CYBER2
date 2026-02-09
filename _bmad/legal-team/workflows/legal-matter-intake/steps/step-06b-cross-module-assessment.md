@@ -208,7 +208,7 @@ Update frontmatter: add `step-06b-cross-module-assessment` to stepsCompleted
 
 ### 8. Continue to Routing
 
-Load and execute {nextStepFile} (step-07-routing.md) with cross-module assessment context.
+Load and follow {nextStepFile} (step-07-routing.md) with cross-module assessment context.
 
 ---
 
@@ -219,8 +219,8 @@ Load and execute {nextStepFile} (step-07-routing.md) with cross-module assessmen
 - Coordinates legal timeline with technical response
 
 **To Strategy (if relationship at stake):**
-- Can invoke stakeholder-negotiation-prep for complex disputes
-- Can invoke crisis-response-planning if reputational risk
+- Can load stakeholder-negotiation-prep for complex disputes
+- Can load crisis-response-planning if reputational risk
 
 **To Intelligence (for due diligence):**
 - Can request targeted intelligence gathering

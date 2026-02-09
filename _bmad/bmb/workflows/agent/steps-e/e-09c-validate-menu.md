@@ -56,7 +56,7 @@ Append to editPlan frontmatter:
 
 ### 4. Auto-Advance
 
-Load and execute `{nextStepFile}` immediately.
+Load and follow `{nextStepFile}` immediately.
 
 ## SUCCESS METRICS
 

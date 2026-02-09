@@ -1,6 +1,6 @@
 # Workflow Compliance Report Template
 
-**Workflow:** {workflow_name}
+**Workflow:** {workflow-name}
 **Date:** {validation_date}
 **Standards:** BMAD workflow-template.md and step-template.md
 **Report Type:** Comprehensive Compliance Validation

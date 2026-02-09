@@ -159,7 +159,7 @@ Show the generated project understanding content and present choices:
 
 ## APPEND TO DOCUMENT:
 
-When user selects 'C', append the content directly to the document. Only after the content is saved to document, load `./step-03-core-experience.md` and execute the instructions.
+When user selects 'C', append the content directly to the document. Only after the content is saved to document, load `./step-03-core-experience.md` and follow the instructions.
 
 ## SUCCESS METRICS:
 

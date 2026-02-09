@@ -9,7 +9,7 @@ workflow_path: '{project-root}/_bmad/bmb/workflows/workflow-compliance-check'
 thisStepFile: '{workflow_path}/steps/step-02-workflow-validation.md'
 nextStepFile: '{workflow_path}/steps/step-03-step-validation.md'
 workflowFile: '{workflow_path}/workflow.md'
-complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow_name}.md'
+complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow-name}.md'
 targetWorkflowFile: '{target_workflow_path}'
 
 # Template References
@@ -213,7 +213,7 @@ This will check each step file for:
 
 ## Menu Handling Logic:
 
-- IF C: Save workflow.md findings to report, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save workflow.md findings to report, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF X: Save current findings and end workflow with guidance for resuming
 - IF Any other comments or queries: respond and redisplay menu
 

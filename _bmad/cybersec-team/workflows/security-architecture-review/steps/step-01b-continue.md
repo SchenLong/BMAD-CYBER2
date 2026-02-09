@@ -174,7 +174,7 @@ Display: **Resuming Security Architecture Review - Select an Option:** [C] Conti
 
 - IF C:
   1. Update frontmatter in {outputFile}: add `lastContinued: [current date YYYY-MM-DD HH:MM]`
-  2. Load, read entire file, then execute the appropriate next step file (determined in section 4)
+  2. Load and follow the appropriate next step file (determined in section 4)
 - IF R: Display summary of completed analysis sections from {outputFile}, then redisplay menu
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
@@ -183,7 +183,7 @@ Display: **Resuming Security Architecture Review - Select an Option:** [C] Conti
 ONLY WHEN C is selected and continuation analysis is complete, will you then:
 
 1. Update frontmatter in {outputFile} with `lastContinued: [current timestamp]`
-2. Load, read entire file, then execute the next step file determined from the analysis
+2. Load and follow the next step file determined from the analysis
 
 Do NOT modify any security analysis content in the output document during this continuation step.
 

@@ -105,6 +105,6 @@ Update frontmatter: `stepsCompleted: [1, 2]`
 - **[Q]** Questions about classification
 
 #### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF R: Discuss and reclassify, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

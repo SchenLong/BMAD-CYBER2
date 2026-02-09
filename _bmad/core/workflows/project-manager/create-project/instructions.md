@@ -468,14 +468,14 @@ Choice [1/2]:</ask>
 
 <check if="bmm in modules_used">
   <output>For software development (BMM), I recommend:
-  - **Initialize BMM workflow** - Run the BMM workflow-init to set up your planning path
+  - **Initialize BMM workflow** - Load and follow the BMM workflow-init to set up your planning path
   - **PM Agent (John)** - Start with PRD creation to define requirements
   </output>
 </check>
 
 <check if="bmgd in modules_used">
   <output>For game development (BMGD), I recommend:
-  - **Initialize BMGD workflow** - Run the BMGD workflow-init to set up your game planning
+  - **Initialize BMGD workflow** - Load and follow the BMGD workflow-init to set up your game planning
   - **Game Designer (Samus)** - Start with Game Brief or GDD creation
   </output>
 </check>

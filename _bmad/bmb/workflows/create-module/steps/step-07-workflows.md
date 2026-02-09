@@ -226,4 +226,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and all workflow plans are reviewed and documented and stepsCompleted updated, will you then load, read entire file, then execute `{nextStepFile}` to begin installer setup.
+ONLY WHEN C is selected and all workflow plans are reviewed and documented and stepsCompleted updated, will you then load, read entire file, then follow `{nextStepFile}` to begin installer setup.

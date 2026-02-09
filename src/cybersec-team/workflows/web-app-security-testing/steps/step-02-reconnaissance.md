@@ -146,4 +146,4 @@ Display: [C] Continue to Authentication Testing [R] Review/Add Reconnaissance Da
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2]`, then follow {nextStepFile}.

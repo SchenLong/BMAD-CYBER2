@@ -8,7 +8,7 @@ workflow_path: '{project-root}/_bmad/bmb/workflows/workflow-compliance-check'
 # File References
 thisStepFile: '{workflow_path}/steps/step-08-generate-report.md'
 workflowFile: '{workflow_path}/workflow.md'
-complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow_name}.md'
+complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow-name}.md'
 targetWorkflowFile: '{target_workflow_path}'
 
 # Template References

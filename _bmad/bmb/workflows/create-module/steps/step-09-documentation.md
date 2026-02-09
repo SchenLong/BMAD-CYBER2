@@ -112,7 +112,7 @@ bmad install {module_name}
    *help
    ```
 
-3. **Run the main workflow:**
+3. **Load and follow the main workflow:**
 
    ```
    workflow {primary_workflow_name}
@@ -307,4 +307,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and documentation info is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5, 6, 7, 8, 9], will you then load, read entire file, then execute `{nextStepFile}` to begin roadmap generation.
+ONLY WHEN C is selected and documentation info is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5, 6, 7, 8, 9], will you then load, read entire file, then follow `{nextStepFile}` to begin roadmap generation.

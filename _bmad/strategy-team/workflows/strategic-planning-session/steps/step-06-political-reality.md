@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: Strategic context from Steps 1-5
 - Focus: Power, politics, coalitions, change management
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1-5 complete
 
 ---
@@ -267,7 +267,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [S] Deep Dive on S
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Geneva for negotiation strategies, or Niccolo for realist assessment, when finished redisplay the menu
 - IF S: Deep dive on a specific stakeholder relationship, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 #### EXECUTION RULES:

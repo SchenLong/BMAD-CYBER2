@@ -81,7 +81,7 @@ blockchain-security-assessment/
 ## Usage
 
 ```bash
-# Invoke via agent menu
+# Load via agent menu
 /blockchain-security-assessment
 
 # Or via Ledger agent

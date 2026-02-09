@@ -66,7 +66,7 @@ Context:</ask>
 
 <ask>How would you like to proceed with research?
 
-1. **Invoke research workflow** - Comprehensive market research
+1. **Load research workflow** - Comprehensive market research
 2. **Provide existing research** - I have research ready
 3. **Skip research** - Proceed with available knowledge
 
@@ -80,7 +80,7 @@ Choice [1/2/3]:</ask>
 
 Starting research...</output>
 
-  <action>Invoke {bmm_workflows.research} with decision context</action>
+  <action>Load and follow{bmm_workflows.research} with decision context</action>
   <action>Store market_analysis_path</action>
 </check>
 
@@ -127,7 +127,7 @@ Choice [1/2/3]:</ask>
 
 Starting comprehensive strategic analysis...</output>
 
-  <action>Invoke {strategy_workflows.decision_workshop} with research and context</action>
+  <action>Load and follow{strategy_workflows.decision_workshop} with research and context</action>
   <action>Store strategic_options_path</action>
 </check>
 
@@ -141,7 +141,7 @@ Starting comprehensive strategic analysis...</output>
 
 Starting focused analysis...</output>
 
-  <action>Invoke limited strategy workflow</action>
+  <action>Load and followlimited strategy workflow</action>
   <action>Store strategic_options_path</action>
 </check>
 
@@ -157,7 +157,7 @@ Starting focused analysis...</output>
 
 Starting party mode discussion...</output>
 
-  <action>Invoke party-mode with preset=strategic-advisors</action>
+  <action>Load and followparty-mode with preset=strategic-advisors</action>
   <action>Capture strategic_options from discussion</action>
 </check>
 
@@ -202,7 +202,7 @@ Choice [1/2/3]:</ask>
 
 Starting legal review...</output>
 
-  <action>Invoke {legal_workflows.risk_assessment} with strategic options</action>
+  <action>Load and follow{legal_workflows.risk_assessment} with strategic options</action>
   <action>Store legal_risk_assessment_path</action>
 </check>
 
@@ -269,7 +269,7 @@ Focus: Final recommendation with pros/cons of each option
 
 Starting advisory discussion...</output>
 
-  <action>Invoke party-mode for decision debate</action>
+  <action>Load and followparty-mode for decision debate</action>
 </check>
 
 <action>Goto step 6</action>

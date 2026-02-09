@@ -250,6 +250,6 @@ Display: **Delivery Strategy Complete - Select an Option:** [C] Continue to Metr
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN delivery strategy is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN delivery strategy is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

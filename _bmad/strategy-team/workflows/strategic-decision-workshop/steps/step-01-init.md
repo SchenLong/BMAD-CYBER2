@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: User's decision situation, organizational context
 - Focus: Framing, not solving
-- Limits: Do not invoke other advisors in this step
+- Limits: Do not load other advisors in this step
 - Dependencies: None - this is the starting point
 
 ---
@@ -158,7 +158,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Framing
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 #### EXECUTION RULES:

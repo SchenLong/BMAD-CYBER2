@@ -6,7 +6,7 @@
 
 ## How to Use Presets
 
-When at a MENU step and selecting **[P] Party Mode**, invoke a preset by name:
+When at a MENU step and selecting **[P] Party Mode**, load a preset by name:
 
 ```
 "Use the Strategic Council preset"

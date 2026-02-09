@@ -177,7 +177,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [D] Dive Deeper on
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Lee for efficiency metrics or Magnus for political context, when finished redisplay the menu
 - IF D: Explore specific data area in more depth, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 #### EXECUTION RULES:

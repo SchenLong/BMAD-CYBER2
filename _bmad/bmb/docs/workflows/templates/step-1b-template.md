@@ -152,7 +152,7 @@ Display: "**Resuming workflow - Select an Option:** [C] Continue to [Next Step N
 
 - IF C:
   1. Update frontmatter: add `lastContinued: [current date]`
-  2. Load, read entire file, then execute the appropriate next step file (determined in section 4)
+  2. Load and follow the appropriate next step file (determined in section 4)
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
@@ -160,7 +160,7 @@ Display: "**Resuming workflow - Select an Option:** [C] Continue to [Next Step N
 ONLY WHEN C is selected and continuation analysis is complete, will you then:
 
 1. Update frontmatter in {outputFile} with continuation timestamp
-2. Load, read entire file, then execute the next step file determined from the analysis
+2. Load and follow the next step file determined from the analysis
 
 Do NOT modify any other content in the output document during this continuation step.
 

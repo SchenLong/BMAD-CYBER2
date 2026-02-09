@@ -96,7 +96,7 @@ Display: "**Is this the correct agent to validate?** [A] Advanced Elicitation [P
 
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
-- IF C: Save to {validationReport}, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save to {validationReport}, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#4-present-menu-options)
 
 #### EXECUTION RULES:

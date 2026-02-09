@@ -31,7 +31,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: Halt at menus and wait for user selection
 4. **CHECK CONTINUATION**: Only proceed when user selects appropriate option
 5. **SAVE STATE**: Update progress before loading next step
-6. **LOAD NEXT**: When directed, load and execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules
 
@@ -99,7 +99,7 @@ Please select: [C]reate / [E]dit / [V]alidate"
 ### 3. Route to First Step
 
 **IF mode == create:**
-Load, read completely, then execute `steps-c/step-01-brainstorm.md`
+Load, read completely, then follow `steps-c/step-01-brainstorm.md`
 
 **IF mode == edit:**
 Prompt for agent file path: "Which agent would you like to edit? Please provide the path to the `.agent.yaml` file."

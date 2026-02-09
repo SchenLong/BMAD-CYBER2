@@ -393,6 +393,6 @@ Before proceeding to Phase 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-digital-footprint.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-digital-footprint.md`
 
 Note: Steps 2-6 can be executed in parallel or sequence based on available resources.

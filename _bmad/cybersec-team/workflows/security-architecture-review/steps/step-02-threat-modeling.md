@@ -427,7 +427,7 @@ Display: **Select an Option:** [A] Advanced Elicitation [B] Brainstorming [P] Pa
 - IF A: Execute {advancedElicitationTask} with prompt: "Review the STRIDE threat model and identify any missed threats, attack scenarios we haven't considered, or gaps in our analysis. Challenge assumptions and explore edge cases."
 - IF B: Execute {brainstormingTask} with prompt: "Generate creative attack scenarios we might not have considered. Think like an attacker: what unconventional or sophisticated threats could target this architecture?"
 - IF P: Execute {partyModeWorkflow} with prompt: "Invite Ghost (penetration tester) and Cipher (threat intelligence) to review our threat model for missing threats or alternative attack perspectives."
-- IF C: Verify all 6 STRIDE categories covered, save complete threat model to {outputFile}, update frontmatter `stepsCompleted: [1, 2]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify all 6 STRIDE categories covered, save complete threat model to {outputFile}, update frontmatter `stepsCompleted: [1, 2]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
 #### EXECUTION RULES:
@@ -442,7 +442,7 @@ Display: **Select an Option:** [A] Advanced Elicitation [B] Brainstorming [P] Pa
 ONLY WHEN 'C' is selected AND all 6 STRIDE categories have been analyzed AND threats are documented in Section 3 of {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2]`, `lastStep: 'threat-modeling'`, `threatCount: [count]`
-2. Load, read entire file, then execute {nextStepFile} to begin security control assessment
+2. Load, read entire file, then follow {nextStepFile} to begin security control assessment
 
 ---
 

@@ -216,7 +216,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Explore Specif
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Lee for efficiency perspective or Niccolo for realist assessment, when finished redisplay the menu
 - IF R: Explore a specific risk or concern deeper, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 #### EXECUTION RULES:

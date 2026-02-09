@@ -31,7 +31,7 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 Before proceeding, check if {outputFile} exists:
 
-- IF EXISTS: Load, read entire file, and then execute {continueStepFile}
+- IF EXISTS: Load, read entire file, and then follow {continueStepFile}
 - IF NOT EXISTS: Continue with fresh testing initialization below
 
 ## INITIALIZATION SEQUENCE:
@@ -232,6 +232,6 @@ Display: **Initialization Complete - Select an Option:** [C] Continue to Static 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN scope is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN scope is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

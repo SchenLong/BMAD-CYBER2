@@ -118,7 +118,7 @@ Display: **Resuming workflow - Select an Option:** [C] Continue
 
 #### Menu Handling Logic:
 
-- IF C: Update frontmatter with continuation info, then load, read entire file, then execute appropriate next step based on `lastStep`
+- IF C: Update frontmatter with continuation info, then load, read entire file, then follow appropriate next step based on `lastStep`
   - IF lastStep = "init": load {workflow_path}/step-03-assessment.md
   - IF lastStep = "assessment": load {workflow_path}/step-04-strategy.md
   - IF lastStep = "strategy": check cooking frequency, then load appropriate step
@@ -127,7 +127,7 @@ Display: **Resuming workflow - Select an Option:** [C] Continue
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and continuation analysis is complete, will you then update frontmatter and load, read entire file, then execute the appropriate next step file.
+ONLY WHEN C is selected and continuation analysis is complete, will you then update frontmatter and load and follow the appropriate next step file.
 
 ---
 

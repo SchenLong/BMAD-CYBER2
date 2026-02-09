@@ -264,7 +264,7 @@ Update frontmatter: add `step-05b-compliance-validation` to stepsCompleted
 
 ### 9. Proceed to Jurisdiction Review
 
-When user selects [C], load and execute {nextStepFile} (step-06-jurisdiction.md) with compliance validation incorporated.
+When user selects [C], load and follow {nextStepFile} (step-06-jurisdiction.md) with compliance validation incorporated.
 
 ---
 

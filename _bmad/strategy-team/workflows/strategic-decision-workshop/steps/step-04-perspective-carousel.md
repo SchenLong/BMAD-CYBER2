@@ -262,7 +262,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [H] Hear More from
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can have archetypes engage in direct dialogue, when finished redisplay the menu
 - IF H: User names an archetype, provide deeper perspective, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#12-present-menu-options)
 
 #### EXECUTION RULES:

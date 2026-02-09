@@ -198,7 +198,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [D] Dig Deeper on 
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Augustus for evidence on interests or Niccolo for realistic assessment, when finished redisplay the menu
 - IF D: Explore a specific interest in more depth, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 #### EXECUTION RULES:

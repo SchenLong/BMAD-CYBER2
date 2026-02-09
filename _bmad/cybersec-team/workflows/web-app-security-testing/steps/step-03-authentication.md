@@ -172,4 +172,4 @@ Display: [C] Continue to Authorization Testing [R] Review/Add Auth Findings [E] 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3]`, then follow {nextStepFile}.

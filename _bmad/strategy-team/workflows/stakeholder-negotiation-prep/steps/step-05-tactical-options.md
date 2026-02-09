@@ -50,7 +50,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: All previous analysis (interests, power, arguments)
 - Focus: How to execute the negotiation
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1-4 complete
 
 ---
@@ -272,7 +272,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [T] Explore Tactic
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Magnus for political timing or Niccolo for realpolitik, when finished redisplay the menu
 - IF T: Explore a specific tactical approach in more depth, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 #### EXECUTION RULES:

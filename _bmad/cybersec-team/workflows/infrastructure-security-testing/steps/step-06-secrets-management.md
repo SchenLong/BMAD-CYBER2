@@ -260,4 +260,4 @@ Display: [C] Continue to IaC Review [R] Review/Add Findings [E] Investigate Expo
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then follow {nextStepFile}.

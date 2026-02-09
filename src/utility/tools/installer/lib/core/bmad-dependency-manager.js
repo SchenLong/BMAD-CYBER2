@@ -14,6 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const semver = require('semver');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 const BMADVersionChecker = require('./bmad-version-compatibility.js');
 const BMADCircularDetector = require('./bmad-circular-detection.js');
 const { NetworkResilience } = require('./network-resilience.js');
@@ -134,7 +135,7 @@ class BMADDependencyManager {
 
         // If it's a file path, load the configuration
         if (typeof moduleConfig === 'string' && fs.existsSync(moduleConfig)) {
-            const content = fs.readFileSync(moduleConfig, 'utf8');
+            const content = normalizeLineEndings(fs.readFileSync(moduleConfig, 'utf8'));
             if (moduleConfig.endsWith('.yaml') || moduleConfig.endsWith('.yml')) {
                 config = yaml.parse(content);
             } else if (moduleConfig.endsWith('.json')) {
@@ -432,7 +433,7 @@ class BMADDependencyManager {
         for (const configPath of localPaths) {
             try {
                 if (fs.existsSync(configPath)) {
-                    const content = fs.readFileSync(configPath, 'utf8');
+                    const content = normalizeLineEndings(fs.readFileSync(configPath, 'utf8'));
                     let config;
 
                     if (configPath.endsWith('.yaml') || configPath.endsWith('.yml')) {

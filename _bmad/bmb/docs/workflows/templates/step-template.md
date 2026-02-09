@@ -111,7 +111,7 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 
 - IF A: Execute {advancedElicitationTask} # Or custom action
 - IF P: Execute {partyModeWorkflow} # Or custom action
-- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#n-present-menu-options)
 
 #### EXECUTION RULES:
@@ -166,7 +166,7 @@ Display: "**Select an Option:** [A] [Advanced Elicitation] [P] Party Mode [C] Co
 
 - IF A: Execute {advancedElicitationTask}
 - IF P: Execute {partyModeWorkflow}
-- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#n-present-menu-options)
 
 #### EXECUTION RULES:
@@ -186,7 +186,7 @@ Display: "**Proceeding to [next action]...**"
 
 #### Menu Handling Logic:
 
-- After [completion condition], immediately load, read entire file, then execute {nextStepFile}
+- After [completion condition], immediately load, read entire file, then follow {nextStepFile}
 
 #### EXECUTION RULES:
 
@@ -205,7 +205,7 @@ Display: "**Select an Option:** [A] [Custom Action 1] [B] [Custom Action 2] [C] 
 
 - IF A: [Custom handler route for option A]
 - IF B: [Custom handler route for option B]
-- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#n-present-menu-options)
 
 #### EXECUTION RULES:
@@ -227,8 +227,8 @@ Display: "**Select an Option:** [A] [Continue to Step Foo] [A] [Continue to Step
 
 - IF A: Execute {customAction}
 - IF C: Save content to {outputFile}, update frontmatter, check [condition]:
-  - IF [condition true]: load, read entire file, then execute {pathA}
-  - IF [condition false]: load, read entire file, then execute {pathB}
+  - IF [condition true]: load, read entire file, then follow {pathA}
+  - IF [condition false]: load, read entire file, then follow {pathB}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#n-present-menu-options)
 
 #### EXECUTION RULES:

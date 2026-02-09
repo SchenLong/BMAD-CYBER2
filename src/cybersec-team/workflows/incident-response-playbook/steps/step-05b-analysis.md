@@ -650,12 +650,12 @@ Display: **Select an Option:** [P] Party Mode [W] Web-Browsing [C] Continue to E
   - Threat actor TTPs and attribution
   - Similar campaign research
   - MITRE ATT&CK technique details
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and analysis is complete will you load, read entire file, then execute `{nextStepFile}` to begin eradication.
+ONLY WHEN C is selected and analysis is complete will you load, read entire file, then follow `{nextStepFile}` to begin eradication.
 
 ---
 

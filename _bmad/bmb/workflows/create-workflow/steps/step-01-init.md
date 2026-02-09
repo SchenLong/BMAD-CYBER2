@@ -135,7 +135,7 @@ Display: **Proceeding to requirements gathering...**
 
 #### Menu Handling Logic:
 
-- After setup completion and the workflow folder with the workflow plan file created already, only then immediately load, read entire file, and then execute `{workflow_path}/steps/step-02-gather.md` to begin requirements gathering
+- After setup completion and the workflow folder with the workflow plan file created already, only then immediately load, read entire file, and then follow `{workflow_path}/steps/step-02-gather.md` to begin requirements gathering
 
 ---
 

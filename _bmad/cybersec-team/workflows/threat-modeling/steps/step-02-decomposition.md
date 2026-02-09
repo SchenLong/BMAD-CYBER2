@@ -334,7 +334,7 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [C] Continue to 
 
 - IF B: Execute {brainstormingTask} with prompt: "Help me brainstorm additional system components, edge cases, or hidden dependencies I might have missed in my system decomposition"
 - IF P: Execute {partyModeWorkflow} with focus: "Review system decomposition for completeness - are there components, data flows, or trust boundaries we've overlooked?"
-- IF C: Verify components array is not empty, update frontmatter with stepsCompleted: [1, 2], then load, read entire file, then execute {nextStepFile}
+- IF C: Verify components array is not empty, update frontmatter with stepsCompleted: [1, 2], then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
 ---
@@ -365,4 +365,4 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [C] Continue to 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected AND all components are documented in the threat model will you load, read entire file, then execute {nextStepFile} to begin component selection for threat analysis.
+ONLY WHEN C is selected AND all components are documented in the threat model will you load, read entire file, then follow {nextStepFile} to begin component selection for threat analysis.

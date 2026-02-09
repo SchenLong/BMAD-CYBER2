@@ -115,7 +115,7 @@ Display: "**Select an Option:** [A] Advanced Elicitation [F] Fix Findings [P] Pa
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF F: Apply auto-fixes to {builtYaml} for identified issues, then redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
-- IF C: Proceed to next validation step, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Proceed to next validation step, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#5-present-menu-options)
 
 #### EXECUTION RULES:

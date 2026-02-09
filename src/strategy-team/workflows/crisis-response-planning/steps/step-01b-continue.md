@@ -99,7 +99,7 @@ If yes, we may need to update our assessment first."
 Display: "**Select:** [C] Continue to Next Step [U] Update Assessment [R] Review Previous Step [X] Exit"
 
 #### Menu Handling Logic:
-- IF C: Load and execute the appropriate next step file
+- IF C: Load and follow the appropriate next step file
 - IF U: Return to step-01-init to update assessment with new information
 - IF R: Display previous step's content and allow revisions
 - IF X: Save and exit gracefully

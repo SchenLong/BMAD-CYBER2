@@ -404,4 +404,4 @@ This step (3) can run in parallel with Steps 2, 4-6. Share findings as they beco
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-dark-web-exposure.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-dark-web-exposure.md`

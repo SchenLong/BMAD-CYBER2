@@ -106,6 +106,6 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4]`
 - **[Q]** Questions about deadlines
 
 #### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF D: Explore timing issues, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

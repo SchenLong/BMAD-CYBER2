@@ -169,7 +169,7 @@ Prepare the following structure for document append:
 
 - IF A: Execute {advancedElicitationTask} with current metrics content to dive deeper into success metric insights
 - IF P: Execute {partyModeWorkflow} to bring different perspectives to validate comprehensive metrics
-- IF C: Save content to {outputFile}, update frontmatter with stepsCompleted: [1, 2, 3, 4], then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter with stepsCompleted: [1, 2, 3, 4], then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
 #### EXECUTION RULES:

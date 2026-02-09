@@ -244,7 +244,7 @@ Proceeding to component decomposition..."
 
 #### Routing Logic:
 
-After setup completion, immediately load, read entire file, then execute `{nextStepFile}` to begin component decomposition.
+After setup completion, immediately load, read entire file, then follow `{nextStepFile}` to begin component decomposition.
 
 ---
 
@@ -272,4 +272,4 @@ After setup completion, immediately load, read entire file, then execute `{nextS
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete and document is created (OR continuation is properly routed), will you then immediately load, read entire file, then execute `{nextStepFile}` to begin component decomposition.
+ONLY WHEN initialization setup is complete and document is created (OR continuation is properly routed), will you then immediately load, read entire file, then follow `{nextStepFile}` to begin component decomposition.

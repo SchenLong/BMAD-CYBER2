@@ -944,12 +944,12 @@ Display: **Select an Option:** [P] Party Mode [C] Continue to Recovery
 #### Menu Handling Logic:
 
 - IF P: Execute {partyModeWorkflow} - Recommend Trace (forensic validation expert) for final validation review
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and all eradication is validated and signed off will you load, read entire file, then execute `{nextStepFile}` to begin recovery.
+ONLY WHEN C is selected and all eradication is validated and signed off will you load, read entire file, then follow `{nextStepFile}` to begin recovery.
 
 ---
 

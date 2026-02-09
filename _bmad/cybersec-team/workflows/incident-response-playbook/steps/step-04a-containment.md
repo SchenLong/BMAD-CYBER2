@@ -634,12 +634,12 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [B] Brain
 - IF A: Execute {advancedElicitationTask} with focus on "quality and completeness of containment procedures and decision matrix"
 - IF P: Execute {partyModeWorkflow} - Recommend Bastion (architecture expert) for containment strategies
 - IF B: Execute {brainstormingWorkflow} with focus on "innovative containment strategies that minimize business impact"
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Section 3 is complete will you load, read entire file, then execute `{nextStepFile}` to begin defining eradication procedures.
+ONLY WHEN C is selected and Section 3 is complete will you load, read entire file, then follow `{nextStepFile}` to begin defining eradication procedures.
 
 ---
 

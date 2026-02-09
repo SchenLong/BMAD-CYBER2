@@ -33,7 +33,7 @@ stepsCompleted: [1, 2, 3, ...] # Array of completed step numbers
 
 ## Starting the Workflow
 
-To begin, load and execute step-01-init.md:
+To begin, load and follow step-01-init.md:
 
 ```
 {workflow_path}/steps/step-01-init.md

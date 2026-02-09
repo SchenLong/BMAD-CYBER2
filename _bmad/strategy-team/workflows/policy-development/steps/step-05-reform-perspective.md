@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: All prior steps - framing, evidence, ethics, conservative review
 - Focus: Transformation, systemic change, bold alternatives
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1, 2, 3, and 4 complete
 
 ---
@@ -230,7 +230,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [B] Explore Bold A
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Charles for moral vision or Sun for strategic transformation, when finished redisplay the menu
 - IF B: Explore a specific bold alternative deeper, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 #### EXECUTION RULES:

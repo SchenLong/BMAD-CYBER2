@@ -236,7 +236,7 @@ Display: **Select an Option:** [C] Continue to Zero-Trust Validation
 
 #### Menu Handling Logic:
 
-- IF C: Save attack surface analysis (if conducted) to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Save attack surface analysis (if conducted) to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#4-present-menu-options)
 
 #### EXECUTION RULES:
@@ -250,7 +250,7 @@ Display: **Select an Option:** [C] Continue to Zero-Trust Validation
 ONLY WHEN 'C' is selected AND attack surface analysis is complete (or explicitly skipped) AND documented in {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2, 3, 4]`, `lastStep: 'attack-surface'`
-2. Load, read entire file, then execute {nextStepFile} to begin zero-trust validation
+2. Load, read entire file, then follow {nextStepFile} to begin zero-trust validation
 
 ---
 

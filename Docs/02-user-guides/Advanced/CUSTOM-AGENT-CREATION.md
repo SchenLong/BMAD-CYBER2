@@ -203,7 +203,7 @@ The menu provides user interaction commands:
 | Attribute | Purpose | Example |
 |-----------|---------|---------|
 | `workflow` | Execute a workflow file | `workflow="_bmad/core/workflows/brainstorming/workflow.md"` |
-| `exec` | Load and execute file instructions | `exec="_bmad/intel-team/data/collection-checklist.md"` |
+| `exec` | Load and follow file instructions | `exec="_bmad/intel-team/data/collection-checklist.md"` |
 | `action` | Execute text as instruction | `action="Summarize the current situation"` |
 | `action="#id"` | Execute named prompt from `<prompts>` | `action="#deep-dive"` |
 | `data` | Pass additional parameters | `data="preset=crisis-response"` |

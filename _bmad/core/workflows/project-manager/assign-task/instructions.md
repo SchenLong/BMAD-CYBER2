@@ -144,7 +144,7 @@ Choice [1-5]:</ask>
 
 ---
 
-**How to invoke:**
+**How to load:**
 
 **Option A - Agent Direct:**
 ```
@@ -162,9 +162,9 @@ Then describe your task to the agent.
 
 <ask>Would you like me to:
 
-1. **Invoke now** - Start the agent/workflow immediately
+1. **Load now** - Start the agent/workflow immediately
 2. **Copy command** - Just provide the command for later
-3. **Add notes** - Add context notes before invoking
+3. **Add notes** - Add context notes before loading
 4. **Done** - Return to Abdul's menu
 
 Choice [1/2/3/4]:</ask>

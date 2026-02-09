@@ -5,5 +5,5 @@ description: Navigate internal corporate politics with comprehensive political s
 
 # Corporate Political Game
 
-Load, read the full file, and then execute the workflow at:
+Load and follow the workflow at:
 `@_bmad/strategy-team/workflows/corporate-political-game/workflow.md`

@@ -5,5 +5,5 @@ description: Multi-jurisdictional legal matter coordination workflow
 
 # Cross Border Matter
 
-Load, read the full file, and then execute the workflow at:
+Load and follow the workflow at:
 `@_bmad/legal-team/workflows/cross-border-matter/workflow.md`

@@ -156,4 +156,4 @@ Display: [C] Continue to Port Scanning [R] Review/Add Recon Data [T] Run Additio
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2]`, then follow {nextStepFile}.

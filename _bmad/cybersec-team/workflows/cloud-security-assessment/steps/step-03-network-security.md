@@ -259,6 +259,6 @@ Display: **Network Assessment Complete - Select an Option:** [C] Continue to Dat
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN network assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN network assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

@@ -760,7 +760,9 @@ class MigrationExecutor extends EventEmitter {
         }
 
         // Add flags
-        if (options.production) command += ' --production';
+        if (options.production) {
+            command += this.config.environment.packageManager === 'npm' ? ' --omit=dev' : ' --production';
+        }
         if (options.dev) command += ' --save-dev';
         if (options.optional) command += ' --save-optional';
         if (options.exact) command += ' --save-exact';

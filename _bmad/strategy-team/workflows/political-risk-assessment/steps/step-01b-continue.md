@@ -72,9 +72,9 @@ Based on `stepsCompleted`, identify the next step:
 Display: "**Select:** [C] Continue from [Next Step Name] [R] Review/Revise Earlier Section [S] Start Over [P] Party Mode"
 
 #### Menu Handling Logic:
-- IF C: Load and execute the appropriate next step file
+- IF C: Load and follow the appropriate next step file
 - IF R: Ask which section to revise, navigate there
-- IF S: Confirm, then execute step-01-init.md fresh
+- IF S: Confirm, then follow step-01-init.md fresh
 - IF P: Execute {partyModeWorkflow}, then redisplay menu
 
 #### EXECUTION RULES:

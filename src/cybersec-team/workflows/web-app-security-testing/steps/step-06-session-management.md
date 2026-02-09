@@ -229,4 +229,4 @@ Display: [C] Continue to Business Logic [R] Review/Add Session Findings [E] Expl
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then follow {nextStepFile}.

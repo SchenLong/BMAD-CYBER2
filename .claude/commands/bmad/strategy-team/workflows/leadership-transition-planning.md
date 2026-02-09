@@ -5,5 +5,5 @@ description: Comprehensive succession and leadership handover planning using str
 
 # Leadership Transition Planning
 
-Load, read the full file, and then execute the workflow at:
+Load and follow the workflow at:
 `@_bmad/strategy-team/workflows/leadership-transition-planning/workflow.md`

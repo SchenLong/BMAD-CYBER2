@@ -65,7 +65,7 @@ validationBefore:
 
 ### 4. Auto-Advance
 
-When validation complete, load and execute `{nextStepFile}` immediately.
+When validation complete, load and follow `{nextStepFile}` immediately.
 
 ## SUCCESS METRICS
 

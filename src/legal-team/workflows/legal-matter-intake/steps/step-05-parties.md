@@ -110,6 +110,6 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4, 5]`
 - **[Q]** Questions about parties
 
 #### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF A: Add additional parties, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

@@ -81,7 +81,7 @@ Ready to continue with the next step: **{next step name}**"
 Display: "**Select:** [C] Continue to Next Step [R] Review Previous Step [S] Start Over [X] Exit"
 
 #### Menu Handling Logic:
-- IF C: Load and execute the appropriate next step file
+- IF C: Load and follow the appropriate next step file
 - IF R: Display previous step's content and allow revisions
 - IF S: Confirm, then load step-01-init.md fresh
 - IF X: Save and exit gracefully

@@ -1198,7 +1198,7 @@ Most workflows can be accessed through the primary agent's action menu:
 
 #### 3. Direct Workflow Loading
 ```bash
-Load and execute: src/<module>/workflows/<workflow-name>/workflow.md
+Load and follow: src/<module>/workflows/<workflow-name>/workflow.md
 ```
 
 ### Multi-Session Support
@@ -1251,7 +1251,7 @@ Each workflow follows a consistent architecture:
 3. **WAIT FOR INPUT:** Halt at menus and wait for user selection
 4. **CHECK CONTINUATION:** Only proceed when user confirms
 5. **SAVE STATE:** Update `stepsCompleted` before loading next step
-6. **LOAD NEXT:** When directed, load and execute next step file
+6. **LOAD NEXT:** When directed, load and follow next step file
 
 ### Collaboration Tools
 

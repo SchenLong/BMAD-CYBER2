@@ -8,9 +8,9 @@
 <critical>ALWAYS respect {project_context} if it exists - it defines project standards</critical>
 
 <checkpoint-handlers>
-  <on-select key="a">Load and execute {advanced_elicitation}, then return</on-select>
-  <on-select key="p">Load and execute {party_mode_exec}, then return</on-select>
-  <on-select key="d">Load and execute {quick_dev_workflow}</on-select>
+  <on-select key="a">Load and follow {advanced_elicitation}, then return</on-select>
+  <on-select key="p">Load and follow {party_mode_exec}, then return</on-select>
+  <on-select key="d">Load and follow {quick_dev_workflow}</on-select>
 </checkpoint-handlers>
 
 <step n="1" goal="Understand what to prototype">
@@ -137,7 +137,7 @@ What's the next action?
 **[a]** Archive and move on</ask>
 
 <check if="d">
-  <action>Load and execute {quick_dev_workflow} with prototype as reference</action>
+  <action>Load and follow {quick_dev_workflow} with prototype as reference</action>
 </check>
 
 <check if="i">

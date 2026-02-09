@@ -119,12 +119,12 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 - IF A: Execute {advancedElicitationTask}
 - IF P: Execute {partyModeWorkflow}
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#4-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and content is saved to document and frontmatter is updated, will you then load, read entire file, then execute `{workflow_path}/step-04-strategy.md` to execute and begin meal strategy creation step.
+ONLY WHEN C is selected and content is saved to document and frontmatter is updated, will you then load, read entire file, then follow `{workflow_path}/step-04-strategy.md` to execute and begin meal strategy creation step.
 
 ---
 

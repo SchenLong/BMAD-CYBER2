@@ -425,4 +425,4 @@ Before proceeding to Phase 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/phase-04-corporate-structure.md`
+Upon completion, load and follow: `{workflow_path}/steps/phase-04-corporate-structure.md`

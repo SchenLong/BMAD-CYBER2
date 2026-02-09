@@ -346,7 +346,7 @@ Update frontmatter: add `step-05b-security-legal-review` to stepsCompleted
 
 ### 11. Continue to Draft Policy
 
-When user selects [C], load and execute {nextStepFile} (step-06-draft-policy.md) with all cross-module requirements incorporated into the drafting process.
+When user selects [C], load and follow {nextStepFile} (step-06-draft-policy.md) with all cross-module requirements incorporated into the drafting process.
 
 ---
 

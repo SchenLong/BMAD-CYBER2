@@ -86,7 +86,7 @@ Before proceeding, verify we have the essential inputs:
 
 **PRD Validation:**
 
-- If no PRD found: "Architecture requires a PRD to work from. Please run the PRD workflow first or provide the PRD file path."
+- If no PRD found: "Architecture requires a PRD to work from. Please load and follow the PRD workflow first or provide the PRD file path."
 - Do NOT proceed without PRD
 
 **Other Input that might exist:**

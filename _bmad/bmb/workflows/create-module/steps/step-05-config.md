@@ -231,4 +231,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and configuration plan is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5], will you then load, read entire file, then execute `{nextStepFile}` to begin agent creation.
+ONLY WHEN C is selected and configuration plan is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5], will you then load, read entire file, then follow `{nextStepFile}` to begin agent creation.

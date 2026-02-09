@@ -208,7 +208,7 @@ Update frontmatter: add `step-06b-cross-module-assessment` to stepsCompleted
 
 ### 8. Continue to Routing
 
-Load and execute {nextStepFile} (step-07-routing.md) with cross-module assessment context.
+Load and follow {nextStepFile} (step-07-routing.md) with cross-module assessment context.
 
 ---
 

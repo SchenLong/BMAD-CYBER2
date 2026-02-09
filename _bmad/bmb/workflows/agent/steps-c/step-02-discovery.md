@@ -83,8 +83,8 @@ Document findings to agentPlan file using this structure:
 
 After documentation, present menu:
 
-**[A]dvanced Discovery** - Invoke advanced-elicitation task for deeper exploration
-**[P]arty Mode** - Invoke party-mode workflow for creative ideation
+**[A]dvanced Discovery** - Load and followadvanced-elicitation task for deeper exploration
+**[P]arty Mode** - Load and followparty-mode workflow for creative ideation
 **[C]ontinue** - Proceed to next step (type-metadata)
 
 # CONTEXT BOUNDARIES
@@ -131,8 +131,8 @@ After documentation, present menu:
    - Await user selection
 
 5. **Handle Menu Choice**
-   - If A: Invoke advanced-elicitation task, then re-document
-   - If P: Invoke party-mode workflow, then re-document
+   - If A: Load advanced-elicitation task, then re-document
+   - If P: Load party-mode workflow, then re-document
    - If C: Proceed to step-03-type-metadata
 
 # CRITICAL STEP COMPLETION NOTE

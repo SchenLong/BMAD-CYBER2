@@ -49,7 +49,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -162,7 +162,7 @@ OUTPUT: SIGINT Collection Plan
 
 ## EXECUTION
 
-To begin this workflow, load and execute: `{workflow_path}/steps/step-01-communications-mapping.md`
+To begin this workflow, load and follow: `{workflow_path}/steps/step-01-communications-mapping.md`
 
 ---
 
@@ -188,4 +188,4 @@ Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{workflow_path}/steps/step-01-communications-mapping.md` to begin the workflow.
+Load, read the full file and then follow `{workflow_path}/steps/step-01-communications-mapping.md` to begin the workflow.

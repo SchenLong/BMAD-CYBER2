@@ -9,7 +9,7 @@ workflow_path: '{project-root}/_bmad/bmb/workflows/workflow-compliance-check'
 thisStepFile: '{workflow_path}/steps/step-06-web-subprocess-validation.md'
 nextStepFile: '{workflow_path}/steps/step-07-holistic-analysis.md'
 workflowFile: '{workflow_path}/workflow.md'
-complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow_name}.md'
+complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow-name}.md'
 targetWorkflowStepsPath: '{target_workflow_steps_path}'
 
 # Template References
@@ -327,7 +327,7 @@ Append to {complianceReportFile}:
 
 ## Menu Handling Logic:
 
-- IF C: Save optimization findings to report, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save optimization findings to report, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF X: Save current findings and end with guidance for resuming
 - IF Any other comments or queries: respond and redisplay menu
 

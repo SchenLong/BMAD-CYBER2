@@ -194,7 +194,7 @@ Choice [1-5]:</ask>
 
 {{#each pending_signoffs}}
 - **{role}** ({agent_name}): {description}
-  - Invoke: /bmad:{module}:agents:{agent_id}
+  - Load: /bmad:{module}:agents:{agent_id}
 {{/each}}
 </output>
 </check>
@@ -299,7 +299,7 @@ Choice [1/2/3]:</ask>
 {{#each gaps}}
 **{gap_type}: {description}**
 - Suggested action: {action}
-- Workflow to invoke: {workflow}
+- Workflow to load: {workflow}
 - Estimated effort: {effort}
 
 {{/each}}

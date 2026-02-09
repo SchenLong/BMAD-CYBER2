@@ -81,7 +81,7 @@ All components have been analyzed. Display:
 
 Proceeding to summary and recommendations..."
 
-Immediately load, read entire file, then execute {summaryStepFile}
+Immediately load, read entire file, then follow {summaryStepFile}
 
 **STOP** - Do not proceed with component selection.
 
@@ -177,7 +177,7 @@ user_name: '{user_name}'
 
 ### 8. Route to STRIDE Analysis
 
-Immediately load, read entire file, then execute {nextStepFile} to begin STRIDE threat analysis for the selected component.
+Immediately load, read entire file, then follow {nextStepFile} to begin STRIDE threat analysis for the selected component.
 
 ---
 
@@ -204,4 +204,4 @@ Immediately load, read entire file, then execute {nextStepFile} to begin STRIDE 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN a component is selected (OR all components are analyzed) will you update frontmatter and immediately load, read entire file, then execute the appropriate next step file ({nextStepFile} for analysis or {summaryStepFile} if complete).
+ONLY WHEN a component is selected (OR all components are analyzed) will you update frontmatter and immediately load and follow the appropriate next step file ({nextStepFile} for analysis or {summaryStepFile} if complete).

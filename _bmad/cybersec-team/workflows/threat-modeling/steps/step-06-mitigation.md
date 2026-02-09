@@ -365,7 +365,7 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing
 - IF B: Execute {brainstormingTask} with prompt: "Help me brainstorm additional security controls or alternative mitigation strategies for the threats in {currentComponent}. Are there industry best practices we should consider?"
 - IF P: Execute {partyModeWorkflow} with focus: "Review the mitigation strategies for {currentComponent} - are the controls effective? Are priorities and effort estimates realistic? Are there better approaches?"
 - IF W: Web-Browsing - Guide user: "What would you like to research? Examples: Best practices for {specific-threat} mitigation, security control implementations, industry standards (NIST, OWASP)"
-- IF C: Verify all threats have mitigation strategies, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify all threats have mitigation strategies, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 ---
@@ -399,4 +399,4 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected AND all threats have mitigation strategies documented in the threat model will you load, read entire file, then execute {nextStepFile} to determine if more components need analysis.
+ONLY WHEN C is selected AND all threats have mitigation strategies documented in the threat model will you load, read entire file, then follow {nextStepFile} to determine if more components need analysis.

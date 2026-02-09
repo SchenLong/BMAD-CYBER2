@@ -113,7 +113,7 @@ timestamp: {YYYY-MM-DD HH:MM}
 
 ### 7. Auto-Advance
 
-When all edits applied successfully, load and execute `{nextStepFile}` immediately.
+When all edits applied successfully, load and follow `{nextStepFile}` immediately.
 
 ## SUCCESS METRICS
 

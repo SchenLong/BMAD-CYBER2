@@ -106,7 +106,7 @@ Every agent gets these 4 items automatically. **DO NOT add them to your YAML:**
 </handler>
 <handler type="exec">
   When menu item has: exec="path/to/file.md"
-  → Load and execute the file at that path
+  → Load and follow the file at that path
 </handler>
 ```
 **DO NOT add** handlers—the compiler detects and generates them.

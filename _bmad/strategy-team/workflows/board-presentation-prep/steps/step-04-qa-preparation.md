@@ -52,7 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: Audience (Step 1), Narrative (Step 2), Evidence (Step 3)
 - Focus: Questions, challenges, objections, responses
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1-3 complete
 
 ---
@@ -225,7 +225,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [Q] Add More Quest
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can have archetypes pose challenging questions, when finished redisplay the menu
 - IF Q: Add more anticipated questions and responses, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 #### EXECUTION RULES:

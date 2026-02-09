@@ -234,12 +234,12 @@ Ready to proceed to risk assessment?"
 
 ### 5. Proceed to Next Step
 
-After document initialization and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+After document initialization and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 ---
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}` to begin risk assessment.
+ONLY WHEN initialization setup is complete and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}` to begin risk assessment.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

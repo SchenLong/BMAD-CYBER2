@@ -9,7 +9,7 @@ workflow_path: '{project-root}/_bmad/bmb/workflows/workflow-compliance-check'
 thisStepFile: '{workflow_path}/steps/step-03-step-validation.md'
 nextStepFile: '{workflow_path}/steps/step-04-file-validation.md'
 workflowFile: '{workflow_path}/workflow.md'
-complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow_name}.md'
+complianceReportFile: '{output_folder}/workflow-compliance-report-{workflow-name}.md'
 targetWorkflowStepsPath: '{target_workflow_steps_path}'
 
 # Template References
@@ -159,14 +159,14 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 
 - IF A: Execute {advancedElicitationTask}
 - IF P: Execute {partyModeWorkflow}
-- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 ```
 
 **Violations to document:**
 
 - Non-standard menu format (Major)
 - Missing Menu Handling Logic section (Major)
-- Incorrect "load, read entire file, then execute" pattern (Major)
+- Incorrect "load, read entire file, then follow" pattern (Major)
 - Improper continuation logic (Critical)
 
 ### 3. Workflow Type Appropriateness Check
@@ -243,7 +243,7 @@ For each step file with violations:
 
 ## Menu Handling Logic:
 
-- IF C: Save step validation findings to report, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save step validation findings to report, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF X: Save current findings and end with guidance for resuming
 - IF Any other comments or queries: respond and redisplay menu
 

@@ -157,7 +157,7 @@ Display menu after setup report:
 
 #### Menu Handling Logic:
 
-- IF C: Update frontmatter with `stepsCompleted: [1]`, then load, read entire {nextStepFile}, then execute {nextStepFile}
+- IF C: Update frontmatter with `stepsCompleted: [1]`, then load, read entire {nextStepFile}, then follow {nextStepFile}
 - IF user provides additional files: Load them, update inputDocuments and documentCounts, redisplay report
 - IF user asks questions: Answer and redisplay menu
 

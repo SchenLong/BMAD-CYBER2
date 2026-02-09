@@ -73,7 +73,7 @@ CSV data files in BMAD workflows serve specific purposes for different workflow 
 - **Column 3:** Execution pattern or flow guide (e.g., "analysis → insights → action")
 - **Column 4:** Complexity level or use case indicators
 
-**Example:** Advanced Elicitation task analyzes content context, selects 5 best-matched methods from 50 options, then executes dynamically using CSV descriptions.
+**Example:** Advanced Elicitation task analyzes content context, selects 5 best-matched methods from 50 options, then follows dynamically using CSV descriptions.
 
 **Result:** Smart, context-aware technique selection without hardcoded logic - infinitely extensible method libraries.
 

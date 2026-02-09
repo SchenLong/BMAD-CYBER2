@@ -258,4 +258,4 @@ Display: [C] Continue to Secrets Management [R] Review/Add Findings [S] Skip to 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then follow {nextStepFile}.

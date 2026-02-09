@@ -359,4 +359,4 @@ Before proceeding to Step 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-psychological.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-psychological.md`

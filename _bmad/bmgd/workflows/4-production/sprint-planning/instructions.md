@@ -175,7 +175,7 @@ development_status:
 1. Review the generated {status_file}
 2. Use this file to track development progress
 3. Agents will update statuses as they work
-4. Re-run this workflow to refresh auto-detected statuses
+4. Re-load this workflow to refresh auto-detected statuses
 
 <action>Update workflow status upon completion</action>
 <check if="standalone_mode != true">

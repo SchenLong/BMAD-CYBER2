@@ -148,7 +148,7 @@ Display: **Proceeding to user profile collection...**
 
 #### Menu Handling Logic:
 
-- After setup completion, immediately load, read entire file, then execute `{workflow_path}/step-02-profile.md` to begin user profile collection
+- After setup completion, immediately load, read entire file, then follow `{workflow_path}/step-02-profile.md` to begin user profile collection
 
 ---
 
@@ -163,7 +163,7 @@ Display: **Proceeding to user profile collection...**
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete and document is created, will you then immediately load, read entire file, then execute `{workflow_path}/step-02-profile.md` to begin user profile collection.
+ONLY WHEN initialization setup is complete and document is created, will you then immediately load, read entire file, then follow `{workflow_path}/step-02-profile.md` to begin user profile collection.
 
 ### ❌ SYSTEM FAILURE:
 

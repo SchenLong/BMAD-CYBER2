@@ -166,7 +166,7 @@ Prepare the following structure for document append:
 
 - IF A: Execute {advancedElicitationTask} with current user content to dive deeper into personas and journeys
 - IF P: Execute {partyModeWorkflow} to bring different perspectives to validate user understanding
-- IF C: Save content to {outputFile}, update frontmatter with stepsCompleted: [1, 2, 3], then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter with stepsCompleted: [1, 2, 3], then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#6-present-menu-options)
 
 #### EXECUTION RULES:

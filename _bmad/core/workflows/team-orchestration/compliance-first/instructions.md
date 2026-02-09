@@ -94,7 +94,7 @@ Choice [1/2/3]:</ask>
 
 Starting compliance requirements definition...</output>
 
-  <action>Invoke {legal_workflows.compliance_requirements} with frameworks</action>
+  <action>Load and follow{legal_workflows.compliance_requirements} with frameworks</action>
   <action>Store compliance_requirements_path</action>
 </check>
 
@@ -114,7 +114,7 @@ Starting compliance requirements definition...</output>
 
 Starting party mode session...</output>
 
-  <action>Invoke party-mode with preset=compliance-audit-team</action>
+  <action>Load and followparty-mode with preset=compliance-audit-team</action>
   <action>Capture compliance requirements from session</action>
 </check>
 
@@ -150,7 +150,7 @@ Starting party mode session...</output>
 
 <ask>Ready to create compliance-aware architecture?
 
-1. **Create architecture** - Invoke BMM with compliance context
+1. **Create architecture** - Load and follow BMM with compliance context
 2. **Use existing** - Validate existing architecture against controls
 3. **Expert review** - Party mode with architect + compliance experts
 
@@ -166,7 +166,7 @@ Winston will be prompted to address each compliance control.
 
 Starting architecture design...</output>
 
-  <action>Invoke {bmm_workflows.architecture} with compliance context</action>
+  <action>Load and follow{bmm_workflows.architecture} with compliance context</action>
   <action>Store architecture_path</action>
 </check>
 
@@ -218,7 +218,7 @@ Choice [1/2/3]:</ask>
 
 Starting controls mapping...</output>
 
-  <action>Invoke {cybersec_workflows.controls_mapping} with architecture and requirements</action>
+  <action>Load and follow{cybersec_workflows.controls_mapping} with architecture and requirements</action>
   <action>Store control_mapping_path</action>
 </check>
 

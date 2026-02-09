@@ -528,7 +528,7 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
    - Reviewing system architecture? → Security Architecture Review
    - Modeling threats in system design? → Threat Modeling
 
-2. **Invoke the workflow:**
+2. **Load the workflow:**
 ```
 /bmad:cybersec-team:workflows:[workflow-name]
 ```
@@ -541,7 +541,7 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 
 4. **Use continuation for long sessions:**
    - All workflows support multi-session execution
-   - Simply re-invoke the workflow to continue where you left off
+   - Simply re-load the workflow to continue where you left off
 
 ### Common Usage Patterns
 
@@ -554,7 +554,7 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 
 **Pattern 2: Active Incident (Wartime)**
 ```
-1. Invoke Incident Response Playbook (Mode B)
+1. Load Incident Response Playbook (Mode B)
 2. Follow guided response procedures
 3. Generate incident report for stakeholders
 ```

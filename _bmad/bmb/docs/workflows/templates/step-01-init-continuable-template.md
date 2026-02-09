@@ -166,7 +166,7 @@ Display: **Proceeding to [next step description]...**
 
 #### Menu Handling Logic:
 
-- After setup completion, immediately load, read entire file, then execute `{nextStepFile}` to begin [next step description]
+- After setup completion, immediately load, read entire file, then follow `{nextStepFile}` to begin [next step description]
 
 ---
 
@@ -193,7 +193,7 @@ Display: **Proceeding to [next step description]...**
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete and document is created (OR continuation is properly routed), will you then immediately load, read entire file, then execute `{nextStepFile}` to begin [next step description].
+ONLY WHEN initialization setup is complete and document is created (OR continuation is properly routed), will you then immediately load, read entire file, then follow `{nextStepFile}` to begin [next step description].
 
 <!-- TEMPLATE END -->
 

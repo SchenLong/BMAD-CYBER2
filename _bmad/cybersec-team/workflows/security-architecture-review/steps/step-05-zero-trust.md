@@ -432,7 +432,7 @@ Display: **Select an Option:** [C] Continue to Recommendations
 
 #### Menu Handling Logic:
 
-- IF C: Save zero-trust assessment to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Save zero-trust assessment to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
 #### EXECUTION RULES:
@@ -446,7 +446,7 @@ Display: **Select an Option:** [C] Continue to Recommendations
 ONLY WHEN 'C' is selected AND zero-trust validation is complete across all 7 principles AND documented in Section 4b of {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2, 3, 4, 5]`, `lastStep: 'zero-trust'`
-2. Load, read entire file, then execute {nextStepFile} to begin recommendations and remediation
+2. Load, read entire file, then follow {nextStepFile} to begin recommendations and remediation
 
 ---
 

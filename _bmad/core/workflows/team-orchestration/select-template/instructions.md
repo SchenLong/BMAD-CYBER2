@@ -100,32 +100,32 @@ Choice [1-7]:</ask>
 <step n="2" goal="Process selection">
 <check if="template_choice == 1">
   <output>Invoking Secure Software Development orchestration...</output>
-  <action>Invoke {templates.secure-software.path}</action>
+  <action>Load and follow{templates.secure-software.path}</action>
 </check>
 
 <check if="template_choice == 2">
   <output>Invoking Incident Response Coordination orchestration...</output>
-  <action>Invoke {templates.incident-response.path}</action>
+  <action>Load and follow{templates.incident-response.path}</action>
 </check>
 
 <check if="template_choice == 3">
   <output>Invoking Strategic Decision orchestration...</output>
-  <action>Invoke {templates.strategic-decision.path}</action>
+  <action>Load and follow{templates.strategic-decision.path}</action>
 </check>
 
 <check if="template_choice == 4">
   <output>Invoking Compliance-First Development orchestration...</output>
-  <action>Invoke {templates.compliance-first.path}</action>
+  <action>Load and follow{templates.compliance-first.path}</action>
 </check>
 
 <check if="template_choice == 5">
   <output>Invoking Phase Gate check...</output>
-  <action>Invoke {phase_gate}</action>
+  <action>Load and follow{phase_gate}</action>
 </check>
 
 <check if="template_choice == 6">
   <output>Invoking Conflict Resolution...</output>
-  <action>Invoke {conflict_resolution}</action>
+  <action>Load and follow{conflict_resolution}</action>
 </check>
 
 <check if="template_choice == 7">
@@ -180,7 +180,7 @@ Based on your scenario, I recommend:
 Choice [1/2/3]:</ask>
 
 <check if="choice == 1">
-  <action>Invoke recommended template</action>
+  <action>Load and followrecommended template</action>
 </check>
 
 <check if="choice == 2">
@@ -199,7 +199,7 @@ Customizations:</ask>
   <output>Starting {recommended_template.name} with customizations noted.
 
 The template will be adjusted during execution.</output>
-  <action>Invoke recommended template with customization context</action>
+  <action>Load and followrecommended template with customization context</action>
 </check>
 </step>
 

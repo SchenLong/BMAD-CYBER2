@@ -441,4 +441,4 @@ Before proceeding to Phase 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-05-public-presence.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-05-public-presence.md`

@@ -460,7 +460,7 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 - IF A: Execute {advancedElicitationTask} with prompt: "Review our control assessment for completeness. Are there controls we missed? Are effectiveness ratings accurate? Are there hidden gaps we haven't identified?"
 - IF P: Execute {partyModeWorkflow} with prompt: "Invite Sentinel (compliance expert) to review our control assessment for compliance framework alignment, or Ghost (penetration tester) for bypass techniques perspective."
-- IF C: Verify control assessment complete, save to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify control assessment complete, save to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 #### EXECUTION RULES:
@@ -475,7 +475,7 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 ONLY WHEN 'C' is selected AND control inventory is documented AND control-to-threat mapping is complete AND gaps are identified in Section 4 of {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2, 3]`, `lastStep: 'control-assessment'`
-2. Load, read entire file, then execute {nextStepFile} to begin optional attack surface analysis
+2. Load, read entire file, then follow {nextStepFile} to begin optional attack surface analysis
 
 ---
 

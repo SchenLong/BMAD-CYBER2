@@ -124,7 +124,7 @@ Display: "Ready to continue with Step {nextStepNumber}?
 
 #### Menu Handling Logic:
 
-- IF C: Load, read entire file, then execute the appropriate next step file based on `lastStep`
+- IF C: Load and follow the appropriate next step file based on `lastStep`
 - IF Any other comments or queries: respond and redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE

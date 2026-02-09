@@ -305,7 +305,7 @@ Proceeding to control inventory..."
 
 ### 5. Route to Next Step
 
-Immediately load, read entire file, then execute `{nextStepFile}` to begin control inventory.
+Immediately load, read entire file, then follow `{nextStepFile}` to begin control inventory.
 
 ---
 
@@ -333,4 +333,4 @@ Immediately load, read entire file, then execute `{nextStepFile}` to begin contr
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization is complete and document created (OR continuation routed) will you immediately load, read entire file, then execute `{nextStepFile}` to begin control inventory.
+ONLY WHEN initialization is complete and document created (OR continuation routed) will you immediately load, read entire file, then follow `{nextStepFile}` to begin control inventory.

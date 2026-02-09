@@ -348,4 +348,4 @@ Before proceeding to Step 6:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-06-attribution-assessment.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-06-attribution-assessment.md`

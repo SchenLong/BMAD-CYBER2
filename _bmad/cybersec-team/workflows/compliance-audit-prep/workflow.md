@@ -31,7 +31,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: Halt at menus for user selection
 4. **CHECK CONTINUATION**: Resume via step-01b-continue if needed
 5. **SAVE STATE**: Update stepsCompleted before next step
-6. **LOAD NEXT**: When directed, load and execute next step
+6. **LOAD NEXT**: When directed, load and follow next step
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -65,4 +65,4 @@ Load and read full config from {project-root}/_bmad/cybersec-team/config.yaml an
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{project-root}/_bmad/cybersec-team/workflows/compliance-audit-prep/steps/step-01-init.md` to begin the workflow.
+Load, read the full file and then follow `{project-root}/_bmad/cybersec-team/workflows/compliance-audit-prep/steps/step-01-init.md` to begin the workflow.

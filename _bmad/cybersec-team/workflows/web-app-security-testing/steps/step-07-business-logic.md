@@ -225,4 +225,4 @@ Display: [C] Continue to Findings & Remediation [R] Review/Add Logic Findings [E
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`, then follow {nextStepFile}.

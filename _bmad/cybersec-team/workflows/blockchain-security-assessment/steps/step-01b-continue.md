@@ -78,8 +78,8 @@ Display: **Select How to Continue:**
 
 #### Menu Handling Logic:
 
-- IF C: Determine next step from stepsCompleted, load and execute that step file
-- IF J: Display step list with numbers, accept step selection, load and execute selected step
+- IF C: Determine next step from stepsCompleted, load and follow that step file
+- IF J: Display step list with numbers, accept step selection, load and follow selected step
 - IF V: Display section headers and summaries from current document
 - IF R: Confirm restart, archive existing file with timestamp, return to step-01-init.md
 

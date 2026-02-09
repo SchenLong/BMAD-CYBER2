@@ -325,7 +325,7 @@ Update frontmatter: add `step-04b-cross-module-diligence` to stepsCompleted
 
 ### 10. Continue to Risk Identification
 
-When user selects [C], load and execute {nextStepFile} (step-05-risk-identification.md) with cross-module findings feeding into the risk assessment.
+When user selects [C], load and follow {nextStepFile} (step-05-risk-identification.md) with cross-module findings feeding into the risk assessment.
 
 ---
 

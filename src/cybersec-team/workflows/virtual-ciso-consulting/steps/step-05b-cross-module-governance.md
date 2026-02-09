@@ -241,7 +241,7 @@ Update frontmatter: add `step-05b-cross-module-governance` to stepsCompleted
 
 ### 9. Continue to Reporting
 
-When user selects [C], load and execute {nextStepFile} (step-06-reporting.md) with cross-module governance validation incorporated.
+When user selects [C], load and follow {nextStepFile} (step-06-reporting.md) with cross-module governance validation incorporated.
 
 ---
 

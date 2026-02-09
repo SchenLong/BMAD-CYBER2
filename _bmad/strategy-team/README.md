@@ -53,7 +53,7 @@ These agents channel historical figures to provide distinct ideological perspect
 
 ## Quick Start
 
-Invoke any agent using their slash command:
+Load any agent using their slash command:
 
 ```
 /strategy-team:policy-analyst      # Augustus - Evidence-based policy analysis
@@ -102,7 +102,7 @@ Located in `_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml`:
 | `competitive-intelligence-war-room` | Strategy + Intel | Competitive analysis and strategy |
 | `executive-security-council` | Strategy + Cybersec + Legal | Security-aware executive decisions |
 
-### Invoke a Preset
+### Load a Preset
 
 During any workflow or Party Mode session:
 ```

@@ -175,7 +175,7 @@ Collect for each category:
 
 For technical controls (firewalls, encryption, access management, etc.), would you like to collaborate with Bastion (Security Architect) for detailed technical control review?
 
-[Y] Yes - Invoke Bastion for architecture control validation
+[Y] Yes - Load Bastion for architecture control validation
 [N] No - Continue with self-assessment
 
 Select (Y/N):"

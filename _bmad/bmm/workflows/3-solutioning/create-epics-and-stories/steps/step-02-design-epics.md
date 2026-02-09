@@ -196,7 +196,7 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 
 - IF A: Execute {advancedElicitationTask}
 - IF P: Execute {partyModeWorkflow}
-- IF C: Save approved epics_list to {outputFile}, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save approved epics_list to {outputFile}, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 #### EXECUTION RULES:
@@ -208,7 +208,7 @@ Display: "**Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Cont
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and the approved epics_list is saved to document, will you then load, read entire file, then execute {nextStepFile} to execute and begin story creation step.
+ONLY WHEN C is selected and the approved epics_list is saved to document, will you then load, read entire file, then follow {nextStepFile} to execute and begin story creation step.
 
 ---
 

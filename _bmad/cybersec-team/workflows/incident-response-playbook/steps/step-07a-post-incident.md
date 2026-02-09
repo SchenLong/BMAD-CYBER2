@@ -946,12 +946,12 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [W] Web-B
   - HIPAA breach notification requirements
   - State breach notification laws ({specific-states})
   - Post-incident best practices
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Sections 6 & 7 are complete will you load, read entire file, then execute `{nextStepFile}` to finalize the playbook with appendices and document control.
+ONLY WHEN C is selected and Sections 6 & 7 are complete will you load, read entire file, then follow `{nextStepFile}` to finalize the playbook with appendices and document control.
 
 ---
 

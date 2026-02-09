@@ -233,7 +233,7 @@
 
 ---
 
-**Next Step**: Run the **implementation-readiness** workflow to validate alignment between PRD, Architecture, and Stories before beginning implementation.
+**Next Step**: Load and follow the **implementation-readiness** workflow to validate alignment between PRD, Architecture, and Stories before beginning implementation.
 
 ---
 

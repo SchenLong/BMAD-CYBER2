@@ -5,5 +5,5 @@ description: Create jurisdiction-appropriate contracts from scratch or modify ex
 
 # Contract Drafting
 
-Load, read the full file, and then execute the workflow at:
+Load and follow the workflow at:
 `@_bmad/legal-team/workflows/contract-drafting/workflow.md`

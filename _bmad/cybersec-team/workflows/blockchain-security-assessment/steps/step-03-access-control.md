@@ -265,6 +265,6 @@ Display: **Access Control Analysis Complete - Select an Option:** [C] Continue t
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN access control is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN access control is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

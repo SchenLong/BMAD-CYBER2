@@ -249,4 +249,4 @@ Display: **Dynamic Analysis Complete - Select an Option:** [C] Continue to Data 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN dynamic analysis is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN dynamic analysis is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then follow `{nextStepFile}`.

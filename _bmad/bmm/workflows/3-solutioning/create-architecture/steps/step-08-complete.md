@@ -313,9 +313,9 @@ This will help ensure consistent implementation by capturing:
 
 The workflow will collaborate with you to create an optimized `project-context.md` file that AI agents will read before implementing any code."
 
-**Execute the Generate Project Context workflow:**
+**Load and follow the Generate Project Context workflow:**
 
-- Load and execute: `{project-root}/_bmad/bmm/workflows/generate-project-context/workflow.md`
+- Load and follow: `{project-root}/_bmad/bmm/workflows/generate-project-context/workflow.md`
 - The workflow will handle discovery, generation, and completion of the project context file
 - After completion, return here for final handoff
 

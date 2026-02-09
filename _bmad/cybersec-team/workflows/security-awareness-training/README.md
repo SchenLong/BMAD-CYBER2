@@ -47,11 +47,11 @@ The workflow produces a comprehensive security awareness training program docume
 
 ## Usage
 
-Invoke via agent menu:
+Load via agent menu:
 - Shield: [SA] Security Awareness Training Workflow
 - Sentinel: Through chat or action menu
 
 Or directly:
 ```
-Load and execute: workflows/security-awareness-training/workflow.md
+Load and follow: workflows/security-awareness-training/workflow.md
 ```

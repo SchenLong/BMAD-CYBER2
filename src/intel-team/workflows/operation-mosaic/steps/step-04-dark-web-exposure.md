@@ -371,4 +371,4 @@ This step (4) can run in parallel with Steps 2-3, 5-6. Share findings as they be
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-05-corporate-intel.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-05-corporate-intel.md`

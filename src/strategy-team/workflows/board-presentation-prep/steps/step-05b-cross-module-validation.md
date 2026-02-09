@@ -298,7 +298,7 @@ Update frontmatter: add `step-05b-cross-module-validation` to stepsCompleted
 
 ### 11. Continue to Deck Outline
 
-When user selects [C], load and execute {nextStepFile} (step-06-deck-outline.md) with validation findings incorporated.
+When user selects [C], load and follow {nextStepFile} (step-06-deck-outline.md) with validation findings incorporated.
 
 ---
 

@@ -64,7 +64,7 @@ I can help you identify expertise from other BMAD modules that could benefit you
 
 **Relevant Workflows:**
 {{#each suggested_workflows}}
-- {workflow_name}
+- {workflow-name}
 {{/each}}
 
 ---
@@ -103,7 +103,7 @@ You can still consult these agents via Party Mode, or add the module to your pro
 <step n="5" goal="Offer next steps">
 <ask>How would you like to proceed?
 
-1. **Invoke Agent** - Get the command to start working with a recommended agent
+1. **Load Agent** - Get the command to start working with a recommended agent
 2. **Start Party Mode** - Bring multiple agents together for a collaborative discussion
 3. **Add Module** - Add a recommended module to your active project
 4. **More Details** - Learn more about a specific agent or workflow
@@ -114,9 +114,9 @@ Choice [1/2/3/4/5]:</ask>
 
 <step n="6" goal="Execute choice">
 <check if="choice == 1">
-  <ask>Which agent would you like to invoke? (Enter agent name or number from list):</ask>
+  <ask>Which agent would you like to load? (Enter agent name or number from list):</ask>
   <action>Look up agent in manifest</action>
-  <output>To invoke **{agent_display}**:
+  <output>To load **{agent_display}**:
 
 **Skill command:** `/bmad:{module}:agents:{agent_name}`
 
@@ -124,7 +124,7 @@ Choice [1/2/3/4/5]:</ask>
 
 **Communication style:** {agent_communication_style}
 
-Would you like me to invoke this agent now? (y/n)</output>
+Would you like me to load this agent now? (y/n)</output>
   <check if="y">
     <action>Execute agent invocation via exec handler</action>
   </check>

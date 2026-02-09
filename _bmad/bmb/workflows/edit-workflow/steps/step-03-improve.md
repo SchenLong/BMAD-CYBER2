@@ -189,12 +189,12 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 - IF A: Execute {advancedElicitationTask}
 - IF P: Execute {partyModeWorkflow}
-- IF C: Save improvement log to {outputFile}, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save improvement log to {outputFile}, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#5-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and all prioritized improvements are complete and documented, will you then load, read entire file, then execute {nextStepFile} to execute and begin validation step.
+ONLY WHEN C is selected and all prioritized improvements are complete and documented, will you then load, read entire file, then follow {nextStepFile} to execute and begin validation step.
 
 ---
 

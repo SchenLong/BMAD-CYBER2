@@ -117,6 +117,17 @@ Execute final workflow termination:
 
 Thank you for using BMAD Party Mode for collaborative multi-agent discussions!"
 
+### 7. Return Protocol
+
+When party mode was invoked from within a parent workflow (e.g., a strategy-team workflow step offering [P] Party Mode), token accumulation during the party session can push the parent workflow's instructions out of active recall. To prevent the LLM from losing context:
+
+1. **Identify the parent workflow** -- Determine which workflow invoked Party Mode and at which step (e.g., the menu that offered the [P] option)
+2. **Re-read the parent workflow file** -- Load the parent workflow's markdown file in full to restore its instructions, menu structure, and execution state
+3. **Resume execution from the correct point** -- Return to the exact step/menu where Party Mode was invoked, not to the beginning of the parent workflow
+4. **Present the required menus/options** -- Re-display the parent workflow's completion menu or next-step options so the user can continue seamlessly
+
+**Important:** If no parent workflow invoked Party Mode (i.e., it was launched standalone), skip this step entirely and end normally.
+
 ## SUCCESS METRICS:
 
 ✅ Satisfying agent farewells generated in authentic character voices

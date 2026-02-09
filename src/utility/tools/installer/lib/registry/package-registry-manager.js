@@ -393,9 +393,8 @@ class BMADPackageRegistryManager {
 
         if (options.saveDev) {
             cmd += ' --save-dev';
-        } else if (options.save !== false) {
-            cmd += ' --save';
         }
+        // Note: --save is the default in npm 5+, no need to specify it explicitly
 
         const packageSpec = version ? `${packageName}@${version}` : packageName;
         cmd += ` ${packageSpec}`;

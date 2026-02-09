@@ -178,7 +178,7 @@ Display: "**Is this the correct agent to edit?** [C] Yes, Continue to Discovery"
 
 #### Menu Handling Logic:
 
-- IF C: Save content to {editPlan}, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {editPlan}, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#5-present-menu-options)
 
 #### EXECUTION RULES:

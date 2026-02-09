@@ -436,7 +436,7 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing
 - IF B: Execute {brainstormingTask} with prompt: "Help me brainstorm additional security threats for {currentComponent} using the STRIDE methodology. Are there edge cases, attack vectors, or threat scenarios we haven't considered?"
 - IF P: Execute {partyModeWorkflow} with focus: "Review the STRIDE threat analysis for {currentComponent} - are there threats we've missed? Attack scenarios that need refinement?"
 - IF W: Web-Browsing - Guide user: "What would you like to research? Examples: CVE vulnerabilities for {technology}, common {component-type} attack patterns, {specific-threat} examples"
-- IF C: Verify at least one threat identified, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify at least one threat identified, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
 ---
@@ -463,4 +463,4 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected AND all STRIDE threats are documented in the threat model will you load, read entire file, then execute {nextStepFile} to begin risk assessment.
+ONLY WHEN C is selected AND all STRIDE threats are documented in the threat model will you load, read entire file, then follow {nextStepFile} to begin risk assessment.

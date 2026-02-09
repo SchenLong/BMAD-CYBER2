@@ -46,6 +46,6 @@ Load config from `{project-root}/_bmad/core/config.yaml` and resolve:
 
 ## EXECUTION
 
-Load and execute `steps/step-01-session-setup.md` to begin the workflow.
+Load and follow `steps/step-01-session-setup.md` to begin the workflow.
 
 **Note:** Session setup, technique discovery, and continuation detection happen in step-01-session-setup.md.

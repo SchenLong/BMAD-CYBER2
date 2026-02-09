@@ -74,5 +74,5 @@ date_created: "{date}"
 - **[Q]** I have questions before proceeding
 
 #### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF Q: Answer questions, then redisplay menu

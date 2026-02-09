@@ -96,7 +96,7 @@ Ready to proceed?"
 Create the workflow folder structure in the target location:
 
 ```
-{bmb_creations_output_folder}/workflows/{workflow_name}/
+{bmb_creations_output_folder}/workflows/{workflow-name}/
 ├── workflow.md
 ├── steps/
 │   ├── step-01-init.md
@@ -109,7 +109,7 @@ Create the workflow folder structure in the target location:
     └── [as needed]
 ```
 
-For bmb module, this will be: `_bmad/custom/src/workflows/{workflow_name}/`
+For bmb module, this will be: `_bmad/custom/src/workflows/{workflow-name}/`
 For other modules, check their module.yaml for custom_workflow_location
 
 ### 3. Generate workflow.md
@@ -294,12 +294,12 @@ Display: **Build Complete - Select an Option:** [C] Continue to Review
 
 #### Menu Handling Logic:
 
-- IF C: Save build summary to {workflowPlanFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save build summary to {workflowPlanFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: respond and redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and content is saved to plan and frontmatter is updated, will you then load, read entire file, then execute {nextStepFile} to execute and begin workflow review step.
+ONLY WHEN C is selected and content is saved to plan and frontmatter is updated, will you then load, read entire file, then follow {nextStepFile} to execute and begin workflow review step.
 
 ---
 

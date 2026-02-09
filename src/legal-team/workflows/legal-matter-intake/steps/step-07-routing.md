@@ -113,6 +113,6 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`
 - **[A]** Request different specialist
 
 #### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF D: Discuss alternatives, then redisplay menu
 - IF A: Adjust routing, then redisplay menu

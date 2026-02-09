@@ -15,6 +15,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { execSync } = require('child_process');
 const yaml = require('js-yaml');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 /**
  * Main Module Packaging Engine
@@ -219,7 +220,7 @@ class BMAdModulePackager {
     const moduleYamlPath = path.join(teamPath, 'module.yaml');
 
     try {
-      const moduleContent = await fs.readFile(moduleYamlPath, 'utf8');
+      const moduleContent = normalizeLineEndings(await fs.readFile(moduleYamlPath, 'utf8'));
       const moduleConfig = yaml.load(moduleContent, { schema: yaml.CORE_SCHEMA });
 
       // Check required fields
@@ -464,7 +465,7 @@ class BMAdModulePackager {
         i++;
       }
       try {
-        frontmatter = yaml.load(frontmatterLines.join('\n'), { schema: yaml.CORE_SCHEMA }) || {};
+        frontmatter = yaml.load(normalizeLineEndings(frontmatterLines.join('\n')), { schema: yaml.CORE_SCHEMA }) || {};
       } catch (e) {
         console.warn(`Warning: Failed to parse frontmatter in agent: ${e.message}`);
       }

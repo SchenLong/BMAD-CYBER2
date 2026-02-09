@@ -109,7 +109,7 @@ Display: **Resuming - Select an Option:** [C] Continue to [Next Step] [R] Review
 
 #### Menu Handling Logic:
 
-- IF C: Update frontmatter `lastContinued`, then load and execute appropriate next step file
+- IF C: Update frontmatter `lastContinued`, then load and follow appropriate next step file
 - IF R: Display summary of completed sections, then redisplay menu
 
 ---

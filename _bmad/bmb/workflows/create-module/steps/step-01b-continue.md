@@ -167,4 +167,4 @@ Update modulePlanFile frontmatter:
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN user selects 'C' (Continue) and appropriate updates are saved to modulePlanFile, will you then load, read entire file, then execute the determined next step file to resume the module creation workflow.
+ONLY WHEN user selects 'C' (Continue) and appropriate updates are saved to modulePlanFile, will you then load and follow the determined next step file to resume the module creation workflow.

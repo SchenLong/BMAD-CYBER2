@@ -296,4 +296,4 @@ Display: [C] Continue to Kubernetes [R] Review/Add Findings [S] Skip to CI/CD
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3]`, then follow {nextStepFile}.

@@ -53,5 +53,5 @@ Invoke via agent menu:
 
 Or directly:
 ```
-Load and execute: workflows/security-awareness-training/workflow.md
+Load and follow: workflows/security-awareness-training/workflow.md
 ```

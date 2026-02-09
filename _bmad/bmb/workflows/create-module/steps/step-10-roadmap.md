@@ -183,7 +183,7 @@ agent {agent_name}
 ### Run Workflow
 
 ```bash
-workflow {workflow_name}
+workflow {workflow-name}
 ```
 
 ## Development Notes
@@ -335,4 +335,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and roadmap info is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], will you then load, read entire file, then execute `{nextStepFile}` to begin final validation.
+ONLY WHEN C is selected and roadmap info is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], will you then load, read entire file, then follow `{nextStepFile}` to begin final validation.

@@ -100,7 +100,7 @@ Display: **Resuming workflow - Select an Option:** [C] Continue
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and continuation analysis is complete, will you then update frontmatter and load, read entire file, then execute the appropriate next step file.
+ONLY WHEN C is selected and continuation analysis is complete, will you then update frontmatter and load and follow the appropriate next step file.
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 

@@ -165,12 +165,12 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 - IF A: Execute {advancedElicitationTask}
 - IF P: Execute {partyModeWorkflow}
-- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#final-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and content is saved to {outputFile} with frontmatter updated, will you then load, read entire file, then execute {nextStepFile} to execute and begin compliance validation step.
+ONLY WHEN C is selected and content is saved to {outputFile} with frontmatter updated, will you then load, read entire file, then follow {nextStepFile} to execute and begin compliance validation step.
 
 ---
 

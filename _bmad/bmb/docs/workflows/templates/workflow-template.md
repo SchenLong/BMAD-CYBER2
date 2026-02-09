@@ -35,7 +35,7 @@ web_bundle: [true/false] # Set to true for inclusion in web bundle builds
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -59,7 +59,7 @@ Load and read full config from {project-root}/_bmad/[MODULE FOLDER]/config.yaml 
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute [FIRST STEP FILE PATH] to begin the workflow.
+Load, read the full file and then follow [FIRST STEP FILE PATH] to begin the workflow.
 
 <!-- TEMPLATE END -->
 
@@ -97,7 +97,7 @@ Copy the template above and replace:
 
 Update the last line of the workflow.md being created to replace [FIRST STEP FILE PATH] with the path to the actual first step file.
 
-Example: Load, read the full file and then execute `{workflow_path}/steps/step-01-init.md` to begin the workflow.
+Example: Load, read the full file and then follow `{workflow_path}/steps/step-01-init.md` to begin the workflow.
 
 ### NOTE: You can View a real example of a perfect workflow.md file that was created from this template
 

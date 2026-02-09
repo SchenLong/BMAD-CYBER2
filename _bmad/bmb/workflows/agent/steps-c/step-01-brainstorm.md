@@ -89,7 +89,7 @@ Display: "Are you ready to [C] Continue to Discovery?"
 
 #### Menu Handling Logic:
 
-- IF C: Load, read entire file, then execute {nextStepFile}
+- IF C: Load, read entire file, then follow {nextStepFile}
 
 #### EXECUTION RULES:
 

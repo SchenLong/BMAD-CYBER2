@@ -51,7 +51,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 - Available context: Audience analysis from Step 1
 - Focus: Story structure, emotional journey, key messages
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Step 1 audience analysis complete
 
 ---
@@ -222,7 +222,7 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [M] Refine Message
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Cicero for persuasion angles, when finished redisplay the menu
 - IF M: Refine key messages or narrative structure, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 #### EXECUTION RULES:

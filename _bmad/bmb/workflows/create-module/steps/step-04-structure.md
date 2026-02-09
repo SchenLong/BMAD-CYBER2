@@ -226,4 +226,4 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and structure is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4], will you then load, read entire file, then execute `{nextStepFile}` to begin configuration planning.
+ONLY WHEN C is selected and structure is saved to module-plan.md with stepsCompleted updated to [1, 2, 3, 4], will you then load, read entire file, then follow `{nextStepFile}` to begin configuration planning.

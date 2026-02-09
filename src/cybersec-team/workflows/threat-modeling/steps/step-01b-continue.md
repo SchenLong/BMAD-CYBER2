@@ -145,7 +145,7 @@ Would you like to:
 #### IF last step is 1 (System Overview):
 "Resuming at **Component Decomposition**. We'll identify and document all major system components next."
 
-Load, read entire file, then execute {step02File}
+Load, read entire file, then follow {step02File}
 
 #### IF last step is 2 (Component Decomposition):
 Check components array:
@@ -185,7 +185,7 @@ Check component status:
 
 ### 5. Execute Routing
 
-After determining next step, immediately load, read entire file, then execute the appropriate step file.
+After determining next step, immediately load and follow the appropriate step file.
 
 ---
 
@@ -211,4 +211,4 @@ After determining next step, immediately load, read entire file, then execute th
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN the routing decision is made based on stepsCompleted analysis will you immediately load, read entire file, then execute the appropriate next step file.
+ONLY WHEN the routing decision is made based on stepsCompleted analysis will you immediately load and follow the appropriate next step file.

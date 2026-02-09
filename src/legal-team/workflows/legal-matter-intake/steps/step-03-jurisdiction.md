@@ -97,6 +97,6 @@ Update frontmatter: `stepsCompleted: [1, 2, 3]`
 - **[Q]** Questions about jurisdictions
 
 #### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF D: Explore jurisdiction issues, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

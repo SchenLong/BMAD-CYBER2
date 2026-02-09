@@ -230,7 +230,7 @@ Display: **Select an Option:** [C] Continue to Completion
 
 #### Menu Handling Logic:
 
-- IF C: Save review to {workflowPlanFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save review to {workflowPlanFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 ## COMPLIANCE CHECK INSTRUCTIONS

@@ -154,7 +154,7 @@ Choice [1-5]:</ask>
 Initiating discussion...</output>
 
   <action>Set party_mode_agents to selected_preset.agents</action>
-  <action>Invoke {party_mode_workflow} with pre-selected agents</action>
+  <action>Load and follow{party_mode_workflow} with pre-selected agents</action>
 </check>
 
 <check if="action_choice == 2">
@@ -184,7 +184,7 @@ Context:</ask>
 
 Starting Party Mode...</output>
 
-  <action>Invoke {party_mode_workflow} with pre-selected agents and context</action>
+  <action>Load and follow{party_mode_workflow} with pre-selected agents and context</action>
 </check>
 
 <check if="action_choice == 4">

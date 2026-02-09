@@ -804,12 +804,12 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [W] Web-B
   - {incident-type} eradication best practices
   - Threat actor TTPs and persistence mechanisms
   - Forensic validation techniques
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Section 4 is complete will you load, read entire file, then execute `{nextStepFile}` to begin defining recovery procedures.
+ONLY WHEN C is selected and Section 4 is complete will you load, read entire file, then follow `{nextStepFile}` to begin defining recovery procedures.
 
 ---
 

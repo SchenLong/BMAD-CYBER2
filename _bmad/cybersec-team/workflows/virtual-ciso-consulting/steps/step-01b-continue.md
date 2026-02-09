@@ -141,7 +141,7 @@ Continuing from where you left off..."
 
 ### 6. Load Next Step
 
-Immediately load, read entire file, then execute the determined next step file.
+Immediately load and follow the determined next step file.
 
 ---
 

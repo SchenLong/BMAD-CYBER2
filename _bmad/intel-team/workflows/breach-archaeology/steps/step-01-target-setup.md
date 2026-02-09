@@ -239,4 +239,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-exposure-scan.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-exposure-scan.md`

@@ -202,7 +202,7 @@ If user selects 'A':
 
    Ready to begin defining your organization's response procedures."
 
-7. Immediately load, read entire file, then execute `{step02aFile}` to begin Mode A
+7. Immediately load, read entire file, then follow `{step02aFile}` to begin Mode A
 
 #### C. Mode B: Guided Execution Setup
 
@@ -280,7 +280,7 @@ If user selects 'B':
 
    **Let's begin triage immediately.**"
 
-9. Immediately load, read entire file, then execute `{step02bFile}` to begin Mode B
+9. Immediately load, read entire file, then follow `{step02bFile}` to begin Mode B
 
 ## ✅ SUCCESS METRICS:
 
@@ -338,4 +338,4 @@ If user selects 'B':
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization is complete and mode-appropriate document is created (OR continuation is properly routed), will you then immediately load, read entire file, then execute the mode-appropriate step-02 file to begin incident response work.
+ONLY WHEN initialization is complete and mode-appropriate document is created (OR continuation is properly routed), will you then immediately load and follow the mode-appropriate step-02 file to begin incident response work.

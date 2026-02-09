@@ -163,7 +163,7 @@ Prepare the following structure for document append:
 
 - IF A: Execute {advancedElicitationTask} with current vision content to dive deeper and refine
 - IF P: Execute {partyModeWorkflow} to bring different perspectives to positioning and differentiation
-- IF C: Save content to {outputFile}, update frontmatter with stepsCompleted: [1, 2], then only then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter with stepsCompleted: [1, 2], then only then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
 #### EXECUTION RULES:

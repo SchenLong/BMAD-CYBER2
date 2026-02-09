@@ -160,9 +160,9 @@ Display: **Select an Option:** [A] Budget Optimization Strategies [P] Shopping P
 - HALT and AWAIT ANSWER
 - IF A: Execute `{project-root}/_bmad/core/workflows/advanced-elicitation/workflow.xml`
 - IF P: Execute `{project-root}/_bmad/core/workflows/party-mode/workflow.md`
-- IF C: Save content to nutrition-plan.md, update frontmatter `stepsCompleted` to add 5 at the end of the array before loading next step, then load, read entire file, then execute `{workflow_path}/step-06-prep-schedule.md`
+- IF C: Save content to nutrition-plan.md, update frontmatter `stepsCompleted` to add 5 at the end of the array before loading next step, then load, read entire file, then follow `{workflow_path}/step-06-prep-schedule.md`
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#5-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and content is saved to document and frontmatter is updated, will you then load, read entire file, then execute `{workflow_path}/step-06-prep-schedule.md` to execute and begin meal prep schedule creation.
+ONLY WHEN C is selected and content is saved to document and frontmatter is updated, will you then load, read entire file, then follow `{workflow_path}/step-06-prep-schedule.md` to execute and begin meal prep schedule creation.

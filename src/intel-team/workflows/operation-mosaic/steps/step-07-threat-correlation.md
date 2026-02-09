@@ -400,4 +400,4 @@ Specialized threat analysis is complete. Proceed to Phase 4 for operational asse
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-08-operational-assessment.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-08-operational-assessment.md`
