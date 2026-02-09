@@ -3,8 +3,11 @@
  * Cross-File Reference Validator CLI
  * Task 0.2 - Command-line interface for the reference validator
  *
- * Usage: node src/utility/tools/reference-validator/cli.js
+ * Usage: node src/utility/tools/reference-validator/cli.js [--json]
  *        npm run validate:refs
+ *
+ * Flags:
+ *   --json  Output results as JSON for machine consumption
  *
  * Exit codes:
  *   0 - All references valid
@@ -92,22 +95,32 @@ function printErrors(errors) {
 // ============================================================================
 
 async function main() {
+  const jsonMode = process.argv.includes('--json');
+
   try {
     const result = await validateReferences(PROJECT_ROOT);
 
-    printSummary(result);
-    printBrokenDetails(result.broken);
-    printErrors(result.errors);
-
-    if (result.brokenReferences > 0) {
-      console.log(`\n  FAIL: ${result.brokenReferences} broken reference(s) found.\n`);
-      process.exit(1);
+    if (jsonMode) {
+      console.log(JSON.stringify(result, null, 2));
     } else {
-      console.log('\n  OK: All references are valid.\n');
-      process.exit(0);
+      printSummary(result);
+      printBrokenDetails(result.broken);
+      printErrors(result.errors);
+
+      if (result.brokenReferences > 0) {
+        console.log(`\n  FAIL: ${result.brokenReferences} broken reference(s) found.\n`);
+      } else {
+        console.log('\n  OK: All references are valid.\n');
+      }
     }
+
+    process.exit(result.brokenReferences > 0 ? 1 : 0);
   } catch (err) {
-    console.error('Reference validator failed:', err.message);
+    if (jsonMode) {
+      console.log(JSON.stringify({ error: err.message }));
+    } else {
+      console.error('Reference validator failed:', err.message);
+    }
     process.exit(2);
   }
 }

@@ -13,11 +13,15 @@
           },
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-security-init.py"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-security-init.js"
           },
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start-tts.sh"
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/src/utility/tools/reference-validator/cli.js --json"
           }
         ]
       }

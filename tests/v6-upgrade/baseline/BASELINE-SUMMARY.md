@@ -23,6 +23,19 @@
 - 6 moderate severity vulnerabilities (all in vitest dependency chain)
 - Not actionable without vitest version upgrade
 
+## Pre-Upgrade Package.json Engine Values
+
+| File | engines.node | engines.npm |
+|------|-------------|-------------|
+| `package.json` (root) | `>=18.0.0` | `>=9.0.0` |
+| `.claude/validators-node/package.json` | `>=18.0.0` | — |
+| `_bmad/framework/package.json` | `>=18.0.0` | — |
+| `src/package-management/versioning/package.json` | `>=14.0.0` | `>=6.0.0` |
+| `src/utility/tools/installer/package.json` | `>=18.0.0` | — |
+| `tools/npx/package.json` | `>=18.0.0` | — |
+| `tools/npx/__tests__/fixtures/bmad-package.json` | `>=18.0.0` | — |
+| `tools/npx/__tests__/fixtures/sample-package.json` | `>=16.0.0` | — |
+
 ## Notes
 - Plan referenced 232 tests; actual count is 1337 (repo grew significantly)
 - Node already at v25 - Story 2 (Node 20 upgrade) may need scope adjustment

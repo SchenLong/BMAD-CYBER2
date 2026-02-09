@@ -42,6 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Source code version checks updated across cli.js, package-merger.js, dependency-manager.js, registry-manager.js
 - Config templates updated (team-package.json.template, package.json.template, dependencies.yaml)
 
+### Breaking Changes
+- **Node.js 18 no longer supported.** Minimum required version is now Node.js 20.0.0 (npm >= 10.0.0). Users on Node 18 must upgrade before installing v2.2.0.
+
 ### Security
 - **VULN-012**: Settings.json SPOF protection via integrity validator (54 hooks, 12 matchers assertion)
 - **VULN-013**: Manifest content sanitization preventing prompt injection in help system (6 regex patterns, HTML stripping, code block stripping, length truncation)

@@ -113,10 +113,18 @@ export function isLocalFileRef(ref) {
 export function extractReferences(content, sourceFile) {
   const references = [];
   const lines = content.split('\n');
+  let inCodeBlock = false;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const lineNum = i + 1;
+
+    // Track fenced code blocks (``` or ~~~) and skip their contents
+    if (/^(`{3,}|~{3,})/.test(line.trim())) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+    if (inCodeBlock) continue;
 
     // Extract workflow: references
     let match;

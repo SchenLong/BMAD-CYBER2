@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/observability/telemetry.js')
+import('../dist/src/observability/telemetry.js')
   .then((module) => {
     module.main();
   })

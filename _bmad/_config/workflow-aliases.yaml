@@ -50,6 +50,7 @@ reserved_names:
   - resource-limits
   - secret
   - session-init
+  - settings-integrity
   - supply-chain
   - telemetry
   - token-validator

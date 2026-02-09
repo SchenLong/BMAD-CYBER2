@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/guards/env-protection.js')
+import('../dist/src/guards/env-protection.js')
   .then((module) => {
     module.main();
   })

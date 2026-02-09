@@ -39,7 +39,11 @@ function sanitizeObject(obj) {
       logger.warn(`Blocked dangerous key "${key}" in package.json (prototype pollution prevention)`);
       continue;
     }
-    sanitized[key] = obj[key];
+    // Recursively sanitize nested objects to catch deeply nested dangerous keys
+    const value = obj[key];
+    sanitized[key] = (value && typeof value === 'object' && !Array.isArray(value))
+      ? sanitizeObject(value)
+      : value;
   }
   return sanitized;
 }

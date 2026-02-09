@@ -18,6 +18,7 @@ import { readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
+import { normalizeLineEndings } from '../../../src/utility/normalize-line-endings.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -336,7 +337,7 @@ export class HelpGenerator {
     try {
       const filePath = join(this.configDir, 'manifest.yaml');
       const content = await readFile(filePath, 'utf-8');
-      const parsed = yaml.load(content, { schema: yaml.CORE_SCHEMA });
+      const parsed = yaml.load(normalizeLineEndings(content), { schema: yaml.CORE_SCHEMA });
 
       if (parsed && Array.isArray(parsed.modules)) {
         return parsed.modules.map((m) => sanitizeName(String(m)));

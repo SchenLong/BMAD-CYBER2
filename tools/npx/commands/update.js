@@ -16,6 +16,7 @@ const execAsync = promisify(exec);
 const PRESERVE_FILES = [
   '_bmad/core/config.yaml',
   '_bmad/_config/',
+  '.claude/settings.json',
   '.claude/settings.local.json',
   '.env',
   '.env.local'

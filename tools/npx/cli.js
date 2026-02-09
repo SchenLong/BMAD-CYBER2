@@ -35,6 +35,7 @@ program
   .option('--with-dev', 'Include development tools')
   .option('--force', 'Overwrite existing files')
   .option('--dry-run', 'Show what would be installed')
+  .option('--allow-scripts', 'Allow npm postinstall scripts (default: blocked for security)')
   .action((options) => {
     installCommand(options);
   });

@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Enforce LF line endings for YAML files (cross-platform CRLF protection)
+*.yaml text eol=lf
+*.yml text eol=lf

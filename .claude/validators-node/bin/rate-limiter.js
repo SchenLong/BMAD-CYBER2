@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/resource-management/rate-limiter.js')
+import('../dist/src/resource-management/rate-limiter.js')
   .then((module) => {
     module.main();
   })

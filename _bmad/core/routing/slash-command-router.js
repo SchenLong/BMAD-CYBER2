@@ -64,18 +64,7 @@ export function parseSimpleYaml(content) {
     }
 
     if (contentPart.startsWith('- ')) {
-      let value = contentPart.slice(2).trim();
-
-      if (value.startsWith('"')) {
-        const closeQuote = value.indexOf('"', 1);
-        if (closeQuote > 0) value = value.slice(1, closeQuote);
-      } else if (value.startsWith("'")) {
-        const closeQuote = value.indexOf("'", 1);
-        if (closeQuote > 0) value = value.slice(1, closeQuote);
-      } else {
-        const commentIdx = value.indexOf('#');
-        if (commentIdx > 0) value = value.slice(0, commentIdx).trim();
-      }
+      let itemContent = contentPart.slice(2).trim();
 
       const parentKey = currentStack.key;
       let targetArray;
@@ -88,15 +77,50 @@ export function parseSimpleYaml(content) {
         continue;
       }
 
-      targetArray.push(value);
+      // Check if list item is a key-value pair (object item)
+      const kvIdx = itemContent.indexOf(': ');
+      if (kvIdx !== -1) {
+        const itemKey = itemContent.slice(0, kvIdx).trim();
+        let itemVal = itemContent.slice(kvIdx + 2).trim();
+        if ((itemVal.startsWith('"') && itemVal.endsWith('"')) ||
+            (itemVal.startsWith("'") && itemVal.endsWith("'"))) {
+          itemVal = itemVal.slice(1, -1);
+        }
+        const obj = { [itemKey]: itemVal };
+        targetArray.push(obj);
+        // Track this object on stack so continuation lines add properties to it
+        stack.push({ indent, obj: obj, key: '', isListItem: true });
+        continue;
+      }
+
+      // Simple string value
+      if (itemContent.startsWith('"')) {
+        const closeQuote = itemContent.indexOf('"', 1);
+        if (closeQuote > 0) itemContent = itemContent.slice(1, closeQuote);
+      } else if (itemContent.startsWith("'")) {
+        const closeQuote = itemContent.indexOf("'", 1);
+        if (closeQuote > 0) itemContent = itemContent.slice(1, closeQuote);
+      } else {
+        const commentIdx = itemContent.indexOf('#');
+        if (commentIdx > 0) itemContent = itemContent.slice(0, commentIdx).trim();
+      }
+
+      targetArray.push(itemContent);
       continue;
     }
 
-    const colonIdx = contentPart.indexOf(':');
-    if (colonIdx === -1) continue;
-
-    const key = contentPart.slice(0, colonIdx).trim();
-    let value = contentPart.slice(colonIdx + 1).trim();
+    // YAML key-value: split on ": " (colon-space) to handle keys containing colons
+    let key, value;
+    const colonSpaceIdx = contentPart.indexOf(': ');
+    if (colonSpaceIdx !== -1) {
+      key = contentPart.slice(0, colonSpaceIdx).trim();
+      value = contentPart.slice(colonSpaceIdx + 2).trim();
+    } else if (contentPart.endsWith(':')) {
+      key = contentPart.slice(0, -1).trim();
+      value = '';
+    } else {
+      continue;
+    }
 
     if (value && !value.startsWith('"') && !value.startsWith("'")) {
       const commentIdx = value.indexOf('#');
@@ -240,12 +264,13 @@ export class SlashCommandRouter {
     // Load aliases
     if (registry.aliases) {
       for (const [aliasName, config] of Object.entries(registry.aliases)) {
-        if (config.conflict === true || config.conflict === 'true') {
-          // This is a disambiguation entry
+        if (config.options && Array.isArray(config.options)) {
+          // Disambiguation entry with options array
           this.conflicts.set(aliasName, {
-            options: config.options || []
+            options: config.options
           });
         } else if (config.target) {
+          // Regular alias (including prefixed disambiguation resolutions)
           this.aliases.set(aliasName, {
             target: config.target,
             module: config.module || '',

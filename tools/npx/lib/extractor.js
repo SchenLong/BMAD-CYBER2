@@ -210,8 +210,9 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
       fileCount++;
       return true;
     },
-    onentry: (entry) => {
-      // Preserve permissions
+    chmod: true,
+    onReadEntry: (entry) => {
+      // Preserve permissions from archive
       if (entry.mode) {
         entry.mode = entry.mode;
       }
@@ -281,7 +282,7 @@ async function findConflicts(tarballPath, targetDir, filter) {
   const entries = [];
   await tar.list({
     file: tarballPath,
-    onentry: (entry) => {
+    onReadEntry: (entry) => {
       if (entry.type === 'File' && shouldExtract(entry.path, filter)) {
         // Remove top-level directory from path
         const parts = entry.path.split('/');
@@ -337,7 +338,7 @@ async function listTarballContents(tarballPath, filter) {
 
   await tar.list({
     file: tarballPath,
-    onentry: (entry) => {
+    onReadEntry: (entry) => {
       if (entry.type === 'File' && shouldExtract(entry.path, filter)) {
         const parts = entry.path.split('/');
         parts.shift();

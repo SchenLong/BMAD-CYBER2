@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/guards/secret.js')
+import('../dist/src/guards/secret.js')
   .then((module) => {
     module.main();
   })

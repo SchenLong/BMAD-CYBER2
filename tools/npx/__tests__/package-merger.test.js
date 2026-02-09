@@ -865,19 +865,19 @@ describe('package-merger', () => {
       });
 
       it('should not be fooled by encoded path traversal', async () => {
-        // Even if someone tries URL-encoded patterns in the name
+        // URL-encoded path traversal: ..%2F..%2Fetc%2Fpasswd contains literal '..'
+        // which PATH_TRAVERSAL_PATTERN correctly catches (the dots are NOT encoded)
         const maliciousPkg = {
           name: 'my-project',
           dependencies: {
-            '..%2F..%2Fetc%2Fpasswd': '^1.0.0'  // This is actually a valid (weird) npm name
+            '..%2F..%2Fetc%2Fpasswd': '^1.0.0'
           }
         };
         writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
 
-        // URL-encoded dots don't trigger path traversal, but the package is still weird
-        // The test verifies our pattern doesn't have false positives
-        const result = await mergePackageJson(tempDir, { yes: true });
-        expect(result.success).toBe(true);
+        // Should reject: the literal '..' at start IS a path traversal indicator
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/path traversal/i);
       });
     });
   });

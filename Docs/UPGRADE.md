@@ -2,9 +2,9 @@
 
 This guide provides comprehensive instructions for upgrading BMAD CYBERCOMMAND between versions. Whether you are performing a patch, minor, or major upgrade, follow the appropriate sections to ensure a smooth transition.
 
-**Current Version**: 2.0.0
-**Documentation Version**: 1.0.0
-**Last Updated**: January 2025
+**Current Version**: 2.2.0
+**Documentation Version**: 1.1.0
+**Last Updated**: February 2026
 
 ---
 
@@ -256,6 +256,66 @@ For major upgrades, follow this dependency order:
 ---
 
 ## Breaking Changes by Version
+
+### Version 2.2.0 (from 2.0.x)
+
+#### Breaking: Node.js 18 Dropped
+
+- **Minimum Node.js version is now 20.0.0** (previously 18.0.0)
+- **Minimum npm version is now 10.0.0** (previously 9.0.0)
+- Users on Node 18 must upgrade before installing v2.2.0
+- Run `node --version` to check your current version
+
+#### New Features
+
+- **Slash Command Router**: Direct workflow invocation via aliases (e.g., `/threat-modeling` instead of `bmad:cybersec-team:workflows:threat-modeling`)
+- **AI-Powered Help System**: Interactive `/bmad-help` command for discovering modules, agents, and workflows
+- **Bug Fixes Backport**: Path sanitization, YAML normalization, cross-file reference validation
+
+#### Migration from 2.0.x
+
+```bash
+# 1. Ensure Node.js >= 20
+node --version  # Must show v20.x or higher
+
+# 2. Update to v2.2.0
+git fetch --tags
+git checkout v2.2.0
+
+# 3. Clean install
+npm ci
+
+# 4. Verify
+npm test
+```
+
+#### Rollback to v2.0.0
+
+```bash
+# Rollback via git tag
+git checkout v2.0.0
+npm ci
+npm test
+```
+
+#### Rollback to v2.1.1 (bug fixes only, no Node 20 change)
+
+```bash
+# Rollback to post-Story-0 state
+git checkout v2.1.1
+npm ci
+npm test
+```
+
+#### Per-Stage Backup Tags
+
+| Tag | State | Commit |
+|-----|-------|--------|
+| `pre-v6-stage0-backup` | Before any v6 work (v2.0.0 equivalent) | Pre-upgrade baseline |
+| `pre-v6-stage2-backup` | After Story 0 bug fixes (v2.1.1 equivalent) | Post bug fixes |
+| `pre-v6-stage1-backup` | Before slash command work | Pre-slash-commands |
+| `pre-v6-stage3-backup` | Before help system work | Pre-help-system |
+| `v2.2.0` | Full v6 hybrid upgrade complete | Release |
 
 ### Version 2.0.0 (from 1.x)
 

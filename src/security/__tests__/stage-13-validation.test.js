@@ -501,5 +501,9 @@ if (results.failed > 0) {
     });
 }
 
-// Exit with appropriate code
-process.exit(results.failed > 0 ? 1 : 0);
+// Vitest integration: register a proper test so Vitest recognizes this suite
+// The custom tests above run at module load time; this asserts they all passed.
+it('all VAL-13 compliance modules pass validation', () => {
+    expect(results.failed).toBe(0);
+    expect(results.passed).toBeGreaterThan(0);
+});

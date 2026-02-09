@@ -173,6 +173,18 @@ function getUpdateType(current, latest) {
  * @returns {Promise<{ current: string, latest: string|null, updateAvailable: boolean, updateType: string }>}
  */
 export async function checkVersion() {
+  // Suppress in CI environments (FAIL-PV6-01-010-4)
+  if (process.env.CI) {
+    const current = getCurrentVersion();
+    return { current, latest: null, updateAvailable: false, updateType: 'none' };
+  }
+
+  // Suppress when explicitly disabled (FAIL-PV6-01-010-5)
+  if (process.env.BMAD_NO_UPDATE_CHECK) {
+    const current = getCurrentVersion();
+    return { current, latest: null, updateAvailable: false, updateType: 'none' };
+  }
+
   const current = getCurrentVersion();
 
   // Check cache first
