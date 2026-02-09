@@ -5,13 +5,11 @@
  * added in Task 0.1 (Fix Absolute Path Leaks in Validation Reports).
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import {
   preprocessPath,
   sanitizePath,
   sanitizeErrorMessage,
-  PROJECT_ROOT_PLACEHOLDER,
-  EXTERNAL_PLACEHOLDER,
 } from '../path-utils.js';
 
 // Use a stable fake project directory for all tests

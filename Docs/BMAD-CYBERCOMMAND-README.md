@@ -22,7 +22,7 @@ This comprehensive multi-module package represents the culmination of Story 5.1 
 ### Prerequisites
 
 - BMAD core v2.0.0 or higher
-- Node.js v18+
+- Node.js v20+
 - NPM v8+
 
 ### Quick Installation

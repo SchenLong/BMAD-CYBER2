@@ -154,8 +154,8 @@ I have successfully designed and implemented a comprehensive dependency manageme
 - ✅ Installation plan validation
 
 ### 4. Runtime Environment Integration
-- ✅ Node.js compatibility verification (>=18.0.0)
-- ✅ NPM version checking (>=8.0.0)
+- ✅ Node.js compatibility verification (>=20.0.0)
+- ✅ NPM version checking (>=10.0.0)
 - ✅ Feature availability detection
 - ✅ Security audit integration
 
@@ -249,10 +249,10 @@ bmad_core:
 
 runtime:
   node:
-    version: ">=18.0.0"
+    version: ">=20.0.0"
     recommended: "20.x"
   npm:
-    version: ">=8.0.0"
+    version: ">=10.0.0"
 
 cross_module:
   optional:

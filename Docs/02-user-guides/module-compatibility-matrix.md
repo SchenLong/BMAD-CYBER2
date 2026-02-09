@@ -291,7 +291,7 @@ pre_install_validation:
 
   system_requirements:
     - check: "nodejs_version"
-      requirement: ">= 18.0.0"
+      requirement: ">= 20.0.0"
       failure_action: "warn"
 
     - check: "disk_space"

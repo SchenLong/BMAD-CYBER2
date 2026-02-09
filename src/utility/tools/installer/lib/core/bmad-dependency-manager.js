@@ -186,11 +186,11 @@ class BMADDependencyManager {
 
         return {
             node: {
-                version: runtime.node?.version || '>=18.0.0',
+                version: runtime.node?.version || '>=20.0.0',
                 recommended: runtime.node?.recommended || '20.x'
             },
             npm: {
-                version: runtime.npm?.version || '>=8.0.0',
+                version: runtime.npm?.version || '>=10.0.0',
                 recommended: runtime.npm?.recommended || '10.x'
             }
         };
@@ -472,7 +472,7 @@ class BMADDependencyManager {
             type: 'specialized-team',
             scope: '@bmad-cybercommand',
             bmadCore: { version: '>=2.0.0', agents: ['abdul', 'bmad-master'], workflows: ['party-mode', 'cross-module'] },
-            runtime: { node: { version: '>=18.0.0' }, npm: { version: '>=8.0.0' } },
+            runtime: { node: { version: '>=20.0.0' }, npm: { version: '>=10.0.0' } },
             npm: { production: [], development: [], optional: [] },
             crossModule: { required: [], optional: [] },
             external: { required: [], optional: [] },

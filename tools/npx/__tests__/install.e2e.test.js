@@ -566,12 +566,12 @@ describe('E2E Install', () => {
   // ============================================================================
 
   describe('Node.js version requirements', () => {
-    it('should document Node 18+ requirement', () => {
+    it('should document Node 20+ requirement', () => {
       // Read CLI source to verify version check exists
       const cliContent = readFileSync(CLI_PATH, 'utf8');
 
       expect(cliContent).toContain('nodeVersion');
-      expect(cliContent).toMatch(/node.*18/i);
+      expect(cliContent).toMatch(/node.*20/i);
     });
   });
 });

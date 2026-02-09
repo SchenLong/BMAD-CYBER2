@@ -89,8 +89,8 @@ Node.js compatibility verification and NPM package management.
 
 ```bash
 # Required Node.js and NPM versions
-Node.js: >=18.0.0 (Recommended: 20.x)
-NPM: >=8.0.0 (Recommended: 10.x)
+Node.js: >=20.0.0 (Recommended: 20.x)
+NPM: >=10.0.0 (Recommended: 10.x)
 ```
 
 ### Installation
@@ -153,10 +153,10 @@ bmad_core:
 # Runtime Requirements
 runtime:
   node:
-    version: ">=18.0.0"
+    version: ">=20.0.0"
     recommended: "20.x"
   npm:
-    version: ">=8.0.0"
+    version: ">=10.0.0"
 
 # Cross-Module Dependencies
 cross_module:
@@ -171,7 +171,7 @@ installation_order:
     - name: "pre_install"
       steps:
         - action: "validate_node_version"
-          requirement: ">=18.0.0"
+          requirement: ">=20.0.0"
           critical: true
 ```
 
@@ -224,7 +224,7 @@ await versionChecker.initialize('./_bmad');
 const packageInfo = {
     name: "cybersec-team",
     version: "2.0.0",
-    engines: { node: ">=18.0.0", npm: ">=8.0.0" }
+    engines: { node: ">=20.0.0", npm: ">=10.0.0" }
 };
 
 const compatibility = versionChecker.validateModuleCompatibility(

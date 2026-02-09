@@ -8,8 +8,8 @@ import { CONFIG } from './lib/config.js';
 
 // Check Node.js version
 const nodeVersion = parseInt(process.version.slice(1).split('.')[0], 10);
-if (nodeVersion < 18) {
-  console.error(`Error: Node.js 18+ required. Current version: ${process.version}`);
+if (nodeVersion < 20) {
+  console.error(`Error: Node.js 20+ required. Current version: ${process.version}`);
   process.exit(1);
 }
 

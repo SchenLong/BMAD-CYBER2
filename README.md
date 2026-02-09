@@ -5,7 +5,7 @@
 **AI-powered operations platform for cybersecurity, intelligence, legal, and strategic teams**
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Node 18+](https://img.shields.io/badge/node-18%2B-brightgreen.svg)](https://nodejs.org)
+[![Node 20+](https://img.shields.io/badge/node-20%2B-brightgreen.svg)](https://nodejs.org)
 [![Claude Code](https://img.shields.io/badge/claude--code-compatible-purple.svg)](https://github.com/anthropics/claude-code)
 
 [Quick Start](#quick-start) · [Teams](#specialized-teams) · [Documentation](Docs/) · [Contributing](CONTRIBUTING.md)
@@ -135,7 +135,7 @@ That's it. Abdul will guide you from there.
 ## Requirements
 
 - [Claude Code CLI](https://github.com/anthropics/claude-code)
-- Node.js 18+
+- Node.js 20+
 - Git (for clone install)
 
 ---

@@ -91,11 +91,11 @@ describe('package-merger', () => {
         expect(created.type).toBe('module');
       });
 
-      it('should set minimum node engine to 18', async () => {
+      it('should set minimum node engine to 20', async () => {
         await mergePackageJson(tempDir, { yes: true });
 
         const created = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
-        expect(created.engines.node).toBe('>=18.0.0');
+        expect(created.engines.node).toBe('>=20.0.0');
       });
 
       it('should derive name from directory name', async () => {
@@ -258,7 +258,7 @@ describe('package-merger', () => {
         await mergePackageJson(tempDir, { yes: true });
 
         const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
-        expect(merged.engines.node).toBe('>=18.0.0');
+        expect(merged.engines.node).toBe('>=20.0.0');
       });
 
       it('should preserve node engine if already meets minimum', async () => {
@@ -412,7 +412,7 @@ describe('package-merger', () => {
         // Just verify the result was successful and engines were updated
         expect(result.success).toBe(true);
         const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
-        expect(merged.engines.node).toBe('>=18.0.0');
+        expect(merged.engines.node).toBe('>=20.0.0');
       });
 
       it('should return noChanges when nothing needs to be added', async () => {
@@ -438,7 +438,7 @@ describe('package-merger', () => {
             '@types/node': '^20.0.0',
             vitest: '^1.0.0'
           },
-          engines: { node: '>=18.0.0' }
+          engines: { node: '>=20.0.0' }
         };
         writeFileSync(join(tempDir, 'package.json'), JSON.stringify(existingPkg, null, 2));
 

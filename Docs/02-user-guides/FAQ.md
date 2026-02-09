@@ -17,7 +17,7 @@ Abdul is the Master Project Manager - a cross-team orchestrator agent that coord
 
 ### What are the system requirements?
 - [Claude Code CLI](https://github.com/anthropics/claude-code) (Sonnet 4.5+ recommended)
-- Node.js 18+ (for TypeScript components and security validators)
+- Node.js 20+ (for TypeScript components and security validators)
 - Git (optional, for full clone installation)
 
 ### How do I install BMAD?

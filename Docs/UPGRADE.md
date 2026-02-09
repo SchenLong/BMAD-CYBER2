@@ -101,10 +101,10 @@ npx bmad-cybersec backup verify --latest
 ### 2. Version Requirements Check
 
 ```bash
-# Check Node.js version (must be >= 18.0.0)
+# Check Node.js version (must be >= 20.0.0)
 node --version
 
-# Check npm version (must be >= 9.0.0)
+# Check npm version (must be >= 10.0.0)
 npm --version
 
 # Check current BMAD installation
@@ -278,7 +278,7 @@ For major upgrades, follow this dependency order:
 #### New Requirements
 
 - BMAD Core >= 6.0.0 required for all team modules
-- Node.js >= 18.0.0 required
+- Node.js >= 20.0.0 required
 - Updated Claude Code hooks format
 
 #### Migration Script

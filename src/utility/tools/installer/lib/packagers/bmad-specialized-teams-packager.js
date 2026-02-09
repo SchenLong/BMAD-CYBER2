@@ -1326,7 +1326,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
     - name: Install dependencies
       run: npm install
     - name: Validate modules
@@ -1343,7 +1343,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
         registry-url: 'https://registry.npmjs.org'
     - name: Install dependencies
       run: npm install

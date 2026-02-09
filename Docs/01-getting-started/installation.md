@@ -10,8 +10,8 @@ Before installing BMAD-CYBER, ensure your system meets the following requirement
 
 | Requirement | Version | Notes |
 |-------------|---------|-------|
-| **Node.js** | >= 18.0.0 | Required for the installer and runtime |
-| **npm** or **npx** | >= 9.0.0 | Comes with Node.js |
+| **Node.js** | >= 20.0.0 | Required for the installer and runtime |
+| **npm** or **npx** | >= 10.0.0 | Comes with Node.js |
 | **Git** | Any | Optional, only needed for `--from-git` installation |
 
 ### Verifying Prerequisites
@@ -19,11 +19,11 @@ Before installing BMAD-CYBER, ensure your system meets the following requirement
 ```bash
 # Check Node.js version
 node --version
-# Should output: v18.0.0 or higher
+# Should output: v20.0.0 or higher
 
 # Check npm version
 npm --version
-# Should output: 9.0.0 or higher
+# Should output: 10.0.0 or higher
 
 # Check Git (optional)
 git --version

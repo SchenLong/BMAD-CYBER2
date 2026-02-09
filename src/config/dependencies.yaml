@@ -29,11 +29,11 @@ bmad_core:
 # Node.js Runtime Requirements
 runtime:
   node:
-    version: ">=18.0.0"
+    version: ">=20.0.0"
     recommended: "20.x"
-    tested_versions: ["18.17.0", "20.10.0", "21.6.0"]
+    tested_versions: ["20.10.0", "21.6.0", "22.0.0"]
   npm:
-    version: ">=8.0.0"
+    version: ">=10.0.0"
     recommended: "10.x"
 
 # NPM Package Dependencies
@@ -152,10 +152,10 @@ installation_order:
     - name: "pre_install"
       steps:
         - action: "validate_node_version"
-          requirement: ">=18.0.0"
+          requirement: ">=20.0.0"
           critical: true
         - action: "validate_npm_version"
-          requirement: ">=8.0.0"
+          requirement: ">=10.0.0"
           critical: true
         - action: "check_bmad_core"
           requirement: ">=2.0.0"

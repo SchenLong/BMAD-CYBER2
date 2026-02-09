@@ -355,7 +355,7 @@ function createNewPackageJson(targetDir) {
       ...BMAD_DEV_DEPENDENCIES
     },
     engines: {
-      node: '>=18.0.0'
+      node: '>=20.0.0'
     }
   };
 }
@@ -393,8 +393,8 @@ function mergePackages(existing) {
   if (!merged.engines) {
     merged.engines = {};
   }
-  if (!merged.engines.node || !meetsMinVersion(merged.engines.node, '18.0.0')) {
-    merged.engines.node = '>=18.0.0';
+  if (!merged.engines.node || !meetsMinVersion(merged.engines.node, '20.0.0')) {
+    merged.engines.node = '>=20.0.0';
   }
 
   // Ensure type is module if not set
