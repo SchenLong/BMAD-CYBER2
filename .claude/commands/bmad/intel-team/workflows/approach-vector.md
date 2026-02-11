@@ -6,4 +6,4 @@ description: HUMINT Operation Planning - Identify vulnerabilities, social entry 
 # Approach Vector
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/approach-vector/workflow.md`
+`@src/intel-team/workflows/approach-vector/workflow.md`

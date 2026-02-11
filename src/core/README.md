@@ -1,268 +1,149 @@
-# BMAD Core Orchestration System
+# BMAD Core Infrastructure Module
 
-## Overview
+The Core Infrastructure module provides essential orchestration and project management capabilities for the BMAD ecosystem. This module is **required** and automatically installed with all BMAD projects.
 
-The BMAD Core Orchestration System provides centralized coordination and intelligent routing capabilities across all specialized teams (Cybersecurity, Intelligence, Legal, and Strategy). Led by Abdul, the Master Project Manager, this system enables seamless multi-team collaboration and project orchestration.
+## Version
 
-## System Architecture
+**v6.0.0** - Team Orchestration Release (2026-01-11)
 
-### Abdul's 12 Orchestration Capabilities
+- Abdul: Project Manager agent for cross-module orchestration
+- BMAD Master: System orchestrator for workflow execution
+- Party Mode: Multi-agent collaboration with 27 presets
+- Team Orchestration: Cross-module workflow patterns
+- Expertise mapping for intelligent task routing
+- Phase gates for controlled workflow progression
 
-1. **[NP] Create New Project** - Initialize projects with intelligent team assignment
-2. **[OP] Open Existing Project** - Switch between active projects
-3. **[LP] List All Projects** - Portfolio overview and management
-4. **[PS] Project Status Dashboard** - Comprehensive status monitoring
-5. **[WN] What's Next?** - Intelligent action prioritization and routing
-6. **[AT] Assign Task to Agent** - Optimal task delegation across teams
-7. **[CM] Cross-Module Consultation** - Multi-team expertise sharing
-8. **[TO] Team Orchestration Templates** - Pre-configured coordination patterns
-9. **[PP] Party Mode Presets** - Collaborative session configurations
-10. **[PG] Check Phase Gate** - Project phase transition validation
-11. **[PM] Start Party Mode** - Multi-agent collaborative sessions
-12. **[MH] Menu Help** - System guidance and assistance
+## Agents (2 Total)
 
-## Core Components
+| Command | Agent | Name | Role |
+|---------|-------|------|------|
+| `/core:project-manager` | project-manager | Abdul | Cross-module project coordination |
+| `/core:bmad-master` | bmad-master | BMAD Master | System orchestration and workflow execution |
 
-### 1. Intelligent Routing System
+### Abdul (Project Manager)
 
-**Location:** `workflows/intelligent-routing/`
+Abdul is the central coordinator for multi-module projects. Key capabilities:
 
-- **330+ Keyword Mappings** for precise team assignment
-- **Multi-factor Analysis** considering urgency, complexity, and capacity
-- **Cross-team Scenario Detection** for collaborative requirements
-- **Fallback Mechanisms** ensuring no request goes unhandled
+- **Project Creation**: Initialize and configure new projects
+- **Task Assignment**: Route tasks to appropriate module agents
+- **Cross-Module Consultation**: Leverage expertise from any installed module
+- **What's Next**: Intelligent routing to the next best action
+- **Status Tracking**: Monitor project and sprint progress
 
-#### Supported Routing Scenarios
-- **Cybersecurity Team**: Security assessments, threat analysis, incident response
-- **Intelligence Team**: OSINT investigations, threat attribution, research
-- **Legal Team**: Contract review, compliance, dispute resolution
-- **Strategy Team**: Strategic planning, stakeholder management, decision support
+### BMAD Master
 
-### 2. Project Lifecycle Management
+The system orchestrator that manages workflow execution and agent coordination.
 
-**Location:** `workflows/project-manager/`
+## Workflows (5 Total)
 
-#### Project Creation (`create-project`)
-- Automatic team assignment based on project type
-- Folder structure initialization
-- Cross-team coordination setup
-- Registry management and tracking
+| Workflow | Description |
+|----------|-------------|
+| Party Mode | Multi-agent collaboration for complex scenarios |
+| Project Manager | Task assignment and project status tracking |
+| Team Orchestration | Cross-module workflow patterns |
+| Brainstorming | Creative ideation sessions |
+| Index Docs | Document indexing and organization |
 
-#### Project Status Monitoring (`project-status`)
-- Real-time dashboard with team utilization
-- Critical issue identification
-- Performance metrics and trends
-- Resource allocation optimization
+## Party Mode Presets (27 Total)
 
-#### Task Assignment (`assign-task`)
-- Intelligent agent matching
-- Workload balancing
-- Skill optimization
-- Collaboration facilitation
+Pre-configured agent combinations for common scenarios across all modules:
 
-#### Strategic Routing (`whats-next`)
-- Context-aware action prioritization
-- Resource optimization recommendations
-- Strategic alignment analysis
-- Alternative path evaluation
+### Security Presets
 
-### 3. Team Orchestration
+- `incident-war-room` - Phoenix + Trace + Cipher + Watchman
+- `security-review-team` - Bastion + Architect + Threat Analyst
+- `compliance-audit-team` - Sentinel + Europa + Murat
 
-**Location:** `workflows/team-orchestration/`
+### Intelligence Presets
 
-#### Template Selection (`select-template`)
-Pre-configured coordination patterns for common scenarios:
-- **Security Incident Response** - Coordinated crisis management
-- **Compliance Audit** - Multi-team regulatory preparation
-- **Strategic Initiative** - Cross-functional project execution
-- **Threat Assessment** - Collaborative analysis and response
-- **Legal Crisis** - Coordinated legal response
-- **Multi-Domain Projects** - Complex enterprise initiatives
+- `full-spectrum-intel` - All 11 intel agents
+- `osint-focus` - Resolver + Echo + Shadow + Atlas
 
-#### Phase Gate Validation (`phase-gate`)
-- Multi-team project phase validation
-- Quality assurance checkpoints
-- Risk assessment and mitigation
-- Stakeholder signoff coordination
+### Strategic Presets
 
-### 4. Collaborative Intelligence (Party Mode)
+- `strategic-council` - All 8 archetype advisors
+- `ethics-review` - Sophia + Jean-Luc + Charles
+- `crisis-response-party` - Giuseppe + Magnus + Jean-Luc + Musashi
 
-**Location:** `workflows/party-mode/`
+### Cross-Module Presets
 
-#### Preset Configurations (`select-preset`)
-Optimized agent groups for different collaboration needs:
-- **Security War Council** - Elite security and threat response
-- **Executive Advisory Board** - Strategic leadership and decisions
-- **Intelligence Fusion Center** - Multi-source analysis and synthesis
-- **Legal Defense Team** - Comprehensive legal counsel
-- **Innovation Think Tank** - Creative problem-solving and innovation
-- **Crisis Response Team** - Rapid crisis management
-- **Compliance Audit Team** - Regulatory compliance specialists
-- **Competitive Intelligence** - Market and competitive analysis
-- **All Hands Summit** - Full spectrum organizational alignment
+- `strategic-intelligence-council` - Strategy + Intel + Legal
+- `secure-software-team` - BMM + Cybersec + Legal
+- `ma-due-diligence-team` - Strategy + Intel + Legal + Cybersec
+- `executive-security-council` - Strategy + Cybersec + Legal
 
-### 5. Cross-Module Consultation
+See `workflows/party-mode/presets/` for complete preset definitions.
 
-**Location:** `workflows/cross-module/`
+## Team Orchestration
 
-#### Consultation Framework (`consultation`)
-- Multi-team expertise synthesis
-- Consensus building mechanisms
-- Conflict resolution protocols
-- Integrated recommendation development
+The Team Orchestration system enables structured multi-module collaboration:
 
-## Integration Architecture
+### Orchestration Patterns
 
-### Team Integration Matrix
+- **Secure Software Development**: BMM + Cybersec + Legal coordination
+- **Incident Response**: Cybersec + Intel + Strategy + Legal coordination
+- **Strategic Decisions**: Strategy + Intel + Legal coordination
 
-| Team | Primary Focus | Collaboration Strength | Key Coordination Role |
-|------|--------------|----------------------|---------------------|
-| **Cybersec** | Security & Compliance | High | Technical Security Lead |
-| **Intel** | Intelligence & Research | High | Information Gathering Lead |
-| **Legal** | Legal & Regulatory | Medium | Legal & Compliance Lead |
-| **Strategy** | Planning & Stakeholder Management | Very High | Strategic Coordination Lead |
+### Features
 
-### Workflow Integration Points
+- **Phase Gates**: Controlled progression between workflow phases
+- **Expertise Mapping**: Automatic routing based on module capabilities
+- **Artifact Handoffs**: Structured data exchange between modules
 
-```yaml
-Core System Integration:
-├── Project Registry: {output_folder}/project-registry.yaml
-├── Agent Manifest: {project-root}/_bmad/_config/agent-manifest.csv
-├── Workflow Manifest: {project-root}/_bmad/_config/workflow-manifest.csv
-├── Keyword Mappings: core/workflows/intelligent-routing/keyword-mappings.yaml
-└── Coordination Config: core/coordination-config.yaml
-```
-
-## Usage Examples
-
-### 1. Creating a Security Assessment Project
+## Module Structure
 
 ```
-User: "I need a comprehensive security assessment of our new cloud infrastructure"
-
-Abdul's Process:
-1. Intelligent routing identifies: cybersec-team (primary), intel-team (threat landscape)
-2. Creates project with appropriate team assignments
-3. Sets up coordination workspace
-4. Assigns lead agents: security-architect, threat-analyst
-5. Initializes progress tracking and communication protocols
+src/core/
+├── agents/
+│   ├── project-manager.md      # Abdul
+│   └── bmad-master.md          # BMAD Master
+├── workflows/
+│   ├── party-mode/
+│   │   ├── workflow.md
+│   │   └── presets/            # 27 preset configurations
+│   │       ├── strategy-team-presets.yaml
+│   │       ├── intel-team-presets.yaml
+│   │       ├── cybersec-team-presets.yaml
+│   │       └── cross-module-groups.yaml
+│   ├── project-manager/
+│   │   ├── workflow.yaml
+│   │   └── instructions.md
+│   ├── team-orchestration/
+│   │   └── data/
+│   │       └── module-expertise-map.yaml
+│   ├── brainstorming/
+│   │   └── workflow.md
+│   └── index-docs/
+│       └── workflow.md
+├── schemas/                    # Cross-module data schemas
+│   ├── threat-model.schema.yaml
+│   ├── iocs.schema.yaml
+│   └── compliance-requirements.schema.yaml
+├── resources/                  # Shared resources
+├── tasks/                      # Task definitions
+├── module.yaml                 # Installation template
+└── config.yaml                 # Runtime configuration
 ```
 
-### 2. Cross-Team Crisis Response
+## Configuration
 
-```
-User: "We have a potential data breach affecting customer data"
+Core configuration is stored in `config.yaml` and includes:
 
-Abdul's Process:
-1. Triggers "Security Incident Response" orchestration template
-2. Activates cybersec-team (containment), intel-team (attribution)
-3. Involves legal-team (compliance), strategy-team (communication)
-4. Establishes incident command structure
-5. Coordinates real-time response across all teams
-```
+- User preferences (name, language)
+- Module paths
+- Party mode preset locations
+- Orchestration data paths
 
-### 3. Strategic Decision Support
+## Integration
 
-```
-User: "Should we expand into the European market given current regulations?"
+The Core module automatically integrates with all installed modules:
 
-Abdul's Process:
-1. Initiates cross-module consultation
-2. Routes to strategy-team (market analysis), legal-team (regulatory review)
-3. Includes cybersec-team (data protection), intel-team (competitive landscape)
-4. Synthesizes multi-perspective recommendations
-5. Presents integrated decision framework
-```
+- Reads agent definitions from each module's `agents/` folder
+- Discovers workflows from each module's `workflows/` folder
+- Uses module.yaml for installation configuration
+- Routes tasks based on expertise mapping
 
-## Performance and Metrics
+## Credits
 
-### Coordination Effectiveness Metrics
-- **Response Time**: Average time from request to appropriate team assignment
-- **Resolution Rate**: Percentage of requests successfully routed and completed
-- **Stakeholder Satisfaction**: User feedback on coordination quality
-- **Team Collaboration Score**: Effectiveness of cross-team coordination
-
-### Quality Assurance
-- **Routing Accuracy**: Correct team assignment percentage
-- **Agent Optimization**: Optimal skill-task matching rate
-- **Project Success**: On-time, on-budget, quality delivery rates
-- **Continuous Improvement**: System learning and adaptation metrics
-
-## Configuration and Customization
-
-### Keyword Mapping Updates
-- Quarterly review and expansion of routing keywords
-- Industry-specific terminology integration
-- User feedback incorporation
-
-### Template Optimization
-- Semi-annual review of orchestration templates
-- New scenario pattern identification
-- Performance-based template refinement
-
-### Agent Assignment Algorithms
-- Continuous learning from assignment outcomes
-- Workload balancing optimization
-- Skill development tracking integration
-
-## Deployment and Operations
-
-### System Requirements
-- **Memory**: Moderate allocation for routing intelligence
-- **Processing**: Low to medium overhead for coordination logic
-- **Network**: Access to all team modules and configurations
-- **Storage**: Project registry and coordination logs
-
-### Initialization Sequence
-1. Load coordination configuration
-2. Validate team module connections
-3. Initialize intelligent routing system
-4. Setup project registry
-5. Activate orchestration capabilities
-
-### Maintenance Tasks
-- **Daily**: System health monitoring
-- **Weekly**: Performance metrics review
-- **Monthly**: Workflow optimization and tuning
-- **Quarterly**: Keyword mapping updates and system enhancement
-
-## Security and Compliance
-
-### Data Protection
-- Project data encryption at rest and in transit
-- Access control based on team membership
-- Audit logging for all coordination activities
-
-### Compliance Integration
-- Regulatory requirement tracking
-- Compliance workflow integration
-- Legal team coordination for regulatory matters
-
-### Risk Management
-- Multi-team risk assessment capabilities
-- Escalation procedures for critical issues
-- Stakeholder communication protocols
-
-## Support and Documentation
-
-### Getting Started
-1. Review this README for system overview
-2. Examine workflow documentation in respective directories
-3. Test coordination capabilities with sample scenarios
-4. Configure team-specific customizations as needed
-
-### Troubleshooting
-- **Routing Issues**: Check keyword mappings and team availability
-- **Coordination Failures**: Verify team module connectivity
-- **Performance Problems**: Review resource utilization and optimization settings
-
-### Contributing
-- Workflow enhancements welcome in respective team modules
-- Keyword mapping suggestions for improved routing accuracy
-- Template proposals for new coordination scenarios
-- Performance optimization recommendations
-
----
-
-**BMAD Core Orchestration System v2.0.0**
-*Enabling seamless multi-team collaboration and intelligent project orchestration*
+**Author:** BlackUnicorn.Tech
+**Framework:** BMAD Method v6.0

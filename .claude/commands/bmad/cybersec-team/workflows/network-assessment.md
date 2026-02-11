@@ -6,4 +6,4 @@ description: Comprehensive network penetration testing covering reconnaissance, 
 # Network Assessment
 
 Load and follow the workflow at:
-`@_bmad/cybersec-team/workflows/network-assessment/workflow.md`
+`@src/cybersec-team/workflows/network-assessment/workflow.md`

@@ -18,11 +18,13 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 ## Supported Frameworks (20+)
 
 ### Global Standards
+
 - NIST 800-53 - Federal information security controls
 - ISO 27001 - Information security management
 - CIS Controls v8 - Center for Internet Security critical controls
 
 ### US Regulations
+
 - SOC 2 Type II - Service organization controls
 - PCI-DSS - Payment card industry data security
 - HIPAA - Healthcare information privacy and security
@@ -30,6 +32,7 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 - CMMC - Cybersecurity Maturity Model Certification
 
 ### EU Regulations
+
 - GDPR - General Data Protection Regulation
 - NIS2 Directive - Network and Information Security
 - CRA - Cyber Resilience Act (product security)
@@ -38,11 +41,13 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 - AI Act - EU Artificial Intelligence Act
 
 ### Industry-Specific
+
 - TISAX - Automotive industry security
 - SWIFT CSP - Financial messaging security
 - NERC CIP - Energy sector critical infrastructure
 
 ### Cloud & SaaS
+
 - CSA STAR - Cloud Security Alliance
 - ISO 27017 - Cloud services security
 - ISO 27018 - Cloud privacy
@@ -52,12 +57,14 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 **Total Steps:** 7 + continuation
 
 ### Step 1: Initialization & Framework Selection
+
 - Select target framework(s)
 - Define audit scope (systems, data, organization)
 - Set audit timeline
 - **Output:** Audit Overview (Section 1)
 
 ### Step 2: Control Inventory
+
 - Document existing security controls
 - Map controls to framework requirements
 - Assign control ownership
@@ -65,12 +72,14 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 - **Output:** Control Mapping Matrix (Section 2)
 
 ### Step 3: Gap Assessment
+
 - Identify missing/insufficient controls
 - Assess gap severity (risk, audit impact)
 - Prioritize gaps (P0-P4)
 - **Output:** Gap Analysis (Section 3)
 
 ### Step 4: Evidence Planning
+
 - Plan evidence collection for each control
 - Create evidence matrix
 - Identify evidence gaps
@@ -78,6 +87,7 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 - **Output:** Evidence Collection Plan (Section 4)
 
 ### Step 5: Remediation Planning
+
 - Create phased remediation roadmap
 - Assign ownership and timelines
 - Estimate effort
@@ -85,6 +95,7 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 - **Output:** Remediation Roadmap (Section 5)
 
 ### Step 6: Artifact Generation
+
 - Generate control mapping matrices
 - Create audit readiness checklist
 - Produce executive summary
@@ -93,6 +104,7 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 - **Output:** Audit Artifacts (Section 6)
 
 ### Step 7: Final Review
+
 - Completeness check
 - Quality assessment
 - Calculate readiness score
@@ -104,6 +116,7 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 ## Main Outcome
 
 **Comprehensive Audit Preparation Package** containing:
+
 1. Audit Overview (framework, scope, timeline)
 2. Control Inventory (control mapping matrix)
 3. Gap Assessment (prioritized gaps)
@@ -117,30 +130,35 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 ## Key Features
 
 ### Multi-Framework Support
+
 - 20+ frameworks supported
 - Framework-specific control mapping
 - Can prepare for multiple frameworks simultaneously
 - Cross-framework gap analysis
 
 ### Comprehensive Gap Analysis
+
 - Risk-based prioritization (P0-P4)
 - Audit impact assessment
 - Remediation complexity estimation
 - Critical gap identification
 
 ### Evidence Management
+
 - Evidence matrix by control
 - Evidence collection procedures
 - Evidence gap identification
 - Audit folder structure
 
 ### Stakeholder Documentation
+
 - Executive summary for leadership
 - Control matrices for auditors
 - Readiness checklists for teams
 - Gap exception reports for management
 
 ### Collaboration Tools
+
 - Party Mode with Bastion (technical control validation)
 - Advanced Elicitation (quality assurance)
 - Brainstorming (control identification)
@@ -149,12 +167,14 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 ## Prerequisites
 
 ### Required
+
 - Target compliance framework identified
 - Audit date scheduled or planned
 - Access to systems and documentation
 - Understanding of organizational controls
 
 ### Optional (Enhance Quality)
+
 - Previous audit reports
 - Existing control documentation
 - Policy and procedure documents
@@ -163,11 +183,13 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 ## Tools & Integrations
 
 ### Core BMAD Tools
+
 - ✅ **Party-Mode** - Bastion collaboration for technical controls
 - ✅ **Advanced Elicitation** - Final quality review
 - ✅ **Brainstorming** - Control discovery
 
 ### LLM Features
+
 - ✅ **Web-Browsing** - Framework requirements research, best practices
 - ✅ **File I/O** - Artifact generation, evidence indexing
 - ✅ **Sidecar File** - Session continuity for long preparation cycles
@@ -175,6 +197,7 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 ## Success Criteria
 
 ### Completeness
+
 - ✅ All framework requirements inventoried
 - ✅ All controls mapped to requirements
 - ✅ All gaps identified and prioritized
@@ -183,12 +206,14 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 - ✅ All artifacts generated
 
 ### Quality
+
 - Control coverage ≥ 90% or justified exceptions
 - P0/P1 gaps remediated or accepted by management
 - Evidence available for all implemented controls
 - Readiness score ≥ 70/100
 
 ### Stakeholder Readiness
+
 - Executive summary clear for leadership
 - Audit artifacts ready for auditor
 - Teams briefed and prepared
@@ -197,6 +222,7 @@ Organizations need systematic, repeatable processes to prepare for compliance au
 ## Usage Examples
 
 ### Example 1: SOC 2 Type II Initial Certification
+
 ```
 Framework: SOC 2 Type II
 Organization: SaaS startup
@@ -208,6 +234,7 @@ Outcome: Successful certification
 ```
 
 ### Example 2: GDPR Compliance Readiness
+
 ```
 Framework: GDPR
 Organization: EU-based e-commerce
@@ -219,6 +246,7 @@ Outcome: GDPR compliant, ready for audit
 ```
 
 ### Example 3: Multi-Framework (SOC 2 + HIPAA)
+
 ```
 Frameworks: SOC 2 Type II + HIPAA
 Organization: Healthcare SaaS
@@ -231,6 +259,7 @@ Outcome: Dual certification achieved
 ```
 
 ### Example 4: NIS2 Directive (EU Critical Infrastructure)
+
 ```
 Framework: NIS2 Directive
 Organization: EU energy provider
@@ -285,6 +314,7 @@ compliance-audit-prep/
 ## Best Practices
 
 ### Preparation Timeline
+
 - **8+ weeks before audit:** Start preparation workflow
 - **6 weeks:** Complete gap assessment
 - **4 weeks:** Critical gaps (P0/P1) remediated
@@ -293,6 +323,7 @@ compliance-audit-prep/
 - **Audit day:** Fully prepared
 
 ### Team Involvement
+
 - **Executive Sponsor:** Approve exceptions, resource allocation
 - **Compliance Lead:** Drive workflow execution
 - **Control Owners:** Provide control details and evidence
@@ -300,6 +331,7 @@ compliance-audit-prep/
 - **Legal/Privacy:** GDPR, HIPAA, regulatory guidance
 
 ### Common Pitfalls to Avoid
+
 - ❌ Starting preparation too close to audit date
 - ❌ Not engaging control owners early
 - ❌ Missing evidence collection for implemented controls
@@ -309,38 +341,45 @@ compliance-audit-prep/
 ## Framework-Specific Notes
 
 ### SOC 2
+
 - Focus on Trust Services Criteria (CC, A, C, P, PI)
 - Requires 3-12 months of evidence (Type II)
 - Auditor testing period critical
 
 ### PCI-DSS
+
 - Strict technical requirements (firewalls, encryption)
 - Quarterly vulnerability scans required
 - Annual penetration testing
 
 ### HIPAA
+
 - Focus on ePHI protection
 - Risk analysis mandatory
 - Business Associate Agreements (BAAs) required
 
 ### GDPR
+
 - Data processing inventory critical
 - Privacy by design requirements
 - Data Protection Impact Assessments (DPIAs)
 
 ### NIS2 (EU)
+
 - Risk management mandatory
 - Incident reporting within 24 hours
 - Supply chain security requirements
 - Applies to critical infrastructure (energy, transport, health, etc.)
 
 ### CRA (Cyber Resilience Act)
+
 - Applies to products with digital elements
 - Secure by design and default
 - Vulnerability handling process
 - CE marking required
 
 ### DORA (Financial Sector)
+
 - ICT risk management framework
 - Third-party risk management
 - Incident reporting obligations
@@ -349,11 +388,13 @@ compliance-audit-prep/
 ## Support
 
 ### Documentation Resources
+
 - Workflow planning document: `workflow-plan-compliance-audit-prep.md`
 - Framework support list: `FRAMEWORKS-SUPPORTED.md`
 - This README
 
 ### Getting Help
+
 1. Review framework-specific sections in step files
 2. Use Party Mode to collaborate with Bastion for technical controls
 3. Use Advanced Elicitation for final quality assurance
@@ -361,14 +402,14 @@ compliance-audit-prep/
 
 ## References
 
-- **NIST 800-53:** https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+- **NIST 800-53:** <https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final>
 - **SOC 2:** AICPA Trust Services Criteria
-- **PCI-DSS:** https://www.pcisecuritystandards.org/
-- **HIPAA:** https://www.hhs.gov/hipaa/
-- **GDPR:** https://gdpr.eu/
-- **NIS2:** https://digital-strategy.ec.europa.eu/en/policies/nis2-directive
-- **CRA:** https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act
-- **DORA:** https://www.digital-operational-resilience-act.com/
+- **PCI-DSS:** <https://www.pcisecuritystandards.org/>
+- **HIPAA:** <https://www.hhs.gov/hipaa/>
+- **GDPR:** <https://gdpr.eu/>
+- **NIS2:** <https://digital-strategy.ec.europa.eu/en/policies/nis2-directive>
+- **CRA:** <https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act>
+- **DORA:** <https://www.digital-operational-resilience-act.com/>
 
 ---
 

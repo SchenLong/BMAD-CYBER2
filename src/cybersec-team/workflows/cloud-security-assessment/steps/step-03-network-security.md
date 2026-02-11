@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/cloud-security-assessment-{project_name}.m
 
 # Step 3: Network Security Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on network security assessment
 - FORBIDDEN to discuss data protection yet
 - Adapt terminology based on cloud provider(s)
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess cloud network security including VPC/VNet architecture, security groups, network ACLs, WAF configuration, DDoS protection, and network traffic controls.
 
-## NETWORK SECURITY SEQUENCE:
+## NETWORK SECURITY SEQUENCE
 
 ### 1. Network Architecture Review
 
@@ -51,6 +51,7 @@ To assess cloud network security including VPC/VNet architecture, security group
 | GCP | VPC | Shared VPC? Subnet regions? |
 
 **Architecture Patterns:**
+
 - Single VPC or multi-VPC?
 - Workload segmentation approach?
 - Production/non-production separation?
@@ -73,6 +74,7 @@ Describe your network architecture."
 | Default allow | No explicit deny | High |
 
 **Questions:**
+
 - Are security groups reviewed regularly?
 - Any rules allowing all traffic (0.0.0.0/0)?
 - SSH (22) or RDP (3389) from internet?
@@ -94,6 +96,7 @@ What security group patterns are you using?"
 | Firewall Service | AWS/Azure/GCP | Managed firewall appliance |
 
 **Questions:**
+
 - Is east-west traffic filtered?
 - Are workloads segmented by sensitivity?
 - Are there micro-segmentation controls?
@@ -116,6 +119,7 @@ How is network segmentation implemented?"
 | Bypass prevention | No direct backend access | ? |
 
 **Provider-Specific:**
+
 - AWS: AWS WAF with ALB/CloudFront/API Gateway
 - Azure: Azure WAF with Application Gateway/Front Door
 - GCP: Cloud Armor with Cloud Load Balancing
@@ -135,6 +139,7 @@ Is WAF deployed for internet-facing applications?"
 | GCP | Built-in | Cloud Armor |
 
 **Questions:**
+
 - What DDoS protection tier is enabled?
 - Are critical workloads protected?
 - Is there a DDoS response plan?
@@ -235,6 +240,7 @@ Update Section 4 of {outputFile}:
 "**Network Security Assessment Complete**
 
 I've documented the network security assessment including:
+
 - Network architecture review
 - Security group analysis
 - Segmentation controls
@@ -250,7 +256,7 @@ Ready to proceed to data protection?"
 
 Display: **Network Assessment Complete - Select an Option:** [C] Continue to Data Protection [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 4 content, allow revisions, then redisplay menu

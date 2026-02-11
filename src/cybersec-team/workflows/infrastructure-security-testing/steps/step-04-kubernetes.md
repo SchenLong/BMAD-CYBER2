@@ -10,7 +10,7 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 # Step 4: Kubernetes Security Assessment
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
@@ -23,24 +23,27 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 If NO: Select [S] to skip to CI/CD security.
 If YES: Continue with Kubernetes security testing below."
 
-## KUBERNETES SECURITY SEQUENCE:
+## KUBERNETES SECURITY SEQUENCE
 
 ### 1. Cluster Overview
 
 "Let's understand your Kubernetes environment.
 
 **Cluster Information:**
+
 - Kubernetes version?
 - Distribution (EKS, GKE, AKS, OpenShift, vanilla)?
 - Number of clusters?
 - Node count and types?
 
 **Access Level:**
+
 - kubectl access configured?
 - RBAC permissions level?
 - Namespace restrictions?
 
 **Commands:**
+
 ```bash
 # Cluster info
 kubectl cluster-info
@@ -60,18 +63,21 @@ What is your Kubernetes setup?"
 "Let's review Role-Based Access Control.
 
 **RBAC Analysis:**
+
 - ClusterRoles and Roles defined?
 - Least privilege enforced?
 - Service accounts properly scoped?
 - No default service account abuse?
 
 **High-Risk Permissions:**
+
 - cluster-admin bindings
 - secrets access
 - pod exec/attach
 - pod create/delete
 
 **Commands:**
+
 ```bash
 # List ClusterRoleBindings
 kubectl get clusterrolebindings
@@ -91,6 +97,7 @@ What RBAC configuration have you reviewed?"
 "Testing pod security configurations.
 
 **Pod Security Standards:**
+
 - Privileged pods?
 - Host namespace access?
 - Privilege escalation allowed?
@@ -98,12 +105,14 @@ What RBAC configuration have you reviewed?"
 - Capabilities added?
 
 **Security Contexts:**
+
 - runAsNonRoot enforced?
 - readOnlyRootFilesystem?
 - allowPrivilegeEscalation: false?
 - seccompProfile set?
 
 **Commands:**
+
 ```bash
 # Find privileged pods
 kubectl get pods --all-namespaces -o json | \
@@ -125,18 +134,21 @@ What pod security issues have you found?"
 "Reviewing Kubernetes network security.
 
 **Network Policies:**
+
 - Default deny policies?
 - Ingress/egress controls?
 - Namespace isolation?
 - CNI supports policies?
 
 **Service Exposure:**
+
 - Services with external IPs?
 - LoadBalancer services?
 - NodePort services?
 - Ingress controllers?
 
 **Commands:**
+
 ```bash
 # List network policies
 kubectl get networkpolicies --all-namespaces
@@ -156,12 +168,14 @@ What network policies are in place?"
 "Reviewing Kubernetes secrets handling.
 
 **Secrets Security:**
+
 - Encryption at rest enabled?
 - Secrets mounted as files or env vars?
 - External secrets operator used?
 - Secrets rotation?
 
 **Commands:**
+
 ```bash
 # List secrets
 kubectl get secrets --all-namespaces
@@ -180,6 +194,7 @@ What secrets management practices are in use?"
 "Reviewing Kubernetes API server configuration.
 
 **API Server Controls:**
+
 - Authentication methods?
 - Anonymous auth disabled?
 - ABAC vs RBAC?
@@ -187,11 +202,13 @@ What secrets management practices are in use?"
 - Admission controllers?
 
 **etcd Security:**
+
 - TLS client certs?
 - Encryption at rest?
 - Access restricted?
 
 **Commands:**
+
 ```bash
 # Check API server flags (if accessible)
 kubectl get pods -n kube-system kube-apiserver-* -o yaml
@@ -207,6 +224,7 @@ What API server configuration have you reviewed?"
 "Let's run kube-bench for CIS benchmarks.
 
 **Kube-bench Checks:**
+
 - Control plane security
 - etcd configuration
 - Control plane configuration
@@ -214,6 +232,7 @@ What API server configuration have you reviewed?"
 - Kubernetes policies
 
 **Command:**
+
 ```bash
 # Run kube-bench
 kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job.yaml
@@ -288,6 +307,7 @@ Append to {outputFile} Section 4:
 "**Kubernetes Security Assessment Complete**
 
 **Summary:**
+
 - Clusters assessed: [count]
 - RBAC issues: [count]
 - Pod security issues: [count]

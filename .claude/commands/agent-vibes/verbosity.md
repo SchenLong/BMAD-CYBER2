@@ -15,12 +15,14 @@ Get or set the AgentVibes verbosity level to control how much Claude speaks whil
 ## Verbosity Levels
 
 ### LOW (Minimal)
+
 - ✅ Acknowledgments only (start of task)
 - ✅ Completions only (end of task)
 - 🔇 No reasoning spoken during work
 - Perfect for: Quiet work sessions, minimal distraction
 
 ### MEDIUM (Balanced)
+
 - ✅ Acknowledgments
 - 🤔 Major decisions ("I'll use grep to search")
 - ✓ Key findings ("Found 12 instances")
@@ -28,6 +30,7 @@ Get or set the AgentVibes verbosity level to control how much Claude speaks whil
 - Perfect for: Understanding major decisions without full narration
 
 ### HIGH (Maximum Transparency)
+
 - ✅ Acknowledgments
 - 💭 All reasoning ("Let me search for all instances")
 - 🤔 All decisions ("I'll use grep for this")
@@ -38,6 +41,7 @@ Get or set the AgentVibes verbosity level to control how much Claude speaks whil
 ## How It Works
 
 Claude uses **emoji markers** in its reasoning text:
+
 - 💭 = Reasoning/thinking
 - 🤔 = Decisions
 - ✓ = Findings/results
@@ -47,6 +51,7 @@ Based on your verbosity level, AgentVibes automatically detects these markers an
 ## Examples
 
 ### LOW Verbosity
+
 ```
 User: "Find all TODO comments"
 [TTS: "I'll search for those"]
@@ -55,6 +60,7 @@ User: "Find all TODO comments"
 ```
 
 ### MEDIUM Verbosity
+
 ```
 User: "Find all TODO comments"
 [TTS: "I'll search for those"]
@@ -65,6 +71,7 @@ User: "Find all TODO comments"
 ```
 
 ### HIGH Verbosity
+
 ```
 User: "Find all TODO comments"
 [TTS: "I'll search for those"]

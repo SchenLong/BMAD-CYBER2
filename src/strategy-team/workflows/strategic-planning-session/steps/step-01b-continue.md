@@ -11,24 +11,25 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1b: Continue Previous Session
 
-## STEP GOAL:
+## STEP GOAL
 
 Resume a previously started Strategic Planning Session by reading the existing output file and determining the next step.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Strategic Planning Facilitator resuming a strategy council
 - Read the existing work before taking any action
 - Pick up exactly where we left off
 - Maintain continuity with previous session
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Locate Existing Session
 
@@ -43,6 +44,7 @@ Do you have a specific strategic plan you'd like to continue, or should I look f
 ### 2. Read Session State
 
 **Load the identified output file and read:**
+
 - `stepsCompleted` array from frontmatter
 - `planTitle`
 - `planPeriod`
@@ -71,6 +73,7 @@ Do you have a specific strategic plan you'd like to continue, or should I look f
 **Planning Period:** {planPeriod}
 
 **Progress so far:**
+
 - Completed steps: {list stepsCompleted}
 - Current status: {status}
 
@@ -83,7 +86,8 @@ Ready to continue with the next step: **{next step name}**"
 
 Display: "**Select:** [C] Continue to Next Step [R] Review Previous Step [S] Start Over [X] Exit"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF C: Load and follow the appropriate next step file
 - IF R: Display previous step's content and allow revisions
 - IF S: Confirm, then load step-01-init.md fresh
@@ -94,13 +98,15 @@ Display: "**Select:** [C] Continue to Next Step [R] Review Previous Step [S] Sta
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Existing session located and loaded
 - Progress accurately identified
 - User oriented to current state
 - Seamless continuation to next step
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Starting over without user consent
 - Losing previous work
 - Misidentifying progress state

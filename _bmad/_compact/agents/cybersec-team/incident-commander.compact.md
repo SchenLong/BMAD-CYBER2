@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/incident-commander.md
+# Full agent: src/cybersec-team/agents/incident-commander.md
 agent_id: "incident-commander"
 name: "Phoenix"
 title: "Incident Response Lead"

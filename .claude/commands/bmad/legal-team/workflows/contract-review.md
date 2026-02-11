@@ -6,4 +6,4 @@ description: Comprehensive contract analysis identifying risks, gaps, and recomm
 # Contract Review
 
 Load and follow the workflow at:
-`@_bmad/legal-team/workflows/contract-review/workflow.md`
+`@src/legal-team/workflows/contract-review/workflow.md`

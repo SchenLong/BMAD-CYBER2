@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 2: Smart Contract Security Review
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on smart contract code security
 - FORBIDDEN to discuss economic attacks yet
 - Review contract code systematically
 
-## STEP GOAL:
+## STEP GOAL
 
 To perform comprehensive smart contract security analysis covering common vulnerabilities, code quality, and Solidity/Vyper-specific issues.
 
-## SMART CONTRACT REVIEW SEQUENCE:
+## SMART CONTRACT REVIEW SEQUENCE
 
 ### 1. Reentrancy Analysis
 
@@ -55,6 +55,7 @@ To perform comprehensive smart contract security analysis covering common vulner
 [Identify functions making external calls]
 
 **Checks-Effects-Interactions Pattern:**
+
 - Are state changes made before external calls?
 - Is ReentrancyGuard used appropriately?
 
@@ -73,10 +74,12 @@ Do any functions make external calls? Let's analyze them."
 | Unchecked blocks | Manual review needed | ? |
 
 **For Solidity <0.8:**
+
 - Is SafeMath used for all arithmetic?
 - Any custom arithmetic operations?
 
 **For Solidity >=0.8:**
+
 - Any `unchecked` blocks to review?
 - Intentional overflow/underflow?
 
@@ -95,6 +98,7 @@ What Solidity version are the contracts using?"
 | Internal exposure | Internal functions called externally | ? |
 
 **Critical Functions to Check:**
+
 - [ ] Fund withdrawal functions
 - [ ] Ownership transfer
 - [ ] Parameter updates
@@ -117,6 +121,7 @@ Which functions handle critical operations?"
 | Overflow params | Large number handling | ? |
 
 **Common Missing Validations:**
+
 - `require(to != address(0))`
 - `require(amount > 0)`
 - `require(array.length <= MAX_LENGTH)`
@@ -137,6 +142,7 @@ Are inputs properly validated in critical functions?"
 | Callback risks | Callback handling | ? |
 
 **Low-level Calls:**
+
 - Are return values of `.call()`, `.delegatecall()` checked?
 - Is `transfer()` vs `call()` appropriate for the use case?
 
@@ -156,6 +162,7 @@ How does the contract interact with external contracts?"
 | State consistency | Atomic updates | ? |
 
 **State Update Patterns:**
+
 - Are state updates atomic?
 - Any race conditions possible?
 - Storage layout for upgradeable contracts?
@@ -176,6 +183,7 @@ How is critical state managed in the contracts?"
 | Pull vs Push | Payment patterns | ? |
 
 **Questions:**
+
 - Any loops over dynamic arrays?
 - Could an attacker force gas exhaustion?
 - Are payments push or pull pattern?
@@ -257,6 +265,7 @@ Update Section 2 of {outputFile}:
 "**Smart Contract Security Review Complete**
 
 I've analyzed the smart contracts for:
+
 - Reentrancy vulnerabilities
 - Arithmetic safety
 - Access control at code level
@@ -273,7 +282,7 @@ Ready to proceed to access control analysis?"
 
 Display: **Contract Review Complete - Select an Option:** [C] Continue to Access Control Analysis [R] Review/Revise Findings
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 2 content, allow revisions, then redisplay menu

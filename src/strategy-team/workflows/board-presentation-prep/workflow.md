@@ -1,5 +1,5 @@
 ---
-name: Board Presentation Prep
+name: board-presentation-prep
 description: Prepare compelling board presentations with evidence, narrative, and Q&A preparation
 web_bundle: true
 ---

@@ -412,13 +412,13 @@ describe('Welcome Screen - INST-030', () => {
       expect(moduleContent).toMatch(/\bexport\s+(const|async|function)/);
     });
 
-    it('should import inquirer and chalk', async () => {
+    it('should import prompts abstraction and chalk', async () => {
       const moduleContent = fs.readFileSync(
         path.join(__dirname, 'welcome-screen.js'),
         'utf8'
       );
 
-      expect(moduleContent).toMatch(/import\s+inquirer\s+from\s+['"]inquirer['"]/);
+      expect(moduleContent).toMatch(/import\s+\{.*\}\s+from\s+['"].*cli\/prompts\.js['"]/);
       expect(moduleContent).toMatch(/import\s+chalk\s+from\s+['"]chalk['"]/);
     });
 

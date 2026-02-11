@@ -1,5 +1,5 @@
 ---
-name: Network Security Assessment
+name: network-assessment
 description: Comprehensive network penetration testing covering reconnaissance, vulnerability assessment, network services, wireless, and segmentation testing
 web_bundle: true
 ---
@@ -57,11 +57,11 @@ This uses **step-file architecture** for disciplined execution:
 
 ### 1. Configuration Loading
 
-Load and read full config from {project-root}/_bmad/cybersec-team/config.yaml and resolve:
+Load and read full config from {project-root}/src/cybersec-team/config.yaml and resolve:
 
 - `project_name`, `output_folder`, `user_name`, `communication_language`, `document_output_language`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then follow `{project-root}/_bmad/cybersec-team/workflows/network-assessment/steps/step-01-init.md` to begin the workflow.
+Load, read the full file and then follow `{project-root}/src/cybersec-team/workflows/network-assessment/steps/step-01-init.md` to begin the workflow.

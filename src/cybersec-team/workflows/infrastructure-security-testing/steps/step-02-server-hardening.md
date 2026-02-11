@@ -10,19 +10,20 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 # Step 2: Server Hardening Assessment
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide hardening assessment based on CIS benchmarks
 
-## SERVER HARDENING SEQUENCE:
+## SERVER HARDENING SEQUENCE
 
 ### 1. Operating System Inventory
 
 "Let's inventory the systems to assess.
 
 **System Information:**
+
 - OS type and version
 - Patch level
 - Role/purpose
@@ -30,6 +31,7 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 - Criticality rating
 
 **Sample Systems:**
+
 - Select representative systems per OS type
 - Include internet-facing and internal
 - Cover different roles (web, database, etc.)
@@ -41,21 +43,25 @@ What systems should we assess?"
 "For Linux systems, let's check CIS benchmark controls.
 
 **Filesystem Configuration:**
+
 - Separate partitions (/tmp, /var, /home)
 - noexec, nosuid, nodev mount options
 - Sticky bit on world-writable directories
 
 **Boot Settings:**
+
 - GRUB password protection
 - Single-user mode authentication
 - Secure boot configuration
 
 **Process Hardening:**
+
 - ASLR enabled
 - Core dumps restricted
 - ptrace scope limited
 
 **Commands:**
+
 ```bash
 # Check mount options
 mount | grep -E '(tmp|var|home)'
@@ -74,22 +80,26 @@ What Linux hardening results do you have?"
 "Let's review user and access controls.
 
 **User Account Security:**
+
 - Root login disabled (SSH)?
 - Password policy enforced?
 - Account lockout configured?
 - Inactive accounts removed?
 
 **Privilege Management:**
+
 - Sudo configuration secure?
 - No unauthorized SUID/SGID binaries?
 - umask settings appropriate?
 
 **Authentication:**
+
 - SSH key-based auth enforced?
 - MFA implemented?
 - PAM configuration secure?
 
 **Commands:**
+
 ```bash
 # Check password policy
 grep -E '^PASS' /etc/login.defs
@@ -108,21 +118,25 @@ What user/access control findings do you have?"
 "Reviewing network security settings.
 
 **Firewall:**
+
 - iptables/nftables rules configured?
 - Default deny policy?
 - Only required ports open?
 
 **Network Parameters:**
+
 - IP forwarding disabled (if not router)?
 - ICMP redirects disabled?
 - Source routing disabled?
 - SYN cookies enabled?
 
 **Network Services:**
+
 - Unnecessary services disabled?
 - Services bound to localhost where possible?
 
 **Commands:**
+
 ```bash
 # Check firewall
 iptables -L -n -v
@@ -141,18 +155,21 @@ What network configuration have you reviewed?"
 "Reviewing logging and audit configuration.
 
 **System Logging:**
+
 - rsyslog/journald configured?
 - Log rotation in place?
 - Remote logging enabled?
 - Log integrity protection?
 
 **Audit System:**
+
 - auditd running?
 - Critical file access monitored?
 - Privileged command execution logged?
 - Login/logout events captured?
 
 **Commands:**
+
 ```bash
 # Check audit status
 auditctl -s
@@ -171,23 +188,27 @@ What logging/audit configuration have you found?"
 "For Windows systems:
 
 **Security Policies:**
+
 - Password policy
 - Account lockout
 - Audit policy
 - User rights assignment
 
 **Services and Features:**
+
 - Unnecessary services disabled?
 - SMBv1 disabled?
 - Windows Firewall enabled?
 - PowerShell logging enabled?
 
 **Updates:**
+
 - Windows Update configured?
 - WSUS/SCCM managed?
 - Pending updates?
 
 **Commands:**
+
 ```powershell
 # Check password policy
 Get-ADDefaultDomainPasswordPolicy
@@ -257,6 +278,7 @@ Append to {outputFile} Section 2:
 "**Server Hardening Assessment Complete**
 
 **Summary:**
+
 - Systems assessed: [count]
 - Hardening gaps: [count]
 - Critical issues: [count]

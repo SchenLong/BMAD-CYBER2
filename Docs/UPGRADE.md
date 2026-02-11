@@ -92,6 +92,7 @@ npx bmad-cybersec backup verify --latest
 ```
 
 **Critical files to backup manually**:
+
 - `_bmad/core/config.yaml` - Core configuration
 - `_bmad/*/config.yaml` - Team-specific configurations
 - `.claude/settings.json` - Claude Code settings
@@ -153,6 +154,7 @@ npx bmad-cybersec validate
 ```
 
 **What happens during patch upgrade**:
+
 1. Downloads new version
 2. Replaces module files
 3. Verifies no breaking changes
@@ -185,6 +187,7 @@ npx bmad-cybersec update-docs
 ```
 
 **What to expect**:
+
 - New agents available (non-conflicting)
 - New workflows added (non-breaking)
 - New Party Mode presets available
@@ -462,6 +465,7 @@ cp -r backup/_bmad .
 **Error**: `Core version X.Y.Z is below minimum required X.Y.Z`
 
 **Solution**:
+
 ```bash
 # Upgrade BMAD Core first
 npx bmad-cybersec update core
@@ -472,6 +476,7 @@ npx bmad-cybersec update core
 **Error**: `Agent name 'X' exists in both module1 and module2`
 
 **Solution**:
+
 1. Check if conflict is intentional (same agent in different modules)
 2. If unintentional, contact support or rename agent in custom module
 3. Update all references to renamed agent
@@ -481,6 +486,7 @@ npx bmad-cybersec update core
 **Error**: `Workflow ID 'X' is duplicated`
 
 **Solution**:
+
 ```bash
 # List conflicting workflows
 npx bmad-cybersec workflow list --conflicts
@@ -494,6 +500,7 @@ npx bmad-cybersec workflow list --conflicts
 **Warning**: `Mixed major versions detected: [versions]`
 
 **Solution**:
+
 ```bash
 # Upgrade all modules to same major version
 npx bmad-cybersec update --all --major
@@ -504,6 +511,7 @@ npx bmad-cybersec update --all --major
 **Error**: `Security vulnerability in module X version Y`
 
 **Solution**:
+
 ```bash
 # Upgrade affected module immediately
 npx bmad-cybersec update <module-name> --security
@@ -555,12 +563,13 @@ npx bmad-cybersec party-mode rebuild-cache
    - `Docs/02-user-guides/module-compatibility-matrix.md`
 
 2. **Run Diagnostics**:
+
    ```bash
    npx bmad-cybersec doctor --full-report > diagnostic-report.txt
    ```
 
 3. **Contact Support**:
-   - GitHub Issues: https://github.com/blackunicorn-tech/bmad-cybercommand/issues
+   - GitHub Issues: <https://github.com/blackunicorn-tech/bmad-cybercommand/issues>
    - Include diagnostic report and version information
 
 4. **Community Resources**:
@@ -579,6 +588,7 @@ npx bmad-cybersec party-mode rebuild-cache
 ---
 
 **Document Control**:
+
 - Author: BlackUnicorn.Tech
 - Version: 1.0.0
 - Last Updated: January 2025

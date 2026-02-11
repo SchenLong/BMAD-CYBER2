@@ -5,6 +5,7 @@
 The BMAD framework supports multiple LLM providers, allowing you to route agent requests to different backends including local models (Ollama, LM Studio, vLLM, llama.cpp) and cloud APIs (Claude, OpenAI, Groq, Together).
 
 This enables:
+
 - **Privacy**: Run sensitive workloads on local models
 - **Cost optimization**: Use local models for development/testing
 - **Flexibility**: Choose the best model for each task
@@ -217,6 +218,7 @@ The following test was conducted on 2026-01-11:
 | 3 | Claude | (switched back) | Anthropic API | Cloud |
 
 **Verification:**
+
 - Network traffic confirmed local ports only for Ollama/LM Studio
 - Test markers sent to local LLMs were NOT transmitted to Claude API
 - Provider switch changes routing, not data storage
@@ -250,7 +252,7 @@ curl http://localhost:11434/api/tags
 
 ### LM Studio
 
-1. Download from https://lmstudio.ai/
+1. Download from <https://lmstudio.ai/>
 2. Launch application
 3. Download models from built-in browser
 4. Start local server (Settings → Local Server → Start)
@@ -386,6 +388,7 @@ curl http://localhost:1234/v1/models
 ### Direct API Calls
 
 **Ollama:**
+
 ```bash
 curl http://localhost:11434/api/generate -d '{
   "model": "nemotron-mini",
@@ -395,6 +398,7 @@ curl http://localhost:11434/api/generate -d '{
 ```
 
 **LM Studio (OpenAI-compatible):**
+
 ```bash
 curl http://localhost:1234/v1/chat/completions \
   -H "Content-Type: application/json" \
@@ -405,6 +409,7 @@ curl http://localhost:1234/v1/chat/completions \
 ```
 
 **vLLM (OpenAI-compatible):**
+
 ```bash
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \

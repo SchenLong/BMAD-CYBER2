@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/the-realist.md
+# Full agent: src/strategy-team/agents/the-realist.md
 agent_id: "the-realist"
 name: "Niccolo"
 title: "The Realist - Master of Realpolitik"

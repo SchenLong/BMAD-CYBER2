@@ -12,15 +12,16 @@ advancedElicitationTask: '{project-root}/_bmad/core/workflows/advanced-elicitati
 
 # Step 4: Strategic Planning & Roadmap
 
-## STEP GOAL:
+## STEP GOAL
 
 To develop a comprehensive 3-year strategic security roadmap with prioritized initiatives, quarterly milestones, budget alignment, and measurable success criteria.
 
-## STRATEGIC PLANNING PROCESS:
+## STRATEGIC PLANNING PROCESS
 
 ### 1. Vision & Strategic Objectives
 
 Define 3-year security program vision:
+
 - Where should the security program be in 3 years?
 - What business outcomes will security enable?
 - What maturity level targets by domain?
@@ -30,6 +31,7 @@ Define 3-5 strategic objectives aligned with business goals.
 ### 2. Initiative Identification
 
 Based on assessment gaps and risks, identify strategic initiatives:
+
 - Gap remediation initiatives
 - Risk mitigation projects
 - Compliance requirements
@@ -38,6 +40,7 @@ Based on assessment gaps and risks, identify strategic initiatives:
 - Capability building
 
 For each initiative:
+
 - Name & description
 - Strategic objective alignment
 - Priority (P0/P1/P2/P3)
@@ -51,15 +54,18 @@ For each initiative:
 Create quarterly roadmap across 3 years:
 
 **Year 1 (Foundation):**
+
 - Q1: Critical gaps (P0), compliance foundations
 - Q2: Risk mitigation (P1), tool implementation
 - Q3: Process establishment, training
 - Q4: Assessment and optimization
 
 **Year 2 (Maturity):**
+
 - Q1-Q4: Advanced capabilities, automation, integration
 
 **Year 3 (Optimization):**
+
 - Q1-Q4: Continuous improvement, innovation, business enablement
 
 ### 4. Initiative Prioritization Matrix
@@ -79,6 +85,7 @@ Identify any budget adjustments needed.
 ### 6. Success Metrics & KPIs
 
 Define measurable success criteria:
+
 - Security maturity improvement targets
 - Risk reduction metrics
 - Compliance achievement dates
@@ -89,6 +96,7 @@ Define measurable success criteria:
 ### 7. Append Section 4
 
 Update {outputFile} with:
+
 - 3-year strategic vision
 - Strategic objectives
 - Complete initiative catalog
@@ -116,7 +124,7 @@ Display: **[P] Party Mode [A] Advanced Elicitation [C] Continue to Governance**
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
 
 - 3-year vision defined
 - Strategic initiatives identified and prioritized

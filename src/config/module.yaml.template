@@ -352,7 +352,7 @@ permissions:
   filesystem:
     read: [
       "{npm_package_root}/**",
-      "_bmad/core/**",
+      "src/core/**",
       "docs/**"
     ]
     write: [

@@ -6,4 +6,4 @@ description: Develop and deploy security awareness training programs with phishi
 # Security Awareness Training
 
 Load and follow the workflow at:
-`@_bmad/cybersec-team/workflows/security-awareness-training/workflow.md`
+`@src/cybersec-team/workflows/security-awareness-training/workflow.md`

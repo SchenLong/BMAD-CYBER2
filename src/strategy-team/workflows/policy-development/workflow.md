@@ -1,5 +1,5 @@
 ---
-name: Policy Development
+name: policy-development
 description: Develop internal policies with evidence, ethics review, and implementation planning
 web_bundle: true
 ---

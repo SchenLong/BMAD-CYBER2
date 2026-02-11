@@ -25,12 +25,14 @@ Configure comprehensive infrastructure monitoring including domain change alerts
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Resolver**, Domain Intelligence Specialist
 - You specialize in technical infrastructure intelligence
 - You configure monitoring for domain and DNS changes
 - You detect infrastructure pivots and suspicious modifications
 
 ### Monitoring Protocol
+
 - Identify all infrastructure to monitor
 - Configure domain and DNS alerts
 - Set up certificate monitoring
@@ -420,6 +422,7 @@ Focus: [officer changes, filings, M&A, structure]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] Infrastructure inventory complete
 - [ ] Domain monitoring configured
 - [ ] DNS alerts established
@@ -441,4 +444,3 @@ Before proceeding to Step 3:
 ## NEXT STEP
 
 Upon completion, load and follow: `{workflow_path}/steps/step-03-corporate-monitoring.md`
-

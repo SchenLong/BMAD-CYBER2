@@ -28,16 +28,19 @@ Professional-grade intelligence operations workflows covering OSINT, HUMINT, SIG
 | **Flash Assessment** | `/flash-assessment` | 3 | ~15 min | Quick triage report |
 
 **Flash Assessment** provides rapid OSINT triage for time-critical requirements:
+
 - Immediate OSINT hits and exposure identification
 - First-look risk assessment
 - Parallel collection across technical, social, dark web, and corporate sources
 - Go/no-go decision support
 
 **Input Requirements**:
+
 - At least one target identifier (email, domain, username, phone, IP, or name + context)
 - Optional: urgency level, scope limitations, priority concerns
 
 **When to use**:
+
 - Initial target assessment before deeper investigation
 - Time-sensitive intelligence requirements
 - Quick due diligence checks
@@ -56,6 +59,7 @@ Professional-grade intelligence operations workflows covering OSINT, HUMINT, SIG
 
 **Campaign Planner (Person)**
 Systematic OSINT campaign planning for investigating individuals:
+
 - Collection requirements definition
 - Source identification and prioritization
 - Operational security planning
@@ -63,6 +67,7 @@ Systematic OSINT campaign planning for investigating individuals:
 
 **Doppelganger Hunt**
 Identify fake accounts, sock puppets, bots, and impersonators:
+
 - Multi-factor authenticity analysis
 - Behavioral pattern analysis
 - Identity verification techniques
@@ -70,6 +75,7 @@ Identify fake accounts, sock puppets, bots, and impersonators:
 
 **Digital Necromancy**
 Recover and reconstruct deleted or hidden digital presence:
+
 - Historical digital footprint recovery
 - Timeline reconstruction
 - Archive mining and wayback analysis
@@ -77,6 +83,7 @@ Recover and reconstruct deleted or hidden digital presence:
 
 **Pattern of Life**
 Behavioral analysis and prediction through multi-source pattern analysis:
+
 - Temporal pattern identification
 - Spatial behavior mapping
 - Behavioral baseline development
@@ -94,6 +101,7 @@ Behavioral analysis and prediction through multi-source pattern analysis:
 
 **Campaign Planner (Org)**
 Comprehensive OSINT campaign planning for corporate, government, or organizational entities:
+
 - Multi-vector collection planning
 - Stakeholder mapping
 - Organizational structure analysis
@@ -101,6 +109,7 @@ Comprehensive OSINT campaign planning for corporate, government, or organization
 
 **Operation Mosaic**
 Full spectrum target package using all 11 agents in coordinated intelligence collection:
+
 - Comprehensive organizational assessment
 - Multi-INT coordination
 - Unified intelligence product
@@ -108,6 +117,7 @@ Full spectrum target package using all 11 agents in coordinated intelligence col
 
 **Spider Web**
 Network mapping and expansion starting from a single node:
+
 - Relationship mapping
 - Affiliation analysis
 - Connection discovery
@@ -125,6 +135,7 @@ Network mapping and expansion starting from a single node:
 
 **Infrastructure Genealogy**
 Trace complete history of digital infrastructure:
+
 - Ownership chain analysis
 - Hosting migration tracking
 - Connection discovery to other assets
@@ -132,6 +143,7 @@ Trace complete history of digital infrastructure:
 
 **Signal Landscape**
 SIGINT opportunity mapping:
+
 - Target electronic footprint mapping
 - Communications pattern analysis
 - Collection opportunity identification
@@ -139,6 +151,7 @@ SIGINT opportunity mapping:
 
 **Breach Archaeology**
 Comprehensive data exposure assessment:
+
 - All breach sources analysis
 - Timeline reconstruction
 - Risk scoring
@@ -155,6 +168,7 @@ Comprehensive data exposure assessment:
 
 **Attribution Chain**
 Build evidence-based attribution from indicators to actor identity:
+
 - Multi-source evidence collection
 - Systematic analysis chain
 - Confidence assessment
@@ -162,6 +176,7 @@ Build evidence-based attribution from indicators to actor identity:
 
 **Threat Constellation**
 Map complete threat actor ecosystem:
+
 - Relationship mapping
 - Shared infrastructure identification
 - Tool reuse analysis
@@ -179,6 +194,7 @@ Map complete threat actor ecosystem:
 
 **Ground Truth**
 Complete preparation for physical/field operations:
+
 - Site reconnaissance planning
 - Environmental assessment
 - Cover story development
@@ -186,6 +202,7 @@ Complete preparation for physical/field operations:
 
 **Counter-Intel Audit**
 Turn intelligence capabilities inward to assess own exposure:
+
 - Organizational vulnerability assessment
 - Operational security gaps
 - Information leakage identification
@@ -193,6 +210,7 @@ Turn intelligence capabilities inward to assess own exposure:
 
 **Approach Vector**
 HUMINT operation planning:
+
 - Target vulnerability identification
 - Social entry point mapping
 - Physical access assessment
@@ -209,6 +227,7 @@ HUMINT operation planning:
 
 **The Synthesis**
 Multi-source intelligence fusion:
+
 - Correlation across all INTs
 - Conflict resolution
 - Confidence assessment
@@ -216,6 +235,7 @@ Multi-source intelligence fusion:
 
 **Campaign AI**
 OSINT campaign planning for AI systems, models, companies, and entities:
+
 - AI-specific intelligence requirements
 - Model and company analysis
 - Technology assessment
@@ -231,6 +251,7 @@ OSINT campaign planning for AI systems, models, companies, and entities:
 
 **Tripwire**
 Configure comprehensive monitoring with alerting:
+
 - Target change detection
 - Alerting threshold configuration
 - Notification rule setup
@@ -263,12 +284,14 @@ The intel-team module includes 11 specialized agents:
 ### Parallel vs Sequential
 
 Many intel workflows support **parallel agent execution**:
+
 - Flash Assessment dispatches 4 agents simultaneously for rapid collection
 - Operation Mosaic coordinates all 11 agents for comprehensive coverage
 
 ### Collection Management
 
 Workflows enforce:
+
 - Source documentation and confidence levels
 - Chain of custody for evidence
 - Classification handling
@@ -277,6 +300,7 @@ Workflows enforce:
 ### Output Artifacts
 
 Intelligence products include:
+
 - Assessment reports with executive summaries
 - Source-cited findings with confidence levels
 - Visual relationship maps
@@ -288,22 +312,26 @@ Intelligence products include:
 ## Common Use Cases
 
 ### Due Diligence Investigation
+
 1. Start with **Flash Assessment** for quick triage
 2. Follow up with **Campaign Planner (Person/Org)** based on target type
 3. Use **Breach Archaeology** for exposure assessment
 4. Apply **Pattern of Life** for behavioral analysis
 
 ### Threat Actor Investigation
+
 1. Begin with **Attribution Chain** for evidence-based attribution
 2. Map the ecosystem with **Threat Constellation**
 3. Track infrastructure with **Infrastructure Genealogy**
 
 ### Security Assessment
+
 1. Run **Counter-Intel Audit** on your own organization
 2. Identify exposure with **Breach Archaeology**
 3. Configure ongoing monitoring with **Tripwire**
 
 ### Corporate Intelligence
+
 1. Map organizational structure with **Spider Web**
 2. Full assessment with **Operation Mosaic**
 3. Detailed planning with **Campaign Planner (Org)**
@@ -313,11 +341,13 @@ Intelligence products include:
 ## Operational Considerations
 
 ### Legal and Ethical
+
 - All workflows operate within legal OSINT collection boundaries
 - Users are responsible for ensuring authorization and jurisdiction compliance
 - Workflows include operational security guidance
 
 ### Classification Handling
+
 - Configurable classification levels
 - Source protection protocols
 - Secure output handling recommendations

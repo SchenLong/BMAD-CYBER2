@@ -6,4 +6,4 @@ description: OSINT Campaign Planning for AI Systems, Models, Companies & Entitie
 # Campaign AI
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/campaign-ai/workflow.md`
+`@src/intel-team/workflows/campaign-ai/workflow.md`

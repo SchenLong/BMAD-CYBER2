@@ -398,8 +398,8 @@ describe('Module Selection UI - INST-002', () => {
         'utf8'
       );
 
-      // Uses native ESM import for chalk and inquirer (ESM-only packages)
-      expect(moduleContent).toMatch(/import\s+inquirer\s+from\s+['"]inquirer['"]/);
+      // Uses native ESM import for prompts abstraction and chalk
+      expect(moduleContent).toMatch(/from\s+['"]\.\.\/\.\.\/cli\/prompts\.js['"]/);
       expect(moduleContent).toMatch(/import\s+chalk\s+from\s+['"]chalk['"]/);
     });
   });

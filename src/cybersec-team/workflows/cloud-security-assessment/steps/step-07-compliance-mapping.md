@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/cloud-security-assessment-{project_name}.m
 
 # Step 7: Compliance Mapping
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on compliance mapping
 - FORBIDDEN to discuss remediation planning yet
 - Use frameworks defined in Step 1
 
-## STEP GOAL:
+## STEP GOAL
 
 To map assessment findings to applicable compliance frameworks, identify compliance gaps, and document the compliance posture.
 
-## COMPLIANCE MAPPING SEQUENCE:
+## COMPLIANCE MAPPING SEQUENCE
 
 ### 1. Framework Selection Review
 
@@ -66,6 +66,7 @@ Which frameworks are highest priority for this assessment?"
 **Key CIS Findings:**
 
 Based on our assessment:
+
 - IAM findings map to CIS Section 1
 - Logging findings map to CIS Section 2
 - Network findings map to CIS Section 4
@@ -138,6 +139,7 @@ Based on our findings, these SOC 2 criteria have gaps:
 3. [Third priority gap]
 
 **Compliance Risk Assessment:**
+
 - High risk gaps affecting multiple frameworks
 - Gaps that could fail audits
 - Quick wins that close multiple gaps"
@@ -212,6 +214,7 @@ Update Section 8 of {outputFile}:
 "**Compliance Mapping Complete**
 
 I've mapped findings to compliance frameworks:
+
 - [X] frameworks evaluated
 - [X] total controls assessed
 - [X] compliance gaps identified
@@ -225,7 +228,7 @@ Ready to proceed to remediation planning?"
 
 Display: **Compliance Mapping Complete - Select an Option:** [C] Continue to Remediation Planning [R] Review/Revise Mapping
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 8 content, allow revisions, then redisplay menu

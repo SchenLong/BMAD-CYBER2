@@ -7,6 +7,7 @@ Migration of 20 Python security validators to TypeScript for Claude Code hooks. 
 ## Current State
 
 ### Python Validators (20 files)
+
 Located in `.claude/validators/`:
 
 | File | Purpose | Priority | Complexity |
@@ -33,10 +34,12 @@ Located in `.claude/validators/`:
 | `token_validator.py` | Session token validation | **P3** | Low |
 
 ### Key Python Dependencies Used
+
 - **Standard Library Only**: json, os, sys, re, time, fcntl, tempfile, hashlib, subprocess, math
 - **No External Packages**: All validators use Python standard library only
 
 ### Hook Integration Points
+
 - `SessionStart`: token_validator, session-security-init
 - `UserPromptSubmit`: prompt_injection_guard, jailbreak_guard
 - `PreToolUse` (by tool): Various validators per tool type
@@ -46,6 +49,7 @@ Located in `.claude/validators/`:
 ## Target Architecture (TypeScript)
 
 ### Directory Structure
+
 ```
 .claude/validators-node/
 ├── src/
@@ -115,6 +119,7 @@ Located in `.claude/validators/`:
 ```
 
 ### TypeScript Configuration
+
 ```json
 {
   "compilerOptions": {
@@ -135,6 +140,7 @@ Located in `.claude/validators/`:
 ```
 
 ### Dependencies
+
 ```json
 {
   "devDependencies": {
@@ -152,6 +158,7 @@ Located in `.claude/validators/`:
 ## Migration Phases
 
 ### Phase 1: Foundation (P0)
+
 **Duration**: 1 session
 **Files**: 4
 **Risk**: Low
@@ -177,6 +184,7 @@ Located in `.claude/validators/`:
    - Integration test with actual hook invocation
 
 ### Phase 2: Core Guards (P1)
+
 **Duration**: 1-2 sessions
 **Files**: 5
 **Risk**: Low-Medium
@@ -205,6 +213,7 @@ Located in `.claude/validators/`:
    - Context detection, test data exclusion
 
 ### Phase 3: AI Safety (P2)
+
 **Duration**: 1 session
 **Files**: 2
 **Risk**: Medium
@@ -221,6 +230,7 @@ Located in `.claude/validators/`:
    - Session risk tracking
 
 ### Phase 4: Resource Management (P2)
+
 **Duration**: 1 session
 **Files**: 4
 **Risk**: Medium
@@ -248,6 +258,7 @@ Located in `.claude/validators/`:
    - Warning/block thresholds
 
 ### Phase 5: Observability (P3)
+
 **Duration**: 1 session
 **Files**: 4
 **Risk**: Low
@@ -269,6 +280,7 @@ Located in `.claude/validators/`:
    - File rotation
 
 ### Phase 6: Permissions (P3)
+
 **Duration**: 1 session
 **Files**: 3
 **Risk**: Low
@@ -286,6 +298,7 @@ Located in `.claude/validators/`:
    - RBAC role checking
 
 ### Phase 7: Integration & Cutover
+
 **Duration**: 1 session
 **Risk**: Medium
 
@@ -306,7 +319,9 @@ Located in `.claude/validators/`:
 ## Technical Considerations
 
 ### File Locking in Node.js
+
 Python uses `fcntl.flock()`. Node.js equivalents:
+
 - **Option 1**: `proper-lockfile` package (external dependency)
 - **Option 2**: `fs.flock` via native addon
 - **Option 3**: Atomic writes with rename (already used in Python)
@@ -327,19 +342,25 @@ function atomicWriteSync(filePath: string, data: string): void {
 ```
 
 ### Regex Compatibility
+
 Most Python regex patterns are JavaScript-compatible. Notable differences:
+
 - Named groups: Python `(?P<name>)` → JS `(?<name>)`
 - Unicode properties: Python `\p{L}` works with `re.UNICODE`
 - Lookbehind: Both support, but check Node.js version (v9+)
 
 ### Process Management
+
 Python `subprocess` → Node.js `child_process`:
+
 ```typescript
 import { execSync, spawnSync } from 'child_process';
 ```
 
 ### Exit Codes
+
 Maintain exact Python exit codes:
+
 - `0`: Allow operation
 - `1`: Soft block (warning)
 - `2`: Hard block (blocked)
@@ -349,6 +370,7 @@ Maintain exact Python exit codes:
 ## Validation Strategy
 
 ### Per-Validator Testing
+
 Each ported validator must pass:
 
 1. **Unit tests**: Core logic (pattern matching, validators)
@@ -356,6 +378,7 @@ Each ported validator must pass:
 3. **Parity tests**: Same input → same output as Python
 
 ### Parity Test Framework
+
 ```typescript
 // tests/parity/bash-safety.test.ts
 import { describe, it, expect } from 'vitest';
@@ -481,11 +504,13 @@ This section documents ALL files that must be updated when each validator is mig
 #### 1. `security_common.py` → `security-common.ts`
 
 **Internal Imports (graceful fallback):**
+
 - `telemetry_collector.py` - `record_security_event`
 - `audit_integrity.py` - `add_chain_fields`
 - `anomaly_detector.py` - `record_security_event_for_anomaly`
 
 **Dependents (17 validators that import this):**
+
 - `bash_safety.py`
 - `env_protection.py`
 - `outside_repo_guard.py`
@@ -505,9 +530,11 @@ This section documents ALL files that must be updated when each validator is mig
 - `.claude/hooks/session-security-init.py` (via validate_session_security)
 
 **External Files to Update:**
+
 - None directly (foundation module)
 
 **State Files Managed:**
+
 - `.claude/.override_state.json`
 - `.claude/.override.lock`
 - `.claude/logs/security.log`
@@ -519,6 +546,7 @@ This section documents ALL files that must be updated when each validator is mig
 **Internal Imports:** None
 
 **Dependents (7 validators):**
+
 - `security_common.py` (graceful)
 - `anomaly_detector.py`
 - `context_manager.py`
@@ -529,9 +557,11 @@ This section documents ALL files that must be updated when each validator is mig
 - `token_validator.py`
 
 **External Files to Update:**
+
 - None directly
 
 **State Files Managed:**
+
 - `docs/TestingLogs/security/AuditLogs/telemetry/*.jsonl`
 
 ---
@@ -541,12 +571,15 @@ This section documents ALL files that must be updated when each validator is mig
 **Internal Imports:** None
 
 **Dependents:**
+
 - `security_common.py` (graceful)
 
 **External Files to Update:**
+
 - None directly
 
 **State Files Managed:**
+
 - `.claude/logs/security.log` (hash chain)
 - `.claude/.audit_chain_state.json`
 
@@ -555,15 +588,19 @@ This section documents ALL files that must be updated when each validator is mig
 #### 4. `anomaly_detector.py` → `anomaly-detector.ts`
 
 **Internal Imports:**
+
 - `telemetry_collector.py` - `record_anomaly_signal`, `record_security_event`
 
 **Dependents:**
+
 - `security_common.py` (graceful)
 
 **External Files to Update:**
+
 - None directly
 
 **State Files Managed:**
+
 - `.claude/.anomaly_baseline.json`
 
 ---
@@ -571,14 +608,17 @@ This section documents ALL files that must be updated when each validator is mig
 #### 5. `bash_safety.py` → `bash-safety.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`, `resolve_path`, `is_path_in_repo`, `print_block_message`
 
 **Dependents:** None
 
 **settings.json Hook References (6):**
+
 - `PreToolUse` → `Bash` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 71: "python3 ... bash_safety.py" → "node ... bash-safety.js"
@@ -593,15 +633,18 @@ This section documents ALL files that must be updated when each validator is mig
 #### 6. `env_protection.py` → `env-protection.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`
 
 **Dependents:** None
 
 **settings.json Hook References (2):**
+
 - `PreToolUse` → `Write` hook
 - `PreToolUse` → `Edit` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 104: "python3 ... env_protection.py" → "node ... env-protection.js"
@@ -616,11 +659,13 @@ This section documents ALL files that must be updated when each validator is mig
 #### 7. `outside_repo_guard.py` → `outside-repo.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`, `resolve_path`, `is_path_in_repo`
 
 **Dependents:** None
 
 **settings.json Hook References (7):**
+
 - `PreToolUse` → `Bash` hook
 - `PreToolUse` → `Write` hook
 - `PreToolUse` → `Edit` hook
@@ -629,6 +674,7 @@ This section documents ALL files that must be updated when each validator is mig
 - `PreToolUse` → `Grep` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 79: "python3 ... outside_repo_guard.py" (Bash)
@@ -647,14 +693,17 @@ This section documents ALL files that must be updated when each validator is mig
 #### 8. `production_guard.py` → `production.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`
 
 **Dependents:** None
 
 **settings.json Hook References (1):**
+
 - `PreToolUse` → `Bash` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 75: "python3 ... production_guard.py" → "node ... production.js"
@@ -668,15 +717,18 @@ This section documents ALL files that must be updated when each validator is mig
 #### 9. `secret_guard.py` → `secret.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`
 
 **Dependents:** None
 
 **settings.json Hook References (2):**
+
 - `PreToolUse` → `Write` hook
 - `PreToolUse` → `Edit` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 100: "python3 ... secret_guard.py" → "node ... secret.js"
@@ -691,15 +743,18 @@ This section documents ALL files that must be updated when each validator is mig
 #### 10. `pii_guard.py` → `pii/index.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`, `get_tool_input_from_stdin`
 
 **Dependents:** None
 
 **settings.json Hook References (2):**
+
 - `PreToolUse` → `Write` hook
 - `PreToolUse` → `Edit` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 112: "python3 ... pii_guard.py" → "node ... pii.js"
@@ -714,17 +769,20 @@ This section documents ALL files that must be updated when each validator is mig
 #### 11. `prompt_injection_guard.py` → `prompt-injection.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`, `get_tool_input_from_stdin`
 
 **Dependents:** None
 
 **settings.json Hook References (4):**
+
 - `UserPromptSubmit` hook
 - `PreToolUse` → `Write` hook
 - `PreToolUse` → `Edit` hook
 - `PreToolUse` → `Read` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 26: "python3 ... prompt_injection_guard.py" (UserPromptSubmit)
@@ -741,14 +799,17 @@ This section documents ALL files that must be updated when each validator is mig
 #### 12. `jailbreak_guard.py` → `jailbreak.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `OverrideManager`, `get_tool_input_from_stdin`
 
 **Dependents:** None
 
 **settings.json Hook References (1):**
+
 - `UserPromptSubmit` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 30: "python3 ... jailbreak_guard.py" → "node ... jailbreak.js"
@@ -762,12 +823,14 @@ This section documents ALL files that must be updated when each validator is mig
 #### 13. `rate_limiter.py` → `rate-limiter.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`
 - `telemetry_collector.py` - `record_rate_limit_metrics`, `record_security_event`
 
 **Dependents:** None
 
 **settings.json Hook References (11 - MOST REFERENCED):**
+
 - `PreToolUse` → `Skill` hook
 - `PreToolUse` → `Task` hook
 - `PreToolUse` → `Bash` hook
@@ -780,6 +843,7 @@ This section documents ALL files that must be updated when each validator is mig
 - `PreToolUse` → `WebSearch` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 49: "python3 ... rate_limiter.py" (Skill)
@@ -795,6 +859,7 @@ This section documents ALL files that must be updated when each validator is mig
 ```
 
 **State Files Managed:**
+
 - `.claude/.rate_limit_state.json`
 - `.claude/.rate_limit.lock`
 
@@ -803,21 +868,25 @@ This section documents ALL files that must be updated when each validator is mig
 #### 14. `resource_limits.py` → `resource-limits.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`
 - `telemetry_collector.py` - `record_resource_usage`
 
 **Dependents:** None
 
 **settings.json Hook References (1):**
+
 - `PreToolUse` → `Bash` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 91: "python3 ... resource_limits.py" → "node ... resource-limits.js"
 ```
 
 **State Files Managed:**
+
 - `.claude/.resource_state.json`
 
 ---
@@ -825,16 +894,19 @@ This section documents ALL files that must be updated when each validator is mig
 #### 15. `recursion_guard.py` → `recursion-guard.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`
 
 **Dependents:** None
 
 **settings.json Hook References (3):**
+
 - `PreToolUse` → `Task` hook
 - `PreToolUse` → `Read` hook
 - `PreToolUse` → `Glob` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 62: "python3 ... recursion_guard.py" (Task)
@@ -843,6 +915,7 @@ This section documents ALL files that must be updated when each validator is mig
 ```
 
 **State Files Managed:**
+
 - `.claude/.recursion_state.json`
 
 ---
@@ -850,6 +923,7 @@ This section documents ALL files that must be updated when each validator is mig
 #### 16. `context_manager.py` → `context-manager.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`
 - `telemetry_collector.py` - `record_resource_usage`
 
@@ -858,9 +932,11 @@ This section documents ALL files that must be updated when each validator is mig
 **settings.json Hook References:** 0 (not currently hooked)
 
 **External Files to Update:**
+
 - None (not in settings.json)
 
 **State Files Managed:**
+
 - `.claude/.context_state.json`
 
 ---
@@ -868,6 +944,7 @@ This section documents ALL files that must be updated when each validator is mig
 #### 17. `confidence_tracker.py` → `confidence-tracker.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`
 
 **Dependents:** None
@@ -875,9 +952,11 @@ This section documents ALL files that must be updated when each validator is mig
 **settings.json Hook References:** 0 (not currently hooked)
 
 **External Files to Update:**
+
 - None (not in settings.json)
 
 **State Files Managed:**
+
 - `.claude/.confidence_state.json`
 
 ---
@@ -885,12 +964,14 @@ This section documents ALL files that must be updated when each validator is mig
 #### 18. `plugin_permissions.py` → `plugin-permissions.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`, `resolve_path`
 - `telemetry_collector.py` - `record_permission_check`
 
 **Dependents:** None
 
 **settings.json Hook References (6):**
+
 - `PreToolUse` → `Bash` hook
 - `PreToolUse` → `Write` hook
 - `PreToolUse` → `Edit` hook
@@ -899,6 +980,7 @@ This section documents ALL files that must be updated when each validator is mig
 - `PreToolUse` → `WebSearch` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 83: "python3 ... plugin_permissions.py validate" (Bash)
@@ -914,15 +996,18 @@ This section documents ALL files that must be updated when each validator is mig
 #### 19. `supply_chain_verifier.py` → `supply-chain.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`
 - `telemetry_collector.py` - `record_supply_chain_verification`, `record_security_event`
 
 **Dependents:** None
 
 **settings.json Hook References (1):**
+
 - `PreToolUse` → `Skill` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 45: "python3 ... supply_chain_verifier.py validate" → "node ... supply-chain.js validate"
@@ -933,16 +1018,20 @@ This section documents ALL files that must be updated when each validator is mig
 #### 20. `token_validator.py` → `token-validator.ts`
 
 **Internal Imports:**
+
 - `security_common.py` - `AuditLogger`
 - `telemetry_collector.py` - `record_security_event`
 
 **Dependents:**
+
 - `.claude/hooks/session-security-init.py` (imports `validate_token`, `mark_session_validated`, `save_session_claims`)
 
 **settings.json Hook References (1):**
+
 - `SessionStart` hook
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 8: "python3 ... token_validator.py" → "node ... token-validator.js"
@@ -954,6 +1043,7 @@ This section documents ALL files that must be updated when each validator is mig
 ```
 
 **State Files Managed:**
+
 - `.claude/.session_validated`
 - `.claude/.session_claims.json`
 
@@ -964,9 +1054,11 @@ This section documents ALL files that must be updated when each validator is mig
 **This Python hook must also be migrated or updated:**
 
 **Current Imports:**
+
 - `token_validator.py` (directly imports functions)
 
 **Current Validator Checks:**
+
 ```python
 REQUIRED_VALIDATORS = [
     'security_common.py',
@@ -983,11 +1075,13 @@ REQUIRED_VALIDATORS = [
 ```
 
 **Options:**
+
 1. **Convert to TypeScript**: `session-security-init.ts`
 2. **Update to check for `.js` files**: Dual-check for both `.py` and `.js`
 3. **Keep Python during transition**: Only update after all validators migrated
 
 **External Files to Update:**
+
 ```
 .claude/settings.json:
   - Line 12: "python3 ... session-security-init.py" → "node ... session-security-init.js"
@@ -998,6 +1092,7 @@ REQUIRED_VALIDATORS = [
 ## Summary: Files to Update Per Phase
 
 ### Phase 1 (Foundation)
+
 | Validator | settings.json Lines | Other Files |
 |-----------|--------------------:|-------------|
 | security_common | 0 | State files only |
@@ -1007,6 +1102,7 @@ REQUIRED_VALIDATORS = [
 | **Total** | **0** | **4 state file locations** |
 
 ### Phase 2 (Core Guards)
+
 | Validator | settings.json Lines | session-security-init |
 |-----------|--------------------:|----------------------:|
 | bash_safety | 1 | Yes |
@@ -1018,6 +1114,7 @@ REQUIRED_VALIDATORS = [
 | **Total** | **14** | **6 validators** |
 
 ### Phase 3 (AI Safety)
+
 | Validator | settings.json Lines | session-security-init |
 |-----------|--------------------:|----------------------:|
 | prompt_injection_guard | 4 | Yes |
@@ -1025,6 +1122,7 @@ REQUIRED_VALIDATORS = [
 | **Total** | **5** | **2 validators** |
 
 ### Phase 4 (Resource Management)
+
 | Validator | settings.json Lines | Other Files |
 |-----------|--------------------:|-------------|
 | rate_limiter | 11 | State files |
@@ -1034,6 +1132,7 @@ REQUIRED_VALIDATORS = [
 | **Total** | **15** | **4 state files** |
 
 ### Phase 5 (Observability)
+
 | Validator | settings.json Lines | Other Files |
 |-----------|--------------------:|-------------|
 | confidence_tracker | 0 | State files |
@@ -1043,6 +1142,7 @@ REQUIRED_VALIDATORS = [
 | **Total** | **0** | **1 state file** |
 
 ### Phase 6 (Permissions)
+
 | Validator | settings.json Lines | Other Files |
 |-----------|--------------------:|-------------|
 | plugin_permissions | 6 | None |
@@ -1051,6 +1151,7 @@ REQUIRED_VALIDATORS = [
 | **Total** | **8** | **1 hook file** |
 
 ### Phase 7 (Integration)
+
 | File | Changes |
 |------|---------|
 | session-security-init.py | Convert to .ts OR update validator list |

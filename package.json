@@ -32,6 +32,10 @@
     "_bmad/framework",
     ".claude/validators-node"
   ],
+  "bin": {
+    "bmad-cybersec": "tools/cli/bmad-cli.js",
+    "bmad": "tools/cli/bmad-cli.js"
+  },
   "scripts": {
     "build": "npm run build:framework && npm run build:validators",
     "build:framework": "cd _bmad/framework && npm run build",
@@ -49,8 +53,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "lint": "eslint . --ext .ts,.js --max-warnings 0",
-    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit && cd _bmad/framework && tsc --noEmit && cd ../../.claude/validators-node && tsc --noEmit",
@@ -76,7 +80,9 @@
     "llm:setup": "node src/utility/tools/llm-setup/index.js",
     "health": "node src/utility/tools/health-check/index.js",
     "pgp:setup": "node src/utility/tools/pgp-setup/index.js",
-    "validate:refs": "node src/utility/tools/reference-validator/cli.js"
+    "validate:refs": "node src/utility/tools/reference-validator/cli.js",
+    "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
+    "test:schemas": "node tools/validate-agent-schema.js && node tools/validate-workflow-schema.js && node tools/validate-module-schema.js"
   },
   "keywords": [
     "bmad",
@@ -103,34 +109,42 @@
   },
   "dependencies": {
     "@bmad/validators": "file:.claude/validators-node",
+    "@clack/core": "^1.0.0",
+    "@clack/prompts": "^1.0.0",
     "chalk": "^5.6.2",
     "commander": "^11.0.0",
     "fs-extra": "^11.3.3",
     "glob": "^10.5.0",
-    "inquirer": "^13.2.1",
+    "picocolors": "^1.1.1",
     "semver": "^7.7.4",
+    "tar": "^7.5.7",
     "zod": "^3.22.0"
   },
   "bundledDependencies": [
+    "@clack/core",
+    "@clack/prompts",
     "chalk",
     "commander",
-    "inquirer",
+    "picocolors",
     "zod"
   ],
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@types/node": "^20.10.0",
     "@types/semver": "^7.7.1",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
     "@vitest/coverage-v8": "^1.1.0",
     "@vitest/ui": "^1.1.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-n": "^17.23.2",
+    "eslint-plugin-unicorn": "^62.0.0",
+    "eslint-plugin-yml": "^3.1.2",
+    "markdownlint-cli2": "^0.20.0",
     "prettier": "^3.1.0",
     "tsx": "^4.6.0",
     "typedoc": "^0.25.0",
     "typescript": "^5.3.0",
+    "typescript-eslint": "^8.55.0",
     "vitest": "^1.1.0"
   },
   "peerDependencies": {
@@ -142,7 +156,8 @@
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
-    "_bmad/framework/README.md"
+    "_bmad/framework/README.md",
+    "tools/cli/**/*"
   ],
   "repository": {
     "type": "git",
@@ -157,9 +172,11 @@
     "registry": "https://registry.npmjs.org/"
   },
   "bundleDependencies": [
+    "@clack/core",
+    "@clack/prompts",
     "chalk",
     "commander",
-    "inquirer",
+    "picocolors",
     "zod"
   ]
 }

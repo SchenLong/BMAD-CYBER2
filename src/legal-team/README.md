@@ -4,7 +4,7 @@
 
 [![BMAD Compatible](https://img.shields.io/badge/BMAD-compatible-green.svg)](https://github.com/bmad-code-org/BMAD-METHOD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/status-production-brightgreen.svg)]()
+![Status](https://img.shields.io/badge/status-production-brightgreen.svg)
 
 ---
 
@@ -13,6 +13,7 @@
 Legal Team provides comprehensive legal advisory capabilities across USA, EU (with deep Spain and Estonia specialization). Empowers business owners and individuals to navigate legal complexities with jurisdiction-aware counsel.
 
 **Key Features:**
+
 - Multi-jurisdictional expertise (US, EU, Spain, Estonia)
 - Corporate and personal civil matters
 - Contract lifecycle management
@@ -31,6 +32,7 @@ bmad install legal-team
 ```
 
 During installation, you'll configure:
+
 1. **Output folder** - Where to save legal documents
 2. **Primary jurisdiction** - Your default jurisdiction (Spain, US, EU, Estonia)
 3. **Detail level** - Brief, standard, or comprehensive analysis
@@ -49,6 +51,7 @@ During installation, you'll configure:
 | **Practice Areas** | Covenant (Contracts), Charter (Governance), Insignia (IP), Deed (Real Estate), Advocate (Litigation), Tribute (Tax) |
 
 **All 13 agents implemented:**
+
 - **Core Team (7):** Counsel, Liberty, Europa, Castile, Covenant, Advocate, Tribute
 - **Extended Team (6):** Iberia, Gremio, Baltic, Charter, Insignia, Deed
 
@@ -75,23 +78,27 @@ During installation, you'll configure:
 ## Jurisdictional Coverage
 
 ### United States
+
 - Federal and state corporate law
 - LLC, C-Corp, S-Corp formation
 - Contract and commercial law
 - Civil litigation strategy
 
 ### European Union
+
 - EU directives and regulations
 - GDPR compliance
 - Cross-border coordination
 - Consumer protection
 
 ### Spain (Deep Coverage)
+
 - **Corporate:** Sociedad Limitada (S.L.), Sociedad Anonima (S.A.), Registro Mercantil
 - **Civil:** Civil code, family law, property, inheritance
 - **Labor:** Estatuto de los Trabajadores, convenios colectivos, dismissals
 
 ### Estonia
+
 - e-Residency program
 - Osahing (OU) formation
 - Digital corporate administration

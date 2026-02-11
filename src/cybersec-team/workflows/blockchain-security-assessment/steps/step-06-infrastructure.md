@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 6: Infrastructure & Frontend Security
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on infrastructure and frontend security
 - FORBIDDEN to discuss remediation yet
 - Cover both on-chain and off-chain components
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess infrastructure security including RPC endpoints, node security, frontend/dApp security, and operational security.
 
-## INFRASTRUCTURE SECURITY SEQUENCE:
+## INFRASTRUCTURE SECURITY SEQUENCE
 
 ### 1. RPC & Node Security
 
@@ -247,6 +247,7 @@ Update Section 6 of {outputFile}:
 "**Infrastructure & Frontend Security Complete**
 
 I've assessed:
+
 - RPC and node security
 - Frontend/dApp security
 - Private key management
@@ -262,7 +263,7 @@ Ready to proceed to findings summary?"
 
 Display: **Infrastructure Assessment Complete - Select an Option:** [C] Continue to Findings Summary [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 6 content, allow revisions, then redisplay menu

@@ -15,6 +15,7 @@
 ## Purpose
 
 Turn intelligence capabilities inward to assess organizational exposure:
+
 - Physical security assessment
 - Electronic security assessment
 - Digital footprint assessment

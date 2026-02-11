@@ -2,10 +2,10 @@
 # Generated for BMAD-CYBERSEC v6 Hybrid Upgrade - Story 01
 # Task 1.1: Audit Current Skill Invocation Paths
 # Generated: 2026-02-09
-# Source: _bmad/_config/workflow-manifest.csv (138 workflows)
+# Source: _bmad/_config/workflow-manifest.csv (139 workflows)
 
 version: "1.0.0"
-total_workflows: 138
+total_workflows: 139
 total_conflicts: 13
 
 # Module summary

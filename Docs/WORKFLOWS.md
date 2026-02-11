@@ -20,6 +20,7 @@ Workflows support both **short commands** and **full paths**:
 - **Module-prefixed**: `/game:code-review` or `/bmm:code-review` (for disambiguating conflicts)
 
 Short commands are resolved through the slash command router (`_bmad/core/routing/slash-command-router.js`) which provides:
+
 - Input validation (prevents command injection)
 - RBAC enforcement (role-based access control)
 - Audit logging (every invocation logged)

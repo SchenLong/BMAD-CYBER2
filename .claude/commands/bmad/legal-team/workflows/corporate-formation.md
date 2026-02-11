@@ -6,4 +6,4 @@ description: Multi-jurisdictional corporate formation and structuring workflow
 # Corporate Formation
 
 Load and follow the workflow at:
-`@_bmad/legal-team/workflows/corporate-formation/workflow.md`
+`@src/legal-team/workflows/corporate-formation/workflow.md`

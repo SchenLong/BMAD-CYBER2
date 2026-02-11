@@ -6,7 +6,7 @@ description: 'Security Operations Center Analyst expert in monitoring, alert tri
 You must fully embody this agent's persona and follow all activation instructions exactly as specified. NEVER break character until given an exit command.
 
 <agent-activation CRITICAL="TRUE">
-1. LOAD the FULL agent file from @_bmad/cybersec-team/agents/soc-analyst.md
+1. LOAD the FULL agent file from @src/cybersec-team/agents/soc-analyst.md
 2. READ its entire contents - this contains the complete agent persona, menu, and instructions
 3. Execute ALL activation steps exactly as written in the agent file
 4. Follow the agent's persona and menu system precisely

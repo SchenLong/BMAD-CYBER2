@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Communication Plan
 
-## STEP GOAL:
+## STEP GOAL
 
 With Giuseppe (communications-director) leading, develop a comprehensive communications strategy for announcing and implementing the decision, with tailored messaging for each stakeholder group.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You channel Giuseppe - the Public Messaging & Media Strategy expert (📢)
 - ✅ Persona: Former White House Deputy Communications Director, crisis PR specialist
@@ -24,11 +24,12 @@ With Giuseppe (communications-director) leading, develop a comprehensive communi
 - ✅ "If you're explaining, you're losing" - focus on clear, compelling messages
 - ✅ Authenticity beats polish
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on communication strategy, not re-debating the decision
 - 🚫 FORBIDDEN to skip crisis scenario planning
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead as Giuseppe throughout
 - Develop core narrative
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Giuseppe Takes Command
 
@@ -70,6 +71,7 @@ Let me help you control the narrative. Because if you don't, someone else will."
 [One sentence - 10 words or less - that captures the decision]
 
 **The story arc:**
+
 1. **The situation:** [Why change is needed - what problem we're solving]
 2. **The decision:** [What we're doing]
 3. **The benefit:** [What stakeholders gain]
@@ -87,6 +89,7 @@ Can you deliver that with confidence? If not, we refine."
 "Now, one message doesn't fit all. Let's tailor for each key stakeholder:
 
 **[Stakeholder Group 1: e.g., Leadership/Board]**
+
 - **Their primary concern:** [what they care about]
 - **Our core message to them:** [tailored message]
 - **Supporting points:**
@@ -97,6 +100,7 @@ Can you deliver that with confidence? If not, we refine."
 - **Timing:** [when]
 
 **[Stakeholder Group 2: e.g., Employees]**
+
 - **Their primary concern:** [what they care about]
 - **Our core message to them:** [tailored message]
 - **Supporting points:**
@@ -110,6 +114,7 @@ Can you deliver that with confidence? If not, we refine."
 [Same format]
 
 **[Stakeholder Group 4: e.g., Opponents/Skeptics]**
+
 - **Their likely objection:** [what they'll say]
 - **Our preemptive message:** [address before they raise]
 - **If they attack:** [response]"
@@ -121,16 +126,19 @@ Can you deliver that with confidence? If not, we refine."
 "Timing matters. Here's the sequence:
 
 **Before Announcement:**
+
 - [ ] [Pre-brief key allies: who, when]
 - [ ] [Prepare materials: what]
 - [ ] [Brief internal teams: when]
 
 **Announcement (Day 0):**
+
 - **Hour X:** [first communication to whom]
 - **Hour X+1:** [next wave]
 - **Hour X+4:** [external if applicable]
 
 **After Announcement:**
+
 - **Day 1:** [follow-up actions]
 - **Week 1:** [continued engagement]
 - **Ongoing:** [sustained communication]
@@ -154,11 +162,13 @@ Never let someone hear about something that affects them from someone else first
 
 **Questions to volunteer answers for:**
 (Pre-empt before they ask)
+
 - [question 1]
 - [question 2]
 
 **Questions to avoid:**
 (Redirect if asked)
+
 - [question 1] → redirect to [topic]"
 
 ### 6. Crisis Scenarios and Rapid Response
@@ -168,26 +178,31 @@ Never let someone hear about something that affects them from someone else first
 "Murphy's Law applies to communications. Let's prepare:
 
 **Scenario 1: [Leak before announcement]**
+
 - Trigger: [what would indicate this]
 - Response: [accelerate timeline, message]
 - Prepared statement: [draft]
 
 **Scenario 2: [Stakeholder public opposition]**
+
 - Trigger: [what would indicate this]
 - Response: [engagement approach]
 - Prepared statement: [draft]
 
 **Scenario 3: [Media negative framing]**
+
 - Trigger: [what would indicate this]
 - Response: [correction approach]
 - Key message: [reframe]
 
 **Scenario 4: [Implementation problem surfaces]**
+
 - Trigger: [what would indicate this]
 - Response: [acknowledgment and pivot]
 - Key message: [demonstrate responsiveness]
 
 **Rapid Response Protocol:**
+
 - Decision to respond: within [X hours]
 - Approval chain: [who]
 - Spokesperson: [who]"
@@ -199,6 +214,7 @@ Never let someone hear about something that affects them from someone else first
 "Let me check this with Magnus for political viability.
 
 Magnus's assessment:
+
 - **Internal politics:** Will this message fly with [key internal stakeholder]?
 - **Coalition impact:** Does this help or hurt our allies?
 - **Opponent response:** How will [opponent] try to use this?
@@ -213,6 +229,7 @@ Magnus's assessment:
 **Core Headline:** [headline]
 
 **Key Messages by Audience:**
+
 | Audience | Core Message | Channel | Timing |
 |----------|--------------|---------|--------|
 | [audience 1] | [message] | [channel] | [timing] |
@@ -220,6 +237,7 @@ Magnus's assessment:
 | [audience 3] | [message] | [channel] | [timing] |
 
 **Prepared for:**
+
 - [X] Anticipated questions
 - [X] Crisis scenarios
 - [X] Rollout sequence
@@ -241,26 +259,30 @@ Magnus's assessment:
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [M] Refine Messaging [C] Continue to Decision Document"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Cicero for message refinement or Magnus for political check, when finished redisplay the menu
 - IF M: Refine messaging for a specific stakeholder, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and communications plan is complete, will you then load and read fully `{nextStepFile}` (step-08-decision-document.md).
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - Core narrative clear and compelling
 - Each key stakeholder has tailored message
 - Timing sequence defined
@@ -268,7 +290,8 @@ ONLY WHEN [C] Continue is selected and communications plan is complete, will you
 - Crisis scenarios addressed
 - Giuseppe persona maintained
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
+
 - Generic messaging for all audiences
 - Skipping crisis scenario planning
 - No Q&A preparation

@@ -48,36 +48,44 @@ The BMAD Dependency Management System provides comprehensive dependency resoluti
 ## Core Components
 
 ### 1. BMADDependencyManager
+
 Main orchestrator for dependency resolution and installation planning.
 
 **Key Features:**
+
 - Cross-module dependency resolution
 - Installation order optimization
 - Conflict detection and resolution
 - Integration with Amelia's installation framework
 
 ### 2. BMADVersionChecker
+
 Validates BMAD core and cross-module version requirements.
 
 **Key Features:**
+
 - BMAD core compatibility checking
 - Semantic version validation
 - Agent and workflow availability verification
 - Peer dependency resolution
 
 ### 3. BMADCircularDetector
+
 Advanced circular dependency detection and resolution strategies.
 
 **Key Features:**
+
 - Depth-First Search (DFS) cycle detection
 - Tarjan's algorithm for strongly connected components
 - Resolution strategy suggestions
 - Installation plan validation
 
 ### 4. BMADPackageRegistryManager
+
 Node.js compatibility verification and NPM package management.
 
 **Key Features:**
+
 - Runtime environment detection
 - Node.js feature compatibility checking
 - Security audit integration
@@ -102,7 +110,7 @@ npm install --save semver yaml joi lodash
 npm install --save-dev jest eslint
 ```
 
-2. **Initialize the Dependency System**
+1. **Initialize the Dependency System**
 
 ```javascript
 const BMADDependencyManager = require('./bmad-dependency-manager.js');
@@ -120,7 +128,7 @@ const dependencyManager = new BMADDependencyManager({
 await dependencyManager.initialize();
 ```
 
-3. **Verify Installation**
+1. **Verify Installation**
 
 ```javascript
 // Check system compatibility
@@ -290,6 +298,7 @@ The dependency management system is designed to integrate seamlessly with Amelia
 ### Integration Points
 
 1. **Pre-Installation Validation**
+
 ```javascript
 // Called by Amelia before starting installation
 const validationResult = await dependencyManager.validateInstallationPlan(plan);
@@ -299,7 +308,8 @@ if (!validationResult.valid) {
 }
 ```
 
-2. **Installation Execution**
+1. **Installation Execution**
+
 ```javascript
 // Amelia calls this to execute the installation plan
 const executionResult = await dependencyManager.executeInstallationPlan(
@@ -311,7 +321,8 @@ const executionResult = await dependencyManager.executeInstallationPlan(
 );
 ```
 
-3. **Progress Monitoring**
+1. **Progress Monitoring**
+
 ```javascript
 // Amelia can monitor installation progress
 dependencyManager.on('phase_started', (phase) => {
@@ -357,6 +368,7 @@ class AmeliaDependencyIntegration {
 ## Specialized Teams Configuration
 
 ### Cybersecurity Team
+
 ```yaml
 # cybersec-team-module.yaml
 code: "cybersec-team"
@@ -382,6 +394,7 @@ dependencies:
 ```
 
 ### Intelligence Team
+
 ```yaml
 # intel-team-module.yaml
 code: "intel-team"
@@ -405,6 +418,7 @@ dependencies:
 ```
 
 ### Legal Team
+
 ```yaml
 # legal-team-module.yaml
 code: "legal-team"
@@ -428,6 +442,7 @@ dependencies:
 ```
 
 ### Strategy Team
+
 ```yaml
 # strategy-team-module.yaml
 code: "strategy-team"
@@ -459,6 +474,7 @@ dependencies:
 **Problem**: Module requires newer BMAD core version than installed.
 
 **Solution**:
+
 ```javascript
 // Check current BMAD core version
 const versionChecker = new BMADVersionChecker();
@@ -479,6 +495,7 @@ if (semver.lt(coreVersion, '2.0.0')) {
 **Problem**: Circular dependencies detected between specialized teams.
 
 **Solution**:
+
 ```javascript
 const circularDetector = new BMADCircularDetector();
 const detection = circularDetector.detectCircularDependencies(graph);
@@ -498,6 +515,7 @@ if (detection.hasCircularDependencies) {
 **Problem**: Package requires newer Node.js features not available in current version.
 
 **Solution**:
+
 ```javascript
 const packageManager = new BMADPackageRegistryManager();
 await packageManager.initialize();
@@ -519,6 +537,7 @@ if (!compatibility.compatible) {
 **Problem**: NPM package installation fails due to network or permission issues.
 
 **Solution**:
+
 ```bash
 # Check NPM configuration
 npm config list
@@ -638,11 +657,13 @@ const packageManager = new BMADPackageRegistryManager({
 ### BMADDependencyManager
 
 #### Constructor
+
 ```javascript
 new BMADDependencyManager(options)
 ```
 
 **Options:**
+
 - `bmadRoot` (string): Path to BMAD installation root
 - `npmRegistry` (string): NPM registry URL
 - `maxRetries` (number): Maximum retry attempts
@@ -651,6 +672,7 @@ new BMADDependencyManager(options)
 #### Methods
 
 ##### `initialize()`
+
 Initialize the dependency manager.
 
 ```javascript
@@ -658,18 +680,22 @@ await dependencyManager.initialize();
 ```
 
 ##### `resolveDependencies(moduleConfig, options)`
+
 Resolve dependencies for a module.
 
 **Parameters:**
+
 - `moduleConfig` (Object): Module configuration
 - `options` (Object): Resolution options
 
 **Returns:** Promise resolving to resolution result
 
 ##### `executeInstallationPlan(plan, options)`
+
 Execute an installation plan.
 
 **Parameters:**
+
 - `plan` (Object): Installation plan from dependency resolution
 - `options` (Object): Execution options
 
@@ -678,6 +704,7 @@ Execute an installation plan.
 ### BMADVersionChecker
 
 #### Constructor
+
 ```javascript
 new BMADVersionChecker()
 ```
@@ -685,6 +712,7 @@ new BMADVersionChecker()
 #### Methods
 
 ##### `initialize(bmadRootPath)`
+
 Initialize version checker with BMAD installation path.
 
 ```javascript
@@ -692,9 +720,11 @@ await versionChecker.initialize('./_bmad');
 ```
 
 ##### `validateModuleCompatibility(moduleName, moduleVersion, dependencies)`
+
 Validate module compatibility.
 
 **Parameters:**
+
 - `moduleName` (string): Module name
 - `moduleVersion` (string): Module version
 - `dependencies` (Object): Module dependencies
@@ -702,6 +732,7 @@ Validate module compatibility.
 **Returns:** Compatibility validation result
 
 ##### `generateCompatibilityReport()`
+
 Generate comprehensive compatibility report.
 
 **Returns:** Detailed compatibility report object
@@ -709,6 +740,7 @@ Generate comprehensive compatibility report.
 ### BMADCircularDetector
 
 #### Constructor
+
 ```javascript
 new BMADCircularDetector()
 ```
@@ -716,17 +748,21 @@ new BMADCircularDetector()
 #### Methods
 
 ##### `detectCircularDependencies(dependencyGraph)`
+
 Detect circular dependencies in dependency graph.
 
 **Parameters:**
+
 - `dependencyGraph` (Map): Dependency graph to analyze
 
 **Returns:** Detection result with cycles and resolution strategies
 
 ##### `validateInstallationPlan(installationPlan)`
+
 Validate installation plan for circular dependencies.
 
 **Parameters:**
+
 - `installationPlan` (Object): Installation plan to validate
 
 **Returns:** Validation result
@@ -734,11 +770,13 @@ Validate installation plan for circular dependencies.
 ### BMADPackageRegistryManager
 
 #### Constructor
+
 ```javascript
 new BMADPackageRegistryManager(options)
 ```
 
 **Options:**
+
 - `npmRegistry` (string): NPM registry URL
 - `securityAuditEnabled` (boolean): Enable security auditing
 - `strictCompatibility` (boolean): Enable strict compatibility checking
@@ -746,6 +784,7 @@ new BMADPackageRegistryManager(options)
 #### Methods
 
 ##### `initialize()`
+
 Initialize package registry manager.
 
 ```javascript
@@ -753,17 +792,21 @@ await packageManager.initialize();
 ```
 
 ##### `verifyNodeCompatibility(packageInfo)`
+
 Verify Node.js compatibility for a package.
 
 **Parameters:**
+
 - `packageInfo` (Object): Package information
 
 **Returns:** Compatibility verification result
 
 ##### `installPackage(packageName, version, options)`
+
 Install NPM package with compatibility verification.
 
 **Parameters:**
+
 - `packageName` (string): Package name to install
 - `version` (string): Package version (optional)
 - `options` (Object): Installation options
@@ -771,9 +814,11 @@ Install NPM package with compatibility verification.
 **Returns:** Installation result
 
 ##### `auditPackageSecurity(packageName, version)`
+
 Perform security audit on a package.
 
 **Parameters:**
+
 - `packageName` (string): Package name
 - `version` (string): Package version (optional)
 

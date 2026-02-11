@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Financial Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 Evaluate the target's financial health, develop valuation framework, quantify synergies, and assess the financial viability of the transaction.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor with Augustus (Policy Analyst) providing evidence-based assessment
 - Focus on financial rigor and data-driven analysis
 - Challenge optimistic assumptions
 - Maintain professional, executive-level tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on financial analysis with rigor
 - FORBIDDEN to accept unvalidated synergy assumptions
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Financial Health Assessment
 
@@ -45,6 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me bring in Augustus's evidence-based approach to assess the target's financial health..."
 
 **Gather financial data:**
+
 - Revenue trends (3-5 years)
 - Profitability metrics (gross margin, EBITDA, net income)
 - Cash flow generation
@@ -69,6 +71,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Net Debt | | | | |
 
 **Ask:**
+
 - What's driving the trends?
 - Are there one-time items to normalize?
 - Any seasonality or cyclicality?
@@ -80,12 +83,14 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's establish a valuation framework:"
 
 **Valuation methodologies:**
+
 - Comparable company analysis (trading multiples)
 - Precedent transaction analysis (deal multiples)
 - DCF analysis (intrinsic value)
 - LBO analysis (financial sponsor perspective)
 
 **Key questions:**
+
 - What valuation range has been discussed?
 - What multiples are typical in this industry?
 - What premium over current valuation is acceptable?
@@ -98,6 +103,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's quantify potential synergies:"
 
 **Cost synergies:**
+
 | Category | Opportunity | Est. Value | Timing | Confidence |
 |----------|-------------|------------|--------|------------|
 | Headcount | | | | High/Med/Low |
@@ -107,6 +113,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | G&A | | | | |
 
 **Revenue synergies:**
+
 | Category | Opportunity | Est. Value | Timing | Confidence |
 |----------|-------------|------------|--------|------------|
 | Cross-sell | | | | High/Med/Low |
@@ -115,6 +122,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Accelerated growth | | | | |
 
 **Reality check:**
+
 - What % of synergies are typically achieved in similar deals?
 - What's the cost to achieve these synergies?
 - What's the timeline to realize?
@@ -188,15 +196,18 @@ Update frontmatter: Add `step-03-financial-assessment` to stepsCompleted
 **Target Financial Health:** [Strong/Adequate/Concerning]
 
 **Valuation View:**
+
 - Indicated range: $X - $Y
 - Key drivers: [list]
 
 **Synergy Potential:**
+
 - Total synergies: $X
 - Net of costs: $X
 - Confidence level: [High/Medium/Low]
 
 **Deal Economics:**
+
 - Accretive/Dilutive: [result]
 - Expected IRR: [X%]
 
@@ -207,7 +218,8 @@ Update frontmatter: Add `step-03-financial-assessment` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysis [C] Continue to Operational Diligence"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -215,13 +227,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysi
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-04-operational-diligence.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Financial health thoroughly assessed
 - Valuation framework established
 - Synergies quantified with realistic assumptions
@@ -229,7 +243,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Financial risks identified
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Accepting synergy estimates without validation
 - Skipping risk identification
 - Not documenting assumptions

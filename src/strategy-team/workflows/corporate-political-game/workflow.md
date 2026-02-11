@@ -1,5 +1,5 @@
 ---
-name: Corporate Political Game
+name: corporate-political-game
 description: Navigate complex internal politics, power dynamics, and organizational maneuvering
 web_bundle: true
 ---
@@ -81,6 +81,7 @@ This workflow guides you through 8 steps:
 ## ETHICAL NOTE
 
 Corporate politics are reality. This workflow helps navigate them effectively while maintaining integrity. The goal is influence through competence and relationships, not manipulation. Consider:
+
 - Are your goals legitimate?
 - Are your methods ethical?
 - Can you be proud of how you achieved success?

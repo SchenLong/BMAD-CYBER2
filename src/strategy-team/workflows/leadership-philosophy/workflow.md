@@ -1,5 +1,5 @@
 ---
-name: Leadership Philosophy Development
+name: leadership-philosophy
 description: Develop personal leadership philosophy through dialogue with historical archetypes and deep reflection
 web_bundle: true
 ---
@@ -105,6 +105,7 @@ This workflow is **personal development focused**, unlike other strategy-team wo
 | Team/organization focus | Individual focus |
 
 Use this workflow for:
+
 - New leaders establishing their approach
 - Experienced leaders articulating what they've learned
 - Leaders in transition clarifying who they want to become

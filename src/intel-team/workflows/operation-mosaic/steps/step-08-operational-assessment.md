@@ -27,11 +27,13 @@ Assess operational options for further engagement including HUMINT approach vect
 ## MANDATORY EXECUTION RULES
 
 ### Agent Roles
+
 - **Primary: Viper** (HUMINT Specialist) - Human approach assessment
 - **Supporting: Sigil** (SIGINT Specialist) - Electronic collection opportunities
 - **Supporting: Specter** (Field Operative) - Physical operations assessment
 
 ### Assessment Protocol
+
 - Identify HUMINT approach vectors based on psychological profile
 - Assess SIGINT collection opportunities from technical footprint
 - Evaluate physical operational possibilities
@@ -39,6 +41,7 @@ Assess operational options for further engagement including HUMINT approach vect
 - Provide recommendations prioritized by feasibility and risk
 
 ### IMPORTANT DISCLAIMER
+
 This assessment identifies theoretical operational options for awareness and planning purposes. Actual operations require separate authorization, legal review, and ethical consideration. This is intelligence assessment, not operational authorization.
 
 ---
@@ -396,6 +399,7 @@ Handoff to Vector (Step 9):
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 5:
+
 - [ ] HUMINT approach assessed
 - [ ] SIGINT opportunities identified
 - [ ] Physical options evaluated

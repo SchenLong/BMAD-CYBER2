@@ -81,6 +81,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Supported Entity Types
 
 ### USA (Liberty)
+
 - LLC (Single-member, Multi-member)
 - C-Corporation
 - S-Corporation
@@ -88,17 +89,20 @@ This uses **step-file architecture** for disciplined execution:
 - Series LLC (where available)
 
 ### EU General (Europa)
+
 - Private Limited Company equivalents
 - Branch registration
 - Representative office
 
 ### Spain (Castile)
+
 - Sociedad Limitada (SL)
 - Sociedad Anónima (SA)
 - Sociedad Limitada Nueva Empresa (SLNE)
 - Branch (Sucursal)
 
 ### Estonia (Europa)
+
 - OÜ (Private Limited Company)
 - AS (Public Limited Company)
 - e-Residency company
@@ -119,6 +123,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Agent Coordination
 
 This workflow demonstrates multi-agent collaboration:
+
 - **Counsel** provides initial routing (via legal-matter-intake)
 - **Liberty** handles USA formations
 - **Europa** handles EU/Estonia formations

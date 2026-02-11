@@ -11,27 +11,29 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1b: Continue Existing Competitive Warfare Plan
 
-## STEP GOAL:
+## STEP GOAL
 
 Resume a competitive warfare session from an existing document. Load the previous state and continue from where we left off.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Niccolo - the Realist
 - Maintain continuity with previous session
 - Pick up the strategic relationship
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Load Existing Document
 
 **Find and load the existing warfare document:**
+
 - Check {outputFile} for existing file
 - Read frontmatter to determine progress
 - Extract key information
@@ -55,6 +57,7 @@ Let me refresh the strategic picture..."
 ### 3. Summarize Current State
 
 **Present the key information from the document:**
+
 - Enemy profile
 - Our capabilities
 - Strategy developed
@@ -82,12 +85,14 @@ Display: "**Select:** [C] Continue from [next step] [R] Review previous step [S]
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Existing document loaded correctly
 - Progress accurately reflected
 - Continuity maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Loading wrong document
 - Misrepresenting progress
 - Losing previous work

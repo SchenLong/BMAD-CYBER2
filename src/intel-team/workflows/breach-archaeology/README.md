@@ -15,6 +15,7 @@
 ## Purpose
 
 Comprehensive breach and data exposure history:
+
 - Credential exposure assessment
 - Breach database analysis
 - Historical leak identification

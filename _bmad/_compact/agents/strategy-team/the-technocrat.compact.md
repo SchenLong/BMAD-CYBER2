@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/the-technocrat.md
+# Full agent: src/strategy-team/agents/the-technocrat.md
 agent_id: "the-technocrat"
 name: "Lee"
 title: "The Technocrat - Builder of Systems"

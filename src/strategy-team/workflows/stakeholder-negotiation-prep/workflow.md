@@ -1,5 +1,5 @@
 ---
-name: Stakeholder Negotiation Prep
+name: stakeholder-negotiation-prep
 description: Prepare for critical negotiations with stakeholder analysis, interest mapping, and strategy development
 web_bundle: true
 ---

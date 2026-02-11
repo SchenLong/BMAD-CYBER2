@@ -18,6 +18,7 @@ Identify potential legal claims, defenses, and applicable law.
 Based on facts, identify potential claims:
 
 **Contract Claims:**
+
 - Breach of contract
 - Breach of warranty
 - Rescission
@@ -25,6 +26,7 @@ Based on facts, identify potential claims:
 - Specific performance
 
 **Tort Claims:**
+
 - Negligence
 - Fraud/Misrepresentation
 - Interference with contract
@@ -32,12 +34,14 @@ Based on facts, identify potential claims:
 - Defamation
 
 **Statutory Claims:**
+
 - Consumer protection violations
 - Employment law violations
 - Unfair competition
 - Industry-specific regulations
 
 **Equitable Claims:**
+
 - Unjust enrichment
 - Promissory estoppel
 - Constructive trust
@@ -63,12 +67,14 @@ For each potential claim, analyze elements:
 If defending, identify potential defenses:
 
 **Procedural Defenses:**
+
 - Statute of limitations
 - Lack of jurisdiction
 - Improper venue
 - Failure to state claim
 
 **Substantive Defenses:**
+
 - No breach occurred
 - Excuse/Justification
 - Waiver/Estoppel
@@ -76,6 +82,7 @@ If defending, identify potential defenses:
 - Mitigation failure
 
 **Affirmative Defenses:**
+
 - Accord and satisfaction
 - Release
 - Statute of frauds
@@ -86,12 +93,14 @@ If defending, identify potential defenses:
 Identify governing law:
 
 **Jurisdiction Specific:**
+
 - Applicable statutes
 - Key case law
 - Procedural requirements
 - Limitations periods
 
 **Spain Specific (if applicable):**
+
 - Código Civil provisions
 - Ley de Enjuiciamiento Civil
 - Relevant jurisprudence

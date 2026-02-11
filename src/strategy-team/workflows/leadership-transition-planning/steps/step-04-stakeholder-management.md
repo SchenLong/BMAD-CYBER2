@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Stakeholder Management
 
-## STEP GOAL:
+## STEP GOAL
 
 Plan comprehensive stakeholder communications and relationship management throughout the transition to maintain confidence and minimize disruption.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Leadership Transition Advisor with Giuseppe (Communications Director) providing messaging expertise
 - Focus on maintaining stakeholder confidence
 - Address concerns proactively
 - Ensure consistent messaging across audiences
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Tailor communications to each stakeholder group
 - FORBIDDEN to use one-size-fits-all messaging
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Stakeholder Analysis
 
@@ -65,6 +66,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's develop key messages for each audience:"
 
 **Core narrative:**
+
 - Why this transition is happening
 - Why the organization is well-prepared
 - What stakeholders can expect
@@ -73,18 +75,21 @@ You MUST respond in **{communication_language}** throughout this step.
 **Audience-specific messages:**
 
 **For direct reports:**
+
 - What stays the same
 - What may change
 - How they'll be involved
 - Support available
 
 **For customers:**
+
 - Relationship continuity
 - Service commitment
 - Contact information
 - Value proposition unchanged
 
 **For investors/board:**
+
 - Strategic continuity
 - Succession process strength
 - Risk mitigation
@@ -109,6 +114,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How will the new leader be introduced?"
 
 **Introduction sequence:**
+
 | Stakeholder | Timing | Format | Key Messages | Who Leads |
 |-------------|--------|--------|--------------|-----------|
 | Executive team | | | | |
@@ -143,6 +149,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - Role eliminations (if applicable)
 
 **Approach for each:**
+
 - Who leads conversation
 - Key messages
 - Support offered
@@ -193,14 +200,17 @@ Update frontmatter: Add `step-04-stakeholder-management` to stepsCompleted
 **Critical Stakeholders:** [count]
 
 **Key Messages:**
+
 - Core theme: [summary]
 
 **Communication Timeline:**
+
 - Announcement: [timing]
 - Successor intro: [timing]
 - Completion: [timing]
 
 **Primary Concerns to Address:**
+
 1. [concern]
 2. [concern]
 3. [concern]
@@ -212,7 +222,8 @@ Update frontmatter: Add `step-04-stakeholder-management` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [C] Continue to Operational Continuity"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -220,13 +231,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [C
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-05-operational-continuity.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All stakeholders mapped
 - Messages tailored to audiences
 - Timeline established
@@ -234,7 +247,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Introduction strategy planned
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Generic messaging for all audiences
 - Skipping concern management
 - Not planning introductions

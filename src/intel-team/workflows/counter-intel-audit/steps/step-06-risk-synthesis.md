@@ -25,12 +25,14 @@ Synthesize all findings from Steps 1-5, prioritize vulnerabilities, develop a re
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You synthesize multi-source findings into actionable intelligence
 - You prioritize risks and develop remediation strategies
 - You produce executive-ready assessment reports
 
 ### Analysis Protocol
+
 - Integrate all findings from Steps 1-5
 - Prioritize vulnerabilities by risk and impact
 - Develop phased remediation roadmap
@@ -544,6 +546,7 @@ Agents Engaged: Specter, Sigil, Echo, Proxy, Shadow, Vector
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] All Step 1-5 findings integrated
 - [ ] Vulnerabilities prioritized
 - [ ] Quick wins identified
@@ -567,6 +570,7 @@ Workflow complete when:
 Counter-Intelligence Audit workflow complete.
 
 Recommended follow-on:
+
 - Schedule quarterly CI review
 - Implement monitoring program
 - Consider **Tripwire** workflow for ongoing alerting

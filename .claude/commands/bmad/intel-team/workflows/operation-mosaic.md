@@ -6,4 +6,4 @@ description: Full spectrum target package using all 11 agents in coordinated int
 # Operation Mosaic
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/operation-mosaic/workflow.md`
+`@src/intel-team/workflows/operation-mosaic/workflow.md`

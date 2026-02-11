@@ -31,7 +31,7 @@ const __dirname = path.dirname(__filename);
  * Path to the security config file relative to project root
  * @type {string}
  */
-export const SECURITY_CONFIG_PATH = '_bmad/core/security/security-config.yaml';
+export const SECURITY_CONFIG_PATH = 'src/core/security/security-config.yaml';
 
 /**
  * Current security config version

@@ -16,26 +16,27 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 1b: Continue Existing Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - This step ONLY executes if {outputFile} exists
 - Parse frontmatter to determine progress
 - Offer appropriate continuation options
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Parse Existing Document
 
 Read {outputFile} and extract:
+
 - `stepsCompleted` array from frontmatter
 - `project_name`, `platform`, `project_type`
 - `status` field
@@ -76,7 +77,7 @@ Display: **Select How to Continue:**
 [V] View current document sections
 [R] Restart assessment (new document)
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Determine next step from stepsCompleted, load and follow that step file
 - IF J: Display step list with numbers, accept step selection, load and follow selected step
@@ -101,6 +102,7 @@ If user selects Jump (J):
 Enter step number:"
 
 Then load corresponding step file:
+
 - 1 → step-01-init.md
 - 2 → step-02-smart-contract-review.md
 - 3 → step-03-access-control.md

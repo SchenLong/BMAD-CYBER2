@@ -6,4 +6,4 @@ description: SIGINT Opportunity Mapping - Map target electronic footprint and co
 # Signal Landscape
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/signal-landscape/workflow.md`
+`@src/intel-team/workflows/signal-landscape/workflow.md`

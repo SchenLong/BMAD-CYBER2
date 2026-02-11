@@ -6,4 +6,4 @@ description: Tax planning and optimization analysis workflow
 # Tax Planning
 
 Load and follow the workflow at:
-`@_bmad/legal-team/workflows/tax-planning/workflow.md`
+`@src/legal-team/workflows/tax-planning/workflow.md`

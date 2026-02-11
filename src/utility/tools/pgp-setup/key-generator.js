@@ -25,7 +25,7 @@ import { fileURLToPath } from 'url';
 import { writeFileSync, unlinkSync, existsSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import inquirer from 'inquirer';
+import { select, confirm, text, password } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -195,12 +195,10 @@ export async function promptForKeyGeneration() {
   console.log(chalk.dim('Generate a personal PGP key for signing configuration files'));
   console.log('');
 
-  const { generate } = await inquirer.prompt([{
-    type: 'confirm',
-    name: 'generate',
+  const generate = await confirm({
     message: 'Generate a personal PGP key for signing files?',
-    default: true
-  }]);
+    initialValue: true
+  });
 
   return generate;
 }
@@ -226,15 +224,11 @@ export async function promptForAlgorithm() {
     return { name, value: key, short: value.name };
   });
 
-  const { algorithm } = await inquirer.prompt([{
-    type: 'list',
-    name: 'algorithm',
+  const algorithm = await select({
     message: 'Choose algorithm:',
     choices,
-    default: 'RSA4096',
-    pageSize: 10,
-    loop: false
-  }]);
+    default: 'RSA4096'
+  });
 
   return algorithm;
 }
@@ -260,17 +254,13 @@ export async function promptForExpiration() {
     return { name, value: opt.value, short: opt.label };
   });
 
-  const defaultIndex = EXPIRATION_OPTIONS.findIndex(e => e.recommended);
+  const defaultValue = EXPIRATION_OPTIONS.find(e => e.recommended)?.value || '2y';
 
-  const { expiration } = await inquirer.prompt([{
-    type: 'list',
-    name: 'expiration',
+  const expiration = await select({
     message: 'Choose expiration:',
     choices,
-    default: defaultIndex >= 0 ? defaultIndex : 1,
-    pageSize: 10,
-    loop: false
-  }]);
+    default: defaultValue
+  });
 
   return expiration;
 }
@@ -286,21 +276,15 @@ export async function promptForPassphrase() {
   console.log(chalk.dim('Minimum 8 characters recommended'));
   console.log('');
 
-  const { passphrase } = await inquirer.prompt([{
-    type: 'password',
-    name: 'passphrase',
+  const passphrase = await password({
     message: 'Enter passphrase:',
-    mask: '*',
-    validate: validatePassphrase
-  }]);
+    validate: (val) => { const r = validatePassphrase(val); return r === true ? undefined : r; }
+  });
 
-  await inquirer.prompt([{
-    type: 'password',
-    name: 'confirmPassphrase',
+  await password({
     message: 'Confirm passphrase:',
-    mask: '*',
-    validate: (input) => input !== passphrase ? 'Passphrases do not match' : true
-  }]);
+    validate: (input) => input !== passphrase ? 'Passphrases do not match' : undefined
+  });
 
   return passphrase;
 }
@@ -316,71 +300,60 @@ export async function promptKeyParameters(defaults = {}) {
   console.log(chalk.bold.cyan('                    PGP Key Generation'));
   console.log(chalk.bold.cyan('═══════════════════════════════════════════════════════════════\n'));
 
-  const answers = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'Your full name:',
-      default: defaults.name || process.env.USER || '',
-      validate: validateName
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: 'Your email address:',
-      default: defaults.email || '',
-      validate: validateEmail
-    },
-    {
-      type: 'list',
-      name: 'keyType',
-      message: 'Key type:',
-      choices: Object.entries(KEY_ALGORITHMS).map(([key, value]) => ({
-        name: `${value.name} - ${value.description}${value.recommended ? chalk.green(' (Recommended)') : ''}`,
-        value: key,
-        short: value.name
-      })),
-      default: 'RSA4096'
-    },
-    {
-      type: 'list',
-      name: 'expiration',
-      message: 'Key expiration:',
-      choices: EXPIRATION_OPTIONS.map(opt => ({
-        name: `${opt.label}${opt.recommended ? chalk.green(' (Recommended)') : ''} - ${opt.description}`,
-        value: opt.value,
-        short: opt.label
-      })),
-      default: '2y'
-    },
-    {
-      type: 'password',
-      name: 'passphrase',
-      message: 'Passphrase (for key protection):',
-      mask: '*',
-      validate: validatePassphrase
-    },
-    {
-      type: 'password',
-      name: 'passphraseConfirm',
-      message: 'Confirm passphrase:',
-      mask: '*',
-      validate: (input, answers) => {
-        if (input !== answers.passphrase) {
-          return 'Passphrases do not match';
-        }
-        return true;
+  const name = await text({
+    message: 'Your full name:',
+    default: defaults.name || process.env.USER || '',
+    validate: (val) => { const r = validateName(val); return r === true ? undefined : r; }
+  });
+
+  const email = await text({
+    message: 'Your email address:',
+    default: defaults.email || '',
+    validate: (val) => { const r = validateEmail(val); return r === true ? undefined : r; }
+  });
+
+  const keyType = await select({
+    message: 'Key type:',
+    choices: Object.entries(KEY_ALGORITHMS).map(([key, value]) => ({
+      name: `${value.name} - ${value.description}${value.recommended ? chalk.green(' (Recommended)') : ''}`,
+      value: key,
+      short: value.name
+    })),
+    default: 'RSA4096'
+  });
+
+  const expiration = await select({
+    message: 'Key expiration:',
+    choices: EXPIRATION_OPTIONS.map(opt => ({
+      name: `${opt.label}${opt.recommended ? chalk.green(' (Recommended)') : ''} - ${opt.description}`,
+      value: opt.value,
+      short: opt.label
+    })),
+    default: '2y'
+  });
+
+  const passphrase = await password({
+    message: 'Passphrase (for key protection):',
+    validate: (val) => { const r = validatePassphrase(val); return r === true ? undefined : r; }
+  });
+
+  await password({
+    message: 'Confirm passphrase:',
+    validate: (input) => {
+      if (input !== passphrase) {
+        return 'Passphrases do not match';
       }
+      return undefined;
     }
-  ]);
+  });
 
   return {
-    name: answers.name.trim(),
-    email: answers.email.trim(),
-    keyType: KEY_ALGORITHMS[answers.keyType],
-    keyTypeCode: answers.keyType,
-    expiration: answers.expiration,
-    passphrase: answers.passphrase
+    name: name.trim(),
+    email: email.trim(),
+    keyType: KEY_ALGORITHMS[keyType],
+    keyTypeCode: keyType,
+    expiration: expiration,
+    passphrase: passphrase
   };
 }
 
@@ -619,23 +592,19 @@ export async function runKeyGeneration(userProfile = {}) {
       email = userProfile.email;
     } else {
       // Prompt for name and email if not provided
-      const nameAnswer = await inquirer.prompt([{
-        type: 'input',
-        name: 'name',
+      const nameResult = await text({
         message: 'Your full name:',
         default: userProfile.name || process.env.USER || '',
-        validate: validateName
-      }]);
-      name = nameAnswer.name.trim();
+        validate: (val) => { const r = validateName(val); return r === true ? undefined : r; }
+      });
+      name = nameResult.trim();
 
-      const emailAnswer = await inquirer.prompt([{
-        type: 'input',
-        name: 'email',
+      const emailResult = await text({
         message: 'Your email address:',
         default: userProfile.email || '',
-        validate: validateEmail
-      }]);
-      email = emailAnswer.email.trim();
+        validate: (val) => { const r = validateEmail(val); return r === true ? undefined : r; }
+      });
+      email = emailResult.trim();
     }
 
     // Step 2: Select algorithm
@@ -662,14 +631,12 @@ export async function runKeyGeneration(userProfile = {}) {
     console.log(chalk.cyan('-'.repeat(50)));
 
     // Step 6: Confirm generation
-    const { confirm } = await inquirer.prompt([{
-      type: 'confirm',
-      name: 'confirm',
+    const confirmed = await confirm({
       message: 'Generate key with these settings?',
-      default: true
-    }]);
+      initialValue: true
+    });
 
-    if (!confirm) {
+    if (!confirmed) {
       console.log(chalk.dim('\nKey generation cancelled.'));
       return { success: false, generated: false, cancelled: true };
     }

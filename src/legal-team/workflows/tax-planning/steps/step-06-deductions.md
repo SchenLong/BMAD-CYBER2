@@ -18,6 +18,7 @@ Identify and maximize available deductions and tax credits.
 Catalog deductible expenses:
 
 **Operating Expenses:**
+
 - Salaries and wages
 - Rent and occupancy costs
 - Professional services
@@ -26,6 +27,7 @@ Catalog deductible expenses:
 - Supplies and materials
 
 **Depreciation & Amortization:**
+
 - Tangible property depreciation
 - Intangible amortization
 - Section 179 expensing
@@ -33,6 +35,7 @@ Catalog deductible expenses:
 - Cost segregation opportunities
 
 **Interest Expense:**
+
 - Business interest limitation (163(j))
 - Investment interest
 - Mortgage interest
@@ -43,12 +46,14 @@ Catalog deductible expenses:
 Maximize current-year deductions:
 
 **Timing Strategies:**
+
 - Prepay deductible expenses
 - Accelerate purchases before year-end
 - Bonus depreciation elections
 - Accounting method changes
 
 **Cost Segregation:**
+
 - Building purchase analysis
 - Component breakdown
 - 5/7/15 year property identification
@@ -59,6 +64,7 @@ Maximize current-year deductions:
 Identify available credits:
 
 **USA Federal Credits:**
+
 | Credit | Description | Amount | Criteria |
 |--------|-------------|--------|----------|
 | R&D Credit | Research activities | 20% or simplified | Qualified research |
@@ -67,6 +73,7 @@ Identify available credits:
 | Foreign Tax Credit | Avoid double tax | Actual foreign tax | Foreign source income |
 
 **Spain Credits:**
+
 | Credit | Description | Amount | Criteria |
 |--------|-------------|--------|----------|
 | R&D Credit | I+D+i | 25%-42% | Qualifying activities |
@@ -79,6 +86,7 @@ Identify available credits:
 Maximize tax-advantaged savings:
 
 **Retirement Vehicles:**
+
 | Plan Type | Limit | Tax Treatment | Best For |
 |-----------|-------|---------------|----------|
 | 401(k) | $23,000 + catch-up | Pre-tax | Employees |
@@ -87,6 +95,7 @@ Maximize tax-advantaged savings:
 | Cash Balance | Varies | Pre-tax | Professionals |
 
 **Spain Options:**
+
 - Plan de Pensiones
 - EPSV (Basque Country)
 - Plan de Previsión Asegurado

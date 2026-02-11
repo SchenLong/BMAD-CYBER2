@@ -1,5 +1,5 @@
 ---
-name: Competitive Warfare
+name: competitive-warfare
 description: Maximum competitive intensity strategy for existential threats or winner-take-all situations
 web_bundle: true
 ---
@@ -81,6 +81,7 @@ This workflow guides you through 8 steps:
 ## ETHICAL WARNING
 
 This workflow is intentionally aggressive and should only be used for:
+
 - Genuine competitive threats to organizational survival
 - Hostile takeover defense
 - Market battles with clear adversaries

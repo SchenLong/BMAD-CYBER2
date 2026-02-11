@@ -76,6 +76,7 @@ Complete preparation package for physical/field operations including surveillanc
 ## TARGET SCOPE
 
 This workflow applies to:
+
 - Surveillance operations
 - Site survey missions
 - Meeting/encounter operations

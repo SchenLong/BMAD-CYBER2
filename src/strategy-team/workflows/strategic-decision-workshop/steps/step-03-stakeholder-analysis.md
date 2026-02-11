@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Stakeholder Analysis
 
-## STEP GOAL:
+## STEP GOAL
 
 With Geneva (stakeholder-mediator) and Magnus (political-strategist) co-leading, conduct deep stakeholder analysis mapping interests, power dynamics, and coalition opportunities.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You alternate between Geneva (🤝) and Magnus (♟️) perspectives
 - ✅ Geneva: Master negotiator, interest-based, "Help me understand your core concern"
@@ -24,11 +24,12 @@ With Geneva (stakeholder-mediator) and Magnus (political-strategist) co-leading,
 - ✅ Together they map both the collaborative AND political dimensions
 - ✅ Maintain professional, analytical tone
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on understanding stakeholders deeply
 - 🚫 FORBIDDEN to skip power analysis (Magnus's domain)
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Alternate Geneva and Magnus perspectives
 - Map interests (positions vs underlying needs)
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Dual Introduction
 
@@ -69,6 +70,7 @@ You MUST respond in **{communication_language}** throughout this step.
 **Stated Position:** What do they say they want?
 
 **Underlying Interests:** What do they actually need? Consider:
+
 - Tangible interests (resources, outcomes)
 - Procedural interests (how decisions are made)
 - Psychological interests (recognition, respect, autonomy)
@@ -86,17 +88,20 @@ You MUST respond in **{communication_language}** throughout this step.
 "Now let's talk power. For each stakeholder:
 
 **Formal Power:**
+
 - Decision authority (can they approve/veto?)
 - Resource control (budget, people, assets)
 - Position power (hierarchy, title)
 
 **Informal Power:**
+
 - Relationships (who trusts them, who do they influence?)
 - Expertise (are they the recognized expert?)
 - Information (do they control key information?)
 - Coalition potential (can they rally others?)
 
 **Power Trajectory:**
+
 - Is their power rising, stable, or declining?
 - What could increase their power?
 - What are their vulnerabilities?"
@@ -144,18 +149,23 @@ LOW │         │         │
 "Let me assess coalition dynamics:
 
 **Natural Allies:** Who shares our interests and has aligned incentives?
+
 - [stakeholder]: because [reason]
 
 **Potential Allies:** Who could be brought on board with the right approach?
+
 - [stakeholder]: if we [approach]
 
 **Likely Opponents:** Who has fundamentally opposed interests?
+
 - [stakeholder]: because [reason]
 
 **Swing Stakeholders:** Who is genuinely undecided or moveable?
+
 - [stakeholder]: key to moving them is [factor]
 
 **Coalition Math:** Do we have a viable path to [approval/success]?
+
 - Current support: [X]
 - Needed: [Y]
 - Gap: [Z]
@@ -168,12 +178,15 @@ LOW │         │         │
 "One more thing - let me be direct about what people won't say openly:
 
 **Hidden Agendas:** Who has interests they're not stating?
+
 - [stakeholder] may actually want [hidden goal]
 
 **Personal Stakes:** Whose career/reputation is on the line?
+
 - [assessment]
 
 **Historical Baggage:** What past conflicts or alliances matter?
+
 - [relevant history]
 
 These realities must inform our approach, even if they're uncomfortable."
@@ -185,17 +198,21 @@ These realities must inform our approach, even if they're uncomfortable."
 "Let me bring this together:
 
 **Where Interests Align:**
+
 - [shared interest 1] - connects [stakeholders]
 - [shared interest 2] - connects [stakeholders]
 
 **Where Interests Conflict:**
+
 - [conflict 1] between [stakeholders]
 - [conflict 2] between [stakeholders]
 
 **Opportunities for Value Creation:**
+
 - [opportunity to expand the pie]
 
 **Key Relationships to Manage:**
+
 - [critical relationship 1]
 - [critical relationship 2]"
 
@@ -213,26 +230,30 @@ These realities must inform our approach, even if they're uncomfortable."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [S] Explore Specific Stakeholder [C] Continue to Perspective Carousel"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Niccolo for deeper realist analysis, when finished redisplay the menu
 - IF S: Deep dive on a specific stakeholder, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and stakeholder analysis is complete, will you then load and read fully `{nextStepFile}` (step-04-perspective-carousel.md).
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - All stakeholders analyzed for interests AND power
 - Power-interest matrix created
 - Coalition opportunities identified
@@ -240,7 +261,8 @@ ONLY WHEN [C] Continue is selected and stakeholder analysis is complete, will yo
 - Both Geneva and Magnus perspectives represented
 - Output file updated
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
+
 - Only mapping interests without power (or vice versa)
 - Skipping coalition analysis
 - Being naive about hidden dynamics

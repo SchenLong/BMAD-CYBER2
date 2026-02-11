@@ -14,8 +14,9 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
 import chalk from 'chalk';
+
+import { confirm, text } from '../../cli/prompts.js';
 
 import { compareTiers, getTierById } from './tier-definitions.js';
 
@@ -27,7 +28,7 @@ const __dirname = path.dirname(__filename);
  * Path to the tier change log file relative to project root
  * @type {string}
  */
-export const TIER_CHANGE_LOG_PATH = '_bmad/core/security/tier-change-log.json';
+export const TIER_CHANGE_LOG_PATH = 'src/core/security/tier-change-log.json';
 
 /**
  * Challenge expiration time in milliseconds (5 minutes)
@@ -213,14 +214,10 @@ export async function promptTierChangeAuth(fromTier, toTier) {
   console.log('');
 
   // Step 1: Explicit confirmation
-  const { confirmed } = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirmed',
-      message: chalk.yellow('Are you sure you want to lower your security tier?'),
-      default: false
-    }
-  ]);
+  const confirmed = await confirm({
+    message: chalk.yellow('Are you sure you want to lower your security tier?'),
+    initialValue: false
+  });
 
   if (!confirmed) {
     return false;
@@ -238,19 +235,15 @@ export async function promptTierChangeAuth(fromTier, toTier) {
   console.log(chalk.dim(`  (Hint: echo -n "${challenge.challenge}" | sha256sum | head -c 8)`));
   console.log('');
 
-  const { response } = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'response',
-      message: 'Enter response:',
-      validate: (input) => {
-        if (!input || input.length !== 8) {
-          return 'Response must be exactly 8 characters';
-        }
-        return true;
+  const response = await text({
+    message: 'Enter response:',
+    validate: (val) => {
+      if (!val || val.length !== 8) {
+        return 'Response must be exactly 8 characters';
       }
+      return undefined;
     }
-  ]);
+  });
 
   const isValid = verifyChallenge(challenge, response);
 

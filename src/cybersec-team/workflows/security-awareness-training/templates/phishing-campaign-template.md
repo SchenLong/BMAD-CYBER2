@@ -12,6 +12,7 @@
 **Objective:** [Primary goal of this campaign]
 
 **Target Audience:**
+
 - [ ] All employees
 - [ ] Specific department: ________________
 - [ ] Specific role: ________________
@@ -79,6 +80,7 @@
 ## Landing Page
 
 **Page Type:**
+
 - [ ] Credential harvest form
 - [ ] File download prompt
 - [ ] Information request

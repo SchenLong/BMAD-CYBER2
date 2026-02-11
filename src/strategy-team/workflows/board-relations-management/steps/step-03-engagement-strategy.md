@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Engagement Strategy
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop tailored engagement strategies for different board contexts including meetings, one-on-ones, and informal interactions.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Board Relations Advisor with Geneva (Stakeholder Mediator) providing relationship expertise
 - Focus on practical, actionable engagement approaches
 - Tailor strategies to individual directors
 - Build genuine relationships, not just transactions
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on practical engagement tactics
 - FORBIDDEN to use one-size-fits-all approaches
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Board Meeting Engagement
 
@@ -49,6 +50,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How do you currently approach board meetings?"
 
 **Meeting strategy elements:**
+
 | Element | Current Practice | Improved Approach |
 |---------|------------------|-------------------|
 | Pre-meeting prep with Chair | | |
@@ -65,6 +67,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's design engagement approaches for priority directors:"
 
 **Director: [Name]**
+
 | Engagement Type | Approach | Frequency | Topics |
 |-----------------|----------|-----------|--------|
 | One-on-ones | | Monthly/Quarterly | |
@@ -73,6 +76,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Recognition/appreciation | | | |
 
 **Communication preferences:**
+
 - Prefers: [detail/summary, data/narrative, written/verbal]
 - Best timing: [when they're most receptive]
 - What to avoid: [approaches that don't work]
@@ -92,6 +96,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Trust building | | |
 
 **Chair expectations:**
+
 - What does the Chair expect from you?
 - What does the Chair need that they're not getting?
 - How can you make the Chair more successful?
@@ -108,6 +113,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | [Other] | | | |
 
 **Committee meeting strategies:**
+
 - How to prepare for committee meetings
 - Supporting materials approach
 - Executive session interactions
@@ -127,6 +133,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Between-meeting calls | | |
 
 **Relationship-building activities:**
+
 - What interests do directors have?
 - What experiences can you share?
 - How can you demonstrate genuine interest in them?
@@ -138,6 +145,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How do you engage with new directors?"
 
 **New director strategy:**
+
 - First 90 days touchpoints
 - Orientation support
 - Relationship building approach
@@ -180,16 +188,20 @@ Update frontmatter: Add `step-03-engagement-strategy` to stepsCompleted
 "Here's the engagement strategy summary:
 
 **Board Meeting Approach:**
+
 - Key changes: [summary]
 
 **Priority Director Strategies:**
+
 - [Director 1]: [approach summary]
 - [Director 2]: [approach summary]
 
 **Chair Relationship Focus:**
+
 - Key action: [summary]
 
 **Informal Engagement Planned:**
+
 - [count] opportunities identified
 
 **Geneva's View:**
@@ -199,7 +211,8 @@ Update frontmatter: Add `step-03-engagement-strategy` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Strategy [C] Continue to Communication Planning"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -207,13 +220,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Strateg
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-04-communication-planning.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Meeting strategy developed
 - Individual approaches tailored
 - Chair relationship planned
@@ -221,7 +236,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Informal opportunities identified
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Generic engagement plans
 - Skipping Chair relationship
 - Not tailoring to individuals

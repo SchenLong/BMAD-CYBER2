@@ -5,11 +5,13 @@ Thank you for your interest in contributing to BMAD CYBERCOMMAND!
 ## How to Contribute
 
 ### Reporting Issues
+
 - Use GitHub Issues for bug reports and feature requests
 - Include reproduction steps for bugs
 - Describe expected vs actual behavior
 
 ### Pull Requests
+
 1. Fork the repository
 2. Create a feature branch from `BMAD-CYBEROPS-RP`
 3. Make your changes
@@ -17,18 +19,21 @@ Thank you for your interest in contributing to BMAD CYBERCOMMAND!
 5. Submit a pull request
 
 ### Code Standards
+
 - Follow existing code style and patterns
 - Include tests for new functionality
 - Update documentation as needed
 - Ensure security best practices
 
 ### Agent Contributions
+
 - Follow agent template structure in `src/*/agents/`
 - Include comprehensive system prompts
 - Document capabilities and limitations
 - Add workflow integrations where applicable
 
 ### Workflow Contributions
+
 - Use step-by-step structure in workflow directories
 - Include README.md with workflow overview
 - Define clear inputs and outputs

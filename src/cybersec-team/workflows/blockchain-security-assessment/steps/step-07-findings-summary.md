@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 7: Findings Summary
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on consolidating and prioritizing findings
 - FORBIDDEN to discuss detailed remediation yet
 - Use industry-standard severity classifications
 
-## STEP GOAL:
+## STEP GOAL
 
 To compile all findings from previous sections, assign severity ratings, and create a prioritized findings summary.
 
-## FINDINGS SUMMARY SEQUENCE:
+## FINDINGS SUMMARY SEQUENCE
 
 ### 1. Severity Classification
 
@@ -104,12 +104,14 @@ Any findings to reclassify?"
 "Let's calculate overall risk score:
 
 **Scoring Formula:**
+
 - Critical: 25 points each
 - High: 10 points each
 - Medium: 3 points each
 - Low: 1 point each
 
 **Risk Rating:**
+
 | Score | Rating |
 |-------|--------|
 | 0-10 | Low Risk |
@@ -231,6 +233,7 @@ Update Section 7 of {outputFile}:
 "**Findings Summary Complete**
 
 I've compiled all findings:
+
 - [X] Critical findings requiring immediate attention
 - [X] High findings with significant risk
 - [X] Medium findings to address
@@ -247,7 +250,7 @@ Ready to proceed to remediation planning?"
 
 Display: **Findings Summary Complete - Select an Option:** [C] Continue to Remediation [R] Review/Revise Findings
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 7 content, allow revisions, then redisplay menu

@@ -15,6 +15,7 @@
 ## Purpose
 
 Plan human intelligence approach to target:
+
 - Psychological vulnerability identification (MICE framework)
 - Social entry point mapping
 - Physical access analysis

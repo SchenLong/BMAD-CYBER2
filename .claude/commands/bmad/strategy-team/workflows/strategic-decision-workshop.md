@@ -6,4 +6,4 @@ description: Multi-perspective strategic decision analysis using all 14 executiv
 # Strategic Decision Workshop
 
 Load and follow the workflow at:
-`@_bmad/strategy-team/workflows/strategic-decision-workshop/workflow.md`
+`@src/strategy-team/workflows/strategic-decision-workshop/workflow.md`

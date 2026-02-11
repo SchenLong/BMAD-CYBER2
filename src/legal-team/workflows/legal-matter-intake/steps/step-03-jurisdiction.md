@@ -23,22 +23,26 @@ Determine which jurisdiction(s) apply to this matter and identify any cross-bord
 ## JURISDICTION FACTORS
 
 ### Party Location
+
 - Where is the user located/incorporated?
 - Where is the counterparty located/incorporated?
 - Multiple parties in different jurisdictions?
 
 ### Activity/Transaction Location
+
 - Where does the activity occur?
 - Where are services performed?
 - Where are goods delivered?
 - Where is property located?
 
 ### Existing Agreements
+
 - Does an existing contract specify governing law?
 - Is there a forum selection clause?
 - Are choice of law provisions enforceable?
 
 ### Entity Considerations
+
 - Incorporation jurisdiction
 - Principal place of business
 - Permanent establishment concerns
@@ -50,6 +54,7 @@ Determine which jurisdiction(s) apply to this matter and identify any cross-bord
 "Let's determine which legal systems apply to your matter. I need to understand where the relevant parties, activities, and assets are located."
 
 Walk through jurisdiction factors:
+
 - Party locations
 - Transaction/activity location
 - Existing contractual provisions
@@ -58,6 +63,7 @@ Walk through jurisdiction factors:
 ### 2. Cross-Border Assessment
 
 If multiple jurisdictions identified:
+
 - Note the primary jurisdiction
 - Identify secondary jurisdictions
 - Flag conflicts of law issues
@@ -66,6 +72,7 @@ If multiple jurisdictions identified:
 ### 3. Specialist Routing Preview
 
 Based on jurisdictions:
+
 - **US matters** → Liberty (US Counsel)
 - **EU general** → Europa (EU Counsel)
 - **Spain specific** → Castile (Spain Counsel)
@@ -92,11 +99,13 @@ Update frontmatter: `stepsCompleted: [1, 2, 3]`
 ### 5. Present Menu
 
 **Select an Option:**
+
 - **[C]** Continue to urgency assessment
 - **[D]** Discuss jurisdiction details further
 - **[Q]** Questions about jurisdictions
 
-#### Menu Handling:
+#### Menu Handling
+
 - IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF D: Explore jurisdiction issues, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

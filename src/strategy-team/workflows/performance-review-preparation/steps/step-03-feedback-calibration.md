@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Feedback Calibration
 
-## STEP GOAL:
+## STEP GOAL
 
 Calibrate the performance assessment for fairness, check for bias, ensure balance, and compare against peers and standards.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Executive Coach with Sophia (Ethics Advisor) providing fairness perspective
 - Focus on fair, unbiased assessment
 - Challenge your own assumptions
 - Ensure consistency and equity
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on fairness and calibration
 - FORBIDDEN to skip bias checking
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Bias Check
 
@@ -58,6 +59,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Contrast effect | Comparing to others, not standard | | |
 
 **Mitigation actions needed:**
+
 - [any adjustments to make]
 
 ### 2. Evidence Quality Check
@@ -73,6 +75,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | [rating justification] | | | |
 
 **Questions to consider:**
+
 - Is the evidence specific and behavioral?
 - Is there enough evidence to support claims?
 - Are there alternative explanations?
@@ -90,6 +93,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Behaviors | | | |
 
 **Calibration questions:**
+
 - Is this rating consistent with how you rate others?
 - Would you rate someone else the same way with this evidence?
 - Are you being harder or easier on this person? Why?
@@ -108,6 +112,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Goal difficulty | | | |
 
 **Goal difficulty adjustment:**
+
 - Were goals appropriately challenging?
 - Should difficulty be factored into assessment?
 
@@ -122,11 +127,13 @@ Current ratio: [X positive : Y constructive]
 Recommended: At least 3:1 for most reviews
 
 **Balance assessment:**
+
 - Is the feedback too positive (missing growth opportunities)?
 - Is the feedback too critical (demotivating)?
 - Are development areas actionable?
 
 **Adjustments needed:**
+
 - [any balance adjustments]
 
 ### 6. External Factors
@@ -145,6 +152,7 @@ Recommended: At least 3:1 for most reviews
 | COVID/remote work | | |
 
 **Adjusted assessment (if any):**
+
 - [any adjustments due to external factors]
 
 ### 7. Final Calibration
@@ -221,7 +229,8 @@ Update frontmatter: Add `step-03-feedback-calibration` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Calibration [C] Continue to Development Planning"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -229,13 +238,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Calibra
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-04-development-planning.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Bias check completed
 - Evidence quality verified
 - Peer comparison done
@@ -245,7 +256,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Assessment calibrated
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping bias check
 - No peer calibration
 - Ignoring external factors

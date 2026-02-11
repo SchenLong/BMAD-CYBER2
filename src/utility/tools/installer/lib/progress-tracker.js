@@ -12,7 +12,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import inquirer from 'inquirer';
+import { select } from '../../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -282,30 +282,26 @@ export async function promptForRecovery(state) {
 
   console.log('');
 
-  const { action } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'action',
-      message: 'How would you like to proceed?',
-      choices: [
-        {
-          name: chalk.green('Resume') + ' - Continue from where you left off',
-          value: RecoveryAction.RESUME,
-          short: 'Resume'
-        },
-        {
-          name: chalk.yellow('Restart') + ' - Start fresh (clears progress)',
-          value: RecoveryAction.RESTART,
-          short: 'Restart'
-        },
-        {
-          name: chalk.red('Rollback') + ' - Undo all changes and exit',
-          value: RecoveryAction.ROLLBACK,
-          short: 'Rollback'
-        }
-      ]
-    }
-  ]);
+  const action = await select({
+    message: 'How would you like to proceed?',
+    choices: [
+      {
+        name: chalk.green('Resume') + ' - Continue from where you left off',
+        value: RecoveryAction.RESUME,
+        short: 'Resume'
+      },
+      {
+        name: chalk.yellow('Restart') + ' - Start fresh (clears progress)',
+        value: RecoveryAction.RESTART,
+        short: 'Restart'
+      },
+      {
+        name: chalk.red('Rollback') + ' - Undo all changes and exit',
+        value: RecoveryAction.ROLLBACK,
+        short: 'Rollback'
+      }
+    ]
+  });
 
   return action;
 }

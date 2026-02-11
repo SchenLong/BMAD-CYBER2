@@ -16,13 +16,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Risk Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess the likelihood and impact of each identified threat, calculate risk scores, and prioritize threats for mitigation based on risk levels.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -30,7 +30,7 @@ To assess the likelihood and impact of each identified threat, calculate risk sc
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -38,28 +38,28 @@ To assess the likelihood and impact of each identified threat, calculate risk sc
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on risk assessment (likelihood × impact)
 - 🚫 FORBIDDEN to define mitigations in this step (that's step 6)
 - 💬 Guide systematic risk rating for each threat
 - 🚫 DO NOT proceed without assessing all identified threats
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Guide likelihood and impact assessment for each threat
 - 💾 Calculate and document risk scores
 - 📖 Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Threats identified in step 4 (STRIDE analysis)
 - currentComponent set in frontmatter
 - This is risk quantification, not mitigation planning
 - All threats must be assessed
 
-## RISK ASSESSMENT PROCESS:
+## RISK ASSESSMENT PROCESS
 
 ### 1. Initialize Risk Assessment
 
@@ -135,6 +135,7 @@ Let's begin the assessment."
 | **High (3)**              | 3 (Med) | 6 (High)   | 9 (Critical) |
 
 **Risk Levels:**
+
 - **1-2**: Low Risk - Address in normal development cycle
 - **3-4**: Medium Risk - Address within current planning period
 - **6**: High Risk - Address urgently, prioritize in backlog
@@ -155,6 +156,7 @@ For each threat identified in Section 3 (STRIDE analysis):
 How likely is this threat to be exploited?
 
 Consider:
+
 - How difficult is it to exploit?
 - What skills/access are required?
 - Are there existing security controls?
@@ -169,6 +171,7 @@ Collect likelihood rating (1-3).
 What would be the impact if this threat were successfully exploited?
 
 Consider:
+
 - What data could be compromised?
 - What systems/functions would be affected?
 - What would be the business consequences?
@@ -184,6 +187,7 @@ Collect impact rating (1-3).
 Risk Score = Likelihood × Impact
 
 Determine Risk Level:
+
 - 1-2: Low
 - 3-4: Medium
 - 6: High
@@ -192,6 +196,7 @@ Determine Risk Level:
 Display:
 
 "**Risk Assessment for {Threat-ID}:**
+
 - Likelihood: {likelihood-rating} ({Low/Medium/High})
 - Impact: {impact-rating} ({Low/Medium/High})
 - **Risk Score: {risk-score}**
@@ -208,6 +213,7 @@ After assessing all threats, display summary:
 **Total Threats Assessed:** {threat-count}
 
 **By Risk Level:**
+
 - 🔴 Critical (9): {count} threats
 - 🟠 High (6): {count} threats
 - 🟡 Medium (3-4): {count} threats
@@ -280,7 +286,7 @@ user_name: '{user_name}'
 
 Display: **Select an Option:** [P] Party Mode [C] Continue to Mitigation Strategies
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -288,7 +294,7 @@ Display: **Select an Option:** [P] Party Mode [C] Continue to Mitigation Strateg
 - User can chat or ask questions - always respond and then end with display again of the menu options
 - Use menu handling logic section below
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF P: Execute {partyModeWorkflow} with focus: "Review the risk assessment for {currentComponent} - are the likelihood and impact ratings accurate? Should any risk scores be adjusted?"
 - IF C: Verify all threats have been assessed, update frontmatter, then load, read entire file, then follow {nextStepFile}
@@ -298,7 +304,7 @@ Display: **Select an Option:** [P] Party Mode [C] Continue to Mitigation Strateg
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All threats assessed with likelihood and impact ratings
 - Risk scores calculated (Likelihood × Impact)
@@ -308,7 +314,7 @@ Display: **Select an Option:** [P] Party Mode [C] Continue to Mitigation Strateg
 - Frontmatter updated with step 5 complete
 - Ready to proceed to mitigation strategies (step 6)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping threats in assessment
 - Not collecting likelihood and impact ratings

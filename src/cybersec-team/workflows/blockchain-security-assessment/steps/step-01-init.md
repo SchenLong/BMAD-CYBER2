@@ -18,16 +18,16 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 1: Blockchain Security Assessment Initialization
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Check for existing assessments before starting fresh
 - Gather comprehensive scope information
@@ -40,13 +40,14 @@ Before proceeding, check if {outputFile} exists:
 - IF EXISTS: Load, read entire file, and then follow {continueStepFile}
 - IF NOT EXISTS: Continue with fresh assessment initialization below
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Assessment Welcome
 
 "Welcome to the Blockchain Security Assessment workflow. I'm Ledger, your blockchain security specialist.
 
 This comprehensive assessment covers:
+
 - Smart contract security analysis
 - DeFi protocol vulnerability assessment
 - Access control and privilege analysis
@@ -62,6 +63,7 @@ Let's begin by understanding your project scope."
 "What blockchain platform(s) is your project deployed on?
 
 **Primary Platforms:**
+
 - [ ] Ethereum (EVM-compatible)
 - [ ] Polygon
 - [ ] Arbitrum
@@ -73,6 +75,7 @@ Let's begin by understanding your project scope."
 - [ ] Other L1/L2: _____
 
 **Cross-chain:**
+
 - [ ] Multi-chain deployment
 - [ ] Bridge protocol involved
 
@@ -83,6 +86,7 @@ Which platform(s) should we focus on?"
 "What type of Web3 project are we assessing?
 
 **DeFi Protocols:**
+
 - [ ] DEX (Decentralized Exchange)
 - [ ] Lending/Borrowing Protocol
 - [ ] Yield Aggregator
@@ -91,12 +95,14 @@ Which platform(s) should we focus on?"
 - [ ] Stablecoin Protocol
 
 **NFT/Gaming:**
+
 - [ ] NFT Marketplace
 - [ ] NFT Collection (ERC-721/ERC-1155)
 - [ ] GameFi/Play-to-Earn
 - [ ] Metaverse
 
 **Infrastructure:**
+
 - [ ] Bridge Protocol
 - [ ] Oracle Network
 - [ ] DAO/Governance
@@ -110,6 +116,7 @@ Please describe your project type and core functionality."
 "Let's identify the contracts in scope:
 
 **Contract Details Needed:**
+
 1. Contract addresses (mainnet/testnet)
 2. Source code repository (GitHub, etc.)
 3. Compiler version and optimization settings
@@ -124,6 +131,7 @@ Please provide contract information for the assessment."
 "Are there specific security concerns you'd like us to focus on?
 
 **Common Areas:**
+
 - [ ] Reentrancy vulnerabilities
 - [ ] Access control issues
 - [ ] Oracle manipulation
@@ -232,6 +240,7 @@ status: in_progress
 "**Assessment Scope Defined**
 
 I've documented your blockchain security assessment scope:
+
 - Platform(s): [Summary]
 - Project type: [Summary]
 - Contracts in scope: [Count]
@@ -245,7 +254,7 @@ Ready to proceed to smart contract analysis?"
 
 Display: **Initialization Complete - Select an Option:** [C] Continue to Smart Contract Review [R] Review/Revise Scope
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 1 content, allow revisions, then redisplay menu

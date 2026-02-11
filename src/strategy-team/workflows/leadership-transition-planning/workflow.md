@@ -1,5 +1,5 @@
 ---
-name: Leadership Transition Planning
+name: leadership-transition-planning
 description: Comprehensive succession and leadership handover planning using strategic advisors to ensure smooth transitions that preserve institutional knowledge and maintain organizational momentum
 web_bundle: true
 ---

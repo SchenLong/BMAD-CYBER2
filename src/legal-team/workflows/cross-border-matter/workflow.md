@@ -82,6 +82,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Scope
 
 **Covered Cross-Border Matters:**
+
 - International contracts and transactions
 - Multi-jurisdictional dispute resolution
 - Cross-border corporate structures
@@ -91,6 +92,7 @@ This uses **step-file architecture** for disciplined execution:
 - Multi-jurisdictional regulatory compliance
 
 **NOT Covered:**
+
 - Immigration law (visa, residency)
 - Criminal matters in any jurisdiction
 - Sanctions/Export controls (specialized area)
@@ -105,12 +107,14 @@ This uses **step-file architecture** for disciplined execution:
 ## Key Cross-Border Considerations
 
 ### Choice of Law
+
 - Party autonomy limits
 - Mandatory rules
 - Public policy exceptions
 - Characterization issues
 
 ### Jurisdiction & Enforcement
+
 - Forum selection validity
 - Arbitration agreements
 - Judgment recognition
@@ -118,6 +122,7 @@ This uses **step-file architecture** for disciplined execution:
 - Hague Conventions
 
 ### Regulatory Overlap
+
 - Data protection (GDPR, CCPA)
 - Consumer protection
 - Employment law

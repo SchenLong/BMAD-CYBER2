@@ -16,6 +16,7 @@ Compile complete list of documents required for entity formation.
 ### 1. Document Checklist by Jurisdiction
 
 **USA LLC (Example - Delaware):**
+
 - [ ] Certificate of Formation
 - [ ] Operating Agreement
 - [ ] EIN Application (SS-4)
@@ -26,6 +27,7 @@ Compile complete list of documents required for entity formation.
 - [ ] Beneficial Ownership Information (BOI) Report
 
 **USA Corporation (Example - Delaware):**
+
 - [ ] Certificate of Incorporation
 - [ ] Bylaws
 - [ ] Organizational Resolutions
@@ -36,6 +38,7 @@ Compile complete list of documents required for entity formation.
 - [ ] BOI Report
 
 **Spain SL:**
+
 - [ ] Certificación Negativa de Denominación
 - [ ] Escritura de Constitución
 - [ ] Estatutos Sociales
@@ -46,6 +49,7 @@ Compile complete list of documents required for entity formation.
 - [ ] Licencias municipales (if applicable)
 
 **Estonia OÜ:**
+
 - [ ] Company registration application
 - [ ] Articles of Association
 - [ ] Shareholder agreement (if multiple)
@@ -57,6 +61,7 @@ Compile complete list of documents required for entity formation.
 ### 2. Personal Documents Required
 
 **From Owners/Directors:**
+
 - Passport or national ID (certified copy)
 - Proof of address (utility bill, bank statement)
 - Tax ID number (from residence country)

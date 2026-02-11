@@ -3,53 +3,7 @@
 
 code: "legal-team"
 name: "Legal Team - Multi-Jurisdictional Legal Advisory"
-version: "2.1.0"
-type: "specialized-team"
-category: "bmad-cybercommand"
 default_selected: false
-
-# NPM Publishing Configuration
-npm:
-  scope: "@bmad-cybercommand"
-  package_name: "legal-team"
-  full_name: "@bmad-cybercommand/legal-team"
-
-repository:
-  type: "git"
-  url: "https://github.com/bmad-code-org/bmad-cybercommand.git"
-  directory: "src/legal-team"
-
-description: "Legal operations and compliance with 13 specialized legal agents"
-keywords:
-  - "bmad"
-  - "agent"
-  - "workflow"
-  - "legal"
-  - "compliance"
-  - "contracts"
-  - "governance"
-license: "MIT"
-
-capabilities:
-  agents:
-    count: 13
-    format: "agent.yaml"
-    path: "agents/"
-  workflows:
-    count: 7
-    format: "workflow.yaml"
-    path: "workflows/"
-
-dependencies:
-  core:
-    - module: "bmad:core"
-      version: ">=2.0.0"
-      required: true
-
-build:
-  validation: true
-  format: "bmad-builder"
-  target: "distribution"
 
 # Welcome message shown during installation
 prompt:
@@ -77,7 +31,7 @@ prompt:
   - "Jurisdictions: USA, EU, Spain (deep), Estonia"
   - "Scope: Corporate + Civil matters (NO criminal law)"
   - ""
-  - "7 legal workflows for contracts, disputes, tax planning, and more."
+  - "14 legal workflows for contracts, disputes, tax planning, and more."
 
 # Core config values are automatically inherited from installer:
 ## user_name
@@ -135,10 +89,10 @@ module_version:
 
 # STATIC: Module paths
 agents_path:
-  result: "{project-root}/_bmad/legal-team/agents"
+  result: "{project-root}/src/legal-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/legal-team/workflows"
+  result: "{project-root}/src/legal-team/workflows"
 
 # STATIC: Automatic subdirectory configuration
 contracts_output:

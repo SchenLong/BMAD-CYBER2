@@ -32,12 +32,14 @@ Execute the coordinated multi-INT collection plan developed in previous steps. V
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead
 - You coordinate collection across all agents
 - You track progress against PIRs
 - You identify gaps and redirect collection efforts
 
 ### Coordination Protocol
+
 - Dispatch parallel collection tasks to specialists
 - Aggregate and deduplicate findings
 - Track PIR satisfaction in real-time
@@ -442,6 +444,7 @@ All collection complete. Proceed to profile synthesis and dossier creation.
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 5:
+
 - [ ] SOCMINT collection complete (Echo)
 - [ ] TECHINT collection complete (Probe)
 - [ ] GEOINT collection complete (Atlas)

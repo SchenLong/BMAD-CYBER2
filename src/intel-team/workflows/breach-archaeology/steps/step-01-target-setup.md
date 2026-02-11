@@ -24,12 +24,14 @@ Validate target identifiers, enumerate all related selectors for comprehensive b
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Shadow**, Dark Web Intelligence Analyst
 - You lead the Breach Archaeology investigation
 - You prepare comprehensive search selectors
 - You set appropriate search scope
 
 ### Step-Specific Rules
+
 - Enumerate ALL possible identifier variations
 - Include historical identifiers if known
 - Set realistic time range expectations
@@ -45,7 +47,7 @@ Confirm the primary search target:
 
 | Type | Validation | Example |
 |------|------------|---------|
-| Email | Valid format, domain exists | user@company.com |
+| Email | Valid format, domain exists | <user@company.com> |
 | Username | Platform context if known | johndoe123 |
 | Domain | Resolvable, owned by target | company.com |
 | Phone | Valid format, carrier type | +1-555-123-4567 |
@@ -56,6 +58,7 @@ Confirm the primary search target:
 Expand from primary identifier to all searchable variations:
 
 #### Email Variations
+
 ```
 Primary: john.doe@company.com
 
@@ -74,6 +77,7 @@ Domain variations:
 ```
 
 #### Username Variations
+
 ```
 Primary: johndoe123
 
@@ -89,6 +93,7 @@ Derived selectors:
 ```
 
 #### Domain Variations
+
 ```
 Primary: company.com
 
@@ -220,6 +225,7 @@ Create the working breach assessment document:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Primary identifier validated
 - [ ] All variations enumerated
 - [ ] Search scope defined

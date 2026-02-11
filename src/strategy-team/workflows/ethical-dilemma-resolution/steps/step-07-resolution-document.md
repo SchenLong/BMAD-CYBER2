@@ -10,22 +10,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Resolution Document
 
-## STEP GOAL:
+## STEP GOAL
 
 Complete the ethical resolution document, capturing the full reasoning process for future reference.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You return to facilitator role
 - Focus on documentation and completion
 - Help user implement ethically
 - Provide closure
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Complete all document sections
 - Capture dissenting considerations
@@ -34,7 +35,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Complete output document
 - Add implementation guidance
@@ -43,7 +44,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Frame Document Completion
 
@@ -52,6 +53,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "We're now going to complete your ethical resolution document.
 
 This document serves several purposes:
+
 1. **Record** - Documents your reasoning for future reference
 2. **Accountability** - Captures what you considered and why
 3. **Guidance** - Helps with implementation
@@ -86,16 +88,19 @@ These aren't reasons to doubt your decision - they're honest acknowledgment of w
 "How you implement matters as much as what you decide. Let's think through implementation:
 
 **How to Execute Ethically:**
+
 - How do you implement this decision in ways that honor the values you've chosen?
 - What actions would undermine the ethical foundation of your choice?
 - What safeguards should be in place?
 
 **Communication Approach:**
+
 - Who needs to know about this decision?
 - How do you communicate it with integrity?
 - What do affected parties deserve to hear?
 
 **Monitoring:**
+
 - What should you watch for that might indicate unintended consequences?
 - When should you check whether this is working as intended?
 - Who might give you early warning if things go wrong?"
@@ -120,6 +125,7 @@ These aren't reasons to doubt your decision - they're honest acknowledgment of w
 **Finalize the {outputFile}:**
 
 Ensure all sections are complete:
+
 - Executive Summary
 - The Dilemma
 - Values in Tension
@@ -133,6 +139,7 @@ Ensure all sections are complete:
 - Personal Reflection
 
 Update frontmatter:
+
 - Add "step-07-resolution-document" to `stepsCompleted`
 - Update `status: complete`
 
@@ -159,6 +166,7 @@ Update frontmatter:
 ---
 
 **The process you followed:**
+
 1. Framed the dilemma clearly
 2. Mapped stakeholder impact
 3. Applied five ethical frameworks
@@ -173,7 +181,8 @@ This document represents careful ethical reasoning. It doesn't make you infallib
 
 Display: "**Select:** [R] Revise Sections [E] Generate Executive Summary [P] Party Mode [X] Complete and Exit"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF R: Ask which section to revise, navigate there, then redisplay menu
 - IF E: Generate 1-page executive summary version
 - IF P: Execute {partyModeWorkflow}, then redisplay menu
@@ -188,11 +197,13 @@ Display: "**Select:** [R] Revise Sections [E] Generate Executive Summary [P] Par
 **Output file:** {outputFile}
 
 **Summary:**
+
 - Dilemma: [Name]
 - Resolution: [Option chosen]
 - Key principle honored: [Primary value]
 
 **Next steps:**
+
 1. Implement the decision with integrity
 2. Communicate to affected parties as planned
 3. Monitor for unintended consequences
@@ -210,7 +221,8 @@ Go well."
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Complete document with all sections
 - Dissent captured honestly
 - Implementation guidance provided
@@ -218,7 +230,8 @@ Go well."
 - User has clear next steps
 - Process honored throughout
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Incomplete document
 - Not capturing dissent
 - No implementation guidance

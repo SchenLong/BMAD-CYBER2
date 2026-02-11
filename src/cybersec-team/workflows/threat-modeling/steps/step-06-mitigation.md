@@ -17,13 +17,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Mitigation Strategies
 
-## STEP GOAL:
+## STEP GOAL
 
 To define security controls and mitigation strategies for each identified threat, prioritize implementation, assign ownership, estimate effort, and document residual risk.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -31,7 +31,7 @@ To define security controls and mitigation strategies for each identified threat
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -39,28 +39,28 @@ To define security controls and mitigation strategies for each identified threat
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on mitigation strategy definition
 - 🚫 FORBIDDEN to implement controls in this step (planning only)
 - 💬 Guide systematic mitigation planning for each threat
 - 🚫 DO NOT proceed without defining mitigations for all high-priority threats
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Guide mitigation strategy definition for each threat
 - 💾 Document controls, priorities, ownership, and effort
 - 📖 Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Threats and risk assessments from steps 4 and 5
 - currentComponent set in frontmatter
 - This is mitigation planning, not implementation
 - Focus on actionable, specific controls
 
-## MITIGATION STRATEGY PROCESS:
+## MITIGATION STRATEGY PROCESS
 
 ### 1. Initialize Mitigation Planning
 
@@ -92,6 +92,7 @@ We'll prioritize high-risk threats (score ≥ 6) first.
 Apply multiple layers of security controls so if one fails, others still protect.
 
 **Control Types:**
+
 - **Preventive** - Stop the threat from occurring (e.g., input validation, authentication)
 - **Detective** - Identify when a threat is occurring (e.g., logging, monitoring, alerts)
 - **Corrective** - Respond and recover from a threat (e.g., incident response, backups)
@@ -119,6 +120,7 @@ Apply multiple layers of security controls so if one fails, others still protect
   - Example: Missing security headers
 
 **Effort Estimates:**
+
 - **Small (S)**: < 1 day (e.g., add rate limiting to existing middleware)
 - **Medium (M)**: 1-3 days (e.g., implement MFA)
 - **Large (L)**: 1-2 weeks (e.g., encryption at rest for database)
@@ -148,11 +150,13 @@ For each high-priority threat (score ≥ 6):
 What specific security controls will mitigate this threat?
 
 Consider:
+
 - Preventive controls (authentication, authorization, input validation, encryption)
 - Detective controls (logging, monitoring, anomaly detection)
 - Corrective controls (incident response, backups, rollback)
 
 Examples:
+
 - Implement input validation and parameterized queries (prevents SQL injection)
 - Add rate limiting and CAPTCHA (prevents brute force)
 - Enable audit logging with tamper protection (detects unauthorized access)
@@ -180,6 +184,7 @@ Collect priority.
 Who is responsible for implementing this mitigation?
 
 Examples:
+
 - Backend Team
 - Security Team
 - DevOps Team
@@ -208,6 +213,7 @@ Collect effort estimate.
 After implementing the mitigation, what risk remains?
 
 Consider:
+
 - Is the threat completely eliminated?
 - Is there still some exploitability under certain conditions?
 - Are there implementation challenges that may leave gaps?
@@ -219,6 +225,7 @@ Collect residual risk description.
 Display summary:
 
 "**Mitigation Strategy for {Threat-ID}:**
+
 - Controls: {controls}
 - Priority: {priority}
 - Owner: {owner}
@@ -248,6 +255,7 @@ Repeat until all threats have mitigation strategies defined.
 **Total Threats with Mitigations:** {threat-count}
 
 **By Priority:**
+
 - P0 (Critical): {count} mitigations - {effort-total}
 - P1 (High): {count} mitigations - {effort-total}
 - P2 (Medium): {count} mitigations - {effort-total}
@@ -352,7 +360,7 @@ user_name: '{user_name}'
 
 Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing [C] Continue to Loop Decision
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -360,7 +368,7 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing
 - User can chat or ask questions - always respond and then end with display again of the menu options
 - Use menu handling logic section below
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF B: Execute {brainstormingTask} with prompt: "Help me brainstorm additional security controls or alternative mitigation strategies for the threats in {currentComponent}. Are there industry best practices we should consider?"
 - IF P: Execute {partyModeWorkflow} with focus: "Review the mitigation strategies for {currentComponent} - are the controls effective? Are priorities and effort estimates realistic? Are there better approaches?"
@@ -372,7 +380,7 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All threats have mitigation strategies defined
 - Security controls are specific and actionable
@@ -385,7 +393,7 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [W] Web-Browsing
 - Frontmatter updated with step 6 complete
 - Ready to proceed to loop decision (step 7)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping threats in mitigation planning
 - Vague or non-actionable controls

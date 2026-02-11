@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2: Individual Director Profiles
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop detailed profiles of each board member to understand their individual interests, concerns, influence patterns, and relationship needs.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Board Relations Advisor with Niccolo (Realist) providing insight into director motivations
 - Focus on truly understanding each director as an individual
 - Challenge surface-level assessments
 - Identify what each director really cares about
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on deep understanding of individuals
 - FORBIDDEN to create generic profiles
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Director Roster
 
@@ -45,6 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's create profiles for each director. Who serves on the board?"
 
 **For each director, gather:**
+
 - Name and title
 - Role (Chair, Lead Independent, Committee Chair, etc.)
 - Committee memberships
@@ -95,6 +97,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | | | | | High/Med/Low |
 
 **For problem relationships, identify:**
+
 - Root cause of tension
 - History of the relationship
 - What would improve it
@@ -107,11 +110,13 @@ You MUST respond in **{communication_language}** throughout this step.
 "How does influence flow among directors?"
 
 **Influence assessment:**
+
 | Director | Formal Power | Informal Influence | Topics of Influence |
 |----------|--------------|-------------------|---------------------|
 | | High/Med/Low | High/Med/Low | |
 
 **Key influencers:**
+
 - Who sways opinion?
 - Who others defer to?
 - Who speaks for the board informally?
@@ -123,12 +128,15 @@ You MUST respond in **{communication_language}** throughout this step.
 "Based on influence and relationship state, where should you focus?"
 
 **Priority 1 (Critical):**
+
 - [Director + rationale]
 
 **Priority 2 (Important):**
+
 - [Director + rationale]
 
 **Priority 3 (Maintain):**
+
 - [Directors + approach]
 
 ### 7. Update Output File
@@ -172,10 +180,12 @@ Update frontmatter: Add `step-02-director-profiles` to stepsCompleted
 **Total Directors:** [count]
 
 **Key Influencers:**
+
 1. [name + why]
 2. [name + why]
 
 **Relationship Priorities:**
+
 - Critical focus: [names]
 - Needs improvement: [names]
 
@@ -186,7 +196,8 @@ Update frontmatter: Add `step-02-director-profiles` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Profiles [C] Continue to Engagement Strategy"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -194,13 +205,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Profile
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-03-engagement-strategy.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All directors profiled
 - Motivations analyzed
 - Relationships assessed
@@ -208,7 +221,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Priorities identified
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Generic, surface-level profiles
 - Skipping relationship assessment
 - Not identifying priorities

@@ -90,7 +90,7 @@ The alias resolver looks up the short name first. If the name is unique across a
 | `game:workflow-init` | `bmad:bmgd:workflows:workflow-init` | Initialize new game dev project |
 | `game:workflow-status` | `bmad:bmgd:workflows:workflow-status` | Game dev workflow status checker |
 
-### BMM -- Software Development (prefix: `bmm`) -- 32 commands
+### BMM -- Software Development (prefix: `bmm`) -- 33 commands
 
 | Command | Full Path | Description |
 |---|---|---|
@@ -105,6 +105,7 @@ The alias resolver looks up the short name first. If the name is unique across a
 | `create-product-brief` | `bmad:bmm:workflows:create-product-brief` | Collaborative product brief discovery |
 | `create-ux-design` | `bmad:bmm:workflows:create-ux-design` | Plan UX patterns and look and feel |
 | `document-project` | `bmad:bmm:workflows:document-project` | Analyze and document brownfield projects |
+| `qa-automate` | `bmad:bmm:workflows:qa-automate` | Generate tests rapidly for existing features |
 | `research` | `bmad:bmm:workflows:research` | Comprehensive multi-domain research |
 | `testarch-atdd` | `bmad:bmm:workflows:testarch-atdd` | Acceptance test driven development |
 | `testarch-automate` | `bmad:bmm:workflows:testarch-automate` | Expand test automation coverage |

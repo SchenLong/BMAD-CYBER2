@@ -10,31 +10,34 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 
 # Step 5: Network Service Testing
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide service exploitation testing
 
-## NETWORK SERVICE TESTING SEQUENCE:
+## NETWORK SERVICE TESTING SEQUENCE
 
 ### 1. SMB/Windows Services
 
 "Let's test Windows/SMB services.
 
 **SMB Enumeration:**
+
 - Null session testing
 - Share enumeration
 - User enumeration
 - Password policy retrieval
 
 **SMB Attacks:**
+
 - EternalBlue (MS17-010)
 - SMB signing disabled
 - Relay attacks
 - Pass-the-hash
 
 **Commands:**
+
 ```bash
 # Enum4linux
 enum4linux -a <target>
@@ -56,6 +59,7 @@ What SMB testing have you performed?"
 "For Windows domain environments:
 
 **AD Enumeration:**
+
 - Domain controller identification
 - Domain/forest structure
 - Trust relationships
@@ -63,6 +67,7 @@ What SMB testing have you performed?"
 - Service accounts
 
 **AD Attacks:**
+
 - Kerberoasting
 - AS-REP roasting
 - LLMNR/NBT-NS poisoning
@@ -70,6 +75,7 @@ What SMB testing have you performed?"
 - BloodHound path analysis
 
 **Tools:**
+
 - Impacket suite
 - BloodHound / SharpHound
 - Rubeus
@@ -83,23 +89,27 @@ What Active Directory testing have you done?"
 "Let's test database services.
 
 **MySQL (3306):**
+
 - Anonymous login
 - Default credentials
 - Version vulnerabilities
 - File read/write (FILE privilege)
 
 **MSSQL (1433):**
+
 - SA account testing
 - xp_cmdshell
 - Linked servers
 - Privilege escalation
 
 **PostgreSQL (5432):**
+
 - Default credentials
 - pg_read_file
 - Large object abuse
 
 **Commands:**
+
 ```bash
 # MySQL
 mysql -h <target> -u root
@@ -119,17 +129,20 @@ What database testing have you completed?"
 "Testing email services.
 
 **SMTP (25/587):**
+
 - Open relay testing
 - User enumeration (VRFY, EXPN, RCPT TO)
 - Auth brute force
 - STARTTLS downgrade
 
 **POP3/IMAP (110/143/993/995):**
+
 - Authentication testing
 - Plaintext credentials
 - Version vulnerabilities
 
 **Commands:**
+
 ```bash
 # SMTP enumeration
 smtp-user-enum -M VRFY -U users.txt -t <target>
@@ -145,23 +158,27 @@ What mail service testing have you done?"
 "Testing remote access.
 
 **SSH (22):**
+
 - User enumeration
 - Key-based auth bypass
 - Algorithm weaknesses
 - Brute force (if authorized)
 
 **RDP (3389):**
+
 - NLA enabled?
 - BlueKeep (CVE-2019-0708)
 - Credential testing
 - Session hijacking
 
 **Telnet (23):**
+
 - Cleartext credentials
 - Default credentials
 - Banner information
 
 **VNC (5900):**
+
 - No authentication
 - Weak passwords
 - Version vulnerabilities
@@ -173,11 +190,13 @@ What remote access testing have you performed?"
 "Testing web services across the network.
 
 **Common Non-Standard Web Ports:**
+
 - 8080, 8443, 8888
 - 3000, 5000, 9000
 - Management interfaces (various)
 
 **Testing:**
+
 - Technology fingerprinting
 - Directory enumeration
 - Default credentials
@@ -190,18 +209,21 @@ What web services have you identified and tested?"
 "Testing network infrastructure.
 
 **SNMP (161):**
+
 - Community string guessing
 - Full MIB walking
 - Configuration extraction
 - Write access
 
 **Router/Switch Access:**
+
 - Telnet/SSH access
 - Web management
 - Default credentials
 - Firmware vulnerabilities
 
 **Commands:**
+
 ```bash
 # SNMP enumeration
 snmpwalk -v2c -c public <target>
@@ -266,6 +288,7 @@ Append to {outputFile} Section 5:
 "**Network Service Testing Complete**
 
 **Summary:**
+
 - Services tested: [count]
 - Successful exploits: [count]
 - Credentials obtained: [count]

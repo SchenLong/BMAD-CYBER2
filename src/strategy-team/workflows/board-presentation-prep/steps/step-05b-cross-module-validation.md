@@ -13,13 +13,14 @@ recommendedPreset: 'board-presentation-validation'
 
 # Step 5b: Cross-Module Board Presentation Validation
 
-## STEP GOAL:
+## STEP GOAL
 
 Validate board presentation content through cross-module lenses to prevent embarrassment, legal exposure, or security incidents. Boards ask hard questions - ensure your presentation can withstand scrutiny from security, legal, and intelligence perspectives.
 
-### When to Invoke:
+### When to Invoke
 
 This step should be offered after Step 5 (Archetype Review) when ANY of:
+
 - Presentation includes technology or security claims
 - Presentation involves market analysis or competitive intelligence
 - Presentation makes financial projections or commitments
@@ -29,7 +30,7 @@ This step should be offered after Step 5 (Archetype Review) when ANY of:
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### 1. Introduction to Cross-Module Validation
 
@@ -38,6 +39,7 @@ This step should be offered after Step 5 (Archetype Review) when ANY of:
 "Before we build your deck, I recommend cross-module validation.
 
 Boards often include members with expertise in:
+
 - **Security** - CISOs or tech executives who spot security gaps
 - **Legal** - General counsels who flag compliance issues
 - **Market Intelligence** - Strategists who challenge market assumptions
@@ -51,6 +53,7 @@ Let me have our cross-module experts review your presentation to catch issues be
 "{user_name}, do you want cross-module validation of your presentation content?
 
 This typically takes 10-15 minutes and often catches:
+
 - Security claims that don't hold up to scrutiny
 - Legal exposure in commitments or projections
 - Market assumptions that can be challenged
@@ -70,21 +73,25 @@ This typically takes 10-15 minutes and often catches:
 "Activating cross-module validation team:
 
 **Bastion** (Security Architect, cybersec-team)
+
 - Will review security-related claims
 - Check technology statements for accuracy
 - Flag potential security exposures
 
 **Covenant** (Contract Specialist, legal-team)
+
 - Will review for legal exposure
 - Check commitments for enforceability
 - Flag regulatory compliance issues
 
 **Augustus** (Policy Analyst, strategy-team)
+
 - Will challenge evidence quality
 - Check projection methodology
 - Ensure claims are defensible
 
 **Vector** (Intelligence Director, intel-team)
+
 - Will validate market intelligence
 - Check competitive claims
 - Flag information disclosure risks"
@@ -104,6 +111,7 @@ This typically takes 10-15 minutes and often catches:
 | [Data/metrics] | [Accurate/Overstated/Incorrect] | [L/M/H] | [adjust/remove/add caveat] |
 
 **Information Disclosure Review:**
+
 - Sensitive information exposed: [Y/N - what]
 - Competitive intelligence risk: [L/M/H]
 - Could adversaries use this information? [assessment]
@@ -112,6 +120,7 @@ This typically takes 10-15 minutes and often catches:
 If a tech-savvy board member asks about [topic], can you defend the claim?
 
 **Recommended Adjustments:**
+
 1. [Specific adjustment]
 2. [Specific adjustment]"
 
@@ -130,16 +139,19 @@ If a tech-savvy board member asks about [topic], can you defend the claim?
 | [Partnership mention] | [L/M/H] | [confidentiality/NDA] | [caveat/remove/reframe] |
 
 **Regulatory Compliance:**
+
 - Statements within regulatory bounds: [Y/N]
 - Forward-looking statement disclaimer needed: [Y/N]
 - Material non-public information risk: [assessment]
 
 **Contractual Considerations:**
+
 - References to partners/vendors: [appropriate/needs review]
 - Competitive statements: [defensible/risky]
 - IP implications: [clear/needs caveat]
 
 **Required Legal Language:**
+
 1. [Disclaimer or caveat to add]
 2. [Disclaimer or caveat to add]
 
@@ -161,6 +173,7 @@ If a board member with legal background asks about [topic], potential exposure i
 | [Competitive position] | [Strong/Moderate/Weak] | [source] | [High/Medium/Low] |
 
 **Methodology Review:**
+
 - Projection assumptions: [reasonable/aggressive/speculative]
 - Comparisons: [fair/cherry-picked/misleading]
 - Metrics: [standard/custom - explained?]
@@ -168,11 +181,13 @@ If a board member with legal background asks about [topic], potential exposure i
 **Defensibility Score:** [1-10]
 
 **Questions Board May Ask:**
+
 1. '[Likely challenging question]'
 2. '[Likely challenging question]'
 3. '[Likely challenging question]'
 
 **Recommended Strengthening:**
+
 1. [Add supporting evidence for...]
 2. [Caveat the claim about...]
 3. [Prepare backup slide for...]"
@@ -192,15 +207,18 @@ If a board member with legal background asks about [topic], potential exposure i
 | [Customer insight] | [Verified/Unverified/Disputed] | [H/M/L] | [exposure] |
 
 **Competitive Intelligence Risks:**
+
 - Statements competitors could challenge: [list]
 - Potential for competitive retaliation: [assessment]
 - Information that reveals our strategy: [assessment]
 
 **Source Protection:**
+
 - Are sources adequately protected? [Y/N]
 - Could board discussion expose sources? [Y/N]
 
 **Recommended Intelligence Caveats:**
+
 1. [Caveat for claim about...]
 2. [Caveat for claim about...]"
 
@@ -220,19 +238,23 @@ If a board member with legal background asks about [topic], potential exposure i
 | Intelligence | [count] | [Y/N] | [summary] |
 
 **Critical Adjustments Required:**
+
 1. [Must-fix issue]
 2. [Must-fix issue]
 
 **Recommended Adjustments:**
+
 1. [Should-fix issue]
 2. [Should-fix issue]
 
 **Required Disclaimers/Caveats:**
+
 1. [Legal disclaimer]
 2. [Forward-looking statement caveat]
 
 **Additional Q&A Prep:**
 Add these questions to your Q&A preparation:
+
 1. '[Question from security angle]'
 2. '[Question from legal angle]'
 3. '[Question from evidence angle]'
@@ -302,7 +324,7 @@ When user selects [C], load and follow {nextStepFile} (step-06-deck-outline.md) 
 
 ---
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - All four cross-module perspectives provided input
 - Security claims validated for accuracy
@@ -312,7 +334,7 @@ When user selects [C], load and follow {nextStepFile} (step-06-deck-outline.md) 
 - Required adjustments clearly documented
 - Additional Q&A prep questions provided
 
-## FAILURE INDICATORS:
+## FAILURE INDICATORS
 
 - Only surface-level review
 - Missing critical legal disclaimers

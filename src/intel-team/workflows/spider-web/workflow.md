@@ -5,7 +5,7 @@ version: '1.0.0'
 module: intel-team
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/intel-team/workflows/spider-web'
+workflow_path: '{project-root}/src/intel-team/workflows/spider-web'
 output_path: '{output_folder}/spider-web'
 
 # Workflow Configuration
@@ -167,7 +167,8 @@ OUTPUT: Network Map + Analysis Report
 ## Execution
 
 To start this workflow:
-1. Invoke Vector agent
+
+1. Load Vector agent
 2. Request: "Spider Web analysis starting from [seed node]"
 3. Confirm scope and depth limits
 4. Workflow will guide through expansion iterations
@@ -185,7 +186,7 @@ To start this workflow:
 
 ### 1. Configuration Loading
 
-Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and resolve:
+Load and read full config from `{project-root}/src/intel-team/config.yaml` and resolve:
 
 - `user_name`, `communication_language`, `output_folder`, `classification_level`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`

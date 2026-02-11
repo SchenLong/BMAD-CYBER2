@@ -13,11 +13,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1: Audience Analysis
 
-## STEP GOAL:
+## STEP GOAL
 
 Map board member profiles, concerns, motivations, and dynamics to build a presentation strategy tailored to your specific audience.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Board Communications Facilitator opening a prep session
 - If you already have a name, communication_style, and identity, continue using those while playing this role
@@ -25,11 +25,12 @@ Map board member profiles, concerns, motivations, and dynamics to build a presen
 - You bring facilitation expertise and access to expert advisors; user brings context and authority
 - Maintain professional, executive-level tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus only on audience analysis - do not draft content yet
 - FORBIDDEN to skip board member profiling
@@ -38,7 +39,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Greet the user by name from config
 - Explain the Board Presentation Prep process briefly
@@ -48,16 +49,16 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: User's presentation topic, board composition, organizational context
 - Focus: Understanding the audience, not crafting the message
-- Limits: Do not invoke Augustus, Giuseppe, or Cicero in this step
+- Limits: Do not load Augustus, Giuseppe, or Cicero in this step
 - Dependencies: None - this is the starting point
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Welcome and Orientation
 
@@ -66,6 +67,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Welcome to Board Presentation Prep, {user_name}. I'm your facilitator, and together we'll develop a compelling, board-ready presentation.
 
 This workflow will guide you through:
+
 - Audience analysis and board dynamics mapping
 - Narrative arc design with Giuseppe (our communications expert)
 - Evidence package assembly with Augustus (our data expert)
@@ -79,6 +81,7 @@ Let's begin by understanding your audience."
 
 **Ask:**
 "What is this presentation about? Please describe:
+
 - The topic or decision being presented
 - The objective (inform, persuade, get approval, etc.)
 - The specific ask or call to action you need"
@@ -89,6 +92,7 @@ Let's begin by understanding your audience."
 
 **Ask:**
 "Tell me about the board members who will be in the room. For each key person, I'd like to understand:
+
 - Name and role
 - Background (expertise, career history)
 - Key concerns or hot buttons
@@ -101,6 +105,7 @@ Let's begin by understanding your audience."
 
 **Ask:**
 "Help me understand the decision dynamics:
+
 - Who is the primary decision-maker?
 - Who are the key influencers?
 - Are there any alliances or factions I should know about?
@@ -111,6 +116,7 @@ Let's begin by understanding your audience."
 
 **Ask:**
 "What's the context around this presentation?
+
 - What do they already know about this topic?
 - Have there been previous discussions or decisions?
 - What's the mood/temperature of the board right now?
@@ -121,6 +127,7 @@ Let's begin by understanding your audience."
 
 **Ask:**
 "What does success look like for this presentation?
+
 - Best case outcome?
 - Acceptable outcome?
 - What must not happen?"
@@ -154,17 +161,20 @@ Let's begin by understanding your audience."
 **The Ask:** [what you need]
 
 **Key Board Members:**
+
 | Name | Role | Stance | Hot Buttons |
 |------|------|--------|-------------|
 [table]
 
 **Decision Dynamics:**
+
 - Decision-maker: [X]
 - Key influencers: [X]
 - Potential skeptic: [X]
 - Potential champion: [X]
 
 **Context:**
+
 - Time available: [X]
 - Board temperature: [X]
 - Previous context: [X]
@@ -177,27 +187,31 @@ Does this accurately capture the audience we're presenting to?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysis [C] Continue to Narrative Arc"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then end with display again of the menu options
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and audience analysis is confirmed, will you then load and read fully `{nextStepFile}` (step-02-narrative-arc.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All key board members profiled
 - Decision dynamics mapped
 - Context and constraints understood
@@ -205,7 +219,8 @@ ONLY WHEN [C] Continue is selected and audience analysis is confirmed, will you 
 - Output file created with proper frontmatter
 - User confirms analysis before proceeding
 
-### FAILURE:
+### FAILURE
+
 - Skipping board member profiling
 - Proceeding without user confirmation
 - Starting content creation before analysis complete

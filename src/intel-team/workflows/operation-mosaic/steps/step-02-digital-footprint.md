@@ -27,10 +27,12 @@ Map the complete digital infrastructure footprint including domains, IPs, hostin
 ## MANDATORY EXECUTION RULES
 
 ### Agent Roles
+
 - **Primary: Resolver** (Domain-Intel-Specialist) - Domain/network intelligence
 - **Supporting: Probe** (Technical-Researcher) - Technology and security analysis
 
 ### Collection Protocol
+
 - Enumerate all associated domains and subdomains
 - Map IP infrastructure and hosting relationships
 - Analyze DNS configuration and email setup
@@ -380,6 +382,7 @@ Handoffs for Other Agents:
 ## COMPLETION CRITERIA
 
 Before proceeding:
+
 - [ ] Domain portfolio enumerated
 - [ ] IP infrastructure mapped
 - [ ] DNS configuration analyzed

@@ -6,4 +6,4 @@ description: Long-term strategic planning with diverse strategic philosophies
 # Strategic Planning Session
 
 Load and follow the workflow at:
-`@_bmad/strategy-team/workflows/strategic-planning-session/workflow.md`
+`@src/strategy-team/workflows/strategic-planning-session/workflow.md`

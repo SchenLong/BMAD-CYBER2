@@ -17,25 +17,25 @@ outputFile: '{output_folder}/security/cloud-security-assessment-{project_name}.m
 
 # Step 4: Data Protection Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on data protection assessment
 - FORBIDDEN to discuss logging/monitoring yet
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess data protection controls including encryption at rest, encryption in transit, key management, data classification, and sensitive data handling.
 
-## DATA PROTECTION SEQUENCE:
+## DATA PROTECTION SEQUENCE
 
 ### 1. Encryption at Rest
 
@@ -52,6 +52,7 @@ To assess data protection controls including encryption at rest, encryption in t
 | Databases | RDS/Azure SQL/Cloud SQL | TDE, CMK encryption |
 
 **Questions:**
+
 - Is all storage encrypted at rest?
 - Are customer-managed keys (CMK) used for sensitive data?
 - Any unencrypted storage detected?
@@ -74,6 +75,7 @@ What's your encryption at rest status?"
 | Database connections | SSL/TLS required | ? |
 
 **Questions:**
+
 - Is TLS 1.2+ enforced everywhere?
 - Are certificates properly managed?
 - Is internal service communication encrypted?
@@ -119,6 +121,7 @@ What's your key management approach?"
 | Restricted | Severe impact | PHI, PCI, secrets | HSM, strict access |
 
 **Questions:**
+
 - Do you have a data classification policy?
 - Is data tagged/labeled by classification?
 - Are controls enforced based on classification?
@@ -221,6 +224,7 @@ Update Section 5 of {outputFile}:
 "**Data Protection Assessment Complete**
 
 I've documented the data protection assessment including:
+
 - Encryption at rest coverage
 - Encryption in transit controls
 - Key management practices
@@ -235,7 +239,7 @@ Ready to proceed to logging and monitoring?"
 
 Display: **Data Protection Complete - Select an Option:** [C] Continue to Logging & Monitoring [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 5 content, allow revisions, then redisplay menu

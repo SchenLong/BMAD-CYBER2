@@ -127,12 +127,14 @@ async function enterpriseSetup() {
 The core component that manages installation execution, queueing, and lifecycle.
 
 **Features:**
+
 - Multi-priority queue management
 - Concurrent execution with configurable limits
 - State management and lifecycle control
 - Integration with all system components
 
 **Usage:**
+
 ```javascript
 const orchestrator = new BMADInstallationOrchestrator(config);
 await orchestrator.initialize();
@@ -151,6 +153,7 @@ await orchestrator.resume();
 Real-time progress tracking with multi-level granularity.
 
 **Features:**
+
 - Phase-based progress tracking
 - Step-level progress monitoring
 - Real-time WebSocket updates
@@ -158,6 +161,7 @@ Real-time progress tracking with multi-level granularity.
 - Performance metrics integration
 
 **Usage:**
+
 ```javascript
 const tracker = new ProgressTracker(config);
 await tracker.initialize();
@@ -178,6 +182,7 @@ const overall = tracker.getOverallProgress();
 Web-based real-time dashboard for monitoring installations.
 
 **Features:**
+
 - Multiple view types (overview, detailed, analytics)
 - Real-time updates via WebSocket
 - Alert management
@@ -185,6 +190,7 @@ Web-based real-time dashboard for monitoring installations.
 - Custom chart creation
 
 **Usage:**
+
 ```javascript
 const dashboard = new ProgressDashboard(progressTracker);
 await dashboard.initialize();
@@ -201,6 +207,7 @@ dashboard.addAlert('High error rate detected', 'warning');
 Flexible plugin system for extending installation functionality.
 
 **Features:**
+
 - Multiple execution strategies (sequential, parallel, waterfall)
 - Priority-based hook ordering
 - Timeout and retry handling
@@ -208,6 +215,7 @@ Flexible plugin system for extending installation functionality.
 - Built-in hook library
 
 **Usage:**
+
 ```javascript
 const hookManager = new HookManager(config);
 
@@ -226,6 +234,7 @@ await hookManager.executeHook('pre:install', { installation });
 Enterprise-grade rollback and recovery system.
 
 **Features:**
+
 - Comprehensive snapshot creation
 - Multiple rollback strategies
 - Atomic operation rollback
@@ -233,6 +242,7 @@ Enterprise-grade rollback and recovery system.
 - Dependency-aware rollback ordering
 
 **Usage:**
+
 ```javascript
 const rollbackManager = new RollbackManager(config);
 
@@ -251,6 +261,7 @@ const result = await rollbackManager.rollback(installation, {
 Continuous system health and performance monitoring.
 
 **Features:**
+
 - Real-time health checks
 - Custom health check registration
 - Alert generation and management
@@ -258,6 +269,7 @@ Continuous system health and performance monitoring.
 - Historical health analysis
 
 **Usage:**
+
 ```javascript
 const healthMonitor = new HealthMonitor(config);
 
@@ -279,6 +291,7 @@ healthMonitor.addHealthCheck('custom:database', {
 Comprehensive metrics collection and analytics.
 
 **Features:**
+
 - Performance metrics tracking
 - Custom metric definitions
 - Historical trend analysis
@@ -286,6 +299,7 @@ Comprehensive metrics collection and analytics.
 - Multiple export formats
 
 **Usage:**
+
 ```javascript
 const metricsCollector = new MetricsCollector(config);
 

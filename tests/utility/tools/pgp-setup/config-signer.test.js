@@ -141,7 +141,7 @@ describe('Configuration File Signer - INST-028', () => {
     });
 
     it('should include security-config.yaml in CONFIG_FILES', () => {
-      expect(configSigner.CONFIG_FILES).toContain('_bmad/core/security/security-config.yaml');
+      expect(configSigner.CONFIG_FILES).toContain('src/core/security/security-config.yaml');
     });
 
     it('should include manifest.yaml in CONFIG_FILES', () => {
@@ -397,7 +397,7 @@ describe('Configuration File Signer - INST-028', () => {
       const files = configSigner.getAllConfigFiles(MOCK_PROJECT_ROOT);
 
       expect(files).toContain('_bmad/_config/llm-config.yaml');
-      expect(files).toContain('_bmad/core/security/security-config.yaml');
+      expect(files).toContain('src/core/security/security-config.yaml');
       expect(files).toContain('_bmad/_config/manifest.yaml');
     });
 

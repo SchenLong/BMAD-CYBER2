@@ -10,19 +10,20 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 
 # Step 7: Network Segmentation Testing
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide segmentation and lateral movement testing
 
-## SEGMENTATION TESTING SEQUENCE:
+## SEGMENTATION TESTING SEQUENCE
 
 ### 1. Network Zone Mapping
 
 "Let's understand network segmentation.
 
 **Expected Zones:**
+
 - DMZ (public-facing services)
 - Production network
 - Development/staging
@@ -33,6 +34,7 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 - OT/ICS networks (if applicable)
 
 **Zone Documentation:**
+
 - VLAN structure
 - Firewall rules
 - Routing policies
@@ -45,12 +47,14 @@ What network zones exist in this environment?"
 "Testing VLAN isolation.
 
 **VLAN Attacks:**
+
 - VLAN hopping (DTP manipulation)
 - Double tagging attacks
 - CDP/LLDP information disclosure
 - Native VLAN exploitation
 
 **Testing Commands:**
+
 ```bash
 # Yersinia for VLAN attacks
 yersinia -G
@@ -63,6 +67,7 @@ yersinia -G
 ```
 
 **Key Questions:**
+
 - Can you reach other VLANs from your position?
 - Is trunk port access restricted?
 - Native VLAN configured securely?
@@ -74,12 +79,14 @@ What VLAN testing have you performed?"
 "Testing firewall effectiveness.
 
 **Firewall Testing:**
+
 - Allowed port/protocol analysis
 - Egress filtering
 - Stateful inspection bypass
 - Application layer filtering
 
 **Methods:**
+
 ```bash
 # Port testing through firewall
 nmap -Pn -p- <target_behind_fw>
@@ -92,6 +99,7 @@ firewalk -S1-1024 -i eth0 -n <gateway> <target>
 ```
 
 **Questions:**
+
 - What traffic is allowed between zones?
 - Is east-west traffic filtered?
 - Egress restrictions in place?
@@ -103,6 +111,7 @@ What firewall testing have you done?"
 "Testing ability to move between systems.
 
 **Lateral Movement Techniques:**
+
 - Pass-the-hash / Pass-the-ticket
 - SSH key reuse
 - Credential reuse
@@ -110,12 +119,14 @@ What firewall testing have you done?"
 - Admin share access
 
 **Movement Paths:**
+
 - User → Admin systems
 - DMZ → Internal network
 - Production → Management
 - Guest → Corporate
 
 **Tools:**
+
 - CrackMapExec
 - Impacket (psexec, wmiexec)
 - Metasploit
@@ -128,6 +139,7 @@ What lateral movement testing have you performed?"
 "Testing access to sensitive networks.
 
 **Sensitive Areas:**
+
 - Server management networks
 - Database networks
 - Backup infrastructure
@@ -136,6 +148,7 @@ What lateral movement testing have you performed?"
 - PCI/compliance zones
 
 **Testing:**
+
 - Can unprivileged users reach sensitive zones?
 - Are jump hosts enforced?
 - Network ACLs effective?
@@ -148,6 +161,7 @@ What sensitive network access testing have you done?"
 "Analyzing trust between systems.
 
 **Trust Vectors:**
+
 - Active Directory trusts
 - SSH key distribution
 - Shared credentials
@@ -155,6 +169,7 @@ What sensitive network access testing have you done?"
 - Application trust (service accounts)
 
 **Questions:**
+
 - What systems trust each other?
 - Are trusts bidirectional?
 - Can trust be exploited for access?
@@ -166,6 +181,7 @@ What trust relationships have you identified?"
 "Testing outbound traffic controls.
 
 **Egress Channels:**
+
 - Direct internet access
 - Proxy bypass
 - DNS tunneling
@@ -173,6 +189,7 @@ What trust relationships have you identified?"
 - Covert channels
 
 **Testing:**
+
 ```bash
 # DNS tunneling test
 nslookup test.yourdomain.com
@@ -242,6 +259,7 @@ Append to {outputFile} Section 7:
 "**Segmentation Testing Complete**
 
 **Summary:**
+
 - Zones tested: [count]
 - Segmentation bypasses: [count]
 - Lateral movement paths: [count]

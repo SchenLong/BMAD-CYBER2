@@ -14,7 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
+import { text, select, confirm } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 // ESM equivalent of __dirname
@@ -260,21 +260,25 @@ export async function promptForModuleConfig(module, context) {
     // Determine prompt type
     const promptType = getFieldType(fieldConfig);
 
-    // Build inquirer prompt configuration
-    const promptConfig = {
-      type: promptType,
-      name: 'answer',
-      message: fieldConfig.prompt,
-      default: expandedDefault
-    };
-
-    // Add choices for list type (future support)
+    // Prompt the user using the appropriate prompt function
+    let answer;
     if (promptType === 'list' && Array.isArray(fieldConfig.choices)) {
-      promptConfig.choices = fieldConfig.choices;
+      answer = await select({
+        message: fieldConfig.prompt,
+        choices: fieldConfig.choices,
+        default: expandedDefault
+      });
+    } else if (promptType === 'confirm') {
+      answer = await confirm({
+        message: fieldConfig.prompt,
+        initialValue: expandedDefault === 'true' || expandedDefault === true
+      });
+    } else {
+      answer = await text({
+        message: fieldConfig.prompt,
+        default: expandedDefault
+      });
     }
-
-    // Prompt the user
-    const { answer } = await inquirer.prompt([promptConfig]);
 
     // Create context with user's value for result expansion
     const resultContext = {

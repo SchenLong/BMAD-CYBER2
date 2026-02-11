@@ -11,13 +11,13 @@ outputFile: '{output_folder}/vciso/{client_name}/vciso-engagement-{client_name}.
 
 # Step 1: Initialization & Engagement Setup
 
-## STEP GOAL:
+## STEP GOAL
 
 To initialize the vCISO engagement workflow by gathering client context, defining engagement parameters, and creating the initial engagement document with Section 1 (Engagement Overview).
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -25,7 +25,7 @@ To initialize the vCISO engagement workflow by gathering client context, definin
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a senior Virtual CISO and strategic security advisor
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -33,14 +33,14 @@ To initialize the vCISO engagement workflow by gathering client context, definin
 - ✅ You bring vCISO expertise, client brings organizational context
 - ✅ Maintain professional, strategic, business-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on engagement setup and initialization
 - 🚫 FORBIDDEN to perform assessment or planning in this step
 - 💬 Handle initialization professionally and systematically
 - 🚪 DETECT existing workflow state and handle continuation
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Check for Existing Workflow
 
@@ -65,6 +65,7 @@ If document exists with `stepsCompleted`:
 If document exists AND `workflowComplete: true`:
 
 Ask: "I found a completed vCISO engagement from {date}. Would you like to:
+
 1. Create new engagement (different client)
 2. Update/modify existing engagement"
 
@@ -98,10 +99,12 @@ Collect: **Client Name** (will be used for file naming and document)
 "**Organization Profile:**
 
 **Company Size:**
+
 - Employees: (e.g., 50, 500, 5000)
 - Annual Revenue: (e.g., $5M, $50M, $500M)
 
 **Industry & Sector:**
+
 - Industry: (e.g., FinTech, Healthcare, SaaS, Manufacturing)
 - Regulatory Requirements: (e.g., GDPR, HIPAA, PCI-DSS, SOC 2, none)
 
@@ -112,10 +115,12 @@ Collect: **Organization Profile**
 "**Technology Environment:**
 
 **Infrastructure:**
+
 - Cloud provider(s): (e.g., AWS, Azure, GCP, On-prem, Hybrid)
 - Key technologies: (e.g., Kubernetes, microservices, databases)
 
 **Security Team Structure:**
+
 - Current security staff: (e.g., none, 1-2 people, small team, mature team)
 - Reporting structure: (e.g., reports to CTO, independent, no dedicated security)
 
@@ -126,11 +131,13 @@ Collect: **Technology Environment**
 "**Security History:**
 
 **Recent Security Events:**
+
 - Any recent incidents or breaches? (describe or 'none')
 - Recent audits or assessments? (results or 'none')
 - Known vulnerabilities or compliance gaps? (list or 'none')
 
 **Existing Documentation:**
+
 - Security policies? (yes/no/partial)
 - Disaster recovery plan? (yes/no/partial)
 - Incident response plan? (yes/no/partial)
@@ -144,6 +151,7 @@ Collect: **Security History**
 "**Engagement Definition:**
 
 **Engagement Duration:**
+
 - 3-month initial engagement
 - 6-month engagement
 - 12-month engagement
@@ -170,6 +178,7 @@ Collect: **Service Level**
 What are the top 3-5 security concerns or focus areas for this engagement?
 
 Examples:
+
 - 'Compliance readiness for SOC 2 audit'
 - 'Cloud security strategy and implementation'
 - 'Incident response capability building'
@@ -185,10 +194,12 @@ Collect: **Focus Areas**
 Who are the key stakeholders for this engagement?
 
 For each stakeholder provide:
+
 - Name & Role
 - Involvement level (decision maker, informed, implementer)
 
 Example:
+
 - 'Jane Smith, CEO - Decision maker, quarterly reviews'
 - 'John Doe, CTO - Implementer, weekly sync'
 - 'Board of Directors - Informed, quarterly board reports'
@@ -204,6 +215,7 @@ Collect: **Stakeholders**
 What does success look like for this engagement?
 
 Consider:
+
 - Compliance certifications achieved
 - Risk reduction targets
 - Governance structures implemented
@@ -393,7 +405,7 @@ Immediately load, read entire file, then follow `{nextStepFile}` to begin budget
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Document created with Section 1 (Engagement Overview)
 - Client context comprehensively captured
@@ -404,7 +416,7 @@ Immediately load, read entire file, then follow `{nextStepFile}` to begin budget
 - Ready for budget planning (step 2)
 - OR existing workflow routed to step-01b-continue
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Proceeding without client name
 - Not checking for existing documents

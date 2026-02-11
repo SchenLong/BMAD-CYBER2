@@ -1,11 +1,11 @@
 ---
 workflow_id: campaign-planner-person
-name: 'Campaign Planner: Person'
+name: campaign-planner-person
 description: 'Systematic OSINT campaign planning for investigating an individual'
 version: '1.0.0'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/intel-team/workflows/campaign-planner-person'
+workflow_path: '{project-root}/src/intel-team/workflows/campaign-planner-person'
 steps_path: '{workflow_path}/steps'
 
 # Agent Configuration
@@ -240,7 +240,7 @@ To begin this workflow, load and follow:
 
 ### 1. Configuration Loading
 
-Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and resolve:
+Load and read full config from `{project-root}/src/intel-team/config.yaml` and resolve:
 
 - `user_name`, `communication_language`, `output_folder`, `classification_level`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`

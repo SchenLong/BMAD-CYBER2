@@ -17,11 +17,11 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 6: Authentication & Session Management
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess authentication mechanisms, session management, and authorization controls.
 
-## AUTHENTICATION SEQUENCE:
+## AUTHENTICATION SEQUENCE
 
 ### 1. Authentication Methods
 
@@ -56,6 +56,7 @@ What authentication methods are used?"
 | Password requirements | ? | ? |
 
 **Local Storage:**
+
 - Credentials cached locally?
 - Keychain/Keystore used?
 - Biometric-protected?
@@ -76,6 +77,7 @@ How are credentials handled?"
 | Device passcode required | ? | ? |
 
 **Bypass Checks:**
+
 - Can biometric be bypassed with Frida?
 - Is biometric tied to crypto operation?
 
@@ -97,6 +99,7 @@ How is biometric authentication implemented?"
 | Multi-device handling | ? | ? |
 
 **Token Analysis:**
+
 - Token type (JWT, opaque)?
 - Token lifetime?
 - Refresh token rotation?
@@ -118,6 +121,7 @@ How are sessions managed?"
 | Feature access | ? | ? |
 
 **Testing:**
+
 - Access resources as different users
 - Modify object references
 - Test horizontal access
@@ -203,6 +207,7 @@ Update Section 6 of {outputFile}:
 "**Authentication Analysis Complete**
 
 I've analyzed:
+
 - Authentication methods
 - Credential handling
 - Biometric implementation

@@ -18,10 +18,12 @@ transitionType: ""
 ## 1. Transition Overview
 
 ### Transition Type
+
 **Type:** [Planned Succession / Unexpected Departure / Restructuring / Interim / Development]
 **Urgency:** [Emergency / Urgent / Planned]
 
 ### Role Details
+
 | Attribute | Details |
 |-----------|---------|
 | Position | |
@@ -32,6 +34,7 @@ transitionType: ""
 | Criticality | |
 
 ### Timeline
+
 | Milestone | Date |
 |-----------|------|
 | Announcement | |
@@ -40,6 +43,7 @@ transitionType: ""
 | Transition Complete | |
 
 ### Constraints
+
 - Confidentiality:
 - Political:
 - Legal/Regulatory:
@@ -47,6 +51,7 @@ transitionType: ""
 - Other:
 
 ### Success Criteria
+
 [How will we measure successful transition?]
 
 ---
@@ -54,34 +59,41 @@ transitionType: ""
 ## 2. Successor Assessment
 
 ### Role Requirements
+
 [Profile of ideal successor]
 
 ### Selection Criteria
+
 | Criterion | Weight | Definition |
 |-----------|--------|------------|
 | | | |
 | **Total** | 100% | |
 
 ### Internal Candidate Assessment
+
 | Candidate | Weighted Score | Readiness | Strengths | Gaps |
 |-----------|---------------|-----------|-----------|------|
 | | /5 | Now/6-12mo/1-2yr | | |
 
 ### External Search Decision
+
 **Recommendation:** [Internal Only / External Search / Both]
 **Rationale:** [Why this approach]
 
 ### Selection Process
+
 | Phase | Activities | Timeline | Decision Makers |
 |-------|------------|----------|-----------------|
 | | | | |
 
 ### Development Plans
+
 | Candidate | Gap | Development Action | Timeline |
 |-----------|-----|-------------------|----------|
 | | | | |
 
 ### Jean-Luc's Leadership View
+
 "[Principled commander perspective]"
 
 ---
@@ -89,6 +101,7 @@ transitionType: ""
 ## 3. Knowledge Transfer Planning
 
 ### Knowledge Inventory
+
 | Category | Risk if Lost | Current State | Transfer Priority |
 |----------|--------------|---------------|-------------------|
 | Strategic | | | |
@@ -99,25 +112,31 @@ transitionType: ""
 | Cultural | | | |
 
 ### Critical Relationships
+
 **Internal:**
+
 | Stakeholder | Relationship | Transfer Priority |
 |-------------|-------------|-------------------|
 | | | |
 
 **External:**
+
 | Stakeholder | Relationship | Transfer Priority |
 |-------------|-------------|-------------------|
 | | | |
 
 ### Tacit Knowledge Capture
+
 [Key undocumented knowledge to capture]
 
 ### Documentation Plan
+
 | Document | Owner | Deadline | Status |
 |----------|-------|----------|--------|
 | | | | |
 
 ### Transfer Mechanisms
+
 **Overlap Period:** [duration]
 
 | Week | Focus Area | Activities |
@@ -125,9 +144,11 @@ transitionType: ""
 | | | |
 
 ### Risk Mitigations
+
 [Plans if knowledge transfer is incomplete]
 
 ### Burke's Institutional View
+
 "[Conservative perspective on preserving knowledge]"
 
 ---
@@ -135,38 +156,46 @@ transitionType: ""
 ## 4. Stakeholder Management
 
 ### Stakeholder Analysis
+
 | Stakeholder | Key Concerns | Priority | Approach |
 |-------------|--------------|----------|----------|
 | | | | |
 
 ### Key Messages
+
 **Core Narrative:**
 [Why this transition, why organization is prepared]
 
 **Audience-Specific:**
+
 - Direct reports: [message]
 - Customers: [message]
 - Board: [message]
 
 ### Communication Timeline
+
 | Phase | Timing | Audiences | Messages |
 |-------|--------|-----------|----------|
 | | | | |
 
 ### Introduction Strategy
+
 | Stakeholder | Timing | Format | Who Leads |
 |-------------|--------|--------|-----------|
 | | | | |
 
 ### Concern Management
+
 | Stakeholder | Likely Concern | Proactive Response |
 |-------------|----------------|-------------------|
 | | | |
 
 ### Difficult Conversations
+
 [Sensitive situations requiring special handling]
 
 ### Giuseppe's Communications View
+
 "[Communications perspective]"
 
 ---
@@ -174,37 +203,45 @@ transitionType: ""
 ## 5. Operational Continuity
 
 ### Critical Operations
+
 | Operation | Frequency | Backup | Risk if Disrupted |
 |-----------|-----------|--------|-------------------|
 | | | | |
 
 ### Decision Authority
+
 | Decision Type | Current | Interim | Escalation |
 |---------------|---------|---------|------------|
 | | | | |
 
 ### Pending Matters
+
 | Item | Status | Deadline | Disposition |
 |------|--------|----------|-------------|
 | | | | Complete/Transfer/Defer |
 
 ### Interim Governance
+
 **Approach:** [Acting / Distributed / Enhanced Oversight / External]
 
 **Interim Decision Rights:**
+
 | Decision Type | Authority | Limitations |
 |---------------|-----------|-------------|
 | | | |
 
 ### Operational Risks
+
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
 | | | | |
 
 ### Contingency Plans
+
 [Plans for scenarios where transition doesn't go as expected]
 
 ### Lee's Operational View
+
 "[Technocrat perspective on continuity]"
 
 ---
@@ -212,6 +249,7 @@ transitionType: ""
 ## 6. Transition Timeline
 
 ### Timeline Overview
+
 | Milestone | Date |
 |-----------|------|
 | Transition start | |
@@ -224,31 +262,37 @@ transitionType: ""
 ### Phase Plan
 
 **Phase 1: Planning**
+
 | Week | Activities | Owner | Deliverables |
 |------|------------|-------|--------------|
 | | | | |
 
 **Phase 2: Announcement**
+
 | Day | Activities | Owner | Deliverables |
 |-----|------------|-------|--------------|
 | | | | |
 
 **Phase 3: Overlap**
+
 | Week | Activities | Owner | Deliverables |
 |------|------------|-------|--------------|
 | | | | |
 
 ### Critical Milestones
+
 | Milestone | Date | Owner | Success Criteria |
 |-----------|------|-------|------------------|
 | | | | |
 
 ### Key Meetings & Events
+
 | Meeting | Participants | Date | Purpose |
 |---------|--------------|------|---------|
 | | | | |
 
 ### Governance
+
 **Transition Lead:** [name]
 **Status Cadence:** [frequency]
 **Escalation:** [path]
@@ -272,6 +316,7 @@ transitionType: ""
 "[On opportunity for renewal]"
 
 ### Success Criteria
+
 | Timeframe | Metric | Target |
 |-----------|--------|--------|
 | Day 1 | | |
@@ -280,11 +325,13 @@ transitionType: ""
 | 180 days | | |
 
 ### Consolidated Risk Register
+
 | Risk | Category | L | I | Mitigation | Owner |
 |------|----------|---|---|------------|-------|
 | | | | | | |
 
 ### Immediate Action Items
+
 | Action | Owner | Deadline | Status |
 |--------|-------|----------|--------|
 | | | | |
@@ -294,14 +341,17 @@ transitionType: ""
 ## Appendix
 
 ### Document History
+
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | {date} | Leadership Transition Workflow | Initial draft |
 
 ### Approvals
+
 | Approver | Role | Date | Signature |
 |----------|------|------|-----------|
 | | | | |
 
 ### Methodology
+
 This transition plan was developed using the Leadership Transition Planning workflow, incorporating perspectives from leadership, institutional, stakeholder, and operational advisors through structured multi-dimensional planning.

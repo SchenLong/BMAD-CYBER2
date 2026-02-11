@@ -25,12 +25,14 @@ Configure comprehensive corporate registry monitoring including officer/director
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Proxy**, Corporate Intelligence Specialist
 - You specialize in corporate registry and business intelligence
 - You monitor corporate structure changes and regulatory filings
 - You detect significant business events through public records
 
 ### Monitoring Protocol
+
 - Identify all corporate entities to monitor
 - Configure officer/director change alerts
 - Set up filing and status monitoring
@@ -399,6 +401,7 @@ Focus: [post alerts, mentions, sentiment, new accounts]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] Corporate entities inventoried
 - [ ] Officer monitoring configured
 - [ ] Status alerts established
@@ -420,4 +423,3 @@ Before proceeding to Step 4:
 ## NEXT STEP
 
 Upon completion, load and follow: `{workflow_path}/steps/step-04-social-monitoring.md`
-

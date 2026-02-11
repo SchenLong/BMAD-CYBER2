@@ -14,13 +14,13 @@ outputFile: '{output_folder}/threat-model-{project_name}.md'
 
 # Step 7: Loop Decision
 
-## STEP GOAL:
+## STEP GOAL
 
 To mark the current component as fully analyzed, update progress tracking, and decide whether to analyze additional components or proceed to summary and recommendations.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -28,7 +28,7 @@ To mark the current component as fully analyzed, update progress tracking, and d
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -36,32 +36,33 @@ To mark the current component as fully analyzed, update progress tracking, and d
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on progress tracking and routing decision
 - 🚫 FORBIDDEN to perform threat analysis in this step
 - 💬 Present clear progress summary and next options
 - 🚪 Route based on whether more components remain
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Mark currentComponent as analyzed
 - 💾 Update componentsAnalyzed array in frontmatter
 - 📖 Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]` before routing
 - 🚫 FORBIDDEN to proceed without updating progress tracking
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Current component has completed steps 4, 5, 6 (STRIDE, Risk, Mitigation)
 - Must track completion before proceeding
 - Decision point: more components OR proceed to summary
 - This is routing logic, not analysis
 
-## LOOP DECISION PROCESS:
+## LOOP DECISION PROCESS
 
 ### 1. Load Current State
 
 Read {outputFile} frontmatter to extract:
+
 - `currentComponent` - Component just analyzed
 - `components` - Array of all components
 - `componentsAnalyzed` - Array of components fully analyzed
@@ -71,11 +72,13 @@ Read {outputFile} frontmatter to extract:
 **Add `currentComponent` to `componentsAnalyzed` array** (if not already present).
 
 Example:
+
 ```yaml
 componentsAnalyzed: ['Web Frontend', 'API Backend', 'PostgreSQL Database']
 ```
 
 **Clear `currentComponent`:**
+
 ```yaml
 currentComponent: ''
 ```
@@ -125,11 +128,12 @@ What would you like to do?"
 
 Wait for user selection.
 
-#### IF user selects 'M':
+#### IF user selects 'M'
 
 "Proceeding to component selection for next analysis..."
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2, 3, 4, 5, 6, 7]
 lastStep: 'loop-decision'
@@ -139,7 +143,7 @@ currentComponent: ''
 
 Load, read entire file, then follow {componentSelectionFile} to select next component.
 
-#### IF user selects 'C':
+#### IF user selects 'C'
 
 "You've chosen to proceed to summary with {componentsAnalyzed.length} of {components.length} components analyzed.
 
@@ -151,6 +155,7 @@ You can always return to this threat model later to analyze the remaining compon
 Proceeding to summary and recommendations..."
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2, 3, 4, 5, 6, 7]
 lastStep: 'loop-decision'
@@ -174,12 +179,14 @@ Excellent work! All {components.length} components have been thoroughly analyzed
 {list-all-components-with-checkmarks}
 
 **Analysis Summary:**
+
 - Total STRIDE threats identified: {aggregate-threat-count}
 - High-priority mitigations (P0/P1): {aggregate-high-priority-count}
 
 Proceeding to create the final summary and recommendations..."
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2, 3, 4, 5, 6, 7]
 lastStep: 'loop-decision'
@@ -221,7 +228,7 @@ Based on decision:
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Current component marked as analyzed
 - componentsAnalyzed array updated correctly
@@ -231,7 +238,7 @@ Based on decision:
 - Frontmatter updated with step 7 complete
 - Routed to appropriate next step (component selection OR summary)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Not updating componentsAnalyzed array
 - Not clearing currentComponent

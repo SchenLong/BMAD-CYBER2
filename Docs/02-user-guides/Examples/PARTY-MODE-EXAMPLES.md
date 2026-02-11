@@ -85,9 +85,11 @@ Party Mode enables multi-agent collaboration where 2-16 specialized agents engag
 ## Example 1: Incident War Room
 
 ### Scenario
+
 Active security incident requiring coordinated multi-team response.
 
 ### Invocation
+
 ```
 > PM
 
@@ -268,9 +270,11 @@ Production database server affected. Need coordinated response."
 ## Example 2: Strategic Council (Major Decision)
 
 ### Scenario
+
 Board-level decision on whether to accept acquisition offer or remain independent.
 
 ### Invocation
+
 ```
 > PM
 
@@ -502,9 +506,11 @@ Founders are 60% owners, team is 40%. Need multi-perspective analysis."
 ## Example 3: Contract Review Party
 
 ### Scenario
+
 Critical enterprise contract requiring multi-perspective review.
 
 ### Invocation
+
 ```
 > PM
 
@@ -611,9 +617,11 @@ unlimited liability.
 ## Example 4: Custom Agent Assembly
 
 ### Scenario
+
 Building a custom team for a unique challenge.
 
 ### Invocation
+
 ```
 > PM
 
@@ -684,26 +692,31 @@ continued good faith for the patent grant."
 ## Best Practices for Party Mode
 
 ### 1. Choose the Right Preset
+
 - Match preset to problem domain
 - Don't over-staff (3-5 agents optimal)
 - Include devil's advocate perspectives
 
 ### 2. Provide Rich Context
+
 - Share relevant documents
 - Explain constraints and deadlines
 - Identify key stakeholders
 
 ### 3. Guide the Discussion
+
 - Ask follow-up questions
 - Request synthesis when needed
 - Challenge weak arguments
 
 ### 4. Capture Outcomes
+
 - Document key decisions
 - Assign action items
 - Note unresolved questions
 
 ### 5. Know When to Exit
+
 - Natural conclusion reached
 - Key questions answered
 - Action items clear

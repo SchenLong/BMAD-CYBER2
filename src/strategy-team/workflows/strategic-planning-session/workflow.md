@@ -1,5 +1,5 @@
 ---
-name: Strategic Planning Session
+name: strategic-planning-session
 description: Long-term strategic planning with diverse strategic philosophies from Sun, Musashi, Lee, Burke, and Magnus
 web_bundle: true
 ---

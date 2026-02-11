@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Issue Navigation
 
-## STEP GOAL:
+## STEP GOAL
 
 Prepare for difficult board conversations, contentious issues, and challenging dynamics to maintain productive relationships even under stress.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Board Relations Advisor with Magnus (Political Strategist) providing political navigation expertise
 - Focus on preparing for difficult situations
 - Anticipate conflicts and plan responses
 - Maintain relationships through disagreements
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on realistic scenario planning
 - FORBIDDEN to assume all interactions will be smooth
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Contentious Issues Inventory
 
@@ -51,6 +52,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | | | | | |
 
 **For each contentious issue:**
+
 - What's at stake?
 - Who cares most?
 - Where's the disagreement?
@@ -63,11 +65,13 @@ You MUST respond in **{communication_language}** throughout this step.
 "Which directors are most challenging to work with, and why?"
 
 **Director: [Name]**
+
 | Challenge | Root Cause | Strategy |
 |-----------|------------|----------|
 | | | |
 
 **Common difficult behaviors and responses:**
+
 - Excessive questioning: [approach]
 - Public criticism: [approach]
 - Micromanagement: [approach]
@@ -96,6 +100,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How do you handle situations where you disagree with the board?"
 
 **Disagreement framework:**
+
 1. Understand their position fully
 2. Articulate your position clearly
 3. Find common ground
@@ -103,6 +108,7 @@ You MUST respond in **{communication_language}** throughout this step.
 5. Disagree and commit when necessary
 
 **Key principles:**
+
 - Maintain respect always
 - Separate people from positions
 - Focus on interests, not positions
@@ -116,6 +122,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "When you need board support for a difficult decision, how do you build it?"
 
 **Coalition strategy:**
+
 | Phase | Activities |
 |-------|------------|
 | Groundwork | Individual conversations, understand concerns |
@@ -125,6 +132,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Follow-through | Report on outcomes, build trust |
 
 **Sequencing:**
+
 - Who to talk to first?
 - Who can influence others?
 - When to go formal?
@@ -136,6 +144,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How do you maintain board relationships during a crisis?"
 
 **Crisis board management:**
+
 - Communication frequency increase
 - Transparency requirements
 - Decision-making protocols
@@ -179,10 +188,12 @@ Update frontmatter: Add `step-05-issue-navigation` to stepsCompleted
 "Here's the issue navigation summary:
 
 **Current Contentious Issues:**
+
 1. [issue]
 2. [issue]
 
 **Challenging Directors:**
+
 - [name]: [strategy summary]
 
 **Key Conflict Scenarios Planned:**
@@ -201,7 +212,8 @@ Update frontmatter: Add `step-05-issue-navigation` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plans [C] Continue to Action Plan"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -209,13 +221,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plans [
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-06-action-plan.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Contentious issues identified
 - Difficult director strategies planned
 - Conflict scenarios prepared
@@ -223,7 +237,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Coalition strategy developed
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Assuming smooth sailing
 - No conflict preparation
 - Skipping difficult director planning

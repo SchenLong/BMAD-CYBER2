@@ -36,12 +36,14 @@ ma-due-diligence/
 ## Advisor Perspectives
 
 **Primary Advisors:**
+
 - Lee (Technocrat): Systems integration, operational efficiency
 - Augustus (Policy Analyst): Evidence-based assessment, due diligence rigor
 - Magnus (Political Strategist): Stakeholder management, deal politics
 - Sun (Master Strategist): Strategic positioning, competitive advantage
 
 **Supporting Perspectives:**
+
 - Burke (Conservative): Risk identification, preservation of value
 - Geneva (Stakeholder Mediator): Culture integration, employee concerns
 - Sophia (Ethics Advisor): Deal ethics, stakeholder fairness

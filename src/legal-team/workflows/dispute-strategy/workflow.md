@@ -79,6 +79,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Scope
 
 **Covered Dispute Types:**
+
 - Commercial/Business disputes
 - Contract disputes
 - Employment disputes (civil aspects)
@@ -89,6 +90,7 @@ This uses **step-file architecture** for disciplined execution:
 - Debt collection matters
 
 **NOT Covered:**
+
 - Criminal matters
 - Criminal defense
 - Prosecution-related issues

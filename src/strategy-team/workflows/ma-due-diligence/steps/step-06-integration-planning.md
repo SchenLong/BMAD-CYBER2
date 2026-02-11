@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Integration Planning
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop a comprehensive integration strategy including Day 1 readiness, 100-day plan, and synergy capture roadmap to ensure successful post-merger integration.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor with Lee (Technocrat) providing integration expertise
 - Focus on practical, executable integration plans
 - Address both quick wins and long-term integration
 - Balance speed with thoroughness
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on actionable integration plans
 - FORBIDDEN to assume integration will "work itself out"
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Integration Philosophy
 
@@ -45,12 +46,14 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's establish the integration philosophy:"
 
 **Integration model options:**
+
 - Full integration (absorb target completely)
 - Partial integration (selective combination)
 - Holding company (preserve independence)
 - Reverse integration (adopt target practices)
 
 **Key questions:**
+
 - What degree of integration is needed?
 - What must be preserved?
 - What's the optimal pace?
@@ -63,17 +66,20 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's design the integration governance:"
 
 **Integration Management Office (IMO):**
+
 - IMO Leader
 - Workstream leads
 - Reporting structure
 - Decision rights
 
 **Steering Committee:**
+
 - Membership
 - Meeting cadence
 - Escalation process
 
 **Key decisions to make:**
+
 | Decision | Owner | Timeline |
 |----------|-------|----------|
 | Brand strategy | | |
@@ -89,6 +95,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's ensure Day 1 readiness:"
 
 **Must-haves for Day 1:**
+
 - [ ] Legal close complete
 - [ ] Leadership announced
 - [ ] Employee communications ready
@@ -99,6 +106,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - [ ] Key talent retained
 
 **Day 1 communications plan:**
+
 | Audience | Message | Channel | Owner |
 |----------|---------|---------|-------|
 | Target employees | | | |
@@ -124,6 +132,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 **Workstream plans:**
 For each functional area, define:
+
 - Leader
 - Day 1 requirements
 - 30-day objectives
@@ -137,16 +146,19 @@ For each functional area, define:
 "Let's plan synergy capture:"
 
 **Cost synergies timeline:**
+
 | Synergy | Value | Start | Full Run-Rate | Investment |
 |---------|-------|-------|---------------|------------|
 | [Category] | | | | |
 
 **Revenue synergies timeline:**
+
 | Synergy | Value | Start | Full Run-Rate | Investment |
 |---------|-------|-------|---------------|------------|
 | [Category] | | | | |
 
 **Synergy tracking:**
+
 - How will synergies be measured?
 - Who owns synergy delivery?
 - What's the governance process?
@@ -230,11 +242,13 @@ Update frontmatter: Add `step-06-integration-planning` to stepsCompleted
 **Day 1 Readiness:** [status]
 
 **100-Day Priorities:**
+
 1. [priority]
 2. [priority]
 3. [priority]
 
 **Synergy Capture Timeline:**
+
 - Year 1: $X
 - Year 2: $X
 - Full run-rate: $X
@@ -242,6 +256,7 @@ Update frontmatter: Add `step-06-integration-planning` to stepsCompleted
 **Integration Investment Required:** $X
 
 **Key Integration Risks:**
+
 1. [risk + mitigation]
 2. [risk + mitigation]
 
@@ -252,7 +267,8 @@ Update frontmatter: Add `step-06-integration-planning` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysis [C] Continue to Stakeholder Communications"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -260,13 +276,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysi
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-07-stakeholder-comms.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Integration philosophy established
 - Governance structure defined
 - Day 1 readiness planned
@@ -275,7 +293,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Resource requirements documented
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague integration plans
 - No Day 1 readiness checklist
 - Skipping synergy tracking

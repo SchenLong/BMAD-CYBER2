@@ -17,11 +17,11 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 4: Data Storage Security
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess how the app stores sensitive data locally and identify data leakage risks.
 
-## DATA STORAGE SEQUENCE:
+## DATA STORAGE SEQUENCE
 
 ### 1. iOS Data Storage
 
@@ -39,6 +39,7 @@ To assess how the app stores sensitive data locally and identify data leakage ri
 | CoreData | /Documents/*.sqlite | ? |
 
 **Keychain Analysis:**
+
 ```bash
 objection -g app.bundle explore
 ios keychain dump
@@ -61,6 +62,7 @@ What data is stored locally on iOS?"
 | Cache | /cache/ | ? |
 
 **Database Analysis:**
+
 ```bash
 adb shell
 run-as com.package.name
@@ -103,10 +105,12 @@ What sensitive data categories are present?"
 | Keychain/Keystore | ? | N/A | ? |
 
 **iOS Keychain:**
+
 - Using kSecAttrAccessible appropriately?
 - Biometric protection enabled?
 
 **Android Keystore:**
+
 - Using Android Keystore provider?
 - Hardware-backed keys?
 
@@ -213,6 +217,7 @@ Update Section 4 of {outputFile}:
 "**Data Storage Analysis Complete**
 
 I've analyzed:
+
 - Local storage locations
 - Sensitive data classification
 - Encryption implementation

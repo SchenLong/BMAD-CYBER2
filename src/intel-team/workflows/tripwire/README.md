@@ -15,6 +15,7 @@
 ## Purpose
 
 Configure comprehensive monitoring for target changes with alerting thresholds and notification rules:
+
 - Monitoring strategy definition
 - Infrastructure monitoring
 - Corporate registry monitoring

@@ -1,5 +1,5 @@
 ---
-name: Strategic Decision Workshop
+name: strategic-decision-workshop
 description: Multi-perspective strategic decision analysis using all 14 executive advisors to produce board-ready decision briefs
 web_bundle: true
 ---

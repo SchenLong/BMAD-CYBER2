@@ -298,13 +298,13 @@ describe('LLM Setup Entry Point - INST-018', () => {
       expect(moduleContent).toMatch(/import\s+chalk\s+from\s+['"]chalk['"]/);
     });
 
-    it('should import inquirer', async () => {
+    it('should import prompts abstraction', async () => {
       const moduleContent = fs.readFileSync(
         path.join(__dirname, 'index.js'),
         'utf8'
       );
 
-      expect(moduleContent).toMatch(/import\s+inquirer\s+from\s+['"]inquirer['"]/);
+      expect(moduleContent).toMatch(/import\s+\{.*\}\s+from\s+['"].*cli\/prompts\.js['"]/);
     });
   });
 

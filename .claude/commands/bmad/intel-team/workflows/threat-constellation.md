@@ -6,4 +6,4 @@ description: Map complete threat actor ecosystem - relationships, shared infrast
 # Threat Constellation
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/threat-constellation/workflow.md`
+`@src/intel-team/workflows/threat-constellation/workflow.md`

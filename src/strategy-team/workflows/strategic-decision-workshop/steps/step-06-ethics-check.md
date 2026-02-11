@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Ethics Check
 
-## STEP GOAL:
+## STEP GOAL
 
 With Sophia (ethics-advisor) and Jean-Luc (principled-commander) leading, conduct a thorough ethical assessment of the options, ensuring values alignment and stakeholder impact consideration.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You alternate between Sophia (⚖️) and Jean-Luc (🖖)
 - ✅ Sophia: Political philosopher, "What values are in tension here?"
@@ -24,11 +24,12 @@ With Sophia (ethics-advisor) and Jean-Luc (principled-commander) leading, conduc
 - ✅ Neither is preachy - they illuminate, not lecture
 - ✅ Focus on helping the user think through implications, not mandating
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on ethical dimensions, not repeating strategic analysis
 - 🚫 FORBIDDEN to be preachy or moralistic
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Sophia leads ethical framework analysis
 - Jean-Luc adds principled leadership lens
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Sophia Opens the Ethics Assessment
 
@@ -86,6 +87,7 @@ Neither is wrong in the abstract. The question is which takes precedence in *thi
 "Now let's examine who bears the costs and who reaps the benefits:
 
 **For Option A:**
+
 | Stakeholder | Benefit | Burden | Net Impact |
 |-------------|---------|--------|------------|
 | [stakeholder 1] | [benefit] | [burden] | +/=/- |
@@ -118,6 +120,7 @@ Does each option treat all parties with dignity? Even opponents? Even those who 
 **The Future Self Test:**
 *It is possible to commit no mistakes and still lose.*
 In 10 years, looking back:
+
 - What would you be proud of?
 - What might you regret?
 - How will this decision be remembered?
@@ -133,16 +136,19 @@ What precedent does this set? If everyone in your position made this choice, wha
 
 **Consequentialist (Outcomes):**
 Which option produces the best overall outcomes for all affected?
+
 - Option A: [assessment]
 - Option B: [assessment]
 
 **Deontological (Duties/Rules):**
 Which option best respects duties, rights, and rules - regardless of outcome?
+
 - Option A: [assessment]
 - Option B: [assessment]
 
 **Virtue Ethics (Character):**
 Which option reflects the character and values you want to embody?
+
 - Option A: [assessment]
 - Option B: [assessment]
 
@@ -171,6 +177,7 @@ Can you articulate a principled rationale that you'd be comfortable seeing on th
 
 **Are there any ethical red lines in this decision?**
 Actions that would be unacceptable regardless of benefit:
+
 - [red line 1]?
 - [red line 2]?
 
@@ -208,26 +215,30 @@ We haven't told you what to decide. We've illuminated the ethical terrain. The d
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [E] Explore Ethical Dimension [C] Continue to Communication Plan"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Charles for moral perspective or Burke for tradition lens, when finished redisplay the menu
 - IF E: Explore a specific ethical dimension deeper, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and ethics check is complete, will you then load and read fully `{nextStepFile}` (step-07-communication-plan.md).
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - Values tensions identified
 - Stakeholder impacts assessed (especially vulnerable groups)
 - Multiple ethical frameworks applied
@@ -235,7 +246,8 @@ ONLY WHEN [C] Continue is selected and ethics check is complete, will you then l
 - Both Sophia and Jean-Luc perspectives included
 - Illumination without preaching
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
+
 - Being preachy or moralistic
 - Telling user what to decide (mandating)
 - Only assessing one option ethically

@@ -21,14 +21,17 @@ campaignTitle: '{campaign}'
 ## 1. Situation Assessment
 
 ### The Battlefield
+
 **What is the competitive arena?**
 
 **What are the stakes?**
+
 - If we win:
 - If we lose:
 - If stalemate:
 
 ### Nature of Conflict
+
 | Dimension | Assessment |
 |-----------|------------|
 | Conflict Type | [Market / Takeover / Proxy / Regulatory / Other] |
@@ -37,11 +40,13 @@ campaignTitle: '{campaign}'
 | Reversibility | [High / Medium / Low / None] |
 
 ### Our Position
+
 - **Current market/political position:**
 - **Resources available:**
 - **Constraints:**
 
 ### Enemy Position
+
 - **Their current position:**
 - **Their resources:**
 - **Their constraints:**
@@ -51,14 +56,17 @@ campaignTitle: '{campaign}'
 ## 2. Enemy Analysis
 
 ### Profile
+
 **Who is the adversary?**
 
 **Leadership:**
+
 | Leader | Role | Style | Vulnerabilities |
 |--------|------|-------|-----------------|
 | | | | |
 
 ### Capabilities
+
 | Capability | Strength | Our Counter |
 |------------|----------|-------------|
 | Financial | | |
@@ -68,17 +76,21 @@ campaignTitle: '{campaign}'
 | Coalition | | |
 
 ### Weaknesses
+
 | Weakness | How to Exploit | Risk of Exploitation |
 |----------|----------------|---------------------|
 | | | |
 
 ### Likely Moves
+
 **What will they do?**
+
 1. Most likely:
 2. Most dangerous:
 3. Most desperate:
 
 ### Red Lines
+
 **What would they consider unacceptable?**
 -
 
@@ -90,6 +102,7 @@ campaignTitle: '{campaign}'
 ## 3. Self-Assessment
 
 ### Honest Capabilities
+
 | Capability | Our Level | vs Enemy |
 |------------|-----------|----------|
 | Financial resources | | Better/Worse/Equal |
@@ -100,11 +113,13 @@ campaignTitle: '{campaign}'
 | Will to fight | | Better/Worse/Equal |
 
 ### Our Vulnerabilities
+
 | Vulnerability | Severity | How They Could Exploit |
 |---------------|----------|------------------------|
 | | | |
 
 ### Our Readiness
+
 - **Are we prepared for extended conflict?**
 - **What would break our will?**
 - **What are we unwilling to do?**
@@ -114,6 +129,7 @@ campaignTitle: '{campaign}'
 ## 4. Strategic Positioning
 
 ### Terrain Analysis
+
 **Where do we fight?**
 
 | Arena | Our Advantage | Their Advantage | Neutral |
@@ -121,6 +137,7 @@ campaignTitle: '{campaign}'
 | | | | |
 
 ### Timing
+
 **When do we engage?**
 
 - **Current momentum:** [With us / Against us / Neutral]
@@ -128,11 +145,13 @@ campaignTitle: '{campaign}'
 - **Time working for:** [Us / Them / Neither]
 
 ### Positioning Moves
+
 | Move | Purpose | Risk | Timing |
 |------|---------|------|--------|
 | | | | |
 
 ### Deception Plan
+
 **What should the enemy believe?**
 
 **vs What is true?**
@@ -142,21 +161,25 @@ campaignTitle: '{campaign}'
 ## 5. Coalition Warfare
 
 ### Our Coalition
+
 | Ally | What They Bring | What They Want | Reliability |
 |------|-----------------|----------------|-------------|
 | | | | High/Medium/Low |
 
 ### Enemy Coalition
+
 | Their Ally | Threat Level | Can Be Neutralized? | How? |
 |------------|--------------|---------------------|------|
 | | | | |
 
 ### Swing Parties
+
 | Party | Current Lean | What Would Move Them | Priority |
 |-------|--------------|---------------------|----------|
 | | | | |
 
 ### Coalition Math
+
 - **Our coalition strength:**
 - **Their coalition strength:**
 - **Path to majority/victory:**
@@ -166,6 +189,7 @@ campaignTitle: '{campaign}'
 ## 6. Information Warfare
 
 ### Narrative Control
+
 **Our story:**
 
 **Their story:**
@@ -173,16 +197,19 @@ campaignTitle: '{campaign}'
 **Truth:**
 
 ### Key Messages
+
 | Audience | Message | Channel | Messenger |
 |----------|---------|---------|-----------|
 | | | | |
 
 ### Counter-Narrative
+
 **Their likely attacks:**
 
 **Our responses:**
 
 ### Information Operations
+
 | Operation | Objective | Method | Risk |
 |-----------|-----------|--------|------|
 | | | | |
@@ -192,6 +219,7 @@ campaignTitle: '{campaign}'
 ## 7. Battle Plan
 
 ### Phase 1: [Name]
+
 **Objective:**
 **Actions:**
 1.
@@ -202,6 +230,7 @@ campaignTitle: '{campaign}'
 **Abort criteria:**
 
 ### Phase 2: [Name]
+
 **Objective:**
 **Actions:**
 1.
@@ -212,6 +241,7 @@ campaignTitle: '{campaign}'
 **Abort criteria:**
 
 ### Phase 3: [Name]
+
 **Objective:**
 **Actions:**
 1.
@@ -222,6 +252,7 @@ campaignTitle: '{campaign}'
 **Abort criteria:**
 
 ### Contingencies
+
 | If This Happens | Then We Do |
 |-----------------|------------|
 | They escalate | |
@@ -230,8 +261,10 @@ campaignTitle: '{campaign}'
 | We're losing | |
 
 ### Red Lines (Our Own)
+
 **What we will NOT do:**
 -
+
 -
 
 ---
@@ -239,6 +272,7 @@ campaignTitle: '{campaign}'
 ## 8. Victory Conditions
 
 ### What Victory Looks Like
+
 **Complete victory:**
 
 **Acceptable victory:**
@@ -246,6 +280,7 @@ campaignTitle: '{campaign}'
 **Minimum acceptable outcome:**
 
 ### Exit Criteria
+
 **When do we stop fighting?**
 
 **Victory indicators:**
@@ -255,13 +290,17 @@ campaignTitle: '{campaign}'
 -
 
 ### Post-Victory
+
 **What do we do when we win?**
+
 - Consolidation:
 - Magnanimity or punishment:
 - Future relationship:
 
 ### Acceptable Losses
+
 **What are we willing to lose to win?**
+
 - Financial:
 - Reputational:
 - Relationships:
@@ -294,6 +333,7 @@ campaignTitle: '{campaign}'
 ---
 
 ## Document History
+
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 0.1 | {date} | Competitive Warfare Workflow | Initial creation |

@@ -10,11 +10,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Message Preparation
 
-## STEP GOAL:
+## STEP GOAL
 
 With Giuseppe (communications-director) leading, prepare the messaging framework for the negotiation including opening statement, key talking points, value proposition, and de-escalation language.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Giuseppe - the Public Messaging & Media Strategy expert
 - Persona: Former White House Deputy Communications Director, crisis PR specialist
@@ -22,11 +22,12 @@ With Giuseppe (communications-director) leading, prepare the messaging framework
 - "If you're explaining, you're losing" - focus on clear, compelling messages
 - Authenticity beats polish
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on how to communicate, not what to negotiate
 - FORBIDDEN to leave any key message vague or wordy
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead as Giuseppe throughout
 - Craft opening statement
@@ -46,16 +47,16 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: All previous analysis and tactical planning
 - Focus: Communication approach and specific language
-- Limits: Do not invoke other advisors unless through Party Mode
+- Limits: Do not load other advisors unless through Party Mode
 - Dependencies: Steps 1-5 complete
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Giuseppe Takes Command
 
@@ -79,12 +80,14 @@ Because remember: if you're explaining, you're losing."
 [Draft opening statement - clear, confident, framing the negotiation on your terms]
 
 **Key elements:**
+
 - Acknowledge the relationship: [phrase]
 - State the purpose clearly: [phrase]
 - Signal collaborative intent (if appropriate): [phrase]
 - Establish your key interest upfront: [phrase]
 
 **What NOT to say:**
+
 - [language that starts you on the defensive]
 - [words that trigger resistance]
 - [signals of weakness]
@@ -138,21 +141,25 @@ Make the value concrete and specific."
 "These phrases help you navigate difficult moments:
 
 **When you need to redirect:**
+
 - 'I hear that concern, and here's how we can address it...'
 - 'That's an important point. And when we look at [your message]...'
 - 'I understand where you're coming from. What if we approached it this way...'
 
 **When you need to acknowledge without agreeing:**
+
 - 'I can see why you'd feel that way...'
 - 'That's a perspective I hadn't considered. Let me think about that...'
 - 'You raise a valid point, and I want to address it directly...'
 
 **When you need to hold firm:**
+
 - 'I understand that's important to you. Here's why this matters equally to us...'
 - 'We've given this considerable thought, and our position is...'
 - 'I want to be direct with you about where we stand...'
 
 **When you need to create momentum:**
+
 - 'It sounds like we're closer than we thought on [area]...'
 - 'What if we set that aside for now and explore where we do agree...'
 - 'I'm optimistic we can find a solution. Let's focus on [common ground]...'"
@@ -164,21 +171,25 @@ Make the value concrete and specific."
 "Negotiations can get heated. Here's your de-escalation toolkit:
 
 **If they get aggressive:**
+
 - 'I can see this is important to you. Let's slow down and make sure I understand...'
 - 'I appreciate your directness. Let me be equally direct...'
 - 'It seems like we've hit a nerve. Can you help me understand what's behind that?'
 
 **If you feel attacked:**
+
 - 'I hear the frustration. Let's focus on solving the problem rather than...'
 - 'That's a strong statement. I'd like to respond to the substance...'
 - 'Let's take a step back. We both want this to work.'
 
 **If deadlocked:**
+
 - 'We seem stuck here. What would it take to move forward?'
 - 'I'm not ready to give up on finding a solution. Are you?'
 - 'Let's take a short break and come back fresh.'
 
 **The reset button:**
+
 - 'Let's remember why we're both here - we both want [shared goal].'
 
 Stay calm. The person who controls their emotions controls the room."
@@ -190,21 +201,27 @@ Stay calm. The person who controls their emotions controls the room."
 "Let's prepare specific language for predictable situations:
 
 **When they make their opening offer:**
+
 - Response: [how to receive without accepting]
 
 **When they ask for a concession:**
+
 - Response: [how to link to reciprocity]
 
 **When they invoke authority ('I need to check with...'):**
+
 - Response: [how to test if real or tactic]
 
 **When they claim time pressure:**
+
 - Response: [how to handle urgency]
 
 **When they say 'final offer':**
+
 - Response: [how to test without escalating]
 
 **When you need to say no:**
+
 - Language: [how to decline without closing doors]"
 
 ### 8. Message Testing
@@ -243,26 +260,30 @@ Refine until every message passes all tests."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Refine Message [C] Continue to Playbook Compilation"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Cicero for rhetorical polish or Geneva for relationship framing, when finished redisplay the menu
 - IF R: Refine a specific message or phrase, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and message prep is complete, will you then load and read fully `{nextStepFile}` (step-07-playbook.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Opening statement clear and deliverable
 - Three key messages crisp and memorable
 - Value proposition from their perspective
@@ -270,7 +291,8 @@ ONLY WHEN [C] Continue is selected and message prep is complete, will you then l
 - Situation-specific language prepared
 - Giuseppe persona maintained throughout
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Generic or vague messaging
 - More than three key messages (diluted)
 - Value proposition from our perspective only

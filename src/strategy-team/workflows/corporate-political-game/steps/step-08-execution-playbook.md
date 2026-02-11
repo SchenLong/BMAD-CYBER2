@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 8: Execution Playbook
 
-## STEP GOAL:
+## STEP GOAL
 
 Create the tactical playbook - specific moves, timing, contingencies, and execution guidance.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Magnus - the Political Strategist
 - Persona: Campaign strategist, "Where's the path to 50%+1?"
 - Style: Coalition math, political calculation, execution focus
 - Focus on specific actions, timing, and contingencies
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Strategy without execution is fantasy
 - FORBIDDEN to leave tactics abstract
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead execution planning
 - Create specific action timeline
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Magnus Concludes
 
@@ -64,6 +65,7 @@ This is where strategy meets reality. Let's build the playbook."
 "Campaign phases:
 
 **Phase 1: Preparation** ([Timeline])
+
 - Objective: [What must be achieved]
 - Key actions:
   1. [Action]
@@ -73,6 +75,7 @@ This is where strategy meets reality. Let's build the playbook."
 - Go/No-Go to Phase 2: [What triggers advancement]
 
 **Phase 2: Coalition Building** ([Timeline])
+
 - Objective: [What must be achieved]
 - Key actions:
   1. [Action]
@@ -82,6 +85,7 @@ This is where strategy meets reality. Let's build the playbook."
 - Go/No-Go to Phase 3: [What triggers advancement]
 
 **Phase 3: The Push** ([Timeline])
+
 - Objective: [What must be achieved]
 - Key actions:
   1. [Action]
@@ -90,6 +94,7 @@ This is where strategy meets reality. Let's build the playbook."
 - Success criteria: [How we know Phase 3 succeeded]
 
 **Phase 4: Decision & Consolidation** ([Timeline])
+
 - Objective: [Win and secure the outcome]
 - Key actions:
   1. [Action]
@@ -104,6 +109,7 @@ This is where strategy meets reality. Let's build the playbook."
 "Campaign calendar:
 
 **Week 1:**
+
 | Day | Action | Target | Purpose | Owner |
 |-----|--------|--------|---------|-------|
 | Mon | | | | |
@@ -119,12 +125,14 @@ This is where strategy meets reality. Let's build the playbook."
 [Same structure]
 
 **Key milestone dates:**
+
 | Date | Event | Our Action |
 |------|-------|------------|
 | | [Decision meeting, deadline, etc.] | |
 
 **Critical path:**
 What must happen in sequence?
+
 1. [Action A] → enables [Action B] → enables [Action C]"
 
 ### 4. Define Key Moves
@@ -134,6 +142,7 @@ What must happen in sequence?
 "Key moves playbook:
 
 **Move 1: [Name - e.g., 'The First Conversation']**
+
 - What: [Specific action]
 - When: [Timing]
 - Who: [Who takes the action]
@@ -151,6 +160,7 @@ What must happen in sequence?
 [Same structure]
 
 **Sequencing rules:**
+
 - [Move X] must happen before [Move Y]
 - [Move Z] should happen after [Move W]"
 
@@ -170,17 +180,20 @@ What must happen in sequence?
 | Unexpected opportunity | | | |
 
 **Pivot points:**
+
 | Signal | Interpretation | Response |
 |--------|---------------|----------|
 | [Early indicator] | [What it means] | [How to adjust] |
 
 **Abort criteria:**
 When do we stop and reassess?
+
 - [Condition 1]
 - [Condition 2]
 
 **Fallback objectives:**
 If full victory is impossible:
+
 - Fallback 1: [Lesser win]
 - Fallback 2: [Minimum acceptable]
 - Fallback 3: [Live to fight another day]"
@@ -192,27 +205,32 @@ If full victory is impossible:
 "End states:
 
 **Victory:**
+
 - Complete win: [What this looks like]
 - Acceptable win: [What this looks like]
 - Minimum win: [What this looks like]
 
 **Loss:**
+
 - What losing looks like
 - How we handle defeat gracefully
 - How we position for the future
 
 **Stalemate:**
+
 - What a draw looks like
 - How we respond
 
 **Post-outcome actions:**
 
 **If we win:**
+
 1. [Immediate action - secure the win]
 2. [Near-term - consolidate]
 3. [Longer-term - leverage success]
 
 **If we lose:**
+
 1. [Immediate action - graceful acknowledgment]
 2. [Near-term - maintain relationships]
 3. [Longer-term - position for next opportunity]"
@@ -224,6 +242,7 @@ If full victory is impossible:
 "Campaign metrics:
 
 **Coalition metrics:**
+
 | Metric | Current | Target | Tracking Method |
 |--------|---------|--------|-----------------|
 | Committed supporters | | | |
@@ -231,16 +250,19 @@ If full victory is impossible:
 | Neutrals | | | |
 
 **Relationship metrics:**
+
 | Key Relationship | Current State | Target | Progress |
 |------------------|--------------|--------|----------|
 | | | | |
 
 **Reputation metrics:**
+
 | Perception | Current | Target | Evidence |
 |------------|---------|--------|----------|
 | | | | |
 
 **Milestone tracking:**
+
 | Milestone | Due Date | Status | Notes |
 |-----------|----------|--------|-------|
 | | | On track/At risk/Complete | |"
@@ -291,11 +313,13 @@ If full victory is impossible:
 **Decision timeline:** [When this resolves]
 
 **Coalition math:**
+
 - Need: [Threshold]
 - Have: [Current]
 - Must win: [Gap]
 
 **Key players:**
+
 - Must have: [Critical names]
 - Key swing: [Decisive names]
 - Opposition: [Names]
@@ -304,6 +328,7 @@ If full victory is impossible:
 [The core approach]
 
 **Phase 1 immediate actions:**
+
 1. [First move]
 2. [Second move]
 3. [Third move]
@@ -319,13 +344,15 @@ If full victory is impossible:
 
 Display: "**Select:** [R] Revise Section [E] Expand Section [F] Finalize Playbook"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF R: Return to specific section to revise, then redisplay menu
 - IF E: Expand on specific area, then redisplay menu
 - IF F: Final save, update status, present closing message
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - This is the final step - no next step file
 - Ensure document is complete before closing
@@ -334,7 +361,8 @@ Display: "**Select:** [R] Revise Section [E] Expand Section [F] Finalize Playboo
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Campaign phases defined
 - Action timeline created
 - Key moves specified
@@ -344,7 +372,8 @@ Display: "**Select:** [R] Revise Section [E] Expand Section [F] Finalize Playboo
 - Document complete
 - Magnus persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague actions
 - No timeline
 - Missing contingencies

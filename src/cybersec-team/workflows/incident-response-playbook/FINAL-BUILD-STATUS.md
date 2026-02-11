@@ -9,33 +9,38 @@
 ## ✅ COMPLETED FILES (16)
 
 ### Core Infrastructure (3 files) ✅
+
 1. workflow.md
 2. step-01-init.md
 3. step-01b-continue.md
 
 ### Templates (2 files) ✅
-4. template-playbook.md
-5. template-incident-report.md
+
+1. template-playbook.md
+2. template-incident-report.md
 
 ### Data Files (3 files) ✅
-6. data/incident-types.csv
-7. data/severity-criteria.csv
-8. data/mitre-attack-mapping.csv
+
+1. data/incident-types.csv
+2. data/severity-criteria.csv
+3. data/mitre-attack-mapping.csv
 
 ### Mode A - Playbook Creation (7 files) ✅
-9. step-02a-incident-type.md
-10. step-03a-detection-analysis.md
-11. step-04a-containment.md
-12. step-05a-eradication.md
-13. step-06a-recovery.md
-14. step-07a-post-incident.md
-15. step-08a-generate-playbook.md
+
+1. step-02a-incident-type.md
+2. step-03a-detection-analysis.md
+3. step-04a-containment.md
+4. step-05a-eradication.md
+5. step-06a-recovery.md
+6. step-07a-post-incident.md
+7. step-08a-generate-playbook.md
 
 ### Mode B - Guided Execution (4 files) ✅
-16. step-02b-triage.md
-17. step-03b-containment.md
-18. step-04b-evidence.md
-19. (Specifications ready for remaining 3 files below)
+
+1. step-02b-triage.md
+2. step-03b-containment.md
+3. step-04b-evidence.md
+4. (Specifications ready for remaining 3 files below)
 
 ---
 
@@ -46,6 +51,7 @@
 **Purpose:** Root cause analysis and MITRE ATT&CK mapping
 
 **Key Sections:**
+
 1. Root Cause Analysis Framework
    - Initial access vector identification
    - Vulnerability exploited (CVE if applicable)
@@ -92,6 +98,7 @@
 **Purpose:** Complete threat removal and vulnerability remediation
 
 **Key Sections:**
+
 1. Eradication Planning
    - Simultaneous removal strategy
    - Team coordination
@@ -99,12 +106,12 @@
 2. Threat Actor Removal Checklist
    - Malware removal (all variants, all systems)
    - Persistence mechanism removal:
-     * Scheduled tasks
-     * Services
-     * Registry keys
-     * WMI subscriptions
-     * Backdoor accounts
-     * Web shells
+     - Scheduled tasks
+     - Services
+     - Registry keys
+     - WMI subscriptions
+     - Backdoor accounts
+     - Web shells
    - Tool-specific removal commands
 
 3. Credential Reset Procedures
@@ -148,6 +155,7 @@
 **Purpose:** System restoration and service resumption
 
 **Key Sections:**
+
 1. Recovery Prioritization
    - P1 (Critical) systems first
    - P2 (High) systems second
@@ -156,11 +164,11 @@
 
 2. System Restoration Procedures
    - For each system:
-     * Restoration method (backup/rebuild/patch)
-     * Execution timestamp
-     * Validation testing (functional, security, performance)
-     * Business owner approval
-     * IT approval
+     - Restoration method (backup/rebuild/patch)
+     - Execution timestamp
+     - Validation testing (functional, security, performance)
+     - Business owner approval
+     - IT approval
 
 3. Service Resumption
    - Dependency checking (upstream/downstream)
@@ -195,6 +203,7 @@
 **Purpose:** Final incident report and closure
 
 **Key Sections:**
+
 1. Post-Incident Analysis
    - What worked well
    - What could be improved
@@ -261,6 +270,7 @@
 ## SPECIFICATIONS QUALITY
 
 All 3 remaining files have:
+
 - ✅ Complete section-by-section breakdowns
 - ✅ Clear purpose statements
 - ✅ Detailed key features lists
@@ -276,12 +286,14 @@ All 3 remaining files have:
 ## SUMMARY
 
 **What's Complete:**
+
 - ✅ 100% of Mode A (playbook creation)
 - ✅ 100% of infrastructure and templates
 - ✅ 100% of data files
 - ✅ 57% of Mode B (4 of 7 steps)
 
 **What's Remaining:**
+
 - 🔄 43% of Mode B (3 steps with complete specifications)
 
 **Overall Completion:** 84% built + 11% specified = **95% complete**
@@ -293,7 +305,9 @@ The workflow is **production-ready for Mode A** and substantially complete for M
 ## Files Ready for Use
 
 ### Mode A - Playbook Creation (READY)
+
 Users can now:
+
 1. Initialize new playbook creation workflow
 2. Complete all 7 steps to create custom incident response playbooks
 3. Generate comprehensive playbooks with 8 sections
@@ -301,13 +315,16 @@ Users can now:
 5. Create playbooks for any of the 10 incident types
 
 ### Mode B - Guided Execution (PARTIALLY READY)
+
 Users can currently:
+
 1. Initialize incident response (Mode B)
 2. Complete triage and classification (step 02b)
 3. Execute containment actions (step 03b)
 4. Collect forensic evidence (step 04b)
 
 **Remaining steps need implementation:**
+
 - Analysis (step 05b) - specification complete
 - Eradication (step 06b) - specification complete
 - Recovery (step 07b) - specification complete

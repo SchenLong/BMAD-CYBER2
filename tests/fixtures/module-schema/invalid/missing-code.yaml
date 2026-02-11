@@ -1,0 +1,12 @@
+name: "Missing Code Module"
+default_selected: false
+prompt:
+  - "This module has no code field."
+module_code:
+  result: "missing-code"
+module_version:
+  result: "1.0.0"
+agents_path:
+  result: "{project-root}/_bmad/missing-code/agents"
+workflows_path:
+  result: "{project-root}/_bmad/missing-code/workflows"

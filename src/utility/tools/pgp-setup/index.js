@@ -20,7 +20,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 import chalk from 'chalk';
-import inquirer from 'inquirer';
+import { select, confirm } from '../../cli/prompts.js';
 
 // Import pgp-setup components
 import { checkGpgCapability, getInstallInstructions } from './gpg-checker.js';
@@ -245,17 +245,12 @@ export async function promptForAction() {
     { name: 'Exit', value: 'exit' }
   ];
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'action',
-      message: 'What would you like to do?',
-      choices,
-      pageSize: 10
-    }
-  ]);
+  const action = await select({
+    message: 'What would you like to do?',
+    choices
+  });
 
-  return answer.action;
+  return action;
 }
 
 /**
@@ -263,16 +258,12 @@ export async function promptForAction() {
  * @returns {Promise<boolean>} User confirmation
  */
 export async function confirmKeyGeneration() {
-  const answer = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirm',
-      message: 'Would you like to generate a new PGP key?',
-      default: true
-    }
-  ]);
+  const result = await confirm({
+    message: 'Would you like to generate a new PGP key?',
+    initialValue: true
+  });
 
-  return answer.confirm;
+  return result;
 }
 
 /**
@@ -280,16 +271,12 @@ export async function confirmKeyGeneration() {
  * @returns {Promise<boolean>} User confirmation
  */
 export async function confirmReplaceKey() {
-  const answer = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirm',
-      message: chalk.yellow('A key already exists. Generate a new one? This will replace the existing key.'),
-      default: false
-    }
-  ]);
+  const result = await confirm({
+    message: chalk.yellow('A key already exists. Generate a new one? This will replace the existing key.'),
+    initialValue: false
+  });
 
-  return answer.confirm;
+  return result;
 }
 
 // ============================================================================
@@ -512,16 +499,12 @@ async function performKeyGeneration(projectRoot) {
   }
 
   // Offer to sign configs
-  const answer = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'signNow',
-      message: 'Would you like to sign configuration files now?',
-      default: true
-    }
-  ]);
+  const signNow = await confirm({
+    message: 'Would you like to sign configuration files now?',
+    initialValue: true
+  });
 
-  if (answer.signNow) {
+  if (signNow) {
     console.log(chalk.dim('\nSigning configuration files...\n'));
     const signResult = await signAllConfigs({
       fingerprint: genResult.fingerprint,

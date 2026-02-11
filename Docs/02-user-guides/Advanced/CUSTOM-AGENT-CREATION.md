@@ -53,11 +53,13 @@ Example path: `_bmad/cybersec-team/agents/my-custom-agent.md`
 ### Step 1: Choose a Unique Agent ID
 
 1. Check existing agents in the manifest:
+
    ```bash
    cat _bmad/_config/agent-manifest.csv
    ```
 
 2. Verify no conflicts:
+
    ```bash
    grep -r "name: \"your-agent-name\"" _bmad/*/agents/
    ```

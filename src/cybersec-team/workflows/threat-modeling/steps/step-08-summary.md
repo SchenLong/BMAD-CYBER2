@@ -16,13 +16,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 8: Summary and Recommendations
 
-## STEP GOAL:
+## STEP GOAL
 
 To aggregate threat findings across all analyzed components, create a risk prioritization matrix, identify critical security concerns, provide architecture recommendations, and complete the threat model with actionable next steps.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -30,7 +30,7 @@ To aggregate threat findings across all analyzed components, create a risk prior
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -38,34 +38,35 @@ To aggregate threat findings across all analyzed components, create a risk prior
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on aggregation, synthesis, and recommendations
 - 🚫 FORBIDDEN to identify new threats in this step
 - 💬 Guide creation of actionable recommendations
 - 🎯 This is the final deliverable - ensure completeness
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Aggregate all threats across all analyzed components
 - 💾 Create risk prioritization matrix and implementation roadmap
 - 📖 Mark `workflowComplete: true` in frontmatter when done
 - 🚫 FORBIDDEN to complete workflow without comprehensive summary
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - All analyzed components have completed STRIDE, Risk, Mitigation
 - Sections 1-5 already in document for each analyzed component
 - This is synthesis and recommendations phase
 - Final deliverable for stakeholders
 
-## SUMMARY AND RECOMMENDATIONS PROCESS:
+## SUMMARY AND RECOMMENDATIONS PROCESS
 
 ### 1. Initialize Summary Creation
 
 Load {outputFile} to review all existing sections (1-5) for all analyzed components.
 
 Extract frontmatter:
+
 - `componentsAnalyzed` - Components included in analysis
 - `components` - All identified components
 - `systemName`
@@ -115,6 +116,7 @@ Let's create a high-level overview for stakeholders who may not read the full th
 Please provide your assessment for each question:"
 
 Collect:
+
 - Overall security posture
 - Top 3-5 critical concerns
 - Recommended action
@@ -129,6 +131,7 @@ Let's compile statistics across all analyzed components."
 Calculate and display:
 
 **Threat Distribution:**
+
 - Total STRIDE threats identified: {total-count}
   - Spoofing: {S-count}
   - Tampering: {T-count}
@@ -138,18 +141,21 @@ Calculate and display:
   - Elevation of Privilege: {E-count}
 
 **Risk Level Distribution:**
+
 - 🔴 Critical (Score 9): {count} threats
 - 🟠 High (Score 6): {count} threats
 - 🟡 Medium (Score 3-4): {count} threats
 - 🟢 Low (Score 1-2): {count} threats
 
 **Mitigation Priority Distribution:**
+
 - P0 (Must fix before release): {count} mitigations
 - P1 (Fix in current sprint): {count} mitigations
 - P2 (Fix in current quarter): {count} mitigations
 - P3 (Backlog): {count} mitigations
 
 **Effort Summary:**
+
 - Total estimated effort: {sum-of-all-effort-estimates}
 - P0/P1 effort (urgent): {sum-of-P0-P1-effort}
 
@@ -162,6 +168,7 @@ Let's identify and prioritize the most critical threats across the entire system
 Review all threats with risk score ≥ 6 across all components.
 
 **For each critical threat, consider:**
+
 - Does it affect multiple components?
 - Is it a systemic issue (e.g., lacking authentication globally)?
 - Does it represent a single point of failure?
@@ -170,6 +177,7 @@ Review all threats with risk score ≥ 6 across all components.
 **Identify the top 5-10 critical threats that require immediate attention:**"
 
 Collect list of critical threats with:
+
 - Threat ID(s) (may span multiple components)
 - Description
 - Affected component(s)
@@ -228,26 +236,31 @@ Based on the threats identified, what architectural changes or improvements shou
 Consider:
 
 **Authentication & Authorization:**
+
 - Are there systemic authentication/authorization gaps?
 - Should we implement centralized identity management?
 - Is RBAC/ABAC properly implemented?
 
 **Data Protection:**
+
 - Is encryption consistently applied (in-transit and at-rest)?
 - Are sensitive data flows properly secured?
 - Should we implement data loss prevention (DLP)?
 
 **Network Security:**
+
 - Are trust boundaries properly enforced?
 - Should we implement network segmentation?
 - Are there gaps in perimeter security?
 
 **Logging & Monitoring:**
+
 - Is audit logging comprehensive and tamper-proof?
 - Should we implement SIEM integration?
 - Are security alerts properly configured?
 
 **Resilience & Availability:**
+
 - Are there single points of failure?
 - Should we implement redundancy/failover?
 - Are DoS protections adequate?
@@ -255,6 +268,7 @@ Consider:
 **What are the top 3-5 architectural recommendations?**"
 
 Collect architectural recommendations with:
+
 - Recommendation description
 - Rationale (which threats does it address?)
 - Priority
@@ -267,6 +281,7 @@ Collect architectural recommendations with:
 Does this system need to comply with any security standards or regulations?
 
 **Consider:**
+
 - GDPR (EU personal data)
 - HIPAA (US healthcare data)
 - PCI DSS (payment card data)
@@ -502,7 +517,7 @@ user_name: '{user_name}'
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Complete Workflow
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY complete workflow when user selects 'C'
@@ -510,7 +525,7 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Compl
 - User can chat or ask questions - always respond and then end with display again of the menu options
 - Use menu handling logic section below
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with prompt: "Perform adversarial review of the complete threat model - what did we miss? Are the recommendations actionable? Is anything unclear or incomplete?"
 - IF P: Execute {partyModeWorkflow} with focus: "Final quality gate review of the complete threat model - comprehensiveness, accuracy, actionability, completeness"
@@ -528,6 +543,7 @@ When user selects 'C', display:
 Your comprehensive STRIDE-based threat model is now complete!
 
 **Threat Model Summary:**
+
 - **Components Analyzed:** {componentsAnalyzed.length}
 - **Total Threats Identified:** {total-count}
 - **High-Priority Mitigations:** {P0+P1-count}
@@ -537,6 +553,7 @@ Your comprehensive STRIDE-based threat model is now complete!
 `{outputFile}`
 
 **Next Steps:**
+
 1. Review and share with stakeholders
 2. Create development tickets for P0/P1 mitigations
 3. Schedule threat model review sessions
@@ -550,7 +567,7 @@ Thank you for using the STRIDE Threat Modeling workflow!"
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Executive summary created with stakeholder-friendly overview
 - Aggregate statistics calculated across all components
@@ -563,7 +580,7 @@ Thank you for using the STRIDE Threat Modeling workflow!"
 - Frontmatter updated with workflowComplete: true
 - Complete, actionable threat model delivered
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Incomplete executive summary
 - Missing aggregate statistics

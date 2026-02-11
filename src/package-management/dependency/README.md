@@ -87,6 +87,7 @@ await adapter.initialize('/path/to/project');
 Advanced TypeScript dependency resolution engine with comprehensive graph analysis.
 
 **Key Features:**
+
 - Multiple resolution algorithms (topological, breadth-first, depth-first, optimal)
 - Conflict resolution strategies (latest-wins, security-first, stability-first)
 - Cycle detection and analysis
@@ -94,6 +95,7 @@ Advanced TypeScript dependency resolution engine with comprehensive graph analys
 - Security compliance checking
 
 **Usage:**
+
 ```typescript
 import { DependencyResolver } from './resolver/dependency-resolver';
 
@@ -106,6 +108,7 @@ const result = await resolver.resolve(rootPackage, registry, {
 ```
 
 **Resolution Strategies:**
+
 - `topological`: Topological sort-based resolution
 - `breadth-first`: Level-by-level dependency traversal
 - `depth-first`: Deep dependency tree traversal
@@ -113,6 +116,7 @@ const result = await resolver.resolve(rootPackage, registry, {
 - `minimal`: Minimize total dependency count
 
 **Conflict Resolution Policies:**
+
 - `latest-wins`: Always use latest compatible version
 - `root-wins`: Prefer versions closer to root package
 - `security-first`: Prioritize security patches over compatibility
@@ -125,6 +129,7 @@ const result = await resolver.resolve(rootPackage, registry, {
 Enhanced JavaScript validation system with comprehensive security and compliance checks.
 
 **Key Features:**
+
 - Project structure validation
 - File accessibility and syntax validation
 - Security pattern scanning
@@ -133,6 +138,7 @@ Enhanced JavaScript validation system with comprehensive security and compliance
 - Performance metrics collection
 
 **Usage:**
+
 ```javascript
 const { BMADDependencyValidator } = require('./validator/dependency-validator');
 
@@ -145,6 +151,7 @@ const result = await validator.validateAll();
 ```
 
 **Validation Levels:**
+
 - `basic`: Core file and structure validation
 - `enhanced`: Security scanning and policy validation
 - `strict`: Full compliance and governance validation
@@ -154,6 +161,7 @@ const result = await validator.validateAll();
 Comprehensive JavaScript dependency management system with Epic 1 integration.
 
 **Key Features:**
+
 - Full dependency lifecycle management (install, update, remove)
 - Operation queuing and parallel execution
 - Security context management
@@ -162,6 +170,7 @@ Comprehensive JavaScript dependency management system with Epic 1 integration.
 - Team-specific policies and configurations
 
 **Usage:**
+
 ```javascript
 const { BMADDependencyManager } = require('./manager/bmad-dependency-manager');
 
@@ -181,6 +190,7 @@ await manager.initializeSystem();
 ```
 
 **Operation Types:**
+
 - `INSTALL`: Install new dependencies
 - `UPDATE`: Update existing dependencies
 - `REMOVE`: Remove dependencies
@@ -194,6 +204,7 @@ await manager.initializeSystem();
 Seamless integration layer between dependency system and Epic 1 security infrastructure.
 
 **Key Features:**
+
 - Epic 1 security infrastructure integration
 - Package registry system integration
 - Health monitoring and metrics collection
@@ -202,6 +213,7 @@ Seamless integration layer between dependency system and Epic 1 security infrast
 - Real-time status monitoring
 
 **Usage:**
+
 ```typescript
 import { DependencyIntegrationAdapter } from './integration-adapter';
 
@@ -424,6 +436,7 @@ try {
 ### Main Classes
 
 #### `DependencyEngine`
+
 - `initialize()`: Initialize the complete dependency system
 - `resolveWithValidation()`: Resolve dependencies with validation
 - `installDependencies()`: Install dependencies with security checks
@@ -432,18 +445,21 @@ try {
 - `getSystemStatus()`: Get overall system status
 
 #### `DependencyResolver`
+
 - `resolve()`: Core dependency resolution
 - `detectCycles()`: Detect circular dependencies
 - `resolveConflicts()`: Resolve version conflicts
 - `optimizeGraph()`: Optimize dependency graph
 
 #### `BMADDependencyValidator`
+
 - `validateAll()`: Comprehensive system validation
 - `validateProjectStructure()`: Project structure validation
 - `validateSecurityIntegration()`: Security integration validation
 - `validateTeamConfigurations()`: Team-specific validation
 
 #### `BMADDependencyManager`
+
 - `install()`: Install dependencies
 - `update()`: Update dependencies
 - `remove()`: Remove dependencies
@@ -451,6 +467,7 @@ try {
 - `getStatus()`: Manager status
 
 #### `DependencyIntegrationAdapter`
+
 - `initialize()`: Initialize integration
 - `getDependencyEngine()`: Get dependency engine
 - `performIntegratedOperation()`: Execute integrated operations
@@ -543,6 +560,7 @@ interface TeamConfig {
 ### Common Issues
 
 #### Installation Failures
+
 ```bash
 # Check system status
 node -e "
@@ -562,6 +580,7 @@ validateProject('.').then(result =>
 ```
 
 #### Security Violations
+
 ```bash
 # Run security scan
 node -e "
@@ -573,6 +592,7 @@ initializeIntegration().then(adapter =>
 ```
 
 #### Performance Issues
+
 ```bash
 # Check performance metrics
 node -e "

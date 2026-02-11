@@ -10,25 +10,27 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 # Step 5: CI/CD Pipeline Security
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide CI/CD security assessment
 
-## CI/CD SECURITY SEQUENCE:
+## CI/CD SECURITY SEQUENCE
 
 ### 1. CI/CD Environment Overview
 
 "Let's understand your CI/CD environment.
 
 **CI/CD Tools:**
+
 - Jenkins / GitLab CI / GitHub Actions / CircleCI?
 - ArgoCD / Flux for GitOps?
 - Artifact repositories (Nexus, Artifactory)?
 - Container registries?
 
 **Pipeline Scope:**
+
 - Build pipelines
 - Test pipelines
 - Deployment pipelines
@@ -41,18 +43,21 @@ What CI/CD tools are in scope?"
 "Reviewing CI/CD access controls.
 
 **Authentication:**
+
 - SSO/LDAP integration?
 - MFA enforced?
 - Service accounts managed?
 - API token security?
 
 **Authorization:**
+
 - Role separation (dev/ops/admin)?
 - Project/pipeline permissions?
 - Secret access control?
 - Audit logging?
 
 **Key Questions:**
+
 - Who can modify pipelines?
 - Who can access production secrets?
 - Who can deploy to production?
@@ -64,18 +69,21 @@ What access controls are configured?"
 "Reviewing pipeline security configuration.
 
 **Pipeline Security:**
+
 - Pipeline-as-code reviewed?
 - No secrets in pipeline files?
 - Branch protection rules?
 - Required approvals?
 
 **Build Security:**
+
 - Pinned dependencies?
 - Trusted base images?
 - Build isolation?
 - Reproducible builds?
 
 **Deployment Security:**
+
 - Environment separation?
 - Deployment gates?
 - Rollback capability?
@@ -88,18 +96,21 @@ What pipeline configurations can we review?"
 "Reviewing secrets management in pipelines.
 
 **Secret Storage:**
+
 - Native secret management?
 - External vault integration?
 - Environment variables vs files?
 - Secret masking in logs?
 
 **Secret Exposure Risks:**
+
 - Secrets in pipeline definitions?
 - Secrets in build logs?
 - Secrets in artifacts?
 - Secrets in environment dumps?
 
 **Best Practices:**
+
 - Short-lived credentials?
 - Least privilege service accounts?
 - Secret rotation?
@@ -111,18 +122,21 @@ How are secrets managed in your pipelines?"
 "Reviewing build artifact security.
 
 **Artifact Management:**
+
 - Artifact signing?
 - Vulnerability scanning?
 - SBOM generation?
 - Provenance tracking?
 
 **Container Images:**
+
 - Image scanning integrated?
 - Signed images?
 - Trusted registries?
 - Tag immutability?
 
 **Supply Chain:**
+
 - Dependency pinning?
 - Lock files committed?
 - Dependency confusion prevention?
@@ -135,18 +149,21 @@ What artifact security measures are in place?"
 "Reviewing CI/CD runner/agent security.
 
 **Runner Configuration:**
+
 - Self-hosted or cloud-hosted?
 - Runner isolation?
 - Privileged runners?
 - Runner registration security?
 
 **Environment Security:**
+
 - Clean build environments?
 - No persistent data?
 - Network isolation?
 - Access to production networks?
 
 **Commands (GitHub Actions example):**
+
 ```yaml
 # Check for self-hosted runners
 # Review runner group permissions
@@ -160,18 +177,21 @@ What runner/agent configuration is in use?"
 "Assessing software supply chain security.
 
 **SLSA Levels:**
+
 - Source integrity (signed commits)?
 - Build integrity (isolated builds)?
 - Provenance (build attestation)?
 - Common requirements (version control)?
 
 **Dependency Security:**
+
 - Dependabot/Renovate enabled?
 - Vulnerability alerts configured?
 - Private package feeds secured?
 - Typosquatting protection?
 
 **Third-Party Actions/Plugins:**
+
 - Pinned by SHA?
 - Trusted publishers?
 - Regular updates?
@@ -243,6 +263,7 @@ Append to {outputFile} Section 5:
 "**CI/CD Security Assessment Complete**
 
 **Summary:**
+
 - Pipelines reviewed: [count]
 - Access control issues: [count]
 - Secret exposure risks: [count]

@@ -24,12 +24,14 @@ Analyze the seed node to understand its nature, identify all possible expansion 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, Intelligence Operations Director
 - You analyze the seed and plan the expansion strategy
 - You set boundaries to prevent scope creep
 - You identify the most promising expansion vectors
 
 ### Step-Specific Rules
+
 - Fully characterize the seed before expanding
 - Identify ALL potential expansion vectors
 - Set realistic depth and node limits
@@ -57,6 +59,7 @@ Determine seed type and extract metadata:
 For each seed type, map available expansion paths:
 
 #### Email Seed Expansion
+
 ```
 email@domain.com
     │
@@ -78,6 +81,7 @@ email@domain.com
 ```
 
 #### Domain Seed Expansion
+
 ```
 example.com
     │
@@ -104,6 +108,7 @@ example.com
 ```
 
 #### Username Seed Expansion
+
 ```
 username123
     │
@@ -216,6 +221,7 @@ Create the working network map:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Seed node fully characterized
 - [ ] All expansion vectors identified
 - [ ] Vectors prioritized by value

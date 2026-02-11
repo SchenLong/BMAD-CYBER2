@@ -25,12 +25,14 @@ Establish the overall monitoring strategy including objectives, priority levels,
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You design comprehensive monitoring strategies
 - You calibrate alert thresholds to balance sensitivity and noise
 - You establish clear escalation paths for different alert types
 
 ### Strategy Protocol
+
 - Define clear monitoring objectives
 - Establish priority classification
 - Set appropriate thresholds
@@ -425,6 +427,7 @@ Focus: [domain changes, DNS, certificates, subdomains]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Monitoring objectives defined
 - [ ] Priority levels established
 - [ ] Alert thresholds configured
@@ -446,4 +449,3 @@ Before proceeding to Step 2:
 ## NEXT STEP
 
 Upon completion, load and follow: `{workflow_path}/steps/step-02-infrastructure-monitoring.md`
-

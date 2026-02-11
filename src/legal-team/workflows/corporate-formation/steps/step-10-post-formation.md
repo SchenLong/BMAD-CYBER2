@@ -15,6 +15,7 @@ Provide comprehensive post-formation guidance and next steps.
 ### 1. Immediate Next Steps
 
 **Within First Week:**
+
 - [ ] Obtain certified copies of formation documents
 - [ ] Apply for Tax ID (EIN/NIF/Registry Code)
 - [ ] Open business bank account
@@ -22,6 +23,7 @@ Provide comprehensive post-formation guidance and next steps.
 - [ ] Engage ongoing legal/tax advisors
 
 **Within First Month:**
+
 - [ ] Obtain necessary business licenses
 - [ ] Set up registered office/agent
 - [ ] Implement record-keeping system
@@ -31,17 +33,20 @@ Provide comprehensive post-formation guidance and next steps.
 ### 2. Banking Setup
 
 **USA:**
+
 - Most banks require EIN confirmation letter
 - In-person visit may be required (some online options)
 - Prepare: Formation docs, Operating Agreement, EIN, IDs
 
 **Spain:**
+
 - NIF required before account opening
 - Escritura de constitución (certified)
 - Poderes del administrador
 - AML/KYC documentation
 
 **Estonia:**
+
 - e-Residency digital ID required
 - Can open through partner banks
 - Wise Business Account popular option
@@ -50,6 +55,7 @@ Provide comprehensive post-formation guidance and next steps.
 ### 3. Insurance Considerations
 
 Recommend evaluation of:
+
 - General liability insurance
 - Professional liability (E&O)
 - Directors & Officers (D&O)
@@ -60,6 +66,7 @@ Recommend evaluation of:
 ### 4. Operational Setup
 
 **Contracts to Establish:**
+
 - Founder/shareholder agreement (if not in formation docs)
 - Employment agreements
 - IP assignment agreements
@@ -67,6 +74,7 @@ Recommend evaluation of:
 - NDA templates
 
 **Systems to Implement:**
+
 - Accounting software
 - Document management
 - Contract management
@@ -108,6 +116,7 @@ Recommend evaluation of:
 ```
 
 Update frontmatter:
+
 - `stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
 - `status: "completed"`
 

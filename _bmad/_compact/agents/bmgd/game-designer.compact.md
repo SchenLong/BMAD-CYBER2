@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmgd/agents/game-designer.md
+# Full agent: src/bmgd/agents/game-designer.md
 agent_id: "game-designer"
 name: "Samus Shepard"
 title: "Game Designer"

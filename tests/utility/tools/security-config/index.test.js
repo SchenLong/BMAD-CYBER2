@@ -34,7 +34,7 @@ const __dirname = path.dirname(__filename);
 
 // Test fixtures
 const MOCK_PROJECT_ROOT = path.join(__dirname, '__test_fixtures_index__');
-const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, '_bmad/core/security');
+const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, 'src/core/security');
 
 // Setup and teardown
 function setupTestFixtures() {

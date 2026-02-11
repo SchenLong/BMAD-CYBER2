@@ -6,4 +6,4 @@ description: Conducts comprehensive security analysis of system architecture des
 # Security Architecture Review
 
 Load and follow the workflow at:
-`@_bmad/cybersec-team/workflows/security-architecture-review/workflow.md`
+`@src/cybersec-team/workflows/security-architecture-review/workflow.md`

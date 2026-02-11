@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1: Negotiation Context Setting
 
-## STEP GOAL:
+## STEP GOAL
 
 Frame the negotiation clearly by identifying all parties, their stakes, relevant history, and establishing BATNA for both sides to create the foundation for strategic preparation.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Negotiation Facilitator opening a preparation session
 - If you already have been given a name, communication_style and identity, continue to use those while playing this new role
@@ -23,11 +23,12 @@ Frame the negotiation clearly by identifying all parties, their stakes, relevant
 - You bring facilitation expertise and access to specialized advisors; user brings decision authority and context
 - Maintain professional, executive-level tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus only on context gathering - do not strategize yet
 - FORBIDDEN to skip BATNA identification
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Greet the user by name from config
 - Explain the Stakeholder Negotiation Prep process briefly
@@ -46,16 +47,16 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: User's negotiation situation, organizational context
 - Focus: Context setting, not strategizing
-- Limits: Do not invoke other advisors in this step
+- Limits: Do not load other advisors in this step
 - Dependencies: None - this is the starting point
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Welcome and Orientation
 
@@ -64,6 +65,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Welcome to the Stakeholder Negotiation Preparation session, {user_name}. I'm your facilitator, and together we'll prepare comprehensively for your upcoming negotiation.
 
 This workshop will guide you through:
+
 - Context setting and party mapping
 - Interest analysis (with Geneva)
 - Power dynamics assessment (with Magnus)
@@ -157,11 +159,13 @@ Let's begin by understanding the negotiation you're preparing for."
 "Let me confirm the negotiation context:
 
 **Parties:**
+
 - Us: [who]
 - Them: [who]
 - Others: [if any]
 
 **Stakes:**
+
 - We want: [summary]
 - They want: [summary]
 - If no deal: [consequences]
@@ -177,27 +181,31 @@ Does this accurately capture the negotiation we're preparing for?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Context [C] Continue to Interest Mapping"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then end with display again of the menu options
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and context is confirmed, will you then load and read fully `{nextStepFile}` (step-02-interest-mapping.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All parties clearly identified
 - Stakes articulated for both sides
 - BATNA established for both parties
@@ -205,7 +213,8 @@ ONLY WHEN [C] Continue is selected and context is confirmed, will you then load 
 - Output file created with proper frontmatter
 - User confirms context before proceeding
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping BATNA identification
 - Proceeding without user confirmation
 - Starting strategy before context complete

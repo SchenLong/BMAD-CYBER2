@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Final Review and Completion
 
-## STEP GOAL:
+## STEP GOAL
 
 To conduct final quality review of audit preparation package and complete the workflow with recommendations and next steps.
 
-## FINAL REVIEW PROCESS:
+## FINAL REVIEW PROCESS
 
 ### 1. Completeness Check
 
@@ -26,6 +26,7 @@ Display:
 Reviewing all sections of audit preparation package..."
 
 **Verify:**
+
 - ✅ Section 1: Audit Overview complete
 - ✅ Section 2: Control Inventory complete ({coverage}% coverage)
 - ✅ Section 3: Gap Assessment complete ({gaps-count} gaps identified)
@@ -38,15 +39,18 @@ Reviewing all sections of audit preparation package..."
 "**Quality Assessment:**
 
 **Control Coverage:**
+
 - Total Controls: {total}
 - Implemented: {implemented} ({percentage}%)
 - Target for audit: 100% or justified exceptions
 
 **Gap Remediation:**
+
 - Critical Gaps (P0): {remediated}/{total} remediated ({percentage}%)
 - High Priority (P1): {remediated}/{total} remediated ({percentage}%)
 
 **Evidence Readiness:**
+
 - Evidence Collected: {percentage}%
 - Evidence Gaps: {count}
 
@@ -72,11 +76,13 @@ Reviewing all sections of audit preparation package..."
 "**Final Recommendations:**
 
 **Before Audit (Action Items):**
+
 1. {critical-action-1}
 2. {critical-action-2}
 ...
 
 **During Audit (Best Practices):**
+
 1. Designate single point of contact for auditor
 2. Provide workspace for auditor team
 3. Log all auditor requests and responses
@@ -84,6 +90,7 @@ Reviewing all sections of audit preparation package..."
 5. Escalate issues promptly
 
 **After Audit (Follow-up):**
+
 1. Address all findings within agreed timeline
 2. Document lessons learned
 3. Update policies/procedures based on findings
@@ -230,6 +237,7 @@ Display:
 **Organization:** {project_name}
 
 **Audit Preparation Package Summary:**
+
 - Control Coverage: {percentage}%
 - Gaps Identified: {count}
 - Remediations Planned: {count}
@@ -240,6 +248,7 @@ Display:
 `{outputFile}`
 
 **Artifacts Generated:**
+
 1. Control Mapping Matrix
 2. Audit Readiness Checklist
 3. Executive Summary
@@ -248,6 +257,7 @@ Display:
 6. Remediation Roadmap
 
 **Next Steps:**
+
 1. Review and distribute artifacts to stakeholders
 2. Complete critical remediations before audit
 3. Conduct internal dry-run
@@ -263,7 +273,8 @@ Good luck with your audit!"
 
 ## 🚨 SUCCESS METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - Complete audit preparation package
 - All 7 sections documented
 - Readiness score calculated
@@ -271,7 +282,8 @@ Good luck with your audit!"
 - Next steps clear
 - workflowComplete: true
 
-### ❌ FAILURE:
+### ❌ FAILURE
+
 - Incomplete sections
 - Missing artifacts
 - No readiness assessment

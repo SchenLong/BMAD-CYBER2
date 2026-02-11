@@ -101,6 +101,7 @@ npm run build
 ```
 
 **Build Pipeline:**
+
 1. **Clean** - Remove previous build artifacts
 2. **Extract** - Process source files from each team module
 3. **Convert** - Transform agents (MD → YAML) and workflows
@@ -117,6 +118,7 @@ npm run validate
 ```
 
 **Validation Checks:**
+
 - ✅ Source structure integrity (53 agents, 57 workflows)
 - ✅ Agent conversion accuracy (MD → YAML → functional)
 - ✅ Workflow preservation (bmad-builder format maintained)
@@ -202,6 +204,7 @@ npm run validate
 ## 🔄 Workflow Inventory
 
 ### 🔒 Cybersecurity Workflows (13)
+
 - Blockchain Security Assessment
 - Cloud Security Assessment
 - Compliance Audit Preparation
@@ -217,6 +220,7 @@ npm run validate
 - Web App Security Testing
 
 ### 🕵️ Intelligence Workflows (19)
+
 - Approach Vector (HUMINT Planning)
 - Attribution Chain (Evidence-based Attribution)
 - Breach Archaeology (Data Exposure Assessment)
@@ -238,6 +242,7 @@ npm run validate
 - Tripwire (Monitoring & Alerting)
 
 ### ⚖️ Legal Workflows (8)
+
 - Contract Drafting
 - Contract Review
 - Corporate Formation
@@ -248,6 +253,7 @@ npm run validate
 - Shared Legal Resources
 
 ### 🎯 Strategy Workflows (17)
+
 - Board Presentation Prep
 - Board Relations Management
 - Competitive Warfare
@@ -269,17 +275,21 @@ npm run validate
 ## 🔗 Integration & Dependencies
 
 ### Core Dependencies
+
 - **bmad:core** (≥2.0.0) - Required
   - Agents: abdul, bmad-master
   - Workflows: party-mode, cross-module, incident-response
 
 ### Cross-Team Integration
+
 The package enables seamless cross-team coordination through:
+
 - **Multi-team Consultation** - Coordinated consultation across all teams
 - **Emergency Response** - Multi-team emergency response coordination
 - **Strategic Assessment** - Comprehensive assessment using all teams
 
 ### Peer Dependencies (Optional)
+
 Teams can work independently or in coordination based on specific use cases.
 
 ## 🏢 Production Deployment
@@ -287,6 +297,7 @@ Teams can work independently or in coordination based on specific use cases.
 ### Enterprise Installation
 
 1. **Environment Preparation**
+
    ```bash
    # Verify BMAD core installation
    bmad --version  # Should be ≥2.0.0
@@ -297,11 +308,13 @@ Teams can work independently or in coordination based on specific use cases.
    ```
 
 2. **Package Installation**
+
    ```bash
    npm install @bmad-cybercommand/multi-module
    ```
 
 3. **Configuration**
+
    ```bash
    # Configure output directories
    mkdir -p _bmad-output/specialized-teams
@@ -311,6 +324,7 @@ Teams can work independently or in coordination based on specific use cases.
    ```
 
 4. **Validation**
+
    ```bash
    # Verify installation
    npm run validate
@@ -339,6 +353,7 @@ CMD ["bmad", "start"]
 ## 🧪 Testing
 
 ### Automated Testing
+
 ```bash
 # Run complete test suite
 npm test
@@ -350,6 +365,7 @@ npm run test:integration # Test cross-team coordination
 ```
 
 ### Manual Testing
+
 ```bash
 # Test agent functionality
 bmad invoke cybersec-team:threat-analyst
@@ -375,6 +391,7 @@ bmad run strategic-decision-workshop
 ## 🤝 Contributing
 
 ### Development Setup
+
 ```bash
 # Clone repository
 git clone https://github.com/bmad-code-org/BMAD-CYBERCOMMAND.git
@@ -388,6 +405,7 @@ npm run validate
 ```
 
 ### Adding New Agents or Workflows
+
 1. Add to appropriate team module in `src/`
 2. Update module configuration in `modules/`
 3. Rebuild distribution: `npm run build`

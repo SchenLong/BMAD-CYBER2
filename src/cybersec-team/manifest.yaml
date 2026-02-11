@@ -7,8 +7,8 @@ version: 1.0.0
 
 permissions:
   filesystem:
-    read: ["_bmad/cybersec-team/**", "docs/**", "_bmad/core/**"]
-    write: ["_bmad/cybersec-team/output/**"]
+    read: ["src/cybersec-team/**", "docs/**", "src/core/**"]
+    write: ["src/cybersec-team/output/**"]
   network: true
   shell:
     allowed_commands: ["curl", "wget", "whois", "dig", "nslookup", "host"]

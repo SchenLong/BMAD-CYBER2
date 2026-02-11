@@ -25,12 +25,14 @@ Correlate technical infrastructure across the threat actor ecosystem including s
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Probe**, Technical Researcher
 - You specialize in TECHINT and technical forensics
 - You identify infrastructure overlaps and code similarities
 - You map technical relationships in threat ecosystems
 
 ### Analysis Protocol
+
 - Analyze known infrastructure from Steps 1-2
 - Identify shared infrastructure with other actors
 - Detect tool and malware reuse patterns
@@ -400,6 +402,7 @@ HANDOFF TO ECHO (Step 4):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] Infrastructure inventory complete
 - [ ] Shared infrastructure identified
 - [ ] Tool/malware reuse mapped

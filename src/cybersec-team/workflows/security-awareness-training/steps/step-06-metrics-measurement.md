@@ -17,49 +17,53 @@ outputFile: '{output_folder}/security/security-awareness-program-{project_name}.
 
 # Step 6: Metrics & Measurement
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on metrics definition and measurement
 - FORBIDDEN to discuss future program improvements yet
 - Help user establish meaningful, measurable KPIs
 
-## STEP GOAL:
+## STEP GOAL
 
 To define key performance indicators (KPIs), reporting mechanisms, and behavior change measurement strategies that demonstrate program effectiveness.
 
-## METRICS & MEASUREMENT SEQUENCE:
+## METRICS & MEASUREMENT SEQUENCE
 
 ### 1. KPI Categories
 
 "Let's define your program metrics across categories:
 
 **Participation Metrics (Activity):**
+
 - Training completion rate
 - On-time completion rate
 - Voluntary content engagement
 - Assessment participation
 
 **Knowledge Metrics (Learning):**
+
 - Assessment scores (pre/post)
 - Knowledge retention over time
 - Quiz pass rates
 
 **Behavior Metrics (Application):**
+
 - Phishing click rate
 - Phishing report rate
 - Repeat offender rate
 - Time to report suspicious emails
 
 **Impact Metrics (Results):**
+
 - Security incident reduction
 - Human-caused breach reduction
 - Risk score improvement
@@ -88,18 +92,21 @@ What targets make sense for your organization?"
 "Let's add supporting metrics:
 
 **Operational Metrics:**
+
 - Average time to complete training
 - Help desk tickets (training-related)
 - Mobile vs desktop completion
 - Department completion rankings
 
 **Engagement Metrics:**
+
 - Voluntary training uptake
 - Security portal visits
 - Newsletter open rates
 - Tip adoption rates
 
 **Trend Metrics:**
+
 - Month-over-month click rate change
 - Year-over-year improvement
 - New hire vs tenured comparison
@@ -112,12 +119,14 @@ Which secondary metrics would provide useful insights?"
 "Let's design your reporting structure:
 
 **Operational Dashboard (Weekly/Real-time):**
+
 - Current campaign status
 - Outstanding training assignments
 - Recent phishing results
 - Escalation queue
 
 **Management Report (Monthly):**
+
 - KPI scorecard
 - Trend analysis
 - Department comparison
@@ -125,6 +134,7 @@ Which secondary metrics would provide useful insights?"
 - Recommendations
 
 **Executive Report (Quarterly):**
+
 - High-level KPIs
 - Year-over-year comparison
 - Risk reduction impact
@@ -132,6 +142,7 @@ Which secondary metrics would provide useful insights?"
 - Compliance status
 
 **Compliance Report (As needed):**
+
 - Completion evidence
 - Assessment records
 - Policy acknowledgments
@@ -143,12 +154,14 @@ What reporting cadence do your stakeholders need?"
 "Let's plan how to measure real behavior change:
 
 **Beyond Phishing Clicks:**
+
 - Do users report faster over time?
 - Are help desk "is this legit?" queries increasing?
 - Are users questioning unusual requests?
 - Are data handling violations decreasing?
 
 **Qualitative Indicators:**
+
 - Manager observations
 - Culture survey results
 - Focus group feedback
@@ -212,6 +225,7 @@ Update Section 7 of {outputFile}:
 "**Metrics & Measurement Complete**
 
 I've documented:
+
 - Primary KPIs with baselines and targets
 - Supporting metrics framework
 - Reporting cadence for all stakeholders
@@ -225,7 +239,7 @@ Ready to proceed to continuous improvement planning?"
 
 Display: **Metrics Complete - Select an Option:** [C] Continue to Continuous Improvement [R] Review/Revise Metrics
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 7 content, allow revisions, then redisplay menu

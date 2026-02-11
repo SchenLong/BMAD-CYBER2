@@ -1,0 +1,61 @@
+# Incident Response Coordination Orchestration Template
+name: incident-response
+description: "Coordinated multi-team incident response with attribution, legal compliance, and communications"
+author: "BMad"
+
+# Critical variables from config
+config_source: "{project-root}/src/core/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Workflow components
+installed_path: "{project-root}/src/core/workflows/team-orchestration/incident-response"
+instructions: "{installed_path}/instructions.md"
+
+# Party mode preset for this orchestration
+party_preset: "incident-war-room"
+party_preset_file: "{project-root}/src/core/workflows/party-mode/presets/cross-module-groups.yaml"
+
+# Module workflows referenced
+cybersec_workflows:
+  incident_playbook: "{project-root}/_bmad/cybersec-team/workflows/incident-response-playbook/workflow.md"
+  forensics: "{project-root}/_bmad/cybersec-team/workflows/forensic-investigation/workflow.md"
+
+intel_workflows:
+  attribution: "{project-root}/_bmad/intel-team/workflows/attribution-chain/workflow.md"
+  threat_constellation: "{project-root}/_bmad/intel-team/workflows/threat-constellation/workflow.md"
+
+legal_workflows:
+  matter_intake: "{project-root}/_bmad/legal-team/workflows/legal-matter-intake/workflow.md"
+
+strategy_workflows:
+  crisis_response: "{project-root}/_bmad/strategy-team/workflows/crisis-response-planning/workflow.md"
+
+# Timeline constraints
+notification_deadlines:
+  gdpr: 72  # hours
+  hipaa: 60  # days
+  pci_dss: "immediate"
+  ccpa: "expedient"
+
+# Expected artifacts
+artifacts:
+  detection:
+    - incident-summary.md
+    - iocs.yaml
+  attribution:
+    - attribution-report.md
+    - threat-actor-profile.md
+  legal:
+    - notification-requirements.md
+    - regulatory-timeline.md
+  communications:
+    - communications-plan.md
+    - stakeholder-notifications/
+  eradication:
+    - remediation-plan.md
+    - lessons-learned.md
+
+standalone: true

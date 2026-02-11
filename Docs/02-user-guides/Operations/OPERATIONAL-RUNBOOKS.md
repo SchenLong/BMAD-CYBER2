@@ -38,6 +38,7 @@ This document provides operational runbooks for maintaining BMAD-CYBER2 in produ
 #### Steps
 
 1. **Verify System Status**
+
    ```bash
    # Check overall system health
    ./scripts/health-check.sh
@@ -51,6 +52,7 @@ This document provides operational runbooks for maintaining BMAD-CYBER2 in produ
    ```
 
 2. **Review Overnight Logs**
+
    ```bash
    # Check for errors in last 24 hours
    ./scripts/log-summary.sh --since "24 hours ago" --level error
@@ -60,6 +62,7 @@ This document provides operational runbooks for maintaining BMAD-CYBER2 in produ
    ```
 
 3. **Verify Audit Log Integrity**
+
    ```bash
    # Verify hash chain
    ./scripts/verify-audit-chain.sh
@@ -68,6 +71,7 @@ This document provides operational runbooks for maintaining BMAD-CYBER2 in produ
    ```
 
 4. **Check Resource Usage**
+
    ```bash
    # Check disk space
    df -h _bmad-output/
@@ -84,6 +88,7 @@ This document provides operational runbooks for maintaining BMAD-CYBER2 in produ
 #### Escalation
 
 If any check fails:
+
 1. Check [Troubleshooting](#troubleshooting-common-issues) section
 2. If unresolved, escalate to security team
 3. Document in incident tracker
@@ -99,6 +104,7 @@ If any check fails:
 #### Steps
 
 1. **Check Token Status**
+
    ```bash
    # List active tokens with expiration
    ./scripts/token-status.sh
@@ -110,6 +116,7 @@ If any check fails:
    ```
 
 2. **Identify Expiring Tokens**
+
    ```bash
    # Find tokens expiring within 48 hours
    ./scripts/token-status.sh --expiring-within 48h
@@ -120,6 +127,7 @@ If any check fails:
    - Provide renewal instructions
 
 4. **Revoke Inactive Tokens**
+
    ```bash
    # Revoke tokens unused for 14 days
    ./scripts/token-cleanup.sh --inactive-days 14 --dry-run
@@ -141,18 +149,21 @@ If any check fails:
 #### Steps
 
 1. **Review RBAC Usage**
+
    ```bash
    # Generate RBAC usage report
    ./scripts/rbac-audit.sh --period 7d --output rbac-report.html
    ```
 
 2. **Review Permission Changes**
+
    ```bash
    # List permission changes in last week
    ./scripts/audit-query.sh --event-type permission_change --since "7 days ago"
    ```
 
 3. **Check for Anomalies**
+
    ```bash
    # Run anomaly detection report
    ./scripts/anomaly-report.sh --period 7d
@@ -164,6 +175,7 @@ If any check fails:
    ```
 
 4. **Validate Security Validators**
+
    ```bash
    # Test all validators
    ./tests/run-validator-tests.sh
@@ -172,6 +184,7 @@ If any check fails:
    ```
 
 5. **Review Blocked Operations**
+
    ```bash
    # List blocked operations
    ./scripts/audit-query.sh --blocked true --since "7 days ago"
@@ -180,6 +193,7 @@ If any check fails:
    ```
 
 6. **Generate Weekly Report**
+
    ```bash
    ./scripts/security-weekly-report.sh --output weekly-security-$(date +%Y%m%d).pdf
    ```
@@ -195,6 +209,7 @@ If any check fails:
 #### Steps
 
 1. **Rotate Audit Logs**
+
    ```bash
    # Rotate audit logs
    ./scripts/rotate-logs.sh --type audit
@@ -204,6 +219,7 @@ If any check fails:
    ```
 
 2. **Clean Old Logs**
+
    ```bash
    # Remove logs older than retention period (90 days default)
    ./scripts/cleanup-logs.sh --older-than 90d --dry-run
@@ -213,12 +229,14 @@ If any check fails:
    ```
 
 3. **Archive Important Logs**
+
    ```bash
    # Archive security-relevant logs
    ./scripts/archive-logs.sh --type security --month $(date -d "last month" +%Y-%m)
    ```
 
 4. **Verify Disk Space**
+
    ```bash
    # Check space recovered
    df -h _bmad-output/
@@ -237,6 +255,7 @@ If any check fails:
 #### Steps
 
 1. **View Cache Statistics**
+
    ```bash
    ./scripts/cache-stats.sh
 
@@ -248,12 +267,14 @@ If any check fails:
    ```
 
 2. **Clear Stale Caches**
+
    ```bash
    # Clear entries older than 7 days
    ./scripts/cache-cleanup.sh --older-than 7d
    ```
 
 3. **Optimize Cache Size**
+
    ```bash
    # Compact caches
    ./scripts/cache-optimize.sh
@@ -275,6 +296,7 @@ If any check fails:
 #### Steps
 
 1. **Generate Monthly Security Report**
+
    ```bash
    ./scripts/security-monthly-report.sh \
      --month $(date -d "last month" +%Y-%m) \
@@ -287,6 +309,7 @@ If any check fails:
    - Check for permission creep
 
 3. **Audit Configuration Changes**
+
    ```bash
    # List all config changes
    git log --since="1 month ago" --oneline -- _bmad/*/config.yaml
@@ -294,6 +317,7 @@ If any check fails:
    ```
 
 4. **Validate Manifest Signatures**
+
    ```bash
    # Verify all module signatures
    ./scripts/verify-manifests.sh --all
@@ -329,12 +353,14 @@ If any check fails:
 #### Steps
 
 1. **Create Backup**
+
    ```bash
    # Full backup before update
    ./scripts/backup.sh --full --label "pre-update-$(date +%Y%m%d)"
    ```
 
 2. **Download Update**
+
    ```bash
    # Fetch latest version
    git fetch origin
@@ -342,6 +368,7 @@ If any check fails:
    ```
 
 3. **Apply Update**
+
    ```bash
    # Stop active sessions (if applicable)
    ./scripts/maintenance-mode.sh --enable
@@ -354,6 +381,7 @@ If any check fails:
    ```
 
 4. **Verify Update**
+
    ```bash
    # Run health checks
    ./scripts/health-check.sh
@@ -363,6 +391,7 @@ If any check fails:
    ```
 
 5. **Resume Operations**
+
    ```bash
    # Disable maintenance mode
    ./scripts/maintenance-mode.sh --disable
@@ -404,12 +433,14 @@ If update fails:
 #### Steps
 
 1. **Verify Backup Location**
+
    ```bash
    # Check backup storage availability
    df -h /backup/bmad-cyber2/
    ```
 
 2. **Execute Full Backup**
+
    ```bash
    ./scripts/backup.sh --full \
      --destination /backup/bmad-cyber2/ \
@@ -424,12 +455,14 @@ If update fails:
    - Token files
 
 4. **Verify Backup**
+
    ```bash
    # Verify backup integrity
    ./scripts/verify-backup.sh --label "weekly-$(date +%Y%m%d)"
    ```
 
 5. **Test Restoration (Quarterly)**
+
    ```bash
    # Restore to test environment
    ./scripts/restore.sh \
@@ -454,17 +487,20 @@ If update fails:
 #### Steps
 
 1. **Backup Configuration Only**
+
    ```bash
    ./scripts/backup.sh --config-only \
      --label "config-$(date +%Y%m%d-%H%M)"
    ```
 
 2. **Verify Backup**
+
    ```bash
    ./scripts/verify-backup.sh --label "config-$(date +%Y%m%d-%H%M)"
    ```
 
 3. **Commit to Version Control**
+
    ```bash
    git add _bmad/*/config.yaml
    git add _bmad/core/security/*.yaml
@@ -482,6 +518,7 @@ If update fails:
 #### Steps
 
 1. **Assess Damage**
+
    ```bash
    # Check what's affected
    ./scripts/health-check.sh --verbose
@@ -491,6 +528,7 @@ If update fails:
    ```
 
 2. **Identify Recovery Point**
+
    ```bash
    # List available backups
    ./scripts/list-backups.sh
@@ -500,6 +538,7 @@ If update fails:
    ```
 
 3. **Execute Recovery**
+
    ```bash
    # Full restoration
    ./scripts/restore.sh \
@@ -514,6 +553,7 @@ If update fails:
    ```
 
 4. **Verify Recovery**
+
    ```bash
    # Run full health check
    ./scripts/health-check.sh
@@ -548,6 +588,7 @@ If update fails:
    - Can we wait for maintenance window?
 
 2. **Prepare Fix**
+
    ```bash
    # Create hotfix branch
    git checkout -b hotfix/issue-description
@@ -560,6 +601,7 @@ If update fails:
    ```
 
 3. **Deploy Fix**
+
    ```bash
    # If can't wait for maintenance window:
    # Backup current state
@@ -595,6 +637,7 @@ If update fails:
 #### Steps
 
 1. **Core System Check**
+
    ```bash
    # Full health check
    ./scripts/health-check.sh --verbose
@@ -608,6 +651,7 @@ If update fails:
    ```
 
 2. **Module Verification**
+
    ```bash
    # Verify each module
    for module in core cybersec-team intel-team strategy-team legal-team bmm bmgd bmb cis; do
@@ -617,6 +661,7 @@ If update fails:
    ```
 
 3. **Agent Verification**
+
    ```bash
    # Verify agent manifest
    ./scripts/verify-agents.sh
@@ -625,6 +670,7 @@ If update fails:
    ```
 
 4. **Workflow Verification**
+
    ```bash
    # Verify workflow manifest
    ./scripts/verify-workflows.sh
@@ -633,6 +679,7 @@ If update fails:
    ```
 
 5. **Security Verification**
+
    ```bash
    # Verify all security components
    ./scripts/security-check.sh
@@ -645,6 +692,7 @@ If update fails:
    ```
 
 6. **Performance Check**
+
    ```bash
    # Quick performance test
    ./scripts/quick-perf-test.sh
@@ -665,6 +713,7 @@ If update fails:
 #### Steps
 
 1. **Search Logs by Time Range**
+
    ```bash
    # Last hour
    ./scripts/log-search.sh --since "1 hour ago"
@@ -676,6 +725,7 @@ If update fails:
    ```
 
 2. **Search by Severity**
+
    ```bash
    # Errors only
    ./scripts/log-search.sh --level error
@@ -685,6 +735,7 @@ If update fails:
    ```
 
 3. **Search by Component**
+
    ```bash
    # Security events
    ./scripts/log-search.sh --component security
@@ -697,12 +748,14 @@ If update fails:
    ```
 
 4. **Search by User**
+
    ```bash
    # Specific user activity
    ./scripts/log-search.sh --user admin@example.com
    ```
 
 5. **Export Results**
+
    ```bash
    # Export to CSV
    ./scripts/log-search.sh --level error --since "24 hours ago" \
@@ -726,12 +779,14 @@ If update fails:
 #### Steps
 
 1. **Identify User and Roles**
+
    ```bash
    # List available roles
    cat _bmad/core/security/rbac-config.yaml | grep "role:"
    ```
 
 2. **Generate Token**
+
    ```bash
    # Generate token for user
    ./scripts/generate-token.sh \
@@ -747,6 +802,7 @@ If update fails:
    - Use secure channel
 
 4. **Verify Token Works**
+
    ```bash
    # Test token validation
    ./scripts/verify-token.sh --token "generated-token"
@@ -768,12 +824,14 @@ If update fails:
 #### Steps
 
 1. **Identify Token**
+
    ```bash
    # Find token by user
    ./scripts/token-status.sh --user "user@example.com"
    ```
 
 2. **Revoke Token**
+
    ```bash
    # Revoke specific token
    ./scripts/revoke-token.sh --token-id "abc123"
@@ -783,6 +841,7 @@ If update fails:
    ```
 
 3. **Verify Revocation**
+
    ```bash
    # Confirm token invalid
    ./scripts/verify-token.sh --token "revoked-token"
@@ -790,6 +849,7 @@ If update fails:
    ```
 
 4. **Clear Token Cache**
+
    ```bash
    # Clear cached token
    ./scripts/cache-cleanup.sh --token "abc123"
@@ -852,6 +912,7 @@ ls _bmad/module-name/
 #### Steps
 
 1. **Verify Module Structure**
+
    ```bash
    # Check required files exist
    ls new-module/manifest.yaml
@@ -861,16 +922,19 @@ ls _bmad/module-name/
    ```
 
 2. **Validate Manifest**
+
    ```bash
    ./scripts/validate-manifest.sh new-module/manifest.yaml
    ```
 
 3. **Verify Signature (if signed)**
+
    ```bash
    gpg --verify new-module/manifest.yaml.sig new-module/manifest.yaml
    ```
 
 4. **Install Module**
+
    ```bash
    # Copy to _bmad
    cp -r new-module _bmad/
@@ -880,6 +944,7 @@ ls _bmad/module-name/
    ```
 
 5. **Configure RBAC**
+
    ```bash
    # Edit rbac-config.yaml to add permissions
    # (manual step - edit file)
@@ -889,6 +954,7 @@ ls _bmad/module-name/
    ```
 
 6. **Test Module**
+
    ```bash
    # Run module tests
    ./tests/run-module-tests.sh new-module
@@ -922,6 +988,7 @@ ls _bmad/module-name/
    - Are credentials exposed?
 
 2. **Contain**
+
    ```bash
    # If critical - enable lockdown
    ./scripts/emergency-lockdown.sh
@@ -933,6 +1000,7 @@ ls _bmad/module-name/
    ```
 
 3. **Preserve Evidence**
+
    ```bash
    # Capture current state
    ./scripts/capture-state.sh --output incident-$(date +%Y%m%d-%H%M%S)
@@ -960,6 +1028,7 @@ See [INCIDENT-RESPONSE-RUNBOOK.md](INCIDENT-RESPONSE-RUNBOOK.md) for full proced
 #### Steps
 
 1. **Initiate Shutdown**
+
    ```bash
    # Graceful shutdown
    ./scripts/emergency-shutdown.sh --graceful
@@ -969,6 +1038,7 @@ See [INCIDENT-RESPONSE-RUNBOOK.md](INCIDENT-RESPONSE-RUNBOOK.md) for full proced
    ```
 
 2. **Preserve State**
+
    ```bash
    # State is automatically captured during shutdown
    # Check: _bmad-output/.emergency/

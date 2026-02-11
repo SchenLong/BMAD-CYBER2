@@ -17,11 +17,11 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 7: Platform-Specific Issues
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess platform-specific security issues unique to iOS and Android.
 
-## PLATFORM-SPECIFIC SEQUENCE:
+## PLATFORM-SPECIFIC SEQUENCE
 
 ### 1. iOS-Specific Security
 
@@ -40,6 +40,7 @@ To assess platform-specific security issues unique to iOS and Android.
 | Handoff/Continuity | ? | Cross-device |
 
 **URL Scheme Analysis:**
+
 ```xml
 <!-- Info.plist -->
 <key>CFBundleURLTypes</key>
@@ -62,6 +63,7 @@ What iOS-specific issues were found?"
 | UIPasteboard | ? | ? |
 
 **Vulnerabilities:**
+
 - URL scheme collision?
 - Deep link injection?
 - Data leakage via pasteboard?
@@ -84,6 +86,7 @@ Are IPC mechanisms secure?"
 | Deep links | ? | Link hijacking |
 
 **Manifest Analysis:**
+
 ```xml
 android:exported="true"
 ```
@@ -104,6 +107,7 @@ What Android-specific issues were found?"
 | Providers | ? | ? | ? |
 
 **Testing:**
+
 ```bash
 # List exported activities
 adb shell dumpsys package com.app | grep -A5 "Activity"
@@ -129,11 +133,13 @@ Are components properly protected?"
 | Cookie handling | ? | Session theft |
 
 **iOS WKWebView:**
+
 ```swift
 webView.configuration.preferences.javaScriptEnabled
 ```
 
 **Android WebView:**
+
 ```java
 webView.getSettings().setJavaScriptEnabled(true)
 webView.addJavascriptInterface(...)
@@ -217,6 +223,7 @@ Update Section 7 of {outputFile}:
 "**Platform-Specific Analysis Complete**
 
 I've analyzed:
+
 - iOS-specific security issues
 - iOS IPC mechanisms
 - Android component security

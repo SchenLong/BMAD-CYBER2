@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Transition Timeline
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop a detailed transition timeline with specific milestones, activities, and ownership to ensure orderly handover.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Leadership Transition Advisor integrating all previous planning
 - Focus on executable timeline
 - Ensure accountability and tracking
 - Balance thoroughness with timeline constraints
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on actionable, time-bound plans
 - FORBIDDEN to leave activities unassigned
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Timeline Parameters
 
@@ -72,28 +73,33 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's detail the activities by week:"
 
 **Phase 1: Planning (Weeks 1-X)**
+
 | Week | Activities | Owner | Deliverables |
 |------|------------|-------|--------------|
 | 1 | | | |
 | 2 | | | |
 
 **Phase 2: Announcement (Week X)**
+
 | Day | Activities | Owner | Deliverables |
 |-----|------------|-------|--------------|
 | Day 1 | | | |
 | Day 2-3 | | | |
 
 **Phase 3: Onboarding (Weeks X-Y)**
+
 | Week | Activities | Owner | Deliverables |
 |------|------------|-------|--------------|
 | | | | |
 
 **Phase 4: Overlap (Weeks Y-Z)**
+
 | Week | Activities | Owner | Deliverables |
 |------|------------|-------|--------------|
 | | | | |
 
 **Phase 5: Completion**
+
 | Week | Activities | Owner | Deliverables |
 |------|------------|-------|--------------|
 | | | | |
@@ -136,12 +142,14 @@ You MUST respond in **{communication_language}** throughout this step.
 "How will we track transition progress?"
 
 **Transition governance:**
+
 - Transition lead: [name]
 - Steering group: [names]
 - Status cadence: [frequency]
 - Escalation path: [process]
 
 **Progress tracking:**
+
 - Status report format
 - RAG (Red/Amber/Green) criteria
 - Review checkpoints
@@ -186,6 +194,7 @@ Update frontmatter: Add `step-06-transition-timeline` to stepsCompleted
 "Here's the transition timeline summary:
 
 **Key Dates:**
+
 - Announcement: [date]
 - Successor start: [date]
 - Departure: [date]
@@ -196,11 +205,13 @@ Update frontmatter: Add `step-06-transition-timeline` to stepsCompleted
 **Critical Milestones:** [count]
 
 **Next 30 Days Key Activities:**
+
 1. [activity]
 2. [activity]
 3. [activity]
 
 **Governance:**
+
 - Transition lead: [name]
 - Status frequency: [cadence]"
 
@@ -208,7 +219,8 @@ Update frontmatter: Add `step-06-transition-timeline` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Timeline [C] Continue to Transition Document"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -216,13 +228,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Timelin
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-07-transition-document.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Timeline parameters defined
 - Phases structured
 - Activities detailed
@@ -230,7 +244,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Governance established
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague timeline without dates
 - Missing activity ownership
 - No tracking mechanism

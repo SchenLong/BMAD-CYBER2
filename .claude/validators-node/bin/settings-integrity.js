@@ -13,9 +13,10 @@
  * - Hook count >= baseline (never decreases)
  * - No empty hook arrays
  * - All hook commands reference existing files
+ * - Hook command file content hashes match baseline (CRIT-3)
  *
  * Usage:
- *   node settings-integrity.js [--baseline N] [--restore-on-fail]
+ *   node settings-integrity.js [--baseline N] [--restore-on-fail] [--update-baseline]
  *
  * Exit codes:
  *   0 = valid
@@ -24,6 +25,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -47,6 +49,7 @@ const PROJECT_ROOT = findProjectRoot();
 const SETTINGS_PATH = path.join(PROJECT_ROOT, '.claude', 'settings.json');
 const BACKUP_PATH = path.join(PROJECT_ROOT, '.claude', 'settings.json.pre-v6-backup');
 const BASELINE_PATH = path.join(PROJECT_ROOT, '.claude', 'settings-baseline.txt');
+const HASH_BASELINE_PATH = path.join(PROJECT_ROOT, 'tests', 'baselines', 'hook-content-hashes.json');
 
 // Expected matchers that must always be present in PreToolUse
 const REQUIRED_MATCHERS = [
@@ -166,6 +169,30 @@ function validate() {
     }
   }
 
+  // Step 9: Verify hook command file content hashes (CRIT-3)
+  if (fs.existsSync(HASH_BASELINE_PATH)) {
+    let baseline;
+    try {
+      baseline = JSON.parse(fs.readFileSync(HASH_BASELINE_PATH, 'utf-8'));
+    } catch (e) {
+      warnings.push('Could not parse hash baseline: ' + e.message);
+    }
+
+    if (baseline?.hashes) {
+      for (const [relativePath, expectedHash] of Object.entries(baseline.hashes)) {
+        const fullPath = path.join(PROJECT_ROOT, relativePath);
+        if (fs.existsSync(fullPath)) {
+          const content = fs.readFileSync(fullPath, 'utf-8');
+          const actualHash = crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
+          if (actualHash !== expectedHash) {
+            errors.push(`Content hash mismatch: ${relativePath} (expected ${expectedHash.substring(0, 12)}..., got ${actualHash.substring(0, 12)}...)`);
+          }
+        }
+        // Note: missing file already caught in Step 8
+      }
+    }
+  }
+
   return {
     valid: errors.length === 0,
     errors,
@@ -178,7 +205,53 @@ function validate() {
   };
 }
 
+function updateBaseline() {
+  const settingsContent = fs.readFileSync(SETTINGS_PATH, 'utf-8');
+  const settings = JSON.parse(settingsContent);
+  const hashes = {};
+
+  for (const [eventName, handlers] of Object.entries(settings.hooks)) {
+    const handlerList = Array.isArray(handlers) ? handlers : [handlers];
+    for (const handler of handlerList) {
+      for (const hook of (handler.hooks || [])) {
+        if (hook.type === 'command' && hook.command) {
+          const cmd = hook.command.replace(/"\$CLAUDE_PROJECT_DIR"/g, PROJECT_ROOT);
+          const parts = cmd.split(' ');
+          const filePath = parts.find(p => p.startsWith(PROJECT_ROOT) || p.startsWith('/'));
+          if (filePath && fs.existsSync(filePath)) {
+            const content = fs.readFileSync(filePath, 'utf-8');
+            const hash = crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
+            const relativePath = path.relative(PROJECT_ROOT, filePath);
+            hashes[relativePath] = hash;
+          }
+        }
+      }
+    }
+  }
+
+  const baseline = {
+    version: '1.0.0',
+    capturedAt: new Date().toISOString(),
+    fileCount: Object.keys(hashes).length,
+    hashes
+  };
+
+  const outputDir = path.dirname(HASH_BASELINE_PATH);
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+  fs.writeFileSync(HASH_BASELINE_PATH, JSON.stringify(baseline, null, 2) + '\n');
+}
+
 function main() {
+  // Handle --update-baseline flag
+  if (process.argv.includes('--update-baseline')) {
+    console.log('Updating content hash baseline...');
+    updateBaseline();
+    console.log('Baseline updated successfully.');
+    return;
+  }
+
   const result = validate();
 
   if (result.valid) {
@@ -221,4 +294,4 @@ function main() {
 // Run if invoked directly
 main();
 
-export { validate, REQUIRED_MATCHERS, REQUIRED_EVENTS, MIN_HOOK_COUNT };
+export { validate, updateBaseline, REQUIRED_MATCHERS, REQUIRED_EVENTS, MIN_HOOK_COUNT, HASH_BASELINE_PATH };

@@ -1,5 +1,5 @@
 ---
-name: Performance Review Preparation
+name: performance-review-preparation
 description: Comprehensive executive performance review preparation using strategic advisors to develop balanced assessments, calibrate feedback, and plan development conversations
 web_bundle: true
 ---

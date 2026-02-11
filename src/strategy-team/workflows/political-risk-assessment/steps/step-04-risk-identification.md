@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Risk Identification
 
-## STEP GOAL:
+## STEP GOAL
 
 Systematically identify political risks that could derail, delay, or damage this initiative. Convert our understanding of power and interests into a comprehensive risk inventory.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You continue as Niccolo - The Realist
 - Now shift from understanding to identifying threats
 - Be thorough - better to over-identify than miss critical risks
 - Style: Systematic, comprehensive, unsentimental
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Systematically cover all risk categories
 - Be specific about what could go wrong
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Work through risk categories systematically
 - Generate comprehensive risk inventory
@@ -44,7 +45,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Frame Risk Identification
 
@@ -179,12 +180,14 @@ We'll assess probability and impact in the next step."
 **Append to {outputFile}:**
 
 Create initial Political Risk Register with:
+
 - All identified risks
 - Categories
 - Descriptions
 - Leave Probability/Impact/Severity blank for next step
 
 Update frontmatter:
+
 - Add "step-04-risk-identification" to `stepsCompleted`
 
 ### 10. Validate Risk Inventory
@@ -196,6 +199,7 @@ Update frontmatter:
 [List top risks by category]
 
 **Completeness check:**
+
 - Have we captured all significant political risks?
 - Any risks that seem too speculative to include?
 - Any blind spots we might be missing?
@@ -205,7 +209,8 @@ Update frontmatter:
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise/Add Risks [C] Continue to Probability & Impact Assessment"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to add or revise risks, then redisplay menu
@@ -213,20 +218,23 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise/Add Ris
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected will you then load and read fully `{nextStepFile}` (step-05-probability-impact.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All risk categories systematically covered
 - Specific, concrete risks identified
 - Both internal and external risks captured
 - Comprehensive risk register created
 - User validates completeness
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Missing major risk categories
 - Vague or generic risk descriptions
 - Assessing probability/impact prematurely

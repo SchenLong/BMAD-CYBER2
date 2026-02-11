@@ -17,38 +17,40 @@ outputFile: '{output_folder}/security/security-awareness-program-{project_name}.
 
 # Step 5: Delivery Strategy
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on delivery logistics and implementation
 - FORBIDDEN to discuss metrics yet
 - Help user create practical delivery plan
 
-## STEP GOAL:
+## STEP GOAL
 
 To plan the delivery mechanisms, scheduling, enrollment processes, and communication strategies for rolling out the security awareness training program.
 
-## DELIVERY STRATEGY SEQUENCE:
+## DELIVERY STRATEGY SEQUENCE
 
 ### 1. Delivery Platform
 
 "Let's confirm your delivery infrastructure:
 
 **Platform Options:**
+
 - Learning Management System (LMS): [Existing? Which one?]
 - Security awareness vendor platform (KnowBe4, Proofpoint, etc.)
 - Custom internal platform
 - Hybrid approach
 
 **Key Requirements:**
+
 - Automated enrollment
 - Completion tracking
 - Compliance reporting
@@ -61,6 +63,7 @@ What's your delivery platform situation?"
 "Let's design enrollment and assignment:
 
 **Enrollment Triggers:**
+
 | Trigger | Courses Assigned | Timeline |
 |---------|------------------|----------|
 | New Hire | Onboarding bundle | Day 1-7 |
@@ -70,6 +73,7 @@ What's your delivery platform situation?"
 | Policy Update | Updated module | Within 30 days |
 
 **Assignment Methods:**
+
 - Automatic via HRIS integration
 - Manager-initiated
 - Self-enrollment for optional content
@@ -82,11 +86,13 @@ How do you want to handle enrollment?"
 "Let's plan the training schedule:
 
 **Mandatory vs. Optional:**
+
 - Which content is mandatory?
 - Deadlines and grace periods?
 - Consequences for non-completion?
 
 **Time Considerations:**
+
 - Can employees complete during work hours?
 - Mobile accessibility for field workers?
 - Multiple short sessions or single longer ones?
@@ -107,12 +113,14 @@ What scheduling approach works best?"
 "Let's plan program communications:
 
 **Launch Communications:**
+
 - Executive sponsorship message
 - Program introduction email
 - Manager briefing
 - FAQ document
 
 **Ongoing Communications:**
+
 - Assignment notifications
 - Reminder escalations
 - Completion acknowledgments
@@ -120,6 +128,7 @@ What scheduling approach works best?"
 - Recognition/leaderboards
 
 **Escalation for Non-Completion:**
+
 | Day | Action | To Whom |
 |-----|--------|---------|
 | 0 | Assignment notification | Employee |
@@ -135,6 +144,7 @@ What communication approach fits your culture?"
 "Let's plan the program rollout:
 
 **Rollout Options:**
+
 1. **Big Bang**: Everyone at once
    - Pros: Immediate coverage, unified message
    - Cons: Support burden, technical risk
@@ -228,6 +238,7 @@ Update Section 6 of {outputFile}:
 "**Delivery Strategy Complete**
 
 I've documented:
+
 - Platform and infrastructure confirmed
 - Enrollment automation planned
 - Communication plan established
@@ -241,7 +252,7 @@ Ready to proceed to metrics and measurement?"
 
 Display: **Delivery Strategy Complete - Select an Option:** [C] Continue to Metrics & Measurement [R] Review/Revise Strategy
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 6 content, allow revisions, then redisplay menu

@@ -38,7 +38,7 @@ const __dirname = path.dirname(__filename);
 
 // Test fixtures
 const MOCK_PROJECT_ROOT = path.join(__dirname, '__test_fixtures_security_checker__');
-const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, '_bmad/core/security');
+const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, 'src/core/security');
 const MOCK_VALIDATORS_PATH = path.join(MOCK_PROJECT_ROOT, '.claude/validators-node/src/guards');
 const MOCK_AUDIT_PATH = path.join(MOCK_PROJECT_ROOT, '_bmad/framework/dist/audit');
 
@@ -119,7 +119,7 @@ describe('Security Checker - INST-022', () => {
     });
 
     it('should export SECURITY_CONFIG_PATH', () => {
-      expect(SECURITY_CONFIG_PATH).toBe('_bmad/core/security/security-config.yaml');
+      expect(SECURITY_CONFIG_PATH).toBe('src/core/security/security-config.yaml');
     });
 
     it('should export AUDIT_LOG_PATH', () => {
@@ -181,26 +181,26 @@ describe('Security Checker - INST-022', () => {
     it('should extract enabled validators', () => {
       const config = {
         validators: {
-          auth: { enabled: true, paths: ['_bmad/core/security/authorization.js'] },
-          rbac: { enabled: false, paths: ['_bmad/core/security/rbac-config.yaml'] }
+          auth: { enabled: true, paths: ['src/core/security/authorization.js'] },
+          rbac: { enabled: false, paths: ['src/core/security/rbac-config.yaml'] }
         }
       };
 
       const validators = listEnabledValidators(config);
       expect(validators).toHaveLength(1);
       expect(validators[0].name).toBe('auth');
-      expect(validators[0].paths).toEqual(['_bmad/core/security/authorization.js']);
+      expect(validators[0].paths).toEqual(['src/core/security/authorization.js']);
     });
 
     it('should handle string path as array', () => {
       const config = {
         validators: {
-          auth: { enabled: true, paths: '_bmad/core/security/authorization.js' }
+          auth: { enabled: true, paths: 'src/core/security/authorization.js' }
         }
       };
 
       const validators = listEnabledValidators(config);
-      expect(validators[0].paths).toEqual(['_bmad/core/security/authorization.js']);
+      expect(validators[0].paths).toEqual(['src/core/security/authorization.js']);
     });
   });
 
@@ -227,7 +227,7 @@ describe('Security Checker - INST-022', () => {
     });
 
     it('should return loadable true for non-JS files that exist', () => {
-      const yamlPath = '_bmad/core/security/rbac-config.yaml';
+      const yamlPath = 'src/core/security/rbac-config.yaml';
       const fullPath = path.join(MOCK_PROJECT_ROOT, yamlPath);
       fs.mkdirSync(path.dirname(fullPath), { recursive: true });
       fs.writeFileSync(fullPath, 'roles:\n  - admin', 'utf8');
@@ -298,11 +298,11 @@ describe('Security Checker - INST-022', () => {
         validators: {
           auth: {
             enabled: true,
-            paths: ['_bmad/core/security/authorization.js']
+            paths: ['src/core/security/authorization.js']
           }
         }
       });
-      createMockValidator('_bmad/core/security/authorization.js');
+      createMockValidator('src/core/security/authorization.js');
 
       const { enabledValidators, failedValidators } = checkAllValidators(MOCK_PROJECT_ROOT);
       expect(enabledValidators).toHaveLength(1);
@@ -316,7 +316,7 @@ describe('Security Checker - INST-022', () => {
         validators: {
           auth: {
             enabled: true,
-            paths: ['_bmad/core/security/missing.js']
+            paths: ['src/core/security/missing.js']
           }
         }
       });
@@ -421,10 +421,10 @@ describe('Security Checker - INST-022', () => {
       writeSecurityConfig({
         tier: 'standard',
         validators: {
-          auth: { enabled: true, paths: ['_bmad/core/security/authorization.js'] }
+          auth: { enabled: true, paths: ['src/core/security/authorization.js'] }
         }
       });
-      createMockValidator('_bmad/core/security/authorization.js');
+      createMockValidator('src/core/security/authorization.js');
 
       const result = checkSecurity(MOCK_PROJECT_ROOT);
       expect(result.status).toBe(SecurityStatus.HEALTHY);
@@ -435,7 +435,7 @@ describe('Security Checker - INST-022', () => {
       writeSecurityConfig({
         tier: 'standard',
         validators: {
-          auth: { enabled: true, paths: ['_bmad/core/security/missing.js'] }
+          auth: { enabled: true, paths: ['src/core/security/missing.js'] }
         }
       });
 
@@ -448,10 +448,10 @@ describe('Security Checker - INST-022', () => {
       writeSecurityConfig({
         tier: 'enterprise',
         validators: {
-          auth: { enabled: true, paths: ['_bmad/core/security/authorization.js'] }
+          auth: { enabled: true, paths: ['src/core/security/authorization.js'] }
         }
       });
-      createMockValidator('_bmad/core/security/authorization.js');
+      createMockValidator('src/core/security/authorization.js');
 
       const result = checkSecurity(MOCK_PROJECT_ROOT);
       expect(result.warnings).toContain('Enterprise/Beta tier configured but audit logging is not enabled or audit directory is missing.');

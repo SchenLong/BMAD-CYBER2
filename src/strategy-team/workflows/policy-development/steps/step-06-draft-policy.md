@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Draft Policy Document
 
-## STEP GOAL:
+## STEP GOAL
 
 Return to the Facilitator role and synthesize all perspectives (Augustus's evidence, Sophia's ethics, Burke's caution, Maximilien's vision) into a complete, implementable policy document.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You return to Senior Policy Development Facilitator role
 - Synthesize all four advisor perspectives into coherent policy
@@ -24,11 +24,12 @@ Return to the Facilitator role and synthesize all perspectives (Augustus's evide
 - Create practical, implementable policy language
 - Maintain professional, precise policy drafting standards
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on drafting complete policy language
 - FORBIDDEN to ignore any advisor's key insights
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Return to Facilitator persona
 - Review all prior sections in the output file
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: All completed sections from Steps 1-5
 - Focus: Policy drafting and synthesis
@@ -57,13 +58,14 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Facilitator Return
 
 **Resume Facilitator role and introduce the drafting phase:**
 
 "Welcome back, {user_name}. I've gathered perspectives from our four advisors:
+
 - Augustus provided evidence and precedents
 - Sophia examined ethics and fairness
 - Burke offered caution about unintended consequences
@@ -102,6 +104,7 @@ Does this accurately capture the policy intent? Would you like to refine any lan
 [Relevant background, incorporating Augustus's research]
 
 **Alignment:**
+
 - Strategic objectives: [how this supports org goals]
 - Values alignment: [incorporating Sophia's analysis]
 - Regulatory requirements: [from Augustus's evidence]"
@@ -138,11 +141,13 @@ Based on our analysis, here are the specific requirements:
 
 **Exceptions:**
 Incorporating Burke's concern about flexibility:
+
 - Exception criteria: [when exceptions may be granted]
 - Approval process: [who approves, what's required]
 - Documentation: [what must be recorded]
 
 **Enforcement:**
+
 - Compliance monitoring: [how we'll verify compliance]
 - Non-compliance consequences: [graduated responses]
 - Appeal process: [incorporating Sophia's procedural fairness]
@@ -156,6 +161,7 @@ Would you like to adjust any of these elements?"
 "For the Communication Plan section (Section 9):
 
 **Announcement:**
+
 - Timing: [when to announce relative to effective date]
 - Channels: [how to communicate - email, meetings, intranet]
 - Key messages: [2-3 core messages]
@@ -170,12 +176,14 @@ Based on our stakeholder analysis:
 | [Implementers] | [their need] | [best channel] |
 
 **FAQs:**
+
 | Question | Answer |
 |----------|--------|
 | [Anticipated question 1] | [Clear answer] |
 | [Anticipated question 2] | [Clear answer] |
 
 **Feedback Mechanism:**
+
 - How to provide input: [channel]
 - Response process: [how input will be handled]"
 
@@ -196,6 +204,7 @@ Based on our stakeholder analysis:
 
 **Review Cycle:**
 Incorporating both Burke's prudence and Maximilien's adaptation concerns:
+
 - Review frequency: [annual/biannual recommendation]
 - Review trigger events: [what prompts off-cycle review]
 - Review process: [how reviews are conducted]
@@ -217,11 +226,13 @@ Incorporating both Burke's prudence and Maximilien's adaptation concerns:
 "For the Related Documents section (Section 11):
 
 **References:**
+
 - [Related policy 1 - from evidence review]
 - [Relevant regulation - from Augustus]
 - [Industry standard - from benchmarking]
 
 **Supporting Documents:**
+
 - [Procedure document needed]
 - [Training materials needed]
 - [FAQ document]
@@ -243,21 +254,25 @@ Who needs to review and approve this policy?
 "Before we finalize, let me verify we've incorporated key insights from each advisor:
 
 **Augustus (Evidence):**
+
 - [ ] Research findings reflected in rationale
 - [ ] Benchmarking informed requirements
 - [ ] Evidence gaps acknowledged
 
 **Sophia (Ethics):**
+
 - [ ] Values tensions addressed
 - [ ] Stakeholder impacts considered
 - [ ] Procedural fairness built in
 
 **Burke (Caution):**
+
 - [ ] Unintended consequences mitigated
 - [ ] Existing value preserved where appropriate
 - [ ] Phase-in or reversibility considered
 
 **Maximilien (Reform):**
+
 - [ ] Bold alternatives considered
 - [ ] Systemic issues addressed where feasible
 - [ ] Future-proofing incorporated
@@ -280,26 +295,30 @@ Are there any gaps to address?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Section [C] Continue to Implementation Plan"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - could bring in Giuseppe for communications review or Cicero for clarity, when finished redisplay the menu
 - IF R: Revise a specific section, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and policy draft is complete, will you then load and read fully `{nextStepFile}` (step-07-implementation-plan.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All required policy sections drafted
 - All four advisor perspectives synthesized
 - Policy language is clear and actionable
@@ -307,7 +326,8 @@ ONLY WHEN [C] Continue is selected and policy draft is complete, will you then l
 - Governance and review mechanisms established
 - Output file updated comprehensively
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping required policy sections
 - Ignoring any advisor's key insights
 - Vague or unenforceable policy language

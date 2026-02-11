@@ -23,6 +23,7 @@ Generate a comprehensive matter brief document and provide clear next steps guid
 ### 1. Compile Matter Brief
 
 Generate a comprehensive summary of:
+
 - Initial context and situation overview
 - Matter classification
 - Jurisdiction analysis
@@ -78,6 +79,7 @@ Complete the matter brief with:
 ```
 
 Update frontmatter:
+
 - `stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8]`
 - `status: "completed"`
 
@@ -86,6 +88,7 @@ Update frontmatter:
 "Your matter brief is complete. Here's what I recommend for next steps..."
 
 Present:
+
 - Summary of key findings
 - Recommended specialist to engage
 - Suggested workflow to execute
@@ -98,12 +101,14 @@ Present:
 ### 5. Present Final Menu
 
 **Select an Option:**
+
 - **[S]** Start recommended workflow with specialist
 - **[P]** Party Mode - discuss with multiple specialists
 - **[D]** Download/save matter brief
 - **[E]** Exit intake process
 
-#### Menu Handling:
+#### Menu Handling
+
 - IF S: Load recommended specialist agent and workflow
 - IF P: Execute party-mode workflow with legal team context
 - IF D: Confirm file saved and provide location

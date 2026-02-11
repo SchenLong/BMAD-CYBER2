@@ -6,4 +6,4 @@ description: Comprehensive board engagement strategy and relationship management
 # Board Relations Management
 
 Load and follow the workflow at:
-`@_bmad/strategy-team/workflows/board-relations-management/workflow.md`
+`@src/strategy-team/workflows/board-relations-management/workflow.md`

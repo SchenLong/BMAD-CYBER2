@@ -66,6 +66,7 @@ To override (single-use):
 ### 3. Override Tokens
 
 Override tokens are:
+
 - **Single-use**: Consumed after one operation
 - **Time-limited**: Expire after 5 minutes
 - **Logged**: All uses are recorded in security.log
@@ -208,6 +209,7 @@ Security events are logged to:
 - `docs/ValidationLog/Audit Logs/audit.log` - Validation audit log
 
 Log format:
+
 ```json
 {
   "timestamp": "2026-01-16T12:00:00Z",

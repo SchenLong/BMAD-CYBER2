@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Perspective Carousel
 
-## STEP GOAL:
+## STEP GOAL
 
 Present the decision to each of the 8 Historical Archetype advisors in turn, capturing their distinct perspectives, wisdom, and documented biases.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You embody each archetype in sequence, speaking in their voice
 - ✅ Each archetype has a distinctive communication style and worldview
@@ -24,11 +24,12 @@ Present the decision to each of the 8 Historical Archetype advisors in turn, cap
 - ✅ This is the heart of the multi-perspective analysis
 - ✅ Allow archetypes to disagree with each other
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on capturing diverse perspectives
 - 🚫 FORBIDDEN to harmonize prematurely - let tensions exist
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Cycle through all 8 archetypes
 - Each speaks 1-2 paragraphs in their distinctive voice
@@ -47,7 +48,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Decision framing, evidence, stakeholder analysis
 - Focus: Perspectives, not synthesis
@@ -56,7 +57,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Set the Stage
 
@@ -77,6 +78,7 @@ Let the carousel begin."
 *Let us strip away the pleasant fictions and examine what IS, not what we wish to be.*
 
 [Provide Niccolo's analysis of the decision focusing on:]
+
 - Power dynamics at play
 - What actors really want (vs what they say)
 - The cold calculus of outcomes
@@ -97,6 +99,7 @@ Let the carousel begin."
 *A house divided against itself cannot stand. We must ask - what serves not just our interests, but the common good?*
 
 [Provide Charles's analysis focusing on:]
+
 - Moral dimensions
 - Unity and division implications
 - Long-term justice
@@ -117,6 +120,7 @@ Let the carousel begin."
 *Be realistic - demand the impossible. The comfortable always counsel patience, but patience perpetuates injustice.*
 
 [Provide Maximilien's analysis focusing on:]
+
 - Systemic critique
 - Who benefits from status quo
 - Bold alternatives
@@ -137,6 +141,7 @@ Let the carousel begin."
 *Society is a partnership between the dead, the living, and those yet to be born. We must reform that we may preserve.*
 
 [Provide Burke's analysis focusing on:]
+
 - What traditions are at stake
 - Unintended consequences
 - Institutional wisdom
@@ -157,6 +162,7 @@ Let the carousel begin."
 *I'm not interested in being politically correct. I'm interested in being correct. What do the numbers tell us?*
 
 [Provide Lee's analysis focusing on:]
+
 - Metrics and efficiency
 - System optimization
 - Pragmatic outcomes
@@ -177,6 +183,7 @@ Let the carousel begin."
 *Observe the situation. Do not develop fondness for particular strategies.*
 
 [Provide Musashi's analysis focusing on:]
+
 - Timing - when to act
 - Economy of action
 - Direct perception over doctrine
@@ -197,6 +204,7 @@ Let the carousel begin."
 *The supreme art of war is to subdue the enemy without fighting. Know yourself and know your enemy, and in a hundred battles you will never be in peril.*
 
 [Provide Sun's analysis focusing on:]
+
 - Grand strategy
 - Positioning vs confrontation
 - Terrain and timing
@@ -217,6 +225,7 @@ Let the carousel begin."
 *The first duty of every officer is to the truth. It is possible to commit no mistakes and still lose - that is not weakness, that is life.*
 
 [Provide Jean-Luc's analysis focusing on:]
+
 - Principles that must not be compromised
 - Dignity and respect for all parties
 - Exploration mindset
@@ -235,10 +244,12 @@ Let the carousel begin."
 "The council has spoken. Before we debate, let me note:
 
 **Where Perspectives Align:**
+
 - [agreement 1 - which archetypes]
 - [agreement 2 - which archetypes]
 
 **Where Perspectives Clash:**
+
 - [tension 1]: [archetype A] vs [archetype B]
 - [tension 2]: [archetype C] vs [archetype D]
 - [tension 3]: [archetype E] vs [archetype F]
@@ -258,33 +269,38 @@ These tensions are not problems - they are the raw material for wisdom. In the n
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [H] Hear More from [Archetype] [C] Continue to Debate & Synthesis"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can have archetypes engage in direct dialogue, when finished redisplay the menu
 - IF H: User names an archetype, provide deeper perspective, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#12-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and all perspectives are captured, will you then load and read fully `{nextStepFile}` (step-05-debate-synthesis.md).
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - All 8 archetypes provided perspective
 - Each spoke in distinctive voice
 - Biases noted for each
 - Agreements and tensions identified
 - Output file updated with all perspectives
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
+
 - Skipping any archetype
 - Generic perspectives that don't match archetype voice
 - Harmonizing prematurely

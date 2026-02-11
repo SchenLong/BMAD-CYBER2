@@ -16,6 +16,7 @@ Identify missing provisions that should be present given the contract type and c
 ### 1. Standard Provisions Check
 
 For this contract type, verify presence of:
+
 - Confidentiality provisions
 - IP ownership/licensing
 - Force majeure
@@ -29,6 +30,7 @@ For this contract type, verify presence of:
 ### 2. Risk-Based Gaps
 
 Based on the transaction, assess if missing:
+
 - Specific performance remedies
 - Audit rights
 - Most favored customer
@@ -41,6 +43,7 @@ Based on the transaction, assess if missing:
 ### 3. Industry-Specific Gaps
 
 Based on industry/sector, check for:
+
 - Regulatory compliance provisions
 - Industry standard terms
 - Required disclosures

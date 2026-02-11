@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 4: Economic Security Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on economic security and tokenomics
 - FORBIDDEN to discuss DeFi-specific vulnerabilities yet
 - Analyze incentive structures thoroughly
 
-## STEP GOAL:
+## STEP GOAL
 
 To analyze economic security including tokenomics, incentive mechanisms, game theory, and economic attack vectors.
 
-## ECONOMIC SECURITY SEQUENCE:
+## ECONOMIC SECURITY SEQUENCE
 
 ### 1. Tokenomics Overview
 
@@ -54,6 +54,7 @@ To analyze economic security including tokenomics, incentive mechanisms, game th
 | Vesting Schedules | ? |
 
 **Supply Mechanics:**
+
 - [ ] Fixed supply
 - [ ] Inflationary (minting)
 - [ ] Deflationary (burning)
@@ -100,6 +101,7 @@ Who can mint tokens and under what conditions?"
 | Liquidity attacks | ? | ? |
 
 **Price Dependencies:**
+
 - Does the protocol rely on token prices?
 - How are prices determined (oracle, TWAP, spot)?
 - Is there manipulation protection?
@@ -141,6 +143,7 @@ How does the protocol handle oracle failures?"
 | Arbitrageurs | [Price differences] | ? |
 
 **Game Theory Considerations:**
+
 - Are incentives aligned for honest behavior?
 - What happens if largest stakeholder acts maliciously?
 - Are there griefing opportunities?
@@ -162,6 +165,7 @@ What incentives exist for protocol participants?"
 | Liquidation | ? | ? |
 
 **Protocol-Level Value Leakage:**
+
 - Fee extraction opportunities
 - Governance attacks
 - Flash loan exploits
@@ -249,6 +253,7 @@ Update Section 4 of {outputFile}:
 "**Economic Security Assessment Complete**
 
 I've analyzed:
+
 - Tokenomics and supply mechanics
 - Minting and burning security
 - Price manipulation vectors
@@ -264,7 +269,7 @@ Ready to proceed to DeFi vulnerability assessment?"
 
 Display: **Economic Security Complete - Select an Option:** [C] Continue to DeFi Vulnerabilities [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 4 content, allow revisions, then redisplay menu

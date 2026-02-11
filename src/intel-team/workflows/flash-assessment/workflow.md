@@ -1,12 +1,12 @@
 ---
 workflow_id: "flash-assessment"
-name: "Flash Assessment"
+name: flash-assessment
 description: 'Rapid 15-minute OSINT triage providing immediate hits, exposures, and risk assessment'
 version: '1.0.0'
 module: intel-team
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/intel-team/workflows/flash-assessment'
+workflow_path: '{project-root}/src/intel-team/workflows/flash-assessment'
 output_path: '{output_folder}/flash-assessments'
 
 # Workflow Configuration
@@ -164,7 +164,8 @@ OUTPUT: Flash Assessment Report (15 min turnaround)
 ## Execution
 
 To start this workflow:
-1. Invoke Vector agent
+
+1. Load Vector agent
 2. Request: "Flash Assessment on [target identifier]"
 3. Provide any scope limitations or priority concerns
 4. Workflow will guide through steps automatically
@@ -181,7 +182,7 @@ To start this workflow:
 
 ### 1. Configuration Loading
 
-Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and resolve:
+Load and read full config from `{project-root}/src/intel-team/config.yaml` and resolve:
 
 - `user_name`, `communication_language`, `output_folder`, `classification_level`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`

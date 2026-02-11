@@ -7,8 +7,8 @@ version: 1.0.0
 
 permissions:
   filesystem:
-    read: ["_bmad/legal-team/**", "docs/**", "_bmad/core/**"]
-    write: ["_bmad/legal-team/output/**", "docs/legal/**"]
+    read: ["src/legal-team/**", "docs/**", "src/core/**"]
+    write: ["src/legal-team/output/**", "docs/legal/**"]
   network: true
   shell:
     allowed_commands: []

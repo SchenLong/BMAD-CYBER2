@@ -175,10 +175,10 @@ installation_order:
       steps:
         - action: "extract_agents"
           source: "dist/agents/"
-          target: "_bmad/cybersec-team/agents/"
+          target: "src/cybersec-team/agents/"
         - action: "extract_workflows"
           source: "dist/workflows/"
-          target: "_bmad/cybersec-team/workflows/"
+          target: "src/cybersec-team/workflows/"
         - action: "setup_permissions"
           config: "permissions"
 

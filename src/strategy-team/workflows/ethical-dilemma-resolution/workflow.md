@@ -1,5 +1,5 @@
 ---
-name: Ethical Dilemma Resolution
+name: ethical-dilemma-resolution
 description: Navigate complex ethical dilemmas with structured multi-perspective analysis and principled resolution
 web_bundle: true
 ---

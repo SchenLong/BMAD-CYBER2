@@ -31,6 +31,7 @@ Executive leadership workflows for strategic decision-making, crisis response, s
 
 **Strategic Decision Workshop**
 Multi-perspective decision analysis using all 14 executive advisors:
+
 - Comprehensive situation assessment
 - Multiple strategic philosophies applied
 - Risk/reward analysis
@@ -39,6 +40,7 @@ Multi-perspective decision analysis using all 14 executive advisors:
 
 **Strategic Planning Session**
 Long-term strategic planning with diverse strategic philosophies:
+
 - Vision and mission alignment
 - Environmental analysis
 - Strategic options development
@@ -47,6 +49,7 @@ Long-term strategic planning with diverse strategic philosophies:
 
 **Political Risk Assessment**
 Systematic evaluation of political risks in strategic decisions:
+
 - Political landscape mapping
 - Stakeholder power analysis
 - Risk factor identification
@@ -65,6 +68,7 @@ Systematic evaluation of political risks in strategic decisions:
 
 **Stakeholder Negotiation Prep**
 Prepare for critical negotiations with comprehensive stakeholder analysis:
+
 - Stakeholder mapping and interests
 - BATNA analysis
 - Strategy development
@@ -73,6 +77,7 @@ Prepare for critical negotiations with comprehensive stakeholder analysis:
 
 **Conflict Resolution**
 Navigate workplace conflicts with structured mediation:
+
 - Conflict assessment
 - Stakeholder perspectives
 - Resolution options
@@ -81,6 +86,7 @@ Navigate workplace conflicts with structured mediation:
 
 **Board Relations Management**
 Comprehensive board engagement strategy and relationship management:
+
 - Board dynamics analysis
 - Individual director engagement plans
 - Meeting preparation
@@ -99,6 +105,7 @@ Comprehensive board engagement strategy and relationship management:
 
 **Crisis Response Planning**
 Develop comprehensive crisis response strategies:
+
 - Crisis assessment (type, severity, stakeholders)
 - Immediate actions (first 24-48 hours)
 - Stakeholder communications
@@ -107,6 +114,7 @@ Develop comprehensive crisis response strategies:
 - Recovery path planning
 
 **Lead Agents by Step**:
+
 1. Facilitator - Crisis assessment
 2. Crisis Commander - Immediate actions
 3. Giuseppe - Stakeholder and media communications
@@ -115,6 +123,7 @@ Develop comprehensive crisis response strategies:
 
 **Board Presentation Prep**
 Craft compelling board presentations:
+
 - Message development
 - Evidence assembly
 - Q&A preparation
@@ -123,6 +132,7 @@ Craft compelling board presentations:
 
 **Policy Development**
 Evidence-based policy creation:
+
 - Policy rationale development
 - Stakeholder impact analysis
 - Implementation planning
@@ -141,6 +151,7 @@ Evidence-based policy creation:
 
 **Competitive Warfare**
 Strategic competitive planning for high-stakes business battles:
+
 - Competitive landscape analysis
 - Strength/weakness assessment
 - Attack and defense strategies
@@ -149,6 +160,7 @@ Strategic competitive planning for high-stakes business battles:
 
 **Corporate Political Game**
 Navigate internal corporate politics:
+
 - Power structure mapping
 - Alliance building strategies
 - Influence tactics
@@ -157,6 +169,7 @@ Navigate internal corporate politics:
 
 **M&A Due Diligence**
 Comprehensive merger and acquisition evaluation:
+
 - Target assessment
 - Strategic fit analysis
 - Risk identification
@@ -176,6 +189,7 @@ Comprehensive merger and acquisition evaluation:
 
 **Leadership Philosophy**
 Develop personal leadership philosophy through dialogue:
+
 - Historical archetype engagement
 - Core values identification
 - Leadership style development
@@ -183,6 +197,7 @@ Develop personal leadership philosophy through dialogue:
 
 **Leadership Transition Planning**
 Comprehensive succession and leadership handover:
+
 - Knowledge transfer planning
 - Relationship handover
 - Timeline development
@@ -191,6 +206,7 @@ Comprehensive succession and leadership handover:
 
 **Performance Review Preparation**
 Executive performance review preparation:
+
 - Assessment framework
 - Evidence compilation
 - Feedback calibration
@@ -199,6 +215,7 @@ Executive performance review preparation:
 
 **Ethical Dilemma Resolution**
 Navigate complex ethical dilemmas with structured analysis:
+
 - Multi-perspective examination
 - Principles application
 - Stakeholder impact assessment
@@ -268,12 +285,14 @@ Pre-configured multi-agent combinations for common scenarios:
 ### Starting a Workflow
 
 1. **Via Agent**:
+
    ```bash
    /strategy-team:communications-director
    # Then select crisis response from menu
    ```
 
 2. **Direct Workflow**:
+
    ```bash
    /strategy-team:workflows:crisis-response-planning
    ```
@@ -281,6 +300,7 @@ Pre-configured multi-agent combinations for common scenarios:
 ### Multi-Agent Coordination
 
 Strategy workflows often engage multiple agents in sequence:
+
 - Each step may have a different lead agent
 - Perspectives are synthesized into unified recommendations
 - Dissenting views are documented
@@ -288,6 +308,7 @@ Strategy workflows often engage multiple agents in sequence:
 ### Output Artifacts
 
 Strategy workflows generate executive deliverables:
+
 - Decision briefs with recommendations
 - Strategic plans with implementation roadmaps
 - Crisis response playbooks
@@ -299,12 +320,14 @@ Strategy workflows generate executive deliverables:
 ## Common Use Cases
 
 ### Major Strategic Decision
+
 1. Run **Strategic Decision Workshop** with full council
 2. Document diverse perspectives
 3. Generate unified recommendation with dissents noted
 4. Develop implementation plan
 
 ### Crisis Situation
+
 1. Immediately start **Crisis Response Planning**
 2. Define immediate actions (first 24-48 hours)
 3. Develop stakeholder communications
@@ -312,22 +335,26 @@ Strategy workflows generate executive deliverables:
 5. Chart recovery path
 
 ### Board Meeting Preparation
+
 1. Use **Board Presentation Prep** for materials
 2. Apply **Board Relations Management** for engagement strategy
 3. Run through Q&A preparation
 4. Conduct delivery practice
 
 ### Competitive Battle
+
 1. Start with **Competitive Warfare** for strategy
 2. Analyze political dimensions with **Corporate Political Game**
 3. Prepare stakeholder positioning
 
 ### Leadership Development
+
 1. Develop philosophy with **Leadership Philosophy**
 2. Plan succession with **Leadership Transition Planning**
 3. Prepare reviews with **Performance Review Preparation**
 
 ### Ethical Challenge
+
 1. Use **Ethical Dilemma Resolution** for structured analysis
 2. Engage ethics-focused agents (Sophia, Jean-Luc)
 3. Document reasoning and decision

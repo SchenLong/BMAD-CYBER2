@@ -2,9 +2,8 @@ import { existsSync, promises as fs } from 'fs';
 import { join, dirname } from 'path';
 import { promisify } from 'util';
 import { exec } from 'child_process';
-import inquirer from 'inquirer';
-import chalk from 'chalk';
-import ora from 'ora';
+import { confirm, isCancel, createSpinner } from '../../../src/utility/cli/prompts.js';
+import pc from 'picocolors';
 import { downloadRelease } from '../lib/downloader.js';
 import { extractFramework } from '../lib/extractor.js';
 import { logger } from '../lib/logger.js';
@@ -14,7 +13,7 @@ const execAsync = promisify(exec);
 
 // Files to preserve during update
 const PRESERVE_FILES = [
-  '_bmad/core/config.yaml',
+  'src/core/config.yaml',
   '_bmad/_config/',
   '.claude/settings.json',
   '.claude/settings.local.json',
@@ -23,7 +22,7 @@ const PRESERVE_FILES = [
 ];
 
 export async function updateCommand(options) {
-  const spinner = ora();
+  const spinner = createSpinner();
   const targetDir = process.cwd();
   let backupDir = null;
 
@@ -33,18 +32,18 @@ export async function updateCommand(options) {
     const currentVersion = await getCurrentVersion(targetDir);
 
     if (!currentVersion) {
-      spinner.fail('BMAD-CYBER not detected in current directory');
+      spinner.stop('BMAD-CYBER not detected in current directory');
       logger.error('Run this command from a directory with BMAD-CYBER installed.');
       logger.info('You can install BMAD-CYBER with: npx bmad-cybersec install');
       process.exit(1);
     }
 
-    spinner.succeed(`Current version: ${currentVersion}`);
+    spinner.stop(`Current version: ${currentVersion}`);
 
     // Security: Validate version format if specific version requested
     if (options.version && options.version !== 'latest') {
       if (!isValidVersionFormat(options.version)) {
-        spinner.fail('Invalid version format');
+        spinner.stop('Invalid version format');
         logger.error('Version must be in format: v1.2.3 or 1.2.3');
         process.exit(1);
       }
@@ -53,7 +52,7 @@ export async function updateCommand(options) {
     // 2. Check for updates (AC-007.2)
     spinner.start('Checking for updates...');
     const latestRelease = await getLatestVersion(options.version);
-    spinner.succeed(`Latest version: ${latestRelease.tag}`);
+    spinner.stop(`Latest version: ${latestRelease.tag}`);
 
     // Security: Prevent downgrade attacks (GH-093-001)
     if (options.version && options.version !== 'latest' && currentVersion !== 'unknown') {
@@ -63,16 +62,12 @@ export async function updateCommand(options) {
         logger.warn('Downgrading to older versions may expose you to known security vulnerabilities.\n');
 
         if (!options.force) {
-          const { confirmDowngrade } = await inquirer.prompt([
-            {
-              type: 'confirm',
-              name: 'confirmDowngrade',
-              message: 'Are you SURE you want to downgrade? (This is not recommended)',
-              default: false
-            }
-          ]);
+          const confirmDowngrade = await confirm({
+            message: 'Are you SURE you want to downgrade? (This is not recommended)',
+            initialValue: false
+          });
 
-          if (!confirmDowngrade) {
+          if (isCancel(confirmDowngrade) || !confirmDowngrade) {
             logger.info('Downgrade cancelled for security reasons.');
             return;
           }
@@ -101,32 +96,24 @@ export async function updateCommand(options) {
     if (!isNewerVersion(latestRelease.tag, currentVersion) && !options.force) {
       logger.success('You are already on the latest version!');
 
-      const { forceUpdate } = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'forceUpdate',
-          message: 'Would you like to reinstall anyway?',
-          default: false
-        }
-      ]);
+      const forceUpdate = await confirm({
+        message: 'Would you like to reinstall anyway?',
+        initialValue: false
+      });
 
-      if (!forceUpdate) return;
+      if (isCancel(forceUpdate) || !forceUpdate) return;
     }
 
     // Show changelog
     await showChangelog(currentVersion, latestRelease);
 
     // Confirm update
-    const { proceed } = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'proceed',
-        message: `Update from ${currentVersion} to ${latestRelease.tag}?`,
-        default: true
-      }
-    ]);
+    const proceed = await confirm({
+      message: `Update from ${currentVersion} to ${latestRelease.tag}?`,
+      initialValue: true
+    });
 
-    if (!proceed) {
+    if (isCancel(proceed) || !proceed) {
       logger.info('Update cancelled.');
       return;
     }
@@ -134,14 +121,14 @@ export async function updateCommand(options) {
     // 5. Backup configurations (AC-007.5)
     spinner.start('Backing up configurations...');
     backupDir = await backupConfigurations(targetDir);
-    spinner.succeed(`Configurations backed up to: ${backupDir}`);
+    spinner.stop(`Configurations backed up to: ${backupDir}`);
 
     // 6. Download new version
     spinner.start('Downloading new version...');
     const tarballPath = await downloadRelease({
       version: options.version || 'latest'
     });
-    spinner.succeed('Download complete');
+    spinner.stop('Download complete');
 
     // 7. Extract with force overwrite (AC-007.7)
     spinner.start('Installing update...');
@@ -150,20 +137,20 @@ export async function updateCommand(options) {
       withDocs: options.withDocs,
       withDev: options.withDev
     });
-    spinner.succeed('Update installed');
+    spinner.stop('Update installed');
 
     // 8. Restore configurations (AC-007.6)
     spinner.start('Restoring configurations...');
     await restoreConfigurations(backupDir, targetDir);
-    spinner.succeed('Configurations restored');
+    spinner.stop('Configurations restored');
 
     // 9. Run npm install if needed
     spinner.start('Updating dependencies...');
     try {
       await execAsync('npm install', { cwd: targetDir });
-      spinner.succeed('Dependencies updated');
+      spinner.stop('Dependencies updated');
     } catch {
-      spinner.warn('Dependencies may need manual update');
+      spinner.stop('Dependencies may need manual update');
     }
 
     // 10. Show what changed (AC-007.10)
@@ -172,7 +159,7 @@ export async function updateCommand(options) {
     await showWhatChanged(currentVersion, latestRelease.tag);
 
   } catch (error) {
-    spinner.fail(`Update failed: ${error.message}`);
+    spinner.stop(`Update failed: ${error.message}`);
 
     // AC-007.9: Rollback on failure
     if (backupDir) {
@@ -323,23 +310,23 @@ function isValidVersionFormat(version) {
 
 function showVersionComparison(current, latest) {
   console.log('\n');
-  console.log(chalk.bold('Version Comparison:'));
-  console.log(`  Current:  ${chalk.yellow(current)}`);
-  console.log(`  Latest:   ${chalk.green(latest.tag)}`);
+  console.log(pc.bold('Version Comparison:'));
+  console.log(`  Current:  ${pc.yellow(current)}`);
+  console.log(`  Latest:   ${pc.green(latest.tag)}`);
   console.log(`  Released: ${new Date(latest.publishedAt).toLocaleDateString()}`);
 }
 
 async function showChangelog(fromVersion, release) {
   console.log('\n');
-  console.log(chalk.bold("What's New:"));
-  console.log(chalk.dim('-'.repeat(40)));
+  console.log(pc.bold("What's New:"));
+  console.log(pc.dim('-'.repeat(40)));
 
   // Parse and display release notes
   if (release.body) {
     const lines = release.body.split('\n').slice(0, 15);
     lines.forEach(line => console.log('  ' + line));
     if (release.body.split('\n').length > 15) {
-      console.log(chalk.dim('  ... (see full changelog on GitHub)'));
+      console.log(pc.dim('  ... (see full changelog on GitHub)'));
     }
   } else {
     console.log('  No changelog available.');
@@ -409,8 +396,8 @@ async function restoreConfigurations(backupDir, targetDir) {
 }
 
 async function showWhatChanged(_fromVersion, toVersion) {
-  console.log(chalk.bold('\nUpdate Summary:'));
-  console.log(`  Updated to ${chalk.green(toVersion)}`);
+  console.log(pc.bold('\nUpdate Summary:'));
+  console.log(`  Updated to ${pc.green(toVersion)}`);
   console.log('');
   console.log('  Your configurations have been preserved.');
   console.log('  Run `npm run bmad:health` to verify installation.');

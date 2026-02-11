@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/threat-actor-profiler.md
+# Full agent: src/intel-team/agents/threat-actor-profiler.md
 agent_id: "threat-actor-profiler"
 name: "Dossier"
 title: "Threat Actor Profiler"

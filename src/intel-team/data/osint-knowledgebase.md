@@ -68,6 +68,7 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 | **NameCheckup** | Platform username search | Web |
 
 **WhatsMyName Integration Details:**
+
 - Core file: `wmn-data.json` containing site detection rules
 - Schema file: `wmn-data-schema.json` for structure definition
 - Detection fields: `uri_check`, `e_code`, `e_string`, `m_code`, `m_string`
@@ -77,27 +78,33 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 ### 2.2 Social Media Intelligence
 
 **Facebook:**
+
 - Who Posted What - Search posts by keyword within date ranges
 - Facebook Graph Searcher (Intelligence X)
 - Graph.tips - Facebook Graph Search Generator
 - LookupID - Facebook user ID lookup
 
 **Instagram:**
+
 - Storysaver - Download Instagram stories
 - Site-specific Google searches
 
 **Telegram:**
+
 - Telegago - Analyze Telegram channels and groups
 - Track public/private chats, message trends, sentiment analysis
 
 **TikTok:**
+
 - Site-specific Google: `site:tiktok.com [name]`
 
 **Reddit:**
+
 - Redective - User information lookup
 - r/whatisthisthing - Crowdsourced object identification
 
 **Bluesky:**
+
 - Bluesky advanced search
 - Pack2List - Convert starter packs to lists
 - Toolzu - View/download content
@@ -120,11 +127,13 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 ### 2.4 Email & Phone Research
 
 **Email:**
+
 - Hunter.io - Domain-specific email searches
 - email-format - Email address location
 - emailrep.io - Email information and platform connections
 
 **Phone:**
+
 - Infobel - Telephone directories worldwide
 - Numberway - Global directory listings
 - World phone numbers - International phone codes
@@ -132,6 +141,7 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 ### 2.5 Geolocation & Mapping
 
 **General Maps:**
+
 - Google Maps/Earth - Including Street View, 3D, Photo Spheres
 - Bing Maps - Alternative satellite imagery
 - Yandex Maps - Russia and surrounding regions
@@ -139,6 +149,7 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 - Wikimapia - Crowd-sourced with descriptions
 
 **Specialized:**
+
 - Mapillary - Crowdsourced street-level imagery
 - World Imagery Wayback (Esri) - Historical satellite views
 - Open Infrastructure Map - Power lines, solar installations
@@ -146,6 +157,7 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 - CarbonBrief Nuclear Map - Nuclear installations
 
 **Analysis Tools:**
+
 - Peakfinder - Mountain/hill peaks worldwide
 - Suncalc.org - Sun position calculations
 - Shademap - Shadow direction/length visualization
@@ -155,18 +167,21 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 ### 2.6 Image & Video Analysis
 
 **Reverse Image Search:**
+
 - Yandex - Powerful facial recognition capability
 - Google Images - Comprehensive with filters
 - Bing Images - Cropping/re-search capability
 - TinEye - Strong on logos and symbols
 
 **Metadata Extraction:**
+
 - metadata2go.com - EXIF data viewer
 - Online EXIF Viewer
 - Jimpl - EXIF with removal
 - Metadata Interrogator - Desktop offline extractor
 
 **Forensics:**
+
 - FotoForensics - Error level analysis
 - Forensically - Digital image forensics
 - InVid - Browser extension for video/image analysis
@@ -174,6 +189,7 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 **CAUTION:** "Any single analysis algorithm can generate noise...confirm with other methods."
 
 **Video Analysis:**
+
 - MW Metadata - YouTube video metadata
 - YouTube GeoFind - Location-based geotagged video search
 - Watch Frame by Frame - Frame-by-frame playback
@@ -182,28 +198,33 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 ### 2.7 Transportation Tracking
 
 **Aviation:**
+
 - RadarBox24, FlightAware, Freedar - Live flight tracking
 - Freedar - Includes military aircraft
 - Live ATC - Air traffic control broadcasts
 - PlaneSpotters - Aircraft information and photos
 
 **Maritime:**
+
 - Marine Traffic - Live vessel tracking and database
 - Vessel Finder - Marine vessel tracker
 - Myshiptracking - Vessel tracking with port info
 
 **Rail:**
+
 - OpenRailwayMap - Crowd-sourced railway maps
 - Travic - Live public transit tracking
 
 ### 2.8 Web Monitoring & Archiving
 
 **Monitoring:**
+
 - Followthatpage - Page change monitoring
 - Distill, Visualping, Wachete - Website change alerts
 - Google Alerts - Keyword monitoring
 
 **Archiving:**
+
 - Archive.today - Page and social media archiving
 - Internet Archive / Wayback Machine - Historical snapshots
 - Conifer - 5GB free storage archiving
@@ -321,6 +342,7 @@ ES and SIGINT overlap because systems can simultaneously collect intelligence wh
 ### 5.1 Definition
 
 GEOINT comprises exploitation and analysis of geospatial data to describe, assess, and visually depict:
+
 - Physical features (natural and constructed)
 - Geographically referenced activities
 
@@ -380,6 +402,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 **Definition:** Personnel movement and navigational strategy to detect, counter, and avoid surveillance.
 
 **Core Principles:**
+
 - Time
 - Distance
 - Change of Direction
@@ -394,6 +417,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 | **90-degree breaks** | Move perpendicular for 4+ blocks, then resume |
 
 **Detection Indicators:**
+
 - "Anyone still behind after 3-4 turns in stairstep pattern is likely following"
 - Vehicles that move when you move
 - Personnel changes in static positions
@@ -410,6 +434,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 ### 6.4 Counter-Surveillance Operations
 
 **Techniques:**
+
 - "Drycleaning" - Discerning number of tails while appearing oblivious
 - Entering crowded locations (malls, markets)
 - Using multi-exit buildings
@@ -417,6 +442,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 - Varying schedules and routes
 
 **Counter-Surveillance Team (CS) Operations:**
+
 - Full team: One person per chokepoint
 - Single-handed: Leapfrogging ahead of principal
 - Four chokepoints minimum for beyond-coincidence detection
@@ -426,12 +452,14 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 **Definition:** Systematic physical and electronic examination to discover eavesdropping devices and security hazards.
 
 **Equipment:**
+
 - Spectrum analyzers (10 kHz to 24GHz)
 - Non-Linear Junction Detectors
 - RF receivers
 - Physical inspection tools
 
 **Detection Challenges:**
+
 - Burst transmission devices
 - Spread spectrum technology
 - Remotely operated devices
@@ -446,6 +474,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 "The subtle extraction of information during an apparently normal and innocent conversation." - NSA
 
 **Key Characteristics:**
+
 - Resembles typical conversation
 - Discreetly gathers confidential information
 - Easy to disguise and deniable
@@ -468,6 +497,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 **Definition:** Creating and using an invented scenario (pretext) to engage a target and increase chance of information disclosure.
 
 **Components:**
+
 - Fabricated identity/role
 - Credible background story
 - Research on target/organization
@@ -488,6 +518,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 | **Intensity** | Satisfy psychological needs |
 
 **Techniques:**
+
 - Mirroring speech/email style
 - Active listening
 - Finding common ground
@@ -528,17 +559,20 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 ### 8.3 Investigation Techniques
 
 **Systematic Scanning:**
+
 - Crawl marketplaces and forums
 - Scrape credentials, goods, discussions
 - Identify vulnerability exploitation discussions
 
 **Deanonymization:**
+
 - Cross-reference email addresses
 - Track usernames across platforms
 - Analyze cryptocurrency transactions
 - Linguistic analysis of posts
 
 **Sentiment Analysis:**
+
 - Monitor communication tone
 - Identify emerging threats
 - Understand motivations and tactics
@@ -556,6 +590,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 ### 8.5 Operational Security
 
 **Best Practices:**
+
 - Dedicated device for dark web activities
 - Tor Browser with scripts blocked
 - Regular tool updates
@@ -564,6 +599,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 - Use Maltego for visual link analysis
 
 **Challenges:**
+
 - Information reliability issues
 - Misinformation prevalence
 - Maintaining anonymity
@@ -578,6 +614,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 **Endpoint:** `https://api.osint.industries/v2/request`
 
 **Supported Queries:**
+
 - Email lookup
 - Phone lookup
 - Username search
@@ -585,6 +622,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 - Crypto wallet lookup
 
 **Parameters:**
+
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `type` | Yes | Query type (email, phone) |
@@ -594,6 +632,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 | `accept` | Yes | Response format (JSON, PDF) |
 
 **Response Schema:**
+
 - Identity: name, first_name, last_name, username, id
 - Contact: email, phone, website
 - Profile: picture_url, bio, profile_url
@@ -602,6 +641,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 - Demographics: age, gender, language, location
 
 **Pricing:**
+
 - Basic: £19/month (30 searches)
 - Intermediate: £49/month (100 searches)
 - Advanced: £99/month (300 searches)
@@ -611,6 +651,7 @@ GEOINT comprises exploitation and analysis of geospatial data to describe, asses
 **Data File:** `wmn-data.json`
 
 **Site Detection Structure:**
+
 ```json
 {
   "name": "ServiceName",
@@ -672,6 +713,7 @@ The OSINT Framework provides a blueprint transforming raw data into actionable i
 ### 10.3 Correlation and Link Analysis
 
 **Pivot Points:**
+
 - Email addresses
 - Phone numbers
 - Usernames
@@ -682,6 +724,7 @@ The OSINT Framework provides a blueprint transforming raw data into actionable i
 - Temporal patterns
 
 **Tools:**
+
 - Maltego - Graph-based link analysis
 - SpiderFoot - Automated OSINT orchestration
 - i2 Analyst's Notebook - Intelligence analysis
@@ -699,6 +742,7 @@ The OSINT Framework provides a blueprint transforming raw data into actionable i
 ### 10.5 Quality Assurance
 
 **CRAAP Test for Source Evaluation:**
+
 - **Currency** - When was it published/updated?
 - **Relevance** - Does it relate to your needs?
 - **Authority** - Who is the source?
@@ -706,6 +750,7 @@ The OSINT Framework provides a blueprint transforming raw data into actionable i
 - **Purpose** - Why does it exist?
 
 **Confidence Levels:**
+
 | Level | Description |
 |-------|-------------|
 | **Confirmed** | Independently verified by multiple sources |
@@ -785,6 +830,7 @@ DARK WEB
 ---
 
 **Document Control:**
+
 - Created: 2026-01-10
 - Author: BlackUnicorn.Tech
 - Review Cycle: Quarterly

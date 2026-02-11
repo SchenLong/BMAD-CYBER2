@@ -24,7 +24,7 @@ import {
   VALID_BMAD_PATH_PATTERN,
   MAX_COMMAND_LENGTH,
   MIN_COMMAND_LENGTH
-} from '../../../_bmad/core/routing/slash-command-router.js';
+} from '../../../src/core/routing/slash-command-router.js';
 
 // ============================================================================
 // Test Data: Mock Alias Registry

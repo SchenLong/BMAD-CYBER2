@@ -50,6 +50,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Modern Professional Advisors
 
 #### Augustus - Policy Analyst 📊
+
 - **Full Name**: Dr. Augustus Mitchell
 - **Background**: Harvard Kennedy School, former McKinsey partner, White House policy advisor
 - **Expertise**: Evidence-based policy analysis, data-driven decisions, strategic research
@@ -57,6 +58,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:policy-analyst`
 
 **Augustus's Analytical Framework:**
+
 - **Evidence Collection**: Systematic research and data gathering for informed decisions
 - **Policy Analysis**: Structured analysis of options with cost-benefit assessment
 - **Stakeholder Impact Assessment**: Comprehensive analysis of policy implications across stakeholders
@@ -64,6 +66,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Performance Measurement**: Metrics and KPIs for tracking strategic success
 
 #### Magnus - Political Strategist 🎯
+
 - **Full Name**: Magnus Thornfield
 - **Background**: Former campaign manager, congressional chief of staff, political consultant
 - **Expertise**: Campaign strategy, coalition building, power analysis, stakeholder mapping
@@ -71,6 +74,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:political-strategist`
 
 **Magnus's Political Mastery:**
+
 - **Power Mapping**: Identification and analysis of key decision makers and influencers
 - **Coalition Building**: Strategic alliance formation and stakeholder coordination
 - **Timing Strategy**: Optimal timing for initiatives, announcements, and strategic moves
@@ -78,6 +82,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Message Strategy**: Political messaging and narrative development
 
 #### Cicero - Debate Coach 🗣️
+
 - **Full Name**: Professor Marcus Cicero Washington
 - **Background**: Yale rhetoric professor, championship debate coach, speechwriting consultant
 - **Expertise**: Argumentation mastery, rhetoric excellence, persuasive communication, public speaking
@@ -85,6 +90,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:debate-coach`
 
 **Cicero's Rhetorical Arsenal:**
+
 - **Argument Construction**: Logical argumentation, evidence marshaling, persuasive structure
 - **Rhetoric Techniques**: Classical rhetoric, emotional appeals, credibility building
 - **Counter-Argument Anticipation**: Opponent position analysis and defensive preparation
@@ -92,6 +98,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Message Refinement**: Clarity, impact, memorable formulation
 
 #### Geneva - Stakeholder Mediator 🤝
+
 - **Full Name**: Dr. Geneva Rousseau
 - **Background**: Harvard Negotiation Project, former UN mediator, conflict resolution expert
 - **Expertise**: Negotiation excellence, conflict resolution, consensus building, mediation
@@ -99,6 +106,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:stakeholder-mediator`
 
 **Geneva's Mediation Expertise:**
+
 - **Interest-Based Negotiation**: Focus on underlying interests rather than positions
 - **Stakeholder Alignment**: Finding common ground and shared objectives
 - **Conflict Resolution**: De-escalation techniques and win-win solution development
@@ -106,6 +114,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Relationship Management**: Long-term stakeholder relationship building and maintenance
 
 #### Sophia - Ethics Advisor ⚖️
+
 - **Full Name**: Dr. Sophia Aristoteles
 - **Background**: Stanford philosophy professor, corporate ethics consultant, former ethics committee chair
 - **Expertise**: Political ethics, moral philosophy, values-based decision making, ethical frameworks
@@ -113,6 +122,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:ethics-advisor`
 
 **Sophia's Ethical Guidance:**
+
 - **Ethical Framework Application**: Utilitarian, deontological, virtue ethics analysis
 - **Stakeholder Ethics**: Responsibility to employees, customers, shareholders, society
 - **Values Clarification**: Core values identification and decision alignment
@@ -120,6 +130,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Integrity Maintenance**: Balancing pragmatic needs with ethical principles
 
 #### Giuseppe - Communications Director 📢
+
 - **Full Name**: Giuseppe Medici
 - **Background**: Former White House communications director, crisis communication expert, media strategist
 - **Expertise**: Public messaging, media strategy, crisis communication, narrative control
@@ -127,6 +138,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:communications-director`
 
 **Giuseppe's Communication Mastery:**
+
 - **Message Strategy**: Core message development, narrative framing, audience targeting
 - **Media Relations**: Media strategy, journalist relationships, interview preparation
 - **Crisis Communication**: Rapid response, damage control, reputation recovery
@@ -136,6 +148,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Historical Archetype Advisors
 
 #### Niccolo - The Realist 👑
+
 - **Archetype**: Machiavelli/Bismarck - Master of Realpolitik
 - **Philosophy**: Power-focused, pragmatic, results-oriented approach to strategy
 - **Expertise**: Power analysis, pragmatic solutions, strategic ruthlessness, political realism
@@ -143,6 +156,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-realist`
 
 **Niccolo's Realpolitik Wisdom:**
+
 - **Power Analysis**: Understanding and leveraging power dynamics and relationships
 - **Strategic Pragmatism**: Results-focused approach with flexibility on methods
 - **Competitive Intelligence**: Understanding opponents and competitive landscapes
@@ -151,6 +165,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Inherent Bias**: May prioritize power and results over values and relationships
 
 #### Charles - The Liberator 🕊️
+
 - **Archetype**: Lincoln/de Gaulle - Moral Transformer
 - **Philosophy**: Principled leadership with transformational vision and moral authority
 - **Expertise**: Transformational leadership, moral authority, principled change, inspirational vision
@@ -158,6 +173,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-liberator`
 
 **Charles's Transformational Leadership:**
+
 - **Moral Authority**: Building credibility through principled action and authentic leadership
 - **Inspirational Vision**: Creating compelling visions for positive transformation
 - **Change Management**: Leading transformational change with stakeholder engagement
@@ -166,6 +182,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Inherent Bias**: May prioritize idealism over pragmatic considerations
 
 #### Maximilien - The Revolutionary 🔥
+
 - **Archetype**: Robespierre - Agent of Radical Change
 - **Philosophy**: Radical transformation, systemic change, revolutionary thinking
 - **Expertise**: Disruptive innovation, radical change, system transformation, revolutionary strategy
@@ -173,6 +190,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-revolutionary`
 
 **Maximilien's Revolutionary Perspective:**
+
 - **System Transformation**: Fundamental change rather than incremental improvement
 - **Disruptive Thinking**: Challenge assumptions and conventional wisdom
 - **Radical Solutions**: Bold approaches to systemic problems and entrenched challenges
@@ -181,6 +199,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Inherent Bias**: May favor radical change over stability and gradual improvement
 
 #### Burke - The Conservative 🏛️
+
 - **Archetype**: Burke/Metternich - Guardian of Tradition and Stability
 - **Philosophy**: Incremental change, institutional wisdom, stability, traditional values
 - **Expertise**: Risk management, institutional preservation, incremental change, stability maintenance
@@ -188,6 +207,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-conservative`
 
 **Burke's Conservative Wisdom:**
+
 - **Institutional Knowledge**: Value of existing institutions and accumulated wisdom
 - **Risk Management**: Careful assessment and mitigation of change-related risks
 - **Incremental Change**: Gradual improvement preserving valuable elements
@@ -196,6 +216,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Inherent Bias**: May resist necessary change and favor status quo
 
 #### Lee - The Technocrat 🔧
+
 - **Archetype**: Lee Kuan Yew/Deng Xiaoping - System Builder and Efficiency Expert
 - **Philosophy**: Systematic efficiency, evidence-based governance, pragmatic development
 - **Expertise**: System design, operational excellence, technocratic governance, efficiency optimization
@@ -203,6 +224,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-technocrat`
 
 **Lee's Systematic Approach:**
+
 - **System Design**: Creating efficient, effective organizational and operational systems
 - **Evidence-Based Decisions**: Data-driven approach to policy and strategic decisions
 - **Operational Excellence**: Focus on implementation quality and operational effectiveness
@@ -211,6 +233,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Inherent Bias**: May prioritize efficiency over stakeholder engagement and democratic process
 
 #### Musashi - The Strategist Warrior ⚔️
+
 - **Archetype**: Miyamoto Musashi - Master of Timing and Strategic Combat
 - **Philosophy**: Strategic timing, competitive excellence, warrior discipline, tactical mastery
 - **Expertise**: Competitive strategy, timing mastery, tactical execution, strategic discipline
@@ -218,6 +241,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-strategist-warrior`
 
 **Musashi's Strategic Timing:**
+
 - **Competitive Analysis**: Deep understanding of competitive dynamics and opponent capabilities
 - **Timing Mastery**: Optimal timing for strategic moves, attacks, and defensive actions
 - **Tactical Excellence**: Superior execution of strategic and tactical plans
@@ -226,6 +250,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Inherent Bias**: May favor aggressive competitive approaches over collaborative solutions
 
 #### Sun - The Master Strategist 🐉
+
 - **Archetype**: Sun Tzu - Supreme Strategic Wisdom
 - **Philosophy**: Strategic superiority through wisdom, deception, and superior positioning
 - **Expertise**: Strategic wisdom, competitive intelligence, strategic positioning, victory without battle
@@ -233,6 +258,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-master-strategist`
 
 **Sun's Strategic Excellence:**
+
 - **Strategic Assessment**: Comprehensive analysis of strategic position, resources, and options
 - **Competitive Intelligence**: Deep understanding of competitive landscape and opponent capabilities
 - **Strategic Positioning**: Optimal positioning for competitive advantage and strategic success
@@ -241,6 +267,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Inherent Bias**: May favor complex strategic approaches over simple, direct solutions
 
 #### Jean-Luc - The Principled Commander 🚀
+
 - **Archetype**: Captain Jean-Luc Picard - Diplomatic Excellence and Principled Leadership
 - **Philosophy**: Principled diplomacy, ethical leadership, collaborative excellence, strategic wisdom
 - **Expertise**: Diplomatic strategy, ethical leadership, principled decision making, collaborative leadership
@@ -248,6 +275,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Command**: `/strategy-team:the-principled-commander`
 
 **Jean-Luc's Diplomatic Leadership:**
+
 - **Diplomatic Excellence**: Sophisticated approach to stakeholder relations and conflict resolution
 - **Principled Decision Making**: Ethical framework application with strategic wisdom
 - **Collaborative Leadership**: Building consensus while maintaining leadership authority
@@ -262,12 +290,14 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Core Strategic Workflows
 
 #### 1. Strategic Decision Workshop - Multi-Perspective Decision Analysis
+
 **Purpose**: Comprehensive strategic decision analysis using diverse advisor perspectives
 **Duration**: 6-8 hours across multiple sessions
 **Agents**: Full strategic council (all 8 archetype advisors)
 **Outcome**: Strategic decision brief with multi-perspective analysis and recommended action
 
 **9-Phase Decision Process:**
+
 1. **Decision Framing** - Problem definition, stakeholder identification, success criteria
 2. **Information Gathering** - Comprehensive research and evidence collection (Augustus)
 3. **Strategic Options Development** - Alternative strategy generation and initial analysis
@@ -283,12 +313,14 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 2. Stakeholder Negotiation Prep - High-Stakes Negotiation Preparation
+
 **Purpose**: Comprehensive preparation for critical negotiations with strategy and tactics
 **Duration**: 4-6 hours
 **Agents**: Geneva (lead), Magnus, Cicero, Niccolo
 **Outcome**: Negotiation playbook with strategy, tactics, and contingency plans
 
 **8-Phase Preparation Process:**
+
 1. **Stakeholder Analysis** - Comprehensive analysis of all parties, interests, and power dynamics
 2. **BATNA Development** - Best alternative to negotiated agreement and walkaway points
 3. **Negotiation Strategy** - Overall approach, key objectives, and strategic framework
@@ -303,12 +335,14 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 3. Board Presentation Prep - Executive Presentation Excellence
+
 **Purpose**: Craft compelling board presentations with strategic messaging and Q&A preparation
 **Duration**: 3-4 hours
 **Agents**: Giuseppe (lead), Cicero, Augustus
 **Outcome**: Presentation outline with strategic messaging and comprehensive Q&A preparation
 
 **7-Phase Presentation Development:**
+
 1. **Audience Analysis** - Board member profiles, concerns, decision-making preferences
 2. **Message Strategy** - Core message development, narrative arc, key takeaways
 3. **Content Architecture** - Logical flow, supporting evidence, visual strategy
@@ -322,12 +356,14 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 4. Crisis Response Planning - Strategic Crisis Management
+
 **Purpose**: Develop comprehensive crisis communication and response strategies
 **Duration**: 4-5 hours
 **Agents**: Giuseppe (lead), Magnus, Jean-Luc, Musashi
 **Outcome**: Crisis response plan with communication strategy and stakeholder management
 
 **7-Phase Crisis Planning:**
+
 1. **Crisis Assessment** - Impact analysis, stakeholder implications, reputational risks
 2. **Response Strategy** - Overall crisis response approach and strategic objectives
 3. **Communication Plan** - Messaging strategy, media response, stakeholder communication
@@ -341,12 +377,14 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 5. Strategic Planning Session - Long-Term Strategic Development
+
 **Purpose**: Comprehensive strategic planning with diverse perspectives and implementation roadmap
 **Duration**: 6-8 hours across multiple sessions
 **Agents**: Sun (lead), Lee, Augustus, Charles
 **Outcome**: Strategic plan with vision, objectives, strategies, and implementation roadmap
 
 **8-Phase Strategic Planning:**
+
 1. **Strategic Assessment** - Current position, competitive landscape, market dynamics
 2. **Vision Development** - Inspirational vision with clear strategic direction
 3. **Strategic Options** - Alternative strategic approaches and strategic choices
@@ -363,6 +401,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Specialized Strategic Workflows
 
 #### 6. Policy Development - Evidence-Based Policy Creation
+
 **Purpose**: Develop internal policies with evidence review and ethical considerations
 **Duration**: 4-5 hours
 **Agents**: Augustus (lead), Sophia, Burke
@@ -373,6 +412,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 7. Conflict Resolution - Strategic Conflict Navigation
+
 **Purpose**: Navigate workplace conflicts with structured mediation and resolution strategies
 **Duration**: 3-4 hours
 **Agents**: Geneva (lead), Jean-Luc, Sophia
@@ -383,6 +423,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 8. Competitive Warfare - Strategic Competitive Planning
+
 **Purpose**: Strategic competitive warfare planning for high-stakes business battles
 **Duration**: 5-6 hours
 **Agents**: Sun (lead), Musashi, Magnus, Niccolo
@@ -393,6 +434,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 9. Corporate Political Game - Internal Politics Navigation
+
 **Purpose**: Navigate internal corporate politics with comprehensive political strategy
 **Duration**: 4-5 hours
 **Agents**: Magnus (lead), Niccolo, Geneva, Giuseppe
@@ -405,6 +447,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Advanced Leadership Workflows
 
 #### 10. Political Risk Assessment - Geopolitical Risk Evaluation
+
 **Purpose**: Evaluate political risks in strategic decisions and initiatives
 **Duration**: 3-4 hours
 **Agents**: Augustus (lead), Burke, Magnus
@@ -415,6 +458,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 11. Ethical Dilemma Resolution - Principled Decision Making
+
 **Purpose**: Navigate complex ethical dilemmas with multi-perspective analysis and principled resolution
 **Duration**: 3-4 hours
 **Agents**: Sophia (lead), Jean-Luc, Charles
@@ -425,6 +469,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 12. Leadership Philosophy Development - Personal Leadership Framework
+
 **Purpose**: Develop personal leadership philosophy through dialogue with historical archetypes
 **Duration**: 3-4 hours
 **Agents**: Jean-Luc (lead), Charles, Sophia, Burke
@@ -437,6 +482,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Executive Excellence Workflows
 
 #### 13. M&A Due Diligence - Strategic Merger and Acquisition Analysis
+
 **Purpose**: Comprehensive M&A evaluation using strategic advisors for target assessment
 **Duration**: 5-7 hours
 **Agents**: Augustus (lead), Sun, Lee, Niccolo
@@ -447,6 +493,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 14. Leadership Transition Planning - Succession and Handover Strategy
+
 **Purpose**: Comprehensive succession and leadership handover planning
 **Duration**: 3-4 hours
 **Agents**: Charles (lead), Lee, Burke
@@ -457,6 +504,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 15. Board Relations Management - Board Engagement Strategy
+
 **Purpose**: Comprehensive board engagement strategy and relationship management
 **Duration**: 3-4 hours
 **Agents**: Giuseppe (lead), Geneva, Augustus
@@ -467,6 +515,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ```
 
 #### 16. Performance Review Preparation - Executive Assessment Excellence
+
 **Purpose**: Comprehensive executive performance review preparation
 **Duration**: 2-3 hours
 **Agents**: Jean-Luc (lead), Charles, Augustus
@@ -483,65 +532,81 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Strategy Team Presets (13 Available)
 
 #### Strategic Council - Complete Advisory Council
+
 **Participants**: All 8 archetype advisors
 **Use Case**: Major strategic decisions requiring comprehensive perspective
 **Dynamics**: Full debate with diverse viewpoints and synthesis
+
 ```bash
 /party-mode → select "strategic-council"
 ```
 
 #### Ethics Review - Moral and Values Analysis
+
 **Participants**: Sophia, Jean-Luc, Charles
 **Use Case**: Ethical dilemmas and values-based decision making
 **Dynamics**: Principled analysis with moral framework development
+
 ```bash
 /party-mode → select "ethics-review"
 ```
 
 #### Power Analysis - Political and Power Dynamics
+
 **Participants**: Magnus, Niccolo, Sun
 **Use Case**: Political landscape analysis and power strategy
 **Dynamics**: Realpolitik analysis with strategic and tactical recommendations
+
 ```bash
 /party-mode → select "power-analysis"
 ```
 
 #### Communications Strategy - Messaging and Media
+
 **Participants**: Giuseppe, Cicero, Geneva
 **Use Case**: Public messaging, media strategy, stakeholder communication
 **Dynamics**: Professional communication strategy with message optimization
+
 ```bash
 /party-mode → select "comms-strategy"
 ```
 
 #### Risk Assessment - Strategic Risk Analysis
+
 **Participants**: Burke, Lee, Augustus
 **Use Case**: Risk identification, assessment, and mitigation planning
 **Dynamics**: Systematic risk analysis with evidence-based mitigation
+
 ```bash
 /party-mode → select "risk-assessment"
 ```
 
 #### Change Management - Transformation Strategy
+
 **Participants**: Charles, Burke, Lee
 **Use Case**: Organizational transformation and change management
 **Dynamics**: Balanced approach to change with transformation and stability
+
 ```bash
 /party-mode → select "change-management"
 ```
 
 #### Negotiation Prep - Negotiation Strategy Development
+
 **Participants**: Geneva, Magnus, Cicero
 **Use Case**: High-stakes negotiation preparation and strategy
 **Dynamics**: Comprehensive negotiation planning with tactical development
+
 ```bash
 /party-mode → select "negotiation-prep"
 ```
 
 #### Crisis Response - Crisis Management Council
+
 **Participants**: Giuseppe, Magnus, Jean-Luc, Musashi
 **Use Case**: Crisis situations requiring immediate strategic response
 **Dynamics**: Rapid response planning with communication and operational coordination
+
 ```bash
 /party-mode → select "crisis-response"
 ```
@@ -549,41 +614,51 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Cross-Module Strategic Presets (5 Available)
 
 #### Strategic Intelligence Council - Intelligence-Informed Decisions
+
 **Participants**: Strategy Team + Intel Team + Legal Team
 **Use Case**: Strategic decisions requiring intelligence analysis and legal considerations
 **Coordination**: Strategy provides decision framework, Intel provides analysis, Legal ensures compliance
+
 ```bash
 /party-mode → select "strategic-intelligence-council"
 ```
 
 #### M&A Due Diligence Team - Comprehensive M&A Analysis
+
 **Participants**: Strategy + Intel + Legal + Cybersec Teams
 **Use Case**: Merger and acquisition investigation and assessment
 **Coordination**: Strategy leads analysis, Intel investigates target, Legal reviews compliance, Cybersec assesses security
+
 ```bash
 /party-mode → select "ma-due-diligence-team"
 ```
 
 #### Executive Security Council - Security-Aware Executive Decisions
+
 **Participants**: Strategy Team + Cybersec Team + Legal Team
 **Use Case**: Executive decisions with security implications and compliance requirements
 **Coordination**: Strategy provides decision framework, Cybersec assesses security, Legal ensures compliance
+
 ```bash
 /party-mode → select "executive-security-council"
 ```
 
 #### Competitive Intelligence War Room - Market Strategy and Intelligence
+
 **Participants**: Strategy Team + Intel Team
 **Use Case**: Competitive analysis and strategic response planning
 **Coordination**: Intel provides competitive intelligence, Strategy develops response strategy
+
 ```bash
 /party-mode → select "competitive-intelligence-war-room"
 ```
 
 #### Crisis Response Party - Multi-Dimensional Crisis Management
+
 **Participants**: Strategy + Cybersec + Intel + Legal Teams
 **Use Case**: Complex crises requiring strategic, security, intelligence, and legal coordination
 **Coordination**: Strategy leads overall response, specialists provide domain expertise
+
 ```bash
 /party-mode → select "crisis-response-party"
 ```
@@ -595,22 +670,31 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Step 1: Identify Your Strategic Need (3 minutes)
 
 **For Strategic Analysis:**
+
 ```bash
 /strategy-team:policy-analyst  # Augustus
 ```
+
 **For Crisis Situations:**
+
 ```bash
 /strategy-team:communications-director  # Giuseppe
 ```
+
 **For Complex Strategic Challenges:**
+
 ```bash
 /strategy-team:the-master-strategist  # Sun
 ```
+
 **For Ethical Dilemmas:**
+
 ```bash
 /strategy-team:ethics-advisor  # Sophia
 ```
+
 **For Political Navigation:**
+
 ```bash
 /strategy-team:political-strategist  # Magnus
 ```
@@ -618,6 +702,7 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Step 2: Engage Your Strategic Advisor (7 minutes)
 
 **Describe Your Challenge Clearly:**
+
 - Strategic context and background
 - Key stakeholders and constraints
 - Decision timeline and urgency
@@ -630,16 +715,20 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 ### Step 3: Access Multi-Perspective Analysis (5 minutes)
 
 **For Complex Decisions:**
+
 ```bash
 /party-mode
 ```
+
 **Select appropriate preset:**
+
 - `strategic-council` for comprehensive analysis
 - `risk-assessment` for risk-focused analysis
 - `change-management` for transformation decisions
 - `competitive-warfare` for competitive situations
 
 **Your Strategic Council Will Provide:**
+
 - ✅ Multi-perspective analysis from diverse viewpoints
 - ✅ Strategic recommendations with supporting rationale
 - ✅ Implementation guidance and next steps
@@ -656,10 +745,13 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 **Strategy Team Response:**
 
 **Phase 1: Strategic Assessment (2-3 hours)**
+
 ```bash
 /strategy-team:workflows:strategic-decision-workshop
 ```
+
 **Multi-Advisor Analysis:**
+
 - **Augustus (Evidence)**: Market research, competitive analysis, financial modeling
 - **Sun (Strategy)**: Strategic positioning, competitive advantage, market entry strategy
 - **Lee (Systems)**: Operational requirements, system scaling, implementation planning
@@ -668,10 +760,13 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 - **Charles (Vision)**: Long-term strategic vision, stakeholder inspiration, transformation opportunity
 
 **Phase 2: Stakeholder Strategy (1-2 hours)**
+
 ```bash
 /strategy-team:workflows:stakeholder-negotiation-prep
 ```
+
 **Geneva + Magnus Coordination:**
+
 - Board presentation strategy for investment approval
 - Investor communication and expectation management
 - Employee communication and change management
@@ -686,20 +781,26 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 **Strategy Team Response:**
 
 **Phase 1: Immediate Crisis Response (1 hour)**
+
 ```bash
 /party-mode → "crisis-response"
 ```
+
 **Crisis Council:**
+
 - **Giuseppe (Communications)**: Immediate media response, customer communication, narrative control
 - **Magnus (Politics)**: Stakeholder management, regulatory coordination, political implications
 - **Jean-Luc (Principles)**: Ethical response framework, principled decision making, stakeholder trust
 - **Musashi (Timing)**: Tactical response timing, competitive implications, rapid execution
 
 **Phase 2: Strategic Crisis Plan (2-3 hours)**
+
 ```bash
 /strategy-team:workflows:crisis-response-planning
 ```
+
 **Comprehensive Response Strategy:**
+
 1. **Immediate Actions**: Product recall coordination, customer safety, regulatory notification
 2. **Communication Strategy**: Media response, customer communication, stakeholder updates
 3. **Stakeholder Management**: Investor relations, employee communication, partner coordination
@@ -715,20 +816,26 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 **Strategy Team Response:**
 
 **Phase 1: Strategic Assessment (4-6 hours)**
+
 ```bash
 /strategy-team:workflows:ma-due-diligence
 ```
+
 **Multi-Advisor Due Diligence:**
+
 - **Augustus (Analysis)**: Financial analysis, market assessment, synergy evaluation
 - **Sun (Strategy)**: Strategic rationale, competitive implications, positioning benefits
 - **Lee (Systems)**: Integration planning, operational synergies, system consolidation
 - **Niccolo (Realism)**: Acquisition challenges, integration risks, competitive response
 
 **Phase 2: Cross-Module Analysis (2-3 hours)**
+
 ```bash
 /party-mode → "ma-due-diligence-team"
 ```
+
 **Comprehensive Team Analysis:**
+
 - **Strategy Team**: Strategic rationale and integration planning
 - **Intel Team**: Competitive intelligence and target company analysis
 - **Legal Team**: Legal due diligence and regulatory approvals
@@ -743,19 +850,25 @@ Strategy Team transforms AI into a **trusted executive advisory council** that p
 **Strategy Team Response:**
 
 **Phase 1: Leadership Transition Strategy (3-4 hours)**
+
 ```bash
 /strategy-team:workflows:leadership-transition-planning
 ```
+
 **Succession Leadership Team:**
+
 - **Charles (Leadership)**: Leadership development, inspirational transition, legacy planning
 - **Lee (Systems)**: Knowledge transfer systems, operational continuity, institutional memory
 - **Burke (Stability)**: Change management, organizational stability, cultural continuity
 
 **Phase 2: Stakeholder Communication (2 hours)**
+
 ```bash
 /strategy-team:workflows:board-presentation-prep
 ```
+
 **Giuseppe + Augustus Coordination:**
+
 - Board succession communication and approval process
 - Investor and analyst communication strategy
 - Employee communication and change management
@@ -795,6 +908,7 @@ graph TD
 ```
 
 **Strategic Analysis Dimensions:**
+
 - **Environmental**: Market, competitive, regulatory, technological, social factors
 - **Internal**: Capabilities, resources, culture, leadership, strategic position
 - **Stakeholder**: Interests, influence, expectations, constraints, alignment opportunities
@@ -806,6 +920,7 @@ graph TD
 **Magnus's Power Analysis Model:**
 
 **Stakeholder Power Mapping:**
+
 ```mermaid
 graph TD
     A[Stakeholder Universe] --> B[Power Assessment]
@@ -838,6 +953,7 @@ graph TD
 ```
 
 **Political Strategy Components:**
+
 - **Coalition Building**: Stakeholder alignment, shared interest identification, partnership development
 - **Opposition Management**: Resistance analysis, neutralization strategies, conversion tactics
 - **Timing Strategy**: Optimal timing for initiatives, political windows, momentum management
@@ -849,6 +965,7 @@ graph TD
 **Giuseppe's Strategic Communication Model:**
 
 **Message Architecture:**
+
 ```mermaid
 graph LR
     A[Core Message] --> B[Audience Segmentation]
@@ -878,6 +995,7 @@ graph LR
 ```
 
 **Communication Strategy Elements:**
+
 - **Message Strategy**: Core message, narrative arc, key themes, differentiation points
 - **Audience Strategy**: Stakeholder segmentation, audience research, preference analysis
 - **Channel Strategy**: Media mix, digital strategy, direct communication, event strategy
@@ -893,6 +1011,7 @@ graph LR
 **Jean-Luc's Leadership Excellence Framework:**
 
 **Leadership Dimensions:**
+
 - **Strategic Leadership**: Vision development, strategic thinking, long-term planning
 - **Ethical Leadership**: Values-based decision making, moral authority, principled action
 - **Collaborative Leadership**: Team building, stakeholder engagement, consensus building
@@ -900,6 +1019,7 @@ graph LR
 - **Diplomatic Leadership**: Stakeholder relations, conflict resolution, relationship management
 
 **Leadership Development Process:**
+
 1. **Self-Assessment**: Leadership style analysis, strengths identification, development areas
 2. **Philosophy Development**: Personal leadership philosophy, values clarification, principle establishment
 3. **Skill Enhancement**: Communication, negotiation, strategic thinking, emotional intelligence
@@ -911,6 +1031,7 @@ graph LR
 **Sun's Strategic Mastery Program:**
 
 **Strategic Thinking Components:**
+
 - **Systems Thinking**: Understanding complex systems, interdependencies, systemic solutions
 - **Competitive Intelligence**: Market analysis, competitive assessment, positioning strategy
 - **Scenario Planning**: Future scenario development, contingency planning, adaptive strategy
@@ -918,6 +1039,7 @@ graph LR
 - **Implementation Excellence**: Strategy execution, performance monitoring, adaptive management
 
 **Development Activities:**
+
 - **Strategic Case Studies**: Historical strategy analysis, success and failure factors
 - **Competitive Simulation**: Strategic gaming, competitive scenario analysis
 - **Advisory Interaction**: Regular consultation with strategic advisors
@@ -929,6 +1051,7 @@ graph LR
 **Magnus's Political Navigation Program:**
 
 **Political Skills Development:**
+
 - **Stakeholder Analysis**: Power mapping, interest assessment, influence evaluation
 - **Coalition Building**: Alliance development, partnership strategy, consensus building
 - **Negotiation Mastery**: Interest-based negotiation, tactical planning, relationship management
@@ -936,6 +1059,7 @@ graph LR
 - **Ethical Navigation**: Principled political action, integrity maintenance, values alignment
 
 **Political Development Process:**
+
 1. **Political Landscape Analysis**: Understanding organizational politics, power structures
 2. **Influence Strategy Development**: Building personal influence, relationship networks
 3. **Negotiation Skill Building**: Tactical negotiation, strategic planning, relationship management
@@ -949,6 +1073,7 @@ graph LR
 ### Strategic Planning Integration
 
 **For Organizations:**
+
 - **Annual Strategic Planning**: Comprehensive strategic planning with multi-perspective analysis
 - **Quarterly Strategy Reviews**: Strategic progress monitoring and adaptive adjustments
 - **Strategic Decision Support**: Ad-hoc strategic analysis for major decisions
@@ -957,6 +1082,7 @@ graph LR
 ### Executive Development Programs
 
 **Leadership Excellence:**
+
 - **Executive Coaching**: One-on-one strategic advisory and leadership development
 - **Strategic Thinking Workshops**: Group strategic thinking development and skill building
 - **Political Navigation Training**: Organizational political skills and stakeholder management
@@ -965,6 +1091,7 @@ graph LR
 ### Board and Governance Support
 
 **Board Excellence:**
+
 - **Board Strategy Sessions**: Strategic planning and decision support for board meetings
 - **Governance Assessment**: Board effectiveness evaluation and improvement recommendations
 - **Director Development**: Board member strategic thinking and governance skill development
@@ -977,10 +1104,13 @@ graph LR
 ### For Strategic Decision Making
 
 **Start with Strategic Assessment:**
+
 ```bash
 /strategy-team:policy-analyst  # Augustus for evidence-based analysis
 ```
+
 **Or access the Strategic Council:**
+
 ```bash
 /party-mode → "strategic-council"  # Full advisory council for major decisions
 ```
@@ -988,10 +1118,13 @@ graph LR
 ### For Crisis Management
 
 **Immediate Crisis Response:**
+
 ```bash
 /strategy-team:communications-director  # Giuseppe for crisis communication
 ```
+
 **Or activate Crisis Response:**
+
 ```bash
 /party-mode → "crisis-response"  # Crisis management council
 ```
@@ -999,10 +1132,13 @@ graph LR
 ### For Leadership Development
 
 **Personal Leadership Philosophy:**
+
 ```bash
 /strategy-team:workflows:leadership-philosophy  # Develop personal leadership framework
 ```
+
 **Executive Excellence:**
+
 ```bash
 /strategy-team:the-principled-commander  # Jean-Luc for principled leadership
 ```
@@ -1010,10 +1146,13 @@ graph LR
 ### For Complex Strategic Challenges
 
 **Comprehensive Strategic Analysis:**
+
 ```bash
 /strategy-team:workflows:strategic-decision-workshop  # Multi-perspective strategic analysis
 ```
+
 **Or Master Strategic Wisdom:**
+
 ```bash
 /strategy-team:the-master-strategist  # Sun for supreme strategic counsel
 ```

@@ -29,7 +29,7 @@ import {
   resetHelpGenerator,
   MAX_DESCRIPTION_LENGTH,
   MAX_NAME_LENGTH,
-} from '../../../_bmad/core/help/help-generator.js';
+} from '../../../src/core/help/help-generator.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -198,12 +198,12 @@ describe('Help Generator (Task 3.2)', () => {
     }
   });
 
-  it('TEST-3-2-003: Agent count matches manifest — 79 agents (P1)', () => {
-    expect(gen.agents.length).toBe(79);
+  it('TEST-3-2-003: Agent count matches manifest — 80 agents (P1)', () => {
+    expect(gen.agents.length).toBe(80);
   });
 
-  it('TEST-3-2-004: Workflow count matches manifest — 138 workflows (P1)', () => {
-    expect(gen.workflows.length).toBe(138);
+  it('TEST-3-2-004: Workflow count matches manifest — 139 workflows (P1)', () => {
+    expect(gen.workflows.length).toBe(139);
   });
 
   it('TEST-3-2-005: Overview generation produces valid content (P0)', () => {
@@ -213,7 +213,7 @@ describe('Help Generator (Task 3.2)', () => {
     expect(overview.content).toContain('BMAD Help Overview');
     expect(overview.content).toContain('Installed Modules');
     expect(overview.content).toMatch(/9/); // 9 modules
-    expect(overview.content).toMatch(/79/); // 79 agents
+    expect(overview.content).toMatch(/80/); // 80 agents
 
     // Should have related commands for each module
     expect(overview.relatedCommands.length).toBe(9);
@@ -651,8 +651,8 @@ describe('Integration Testing (Task 3.5)', () => {
     const overview = freshGen.generateOverview();
     expect(overview.type).toBe('overview');
     expect(freshGen.installedModules.length).toBe(9);
-    expect(freshGen.agents.length).toBe(79);
-    expect(freshGen.workflows.length).toBe(138);
+    expect(freshGen.agents.length).toBe(80);
+    expect(freshGen.workflows.length).toBe(139);
 
     // Test the singleton factory as well
     resetHelpGenerator();

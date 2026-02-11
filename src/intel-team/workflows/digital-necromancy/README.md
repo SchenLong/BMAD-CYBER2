@@ -15,6 +15,7 @@
 ## Purpose
 
 Recover deleted, historical, or obscured digital presence:
+
 - Deleted content recovery
 - Historical presence reconstruction
 - Timeline building

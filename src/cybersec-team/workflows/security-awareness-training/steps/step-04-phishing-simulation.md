@@ -17,38 +17,40 @@ outputFile: '{output_folder}/security/security-awareness-program-{project_name}.
 
 # Step 4: Phishing Simulation Strategy
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on phishing simulation planning
 - FORBIDDEN to discuss delivery logistics yet
 - Help user design ethical, effective phishing program
 
-## STEP GOAL:
+## STEP GOAL
 
 To design a comprehensive phishing simulation strategy including campaign types, difficulty progression, response procedures, and ethical considerations.
 
-## PHISHING SIMULATION SEQUENCE:
+## PHISHING SIMULATION SEQUENCE
 
 ### 1. Campaign Strategy Overview
 
 "Let's design your phishing simulation approach:
 
 **Simulation Objectives:**
+
 1. Measure susceptibility baseline
 2. Reinforce training with realistic scenarios
 3. Identify users needing additional support
 4. Track improvement over time
 
 **Key Decisions:**
+
 - Frequency: How often will you run simulations?
 - Coverage: All users or targeted populations?
 - Difficulty: Single difficulty or progressive?
@@ -88,18 +90,21 @@ Which campaign types align with your threat landscape?"
 "Let's establish simulation frequency:
 
 **Recommended Cadence:**
+
 - Monthly: Good for building habits, may cause fatigue
 - Bi-monthly: Balanced approach
 - Quarterly: Minimum for compliance, allows recovery
 - Random: Unpredictable but harder to track trends
 
 **Considerations:**
+
 - Workforce size: [From Step 1]
 - Testing fatigue concerns
 - Resource availability
 - Baseline needs
 
 **Phased Approach Example:**
+
 - Month 1: Easy baseline (all users)
 - Month 2: Medium difficulty
 - Month 3: Targeted hard tests
@@ -113,12 +118,14 @@ What frequency works for your organization?"
 "Let's define what happens when users interact with simulations:
 
 **On Click (Failed):**
+
 - Immediate teachable moment landing page?
 - Just-in-time training assignment?
 - Manager notification (first offense)?
 - Progressive consequences?
 
 **Response Options:**
+
 | Response Type | First Click | Repeat Offender | Chronic |
 |---------------|-------------|-----------------|---------|
 | Teachable Moment | Landing page | Landing page | Manager alert |
@@ -127,6 +134,7 @@ What frequency works for your organization?"
 | Tracking | Record only | Flag for support | Performance plan |
 
 **On Report (Passed):**
+
 - Positive acknowledgment?
 - Gamification points?
 - Recognition program?
@@ -138,6 +146,7 @@ What response approach fits your culture?"
 "Let's address ethical phishing practices:
 
 **Best Practices:**
+
 - No punitive consequences for first failures
 - Focus on education, not embarrassment
 - Avoid overly manipulative scenarios (personal tragedy, etc.)
@@ -146,6 +155,7 @@ What response approach fits your culture?"
 - Support struggling users, don't shame them
 
 **Legal Considerations:**
+
 - Check local laws on employee monitoring
 - Include in acceptable use policy
 - Ensure HR/Legal approval
@@ -215,6 +225,7 @@ Update Section 5 of {outputFile}:
 "**Phishing Simulation Strategy Complete**
 
 I've documented:
+
 - Campaign types and themes
 - Frequency and cadence plan
 - Response procedures for click/report
@@ -228,7 +239,7 @@ Ready to proceed to delivery strategy?"
 
 Display: **Phishing Strategy Complete - Select an Option:** [C] Continue to Delivery Strategy [R] Review/Revise Strategy
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 5 content, allow revisions, then redisplay menu

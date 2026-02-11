@@ -15,6 +15,7 @@
 ## Purpose
 
 Complete intelligence package on any target (person, organization, infrastructure) using all available INT disciplines in coordinated sequence:
+
 - Comprehensive organizational assessments
 - High-stakes due diligence
 - Threat actor profiling

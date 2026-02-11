@@ -3,7 +3,7 @@
 # =============================================================================
 # BMAD-CYBERSEC v6 Hybrid Upgrade - Story 01, Task 1.2
 # Generated: 2026-02-09
-# Source: _bmad/_config/workflow-manifest.csv (138 workflows)
+# Source: _bmad/_config/workflow-manifest.csv (139 workflows)
 #
 # Maps short alias names to full workflow paths with conflict disambiguation
 # and reserved names blocklist for security hardening.
@@ -17,11 +17,11 @@ version: "1.0.0"
 generated: "2026-02-09"
 
 # Counts:
-#   Unique (non-conflicted) aliases:    112
+#   Unique (non-conflicted) aliases:    113
 #   Module-prefixed conflict aliases:    26
 #   Conflict disambiguation entries:     13
-#   Total resolvable aliases:           138
-#   Total entries:                      151
+#   Total resolvable aliases:           139
+#   Total entries:                      152
 
 # =============================================================================
 # RESERVED NAMES BLOCKLIST
@@ -375,7 +375,7 @@ aliases:
     conflict: true
 
   # ============================================================================
-  # BMM MODULE (32 workflows: 20 unique + 12 conflicted)
+  # BMM MODULE (33 workflows: 21 unique + 12 conflicted)
   # ============================================================================
 
   check-implementation-readiness:
@@ -432,6 +432,11 @@ aliases:
     target: "bmad:bmm:workflows:document-project"
     module: bmm
     description: "Analyze and document brownfield projects"
+
+  qa-automate:
+    target: "bmad:bmm:workflows:qa-automate"
+    module: bmm
+    description: "Generate tests rapidly for existing features"
 
   research:
     target: "bmad:bmm:workflows:research"

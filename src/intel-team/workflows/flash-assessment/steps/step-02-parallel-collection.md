@@ -51,12 +51,15 @@ Execute rapid, parallel OSINT collection across four domains: Technical, Social,
 ## PROBE (Technical Researcher) Collection
 
 ### Agent: technical-researcher
+
 ### Codename: Probe
+
 ### Time Budget: 5 minutes
 
 ### Collection Tasks
 
 #### 1. Domain/IP Analysis (if applicable)
+
 ```
 Quick checks:
 - WHOIS lookup (registrant, dates, privacy)
@@ -67,6 +70,7 @@ Quick checks:
 ```
 
 #### 2. Technology Fingerprinting
+
 ```
 Identify:
 - Web technologies (if domain)
@@ -77,6 +81,7 @@ Identify:
 ```
 
 #### 3. Service Enumeration
+
 ```
 Quick scan for:
 - Open ports (common: 22, 80, 443, 8080)
@@ -86,6 +91,7 @@ Quick scan for:
 ```
 
 #### 4. Quick Vulnerability Indicators
+
 ```
 Check for:
 - Exposed admin panels
@@ -95,6 +101,7 @@ Check for:
 ```
 
 ### Output Format
+
 ```markdown
 ## TECHNICAL FINDINGS (Probe)
 
@@ -123,12 +130,15 @@ Check for:
 ## ECHO (Social Media Analyst) Collection
 
 ### Agent: social-media-analyst
+
 ### Codename: Echo
+
 ### Time Budget: 5 minutes
 
 ### Collection Tasks
 
 #### 1. Username Enumeration
+
 ```
 Check platforms:
 - Twitter/X
@@ -144,6 +154,7 @@ Check platforms:
 ```
 
 #### 2. Profile Discovery
+
 ```
 For each found account:
 - Account age indicator
@@ -154,6 +165,7 @@ For each found account:
 ```
 
 #### 3. Network Snapshot
+
 ```
 Quick capture:
 - Notable connections
@@ -163,6 +175,7 @@ Quick capture:
 ```
 
 #### 4. Recent Activity Scan
+
 ```
 Last 30 days:
 - Posting frequency
@@ -172,6 +185,7 @@ Last 30 days:
 ```
 
 ### Output Format
+
 ```markdown
 ## SOCIAL FINDINGS (Echo)
 
@@ -201,12 +215,15 @@ Last 30 days:
 ## SHADOW (Dark Web Analyst) Collection
 
 ### Agent: dark-web-analyst
+
 ### Codename: Shadow
+
 ### Time Budget: 5 minutes
 
 ### Collection Tasks
 
 #### 1. Breach Database Check
+
 ```
 Query for:
 - Email in known breaches
@@ -216,6 +233,7 @@ Query for:
 ```
 
 #### 2. Paste Site Scan
+
 ```
 Search:
 - Pastebin and alternatives
@@ -224,6 +242,7 @@ Search:
 ```
 
 #### 3. Forum Mention Search
+
 ```
 Quick scan:
 - Hacker forums (surface mentions)
@@ -232,6 +251,7 @@ Quick scan:
 ```
 
 #### 4. Credential Exposure Check
+
 ```
 Identify:
 - Number of breaches
@@ -241,6 +261,7 @@ Identify:
 ```
 
 ### Output Format
+
 ```markdown
 ## DARK WEB FINDINGS (Shadow)
 
@@ -271,12 +292,15 @@ Identify:
 ## LEDGER (Corporate Intelligence Specialist) Collection
 
 ### Agent: corporate-intel-specialist
+
 ### Codename: Proxy
+
 ### Time Budget: 5 minutes
 
 ### Collection Tasks
 
 #### 1. Entity Verification
+
 ```
 Quick checks:
 - Business registry lookup (jurisdiction-appropriate)
@@ -287,6 +311,7 @@ Quick checks:
 ```
 
 #### 2. Officer/Director Search
+
 ```
 Identify:
 - Named directors/officers
@@ -296,6 +321,7 @@ Identify:
 ```
 
 #### 3. Corporate Structure Indicators
+
 ```
 Quick assessment:
 - Parent company (if any)
@@ -305,6 +331,7 @@ Quick assessment:
 ```
 
 #### 4. Financial/Regulatory Footprint
+
 ```
 Check for:
 - VAT/Tax registration
@@ -315,6 +342,7 @@ Check for:
 ```
 
 ### Output Format
+
 ```markdown
 ## CORPORATE FINDINGS (Proxy)
 
@@ -367,6 +395,7 @@ Before proceeding to synthesis:
 ### Time Check
 
 If over time budget:
+
 - Note incomplete sections
 - Proceed with available data
 - Flag gaps in synthesis

@@ -18,6 +18,7 @@ Conduct comprehensive risk analysis for cross-border legal matter.
 Assess risks by location:
 
 **Legal Risks:**
+
 | Jurisdiction | Risk | Probability | Impact | Mitigation |
 |--------------|------|-------------|--------|------------|
 | USA | [Risk] | [%] | [H/M/L] | [Strategy] |
@@ -25,6 +26,7 @@ Assess risks by location:
 | EU | [Risk] | [%] | [H/M/L] | [Strategy] |
 
 **Regulatory Risks:**
+
 | Jurisdiction | Regulation | Risk | Consequence |
 |--------------|------------|------|-------------|
 | [Location] | [Rule] | [Risk] | [Penalty/Impact] |
@@ -34,18 +36,21 @@ Assess risks by location:
 Unique international risks:
 
 **Conflict of Laws Risks:**
+
 - Unpredictable law application
 - Forum shopping by opponent
 - Inconsistent results across jurisdictions
 - Enforcement challenges
 
 **Enforcement Risks:**
+
 - Judgment recognition uncertainty
 - Asset location and attachment
 - Sovereign immunity issues
 - Political/diplomatic factors
 
 **Currency & Economic Risks:**
+
 - Exchange rate fluctuation
 - Economic sanctions
 - Capital controls
@@ -56,12 +61,14 @@ Unique international risks:
 Multi-party execution risks:
 
 **Internal Coordination:**
+
 - Miscommunication between teams
 - Timing misalignment
 - Strategy conflicts
 - Information silos
 
 **External Coordination:**
+
 - Local counsel quality/alignment
 - Privilege waiver risks
 - Conflicting advice
@@ -72,11 +79,13 @@ Multi-party execution risks:
 Geopolitical considerations:
 
 **Political Stability:**
+
 | Jurisdiction | Stability | Concern Areas |
 |--------------|-----------|---------------|
 | [Country] | [Stable/Moderate/Unstable] | [Concerns] |
 
 **Bilateral Relations:**
+
 - Treaty relationships
 - Diplomatic tensions
 - Reciprocity issues
@@ -87,16 +96,19 @@ Geopolitical considerations:
 Develop mitigation strategies:
 
 **Prevention Measures:**
+
 | Risk | Prevention Strategy | Cost | Effectiveness |
 |------|---------------------|------|---------------|
 | [Risk] | [Strategy] | [Cost] | [High/Med/Low] |
 
 **Contingency Plans:**
+
 | Trigger | Contingency Action | Owner |
 |---------|-------------------|-------|
 | [If X happens] | [Then do Y] | [Who] |
 
 **Insurance Options:**
+
 - Political risk insurance
 - Trade credit insurance
 - Legal expenses insurance

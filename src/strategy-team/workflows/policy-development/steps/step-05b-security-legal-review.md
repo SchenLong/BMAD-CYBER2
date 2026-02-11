@@ -13,13 +13,14 @@ recommendedPreset: 'policy-validation-board'
 
 # Step 5b: Cross-Module Security & Legal Policy Review
 
-## STEP GOAL:
+## STEP GOAL
 
 Before drafting the final policy, validate through cross-module expertise to ensure the policy is enforceable, compliant with regulations, and doesn't create security vulnerabilities or legal exposure. This step brings in dedicated Security, Legal, and Compliance perspectives.
 
-### When to Invoke:
+### When to Invoke
 
 This step should be offered after Step 5 (Reform Perspective) when ANY of:
+
 - Policy affects data handling, privacy, or information security
 - Policy creates compliance or regulatory obligations
 - Policy involves access controls, authentication, or authorization
@@ -30,7 +31,7 @@ This step should be offered after Step 5 (Reform Perspective) when ANY of:
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### 1. Introduction to Cross-Module Review
 
@@ -39,6 +40,7 @@ This step should be offered after Step 5 (Reform Perspective) when ANY of:
 "{user_name}, before we draft the final policy, I recommend cross-module validation.
 
 We've gathered strategic perspectives from Augustus, Sophia, Burke, and Maximilien. But policies live in the real world where they must be:
+
 - **Enforceable** - Can we actually implement and monitor this?
 - **Legal** - Does it comply with regulations and avoid liability?
 - **Secure** - Does it strengthen or weaken our security posture?
@@ -53,6 +55,7 @@ Let me bring in cross-module expertise to review our draft direction."
 "Do you want cross-module security and legal review of this policy?
 
 This is particularly important for policies involving:
+
 - Data or information handling
 - Employee conduct with legal implications
 - Technology or system access
@@ -73,21 +76,25 @@ This is particularly important for policies involving:
 "Activating cross-module policy validation team:
 
 **Bastion** (Security Architect, cybersec-team)
+
 - Will assess security implications
 - Review access control requirements
 - Identify security enforcement needs
 
 **Sentinel** (Compliance Guardian, cybersec-team)
+
 - Will map to compliance frameworks
 - Assess audit implications
 - Identify compliance gaps or overlaps
 
 **Covenant** (Contract Specialist, legal-team)
+
 - Will review for legal enforceability
 - Assess employment law implications
 - Identify liability exposure
 
 **Sophia** (Ethics Advisor, strategy-team)
+
 - Already provided ethics input - will synthesize with legal/compliance"
 
 ### 4. Security Review (Bastion)
@@ -105,25 +112,30 @@ This is particularly important for policies involving:
 | [Requirement 3] | [strengthens/weakens/neutral] | [L/M/H] | [adjust/maintain] |
 
 **Access Control Requirements:**
+
 - Does this policy create new access requirements? [Y/N]
 - Can access be technically enforced? [Y/N]
 - What systems need to change? [list]
 
 **Data Protection Implications:**
+
 - Does this affect data handling? [Y/N]
 - Classification requirements: [if applicable]
 - Encryption/protection needs: [if applicable]
 
 **Monitoring & Enforcement:**
+
 - Can violations be detected? [Y/N]
 - What monitoring is needed? [list]
 - Is logging adequate? [Y/N]
 
 **Security-Related Policy Language Needed:**
+
 1. [Specific security clause to add]
 2. [Specific security clause to add]
 
 **Security Architecture Impacts:**
+
 - Systems requiring modification: [list]
 - Implementation complexity: [L/M/H]
 - Security budget implications: [$estimate if material]"
@@ -144,25 +156,30 @@ This is particularly important for policies involving:
 | [Industry-specific] | [requirements] | [Full/Partial/None] | [gap details] |
 
 **Regulatory Compliance Check:**
+
 - Employment regulations: [compliant/needs review]
 - Data protection laws: [compliant/needs review]
 - Industry regulations: [compliant/needs review]
 
 **Audit Implications:**
+
 - Evidence this policy creates: [list]
 - Documentation requirements: [list]
 - Audit trail needs: [list]
 
 **Compliance Overlaps/Conflicts:**
+
 - Existing policies this affects: [list]
 - Potential conflicts: [identify]
 - Integration recommendations: [suggestions]
 
 **Required Compliance Language:**
+
 1. [Compliance clause to add]
 2. [Compliance clause to add]
 
 **Compliance Calendar Impact:**
+
 - New compliance activities created: [list]
 - Review frequency recommendation: [annual/etc.]"
 
@@ -181,31 +198,37 @@ This is particularly important for policies involving:
 | [Requirement 3] | [Yes/Partial/No] | [L/M/H] | [changes needed] |
 
 **Employment Law Implications:**
+
 - Employee rights affected: [list]
 - Reasonable accommodation needs: [Y/N]
 - Disciplinary framework adequate: [Y/N]
 - Union/works council consultation needed: [Y/N - jurisdictions]
 
 **Liability Exposure:**
+
 - Potential liability areas: [list]
 - Indemnification needs: [list]
 - Insurance implications: [if any]
 
 **Contractual Implications:**
+
 - Third-party contract impacts: [list]
 - Vendor agreement needs: [list]
 - Customer agreement impacts: [list]
 
 **Legal Language Requirements:**
+
 1. [Required legal disclaimer]
 2. [Required definition for legal clarity]
 3. [Required procedural protection]
 
 **Jurisdictional Considerations:**
+
 - Multi-jurisdiction compliance: [assessment]
 - Country-specific variations needed: [Y/N - where]
 
 **Legal Approval Path:**
+
 - Legal review required before adoption: [Y/N]
 - Employment counsel review needed: [Y/N]
 - External counsel needed: [Y/N - why]"
@@ -224,15 +247,18 @@ This is particularly important for policies involving:
 | [Concern from Step 3] | [How compliance addresses] | [Y/N/Partial] |
 
 **Tensions Identified:**
+
 - Are there tensions between legal requirements and ethical ideals? [assessment]
 - Are there compliance requirements that feel ethically problematic? [assessment]
 
 **Recommendations for Balance:**
+
 1. [How to balance legal with ethical]
 2. [How to balance compliance with fairness]
 
 **Procedural Justice Confirmation:**
 Does the policy now include adequate:
+
 - [ ] Notice before enforcement
 - [ ] Opportunity to be heard
 - [ ] Fair appeal process
@@ -257,23 +283,28 @@ Does the policy now include adequate:
 **Required Policy Additions:**
 
 **From Security (Bastion):**
+
 1. [Required clause]
 2. [Required clause]
 
 **From Compliance (Sentinel):**
+
 1. [Required clause]
 2. [Required clause]
 
 **From Legal (Covenant):**
+
 1. [Required clause]
 2. [Required clause]
 
 **Policy Implementation Requirements:**
+
 - Systems changes needed: [list]
 - Training required: [list]
 - Monitoring to implement: [list]
 
 **Approval Path Confirmed:**
+
 - [ ] Security sign-off: [owner]
 - [ ] Compliance sign-off: [owner]
 - [ ] Legal sign-off: [owner]
@@ -350,7 +381,7 @@ When user selects [C], load and follow {nextStepFile} (step-06-draft-policy.md) 
 
 ---
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - Security implications fully assessed
 - Compliance frameworks mapped
@@ -361,7 +392,7 @@ When user selects [C], load and follow {nextStepFile} (step-06-draft-policy.md) 
 - Approval path confirmed
 - Ethics-legal alignment validated
 
-## FAILURE INDICATORS:
+## FAILURE INDICATORS
 
 - Skipping security review for data/access policies
 - Not mapping to compliance frameworks

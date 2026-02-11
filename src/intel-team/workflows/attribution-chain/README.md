@@ -15,6 +15,7 @@
 ## Purpose
 
 Rigorous threat actor attribution using multiple intelligence sources:
+
 - APT attribution
 - Criminal actor identification
 - Campaign attribution

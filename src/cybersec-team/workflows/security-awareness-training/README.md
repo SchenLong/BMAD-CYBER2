@@ -32,6 +32,7 @@ This workflow guides security teams through developing and deploying comprehensi
 ## Output
 
 The workflow produces a comprehensive security awareness training program document including:
+
 - Program overview and current state assessment
 - Human risk assessment with population prioritization
 - Training content design with role-based tracks
@@ -47,11 +48,13 @@ The workflow produces a comprehensive security awareness training program docume
 
 ## Usage
 
-Invoke via agent menu:
+Load via agent menu:
+
 - Shield: [SA] Security Awareness Training Workflow
 - Sentinel: Through chat or action menu
 
 Or directly:
+
 ```
 Load and follow: workflows/security-awareness-training/workflow.md
 ```

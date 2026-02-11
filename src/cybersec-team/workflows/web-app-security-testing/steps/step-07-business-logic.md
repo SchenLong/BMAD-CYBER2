@@ -10,19 +10,20 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 
 # Step 7: Business Logic Testing
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Business logic flaws require understanding application context
 
-## BUSINESS LOGIC TESTING SEQUENCE:
+## BUSINESS LOGIC TESTING SEQUENCE
 
 ### 1. Workflow Analysis
 
 "Let's understand the application's business workflows.
 
 **Critical Workflows to Test:**
+
 - User registration process
 - Purchase/checkout flow
 - Password reset process
@@ -32,6 +33,7 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 - Multi-step transactions
 
 **For Each Workflow:**
+
 - What are the expected steps?
 - What validations occur at each step?
 - Can steps be skipped or reordered?
@@ -43,6 +45,7 @@ Which workflows should we focus on?"
 "Testing input constraints and validation.
 
 **Numeric Manipulation:**
+
 - Negative values (quantity: -1)
 - Zero values (price: 0)
 - Extremely large values (overflow)
@@ -50,6 +53,7 @@ Which workflows should we focus on?"
 - Currency rounding abuse
 
 **Boundary Testing:**
+
 - Minimum/maximum limits
 - Rate limits and quotas
 - Free tier limits
@@ -62,18 +66,21 @@ What input manipulation testing have you performed?"
 "Testing for workflow bypass vulnerabilities.
 
 **Skip Step Attacks:**
+
 - Submit final step without prerequisites
 - Direct URL access to later steps
 - Manipulate step parameters
 - Remove client-side step enforcement
 
 **Race Conditions:**
+
 - Multiple simultaneous requests
 - Time-of-check to time-of-use (TOCTOU)
 - Concurrent purchase/redemption
 - Double-spending scenarios
 
 **State Manipulation:**
+
 - Modify hidden state parameters
 - Replay requests from earlier states
 - Rollback to previous state
@@ -85,6 +92,7 @@ What process flow testing have you done?"
 "Testing business rule enforcement.
 
 **Common Violations:**
+
 - Using expired promotions/coupons
 - Applying multiple discounts
 - Referral bonus abuse
@@ -93,6 +101,7 @@ What process flow testing have you done?"
 - Quantity/limit bypass
 
 **Abuse Scenarios:**
+
 - Self-referral for bonuses
 - Account churning for trials
 - Gift card/credit manipulation
@@ -105,6 +114,7 @@ What business rule violations have you discovered?"
 "Testing user interaction vulnerabilities.
 
 **Social Features:**
+
 - Profile impersonation
 - Content manipulation
 - Rating/review fraud
@@ -112,6 +122,7 @@ What business rule violations have you discovered?"
 - Sharing permission bypass
 
 **Marketplace/Transaction:**
+
 - Buyer/seller collusion
 - Transaction cancellation abuse
 - Escrow bypass
@@ -124,6 +135,7 @@ Have you tested multi-user interactions?"
 "Testing API-specific business logic.
 
 **API Abuse Patterns:**
+
 - Missing rate limits
 - Bulk operation abuse
 - Inconsistent validation (web vs API)
@@ -131,6 +143,7 @@ Have you tested multi-user interactions?"
 - API versioning bypass
 
 **Data Validation:**
+
 - Client-side only validation
 - Inconsistent field validation
 - Type juggling attacks
@@ -143,6 +156,7 @@ What API business logic issues have you found?"
 "For applications with payments:
 
 **Payment Security:**
+
 - Price manipulation in requests
 - Currency confusion attacks
 - Partial payment bypass
@@ -151,6 +165,7 @@ What API business logic issues have you found?"
 - Cart manipulation
 
 **Subscription Logic:**
+
 - Plan downgrade retains features
 - Trial to paid transition flaws
 - Cancellation still grants access
@@ -207,6 +222,7 @@ Append to {outputFile} Section 7:
 "**Business Logic Testing Complete**
 
 **Findings:**
+
 - Workflow bypass: [Count]
 - Input manipulation: [Count]
 - Race conditions: [Count]

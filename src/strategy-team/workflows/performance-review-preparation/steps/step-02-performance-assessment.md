@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2: Performance Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 Conduct a thorough, evidence-based assessment of the employee's performance across results, behaviors, and overall impact.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Executive Coach with Augustus (Policy Analyst) providing evidence-based rigor
 - Focus on objective, evidence-based assessment
 - Balance achievements with development areas
 - Maintain developmental, not punitive tone
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on evidence, not assumptions
 - FORBIDDEN to assess without specific examples
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Results Assessment
 
@@ -53,6 +54,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | [Goal 3] | | | |
 
 **KPI performance:**
+
 | Metric | Target | Actual | Rating |
 |--------|--------|--------|--------|
 | | | | 1-5 |
@@ -75,11 +77,13 @@ You MUST respond in **{communication_language}** throughout this step.
 | [Role-specific] | | |
 
 **Key strengths (top 3):**
+
 1. [strength + evidence]
 2. [strength + evidence]
 3. [strength + evidence]
 
 **Development areas (top 3):**
+
 1. [area + evidence]
 2. [area + evidence]
 3. [area + evidence]
@@ -107,6 +111,7 @@ You MUST respond in **{communication_language}** throughout this step.
 **Trajectory:** [Improving / Steady / Declining]
 
 **Quarter-by-quarter (or relevant periods):**
+
 | Period | Performance | Notable Events |
 |--------|-------------|----------------|
 | Q1/Early | | |
@@ -114,6 +119,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Q3/Q4/Late | | |
 
 **Pattern observations:**
+
 - What's driving the trajectory?
 - Any external factors?
 - Any inflection points?
@@ -125,15 +131,19 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's synthesize feedback from other sources:"
 
 **Common themes - Strengths:**
+
 - [theme from multiple sources]
 
 **Common themes - Development:**
+
 - [theme from multiple sources]
 
 **Outlier feedback:**
+
 - [feedback that differs from pattern]
 
 **Self-assessment alignment:**
+
 - Where does self-assessment align with others?
 - Where are gaps between self-view and others' view?
 
@@ -151,6 +161,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | **Overall** | |
 
 **Rating definitions:**
+
 - 5: Exceptional - far exceeds expectations
 - 4: Exceeds - consistently above expectations
 - 3: Meets - fully meets expectations
@@ -217,10 +228,12 @@ Update frontmatter: Add `step-02-performance-assessment` to stepsCompleted
 **Impact:** [rating] - [brief summary]
 
 **Key Strengths:**
+
 1. [strength]
 2. [strength]
 
 **Development Areas:**
+
 1. [area]
 2. [area]
 
@@ -233,7 +246,8 @@ Update frontmatter: Add `step-02-performance-assessment` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Assessment [C] Continue to Feedback Calibration"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -241,13 +255,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Assessm
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-03-feedback-calibration.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Goals assessed with evidence
 - Behaviors evaluated with examples
 - Impact assessed
@@ -256,7 +272,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Overall rating determined
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Assessment without specific evidence
 - Skipping behavior assessment
 - Not analyzing trajectory

@@ -81,6 +81,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Scope
 
 **Covered Areas:**
+
 - Corporate tax planning
 - Individual tax planning (business-related)
 - International tax structures
@@ -91,6 +92,7 @@ This uses **step-file architecture** for disciplined execution:
 - Exit planning/Succession
 
 **NOT Covered:**
+
 - Tax return preparation
 - Audit representation
 - Tax litigation
@@ -106,6 +108,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Key Tax Considerations by Jurisdiction
 
 ### USA
+
 - C-Corp vs. Pass-through taxation
 - State tax nexus and apportionment
 - SALT deduction limitations
@@ -113,6 +116,7 @@ This uses **step-file architecture** for disciplined execution:
 - International provisions (GILTI, FDII, BEAT)
 
 ### Spain
+
 - Impuesto sobre Sociedades (Corporate Tax)
 - IRPF for individuals
 - Beckham Law regime
@@ -120,6 +124,7 @@ This uses **step-file architecture** for disciplined execution:
 - Holding company structures (ETVE)
 
 ### Estonia
+
 - 0% retained earnings model
 - 20% distribution tax
 - Reduced rate (14%) for regular dividends

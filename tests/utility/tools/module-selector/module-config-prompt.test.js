@@ -574,18 +574,16 @@ describe('Module Configuration Prompts - INST-005', () => {
   });
 
   // ============================================================================
-  // Tests: promptForModuleConfig() - Note: These tests mock inquirer
+  // Tests: promptForModuleConfig() - Note: These tests mock prompts abstraction
   // ============================================================================
 
   describe('promptForModuleConfig', () => {
-    let inquirerMock;
-
     beforeEach(() => {
-      // Mock inquirer for testing prompts
-      vi.mock('inquirer', () => ({
-        default: {
-          prompt: vi.fn()
-        }
+      // Mock prompts abstraction for testing
+      vi.mock('../../../../src/utility/cli/prompts.js', () => ({
+        text: vi.fn(),
+        select: vi.fn(),
+        confirm: vi.fn()
       }));
     });
 
@@ -594,22 +592,20 @@ describe('Module Configuration Prompts - INST-005', () => {
       vi.resetModules();
     });
 
-    it('should call inquirer.prompt for each interactive field', async () => {
+    it('should call prompt for each interactive field', async () => {
       if (!promptForModuleConfig) {
         expect.fail('promptForModuleConfig not implemented');
       }
 
-      const inquirer = await import('inquirer');
-      inquirer.default.prompt.mockResolvedValue({
-        answer: '_bmad-output/custom'
-      });
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
+      prompts.text.mockResolvedValue('_bmad-output/custom');
 
       const moduleMetadata = createMockModuleMetadata();
       const context = createMockContext();
 
       await promptForModuleConfig(moduleMetadata, context);
 
-      expect(inquirer.default.prompt).toHaveBeenCalled();
+      expect(prompts.text).toHaveBeenCalled();
     });
 
     it('should display module name header', async () => {
@@ -622,10 +618,8 @@ describe('Module Configuration Prompts - INST-005', () => {
       const moduleMetadata = createMockModuleMetadata({ name: 'My Test Module' });
       const context = createMockContext();
 
-      const inquirer = await import('inquirer');
-      inquirer.default.prompt.mockResolvedValue({
-        answer: 'test-output'
-      });
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
+      prompts.text.mockResolvedValue('test-output');
 
       // Should not throw
       await expect(promptForModuleConfig(moduleMetadata, context)).resolves.toBeDefined();
@@ -636,16 +630,13 @@ describe('Module Configuration Prompts - INST-005', () => {
         expect.fail('promptForModuleConfig not implemented');
       }
 
-      const inquirer = await import('inquirer');
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
 
-      // Capture the prompt questions to verify defaults
-      let capturedQuestions;
-      inquirer.default.prompt.mockImplementation((questions) => {
-        capturedQuestions = questions;
-        // Implementation uses 'answer' as the name for single prompts
-        return Promise.resolve({
-          answer: '_bmad-output/test'
-        });
+      // Capture the prompt options to verify defaults
+      let capturedOptions;
+      prompts.text.mockImplementation((options) => {
+        capturedOptions = options;
+        return Promise.resolve('_bmad-output/test');
       });
 
       const moduleMetadata = createMockModuleMetadata();
@@ -653,9 +644,8 @@ describe('Module Configuration Prompts - INST-005', () => {
 
       await promptForModuleConfig(moduleMetadata, context);
 
-      // Verify default was passed to inquirer
-      // Implementation prompts one field at a time with name 'answer'
-      expect(capturedQuestions).toBeDefined();
+      // Verify default was passed to prompts.text
+      expect(capturedOptions).toBeDefined();
     });
 
     it('should expand result template with user input', async () => {
@@ -663,10 +653,8 @@ describe('Module Configuration Prompts - INST-005', () => {
         expect.fail('promptForModuleConfig not implemented');
       }
 
-      const inquirer = await import('inquirer');
-      inquirer.default.prompt.mockResolvedValue({
-        answer: 'custom-output'
-      });
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
+      prompts.text.mockResolvedValue('custom-output');
 
       const moduleMetadata = createMockModuleMetadata();
       const context = createMockContext();
@@ -682,11 +670,11 @@ describe('Module Configuration Prompts - INST-005', () => {
         expect.fail('promptForModuleConfig not implemented');
       }
 
-      const inquirer = await import('inquirer');
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
       // Mock sequential prompts - returns for each field in order
-      inquirer.default.prompt
-        .mockResolvedValueOnce({ answer: 'my-output' })
-        .mockResolvedValueOnce({ answer: 'secret123' });
+      prompts.text
+        .mockResolvedValueOnce('my-output')
+        .mockResolvedValueOnce('secret123');
 
       const moduleMetadata = createMockModuleMetadata({
         interactiveFields: {
@@ -715,7 +703,7 @@ describe('Module Configuration Prompts - INST-005', () => {
         expect.fail('promptForModuleConfig not implemented');
       }
 
-      const inquirer = await import('inquirer');
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
 
       const moduleMetadata = createMockModuleMetadata({
         interactiveFields: {}
@@ -724,8 +712,8 @@ describe('Module Configuration Prompts - INST-005', () => {
 
       const result = await promptForModuleConfig(moduleMetadata, context);
 
-      // Should not have called inquirer.prompt
-      expect(inquirer.default.prompt).not.toHaveBeenCalled();
+      // Should not have called prompts.text
+      expect(prompts.text).not.toHaveBeenCalled();
       // Should return empty or minimal config
       expect(result).toBeDefined();
     });
@@ -735,8 +723,8 @@ describe('Module Configuration Prompts - INST-005', () => {
         expect.fail('promptForModuleConfig not implemented');
       }
 
-      const inquirer = await import('inquirer');
-      inquirer.default.prompt.mockRejectedValue(new Error('User cancelled'));
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
+      prompts.text.mockRejectedValue(new Error('User cancelled'));
 
       const moduleMetadata = createMockModuleMetadata();
       const context = createMockContext();
@@ -1131,19 +1119,15 @@ describe('Module Configuration Prompts - INST-005', () => {
   // ============================================================================
 
   describe('configureAllModules', () => {
-    let inquirerMock;
-
     beforeEach(async () => {
       if (!fs.existsSync(MOCK_PROJECT_ROOT)) {
         setupTestFixtures();
       }
 
-      vi.mock('inquirer', () => ({
-        default: {
-          prompt: vi.fn().mockResolvedValue({
-            output_folder: '_bmad-output/test'
-          })
-        }
+      vi.mock('../../../../src/utility/cli/prompts.js', () => ({
+        text: vi.fn().mockResolvedValue('_bmad-output/test'),
+        select: vi.fn(),
+        confirm: vi.fn()
       }));
     });
 
@@ -1190,11 +1174,9 @@ describe('Module Configuration Prompts - INST-005', () => {
         expect.fail('configureAllModules not implemented');
       }
 
-      const inquirer = await import('inquirer');
+      const prompts = await import('../../../../src/utility/cli/prompts.js');
       // Mock to return a path that will be created
-      inquirer.default.prompt.mockResolvedValue({
-        answer: path.join(MOCK_OUTPUT_PATH, 'new-output-dir')
-      });
+      prompts.text.mockResolvedValue(path.join(MOCK_OUTPUT_PATH, 'new-output-dir'));
 
       // Use test-module from fixtures
       const moduleCodes = ['test-module'];
@@ -1441,8 +1423,8 @@ describe('Module Configuration Prompts - INST-005', () => {
 
       const moduleContent = fs.readFileSync(modulePath, 'utf8');
 
-      // Uses native ESM import for inquirer (ESM-only package)
-      expect(moduleContent).toMatch(/import\s+inquirer\s+from\s+['"]inquirer['"]/);
+      // Uses native ESM import for prompts abstraction
+      expect(moduleContent).toMatch(/from\s+['"]\.\.\/\.\.\/cli\/prompts\.js['"]/);
     });
   });
 
@@ -1533,12 +1515,10 @@ describe('Module Configuration Prompts - INST-005', () => {
 
   describe('Integration - Full Workflow', () => {
     beforeEach(() => {
-      vi.mock('inquirer', () => ({
-        default: {
-          prompt: vi.fn().mockResolvedValue({
-            output_folder: path.join(MOCK_PROJECT_ROOT, 'integration-output')
-          })
-        }
+      vi.mock('../../../../src/utility/cli/prompts.js', () => ({
+        text: vi.fn().mockResolvedValue(path.join(MOCK_PROJECT_ROOT, 'integration-output')),
+        select: vi.fn(),
+        confirm: vi.fn()
       }));
     });
 

@@ -25,12 +25,14 @@ Map the subject's digital footprint across platforms, identify username patterns
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Echo**, Social Media Analyst
 - You specialize in digital footprint mapping
 - You identify patterns across platforms
 - You discover hidden connections through pivot analysis
 
 ### Step-Specific Rules
+
 - Start with known selectors from Step 1
 - Expand outward systematically
 - Document confidence for each discovery
@@ -320,6 +322,7 @@ Sufficient pivot points identified to inform social engineering approach.
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] Username enumeration complete (15+ platforms checked)
 - [ ] Email pivot analysis performed
 - [ ] Social graph mapped (key relationships identified)

@@ -6,4 +6,4 @@ description: Comprehensive merger and acquisition evaluation using strategic adv
 # M&A Due Diligence
 
 Load and follow the workflow at:
-`@_bmad/strategy-team/workflows/ma-due-diligence/workflow.md`
+`@src/strategy-team/workflows/ma-due-diligence/workflow.md`

@@ -6,6 +6,7 @@ argument-hint: [voice_name|first|last] [N]
 Preview TTS voices by playing audio samples from your active provider.
 
 Usage examples:
+
 - `/agent-vibes:preview` - Preview first 3 voices (default)
 - `/agent-vibes:preview 5` - Preview first 5 voices
 - `/agent-vibes:preview Jessica` - Preview Jessica Anne Bogart voice (Piper TTS)

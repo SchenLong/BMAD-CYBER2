@@ -1,0 +1,20 @@
+code: "test-module"
+name: "Test Module"
+default_selected: false
+
+prompt:
+  - "Test Module Installation"
+  - ""
+  - "A basic test module."
+
+module_code:
+  result: "test-module"
+
+module_version:
+  result: "1.0.0"
+
+agents_path:
+  result: "{project-root}/_bmad/test-module/agents"
+
+workflows_path:
+  result: "{project-root}/_bmad/test-module/workflows"

@@ -6,4 +6,4 @@ description: Comprehensive vCISO engagement workflow covering strategic planning
 # Virtual CISO Consulting
 
 Load and follow the workflow at:
-`@_bmad/cybersec-team/workflows/virtual-ciso-consulting/workflow.md`
+`@src/cybersec-team/workflows/virtual-ciso-consulting/workflow.md`

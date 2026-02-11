@@ -22,7 +22,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 import chalk from 'chalk';
-import inquirer from 'inquirer';
+import { password, confirm } from '../../cli/prompts.js';
 
 import {
   detectLocalProviders,
@@ -129,23 +129,18 @@ async function promptForApiKey(provider) {
   console.log(chalk.dim('The key will be stored in your environment configuration.'));
   console.log('');
 
-  const { apiKey } = await inquirer.prompt([
-    {
-      type: 'password',
-      name: 'apiKey',
-      message: `Enter API key for ${providerName}:`,
-      mask: '*',
-      validate: (value) => {
-        if (!value || value.trim() === '') {
-          return 'API key is required for this provider';
-        }
-        if (value.trim().length < 10) {
-          return 'API key seems too short';
-        }
-        return true;
+  const apiKey = await password({
+    message: `Enter API key for ${providerName}:`,
+    validate: (value) => {
+      if (!value || value.trim() === '') {
+        return 'API key is required for this provider';
       }
+      if (value.trim().length < 10) {
+        return 'API key seems too short';
+      }
+      return undefined;
     }
-  ]);
+  });
 
   return apiKey.trim();
 }
@@ -276,14 +271,10 @@ export async function runLlmSetup(options = {}) {
     });
 
     if (!testResult.success) {
-      const { continueAnyway } = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'continueAnyway',
-          message: 'Connection test failed. Save configuration anyway?',
-          default: false
-        }
-      ]);
+      const continueAnyway = await confirm({
+        message: 'Connection test failed. Save configuration anyway?',
+        initialValue: false
+      });
 
       if (!continueAnyway) {
         console.log(chalk.yellow('\nConfiguration cancelled.\n'));

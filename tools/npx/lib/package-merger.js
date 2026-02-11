@@ -1,7 +1,7 @@
 import { existsSync, promises as fs } from 'fs';
 import { join } from 'path';
-import inquirer from 'inquirer';
-import chalk from 'chalk';
+import { confirm, isCancel, log } from '../../../src/utility/cli/prompts.js';
+import pc from 'picocolors';
 import { logger } from './logger.js';
 
 // Security: Keys that could enable prototype pollution attacks
@@ -308,16 +308,13 @@ export async function mergePackageJson(targetDir, options = {}) {
   if (!yes) {
     showDiff(diff);
 
-    const { proceed } = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'proceed',
-        message: 'Apply these changes?',
-        default: true
-      }
-    ]);
+    const proceed = await confirm({
+      message: 'Apply these changes?',
+      initialValue: true
+    });
 
-    if (!proceed) {
+    // Handle cancellation (Ctrl+C)
+    if (isCancel(proceed) || !proceed) {
       return { cancelled: true };
     }
   }
@@ -465,18 +462,18 @@ function showDiff(diff) {
   console.log('');
 
   if (Object.keys(diff.added).length > 0) {
-    console.log(chalk.green('+ Added:'));
+    console.log(pc.green('+ Added:'));
     for (const [key, value] of Object.entries(diff.added)) {
-      console.log(chalk.green(`  + ${key}: ${JSON.stringify(value)}`));
+      console.log(pc.green(`  + ${key}: ${JSON.stringify(value)}`));
     }
   }
 
   if (Object.keys(diff.modified).length > 0) {
-    console.log(chalk.yellow('~ Modified:'));
+    console.log(pc.yellow('~ Modified:'));
     for (const [key, change] of Object.entries(diff.modified)) {
-      console.log(chalk.yellow(`  ~ ${key}:`));
-      console.log(chalk.red(`    - ${change.from}`));
-      console.log(chalk.green(`    + ${change.to}`));
+      console.log(pc.yellow(`  ~ ${key}:`));
+      console.log(pc.red(`    - ${change.from}`));
+      console.log(pc.green(`    + ${change.to}`));
     }
   }
 

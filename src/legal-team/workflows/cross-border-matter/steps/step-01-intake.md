@@ -30,6 +30,7 @@ Let's understand your matter."
 Gather core details:
 
 **Matter Type:**
+
 - Transaction/Deal
 - Dispute/Litigation
 - Regulatory compliance
@@ -40,11 +41,13 @@ Gather core details:
 - Other: [Specify]
 
 **Parties Involved:**
+
 | Party | Role | Nationality | Location | Entity Type |
 |-------|------|-------------|----------|-------------|
 | [Name] | [Client/Counterparty] | [Country] | [Country] | [Type] |
 
 **Cross-Border Elements:**
+
 - Where are parties located?
 - Where will performance occur?
 - Where are assets located?
@@ -55,12 +58,14 @@ Gather core details:
 Collect relevant history:
 
 **Transaction/Relationship:**
+
 - Nature of the arrangement
 - History of relationship
 - Value at stake
 - Current status
 
 **Key Documents:**
+
 - Existing contracts
 - Communications
 - Regulatory filings
@@ -71,11 +76,13 @@ Collect relevant history:
 Assess time factors:
 
 **Timeline:**
+
 - Deadlines (contractual, regulatory, litigation)
 - Desired completion timeframe
 - Critical path items
 
 **Constraints:**
+
 - Budget considerations
 - Language requirements
 - Specific requirements from parties

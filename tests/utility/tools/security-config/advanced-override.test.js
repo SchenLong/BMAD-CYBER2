@@ -354,13 +354,13 @@ describe('Advanced Security Override - INST-010', () => {
       expect(moduleContent).toMatch(/from\s+['"]\.\/tier-definitions\.js['"]/);
     });
 
-    it('should import inquirer and chalk', async () => {
+    it('should import prompts abstraction and chalk', async () => {
       const moduleContent = fs.readFileSync(
         path.join(__dirname, 'advanced-override.js'),
         'utf8'
       );
 
-      expect(moduleContent).toMatch(/import\s+inquirer/);
+      expect(moduleContent).toMatch(/from\s+['"]\.\.\/\.\.\/cli\/prompts\.js['"]/);
       expect(moduleContent).toMatch(/import\s+chalk/);
     });
   });

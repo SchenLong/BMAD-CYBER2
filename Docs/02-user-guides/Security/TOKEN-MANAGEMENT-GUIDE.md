@@ -11,6 +11,7 @@
 BMAD-CYBER2 uses encrypted authentication tokens for session management. This guide covers the complete token lifecycle including generation, validation, rotation, and revocation.
 
 **Security Features:**
+
 - **AES-256-GCM Encryption** - Industry-standard authenticated encryption
 - **File Permission Enforcement** - Token and key files restricted to owner-only (0600)
 - **Automatic Expiration** - Configurable token lifetime with auto-refresh
@@ -80,6 +81,7 @@ node _bmad/core/security/generate-token.js
 ```
 
 Prompts for:
+
 - Display name
 - Email (optional)
 - Role selection (from available roles)
@@ -414,6 +416,7 @@ ERROR: Token file not found: .bmad-token
 ```
 
 **Solution:**
+
 ```bash
 node _bmad/core/security/generate-token.js
 ```
@@ -425,6 +428,7 @@ ERROR: Token expired at 2026-01-15T12:00:00Z
 ```
 
 **Solution:**
+
 ```bash
 node _bmad/core/security/quick-token.cjs "User" "role" 168
 ```
@@ -436,6 +440,7 @@ ERROR: Token file permissions are incorrect (expected 0600)
 ```
 
 **Solution:**
+
 ```bash
 chmod 600 .bmad-token .bmad-key
 ```
@@ -447,11 +452,13 @@ ERROR: Failed to decrypt token
 ```
 
 **Causes:**
+
 - Token was encrypted with a different key
 - Token file is corrupted
 - Key file is corrupted
 
 **Solution:**
+
 ```bash
 # Regenerate both key and token
 rm .bmad-key .bmad-token
@@ -466,6 +473,7 @@ ERROR: Role 'invalid_role' is not defined in RBAC configuration
 ```
 
 **Solution:**
+
 ```bash
 # View available roles
 node _bmad/core/security/check-authorization.js roles

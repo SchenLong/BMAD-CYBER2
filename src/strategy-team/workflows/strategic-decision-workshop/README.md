@@ -37,6 +37,7 @@ strategic-decision-workshop/
 ## Advisor Perspectives
 
 **Modern Professionals:**
+
 - Augustus (Policy Analyst): Evidence and data
 - Magnus (Political Strategist): Political implications
 - Cicero (Debate Coach): Argumentation strength
@@ -45,6 +46,7 @@ strategic-decision-workshop/
 - Giuseppe (Communications Director): Messaging and perception
 
 **Historical Archetypes:**
+
 - Niccolo (Realist): Power and pragmatism
 - Charles (Liberator): Moral courage
 - Maximilien (Revolutionary): Change and conviction

@@ -347,13 +347,13 @@ describe('Tier Selection UI - INST-008', () => {
       expect(moduleContent).toMatch(/from\s+['"]\.\/tier-definitions\.js['"]/);
     });
 
-    it('should import inquirer and chalk', async () => {
+    it('should import prompts abstraction and chalk', async () => {
       const moduleContent = fs.readFileSync(
         path.join(__dirname, 'tier-selection-ui.js'),
         'utf8'
       );
 
-      expect(moduleContent).toMatch(/import\s+inquirer/);
+      expect(moduleContent).toMatch(/from\s+['"]\.\.\/\.\.\/cli\/prompts\.js['"]/);
       expect(moduleContent).toMatch(/import\s+chalk/);
     });
   });

@@ -1,12 +1,12 @@
 ---
 workflow_id: operation-mosaic
-name: 'Operation Mosaic'
+name: operation-mosaic
 description: 'Full spectrum target package using all 11 agents in coordinated intelligence collection and analysis'
 version: '1.0.0'
 module: intel-team
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/intel-team/workflows/operation-mosaic'
+workflow_path: '{project-root}/src/intel-team/workflows/operation-mosaic'
 steps_path: '{workflow_path}/steps'
 output_path: '{output_folder}/intel-reports/operation-mosaic'
 
@@ -297,7 +297,7 @@ To begin this workflow, load and follow:
 
 ### 1. Configuration Loading
 
-Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and resolve:
+Load and read full config from `{project-root}/src/intel-team/config.yaml` and resolve:
 
 - `user_name`, `communication_language`, `output_folder`, `classification_level`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`

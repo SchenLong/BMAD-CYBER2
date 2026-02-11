@@ -31,7 +31,7 @@ const __dirname = path.dirname(__filename);
  */
 export const CONFIG_FILES = [
   '_bmad/_config/llm-config.yaml',
-  '_bmad/core/security/security-config.yaml',
+  'src/core/security/security-config.yaml',
   '_bmad/_config/manifest.yaml'
 ];
 

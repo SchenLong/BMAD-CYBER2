@@ -39,15 +39,18 @@ BMAD-CYBER2 is a modular AI agent platform with 9 specialized modules. This guid
 **Version:** 6.0.0
 
 #### Purpose
+
 The foundation of BMAD that provides orchestration, cross-module coordination, and shared infrastructure.
 
 #### Agents
+
 | Agent | Role | Key Capability |
 |-------|------|----------------|
 | Abdul | Master Project Manager | Cross-module task coordination |
 | BMAD Master | System Orchestrator | Module initialization & routing |
 
 #### Key Workflows
+
 - **Party Mode** - Multi-agent collaborative discussions
 - **Project Status** - Dashboard and progress tracking
 - **Team Orchestration** - Cross-module workflow coordination
@@ -55,6 +58,7 @@ The foundation of BMAD that provides orchestration, cross-module coordination, a
 - **Phase Gates** - Quality checkpoints
 
 #### When to Use
+
 Always active. Provides the backbone for all other modules.
 
 ---
@@ -66,9 +70,11 @@ Always active. Provides the backbone for all other modules.
 **Version:** 6.0.0
 
 #### Purpose
+
 Complete software development lifecycle coverage from business analysis through deployment.
 
 #### Agents
+
 | Agent | Role | Specialty |
 |-------|------|-----------|
 | John | Product Manager | PRD creation, product vision |
@@ -82,6 +88,7 @@ Complete software development lifecycle coverage from business analysis through 
 | Solo Dev | Quick Flow | Rapid prototyping |
 
 #### Key Workflows
+
 - **create-prd** - Product requirements documents
 - **create-architecture** - System architecture design
 - **create-epics-and-stories** - Agile story creation
@@ -90,12 +97,14 @@ Complete software development lifecycle coverage from business analysis through 
 - **quick-dev** - Rapid development flow
 
 #### Best For
+
 - Software development teams
 - Product managers
 - Startups building MVPs
 - Enterprise product development
 
 #### Outputs
+
 - Product briefs
 - PRDs
 - Architecture documents
@@ -111,9 +120,11 @@ Complete software development lifecycle coverage from business analysis through 
 **Version:** 1.1.0
 
 #### Purpose
+
 Multi-discipline intelligence operations for accredited professionals requiring OSINT, HUMINT, SIGINT, and analysis capabilities.
 
 #### Agents
+
 | Agent | Role | Specialty |
 |-------|------|-----------|
 | Vector | Intelligence Director | All-source fusion, coordination |
@@ -129,6 +140,7 @@ Multi-discipline intelligence operations for accredited professionals requiring 
 | Specter | Field Operative | Surveillance, tactical intel |
 
 #### Key Workflows
+
 - **operation-mosaic** - Full spectrum target package
 - **flash-assessment** - Rapid 15-minute triage
 - **attribution-chain** - Actor attribution analysis
@@ -137,12 +149,14 @@ Multi-discipline intelligence operations for accredited professionals requiring 
 - **campaign-planner-org/person** - OSINT campaign planning
 
 #### Best For
+
 - Intelligence analysts
 - Corporate security teams
 - Threat intelligence researchers
 - Due diligence investigators
 
 #### Requirements
+
 - Accredited professional context
 - Understanding of legal/ethical boundaries
 
@@ -155,9 +169,11 @@ Multi-discipline intelligence operations for accredited professionals requiring 
 **Version:** 1.0.0
 
 #### Purpose
+
 Comprehensive legal advisory across US, EU, Spain, and Estonia jurisdictions for corporate and civil matters.
 
 #### Agents
+
 | Agent | Role | Jurisdiction/Specialty |
 |-------|------|------------------------|
 | Counsel | General Counsel | Director, routing, intake |
@@ -175,6 +191,7 @@ Comprehensive legal advisory across US, EU, Spain, and Estonia jurisdictions for
 | Deed | Real Estate | Property transactions |
 
 #### Key Workflows
+
 - **legal-matter-intake** - Initial case routing
 - **contract-review** - Contract analysis
 - **contract-drafting** - Contract creation
@@ -183,12 +200,14 @@ Comprehensive legal advisory across US, EU, Spain, and Estonia jurisdictions for
 - **tax-planning** - Tax optimization
 
 #### Best For
+
 - Business owners needing legal guidance
 - Entrepreneurs with multi-jurisdiction operations
 - Contract-heavy businesses
 - Companies with Spain/EU/Estonia presence
 
 #### Important Notes
+
 - NOT a substitute for licensed attorneys
 - NO criminal law coverage
 - Disclaimer included in all outputs
@@ -202,9 +221,11 @@ Comprehensive legal advisory across US, EU, Spain, and Estonia jurisdictions for
 **Version:** 1.0.0
 
 #### Purpose
+
 Executive-level strategic advisory with diverse perspectives from historical strategists and modern specialists.
 
 #### Agents
+
 | Agent | Archetype | Strategic Focus |
 |-------|-----------|-----------------|
 | Sun Tzu | Master Strategist | Competitive strategy, positioning |
@@ -223,6 +244,7 @@ Executive-level strategic advisory with diverse perspectives from historical str
 | Herbert | The Technocrat | Data-driven decisions |
 
 #### Key Workflows
+
 - **strategic-decision-workshop** - Multi-perspective analysis
 - **board-presentation-prep** - Executive presentations
 - **crisis-response-planning** - Crisis management
@@ -231,6 +253,7 @@ Executive-level strategic advisory with diverse perspectives from historical str
 - **ma-due-diligence** - M&A evaluation
 
 #### Best For
+
 - C-suite executives
 - Board members
 - Strategic planners
@@ -246,9 +269,11 @@ Executive-level strategic advisory with diverse perspectives from historical str
 **Version:** 1.3.0
 
 #### Purpose
+
 Comprehensive cybersecurity coverage from threat analysis to incident response, compliance, and security architecture.
 
 #### Agents
+
 | Agent | Role | Specialty |
 |-------|------|-----------|
 | Cipher | Threat Intelligence | APT analysis, threat landscape |
@@ -268,6 +293,7 @@ Comprehensive cybersecurity coverage from threat analysis to incident response, 
 | Ghost | Social Engineer | Awareness training |
 
 #### Key Workflows
+
 - **threat-modeling** - Threat analysis
 - **incident-response-playbook** - IR procedures
 - **security-architecture-review** - Architecture assessment
@@ -276,6 +302,7 @@ Comprehensive cybersecurity coverage from threat analysis to incident response, 
 - **penetration-testing** - Security testing
 
 #### Best For
+
 - Security operations centers
 - CISOs and security leadership
 - DevSecOps teams
@@ -291,9 +318,11 @@ Comprehensive cybersecurity coverage from threat analysis to incident response, 
 **Version:** 1.0.0
 
 #### Purpose
+
 Structured creativity and innovation facilitation using proven methodologies and creative thinking frameworks.
 
 #### Agents
+
 | Agent | Role | Specialty |
 |-------|------|-----------|
 | Victor | Innovation Strategist | Strategic innovation |
@@ -304,12 +333,14 @@ Structured creativity and innovation facilitation using proven methodologies and
 | Alex | Brainstorming Coach | Ideation facilitation |
 
 #### Key Workflows
+
 - **brainstorming** - Facilitated ideation sessions
 - **design-thinking** - HCD methodology
 - **innovation-strategy** - Innovation planning
 - **storytelling** - Narrative development
 
 #### Best For
+
 - Innovation teams
 - Design thinkers
 - Marketing creatives
@@ -325,9 +356,11 @@ Structured creativity and innovation facilitation using proven methodologies and
 **Version:** 1.0.0
 
 #### Purpose
+
 Game development lifecycle from concept to launch, supporting Unity, Unreal Engine, and Godot.
 
 #### Agents
+
 | Agent | Role | Specialty |
 |-------|------|-----------|
 | Samus Shepard | Game Designer | GDD, mechanics design |
@@ -338,12 +371,14 @@ Game development lifecycle from concept to launch, supporting Unity, Unreal Engi
 | Solo Dev | Game Solo Dev | Rapid prototyping |
 
 #### Supported Engines
+
 - Unity (C#)
 - Unreal Engine (C++/Blueprints)
 - Godot (GDScript/C#)
 - Custom engines
 
 #### Key Workflows
+
 - **game-brief** - Initial concept
 - **gdd-creation** - Game design documents
 - **technical-design** - Engine architecture
@@ -351,6 +386,7 @@ Game development lifecycle from concept to launch, supporting Unity, Unreal Engi
 - **qa-certification** - Launch readiness
 
 #### Best For
+
 - Indie game developers
 - Game studios
 - Game design students
@@ -365,9 +401,11 @@ Game development lifecycle from concept to launch, supporting Unity, Unreal Engi
 **Version:** 1.0.0
 
 #### Purpose
+
 Create custom agents, workflows, and modules to extend the BMAD ecosystem.
 
 #### Agents
+
 | Agent | Role | Creates |
 |-------|------|---------|
 | Agent Builder | Agent Creator | New BMAD agents |
@@ -375,11 +413,13 @@ Create custom agents, workflows, and modules to extend the BMAD ecosystem.
 | Module Builder | Module Packager | Complete modules |
 
 #### Key Workflows
+
 - **create-agent** - Design new agents
 - **create-workflow** - Build workflows
 - **package-module** - Bundle for distribution
 
 #### Best For
+
 - BMAD power users
 - Organizations customizing BMAD
 - Module contributors
@@ -462,7 +502,9 @@ Modules can work together through Core's orchestration:
 4. **Unified Outputs** - Consistent artifact structure
 
 ### Example: Security-Aware Development
+
 Combine BMM + Cybersec for secure development:
+
 - Use BMM for architecture
 - Use Cybersec for threat modeling
 - Use Party Mode for joint review

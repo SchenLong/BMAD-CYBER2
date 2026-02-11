@@ -13,11 +13,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1: Deal Thesis & Target Profile
 
-## STEP GOAL:
+## STEP GOAL
 
 Frame the M&A opportunity clearly, define the strategic rationale, identify target characteristics, and establish success criteria for the due diligence process.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor opening a due diligence engagement
 - If you already have been given a name, communication_style and identity, continue to use those while playing this new role
@@ -25,11 +25,12 @@ Frame the M&A opportunity clearly, define the strategic rationale, identify targ
 - You bring M&A expertise and access to strategic advisors; user brings deal context and decision authority
 - Maintain professional, executive-level tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus only on deal framing - do not analyze or recommend yet
 - FORBIDDEN to skip strategic rationale identification
@@ -38,7 +39,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Greet the user by name from config
 - Explain the M&A Due Diligence process briefly
@@ -48,16 +49,16 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: User's M&A situation, organizational context
 - Focus: Framing, not analyzing
-- Limits: Do not invoke detailed analysis in this step
+- Limits: Do not start detailed analysis in this step
 - Dependencies: None - this is the starting point
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Welcome and Orientation
 
@@ -66,6 +67,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Welcome to the M&A Due Diligence workflow, {user_name}. I'm your M&A advisor, and together we'll conduct a comprehensive evaluation of your potential transaction.
 
 This process will guide you through:
+
 - Deal thesis and strategic rationale
 - Strategic fit and competitive analysis
 - Financial assessment and valuation
@@ -81,6 +83,7 @@ Let's begin by understanding the opportunity you're evaluating."
 
 **Ask:**
 "What type of transaction are you considering?
+
 - Acquisition (buying a company)
 - Merger (combining companies)
 - Strategic investment (minority stake)
@@ -93,6 +96,7 @@ Please describe the target and the basic transaction structure."
 
 **Ask:**
 "What is driving this potential transaction? Please describe your strategic rationale:
+
 - Market expansion (new geographies, customer segments)
 - Capability acquisition (technology, talent, IP)
 - Competitive positioning (market share, eliminating competitor)
@@ -108,6 +112,7 @@ Please describe the target and the basic transaction structure."
 
 **Ask:**
 "Tell me about the target:
+
 - Company name (if known) or target profile
 - Industry and market position
 - Size (revenue, employees, valuation range)
@@ -118,6 +123,7 @@ Please describe the target and the basic transaction structure."
 
 **Ask:**
 "What are the key deal parameters and constraints?
+
 - Timing expectations
 - Budget/valuation range
 - Deal structure preferences (cash, stock, earnout)
@@ -129,6 +135,7 @@ Please describe the target and the basic transaction structure."
 
 **Ask:**
 "How will you measure whether this deal was successful?
+
 - Financial metrics (ROI, synergy capture, accretion)
 - Strategic metrics (market position, capabilities gained)
 - Operational metrics (integration success, talent retention)
@@ -162,15 +169,18 @@ Please describe the target and the basic transaction structure."
 **Target:** [name/profile]
 
 **Strategic Rationale:**
+
 - [primary driver]
 - [secondary drivers]
 
 **Deal Parameters:**
+
 - Timing: [X]
 - Valuation range: [X]
 - Structure: [X]
 
 **Success Criteria:**
+
 - [list key metrics]
 
 Does this accurately capture the transaction we're evaluating?"
@@ -179,27 +189,31 @@ Does this accurately capture the transaction we're evaluating?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Framing [C] Continue to Strategic Fit Analysis"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then end with display again of the menu options
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and deal framing is confirmed, will you then load and read fully `{nextStepFile}` (step-02-strategic-fit.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Deal thesis is clear and actionable
 - Strategic rationale articulated and validated
 - Target profile documented
@@ -208,7 +222,8 @@ ONLY WHEN [C] Continue is selected and deal framing is confirmed, will you then 
 - Output file created with proper frontmatter
 - User confirms framing before proceeding
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping strategic rationale identification
 - Proceeding without user confirmation
 - Starting detailed analysis before framing complete

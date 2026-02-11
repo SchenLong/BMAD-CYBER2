@@ -1,5 +1,5 @@
 ---
-name: Crisis Response Planning
+name: crisis-response-planning
 description: Develop crisis communication and response strategies for high-stakes situations
 web_bundle: true
 ---

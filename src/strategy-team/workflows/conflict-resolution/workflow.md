@@ -1,5 +1,5 @@
 ---
-name: Conflict Resolution
+name: conflict-resolution
 description: Navigate interpersonal or organizational conflicts toward constructive resolution
 web_bundle: true
 ---

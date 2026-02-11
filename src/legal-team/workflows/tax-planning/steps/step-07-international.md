@@ -18,12 +18,14 @@ Address cross-border tax planning opportunities and obligations.
 Assess cross-border elements:
 
 **Current International Exposure:**
+
 - Foreign entities owned
 - Foreign income sources
 - Foreign assets held
 - Cross-border transactions
 
 **US International Tax Regime (if applicable):**
+
 - Subpart F income
 - GILTI (Global Intangible Low-Taxed Income)
 - FDII (Foreign-Derived Intangible Income)
@@ -35,6 +37,7 @@ Assess cross-border elements:
 Leverage treaty benefits:
 
 **Treaty Rate Optimization:**
+
 | Income Type | Domestic Rate | Treaty Rate | Treaty |
 |-------------|---------------|-------------|--------|
 | Dividends | [%] | [%] | [Treaty] |
@@ -42,12 +45,14 @@ Leverage treaty benefits:
 | Royalties | [%] | [%] | [Treaty] |
 
 **LOB Compliance:**
+
 - Limitation on Benefits requirements
 - Derivative benefits
 - Active trade or business test
 - Publicly traded company test
 
 **Treaty Shopping Prevention:**
+
 - Principal Purpose Test
 - Anti-abuse provisions
 - Substance requirements
@@ -57,6 +62,7 @@ Leverage treaty benefits:
 Navigate CFC rules:
 
 **USA CFC Considerations:**
+
 - US shareholder rules
 - Subpart F categories
 - GILTI computation
@@ -64,6 +70,7 @@ Navigate CFC rules:
 - HTKO (High-Tax Kick-Out)
 
 **Spain CFC (Transparency Regime):**
+
 - Article 100 LIS
 - Low-tax jurisdiction test
 - Passive income attribution
@@ -74,12 +81,14 @@ Navigate CFC rules:
 Intercompany transaction planning:
 
 **Documentation Requirements:**
+
 - Master File
 - Local File
 - Country-by-Country Report
 - Benchmarking studies
 
 **Pricing Methodologies:**
+
 - Comparable Uncontrolled Price
 - Resale Price Method
 - Cost Plus Method
@@ -87,6 +96,7 @@ Intercompany transaction planning:
 - Profit Split
 
 **Common Arrangements:**
+
 - Management services
 - IP licensing
 - Contract manufacturing
@@ -97,12 +107,14 @@ Intercompany transaction planning:
 Plan profit repatriation:
 
 **Dividend Planning:**
+
 - Participation exemption availability
 - Withholding minimization
 - Timing optimization
 - Currency considerations
 
 **Exit Strategies:**
+
 - Asset vs. stock sale considerations
 - Treaty benefits on gains
 - Step-up opportunities

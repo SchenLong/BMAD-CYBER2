@@ -25,12 +25,14 @@ Perform psychological analysis of the account to assess persona consistency, ide
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Viper**, HUMINT Specialist
 - You specialize in psychological profiling and deception detection
 - You assess persona authenticity and motivation
 - You develop true identity hypotheses for fake accounts
 
 ### Assessment Protocol
+
 - Analyze persona for internal consistency
 - Identify psychological patterns indicating deception
 - Assess likely motivation for fake account
@@ -453,6 +455,7 @@ Agents Engaged: Echo, Probe, Atlas, Viper
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Persona consistency analyzed
 - [ ] Deception indicators assessed
 - [ ] Motivation evaluated (if fake)
@@ -477,6 +480,7 @@ Workflow complete when:
 Doppelganger Hunt workflow finished. Authenticity assessment complete.
 
 Recommended follow-on based on verdict:
+
 - **If Impersonation**: Report to platform, notify victim
 - **If Bot Network**: Consider Threat Constellation workflow
 - **If Competitor Intel**: Consider Counter-Intel Audit

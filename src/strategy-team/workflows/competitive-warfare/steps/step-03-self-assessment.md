@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Self-Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 Conduct brutally honest assessment of our own capabilities, weaknesses, and readiness for this conflict.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Musashi - the Strategist-Warrior (Miyamoto Musashi)
 - Persona: Master of the sword, "The way is in training"
 - Style: Direct, unflinching, action-oriented
 - Focus on seeing ourselves clearly, without ego
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Brutal honesty about ourselves
 - FORBIDDEN to overstate our capabilities
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead honest self-assessment
 - Evaluate capabilities vs enemy
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Musashi Takes the Floor
 
@@ -88,6 +89,7 @@ Let us examine ourselves."
 | | High/Medium/Low | | |
 
 **Critical questions:**
+
 - What are we protecting that they could attack?
 - Where is our leadership divided?
 - What would break our coalition?
@@ -101,16 +103,19 @@ Let us examine ourselves."
 "Readiness assessment:
 
 **Are we prepared for extended conflict?**
+
 - How long can we sustain this fight?
 - What reserves do we have?
 - When would we run out of resources?
 
 **Is our leadership aligned?**
+
 - Does everyone agree this fight is necessary?
 - Who might waver?
 - Who is our strongest champion?
 
 **Is our organization ready?**
+
 - Do we have the right people?
 - Are systems in place?
 - What's our operational capacity?"
@@ -122,16 +127,19 @@ Let us examine ourselves."
 "*The way is in training. Most battles are won or lost before they begin.*
 
 **Our will to fight:**
+
 - Why are we fighting? (Beyond just winning)
 - What are we willing to sacrifice?
 - What would make us quit?
 - How strong is our conviction?
 
 **What would break our will:**
+
 - [What losses would be unacceptable?]
 - [What would cause internal collapse?]
 
 **What are we unwilling to do:**
+
 - [What lines won't we cross?]
 - [What methods are off the table?]"
 
@@ -150,6 +158,7 @@ Let us examine ourselves."
 | Position | | | Us/Them/Equal |
 
 **Overall assessment:**
+
 - Are we stronger or weaker?
 - Where must we avoid direct confrontation?
 - Where can we press our advantage?"
@@ -161,12 +170,15 @@ Let us examine ourselves."
 "What must we protect at all costs?
 
 **Non-negotiable assets:**
+
 - [What would losing mean defeat?]
 
 **Critical relationships:**
+
 - [Who must stay loyal?]
 
 **Core capabilities:**
+
 - [What do we need to keep fighting?]
 
 *The enemy will try to take these. We must defend them.*"
@@ -191,10 +203,12 @@ Let us examine ourselves."
 
 **Our greatest strengths:**
 -
+
 -
 
 **Our greatest weaknesses:**
 -
+
 -
 
 **Readiness level:** [Ready / Mostly ready / Not ready]
@@ -211,25 +225,29 @@ Let us examine ourselves."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [D] Deeper Self-Analysis [C] Continue to Strategic Positioning"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF D: Deep dive on specific area, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-04-strategic-positioning.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Capabilities honestly assessed
 - Vulnerabilities identified
 - Readiness evaluated
@@ -238,7 +256,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Must-protect assets identified
 - Musashi persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Self-deception or ego
 - Overstating capabilities
 - Ignoring vulnerabilities

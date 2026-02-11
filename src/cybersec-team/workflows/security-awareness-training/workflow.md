@@ -1,6 +1,6 @@
 ---
 
-name: Security Awareness Training
+name: security-awareness-training
 description: Develop and deploy security awareness training programs with phishing simulations and metrics tracking
 web_bundle: false
 
@@ -62,7 +62,7 @@ This workflow guides you through building a security awareness training program:
 
 ### 1. Configuration Loading
 
-Load and read full config from {project-root}/_bmad/cybersec-team/config.yaml and resolve:
+Load and read full config from {project-root}/src/cybersec-team/config.yaml and resolve:
 
 - `project_name`, `output_folder`, `user_name`, `communication_language`, `document_output_language`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`

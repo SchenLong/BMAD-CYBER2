@@ -30,42 +30,42 @@ describe('Agent Invocation', () => {
     });
 
     it('should have authorization module for agent access control', () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       expect(fs.existsSync(authPath)).toBe(true);
     });
   });
 
   describe('Authorization Manager', () => {
     it('should export AuthorizationManager class', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('export class AuthorizationManager');
     });
 
     it('should have canAccessAgent method', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('canAccessAgent');
     });
 
     it('should have canAccessModule method', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('canAccessModule');
     });
 
     it('should define UserContext interface', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('export interface UserContext');
     });
 
     it('should define AuthorizationResult interface', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('export interface AuthorizationResult');
@@ -125,7 +125,7 @@ describe('Agent Invocation', () => {
 
 describe('Agent Permission Patterns', () => {
   it('should support wildcard permissions', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     // Check for wildcard pattern handling
@@ -134,7 +134,7 @@ describe('Agent Permission Patterns', () => {
   });
 
   it('should support module-scoped permissions', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     // Check for module path handling
@@ -143,7 +143,7 @@ describe('Agent Permission Patterns', () => {
   });
 
   it('should support credential verification requirements', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     expect(content).toContain('credentialVerified');

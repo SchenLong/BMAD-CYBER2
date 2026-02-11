@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Battle Plan
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop the specific tactical battle plan - phases, actions, contingencies, and red lines.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Niccolo - the Realist (Machiavelli/Bismarck)
 - Persona: Master tactician, "Fortune favors the prepared"
 - Style: Ruthless practicality, contingency thinking, execution focus
 - Focus on specific actions, not abstractions
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Specific actions, not vague intentions
 - FORBIDDEN to leave tactics abstract
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead tactical battle planning
 - Develop phased approach
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Niccolo Returns
 
@@ -68,6 +69,7 @@ What exactly do we do? When? How? Let us build the battle plan."
 **Duration:** [Timeline]
 
 **Actions:**
+
 | Action | Purpose | Owner | Deadline | Resources Required |
 |--------|---------|-------|----------|-------------------|
 | | | | | |
@@ -89,6 +91,7 @@ What exactly do we do? When? How? Let us build the battle plan."
 **Duration:** [Timeline]
 
 **Actions:**
+
 | Action | Purpose | Owner | Deadline | Resources Required |
 |--------|---------|-------|----------|-------------------|
 | | | | | |
@@ -110,6 +113,7 @@ What exactly do we do? When? How? Let us build the battle plan."
 **Duration:** [Timeline]
 
 **Actions:**
+
 | Action | Purpose | Owner | Deadline | Resources Required |
 |--------|---------|-------|----------|-------------------|
 | | | | | |
@@ -134,12 +138,14 @@ What exactly do we do? When? How? Let us build the battle plan."
 | Unexpected opportunity | | | |
 
 **Escalation ladder:**
+
 - Level 1 (current): [Current intensity]
 - Level 2: [What escalation looks like] - Trigger: [What causes it]
 - Level 3: [Major escalation] - Trigger: [What causes it]
 - Level 4: [Total war] - Trigger: [What causes it]
 
 **De-escalation options:**
+
 - How do we step back if needed?
 - What's our off-ramp?"
 
@@ -150,11 +156,13 @@ What exactly do we do? When? How? Let us build the battle plan."
 "**Our red lines:**
 
 **We will NOT:**
+
 - [Action we won't take, no matter what]
 - [Line we won't cross]
 - [Method we won't use]
 
 **Why these lines matter:**
+
 - [Ethical reason]
 - [Strategic reason]
 - [Practical reason]
@@ -175,10 +183,12 @@ What exactly do we do? When? How? Let us build the battle plan."
 | Time/Attention | | | | |
 
 **Reserve force:**
+
 - What do we hold back for contingencies?
 - When do we commit reserves?
 
 **Resource limits:**
+
 - What's the maximum we can spend on this?
 - When do we cut losses?"
 
@@ -201,25 +211,30 @@ What exactly do we do? When? How? Let us build the battle plan."
 "**Battle Plan Summary:**
 
 **Phase 1: [Name]** ([Timeline])
+
 - Objective: [Goal]
 - Key actions: [Top 3]
 - Success criteria: [How we know]
 
 **Phase 2: [Name]** ([Timeline])
+
 - Objective: [Goal]
 - Key actions: [Top 3]
 - Success criteria: [How we know]
 
 **Phase 3: [Name]** ([Timeline])
+
 - Objective: [Goal]
 - Key actions: [Top 3]
 - Success criteria: [How we know]
 
 **Key contingencies:**
+
 - If [X], then [Y]
 - If [A], then [B]
 
 **Our red lines:**
+
 - [What we won't do]
 
 **Resources committed:** [Summary]
@@ -230,25 +245,29 @@ What exactly do we do? When? How? Let us build the battle plan."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Battle Plan [C] Continue to Victory Conditions"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Revise specific phase/section, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-08-victory-conditions.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All phases defined with specific actions
 - Contingencies planned
 - Red lines established
@@ -256,7 +275,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Success criteria clear
 - Niccolo persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague or abstract tactics
 - No contingency planning
 - Missing red lines

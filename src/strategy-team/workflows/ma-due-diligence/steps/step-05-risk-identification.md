@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Risk Identification
 
-## STEP GOAL:
+## STEP GOAL
 
 Conduct comprehensive risk identification across all dimensions - deal risks, integration risks, market risks, and legal/regulatory risks - to ensure informed decision-making.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor with Burke (Conservative) providing risk-focused perspective
 - Focus on identifying all material risks
 - Challenge optimism bias
 - Document both likelihood and impact
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Be thorough - err on side of identifying too many risks
 - FORBIDDEN to downplay or dismiss risks
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Deal Risk Assessment
 
@@ -45,6 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me bring in Burke's risk-focused perspective to systematically identify deal risks..."
 
 **Transaction risks:**
+
 - Valuation risk (overpaying)
 - Due diligence gaps
 - Financing risk
@@ -53,6 +55,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - Competing bidder risk
 
 **For each risk, assess:**
+
 - Likelihood (Low/Medium/High)
 - Impact (Low/Medium/High)
 - Mitigation approach
@@ -126,19 +129,23 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's prioritize all identified risks:"
 
 **Critical Risks (High likelihood x High impact):**
+
 1. [Risk + mitigation]
 2. [Risk + mitigation]
 3. [Risk + mitigation]
 
 **Major Risks (High likelihood x Medium impact OR Medium x High):**
+
 1. [Risk + mitigation]
 2. [Risk + mitigation]
 
 **Moderate Risks (Medium x Medium):**
+
 1. [Risk + mitigation]
 2. [Risk + mitigation]
 
 **Watch List (Low likelihood but High impact):**
+
 1. [Risk + trigger to watch]
 2. [Risk + trigger to watch]
 
@@ -217,6 +224,7 @@ Update frontmatter: Add `step-05-risk-identification` to stepsCompleted
 [Risk-focused summary]
 
 **Key Mitigation Actions Required:**
+
 1. [action]
 2. [action]
 3. [action]"
@@ -225,7 +233,8 @@ Update frontmatter: Add `step-05-risk-identification` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysis [C] Continue to Integration Planning"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -233,20 +242,23 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysi
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-06-integration-planning.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All risk categories assessed
 - Risks prioritized by likelihood and impact
 - Mitigation strategies identified
 - Deal breakers explicitly addressed
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Missing major risk categories
 - Not quantifying likelihood/impact
 - Skipping deal breaker assessment

@@ -11,8 +11,9 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
 import chalk from 'chalk';
+
+import { select, confirm } from '../../cli/prompts.js';
 
 import {
   SECURITY_TIERS,
@@ -107,19 +108,13 @@ export async function showTierSelector() {
   console.log(chalk.dim('(Use arrow keys to navigate, enter to confirm)'));
   console.log('');
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'selectedTier',
-      message: 'Choose a security configuration tier:',
-      choices,
-      default: defaultIndex,
-      pageSize: 10,
-      loop: false
-    }
-  ]);
+  const selectedTier = await select({
+    message: 'Choose a security configuration tier:',
+    choices,
+    initialValue: choices[defaultIndex]?.value
+  });
 
-  return answer.selectedTier;
+  return selectedTier;
 }
 
 /**
@@ -176,14 +171,10 @@ export async function showFeatureConfirmation(tierId) {
   }
 
   // Confirmation prompt
-  const { confirmed } = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirmed',
-      message: 'Apply this security configuration?',
-      default: true
-    }
-  ]);
+  const confirmed = await confirm({
+    message: 'Apply this security configuration?',
+    initialValue: true
+  });
 
   return confirmed;
 }
@@ -307,14 +298,10 @@ export function showCurrentConfig(tierId) {
 export async function promptAdvancedCustomization() {
   console.log('');
 
-  const { wantsAdvanced } = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'wantsAdvanced',
-      message: 'Would you like to customize individual features? (Advanced)',
-      default: false
-    }
-  ]);
+  const wantsAdvanced = await confirm({
+    message: 'Would you like to customize individual features? (Advanced)',
+    initialValue: false
+  });
 
   return wantsAdvanced;
 }

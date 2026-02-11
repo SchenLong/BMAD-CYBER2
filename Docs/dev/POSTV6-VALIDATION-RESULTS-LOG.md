@@ -319,48 +319,56 @@
 ### Failures & Findings Registry
 
 #### FAIL-PV6-01-003-4: No JSON Output Mode for Reference Validator
+
 - **Severity:** P1
 - **Description:** CLI outputs human-readable text only. No `--json` flag for machine consumption.
 - **Impact:** CI pipelines cannot programmatically parse reference validation results.
 - **Disposition:** **FIXED** — Added `--json` flag to `cli.js`. Outputs structured JSON result object.
 
 #### FAIL-PV6-01-003-7: Code Blocks Not Excluded from Reference Scanning
+
 - **Severity:** P1
 - **Description:** `extractReferences()` processes all lines without detecting fenced code blocks. References in code examples produce false positive broken references.
 - **Impact:** 976 broken refs reported — unknown how many are false positives from code blocks.
 - **Disposition:** **FIXED** — Added fenced code block detection (``` and ~~~) to `extractReferences()`. False positives reduced from 976 to 907 (-69).
 
 #### FAIL-PV6-01-003-9: Reference Validator Not Registered as Hook
+
 - **Severity:** P2
 - **Description:** Only exists as `npm run validate:refs` script. Not in settings.json hooks.
 - **Impact:** Does not run automatically during agent sessions.
 - **Disposition:** **FIXED** — Registered as SessionStart hook in settings.json (runs with `--json` flag).
 
 #### FAIL-PV6-01-004-6: Unprotected yaml.load in help-generator.js
+
 - **Severity:** P0
 - **Description:** `_bmad/core/help/help-generator.js:339` calls `yaml.load(content)` without `normalizeLineEndings()`.
 - **Impact:** CRLF-encoded `manifest.yaml` files could cause parsing issues in help system.
 - **Disposition:** **FIXED** — Added `import { normalizeLineEndings }` and wrapped `yaml.load(normalizeLineEndings(content))`.
 
 #### FAIL-PV6-01-004-8: Missing .gitattributes YAML Rules
+
 - **Severity:** P1
 - **Description:** `.gitattributes` only has `* text=auto`. Missing explicit `*.yaml text eol=lf` rules.
 - **Impact:** YAML files on Windows could retain CRLF endings.
 - **Disposition:** **FIXED** — Added `*.yaml text eol=lf` and `*.yml text eol=lf` rules to `.gitattributes`.
 
 #### FAIL-PV6-01-006-5: Missing Hook Script session-security-init.py
+
 - **Severity:** P0
 - **Description:** `.claude/hooks/session-security-init.py` referenced in settings.json SessionStart hook but file does not exist.
 - **Impact:** Hook failure on every session start.
 - **Disposition:** **FIXED** — Updated settings.json to reference existing `session-security-init.js` instead of `.py` (leftover from Python→Node migration).
 
 #### FAIL-PV6-01-010-4: CI Environment Suppression Not Implemented
+
 - **Severity:** P1
 - **Description:** `version-checker.js` has no `process.env.CI` check.
 - **Impact:** Version check runs in CI environments where it's unnecessary.
 - **Disposition:** **FIXED** — Added early return in `checkVersion()` when `process.env.CI` is set.
 
 #### FAIL-PV6-01-010-5: BMAD_NO_UPDATE_CHECK Not Implemented
+
 - **Severity:** P1
 - **Description:** No `process.env.BMAD_NO_UPDATE_CHECK` suppression exists.
 - **Impact:** Users cannot suppress version check via environment variable.
@@ -506,6 +514,7 @@
 | 7 | Zero deprecation warnings in test output | **PASS** | Main suite: zero deprecation warnings. Performance suite emits `[DEP0190]` from Node 25 child_process (informational, not code deprecation). |
 
 **Result: 7/7 PASS** — pre-existing known failures documented in Phase 0:
+
 1. `stage-13-validation.test.js` — `process.exit()` kills Vitest worker (test design issue)
 2. `package-merger.test.js` VAL-11-005 — encoded path traversal expectation mismatch
 
@@ -519,6 +528,7 @@
 | 4 | `npm run test:bench` results within range | **PASS** | Simple ops: 14.7M ops/sec, Complex ops: 181K ops/sec. Agent-load benchmark OOM (pre-existing — loads all 79 agents). |
 
 **Result: 4/4 PASS** — Performance baseline captured for future comparisons:
+
 - CLI startup: **161ms**
 - Router load: **63ms**
 - Help-generator load: **61ms**
@@ -552,6 +562,7 @@ Validated during PV6-02-008 agent run:
 ### Failures & Findings Registry
 
 #### FAIL-PV6-02-004: 19 Bin Scripts Had Incorrect ESM Import Paths
+
 - **Severity:** P0 (SECURITY — validators could not load)
 - **Description:** 19 of 21 bin scripts in `.claude/validators-node/bin/` imported from `../dist/<category>/` but compiled output is at `../dist/src/<category>/` due to `tsconfig.json` having `rootDir: "."`.
 - **Root Cause:** Pre-existing bug from Python→TypeScript migration (commit `c3ad199`). Not a Node 20 regression.
@@ -562,12 +573,14 @@ Validated during PV6-02-008 agent run:
 - **Disposition:** **FIXED**
 
 #### PRE-EXISTING: Root tsconfig Type-Check Failure
+
 - **Severity:** P2 (Non-blocking)
 - **Description:** Root-level `tsconfig.json` type-check fails because `src/package-management/` references uninstalled dependencies (express, ioredis, helmet, cors, etc.).
 - **Impact:** None — workspace-level tsconfigs (framework, validators-node) both pass cleanly.
 - **Disposition:** **ACCEPTED** — pre-existing, not a Node 20 regression. Documented in Phase 0.
 
 #### NOTE: Node 25 DEP0190 Warning in Performance Suite
+
 - **Severity:** Informational
 - **Description:** `[DEP0190] DeprecationWarning: Passing args to a child process with shell option true` appears in performance test suite when spawning child processes.
 - **Impact:** None — informational Node 25 runtime warning, not a code deprecation. Does not appear in main test suite.
@@ -694,7 +707,7 @@ Validated during PV6-02-008 agent run:
 | # | Check | Result | Notes |
 |---|-------|--------|-------|
 | 1 | Path traversal rejected | **PASS** | TEST-1-3-012: `../../../etc/passwd`, `..\\windows\\system32`, `foo/../bar` all rejected |
-| 2 | Command injection rejected | **PASS** | TEST-1-3-013: `; rm -rf /`, `foo && bar`, `foo | bar`, `$(whoami)`, backticks all rejected |
+| 2 | Command injection rejected | **PASS** | TEST-1-3-013: `; rm -rf /`, `foo && bar`, `foo | bar`,`$(whoami)`, backticks all rejected |
 | 3 | Null bytes rejected | **PASS** | `\0` not in whitelist charset `[a-z0-9:-]`. Regex acts as strict whitelist |
 | 4 | Overlength rejected (> 100 chars) | **PASS** | `MAX_COMMAND_LENGTH = 100`. Test verifies 101-char command rejected |
 | 5 | Empty/whitespace handled | **PASS** | TEST-1-3-015: empty, null, undefined, non-string all return clear error |
@@ -737,12 +750,14 @@ Validated during PV6-02-008 agent run:
 ### Failures & Findings Registry
 
 #### FAIL-PV6-03-005-6: `settings-integrity` Missing from Reserved Names
+
 - **Severity:** P1
 - **Description:** `settings-integrity` validator (created in Stage 1 at `.claude/validators-node/bin/settings-integrity.js`) was not included in the `reserved_names` blocklist in `workflow-aliases.yaml`.
 - **Impact:** An alias named `settings-integrity` could theoretically be registered, colliding with the security validator name.
 - **Disposition:** **FIXED** — Added `settings-integrity` to `reserved_names` in `_bmad/_config/workflow-aliases.yaml` (alphabetically between `secret` and `session-init`). 59/59 routing tests pass after fix.
 
 #### PLAN NOTE: Matcher Count Discrepancy (16 vs 12)
+
 - **Severity:** Informational
 - **Description:** QA plan (PV6-03-006 check #3 and multiple references) states "16 matchers" but the authoritative count is **12**. The test suite (`settings-integrity.test.js` line 49), CHANGELOG, and actual settings.json all consistently show 12 matchers. The 16 figure appears to be an early planning overcount from gap analysis.
 - **Impact:** None — validation adjusted to authoritative count of 12.
@@ -816,7 +831,7 @@ Validated during PV6-02-008 agent run:
 | # | Check | Result | Notes |
 |---|-------|--------|-------|
 | 1 | "ignore all previous instructions" stripped | **PASS** | Regex line 74: `/\b(ignore|disregard|forget|override|bypass)\s+(all|previous|above|prior)\b/gi` → `[FILTERED]`. TEST-3-2-008 confirms. Edge case test (line 773) validates multi-pattern attack. |
-| 2 | "you are a" instruction stripped | **PASS** | Regex line 79: `/\b(you are|act as|pretend|simulate|roleplay)\b/gi` → `[FILTERED]`. TEST-3-2-008 tests 5 variants: "you are now", "act as", "pretend you have", "simulate being", "roleplay as". All produce `[FILTERED]`. |
+| 2 | "you are a" instruction stripped | **PASS** | Regex line 79: `/\b(you are|act as|pretend|simulate|roleplay)\b/gi` → `[FILTERED]`. TEST-3-2-008 tests 5 variants: "you are now", "act as", "pretend you have", "simulate being", "roleplay as". All produce`[FILTERED]`. |
 | 3 | HTML tags stripped from manifest content | **PASS** | Regex line 88: `/<\/?[a-z][^>]*>/gi` strips all HTML. TEST-3-2-008 confirms `<script>alert("xss")</script>` stripped. Edge case confirms nested `<div><script>` removed. `sanitizeName()` also strips HTML. |
 | 4 | Code blocks stripped from descriptions | **PASS** | Regex line 90: `/```[\s\S]*?```/g` removes fenced code blocks. TEST-3-2-008 confirms triple-backtick blocks removed. Edge case test confirms `` ```code``` `` stripped. |
 | 5 | Description truncated at MAX_DESCRIPTION_LENGTH | **PASS** | `MAX_DESCRIPTION_LENGTH = 200` (line 31). Truncation at line 68: `sanitized.slice(0, MAX_DESCRIPTION_LENGTH)` runs first. TEST-3-2-008 creates 300-char input, verifies `length <= 200`. Boundary edge case test at char 170-200 confirms combined truncation+filtering. |
@@ -834,7 +849,7 @@ Validated during PV6-02-008 agent run:
 | 3 | Workflow name shows workflow help | **PASS** | `generateWorkflowHelp(name)` returns `type: 'workflow'` with Module, Path, Description, Related Agents, Other Workflows. TEST-3-3-003 tests brainstorming, party-mode, threat-modeling. Includes examples and nextSteps. |
 | 4 | Natural language query returns results | **PASS** | `searchCapabilities(query)` performs case-insensitive substring matching across names/displayNames/titles/roles/identities/descriptions. TEST-3-3-005 tests "incident response". TEST-3-2-007 tests "security", "threat", "brainstorming". |
 | 5 | Unknown query shows "no match" with suggestions | **PASS** | TEST-3-3-006: `searchCapabilities('xyzzyplugh123')` returns "No results found" with nextSteps. Unknown module returns "not installed" + installed module list. `no-results.md` template provides Browse by Module and Common Search Terms. |
-| 6 | Zero absolute paths in output | **PASS** | 3 layers: (1) `sanitizePath()` lines 120-134 strips absolute prefixes, (2) TEST-3-3-008 scans ALL output (overview + 9 modules + 20 workflows + 20 agents + list + search) against `/(?:\/Users\/|\/home\/|\/var\/|\/tmp\/|\/opt\/|C:\\|D:\\)/`, (3) Grep of 8 templates + generator + XML confirms zero hardcoded absolute paths. XML has `<security id="no-absolute-paths" mandatory="true">`. |
+| 6 | Zero absolute paths in output | **PASS** | 3 layers: (1) `sanitizePath()` lines 120-134 strips absolute prefixes, (2) TEST-3-3-008 scans ALL output (overview + 9 modules + 20 workflows + 20 agents + list + search) against `/(?:\/Users\/|\/home\/|\/var\/|\/tmp\/|\/opt\/|C:\\|D:\\)/`, (3) Grep of 8 templates + generator + XML confirms zero hardcoded absolute paths. XML has`<security id="no-absolute-paths" mandatory="true">`. |
 | 7 | `/bmad-help` protected as reserved system command | **PASS** | `workflow-aliases.yaml` reserved_names contains both `help` and `bmad-help` (lines 57-59). TEST-3-3-007 parses YAML and asserts both present. Prevents alias override. |
 | 8 | Response time < 500ms | **PASS** | TEST-3-5-003: full initialization < 500ms. 4 combined operations (overview + module help + search + list) < 100ms. Full 42-test suite in 37ms test time (259ms total). |
 | 9 | Works after fresh `npm install` and build | **PASS** | TEST-3-5-002: fresh `HelpGenerator()`, `initialized=false`, all 9 methods throw "not initialized", after `initialize()`: 9 modules/79 agents/138 workflows. Singleton factory lifecycle tested. Direct `node -e` runtime confirmed module loads and executes outside test framework. `js-yaml` present in node_modules. |
@@ -848,6 +863,7 @@ Validated during PV6-02-008 agent run:
 *No failures found in Phase 4.* All 24 checks passed on first attempt without fixes.
 
 #### PLAN NOTE: Module Count Discrepancy (10 vs 9)
+
 - **Severity:** Informational
 - **Description:** PV6-04-001 check #1 says "10 module manifests" but `manifest.yaml` lists 9 modules and all tests assert 9.
 - **Impact:** None — code correctly loads all installed modules regardless of count.
@@ -992,6 +1008,7 @@ Validated during PV6-02-008 agent run:
 ### Failures & Findings Registry
 
 #### FAIL-PV6-05-001-2: Stale Validator Checksum Baseline
+
 - **Severity:** P1 (Housekeeping, not regression)
 - **Description:** `npm run security:verify-validators` reported 24/68 files modified. All 24 were legitimate v6 upgrade changes (19 bin scripts from Phase 2 fix + 5 src files).
 - **Root Cause:** Checksum baseline was generated 2026-01-30, before v6 upgrade work.
@@ -999,6 +1016,7 @@ Validated during PV6-02-008 agent run:
 - **Disposition:** **FIXED** — Regenerated baseline via `npm run security:generate-checksums`. 68/68 files now verified.
 
 #### NOTE: settings-integrity.js Reports 55 Hooks (Baseline: 54)
+
 - **Severity:** Informational
 - **Description:** The `settings-integrity.js` validator independently reports 55 hooks vs 54 baseline.
 - **Impact:** The extra hook is `reference-validator/cli.js` added to SessionStart during v6 upgrade Phase 1. This is an intentional addition, not drift.
@@ -1075,6 +1093,7 @@ Validated during PV6-02-008 agent run:
 *No failures found in Phase 6.* All 5 macOS checks passed on first attempt without fixes.
 
 #### EXCLUSION NOTE: Ubuntu and Windows
+
 - **PV6-06-001 (Ubuntu)** and **PV6-06-003 (Windows)** excluded per user directive.
 - macOS is the primary development platform. Ubuntu/Windows validation deferred to CI pipeline.
 
@@ -1164,6 +1183,7 @@ Validated during PV6-02-008 agent run:
 *No failures found in Phase 7.* All 9 checks passed without fixes.
 
 #### NOTE: RSS Variance in Memory Check
+
 - **Severity:** Informational
 - **Description:** RSS measured at 54.70 MB vs Phase 2 baseline of 46.5 MB (17.6% above). However, RSS includes OS-level overhead (shared libraries, mapped files, kernel buffers) that varies between process invocations.
 - **Impact:** None — heap used (the meaningful application metric) is actually 9.5% *lower* than baseline.
@@ -1265,7 +1285,7 @@ Validated during PV6-02-008 agent run:
 - **Severity:** P0 (blocks disambiguation resolution)
 - **Discovered in:** PV6-08-001 checks 2-3
 - **File:** `_bmad/core/routing/slash-command-router.js`
-- **Description:** The `parseSimpleYaml()` function used `contentPart.indexOf(':')` to find the key-value separator. For YAML keys containing colons (e.g., `bmm:quick-dev:`), it split at the first colon instead of the first `: ` (colon-space), producing `key=bmm`, `value=quick-dev:` instead of `key=bmm:quick-dev`, `value=""`. This caused all 26 module-prefixed aliases to fail to load from the real YAML file. Unit tests passed because they use `loadFromMap()` which bypasses the YAML parser entirely.
+- **Description:** The `parseSimpleYaml()` function used `contentPart.indexOf(':')` to find the key-value separator. For YAML keys containing colons (e.g., `bmm:quick-dev:`), it split at the first colon instead of the first `:` (colon-space), producing `key=bmm`, `value=quick-dev:` instead of `key=bmm:quick-dev`, `value=""`. This caused all 26 module-prefixed aliases to fail to load from the real YAML file. Unit tests passed because they use `loadFromMap()` which bypasses the YAML parser entirely.
 - **Three fixes applied:**
   1. **Key-value splitting**: Changed from `indexOf(':')` to `indexOf(': ')` with trailing `:` fallback — standard YAML uses colon-space as separator
   2. **List item objects**: List items with `key: value` patterns now create objects and track on stack for continuation lines (e.g., `target:`, `module:`, `description:` under an `- alias: "game:quick-dev"` entry)
@@ -1637,6 +1657,7 @@ Validated during PV6-02-008 agent run:
 **Result: 4/4 PASS**
 
 **Key Evidence:**
+
 - `src/utility/normalize-line-endings.js` + `.cjs` — dual format ESM/CJS for both YAML libraries
 - `src/utility/version-checker.js` — npm registry lookup with 24h cache, CI/env suppression
 - `package.json` engines `>=20.0.0`, `.nvmrc`, all 5 CI workflows at Node 20
@@ -1664,6 +1685,7 @@ Validated during PV6-02-008 agent run:
 **Result: 4/4 PASS (1 fix applied: merge path documentation added)**
 
 **Fix Applied:**
+
 - Added "Future Merge Strategy for Adapted Features" section to `Docs/05-project-management/HYBRID-V6-UPGRADE-PLAN.md` Appendix 0 (after "Risk of Divergence" section). Documents merge path for all 4 adapted features with specific re-integration strategies.
 
 ---
@@ -1716,6 +1738,7 @@ Validated during PV6-02-008 agent run:
 | **TOTAL** | **26** | **26** | **0** | **1** |
 
 **Fix Applied:**
+
 1. **PV6-11-003 Check 4 — Merge Path Documentation**: Added "Future Merge Strategy for Adapted Features" section to `Docs/05-project-management/HYBRID-V6-UPGRADE-PLAN.md` (Appendix 0). Documents re-integration strategy for all 4 adapted features (slash routing, help generator, path sanitizer, help project docs).
 
 ---

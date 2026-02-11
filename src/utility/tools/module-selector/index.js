@@ -21,7 +21,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 import chalk from 'chalk';
-import inquirer from 'inquirer';
+import { select, confirm } from '../../cli/prompts.js';
 
 // Import module-selector components
 import {
@@ -130,17 +130,12 @@ async function promptForRole() {
     };
   });
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'role',
-      message: 'What is your primary role?',
-      choices: roleChoices,
-      pageSize: 10
-    }
-  ]);
+  const role = await select({
+    message: 'What is your primary role?',
+    choices: roleChoices
+  });
 
-  return answer.role;
+  return role;
 }
 
 /**
@@ -233,16 +228,12 @@ export async function runModuleSelector(options = {}) {
   console.log(chalk.bold('═══════════════════════════════════════════════════════════════\n'));
 
   // Step 7: Confirm selection
-  const confirmAnswer = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirm',
-      message: 'Proceed with this selection?',
-      default: true
-    }
-  ]);
+  const confirmResult = await confirm({
+    message: 'Proceed with this selection?',
+    initialValue: true
+  });
 
-  if (!confirmAnswer.confirm) {
+  if (!confirmResult) {
     console.log(chalk.yellow('\nSelection cancelled. Run `npm run modules` to try again.\n'));
     return { selectedModules: [], configuredModules: [] };
   }
@@ -281,16 +272,12 @@ export async function runModuleSelector(options = {}) {
       console.log();
 
       // Prompt to configure now
-      const configAnswer = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'configure',
-          message: 'Would you like to configure these modules now?',
-          default: true
-        }
-      ]);
+      const configureResult = await confirm({
+        message: 'Would you like to configure these modules now?',
+        initialValue: true
+      });
 
-      if (configAnswer.configure) {
+      if (configureResult) {
         const selectedModuleObjects = selectedModuleCodes.map(code => findModuleByCode(modules, code)).filter(Boolean);
         const unconfiguredModules = selectedModuleObjects.filter(m =>
           configStatus.unconfigured.includes(m.code)

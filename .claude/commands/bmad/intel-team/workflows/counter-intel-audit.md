@@ -6,4 +6,4 @@ description: Turn intelligence capabilities inward to assess organization own ex
 # Counter Intel Audit
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/counter-intel-audit/workflow.md`
+`@src/intel-team/workflows/counter-intel-audit/workflow.md`

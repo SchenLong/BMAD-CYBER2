@@ -285,7 +285,7 @@ describe('Security Tier Definitions - INST-007', () => {
       const paths = getValidatorPaths('auth');
       expect(Array.isArray(paths)).toBe(true);
       expect(paths).toHaveLength(1);
-      expect(paths[0]).toBe('_bmad/core/security/authorization.js');
+      expect(paths[0]).toBe('src/core/security/authorization.js');
     });
 
     it('should return array for multi-path feature', () => {

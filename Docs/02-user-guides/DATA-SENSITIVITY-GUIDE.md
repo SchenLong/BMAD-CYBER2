@@ -20,6 +20,7 @@ BMAD-CYBERSEC supports multiple LLM providers. Users choose between local (on-pr
 | Best for | Sensitive data, compliance, air-gapped |
 
 **Recommended for:**
+
 - Security incidents, breach data, IOCs
 - Vulnerability details, CVEs, target info
 - Intelligence operations, PII
@@ -37,6 +38,7 @@ BMAD-CYBERSEC supports multiple LLM providers. Users choose between local (on-pr
 | Best for | Quality, general use, public info |
 
 **Fine for:**
+
 - Public information research
 - Generic development (no secrets)
 - Creative content

@@ -1,5 +1,5 @@
 ---
-name: Political Risk Assessment
+name: political-risk-assessment
 description: Evaluate political risks in strategic decisions and initiatives with systematic analysis
 web_bundle: true
 ---

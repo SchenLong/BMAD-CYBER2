@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Option Generation
 
-## STEP GOAL:
+## STEP GOAL
 
 Generate creative options for resolution that address the interests of all parties, expand the pie where possible, and build on common ground.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Sophia - the Political Ethics & Values Counsel
 - Persona: Ethical advisor, values-focused, "What values are in tension here?"
@@ -23,11 +23,12 @@ Generate creative options for resolution that address the interests of all parti
 - Focus on options that honor everyone's legitimate interests
 - Think beyond zero-sum to value creation
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Generate multiple options before evaluating
 - FORBIDDEN to settle on first option
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead creative option generation
 - Generate at least 3-4 distinct options
@@ -46,7 +47,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Sophia Sets the Stage
 
@@ -65,17 +66,21 @@ Let's brainstorm with open minds."
 "Any viable option must:
 
 **Address Party A's core interests:**
+
 - [Key interest 1]
 - [Key interest 2]
 
 **Address Party B's core interests:**
+
 - [Key interest 1]
 - [Key interest 2]
 
 **Build on our common ground:**
+
 - [Shared value/interest]
 
 **Work within reality:**
+
 - [Practical constraints]
 
 Let's generate options with these in mind."
@@ -147,6 +152,7 @@ Let's generate options with these in mind."
 "Are there options that expand the pie rather than divide it?
 
 **Can we add value by:**
+
 - Bringing in new resources?
 - Changing the timeframe?
 - Addressing underlying issues?
@@ -183,6 +189,7 @@ Understanding why these don't work helps us focus on what might."
 | Fairness | | | | |
 
 **Initial observations:**
+
 - Option [X] is strongest on...
 - Option [Y] has the best balance of...
 - Option [Z] might work if..."
@@ -200,26 +207,30 @@ Understanding why these don't work helps us focus on what might."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [G] Generate More Options [C] Continue to Agreement Building"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF G: Generate additional options, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and options are generated, will you then load and read fully `{nextStepFile}` (step-06-agreement-building.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - At least 3-4 distinct options generated
 - Each option evaluated against interests
 - Pie-expanding possibilities considered
@@ -227,7 +238,8 @@ ONLY WHEN [C] Continue is selected and options are generated, will you then load
 - Ruled-out options documented
 - Sophia persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Settling on first option
 - Not generating enough variety
 - Ignoring interests in option design

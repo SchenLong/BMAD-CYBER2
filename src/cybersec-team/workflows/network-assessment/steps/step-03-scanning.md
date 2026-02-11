@@ -10,24 +10,26 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 
 # Step 3: Port Scanning & Service Enumeration
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide scanning, collect results, document findings
 
-## SCANNING SEQUENCE:
+## SCANNING SEQUENCE
 
 ### 1. TCP Port Scanning
 
 "Let's perform comprehensive port scanning.
 
 **Scanning Approaches:**
+
 - **Fast Scan**: Top 1000 ports for quick overview
 - **Full Scan**: All 65535 ports for thorough assessment
 - **Targeted Scan**: Specific ports based on service interest
 
 **Recommended Nmap Commands:**
+
 ```bash
 # Fast scan with service detection
 nmap -sS -sV -T4 --top-ports 1000 <target>
@@ -49,6 +51,7 @@ What TCP scanning results do you have?"
 "UDP services often overlooked but critical.
 
 **Key UDP Ports:**
+
 - 53 (DNS)
 - 67/68 (DHCP)
 - 69 (TFTP)
@@ -59,6 +62,7 @@ What TCP scanning results do you have?"
 - 1900 (SSDP)
 
 **UDP Scanning:**
+
 ```bash
 # Top UDP ports
 nmap -sU --top-ports 100 <target>
@@ -76,25 +80,30 @@ What UDP services have you discovered?"
 **Per-Service Enumeration:**
 
 **SSH (22):**
+
 - Version detection
 - Supported algorithms
 - Banner grabbing
 
 **HTTP/HTTPS (80/443):**
+
 - Web technology detection
 - Virtual host enumeration
 - Directory brute forcing
 
 **SMB (445):**
+
 - Share enumeration
 - Null session testing
 - Version detection
 
 **SNMP (161):**
+
 - Community string testing
 - MIB walking
 
 **Database Ports:**
+
 - MySQL (3306)
 - PostgreSQL (5432)
 - MSSQL (1433)
@@ -107,12 +116,14 @@ What service enumeration have you completed?"
 "Let's fingerprint operating systems.
 
 **OS Detection Methods:**
+
 - TCP/IP stack fingerprinting
 - Banner analysis
 - Response timing analysis
 - Service behavior
 
 **Commands:**
+
 ```bash
 # Nmap OS detection
 nmap -O --osscan-guess <target>
@@ -128,6 +139,7 @@ What OS information have you gathered?"
 "Nmap Scripting Engine for deeper enumeration.
 
 **Useful Script Categories:**
+
 - `default`: Safe, useful scripts
 - `discovery`: Information gathering
 - `vuln`: Vulnerability detection
@@ -135,6 +147,7 @@ What OS information have you gathered?"
 - `brute`: Brute force attacks
 
 **Script Examples:**
+
 ```bash
 # Default scripts
 nmap -sC <target>
@@ -199,6 +212,7 @@ Append to {outputFile} Section 3:
 "**Scanning Complete**
 
 **Summary:**
+
 - [Host count] hosts scanned
 - [Port count] open ports identified
 - [Service count] unique services

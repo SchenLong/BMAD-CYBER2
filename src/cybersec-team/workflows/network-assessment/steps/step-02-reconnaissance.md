@@ -10,19 +10,20 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 
 # Step 2: Network Reconnaissance
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Ask questions, gather information, then document
 
-## RECONNAISSANCE SEQUENCE:
+## RECONNAISSANCE SEQUENCE
 
 ### 1. Passive Reconnaissance
 
 "Let's start with passive information gathering.
 
 **External Intelligence (for external tests):**
+
 - DNS records (A, MX, NS, TXT, CNAME)
 - WHOIS information
 - ASN and IP block ownership
@@ -31,6 +32,7 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 - Public breach databases
 
 **OSINT Sources:**
+
 - Company website and subdomains
 - Job postings (technology hints)
 - GitHub/GitLab repositories
@@ -43,17 +45,20 @@ What passive reconnaissance have you gathered or want me to guide you through?"
 "Let's enumerate DNS infrastructure.
 
 **DNS Discovery:**
+
 - Zone transfer attempts (AXFR)
 - Subdomain enumeration
 - Reverse DNS lookups
 - DNS record analysis
 
 **Recommended Tools:**
+
 - `dig`, `nslookup`, `host`
 - Sublist3r, Amass, subfinder
 - DNSRecon, fierce
 
 **Key Questions:**
+
 - Mail servers identified?
 - Cloud services in use (AWS, Azure, GCP)?
 - CDN providers?
@@ -66,12 +71,14 @@ What DNS enumeration results do you have?"
 "Let's understand network topology.
 
 **Discovery Methods:**
+
 - Traceroute analysis
 - BGP routing information
 - Network diagrams (if provided)
 - SNMP enumeration (if accessible)
 
 **Key Elements:**
+
 - Perimeter devices (firewalls, routers)
 - DMZ architecture
 - Internal network segments
@@ -85,12 +92,14 @@ What network topology information is available?"
 "Before detailed scanning, let's identify live hosts.
 
 **Discovery Techniques:**
+
 - ICMP ping sweep
 - TCP SYN ping (ports 80, 443)
 - ARP scanning (internal)
 - UDP probing
 
 **Recommended Commands:**
+
 ```bash
 # Nmap ping sweep
 nmap -sn -PE -PP -PM <target_range>
@@ -142,6 +151,7 @@ Append to {outputFile} Section 2:
 "**Reconnaissance Complete**
 
 **Identified:**
+
 - [Domain count] domains/subdomains
 - [Host count] live hosts
 - [Key finding]

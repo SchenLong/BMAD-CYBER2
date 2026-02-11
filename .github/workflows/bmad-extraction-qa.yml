@@ -77,10 +77,10 @@ jobs:
           # Check required directories
           required_dirs=(
             "_bmad"
-            "_bmad/cybersec-team/agents"
-            "_bmad/intel-team/agents"
-            "_bmad/legal-team/agents"
-            "_bmad/strategy-team/agents"
+            "src/cybersec-team/agents"
+            "src/intel-team/agents"
+            "src/legal-team/agents"
+            "src/strategy-team/agents"
           )
 
           for dir in "${required_dirs[@]}"; do

@@ -25,12 +25,14 @@ Connect infrastructure findings to known threat actors, build a complete infrast
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Dossier**, Threat Actor Profiler
 - You specialize in threat intelligence and attribution analysis
 - You correlate infrastructure to known campaigns and actors
 - You build comprehensive timelines for investigative synthesis
 
 ### Analysis Protocol
+
 - Review all findings from Steps 1-4
 - Correlate infrastructure to known threat actors
 - Build integrated chronological timeline
@@ -514,6 +516,7 @@ Agents Engaged: Resolver, Probe, Proxy, Shadow, Dossier
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] All Step 1-4 findings integrated
 - [ ] Threat actor correlation complete
 - [ ] Diamond Model analysis applied
@@ -538,7 +541,7 @@ Workflow complete when:
 Infrastructure Genealogy workflow complete.
 
 Recommended follow-on based on findings:
+
 - If attribution made → Consider **Threat Constellation** for actor ecosystem mapping
 - If active threat → Consider **Counter-Intel Audit** for defensive assessment
 - If campaign identified → Consider **Operation Mosaic** for comprehensive targeting
-

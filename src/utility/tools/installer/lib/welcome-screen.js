@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
+import { select, text } from '../../../cli/prompts.js';
 import chalk from 'chalk';
 
 import { VALID_ROLES } from '../../module-selector/role-recommendations.js';
@@ -136,16 +136,15 @@ export function displayWelcome(options = {}) {
  * @returns {Promise<string>} User's name
  */
 export async function promptForUserName() {
-  const answer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'What is your name?',
-      validate: validateName
+  const name = await text({
+    message: 'What is your name?',
+    validate: (value) => {
+      const result = validateName(value);
+      return result === true ? undefined : result;
     }
-  ]);
+  });
 
-  return answer.name.trim();
+  return name.trim();
 }
 
 /**
@@ -154,17 +153,16 @@ export async function promptForUserName() {
  * @returns {Promise<string>} User's email or empty string
  */
 export async function promptForEmail() {
-  const answer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'email',
-      message: 'What is your email address? (optional)',
-      validate: validateEmail,
-      default: ''
-    }
-  ]);
+  const email = await text({
+    message: 'What is your email address? (optional)',
+    validate: (value) => {
+      const result = validateEmail(value);
+      return result === true ? undefined : result;
+    },
+    default: ''
+  });
 
-  return answer.email.trim();
+  return email.trim();
 }
 
 /**
@@ -188,17 +186,12 @@ export function buildRoleChoices() {
 export async function promptForRole() {
   const choices = buildRoleChoices();
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'role',
-      message: 'What is your primary role?',
-      choices,
-      pageSize: 10
-    }
-  ]);
+  const role = await select({
+    message: 'What is your primary role?',
+    choices
+  });
 
-  return answer.role;
+  return role;
 }
 
 /**
@@ -207,16 +200,12 @@ export async function promptForRole() {
  * @returns {Promise<string>} Organization name or empty string
  */
 export async function promptForOrganization() {
-  const answer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'organization',
-      message: 'What is your organization/team? (optional)',
-      default: ''
-    }
-  ]);
+  const organization = await text({
+    message: 'What is your organization/team? (optional)',
+    default: ''
+  });
 
-  return answer.organization.trim();
+  return organization.trim();
 }
 
 /**

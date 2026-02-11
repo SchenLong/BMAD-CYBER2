@@ -18,13 +18,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4B: Evidence Collection
 
-## STEP GOAL:
+## STEP GOAL
 
 To guide forensic-quality evidence collection with proper chain of custody, hash verification, and IOC extraction for investigation and potential legal proceedings.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER skip chain of custody documentation
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -32,14 +32,14 @@ To guide forensic-quality evidence collection with proper chain of custody, hash
 - 📋 YOU ARE AN INCIDENT COMMANDER guiding forensic evidence collection
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an Incident Commander
 - ✅ Tone: Calm, directive, methodical
 - ✅ Evidence integrity is CRITICAL for legal proceedings
 - ✅ Chain of custody must be complete and defensible
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on evidence collection
 - 🚫 FORBIDDEN to start analysis (that's step 5b)
@@ -47,7 +47,7 @@ To guide forensic-quality evidence collection with proper chain of custody, hash
 - 📝 Document chain of custody meticulously
 - 🔐 Hash everything (SHA-256)
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Collect memory dumps, disk images, logs, network captures
 - 💾 Append to Section 4 (Evidence Collected) in output file
@@ -55,7 +55,7 @@ To guide forensic-quality evidence collection with proper chain of custody, hash
 - 📖 Update frontmatter `stepsCompleted: [1, 2b, 3b, 4b]` before proceeding
 - 🚫 Present menu (P/W/C) after evidence collection complete
 
-## EVIDENCE COLLECTION SEQUENCE:
+## EVIDENCE COLLECTION SEQUENCE
 
 ### 1. Evidence Collection Overview
 
@@ -66,6 +66,7 @@ Display:
 **Incident:** {incident-id} - {incident-type}
 
 **Evidence Collection Priorities:**
+
 1. **Volatile data first** (memory dumps - lost when powered off)
 2. **Disk images** (selective - critical systems only)
 3. **Logs** (SIEM, EDR, application logs)
@@ -73,6 +74,7 @@ Display:
 5. **Screenshots and documentation**
 
 **Chain of Custody Requirements:**
+
 - Evidence item description
 - Filename and storage location
 - SHA-256 hash
@@ -122,6 +124,7 @@ Your choice (1-5):"
 **For each affected system:**
 
 **System 1:** {hostname-1}
+
 - **Memory dump filename:** {hostname-1}_memory_{timestamp}.mem
 - **Collection timestamp:** {prompt-for-timestamp}
 - **SHA-256 hash:** {prompt-for-hash}
@@ -182,6 +185,7 @@ sudo dcfldd if=/dev/sda of={hostname}_disk.dd hash=sha256 bs=64K
 **For each system:**
 
 **System:** {hostname}
+
 - **Disk image filename:** {hostname}_disk_{timestamp}.dd
 - **Collection timestamp:** {prompt-for-timestamp}
 - **SHA-256 hash:** {prompt-for-hash}
@@ -202,6 +206,7 @@ Logs are critical for timeline reconstruction and IOC identification.
 **Log Collection Checklist:**
 
 **SIEM Logs:**
+
 - [ ] Export all logs for affected systems
 - [ ] Time range: {incident-start} to {current-time}
 - [ ] Export format: CSV or JSON (preserves fields)
@@ -209,6 +214,7 @@ Logs are critical for timeline reconstruction and IOC identification.
 **What SIEM platform? {prompt-for-platform}**
 
 **SIEM Export:**
+
 - **Export filename:** {incident-id}_siem_logs_{timestamp}.{format}
 - **Time range:** {start} to {end}
 - **Systems included:** {affected-systems}
@@ -217,12 +223,14 @@ Logs are critical for timeline reconstruction and IOC identification.
 - **Storage location:** {prompt-for-path}
 
 **EDR Logs:**
+
 - [ ] Export endpoint telemetry for affected systems
 - [ ] Time range: {incident-start} to {current-time}
 
 **What EDR platform? {prompt-for-platform}**
 
 **EDR Export:**
+
 - **Export filename:** {incident-id}_edr_logs_{timestamp}.{format}
 - **Time range:** {start} to {end}
 - **Endpoints included:** {affected-systems}
@@ -230,19 +238,23 @@ Logs are critical for timeline reconstruction and IOC identification.
 - **Collected by:** {prompt-for-name}
 
 **Firewall Logs:**
+
 - [ ] Export firewall logs for IOC connections
 - [ ] Focus on: {malicious-ips-from-step-2b}
 
 **Firewall Export:**
+
 - **Export filename:** {incident-id}_firewall_logs_{timestamp}.log
 - **SHA-256 hash:** {prompt-for-hash}
 
 **Application Logs:**
+
 - [ ] Affected application logs (web servers, databases, etc.)
 
 **For each application:**
 
 **Application:** {app-name}
+
 - **Log location:** {path}
 - **Log filename:** {app}_logs_{timestamp}.log
 - **SHA-256 hash:** {prompt-for-hash}
@@ -266,6 +278,7 @@ Do you have network packet captures (PCAPs) for the incident timeframe? (Y/N):"*
 **For each PCAP:**
 
 **PCAP File:** {filename}
+
 - **Time range:** {start} to {end}
 - **Capture interface:** {interface}
 - **File size:** {size}
@@ -282,6 +295,7 @@ Do you have network packet captures (PCAPs) for the incident timeframe? (Y/N):"*
 "**SCREENSHOTS AND DOCUMENTATION**
 
 Capture screenshots of:
+
 - Malicious activity (if visible)
 - Alert dashboards
 - EDR detections
@@ -294,6 +308,7 @@ Capture screenshots of:
 **For each screenshot:**
 
 **Screenshot:** {description}
+
 - **Filename:** {incident-id}_screenshot_{number}.png
 - **Timestamp:** {when-captured}
 - **SHA-256 hash:** {prompt-for-hash}
@@ -363,6 +378,7 @@ For legal defensibility, we need complete chain of custody documentation.
 I'm creating a chain of custody document for all evidence collected.
 
 **Chain of Custody Summary:**
+
 - **Incident ID:** {incident-id}
 - **Evidence Custodian:** {primary-custodian-name}
 - **Evidence Count:** {total-items-collected}
@@ -511,13 +527,13 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [P] Party Mode [W] Web-Browsing [C] Continue to Analysis
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After Party Mode or Web-Browsing execution, return to this menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF P: Execute {partyModeWorkflow} - Recommend Trace (forensic expert) for evidence review and additional collection guidance
 - IF W: Offer web search options:
@@ -535,7 +551,7 @@ ONLY WHEN C is selected and all evidence is collected will you load, read entire
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Evidence collection prioritized (volatile first)
 - Chain of custody documented for every item
@@ -547,7 +563,7 @@ ONLY WHEN C is selected and all evidence is collected will you load, read entire
 - Frontmatter updated with stepsCompleted: [1, 2b, 3b, 4b]
 - Menu presented (P/W/C)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping chain of custody documentation (evidence inadmissible)
 - Missing SHA-256 hashes (integrity not verifiable)

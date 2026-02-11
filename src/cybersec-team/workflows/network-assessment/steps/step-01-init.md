@@ -11,7 +11,7 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 
 # Step 1: Network Security Assessment Initialization
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
@@ -22,13 +22,14 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 IF {outputFile} exists: Load and follow {continueStepFile}
 IF NOT: Continue with fresh initialization below
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Assessment Welcome
 
 "Welcome to the Network Security Assessment workflow. I'm Cipher, your network security specialist.
 
 This comprehensive assessment covers:
+
 - Network reconnaissance and discovery
 - Port scanning and service enumeration
 - Vulnerability identification
@@ -44,16 +45,19 @@ Let's define your assessment scope."
 "Please provide network details:
 
 **Target Network(s):**
+
 - IP ranges (CIDR notation)
 - Excluded IPs/ranges
 - Critical systems to handle carefully
 
 **Environment:**
+
 - Production / Staging / Lab
 - Network type (Corporate, Cloud, Hybrid)
 - Known network devices (firewalls, routers, switches)
 
 **Access:**
+
 - Testing position (internal/external)
 - VPN access provided?
 - Credentials for authenticated testing?
@@ -65,6 +69,7 @@ What's your target network?"
 "What should we focus on?
 
 **Testing Areas:**
+
 - [ ] External perimeter testing
 - [ ] Internal network assessment
 - [ ] Wireless security
@@ -74,6 +79,7 @@ What's your target network?"
 - [ ] Active Directory (if Windows environment)
 
 **Constraints:**
+
 - Aggressive scanning allowed?
 - Exploitation authorized?
 - Time windows/blackout periods?
@@ -86,11 +92,13 @@ What's in scope?"
 "Let's clarify the rules of engagement:
 
 **Authorization:**
+
 - Written authorization obtained?
 - Emergency contacts?
 - Escalation procedures?
 
 **Boundaries:**
+
 - DoS/availability impact acceptable?
 - Data exfiltration testing allowed?
 - Social engineering combined?

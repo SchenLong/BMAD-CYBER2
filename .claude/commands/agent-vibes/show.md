@@ -5,6 +5,7 @@ description: Restore all hidden AgentVibes slash commands to the command list
 You are about to restore all hidden AgentVibes slash commands.
 
 **What this does:**
+
 - Moves all AgentVibes commands from `.claude/.agentvibes-backup/` back to `.claude/commands/agent-vibes/`
 - Restores full command visibility
 - Removes the hidden state flag
@@ -18,6 +19,7 @@ You are about to restore all hidden AgentVibes slash commands.
    - Stop execution
 
 2. **Check if backup directory exists:**
+
    ```bash
    if [ ! -d ".claude/.agentvibes-backup" ]; then
      echo "⚠️ Backup directory not found. Commands may not have been properly hidden."
@@ -26,17 +28,20 @@ You are about to restore all hidden AgentVibes slash commands.
    ```
 
 3. **Restore all command files:**
+
    ```bash
    mv .claude/.agentvibes-backup/* .claude/commands/agent-vibes/
    rmdir .claude/.agentvibes-backup
    ```
 
 4. **Remove the hidden state flag:**
+
    ```bash
    rm -f .claude/.agentvibes-hidden.flag
    ```
 
 5. **Display success message:**
+
    ```
    ✅ AgentVibes commands restored successfully!
 
@@ -51,6 +56,7 @@ You are about to restore all hidden AgentVibes slash commands.
    ```
 
 **Commands that will be restored:**
+
 - add.md
 - agent-vibes.md
 - agent.md

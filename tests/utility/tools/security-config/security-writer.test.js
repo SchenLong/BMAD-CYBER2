@@ -40,7 +40,7 @@ const __dirname = path.dirname(__filename);
 
 // Test fixtures
 const MOCK_PROJECT_ROOT = path.join(__dirname, '__test_fixtures_security__');
-const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, '_bmad/core/security');
+const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, 'src/core/security');
 
 // Setup and teardown
 function setupTestFixtures() {
@@ -65,7 +65,7 @@ describe('Security Configuration Writer - INST-009', () => {
 
   describe('Constants', () => {
     it('should have correct config path', () => {
-      expect(SECURITY_CONFIG_PATH).toBe('_bmad/core/security/security-config.yaml');
+      expect(SECURITY_CONFIG_PATH).toBe('src/core/security/security-config.yaml');
     });
 
     it('should have version string', () => {

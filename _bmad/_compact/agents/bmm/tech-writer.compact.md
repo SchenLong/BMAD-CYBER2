@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmm/agents/tech-writer.md
+# Full agent: src/bmm/agents/tech-writer.md
 agent_id: "tech-writer"
 name: "Paige"
 title: "Technical Writer"

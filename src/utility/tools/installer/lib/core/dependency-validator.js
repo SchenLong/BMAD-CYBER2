@@ -23,7 +23,7 @@ class DependencyValidator {
       strictValidation: options.strictValidation !== false,
       allowPrerelease: options.allowPrerelease || false,
       compatibilityMatrixPath: options.compatibilityMatrixPath,
-      coreModulePath: options.coreModulePath || '_bmad/core',
+      coreModulePath: options.coreModulePath || 'src/core',
       ...options
     };
 

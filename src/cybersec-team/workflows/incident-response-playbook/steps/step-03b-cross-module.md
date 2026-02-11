@@ -12,13 +12,14 @@ crisisResponseWorkflow: '{project-root}/_bmad/strategy-team/workflows/crisis-res
 
 # Step 3b: Cross-Module Activation (Mode B - Guided Execution)
 
-## STEP GOAL:
+## STEP GOAL
 
 During active incident response, evaluate when to bring in cross-module expertise for legal obligations, communications, and threat intelligence support.
 
-### Activation Triggers:
+### Activation Triggers
 
 This step should be invoked from Mode B (Guided Execution) when:
+
 - Severity is HIGH or CRITICAL
 - Personal data may be affected (GDPR/HIPAA implications)
 - External communications may be required
@@ -27,7 +28,7 @@ This step should be invoked from Mode B (Guided Execution) when:
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### 1. Real-Time Assessment
 
@@ -36,6 +37,7 @@ This step should be invoked from Mode B (Guided Execution) when:
 "Phoenix here. While containment proceeds, I'm assessing cross-module needs:
 
 **Current Incident Status:**
+
 - Severity: [CRITICAL/HIGH/MEDIUM/LOW]
 - Containment: [In Progress/Achieved/Partial]
 - Data Impact: [Confirmed/Suspected/None]
@@ -65,6 +67,7 @@ Current time: [timestamp]
 Hours remaining: [X]
 
 **Immediate Action Required:**
+
 - [ ] Confirm if personal data is affected
 - [ ] Document breach discovery timestamp
 - [ ] Engage Legal team (Covenant) for notification assessment
@@ -107,6 +110,7 @@ Use when: Contained incident, no external implications
 "Establishing incident war room coordination:
 
 **Communication Cadence:**
+
 - Technical updates: Every [1/2/4] hours to all participants
 - Status sync: [time] daily
 - Ad-hoc: Any participant can call immediate sync
@@ -126,6 +130,7 @@ All ──► Shared War Room Log: {output_folder}/security/incident-{incident_i
 ```
 
 **Decision Authority:**
+
 - Technical containment: Phoenix (IC) decides
 - Legal notifications: Covenant recommends, Executive approves
 - Public statements: Giuseppe drafts, Legal + Executive approve
@@ -196,6 +201,7 @@ After cross-module coordination is established, return to `{returnToFile}` (step
 
 **Link to Crisis Response Planning:**
 If business impact warrants dedicated communications track:
+
 1. Launch `crisis-response-planning` workflow in parallel
 2. Giuseppe coordinates between tracks
 3. Technical facts flow to Crisis Response for communications
@@ -207,7 +213,7 @@ Location: `{output_folder}/security/incident-{incident_id}/timeline.md`
 
 ---
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - Cross-module need assessed within 10 minutes of severity determination
 - GDPR/regulatory deadlines identified and tracked

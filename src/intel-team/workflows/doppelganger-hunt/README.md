@@ -15,6 +15,7 @@
 ## Purpose
 
 Detect and analyze fake, impersonation, or sock puppet accounts:
+
 - Impersonation detection
 - Sock puppet identification
 - Bot account analysis

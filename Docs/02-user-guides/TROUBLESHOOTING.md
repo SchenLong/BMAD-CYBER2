@@ -29,6 +29,7 @@ node _bmad/core/security/check-authorization.js
 ### "Token not found" or "Token expired"
 
 **Symptoms:**
+
 - Authentication errors on session start
 - "No valid token" message
 
@@ -45,12 +46,14 @@ node _bmad/core/security/generate-token.js
 ### "Invalid token"
 
 **Symptoms:**
+
 - Token exists but validation fails
 - Encryption/decryption errors
 
 **Solutions:**
 
 1. **Regenerate token and key:**
+
    ```bash
    # Remove old files
    rm .bmad-token .bmad-key
@@ -60,6 +63,7 @@ node _bmad/core/security/generate-token.js
    ```
 
 2. **Check file permissions:**
+
    ```bash
    ls -la .bmad-token .bmad-key
    # Should be readable by current user
@@ -68,6 +72,7 @@ node _bmad/core/security/generate-token.js
 ### "Token will expire soon"
 
 **Symptoms:**
+
 - Warning about token expiration
 
 **Solution:**
@@ -84,6 +89,7 @@ node _bmad/core/security/quick-token.cjs "YourName" "role" 720  # 30 days
 ### "Access Denied" for Module/Agent/Workflow
 
 **Symptoms:**
+
 ```
 ACCESS DENIED
 
@@ -94,16 +100,19 @@ intel_analyst, security_lead, admin
 **Solutions:**
 
 1. **Check current roles:**
+
    ```bash
    node _bmad/core/security/check-authorization.js
    ```
 
 2. **Generate token with correct role:**
+
    ```bash
    node _bmad/core/security/quick-token.cjs "YourName" "security_lead" 168
    ```
 
 3. **Check specific access:**
+
    ```bash
    # Check module access
    node _bmad/core/security/check-authorization.js module intel-team
@@ -118,10 +127,12 @@ intel_analyst, security_lead, admin
 ### "Requires verified credentials"
 
 **Symptoms:**
+
 - Access denied to intel-team resources
 - Credential verification message
 
 **Solution:**
+
 - Credential verification must be set when generating the token
 - Contact your administrator for credential-verified tokens
 
@@ -132,6 +143,7 @@ intel_analyst, security_lead, admin
 ### Operation Blocked by Guardrail
 
 **Symptoms:**
+
 ```
 BMAD GUARDRAIL: STRICT BLOCK
 
@@ -141,12 +153,14 @@ Command blocked: rm -rf ./old-files
 **Solutions:**
 
 1. **For legitimate operations, use override:**
+
    ```bash
    export BMAD_ALLOW_DANGEROUS=true
    # Run operation (override consumed after one use)
    ```
 
 2. **Override variables by type:**
+
    | Variable | Use For |
    |----------|---------|
    | `BMAD_ALLOW_DANGEROUS` | Dangerous bash commands |
@@ -162,6 +176,7 @@ Command blocked: rm -rf ./old-files
 ### "ABSOLUTE BLOCK" (Cannot Override)
 
 **Symptoms:**
+
 ```
 BMAD GUARDRAIL: ABSOLUTE BLOCK
 
@@ -169,17 +184,20 @@ This operation is BLOCKED and cannot be overridden.
 ```
 
 **Explanation:**
+
 - Absolute blocks protect against catastrophic operations
 - Examples: `rm -rf /`, `rm -rf ~`, `rm -rf $HOME`
 - These cannot be overridden for safety
 
 **Solution:**
+
 - Refine your command to be more specific
 - Target specific directories within the repository
 
 ### "Rate Limit Exceeded" (OWASP LLM04)
 
 **Symptoms:**
+
 ```
 BMAD GUARDRAIL: RATE LIMIT EXCEEDED
 
@@ -195,11 +213,13 @@ Current: 31
    - Wait for the window to pass (1min, 5min, or 1hr)
 
 2. **Increase limits (if needed):**
+
    ```bash
    export BMAD_RATE_LIMIT_BASH_PER_MIN=50
    ```
 
 3. **Disable rate limiting (not recommended):**
+
    ```bash
    export BMAD_RATE_LIMIT_ENABLED=false
    ```
@@ -207,6 +227,7 @@ Current: 31
 ### "Resource Limit Exceeded" (OWASP LLM04)
 
 **Symptoms:**
+
 ```
 BMAD GUARDRAIL: RESOURCE LIMIT
 
@@ -216,6 +237,7 @@ Memory usage: 2560MB exceeds limit: 2048MB
 **Solutions:**
 
 1. **Increase memory limit:**
+
    ```bash
    export BMAD_MAX_MEMORY_MB=4096
    ```
@@ -225,6 +247,7 @@ Memory usage: 2560MB exceeds limit: 2048MB
    - Check for large file processing
 
 3. **File size limits:**
+
    ```bash
    export BMAD_MAX_FILE_SIZE_MB=200
    ```
@@ -232,6 +255,7 @@ Memory usage: 2560MB exceeds limit: 2048MB
 ### "Recursion Depth Exceeded" (OWASP LLM04)
 
 **Symptoms:**
+
 ```
 BMAD GUARDRAIL: RECURSION LIMIT
 
@@ -251,6 +275,7 @@ Recursion depth: 11 exceeds maximum: 10
 ### "Supply Chain Verification Failed" (OWASP LLM05)
 
 **Symptoms:**
+
 ```
 BMAD GUARDRAIL: SUPPLY CHAIN ALERT
 
@@ -262,6 +287,7 @@ Actual: def456...
 **Solutions:**
 
 1. **If plugin was legitimately updated:**
+
    ```bash
    # Re-sign the manifest
    ./_bmad/core/security/sign-manifest.sh
@@ -273,6 +299,7 @@ Actual: def456...
    - Restore from version control
 
 3. **Disable verification (not recommended):**
+
    ```bash
    export BMAD_VERIFY_SUPPLY_CHAIN=false
    ```
@@ -280,6 +307,7 @@ Actual: def456...
 ### "Plugin Permission Denied" (OWASP LLM07)
 
 **Symptoms:**
+
 ```
 BMAD GUARDRAIL: PERMISSION DENIED
 
@@ -290,6 +318,7 @@ Required permissions: [file:write, bash:execute]
 **Solutions:**
 
 1. **Add permission to manifest:**
+
    ```yaml
    # In plugin's manifest.yaml
    permissions:
@@ -305,6 +334,7 @@ Required permissions: [file:write, bash:execute]
 ### "Low Confidence Score" (OWASP LLM09)
 
 **Symptoms:**
+
 ```
 BMAD CONFIDENCE WARNING
 
@@ -323,6 +353,7 @@ Recommendation: Human review required
    - Narrow the scope of the request
 
 3. **Hide confidence display:**
+
    ```bash
    export BMAD_SHOW_CONFIDENCE=false
    ```
@@ -330,6 +361,7 @@ Recommendation: Human review required
 ### False Positive Detection
 
 **Symptoms:**
+
 - Legitimate content blocked as secrets/PII
 - Test data flagged as sensitive
 
@@ -343,6 +375,7 @@ Recommendation: Human review required
    - `.example` extension
 
 2. **For secrets, use example indicators:**
+
    ```yaml
    # Good - won't be flagged
    api_key: "your_api_key_here"
@@ -351,6 +384,7 @@ Recommendation: Human review required
    ```
 
 3. **For PII, mark as test data:**
+
    ```json
    // In test files
    {
@@ -366,18 +400,21 @@ Recommendation: Human review required
 ### Provider Not Responding
 
 **Symptoms:**
+
 - Timeout errors
 - Connection refused
 
 **Solutions:**
 
 1. **Check provider health:**
+
    ```bash
    .claude/hooks/llm-provider-manager.sh health ollama
    .claude/hooks/llm-provider-manager.sh health-all
    ```
 
 2. **For local providers (Ollama, LM Studio):**
+
    ```bash
    # Check if service is running
    curl http://localhost:11434/api/tags  # Ollama
@@ -385,6 +422,7 @@ Recommendation: Human review required
    ```
 
 3. **Switch to different provider:**
+
    ```bash
    .claude/hooks/llm-provider-manager.sh set claude
    ```
@@ -392,12 +430,14 @@ Recommendation: Human review required
 ### Wrong Provider Being Used
 
 **Symptoms:**
+
 - Module using unexpected provider
 - Data sent to wrong LLM
 
 **Solutions:**
 
 1. **Check current provider:**
+
    ```bash
    .claude/hooks/llm-provider-manager.sh get
    ```
@@ -410,6 +450,7 @@ Recommendation: Human review required
    - Config default
 
 3. **Clear overrides:**
+
    ```bash
    .claude/hooks/llm-provider-manager.sh clear
    ```
@@ -417,11 +458,13 @@ Recommendation: Human review required
 ### "Model not found"
 
 **Symptoms:**
+
 - LLM returns model not found error
 
 **Solutions:**
 
 1. **For Ollama:**
+
    ```bash
    # List available models
    ollama list
@@ -442,6 +485,7 @@ Recommendation: Human review required
 ### "Signature verification failed"
 
 **Symptoms:**
+
 ```
 ERROR: Signature verification failed!
 ```
@@ -449,11 +493,13 @@ ERROR: Signature verification failed!
 **Solutions:**
 
 1. **Import the GPG key:**
+
    ```bash
    gpg --import _bmad/core/security/bmad-public-key.asc
    ```
 
 2. **Check key is imported:**
+
    ```bash
    gpg --list-keys | grep BMAD
    ```
@@ -461,11 +507,13 @@ ERROR: Signature verification failed!
 ### "Hash mismatch detected"
 
 **Symptoms:**
+
 ```
 ERROR: Hash mismatch for file: _bmad/core/agents/security-architect.md
 ```
 
 **Possible causes:**
+
 - File was legitimately modified
 - File was tampered with
 - File encoding changed
@@ -473,6 +521,7 @@ ERROR: Hash mismatch for file: _bmad/core/agents/security-architect.md
 **Solutions:**
 
 1. **For legitimate modifications:**
+
    ```bash
    # Re-sign the manifest (requires private key)
    ./_bmad/core/security/sign-manifest.sh
@@ -486,6 +535,7 @@ ERROR: Hash mismatch for file: _bmad/core/agents/security-architect.md
 ### "Missing files detected"
 
 **Symptoms:**
+
 ```
 ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ```
@@ -493,11 +543,13 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 **Solutions:**
 
 1. **Restore missing file:**
+
    ```bash
    git checkout -- _bmad/cybersec-team/agents/threat-analyst.md
    ```
 
 2. **If file should be removed, update manifest:**
+
    ```bash
    ./_bmad/core/security/sign-manifest.sh
    ```
@@ -509,22 +561,26 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### Workflow Not Found
 
 **Symptoms:**
+
 - Workflow invocation fails
 - "Workflow not found" error
 
 **Solutions:**
 
 1. **Check workflow exists:**
+
    ```bash
    ls _bmad/*/workflows/ | grep <workflow-name>
    ```
 
 2. **Use correct invocation path:**
+
    ```
    /bmad:module:workflows:workflow-name
    ```
 
 3. **Check RBAC access:**
+
    ```bash
    node _bmad/core/security/check-authorization.js workflow <workflow-name>
    ```
@@ -532,6 +588,7 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### Workflow Stuck or Failing
 
 **Symptoms:**
+
 - Workflow doesn't progress
 - Error during execution
 
@@ -543,6 +600,7 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
    - Verify dependencies
 
 2. **Check audit log:**
+
    ```bash
    tail -50 _bmad-output/.audit/audit.log
    ```
@@ -558,18 +616,21 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### Agents Not Responding
 
 **Symptoms:**
+
 - Party mode silent
 - Only one agent responds
 
 **Solutions:**
 
 1. **Check agent access:**
+
    ```bash
    # For each agent in the preset
    node _bmad/core/security/check-authorization.js agent <module>/<agent>
    ```
 
 2. **Verify preset configuration:**
+
    ```bash
    cat _bmad/core/workflows/party-mode/presets/cross-module-groups.yaml
    ```
@@ -581,17 +642,20 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### "Access denied to agent in preset"
 
 **Symptoms:**
+
 - Preset partially works
 - Some agents blocked
 
 **Solutions:**
 
 1. **Check which agents you can access:**
+
    ```bash
    node _bmad/core/security/check-authorization.js
    ```
 
 2. **Build custom team with accessible agents:**
+
    ```
    > PM
    > Custom team: Bastion, Winston, John
@@ -604,18 +668,21 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### Log Not Writing
 
 **Symptoms:**
+
 - Empty audit log
 - Old entries only
 
 **Solutions:**
 
 1. **Check directory permissions:**
+
    ```bash
    ls -la _bmad-output/.audit/
    # Should be writable
    ```
 
 2. **Create directory if missing:**
+
    ```bash
    mkdir -p _bmad-output/.audit
    ```
@@ -623,6 +690,7 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### Log Too Large
 
 **Symptoms:**
+
 - Slow log operations
 - Disk space issues
 
@@ -630,6 +698,7 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 
 1. **Logs auto-rotate at 10MB**
 2. **Manual cleanup (preserve recent):**
+
    ```bash
    # Keep last 1000 lines
    tail -1000 _bmad-output/.audit/audit.log > _bmad-output/.audit/audit.log.tmp
@@ -643,12 +712,14 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### Slow Response Times
 
 **Symptoms:**
+
 - Long wait for responses
 - Timeout errors
 
 **Solutions:**
 
 1. **Switch to faster provider:**
+
    ```bash
    .claude/hooks/llm-provider-manager.sh set groq  # Fastest
    .claude/hooks/llm-provider-manager.sh set claude  # High quality
@@ -662,6 +733,7 @@ ERROR: Missing file: _bmad/cybersec-team/agents/threat-analyst.md
 ### High Resource Usage
 
 **Symptoms:**
+
 - CPU/Memory spikes
 - System slowdown
 

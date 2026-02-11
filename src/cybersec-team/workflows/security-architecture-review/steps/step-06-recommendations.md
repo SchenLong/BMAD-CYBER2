@@ -23,13 +23,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Recommendations & Remediation
 
-## STEP GOAL:
+## STEP GOAL
 
 To synthesize all findings (threats, control gaps, attack surface, zero-trust gaps) into a prioritized risk matrix and develop specific, actionable security recommendations with implementation guidance and a phased remediation roadmap.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -37,7 +37,7 @@ To synthesize all findings (threats, control gaps, attack surface, zero-trust ga
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona) synthesizing findings into actionable guidance
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this role
@@ -47,34 +47,35 @@ To synthesize all findings (threats, control gaps, attack surface, zero-trust ga
 - ✅ Together we create a realistic, actionable remediation plan
 - ✅ Maintain collaborative, solution-focused, practical tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on prioritizing risks and developing specific recommendations
 - 🚫 FORBIDDEN to provide generic recommendations (\"improve security\", \"use encryption\")
 - 💬 Approach: Risk-prioritize, provide specific technical guidance, consider implementation constraints
 - 📋 Recommendations must be actionable by development/operations teams
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Create risk matrix prioritizing all findings
 - 💾 Document recommendations in Section 6 and roadmap in Section 7
 - 📖 Update frontmatter `stepsCompleted` to include 6 before loading next step
 - 🚫 FORBIDDEN to provide vague or generic recommendations
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: All completed sections (Architecture, Threats, Controls, Attack Surface, Zero-Trust)
 - Focus: Risk prioritization and actionable mitigations
 - Limits: Must balance security with business constraints
 - Dependencies: Requires all previous analysis completed
 
-## RECOMMENDATIONS SEQUENCE:
+## RECOMMENDATIONS SEQUENCE
 
 ### 1. Initialize Recommendations Phase
 
 "**Recommendations & Remediation Planning**
 
 We've completed our security analysis:
+
 - ✅ STRIDE threat modeling ([X] threats identified)
 - ✅ Security control assessment ([Y] controls evaluated, [Z] gaps found)
 - ✅ Attack surface analysis (offensive perspective)
@@ -83,6 +84,7 @@ We've completed our security analysis:
 Now let's synthesize these findings into a prioritized risk matrix and actionable recommendations.
 
 Our goals:
+
 1. **Prioritize risks** by likelihood and impact
 2. **Develop specific recommendations** (not generic advice)
 3. **Create phased roadmap** balancing quick wins with strategic initiatives
@@ -91,6 +93,7 @@ Our goals:
 ### 2. Load All Findings
 
 Read {outputFile} to collect:
+
 - Section 3: All STRIDE threats
 - Section 4: Control gaps
 - Section 4 (Attack Surface): High-priority attack vectors (if conducted)
@@ -105,17 +108,20 @@ Read {outputFile} to collect:
 We'll prioritize findings using Likelihood × Impact matrix:
 
 **Likelihood:**
+
 - **High**: Easy to exploit, publicly known techniques, motivated attackers
 - **Medium**: Requires some skill/knowledge, occasional attempts
 - **Low**: Difficult to exploit, requires specialized skills/access
 
 **Impact:**
+
 - **Critical**: Complete system compromise, massive data breach, business shutdown
 - **High**: Significant data exposure, major service disruption, regulatory violations
 - **Medium**: Limited data exposure, temporary service degradation
 - **Low**: Minimal business impact
 
 **Risk Levels (Likelihood × Impact):**
+
 - **Critical**: Immediate action required
 - **High**: Address within 30 days
 - **Medium**: Address within 90 days
@@ -126,6 +132,7 @@ Let's categorize each finding..."
 Work with user to assign likelihood and impact to each threat/gap:
 
 "For each finding, I'll ask:
+
 1. How likely is exploitation? (Consider attacker motivation, difficulty, existing controls)
 2. What's the business impact if successful? (Data breach, downtime, financial loss, compliance)
 
@@ -148,10 +155,12 @@ Prepare risk matrix content organized by severity.
 For each finding, we need SPECIFIC recommendations, not generic advice.
 
 **Good Example:**
+
 - ❌ \"Improve authentication security\"
 - ✅ \"Implement MFA using TOTP (Google Authenticator/Authy) for all user accounts accessing admin panel. Use Auth0 or AWS Cognito for MFA implementation. Enforce MFA via conditional access policies, no exceptions.\"
 
 **Good Example:**
+
 - ❌ \"Use encryption\"
 - ✅ \"Implement TLS 1.3 for all API traffic. Configure mutual TLS (mTLS) for service-to-service communication using certificate-based authentication. Rotate certificates every 90 days via cert-manager in Kubernetes.\"
 
@@ -166,6 +175,7 @@ For each Critical and High risk:
 5. **Final Recommendation:** [Refined based on user input]
 
 Include for each recommendation:
+
 - **Control Type**: Preventive, Detective, Corrective
 - **Implementation Complexity**: Low, Medium, High
 - **Cost**: $ (low), $$ (medium), $$$ (high)
@@ -179,26 +189,31 @@ Include for each recommendation:
 Let's organize recommendations into phases:
 
 **Phase 1: Quick Wins (0-30 days)**
+
 - Low complexity, high impact
 - Immediate risk reduction
 - Build momentum
 
 **Phase 2: Critical Remediations (30-90 days)**
+
 - Address critical/high risks
 - May require budget/resources
 - Significant risk reduction
 
 **Phase 3: Strategic Improvements (90-180 days)**
+
 - Medium risks, architectural changes
 - Zero-trust maturity improvements
 - Long-term security posture
 
 **Phase 4: Continuous Improvement (180+ days)**
+
 - Low risks, nice-to-haves
 - Advanced capabilities
 - Security maturity evolution
 
 For each recommendation, which phase does it belong in? Consider:
+
 - Risk level (Critical/High → earlier phases)
 - Implementation complexity (Quick wins → Phase 1)
 - Dependencies (must X happen before Y?)
@@ -436,6 +451,7 @@ Update {outputFile} Section 7:
 ```
 
 Update frontmatter in {outputFile}:
+
 - Add 6 to `stepsCompleted` array: `stepsCompleted: [1, 2, 3, 4, 5, 6]`
 - Set `lastStep: 'recommendations'`
 - Add `criticalFindings: [count]`
@@ -446,14 +462,14 @@ Update frontmatter in {outputFile}:
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Continue to Final Report
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with prompt: "Review our recommendations for completeness and actionability. Are they specific enough? Do they address root causes? Are there better alternatives? Challenge the implementation approach and timelines."
 - IF P: Execute {partyModeWorkflow} with prompt: "Invite Sentinel (compliance expert) to validate recommendations against compliance requirements, or Phoenix (incident response) to review from operational resilience perspective."
 - IF C: Verify recommendations are specific and actionable, save to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -471,7 +487,7 @@ ONLY WHEN 'C' is selected AND risk matrix is complete AND recommendations are sp
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All findings prioritized by risk (Critical/High/Medium/Low)
 - Risk matrix created with likelihood and impact
@@ -483,7 +499,7 @@ ONLY WHEN 'C' is selected AND risk matrix is complete AND recommendations are sp
 - User validated recommendations are actionable
 - Frontmatter updated with step 6 completion
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Generic recommendations (\"use encryption\", \"improve security\")
 - Missing risk prioritization

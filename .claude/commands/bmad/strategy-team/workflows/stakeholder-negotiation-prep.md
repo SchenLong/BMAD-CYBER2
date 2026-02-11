@@ -6,4 +6,4 @@ description: Prepare for critical negotiations with stakeholder analysis and str
 # Stakeholder Negotiation Prep
 
 Load and follow the workflow at:
-`@_bmad/strategy-team/workflows/stakeholder-negotiation-prep/workflow.md`
+`@src/strategy-team/workflows/stakeholder-negotiation-prep/workflow.md`

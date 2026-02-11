@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
+import { select } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -117,12 +117,12 @@ export function enhanceLocalProviders(detectedProviders) {
 }
 
 /**
- * Creates a separator for inquirer choices
- * @param {string} text - Separator text
- * @returns {Object} Inquirer separator
+ * Creates a separator for select choices
+ * @param {string} label - Separator text
+ * @returns {Object} Separator object
  */
-function createSeparator(text) {
-  return new inquirer.Separator(text);
+function createSeparator(label) {
+  return { type: 'separator', separator: label, name: label };
 }
 
 /**
@@ -254,18 +254,12 @@ export async function showProviderSelector(options = {}) {
   console.log(chalk.dim('Use arrow keys to navigate, Enter to select'));
   console.log('');
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'provider',
-      message: 'Choose a provider:',
-      choices,
-      pageSize: 20,
-      loop: false
-    }
-  ]);
+  const provider = await select({
+    message: 'Choose a provider:',
+    choices
+  });
 
-  return answer.provider;
+  return provider;
 }
 
 /**
@@ -288,17 +282,12 @@ export async function showQuickProviderSelector(options = {}) {
     short: p.name
   }));
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'provider',
-      message,
-      choices,
-      pageSize: 15
-    }
-  ]);
+  const provider = await select({
+    message,
+    choices
+  });
 
-  return answer.provider;
+  return provider;
 }
 
 /**

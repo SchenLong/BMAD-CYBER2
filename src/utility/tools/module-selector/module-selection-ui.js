@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
+import { multiselect, confirm } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -46,7 +46,7 @@ const SECTION_LABELS = {
  * @returns {Object} Separator-like object
  */
 function createSeparator(text) {
-  return new inquirer.Separator(text);
+  return { type: 'separator', name: text };
 }
 
 /**
@@ -150,28 +150,10 @@ export async function showModuleSelector(modules, userRole = 'admin') {
   console.log(chalk.dim('(Use arrow keys to navigate, space to toggle, enter to confirm)'));
   console.log('');
 
-  const answers = await inquirer.prompt([
-    {
-      type: 'checkbox',
-      name: 'selectedModules',
-      message: 'Select modules:',
-      choices,
-      pageSize: 15,
-      loop: false,
-      validate: (selected) => {
-        // Ensure at least core is selected (it's disabled, so this is a safety check)
-        if (!selected.includes('core')) {
-          // Core might not be in the selected array since it's disabled
-          // This is expected behavior - we'll add it back
-          return true;
-        }
-        return true;
-      }
-    }
-  ]);
-
-  // Get selected modules
-  let selectedCodes = answers.selectedModules || [];
+  const selectedCodes = await multiselect({
+    message: 'Select modules:',
+    choices
+  }) || [];
 
   // Always include required modules (they're disabled in UI but need to be in result)
   const requiredCodes = modules.filter(m => m.required).map(m => m.code);
@@ -207,14 +189,10 @@ async function handleEmptySelection() {
   console.log(chalk.dim('   Only the core framework will be installed.'));
   console.log('');
 
-  const { continueMinimal } = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'continueMinimal',
-      message: 'Continue with minimal installation?',
-      default: false
-    }
-  ]);
+  const continueMinimal = await confirm({
+    message: 'Continue with minimal installation?',
+    initialValue: false
+  });
 
   return continueMinimal;
 }

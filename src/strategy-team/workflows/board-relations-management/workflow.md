@@ -1,5 +1,5 @@
 ---
-name: Board Relations Management
+name: board-relations-management
 description: Comprehensive board engagement strategy and relationship management using strategic advisors to strengthen board relationships and improve governance effectiveness
 web_bundle: true
 ---

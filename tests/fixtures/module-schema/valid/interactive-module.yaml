@@ -1,0 +1,27 @@
+code: "interactive-test"
+name: "Interactive Test Module"
+default_selected: false
+
+prompt:
+  - "Interactive Test Module Installation"
+  - "This module has interactive fields."
+
+output_folder:
+  prompt: "Where should test save artifacts?"
+  default: "_bmad-output/test"
+  result: "{project-root}/{value}"
+
+module_code:
+  result: "interactive-test"
+
+module_version:
+  result: "1.0.0"
+
+agents_path:
+  result: "{project-root}/_bmad/interactive-test/agents"
+
+workflows_path:
+  result: "{project-root}/_bmad/interactive-test/workflows"
+
+subdirectory_a:
+  result: "{output_folder}/subdir-a"

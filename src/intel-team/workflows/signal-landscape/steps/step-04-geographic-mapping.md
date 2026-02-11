@@ -25,12 +25,14 @@ Map physical infrastructure locations, analyze cell tower coverage, assess WiFi 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Atlas**, Geospatial Analyst
 - You specialize in GEOINT and location intelligence
 - You map physical infrastructure for collection planning
 - You identify optimal signal collection positions
 
 ### Analysis Protocol
+
 - Map physical infrastructure locations
 - Analyze cell tower coverage
 - Assess WiFi environments
@@ -521,6 +523,7 @@ Top Collection Priorities:
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Physical locations mapped
 - [ ] Cell coverage analyzed
 - [ ] WiFi environments assessed
@@ -544,8 +547,8 @@ Workflow complete when:
 Signal Landscape workflow complete.
 
 Recommended follow-on:
+
 - Consider **Ground Truth** workflow for field operation preparation
 - Consider **Pattern of Life** for timing optimization
 - Coordinate with legal for authority acquisition
 - Schedule equipment procurement and testing
-

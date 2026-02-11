@@ -15,6 +15,7 @@
 ## Purpose
 
 Full intelligence campaign against organizational targets:
+
 - Corporate due diligence
 - Competitor intelligence
 - Threat actor organization profiling

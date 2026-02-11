@@ -117,10 +117,10 @@ prompt:
   - "This module is required for all installations"
 
 agents_path:
-  result: "{project-root}/_bmad/core/agents"
+  result: "{project-root}/src/core/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/core/workflows"
+  result: "{project-root}/src/core/workflows"
 
 module_version:
   result: "6.0.0"
@@ -154,10 +154,10 @@ reports:
   result: "{output_folder}/reports"
 
 agents_path:
-  result: "{project-root}/_bmad/intel-team/agents"
+  result: "{project-root}/src/intel-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/intel-team/workflows"
+  result: "{project-root}/src/intel-team/workflows"
 
 module_version:
   result: "1.1.0"
@@ -182,10 +182,10 @@ output_folder:
   result: "{project-root}/{value}"
 
 agents_path:
-  result: "{project-root}/_bmad/cybersec-team/agents"
+  result: "{project-root}/src/cybersec-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/cybersec-team/workflows"
+  result: "{project-root}/src/cybersec-team/workflows"
 
 module_version:
   result: "1.0.0"
@@ -205,10 +205,10 @@ prompt:
   - "Includes PRD creation, architecture design, and sprint planning"
 
 agents_path:
-  result: "{project-root}/_bmad/bmm/agents"
+  result: "{project-root}/src/bmm/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/bmm/workflows"
+  result: "{project-root}/src/bmm/workflows"
 
 module_version:
   result: "2.0.0"
@@ -228,10 +228,10 @@ prompt:
   - "Includes specialized legal counsel agents"
 
 agents_path:
-  result: "{project-root}/_bmad/legal-team/agents"
+  result: "{project-root}/src/legal-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/legal-team/workflows"
+  result: "{project-root}/src/legal-team/workflows"
 
 module_version:
   result: "1.0.0"

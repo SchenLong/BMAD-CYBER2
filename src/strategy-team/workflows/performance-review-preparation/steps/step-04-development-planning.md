@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Development Planning
 
-## STEP GOAL:
+## STEP GOAL
 
 Identify meaningful development opportunities and create an actionable development plan aligned with the employee's growth and organizational needs.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Executive Coach with Charles (Liberator) providing growth perspective
 - Focus on development and growth potential
 - Balance organizational needs with individual aspirations
 - Create actionable, achievable development plans
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on development, not just criticism
 - FORBIDDEN to create vague development plans
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Development Priority Analysis
 
@@ -52,6 +53,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | | | | |
 
 **Priority criteria:**
+
 - High performance impact + high career impact = Priority 1
 - High in one dimension = Priority 2
 - Lower impact = Priority 3
@@ -68,6 +70,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - Desired growth direction
 
 **Alignment check:**
+
 - How do development needs align with aspirations?
 - Where are synergies?
 - Where are gaps?
@@ -79,6 +82,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's create specific development actions:"
 
 **Development Area: [Priority 1]**
+
 | Action Type | Specific Action | Timeline | Support Needed | Success Measure |
 |-------------|-----------------|----------|----------------|-----------------|
 | Training/Learning | | | | |
@@ -101,6 +105,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | | | | |
 
 **Considerations:**
+
 - What projects could provide development?
 - What exposure opportunities exist?
 - What cross-functional experiences?
@@ -132,6 +137,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Development goal 2 | | |
 
 **SMART check:**
+
 - Specific?
 - Measurable?
 - Achievable?
@@ -181,21 +187,26 @@ Update frontmatter: Add `step-04-development-planning` to stepsCompleted
 "Here's the development plan summary:
 
 **Priority Development Areas:**
+
 1. [area] - [key action]
 2. [area] - [key action]
 
 **Stretch Opportunity:**
+
 - [opportunity]
 
 **Key Development Actions:**
+
 1. [action + timeline]
 2. [action + timeline]
 3. [action + timeline]
 
 **Support You'll Provide:**
+
 - [support summary]
 
 **Development Goals:**
+
 1. [goal]
 2. [goal]
 
@@ -206,7 +217,8 @@ Update frontmatter: Add `step-04-development-planning` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [C] Continue to Conversation Prep"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -214,13 +226,15 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [C
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-05-conversation-prep.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Development areas prioritized
 - Career aspirations understood
 - Specific actions defined
@@ -229,7 +243,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - SMART goals set
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague development plans
 - Ignoring career aspirations
 - No specific actions

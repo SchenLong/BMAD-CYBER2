@@ -6,4 +6,4 @@ description: Comprehensive infrastructure security assessment covering servers, 
 # Infrastructure Security Testing
 
 Load and follow the workflow at:
-`@_bmad/cybersec-team/workflows/infrastructure-security-testing/workflow.md`
+`@src/cybersec-team/workflows/infrastructure-security-testing/workflow.md`

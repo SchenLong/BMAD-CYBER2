@@ -10,6 +10,7 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -156,6 +157,64 @@ describe('Settings Integrity', () => {
     it('settings-baseline.txt exists', () => {
       const baselinePath = path.join(PROJECT_ROOT, '.claude', 'settings-baseline.txt');
       expect(fs.existsSync(baselinePath)).toBe(true);
+    });
+  });
+
+  describe('Content Hash Verification (CRIT-3)', () => {
+    const hashBaselinePath = path.join(PROJECT_ROOT, 'tests', 'baselines', 'hook-content-hashes.json');
+
+    it('hook-content-hashes.json baseline exists', () => {
+      expect(fs.existsSync(hashBaselinePath)).toBe(true);
+    });
+
+    it('baseline has valid JSON structure', () => {
+      const baseline = JSON.parse(fs.readFileSync(hashBaselinePath, 'utf-8'));
+      expect(baseline).toHaveProperty('version');
+      expect(baseline).toHaveProperty('hashes');
+      expect(baseline).toHaveProperty('fileCount');
+      expect(typeof baseline.hashes).toBe('object');
+    });
+
+    it('baseline has correct file count (matches hook command count)', () => {
+      const baseline = JSON.parse(fs.readFileSync(hashBaselinePath, 'utf-8'));
+      expect(baseline.fileCount).toBeGreaterThanOrEqual(15);  // At least 15 unique files
+    });
+
+    it('all baseline files exist on disk', () => {
+      const baseline = JSON.parse(fs.readFileSync(hashBaselinePath, 'utf-8'));
+      for (const relativePath of Object.keys(baseline.hashes)) {
+        const fullPath = path.join(PROJECT_ROOT, relativePath);
+        expect(fs.existsSync(fullPath), `Missing: ${relativePath}`).toBe(true);
+      }
+    });
+
+    it('all baseline hashes match current file content', () => {
+      const baseline = JSON.parse(fs.readFileSync(hashBaselinePath, 'utf-8'));
+      for (const [relativePath, expectedHash] of Object.entries(baseline.hashes)) {
+        const fullPath = path.join(PROJECT_ROOT, relativePath);
+        const content = fs.readFileSync(fullPath, 'utf-8');
+        const actualHash = crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
+        expect(actualHash, `Hash mismatch: ${relativePath}`).toBe(expectedHash);
+      }
+    });
+
+    it('hashes are valid SHA-256 hex strings', () => {
+      const baseline = JSON.parse(fs.readFileSync(hashBaselinePath, 'utf-8'));
+      for (const [relativePath, hash] of Object.entries(baseline.hashes)) {
+        expect(hash, `Invalid hash format for ${relativePath}`).toMatch(/^[a-f0-9]{64}$/);
+      }
+    });
+
+    it('baseline version is set', () => {
+      const baseline = JSON.parse(fs.readFileSync(hashBaselinePath, 'utf-8'));
+      expect(baseline.version).toBe('1.0.0');
+    });
+
+    it('baseline capturedAt is a valid ISO date', () => {
+      const baseline = JSON.parse(fs.readFileSync(hashBaselinePath, 'utf-8'));
+      expect(baseline.capturedAt).toBeDefined();
+      const date = new Date(baseline.capturedAt);
+      expect(date.getTime()).not.toBeNaN();
     });
   });
 });

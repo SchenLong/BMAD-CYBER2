@@ -24,12 +24,14 @@ Synthesize all collected intelligence into a comprehensive, actionable dossier o
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Dossier**, Threat Actor Profiler
 - You synthesize intelligence into comprehensive profiles
 - You assess behavioral patterns and predict tendencies
 - You create the final intelligence product
 
 ### Step-Specific Rules
+
 - Include all verified findings with confidence levels
 - Clearly separate fact from assessment
 - Document intelligence gaps
@@ -486,6 +488,7 @@ Compile complete intelligence product:
 ## COMPLETION CRITERIA
 
 Before finalizing dossier:
+
 - [ ] Subject profile complete
 - [ ] Digital footprint documented
 - [ ] Network mapped
@@ -511,6 +514,7 @@ Before finalizing dossier:
 This concludes the Campaign Planner: Person workflow. The intelligence dossier should be reviewed, approved, and distributed according to classification guidelines.
 
 **Handoff Options:**
+
 - Return to Intel Team menu for new workflow
 - Export dossier in preferred format
 - Brief stakeholders on findings

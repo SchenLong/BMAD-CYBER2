@@ -32,12 +32,14 @@ board-relations-management/
 ## Advisor Perspectives
 
 **Primary Advisors:**
+
 - Magnus (Political Strategist): Board politics, power dynamics, coalition building
 - Giuseppe (Communications Director): Board communications, information presentation
 - Geneva (Stakeholder Mediator): Relationship building, consensus development
 - Cicero (Debate Coach): Presentation skills, persuasive arguments
 
 **Supporting Perspectives:**
+
 - Jean-Luc (Principled Commander): Governance principles, integrity
 - Niccolo (Realist): Power realities, director motivations
 - Burke (Conservative): Institutional stability, fiduciary duty

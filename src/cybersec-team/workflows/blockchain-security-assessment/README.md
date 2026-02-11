@@ -41,6 +41,7 @@ blockchain-security-assessment/
 ## Assessment Coverage
 
 ### Smart Contract Security
+
 - Reentrancy analysis
 - Integer overflow/underflow
 - Access control at code level
@@ -49,6 +50,7 @@ blockchain-security-assessment/
 - State management
 
 ### Access Control & Centralization
+
 - Role inventory
 - Owner privileges
 - Multisig configuration
@@ -56,6 +58,7 @@ blockchain-security-assessment/
 - Rug pull vectors
 
 ### Economic Security
+
 - Tokenomics review
 - Minting/burning mechanics
 - Price manipulation vectors
@@ -64,6 +67,7 @@ blockchain-security-assessment/
 - MEV exposure
 
 ### DeFi-Specific
+
 - Flash loan attacks
 - Composability risks
 - Protocol-specific vulnerabilities
@@ -72,6 +76,7 @@ blockchain-security-assessment/
 - Cross-chain issues
 
 ### Infrastructure
+
 - RPC/node security
 - Frontend security
 - Private key management
@@ -81,7 +86,7 @@ blockchain-security-assessment/
 ## Usage
 
 ```bash
-# Invoke via agent menu
+# Load via agent menu
 /blockchain-security-assessment
 
 # Or via Ledger agent
@@ -99,6 +104,7 @@ bmad:cybersec-team:agents:blockchain-security-expert
 ## Output
 
 Assessment report saved to:
+
 ```
 {output_folder}/security/blockchain-security-assessment-{project_name}.md
 ```

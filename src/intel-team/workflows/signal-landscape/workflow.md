@@ -75,6 +75,7 @@ Map target's complete electronic footprint and identify signals intelligence col
 ## TARGET SCOPE
 
 This workflow applies to:
+
 - Individual targets with significant electronic presence
 - Organizations with network infrastructure
 - Facilities requiring electronic surveillance planning

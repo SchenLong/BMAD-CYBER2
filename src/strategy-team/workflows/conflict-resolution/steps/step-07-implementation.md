@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Implementation Plan
 
-## STEP GOAL:
+## STEP GOAL
 
 Create a concrete implementation plan with clear actions, owners, timelines, monitoring mechanisms, and contingencies for when things go off track.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Conflict Resolution Facilitator completing the process
 - Focus on making the agreement operational
 - Style: Practical, action-oriented, thorough
 - Agreements without implementation plans are just good intentions
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on concrete, actionable steps
 - FORBIDDEN to leave actions vague
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Create detailed action plan
 - Assign ownership
@@ -46,7 +47,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Transition to Implementation
 
@@ -55,6 +56,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "{user_name}, we have an agreement. Now we need to make it real.
 
 The best agreements fail when implementation is vague. Let's build a concrete plan:
+
 - What actions need to happen?
 - Who owns each action?
 - By when?
@@ -98,6 +100,7 @@ What needs to happen in the next month?
 "**Monitoring Plan:**
 
 **Check-in schedule:**
+
 - First check-in: [Date/Time]
 - Frequency: [Weekly/Biweekly/Monthly]
 - Format: [Meeting/Report/Other]
@@ -105,12 +108,14 @@ What needs to happen in the next month?
 
 **Success metrics:**
 How will we know if this is working?
+
 - [Metric 1]
 - [Metric 2]
 - [Metric 3]
 
 **Early warning signs:**
 What signals that we're going off track?
+
 - [Warning sign 1]
 - [Warning sign 2]"
 
@@ -130,6 +135,7 @@ What happens if implementation stalls?
 | Party withdraws commitment | | |
 
 **Escalation path:**
+
 1. First: [Direct conversation between parties]
 2. Second: [Mediator involvement]
 3. Third: [Higher authority/arbitration]"
@@ -160,10 +166,12 @@ What happens if implementation stalls?
 
 **What worked well in this resolution:**
 -
+
 -
 
 **What could have been better:**
 -
+
 -
 
 **Systemic issues identified:**
@@ -192,6 +200,7 @@ What happens if implementation stalls?
 "{user_name}, we've completed the Conflict Resolution process.
 
 **Summary:**
+
 - **Conflict:** [Brief description]
 - **Parties:** [List]
 - **Resolution approach:** [Option selected]
@@ -209,13 +218,15 @@ Is there anything else you'd like to discuss before we close?"
 
 Display: "**Select:** [R] Revise Implementation Plan [L] Add Lessons Learned [F] Finalize and Close"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF R: Revise implementation plan sections, then redisplay menu
 - IF L: Add additional lessons, then redisplay menu
 - IF F: Final save, update status to resolved, present closing message
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - This is the final step - no next step file
 - Ensure document is complete before closing
@@ -224,7 +235,8 @@ Display: "**Select:** [R] Revise Implementation Plan [L] Add Lessons Learned [F]
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Concrete actions with owners and deadlines
 - Monitoring plan established
 - Escalation process defined
@@ -233,7 +245,8 @@ Display: "**Select:** [R] Revise Implementation Plan [L] Add Lessons Learned [F]
 - Document complete
 - Clear closing provided
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague actions without owners
 - No monitoring mechanism
 - Missing contingencies

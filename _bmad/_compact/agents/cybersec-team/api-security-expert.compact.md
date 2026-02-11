@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/api-security-expert.md
+# Full agent: src/cybersec-team/agents/api-security-expert.md
 agent_id: "api-security-expert"
 name: "Gateway"
 title: "API & Integration Security Specialist"

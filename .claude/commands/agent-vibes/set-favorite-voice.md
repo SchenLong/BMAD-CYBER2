@@ -36,12 +36,14 @@ Enter your choice (yes/no):
 ```
 
 **Options:**
+
 - **yes** / **y** - Replace the current favorite with the new voice
 - **no** / **n** - Keep the current favorite voice
 
 ## Provider-Aware
 
 This command is provider-aware and will update the correct voice field:
+
 - **Piper TTS** - Updates `piper_voice` field
 - **Piper** - Updates `piper_voice` field
 

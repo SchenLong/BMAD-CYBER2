@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/corporate-intel-specialist.md
+# Full agent: src/intel-team/agents/corporate-intel-specialist.md
 agent_id: "corporate-intel-specialist"
 name: "Proxy"
 title: "Corporate Intelligence Specialist"

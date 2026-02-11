@@ -36,6 +36,7 @@ web_bundle: false
 ---
 
 # The Synthesis
+
 ## Multi-Source Intelligence Fusion
 
 **Goal:** Correlate findings across multiple intelligence sources and disciplines, resolve conflicts between assessments, assess confidence levels, and produce unified all-source intelligence products.
@@ -87,6 +88,7 @@ Take multiple intelligence inputs from various sources and disciplines, correlat
 ## INPUT TYPES
 
 This workflow accepts:
+
 - Multiple INT products from other workflows
 - Raw collection from individual agents
 - External intelligence reports
@@ -214,4 +216,3 @@ Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and
 ### 2. First Step EXECUTION
 
 Load, read the full file and then follow `{workflow_path}/steps/step-01-input-cataloging.md` to begin the workflow.
-

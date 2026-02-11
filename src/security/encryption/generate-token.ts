@@ -230,7 +230,7 @@ async function interactiveGeneration(): Promise<void> {
   let projectRoot = process.cwd();
 
   // If running from security directory, go up 3 levels
-  if (scriptDir.includes('_bmad/core/security')) {
+  if (scriptDir.includes('src/core/security')) {
     projectRoot = path.resolve(scriptDir, '../../..');
   }
 

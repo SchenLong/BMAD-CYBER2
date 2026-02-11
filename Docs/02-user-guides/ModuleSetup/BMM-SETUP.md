@@ -202,6 +202,7 @@ Solo Dev: What would you like to build?
 ### Step 4: Development Flow
 
 Solo Dev guides you through:
+
 1. **Requirements clarification**
 2. **Quick design** (if needed)
 3. **Implementation**
@@ -231,6 +232,7 @@ John (Product Manager) is ready.
 ### Step 3: Collaborative Discovery
 
 John and Sarah work together through:
+
 1. **Vision and Goals** - What problem are we solving?
 2. **User Personas** - Who are the users?
 3. **User Stories** - What do users need?
@@ -263,6 +265,7 @@ permissions:
 ```
 
 **Key Points:**
+
 - Full read access to codebase
 - Write access to src, tests, docs
 - Development commands allowed (git, npm, python, pytest, node)
@@ -361,6 +364,7 @@ BMM agents can execute development commands:
 | `pytest` | Python testing |
 
 **Blocked:**
+
 - `rm -rf` - Prevent accidental deletion
 - `sudo` - Prevent privilege escalation
 

@@ -6,4 +6,4 @@ description: Field Operation Preparation - Complete preparation package for phys
 # Ground Truth
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/ground-truth/workflow.md`
+`@src/intel-team/workflows/ground-truth/workflow.md`

@@ -46,7 +46,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR\"/_bmad/core/security/authorization.js"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/src/core/security/authorization.js"
           },
           {
             "type": "command",

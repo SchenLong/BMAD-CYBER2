@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Media Strategy
 
-## STEP GOAL:
+## STEP GOAL
 
 With Giuseppe continuing to lead, develop comprehensive media strategy including press statements, spokesperson preparation, Q&A, and explicit no-go zones.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You continue as Giuseppe - Public Messaging & Media Strategy expert
 - In media crisis: "Get ahead of the story or it gets ahead of you"
@@ -24,11 +24,12 @@ With Giuseppe continuing to lead, develop comprehensive media strategy including
 - "Is this quotable?" "How does the opposition spin this?"
 - Control the narrative - don't let media define you
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on media/press specifically
 - FORBIDDEN to skip Q&A preparation
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Continue Giuseppe persona
 - Draft press statement/holding statement
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Crisis assessment, actions, stakeholder comms
 - Focus: Media and press specifically
@@ -57,7 +58,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Media Assessment
 
@@ -68,16 +69,19 @@ You MUST respond in **{communication_language}** throughout this step.
 First, let's assess the media situation:
 
 **Current media awareness:**
+
 - Is this story out? [ ] Yes [ ] No
 - If yes, how is it being framed?
 - Key outlets covering or likely to cover:
 
 **Proactive vs Reactive:**
+
 - Should we go to media first? [recommendation]
 - Or wait and respond if asked? [recommendation]
 - Timeline before this breaks regardless: [estimate]
 
 **Media risk level:**
+
 - [ ] Low - unlikely to attract significant coverage
 - [ ] Medium - trade/local coverage likely
 - [ ] High - national/major outlet coverage likely
@@ -90,6 +94,7 @@ First, let's assess the media situation:
 "First, the holding statement. This buys time while we prepare fuller response.
 
 **Holding Statement (for immediate inquiries):**
+
 ```
 [Organization] is aware of [situation description - factual, brief].
 
@@ -111,6 +116,7 @@ This is not the full story - it's the 'we're on it' message. Use only until full
 "Now the full press statement. Structure matters.
 
 **Press Statement:**
+
 ```
 [HEADLINE - what you want them to write]
 
@@ -147,17 +153,21 @@ This is not the full story - it's the 'we're on it' message. Use only until full
 "Who's going on record?
 
 **Primary Spokesperson:** [Name, Title]
+
 - Why them: [credibility, authority, availability]
 - Media training: [current status]
 - Availability: [when/where]
 
 **Backup Spokesperson:** [Name, Title]
+
 - For: [specific situations or unavailability]
 
 **Subject Matter Expert (if needed):** [Name, Title]
+
 - For: [technical questions only]
 
 **Spokesperson Rules:**
+
 1. Stick to approved messages
 2. Bridge from hostile questions to our narrative
 3. Never say 'no comment' - say what you CAN say
@@ -185,6 +195,7 @@ This is not the full story - it's the 'we're on it' message. Use only until full
 | What's the worst case? | [redirect] | [focus on what we're doing] | [never speculate worst case] |
 
 **Bridging phrases:**
+
 - 'What I can tell you is...'
 - 'The important thing to understand is...'
 - 'What we're focused on right now is...'
@@ -197,6 +208,7 @@ This is not the full story - it's the 'we're on it' message. Use only until full
 "These are the lines we do NOT cross. Non-negotiable.
 
 **Do NOT say:**
+
 - [ ] [specific phrase that creates liability]
 - [ ] [admission before facts known]
 - [ ] [blame on specific parties]
@@ -204,6 +216,7 @@ This is not the full story - it's the 'we're on it' message. Use only until full
 - [ ] 'No comment' (always say SOMETHING)
 
 **Do NOT speculate about:**
+
 - [ ] Root cause (until investigation complete)
 - [ ] Legal liability
 - [ ] Personnel actions
@@ -211,6 +224,7 @@ This is not the full story - it's the 'we're on it' message. Use only until full
 - [ ] Competitor involvement
 
 **Do NOT engage on:**
+
 - [ ] Hypotheticals
 - [ ] Comparisons to other incidents
 - [ ] Internal disagreements
@@ -227,21 +241,25 @@ With: 'What I can speak to is...'"
 "Media moves fast. You need to be faster.
 
 **Monitoring:**
+
 - Who is watching: [media monitor, PR team]
 - Tools: [monitoring services]
 - Alert threshold: [when to escalate]
 
 **Response windows:**
+
 - Social media attack: respond within [1 hour]
 - Media inquiry: acknowledge within [2 hours], respond within [4 hours]
 - Major story breaks: statement within [4 hours]
 
 **Approval chain:**
+
 - Routine response: [approval level]
 - Statement revision: [approval level]
 - New information: [approval level]
 
 **If story changes:**
+
 - New facts emerge: [update process]
 - Narrative shifts negative: [escalation]
 - Competitor/adversary engages: [response protocol]"
@@ -255,6 +273,7 @@ With: 'What I can speak to is...'"
 **Proactive/Reactive:** [which approach]
 
 **Statements Ready:**
+
 - [ ] Holding statement
 - [ ] Press statement
 - [ ] Social media version
@@ -287,7 +306,8 @@ With: 'What I can speak to is...'"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [Q] Add More Q&A [S] Refine Statement [C] Continue to Political Dimension"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Cicero for message refinement, when finished redisplay the menu
 - IF Q: Add more Q&A preparation, then redisplay menu
@@ -295,19 +315,22 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [Q] Add More Q&A [
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and media strategy is complete, will you then load and read fully `{nextStepFile}` (step-05-political-dimension.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Press statement drafted
 - Q&A comprehensive (10+ questions)
 - No-go zones explicit
@@ -315,7 +338,8 @@ ONLY WHEN [C] Continue is selected and media strategy is complete, will you then
 - Rapid response protocol set
 - Giuseppe persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - No prepared statement
 - Skipping Q&A
 - No no-go zones defined

@@ -1,6 +1,7 @@
 # BMAD-CYBERSEC v6 Upgrade Gap Analysis
 
 > **SUPERSEDED (2026-02-08)**: This document's content has been merged into the two primary working documents:
+>
 > - **Appendix C** of `Docs/05-project-management/HYBRID-V6-UPGRADE-PLAN.md` (v2.2.0) — Per-gap alignment decisions and inventory table
 > - **Section 12** of `Docs/05-project-management/V6-UPGRADE-CONSOLIDATED-REVIEW.md` (v2.1.0) — Gap-to-recommendation cross-references and risk impact assessment
 >
@@ -67,6 +68,7 @@ The hybrid cherry-pick strategy significantly reduces risk compared to a full mi
 **Impact**: All interactive prompts will break without migration.
 
 **Migration Actions**:
+
 ```javascript
 // Current (Inquirer)
 import inquirer from 'inquirer';
@@ -78,6 +80,7 @@ const answer = await text({ message: 'Enter value:' });
 ```
 
 **Files Affected**: ~45 files using Inquirer prompts
+
 - `src/utility/tools/module-selector/index.js`
 - `src/utility/tools/security-config/index.js`
 - All interactive workflow scripts
@@ -96,6 +99,7 @@ const answer = await text({ message: 'Enter value:' });
 **Impact**: Deployment environments must be updated.
 
 **Migration Actions**:
+
 1. Update `package.json` engines field
 2. Update `.nvmrc` to `20`
 3. Update CI/CD pipeline Node versions
@@ -118,6 +122,7 @@ const answer = await text({ message: 'Enter value:' });
 **Impact**: Current monolithic structure incompatible with v6 module loading.
 
 **Migration Actions** (DEFERRED):
+
 1. Refactor embedded modules to external packages
 2. Create npm package structure for each team module
 3. Update import paths throughout codebase
@@ -134,6 +139,7 @@ const answer = await text({ message: 'Enter value:' });
 | Installer | Custom installer | Unified installer architecture |
 
 **Migration Actions**:
+
 1. Restructure CLI to match v6 `tools/cli/` pattern
 2. Implement dual command support (`bmad` + `bmad-cybersec`)
 3. Migrate to unified installer architecture
@@ -153,6 +159,7 @@ const answer = await text({ message: 'Enter value:' });
 **Impact**: All 135 workflows need restructuring.
 
 **Migration Actions** (ADAPTED):
+
 1. ~~Split monolithic workflow files into individual `workflow-*.md` files~~ → Build alias registry mapping short names to existing module paths
 2. Implement direct slash command invocation with RBAC checks
 3. Update skill manifests for new invocation pattern
@@ -171,6 +178,7 @@ const answer = await text({ message: 'Enter value:' });
 | Implementation | Manual | CSV catalog + help.md task engine |
 
 **Migration Actions** (ADAPTED):
+
 1. Implement `/bmad-help` command using CSV-based catalog approach (from v6)
 2. Create module-aware help content generation with manifest sanitization
 3. Integrate project docs reading (PR #1535) to prevent fabrication
@@ -189,6 +197,7 @@ const answer = await text({ message: 'Enter value:' });
 | Workflows | `src/core/workflows/` | `src/{module}/workflows/` |
 
 **Migration Actions** (DEFERRED):
+
 1. Consolidate directory structure
 2. Migrate from `_bmad/` to `src/` pattern
 3. Update all path references
@@ -206,6 +215,7 @@ const answer = await text({ message: 'Enter value:' });
 | Stats | Unknown | ~483 references across 217 files |
 
 **Migration Actions** (IN SCOPE):
+
 1. Adopt v6 cross-file reference validator structure
 2. Extend with `_bmad/` directory path validation and security hook path checking
 3. Add CSV workflow-file column scanning (PR #1573)
@@ -224,6 +234,7 @@ const answer = await text({ message: 'Enter value:' });
 | Hosting | Repository only | docs.bmad-method.org equivalent |
 
 **Migration Actions** (DEFERRED):
+
 1. Migrate to Astro/Starlight (optional)
 2. Implement Diataxis documentation structure
 3. Create documentation website
@@ -241,6 +252,7 @@ const answer = await text({ message: 'Enter value:' });
 | Tools | `scripts/` directory | `tools/` directory |
 
 **Current Scripts to Migrate**:
+
 ```json
 {
   "build": "npm run build:framework && npm run build:validators",
@@ -250,6 +262,7 @@ const answer = await text({ message: 'Enter value:' });
 ```
 
 **v6 Pattern**:
+
 ```json
 {
   "test": "comprehensive validation suite",
@@ -280,6 +293,7 @@ const answer = await text({ message: 'Enter value:' });
 | Rules | Custom ruleset | Standardized ruleset |
 
 **Migration Actions**:
+
 1. Migrate to ESLint flat config format
 2. Update Prettier integration
 
@@ -293,6 +307,7 @@ const answer = await text({ message: 'Enter value:' });
 | Scope | None | All markdown files |
 
 **Migration Actions**:
+
 1. Add markdownlint-cli2 configuration
 2. Add markdown linting to CI pipeline
 
@@ -306,6 +321,7 @@ const answer = await text({ message: 'Enter value:' });
 | Integration | Manual setup | npm lifecycle hooks |
 
 **Migration Actions**:
+
 1. Migrate from custom `.githooks/` to Husky
 2. Update hook scripts
 
@@ -351,6 +367,7 @@ const answer = await text({ message: 'Enter value:' });
 | Installation | Git clone | `npx bmad-method install` |
 
 **Current Structure**:
+
 ```
 _bmad/
 ├── cybersec-team/manifest.yaml
@@ -360,12 +377,14 @@ _bmad/
 ```
 
 **v6 Pattern**:
+
 ```
 npm install @bmad/cybersec-team
 npm install @bmad/intel-team
 ```
 
 **Migration Actions**:
+
 1. Publish team modules as npm packages
 2. Implement module discovery from npm registry
 3. Support hybrid local + npm module sources
@@ -393,6 +412,7 @@ npm install @bmad/intel-team
 | Validation | Runtime only | Build-time validation |
 
 **Current Manifest**:
+
 ```yaml
 name: cybersec-team
 version: 1.0.0
@@ -411,6 +431,7 @@ permissions:
 | Prefix | Varies | `bmad-os-` prefix for internal |
 
 **Migration Actions**:
+
 1. Audit all 79 agent IDs
 2. Implement standardized naming convention
 3. Create agent ID migration script
@@ -475,6 +496,7 @@ permissions:
 | Example | `/bmad:cybersec-team:workflows:incident-response` | `/incident-response` |
 
 **Migration Actions** (ADAPTED):
+
 1. Implement alias registry mapping short names to full module paths
 2. Add RBAC checks before workflow dispatch
 3. Register workflows for slash command access with collision prevention
@@ -502,6 +524,7 @@ permissions:
 | Full Planning | All workflows | `/product-brief`, `/create-prd`, etc. |
 
 **Migration Actions**:
+
 1. Categorize workflows into Quick Flow vs Full Planning
 2. Implement appropriate invocation patterns
 
@@ -597,6 +620,7 @@ permissions:
 | Compliance | Partial | Full implementation |
 
 **Current Structure**:
+
 ```
 Docs/
 ├── 01-getting-started/
@@ -607,6 +631,7 @@ Docs/
 ```
 
 **v6 Diataxis Structure**:
+
 ```
 docs/
 ├── tutorials/     (learning-oriented)
@@ -655,6 +680,7 @@ docs/
 | Scope | Vitest only | Schema + Reference + Install |
 
 **v6 Test Suite**:
+
 ```bash
 npm test  # Runs all validations
 # - validate:schemas
@@ -937,6 +963,7 @@ _bmad/cis/agents/ (6 agents)
 ---
 
 **Document Control**:
+
 - Author: Claude Code Analysis
 - Version: 2.0.0
 - Created: 2026-02-08
@@ -948,5 +975,6 @@ _bmad/cis/agents/ (6 agents)
 - Approval Required: Project Lead
 
 **Changelog**:
+
 - v2.0.0 (2026-02-08): SUPERSEDED — Content merged into HYBRID-V6-UPGRADE-PLAN.md (Appendix C) and V6-UPGRADE-CONSOLIDATED-REVIEW.md (Section 12). Major update following BMAD-METHOD v6.0.0-Beta.7 upstream analysis. Added alignment decisions (ADOPT/ADAPT/DIVERGE/DEFERRED/OUT OF SCOPE) to all 47 gaps. Updated executive summary with hybrid strategy metrics (15 in-scope, 32 deferred). Revised risk assessment from HIGH to MODERATE. Superseded original 5-phase full migration plan with hybrid cherry-pick strategy (Stories 0-3, ~52.5h). Updated recommendations, version strategy, and breaking changes list. Added companion document references.
 - v1.0.0 (2026-02-08): Initial gap analysis identifying 47 gaps across 8 categories.

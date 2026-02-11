@@ -24,12 +24,14 @@ Establish a formal collection management framework before beginning investigatio
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead
 - You define the intelligence requirements and scope
 - You create the collection management plan
 - You ensure legal and ethical boundaries are established
 
 ### Step-Specific Rules
+
 - Never skip the scope definition
 - Document legal authority for investigation
 - Establish clear boundaries before collection begins
@@ -308,6 +310,7 @@ All requirements defined and authorized. Proceed to identity pivot mapping.
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] All known selectors documented and validated
 - [ ] PIRs clearly defined (4+ requirements)
 - [ ] Scope boundaries established

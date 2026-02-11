@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/legal-team/agents/insignia.md
+# Full agent: src/legal-team/agents/insignia.md
 agent_id: "insignia"
 name: "Insignia"
 title: "IP Counsel"

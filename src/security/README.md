@@ -95,6 +95,7 @@ app.use(async (req, res, next) => {
 ## 📋 Component Overview
 
 ### 🔒 1. Encryption Subsystem (5 Components)
+
 **Purpose**: Cryptographic services and data protection
 
 | Component | File | Description |
@@ -106,12 +107,14 @@ app.use(async (req, res, next) => {
 | **Token Generator** | `encryption/generate-token.ts` | JWT and secure token generation |
 
 **Key Features**:
+
 - FIPS 140-2 compliant algorithms
 - Hardware Security Module (HSM) integration ready
 - Automatic key rotation
 - Perfect Forward Secrecy (PFS)
 
 ### 👥 2. RBAC Subsystem (10 Components)
+
 **Purpose**: Role-Based Access Control and authorization
 
 | Component | File | Description |
@@ -123,12 +126,14 @@ app.use(async (req, res, next) => {
 | **Role Types** | `rbac/roles/role-types.ts` | Role definitions and hierarchy |
 
 **Key Features**:
+
 - Principle of least privilege
 - Dynamic permission evaluation
 - Role hierarchy and inheritance
 - Context-aware access control
 
 ### 📊 3. Audit Subsystem (4 Components)
+
 **Purpose**: Security event logging and compliance
 
 | Component | File | Description |
@@ -139,12 +144,14 @@ app.use(async (req, res, next) => {
 | **Analytics Dashboard** | `audit/analytics-dashboard.ts` | Security metrics visualization |
 
 **Key Features**:
+
 - Immutable audit trails
 - Real-time SIEM integration
 - SOC 2, GDPR, HIPAA compliance
 - Automated threat correlation
 
 ### 📈 4. Monitoring Subsystem (2 Components)
+
 **Purpose**: Real-time security monitoring and alerting
 
 | Component | File | Description |
@@ -153,12 +160,14 @@ app.use(async (req, res, next) => {
 | **Session Manager** | `session-manager.ts` | Secure session lifecycle management |
 
 **Key Features**:
+
 - Machine learning-based anomaly detection
 - Real-time threat intelligence
 - Automated incident response
 - Behavioral analysis
 
 ### 🛡️ 5. Validation Subsystem (3 Components)
+
 **Purpose**: Input validation and security controls
 
 | Component | File | Description |
@@ -168,12 +177,14 @@ app.use(async (req, res, next) => {
 | **Security Patches** | `patches/*` | Advanced threat protection patches |
 
 **Key Features**:
+
 - Zero-day exploit protection
 - Advanced threat detection
 - Proactive security controls
 - Adaptive rate limiting
 
 ### 🧪 6. Testing Subsystem (5 Components)
+
 **Purpose**: Automated security testing and validation
 
 | Component | File | Description |
@@ -185,6 +196,7 @@ app.use(async (req, res, next) => {
 | **Advanced Validators** | `testing/validators/advanced-validators.js` | Custom security validation |
 
 **Key Features**:
+
 - Continuous security testing
 - Automated vulnerability scanning
 - Security regression testing
@@ -527,6 +539,7 @@ const authorizationLatency = new prometheus.Histogram({
 ## 🔐 Security Compliance
 
 ### Standards Supported
+
 - **ISO 27001**: Information Security Management
 - **SOC 2 Type II**: Service Organization Controls
 - **GDPR**: General Data Protection Regulation
@@ -534,6 +547,7 @@ const authorizationLatency = new prometheus.Histogram({
 - **PCI DSS**: Payment Card Industry Data Security Standard
 
 ### Audit Reports
+
 Automated compliance reporting with evidence collection:
 
 ```bash
@@ -611,11 +625,13 @@ jobs:
 ## 📞 Support
 
 ### Security Contacts
-- **Security Team**: security@company.com
+
+- **Security Team**: <security@company.com>
 - **Emergency Security**: +1-xxx-xxx-xxxx (24/7)
-- **Vulnerability Reports**: security-reports@company.com
+- **Vulnerability Reports**: <security-reports@company.com>
 
 ### Documentation
+
 - **Security Wiki**: [Internal wiki link]
 - **Runbooks**: [Operational procedures]
 - **Incident Response**: [Emergency procedures]
@@ -623,6 +639,7 @@ jobs:
 ## 📄 License
 
 **Proprietary Security Framework** - Internal use only
+
 - Distribution restricted to authorized personnel
 - Security review required for any modifications
 - Compliance with corporate security policies mandatory

@@ -1,4 +1,5 @@
 # BMAD Schema Implementation Guide v2.0.0
+
 *Designed by Winston (The Master Strategist) for Story 2.2*
 
 ## 🐉 Strategic Overview
@@ -8,6 +9,7 @@ This guide provides comprehensive implementation instructions for the BMAD Agent
 > *"Supreme excellence consists of breaking the enemy's resistance without fighting."* - Sun Tzu
 
 The schema framework consists of four core components:
+
 - **Agent Schema**: Validates individual agent structure and content
 - **Package Metadata**: Manages distribution and dependency information
 - **Validation Rules**: Enforces quality, security, and compliance standards

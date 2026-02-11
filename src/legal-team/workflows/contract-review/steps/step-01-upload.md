@@ -25,6 +25,7 @@ Receive the contract for review and perform initial classification.
 ### 3. Initial Classification
 
 Identify:
+
 - **Contract Type:** (service agreement, sales, NDA, employment, license, etc.)
 - **Parties:** Who are the parties?
 - **Purpose:** What is the commercial purpose?

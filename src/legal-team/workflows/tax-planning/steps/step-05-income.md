@@ -18,6 +18,7 @@ Optimize income timing, characterization, and sourcing.
 Analyze timing opportunities:
 
 **Deferral Strategies:**
+
 - Installment sales
 - Deferred compensation
 - Like-kind exchanges
@@ -25,12 +26,14 @@ Analyze timing opportunities:
 - Revenue recognition timing
 
 **Acceleration Strategies:**
+
 - When expecting higher future rates
 - Utilizing current-year losses
 - Absorbing credits about to expire
 - Rate arbitrage opportunities
 
 **Year-End Planning:**
+
 - Invoice timing (cash basis)
 - Prepaid expenses
 - Estimated tax management
@@ -40,6 +43,7 @@ Analyze timing opportunities:
 Optimize income classification:
 
 **Ordinary vs. Capital:**
+
 | Type | Federal Rate | State | Strategy |
 |------|--------------|-------|----------|
 | Ordinary | Up to 37% | Varies | Convert to capital where possible |
@@ -47,12 +51,14 @@ Optimize income classification:
 | Qualified Dividends | Up to 20% + 3.8% | Varies | Structure for qualification |
 
 **Active vs. Passive:**
+
 - Material participation planning
 - PAL limitations
 - Grouping elections
 - Rental real estate professional status
 
 **US vs. Foreign Source:**
+
 - Foreign tax credit optimization
 - Source rule planning
 - Treaty benefits
@@ -63,18 +69,21 @@ Optimize income classification:
 For owner/employees:
 
 **Salary vs. Distribution Mix:**
+
 - Reasonable compensation requirements
 - Payroll tax optimization
 - S-Corp strategies
 - LLC member compensation
 
 **Equity Compensation:**
+
 - Stock options (ISO vs. NQSO)
 - Restricted stock
 - Phantom equity
 - Profits interests
 
 **Deferred Compensation:**
+
 - Qualified plans
 - Non-qualified arrangements
 - 409A compliance
@@ -84,12 +93,14 @@ For owner/employees:
 Optimize business income:
 
 **QBI Deduction Planning (USA):**
+
 - Maximize 199A deduction
 - W-2 wage considerations
 - Specified service business strategies
 - Aggregation elections
 
 **Transfer Pricing:**
+
 - Arm's length pricing
 - Documentation requirements
 - Intercompany service fees

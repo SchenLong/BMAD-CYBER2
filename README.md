@@ -4,11 +4,12 @@
 
 **AI-powered operations platform for cybersecurity, intelligence, legal, and strategic teams**
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![v2.2.0](https://img.shields.io/badge/version-2.2.0-blue.svg)](CHANGELOG.md)
 [![Node 20+](https://img.shields.io/badge/node-20%2B-brightgreen.svg)](https://nodejs.org)
 [![Claude Code](https://img.shields.io/badge/claude--code-compatible-purple.svg)](https://github.com/anthropics/claude-code)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[Quick Start](#quick-start) · [Teams](#specialized-teams) · [Documentation](Docs/) · [Contributing](CONTRIBUTING.md)
+[Quick Start](#quick-start) · [What's New](#whats-new-in-v220) · [Teams](#specialized-teams) · [Documentation](Docs/) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -23,6 +24,20 @@ BMAD CYBERCOMMAND is a production-ready framework that brings together **79 spec
 ```
 You → Abdul → Right Team → Expert Agent(s) → Results
 ```
+
+---
+
+## What's New in v2.2.0
+
+**Hybrid v6 Upgrade** — cherry-picked the best features from BMAD v6 while preserving our security infrastructure.
+
+- **Slash Command Invocation** — invoke any workflow directly with `/workflow-name` (112 aliases mapped to 138 workflows)
+- **AI-Powered Help** — run `/bmad-help` for interactive discovery of modules, agents, workflows, and commands with fuzzy search
+- **Node.js 20** — upgraded runtime with verified crypto compatibility and updated CI/CD pipelines
+- **Bug Fixes Backport** — path sanitization hardening, YAML CRLF normalization, cross-file reference validation
+- **1,387 tests passing**, 101 new tests, zero regressions
+
+See [CHANGELOG.md](CHANGELOG.md) for full details.
 
 ---
 
@@ -58,6 +73,7 @@ That's it. Abdul will guide you from there.
 <td width="50%" valign="top">
 
 ### 🔐 Cybersecurity
+
 **15 specialists** — penetration testing, incident response, security architecture, compliance auditing, threat analysis
 
 ```bash
@@ -69,6 +85,7 @@ That's it. Abdul will guide you from there.
 <td width="50%" valign="top">
 
 ### 🕵️ Intelligence
+
 **11 analysts** — OSINT, corporate intel, threat actor profiling, dark web research, geospatial analysis
 
 ```bash
@@ -82,6 +99,7 @@ That's it. Abdul will guide you from there.
 <td width="50%" valign="top">
 
 ### ⚖️ Legal
+
 **13 attorneys** — contract review, corporate formation, cross-border matters, tax planning, dispute resolution
 
 ```bash
@@ -93,6 +111,7 @@ That's it. Abdul will guide you from there.
 <td width="50%" valign="top">
 
 ### 👔 Strategy
+
 **14 advisors** — executive decisions, board presentations, M&A due diligence, crisis response, stakeholder negotiations
 
 ```bash
@@ -113,7 +132,9 @@ That's it. Abdul will guide you from there.
 | Feature | Description |
 |---------|-------------|
 | **Multi-Agent Orchestration** | Abdul coordinates specialists across teams for complex operations |
-| **135 Production Workflows** | Battle-tested automations for real scenarios |
+| **138 Production Workflows** | Battle-tested automations for real scenarios |
+| **Direct Slash Commands** | Invoke any workflow with `/workflow-name` — 112 aliases with fuzzy matching |
+| **AI-Powered Help** | `/bmad-help` for interactive discovery with natural language search |
 | **Security-First Design** | OWASP AI compliant, zero-trust architecture, tamper-evident audit logs |
 | **Multi-LLM Support** | Claude, OpenAI, Groq, Ollama, LM Studio, vLLM |
 | **Party Mode** | Spawn multiple agents working in parallel |
@@ -126,7 +147,8 @@ That's it. Abdul will guide you from there.
 |-------|-------------|
 | [Getting Started](Docs/02-user-guides/GETTING-STARTED.md) | Full setup and first workflow |
 | [Agents Reference](Docs/02-user-guides/AGENTS-REFERENCE.md) | All 79 agents by team |
-| [Workflows Reference](Docs/02-user-guides/WORKFLOWS-REFERENCE.md) | All 135 workflows |
+| [Slash Command Reference](Docs/02-user-guides/SLASH-COMMAND-REFERENCE.md) | Direct invocation guide |
+| [Workflows Reference](Docs/02-user-guides/WORKFLOWS-REFERENCE.md) | All 138 workflows |
 | [Security Overview](Docs/02-user-guides/SECURITY-OVERVIEW.md) | Security architecture and hardening |
 | [Troubleshooting](Docs/02-user-guides/TROUBLESHOOTING.md) | Common issues and solutions |
 
@@ -143,4 +165,3 @@ That's it. Abdul will guide you from there.
 ## License
 
 [MIT](LICENSE) — Built with the BMAD Method and Claude Code.
-

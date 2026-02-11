@@ -15,16 +15,19 @@ Configure a word or phrase that will be spoken before every TTS message.
 ## Examples
 
 Set "AgentVibes" as the pretext:
+
 ```bash
 /agent-vibes:set-pretext AgentVibes
 ```
 
 Set a phrase:
+
 ```bash
 /agent-vibes:set-pretext "Project Alpha"
 ```
 
 Clear the pretext:
+
 ```bash
 /agent-vibes:set-pretext ""
 ```
@@ -32,6 +35,7 @@ Clear the pretext:
 ## What It Does
 
 When a pretext is set:
+
 - **Without pretext**: "I'll do the task"
 - **With pretext**: "AgentVibes: I'll do the task"
 
@@ -42,17 +46,21 @@ CONFIG_DIR="${CLAUDE_PROJECT_DIR:-.}/.agentvibes/config"
 CONFIG_FILE="$CONFIG_DIR/agentvibes.json"
 
 # Get the pretext from arguments
+
 PRETEXT="$ARGUMENTS"
 
 # Create config directory if it doesn't exist
+
 mkdir -p "$CONFIG_DIR"
 
 # Initialize config file if it doesn't exist
+
 if [ ! -f "$CONFIG_FILE" ]; then
     echo '{}' > "$CONFIG_FILE"
 fi
 
 # Update or clear the pretext
+
 if [ -z "$PRETEXT" ]; then
     # Clear pretext
     jq 'del(.pretext)' "$CONFIG_FILE" > "${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"

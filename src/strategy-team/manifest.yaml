@@ -7,8 +7,8 @@ version: 1.0.0
 
 permissions:
   filesystem:
-    read: ["_bmad/strategy-team/**", "docs/**", "_bmad/core/**"]
-    write: ["_bmad/strategy-team/output/**"]
+    read: ["src/strategy-team/**", "docs/**", "src/core/**"]
+    write: ["src/strategy-team/output/**"]
   network: true
   shell:
     allowed_commands: []

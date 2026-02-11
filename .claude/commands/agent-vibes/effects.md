@@ -16,6 +16,7 @@ Configure voice effects for TTS output. Effects can be applied globally, to spec
 ## Available Effects
 
 ### Reverb
+
 Adds room/space ambiance to the voice.
 
 ```
@@ -27,16 +28,19 @@ Adds room/space ambiance to the voice.
 ```
 
 ### Echo (coming soon)
+
 ```
 /agent-vibes:effects echo off|light|medium|heavy
 ```
 
 ### Pitch (coming soon)
+
 ```
 /agent-vibes:effects pitch normal|low|high|deep|chipmunk
 ```
 
 ### EQ (coming soon)
+
 ```
 /agent-vibes:effects eq flat|warm|bright|radio|telephone
 ```

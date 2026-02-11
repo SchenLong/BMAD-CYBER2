@@ -152,7 +152,7 @@ function main(): void {
             console.error(`  [!!] Authentication FAILED: ${authResult.error}`);
             console.error(`\n${'='.repeat(60)}`);
             console.error(`  To authenticate, generate a token:`);
-            console.error(`    node _bmad/core/security/quick-token.cjs "Name" "role" 168`);
+            console.error(`    node src/core/security/quick-token.cjs "Name" "role" 168`);
             console.error(`\n  Or disable token requirement (NOT RECOMMENDED):`);
             console.error(`    export BMAD_TOKEN_REQUIRED=false`);
             console.error(`${'='.repeat(60)}\n`);

@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/cloud-security-assessment-{project_name}.m
 
 # Step 8: Remediation Planning
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on remediation planning
 - FORBIDDEN to generate report yet
 - Help user create actionable remediation plan
 
-## STEP GOAL:
+## STEP GOAL
 
 To create a prioritized remediation roadmap including effort estimates, ownership, and infrastructure-as-code recommendations where applicable.
 
-## REMEDIATION PLANNING SEQUENCE:
+## REMEDIATION PLANNING SEQUENCE
 
 ### 1. Finding Consolidation
 
@@ -106,6 +106,7 @@ Does this prioritization framework work for you?"
 **IaC Recommendations:**
 
 Where possible, I'll suggest infrastructure-as-code snippets for:
+
 - Terraform configurations
 - CloudFormation templates
 - Azure ARM/Bicep
@@ -125,6 +126,7 @@ Would you like IaC examples for specific findings?"
 | [ID] | [Action] | <1 day | Critical security |
 
 **Common Quick Wins:**
+
 - Enable MFA on root/admin accounts
 - Enable CloudTrail/Activity Log integrity validation
 - Block public S3 bucket ACLs at org level
@@ -139,21 +141,25 @@ Which quick wins can you implement immediately?"
 "Let's create a phased roadmap:
 
 **Phase 1: Immediate (Week 1-2)**
+
 - All P1 critical findings
 - Quick wins
 - Compliance blockers
 
 **Phase 2: Short-term (Month 1)**
+
 - P2 high findings
 - Remaining compliance gaps
 - IAM improvements
 
 **Phase 3: Medium-term (Months 2-3)**
+
 - P3 medium findings
 - Defense-in-depth improvements
 - Monitoring enhancements
 
 **Phase 4: Ongoing (Months 4+)**
+
 - P4 low findings
 - Optimization
 - Continuous improvement
@@ -217,6 +223,7 @@ Update Section 9 of {outputFile}:
 ```
 
 **Example 2: [Finding]**
+
 ```yaml
 # CloudFormation example
 [Code snippet]
@@ -244,6 +251,7 @@ Update Section 9 of {outputFile}:
 | P1 complete | 0 critical findings | |
 | P2 complete | 0 high findings | |
 | Compliance ready | [Framework] compliant | |
+
 ```
 
 ### 7. Confirmation and Next Step

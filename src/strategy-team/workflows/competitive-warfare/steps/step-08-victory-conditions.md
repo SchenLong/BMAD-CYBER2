@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 8: Victory Conditions
 
-## STEP GOAL:
+## STEP GOAL
 
 Define what victory looks like, acceptable outcomes, exit criteria, and post-victory actions.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Sun - the Master Strategist (Sun Tzu)
 - Persona: Supreme strategist, "The good fighters of old first put themselves beyond the possibility of defeat"
 - Style: Long-view, victory-focused, strategic completion
 - Focus on defining the end state before committing
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Know what winning looks like before fighting
 - FORBIDDEN to start wars without defined victory conditions
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead victory definition
 - Define levels of victory
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Sun Concludes
 
@@ -94,9 +95,11 @@ Before we commit to battle, we must know what victory looks like. Wars without c
 | | Minimum | |
 
 **Early victory signs:**
+
 - [What suggests we're on track to win]
 
 **Late victory signs:**
+
 - [What confirms we've won]"
 
 ### 4. Define Exit Criteria
@@ -106,17 +109,21 @@ Before we commit to battle, we must know what victory looks like. Wars without c
 "**Exit criteria:**
 
 **We stop fighting when:**
+
 - [Specific condition 1]
 - [Specific condition 2]
 - [Specific condition 3]
 
 **We declare victory when:**
+
 - [Specific achievement]
 
 **We accept peace when:**
+
 - [Minimum terms we'd accept]
 
 **We cut losses when:**
+
 - [When to walk away short of victory]"
 
 ### 5. Assess Acceptable Losses
@@ -148,18 +155,22 @@ Before we commit to battle, we must know what victory looks like. Wars without c
 "**Post-victory planning:**
 
 **Consolidation:**
+
 - How do we secure our gains?
 - What must we do immediately after winning?
 
 **Magnanimity or punishment:**
+
 - How do we treat the defeated enemy?
 - Do we want them eliminated, weakened, or reconciled?
 
 **Future relationship:**
+
 - What relationship do we want with the enemy after?
 - Can they become neutral? An ally? Must remain enemy?
 
 **Preventing resurgence:**
+
 - How do we prevent them from recovering and attacking again?"
 
 ### 7. Ethical Final Check
@@ -169,14 +180,17 @@ Before we commit to battle, we must know what victory looks like. Wars without c
 "**Ethical checkpoint:**
 
 **Is this war justified?**
+
 - Are we fighting for legitimate reasons?
 - Are we the aggressor or defender?
 
 **Are our methods acceptable?**
+
 - Will we be proud of how we fought?
 - Are we staying within our red lines?
 
 **Is the cost worth it?**
+
 - Given what we now know, is this fight worth fighting?
 - What's the cost of NOT fighting?
 
@@ -215,6 +229,7 @@ Before we commit to battle, we must know what victory looks like. Wars without c
 **Victory condition:** [What winning looks like]
 
 **Key phases:**
+
 1. [Phase 1 summary]
 2. [Phase 2 summary]
 3. [Phase 3 summary]
@@ -229,13 +244,15 @@ Before we commit to battle, we must know what victory looks like. Wars without c
 
 Display: "**Select:** [R] Revise Plan [E] Expand Section [F] Finalize War Plan"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF R: Return to specific section to revise, then redisplay menu
 - IF E: Expand on specific area, then redisplay menu
 - IF F: Final save, update status, present closing message
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - This is the final step - no next step file
 - Ensure document is complete before closing
@@ -244,7 +261,8 @@ Display: "**Select:** [R] Revise Plan [E] Expand Section [F] Finalize War Plan"
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Victory levels defined
 - Exit criteria clear
 - Acceptable losses assessed
@@ -253,7 +271,8 @@ Display: "**Select:** [R] Revise Plan [E] Expand Section [F] Finalize War Plan"
 - Document complete
 - Sun persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague victory conditions
 - No exit criteria
 - Ignoring cost limits

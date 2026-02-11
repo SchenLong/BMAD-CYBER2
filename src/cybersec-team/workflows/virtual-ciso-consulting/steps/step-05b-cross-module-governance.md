@@ -14,13 +14,14 @@ recommendedPreset: 'vciso-advisory-party'
 
 # Step 5b: Cross-Module Governance Validation
 
-## STEP GOAL:
+## STEP GOAL
 
 Validate the governance framework designed in Step 5 through cross-module lenses: Policy development expertise (Augustus) and Legal/regulatory requirements (Covenant). Ensure the governance framework is robust, enforceable, and aligned with organizational policies.
 
-### When to Invoke:
+### When to Invoke
 
 This step should be offered after Step 5 (Governance Framework) when ANY of:
+
 - Organization has complex policy landscape
 - Multiple compliance frameworks apply
 - Legal enforceability of policies is critical
@@ -29,7 +30,7 @@ This step should be offered after Step 5 (Governance Framework) when ANY of:
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### 1. Introduction to Cross-Module Governance
 
@@ -38,6 +39,7 @@ This step should be offered after Step 5 (Governance Framework) when ANY of:
 "Before we move to executive reporting, I'm recommending we validate the governance framework through cross-module expertise.
 
 Security governance doesn't exist in isolation:
+
 - **Policy expertise** ensures alignment with organizational governance structures
 - **Legal expertise** ensures policies are enforceable and meet regulatory requirements
 
@@ -50,15 +52,18 @@ Let me bring in our cross-module governance experts."
 "Activating cross-module governance validation team:
 
 **Sentinel** (Compliance Guardian, cybersec-team)
+
 - Already involved - technical compliance expertise
 - Validates framework against compliance requirements
 
 **Augustus** (Policy Analyst, strategy-team)
+
 - Will assess policy structure and governance alignment
 - Ensures fit with organizational governance model
 - Reviews decision frameworks for effectiveness
 
 **Covenant** (Counsel, legal-team)
+
 - Will assess legal enforceability
 - Reviews for regulatory alignment
 - Identifies liability considerations"
@@ -80,11 +85,13 @@ Let me bring in our cross-module governance experts."
 | RACI clarity | [Effective/Needs Work/Inadequate] | [detail] |
 
 **Alignment with Organizational Governance:**
+
 - Board-level integration: [assessment]
 - Executive sponsorship: [assessment]
 - Business unit alignment: [assessment]
 
 **Policy Framework Recommendations:**
+
 1. [Recommendation for policy structure]
 2. [Recommendation for committee effectiveness]
 3. [Recommendation for decision processes]
@@ -117,12 +124,14 @@ Gap analysis: [key gaps]"
 | [Applicable regulation] | [requirements] | [Met/Gap] |
 
 **Legal Considerations:**
+
 - **Employment law:** [how policies affect employees]
 - **Contractor obligations:** [third-party requirements]
 - **Data protection:** [privacy governance requirements]
 - **Liability:** [governance-related liability exposure]
 
 **Required Legal Elements:**
+
 1. [Required policy language or provision]
 2. [Required approval/acknowledgment process]
 3. [Required documentation/record keeping]
@@ -148,10 +157,12 @@ Gap analysis: [key gaps]"
 | [Other] | [requirement] | [Y/N] | [gap] |
 
 **Compliance-Driven Governance Additions:**
+
 1. [Required by framework X]
 2. [Required by framework Y]
 
 **Audit Readiness:**
+
 - Governance documentation: [Ready/Needs Work]
 - Evidence of execution: [Ready/Needs Work]
 - Review records: [Ready/Needs Work]"
@@ -180,6 +191,7 @@ Gap analysis: [key gaps]"
 | 3 (Medium) | [enhancement] | [owner] | [timeline] |
 
 **Governance Framework Score:**
+
 - Current: [X/100]
 - Target: [Y/100]
 - Gap: [Z points]
@@ -245,7 +257,7 @@ When user selects [C], load and follow {nextStepFile} (step-06-reporting.md) wit
 
 ---
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - All three perspectives (Policy, Legal, Compliance) provided input
 - Governance framework validated against organizational needs
@@ -254,7 +266,7 @@ When user selects [C], load and follow {nextStepFile} (step-06-reporting.md) wit
 - Board-ready governance documentation
 - Priority enhancements clearly identified
 
-## FAILURE INDICATORS:
+## FAILURE INDICATORS
 
 - Missing obvious governance gaps
 - Not addressing legal enforceability

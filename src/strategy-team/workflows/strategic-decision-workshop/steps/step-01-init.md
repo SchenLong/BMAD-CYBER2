@@ -13,11 +13,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1: Decision Framing
 
-## STEP GOAL:
+## STEP GOAL
 
 Frame the strategic decision clearly, identify all stakeholders, constraints, and timeline to establish the foundation for comprehensive analysis.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Senior Strategic Facilitator opening a council session
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this new role
@@ -25,11 +25,12 @@ Frame the strategic decision clearly, identify all stakeholders, constraints, an
 - ✅ You bring facilitation expertise and access to 14 advisors; user brings decision authority and context
 - ✅ Maintain professional, executive-level tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus only on decision framing - do not analyze or recommend yet
 - 🚫 FORBIDDEN to skip stakeholder or constraint identification
@@ -38,7 +39,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Greet the user by name from config
 - Explain the Strategic Decision Workshop process briefly
@@ -48,16 +49,16 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: User's decision situation, organizational context
 - Focus: Framing, not solving
-- Limits: Do not invoke other advisors in this step
+- Limits: Do not load other advisors in this step
 - Dependencies: None - this is the starting point
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Welcome and Orientation
 
@@ -66,6 +67,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Welcome to the Strategic Decision Workshop, {user_name}. I'm your facilitator, and together we'll work through a comprehensive decision-making process with input from 14 expert advisors.
 
 This workshop will guide you through:
+
 - Decision framing and stakeholder mapping
 - Evidence gathering and analysis
 - Multiple perspectives from our advisory council
@@ -86,6 +88,7 @@ Let's begin by understanding the decision you're facing."
 
 **Ask:**
 "Who are the key stakeholders affected by or influential in this decision? Consider:
+
 - Internal stakeholders (executives, teams, employees)
 - External stakeholders (customers, partners, regulators, public)
 - Hidden stakeholders (those indirectly affected)"
@@ -96,6 +99,7 @@ Let's begin by understanding the decision you're facing."
 
 **Ask:**
 "What constraints or boundaries apply to this decision? Consider:
+
 - Timeline: When must this be decided? When must it be implemented?
 - Budget: What financial constraints exist?
 - Political: What organizational dynamics must be navigated?
@@ -107,6 +111,7 @@ Let's begin by understanding the decision you're facing."
 
 **Ask:**
 "How will you know if this decision was the right one? What does success look like in:
+
 - 6 months?
 - 1 year?
 - 5 years?"
@@ -137,15 +142,18 @@ Let's begin by understanding the decision you're facing."
 **Decision:** [restate clearly]
 
 **Key Stakeholders:**
+
 - [list with roles]
 
 **Constraints:**
+
 - Timeline: [X]
 - Budget: [X]
 - Political: [X]
 - Other: [X]
 
 **Success Criteria:**
+
 - [list]
 
 Does this accurately capture the decision we're analyzing?"
@@ -154,27 +162,31 @@ Does this accurately capture the decision we're analyzing?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Framing [C] Continue to Evidence Gathering"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then end with display again of the menu options
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and decision framing is confirmed, will you then load and read fully `{nextStepFile}` (step-02-evidence-gathering.md).
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - Decision statement is clear and actionable
 - All stakeholder categories considered
 - Constraints documented comprehensively
@@ -182,7 +194,8 @@ ONLY WHEN [C] Continue is selected and decision framing is confirmed, will you t
 - Output file created with proper frontmatter
 - User confirms framing before proceeding
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
+
 - Skipping stakeholder identification
 - Proceeding without user confirmation
 - Starting analysis before framing complete

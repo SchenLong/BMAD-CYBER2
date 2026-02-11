@@ -6,4 +6,4 @@ description: Recover and reconstruct deleted, hidden, or historical digital pres
 # Digital Necromancy
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/digital-necromancy/workflow.md`
+`@src/intel-team/workflows/digital-necromancy/workflow.md`

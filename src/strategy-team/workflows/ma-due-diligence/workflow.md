@@ -1,5 +1,5 @@
 ---
-name: M&A Due Diligence
+name: ma-due-diligence
 description: Comprehensive merger and acquisition evaluation using strategic advisors to assess target companies, identify risks, and develop integration strategies
 web_bundle: true
 ---

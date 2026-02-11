@@ -15,13 +15,13 @@ continueFile: '{workflow_path}/steps/step-01b-continue.md'
 
 # Step 1: Threat Modeling Initialization
 
-## STEP GOAL:
+## STEP GOAL
 
 To initialize the threat modeling workflow by detecting continuation state, gathering system overview information, and creating the initial threat model document with Section 1 (System Overview).
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -29,7 +29,7 @@ To initialize the threat modeling workflow by detecting continuation state, gath
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -37,28 +37,28 @@ To initialize the threat modeling workflow by detecting continuation state, gath
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on initialization and system overview
 - 🚫 FORBIDDEN to look ahead to threat identification or other future steps
 - 💬 Handle initialization professionally and methodically
 - 🚪 DETECT existing workflow state and handle continuation properly
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Show analysis before taking any action
 - 💾 Initialize document and update frontmatter
 - 📖 Set up frontmatter `stepsCompleted: [1]` before loading next step
 - 🚫 FORBIDDEN to load next step until setup is complete
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Variables from workflow.md are available in memory
 - Previous context = what's in output document + frontmatter
 - Don't assume knowledge from other steps
 - System information discovery happens in this step
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Check for Existing Workflow
 
@@ -83,6 +83,7 @@ If the document exists and has frontmatter with `stepsCompleted`:
 If the document exists AND frontmatter shows `workflowComplete: true`:
 
 Ask user: "I found an existing threat model from {date}. Would you like to:
+
 1. Create a new threat model
 2. Update/modify the existing threat model"
 
@@ -102,6 +103,7 @@ Display:
 I'll guide you through creating a comprehensive threat model using the STRIDE methodology.
 
 **STRIDE Framework:**
+
 - **S**poofing - Identity verification threats
 - **T**ampering - Data/code integrity threats
 - **R**epudiation - Audit and logging threats
@@ -118,6 +120,7 @@ What is the name of the system or application you want to threat model?"
 Collect: **System Name**
 
 "Please provide a brief description of the system:
+
 - What does it do?
 - Who uses it?
 - What is its business purpose?"
@@ -125,6 +128,7 @@ Collect: **System Name**
 Collect: **System Description**
 
 "What is the business criticality of this system?
+
 - Critical: Revenue-generating, customer-facing, mission-critical
 - High: Important business functions, significant impact if compromised
 - Medium: Standard business operations
@@ -133,6 +137,7 @@ Collect: **System Description**
 Collect: **Business Criticality**
 
 "Describe the high-level architecture:
+
 - What are the major architectural components? (e.g., web frontend, API, database, message queue)
 - How is it deployed? (e.g., cloud, on-premises, hybrid)
 - What are the main data flows?"
@@ -140,6 +145,7 @@ Collect: **Business Criticality**
 Collect: **Architecture Summary**
 
 "What is the technology stack?
+
 - Frontend technologies (if applicable)
 - Backend technologies
 - Databases
@@ -149,6 +155,7 @@ Collect: **Architecture Summary**
 Collect: **Technology Stack**
 
 "Describe the trust boundaries and security zones:
+
 - What are the different security zones? (e.g., public internet, DMZ, internal network, database tier)
 - Where are the trust boundaries? (e.g., firewall, API gateway, authentication layer)
 - What separates trusted from untrusted components?"
@@ -156,6 +163,7 @@ Collect: **Technology Stack**
 Collect: **Trust Boundaries**
 
 "What external dependencies does the system have?
+
 - Third-party APIs or services
 - External data sources
 - Authentication providers
@@ -227,6 +235,7 @@ Display:
 "**System Overview Complete**
 
 I've captured the following information:
+
 - System: {system-name}
 - Criticality: {criticality}
 - Architecture: {brief-summary}
@@ -236,13 +245,13 @@ Proceeding to component decomposition..."
 
 ### 5. Route to Next Step
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - This is an initialization step with auto-proceed after setup
 - No menu options - proceed directly to component decomposition
 - Use routing logic below
 
-#### Routing Logic:
+#### Routing Logic
 
 After setup completion, immediately load, read entire file, then follow `{nextStepFile}` to begin component decomposition.
 
@@ -250,7 +259,7 @@ After setup completion, immediately load, read entire file, then follow `{nextSt
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Document created from scratch with system overview (Section 1)
 - Frontmatter initialized with `stepsCompleted: [1]`
@@ -259,7 +268,7 @@ After setup completion, immediately load, read entire file, then follow `{nextSt
 - Ready to proceed to component decomposition (step 2)
 - OR existing workflow properly routed to step-01b-continue.md
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Proceeding without document initialization
 - Not checking for existing documents properly

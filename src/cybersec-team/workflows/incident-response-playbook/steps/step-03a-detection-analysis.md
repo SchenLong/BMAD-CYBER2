@@ -19,13 +19,13 @@ brainstormingWorkflow: '{project-root}/_bmad/core/workflows/brainstorming/workfl
 
 # Step 3A: Detection & Analysis Procedures
 
-## STEP GOAL:
+## STEP GOAL
 
 To define comprehensive detection procedures, IOC identification methods, alert sources, triage decision trees, and initial assessment checklists specific to the incident type selected in Step 2A.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -33,7 +33,7 @@ To define comprehensive detection procedures, IOC identification methods, alert 
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an IR Planning Consultant
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -42,7 +42,7 @@ To define comprehensive detection procedures, IOC identification methods, alert 
 - ✅ User brings organizational knowledge and requirements
 - ✅ Maintain collaborative, consultative tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on detection and initial analysis procedures
 - 🚫 FORBIDDEN to start defining containment actions (that's step 4a)
@@ -51,21 +51,21 @@ To define comprehensive detection procedures, IOC identification methods, alert 
 - 🎨 Brainstorming ENCOURAGED for creative detection strategies
 - 👥 Party Mode (Cipher) AVAILABLE for threat intelligence expertise
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Leverage organizational context from Section 1 (gathered in step 2a)
 - 💾 Append to Section 2 (Detection & Analysis Procedures) in output file
 - 📖 Update frontmatter `stepsCompleted: [1, 2a, 3a]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Organizational context and incident type defined in step 2a
 - Focus on HOW to detect and initially analyze this incident type
 - Don't define HOW to contain yet (that's step 4a)
 - Detection procedures inform containment strategy
 
-## DETECTION & ANALYSIS PROCEDURE SEQUENCE:
+## DETECTION & ANALYSIS PROCEDURE SEQUENCE
 
 ### 1. Review Incident Type Context
 
@@ -76,6 +76,7 @@ Display:
 Let's define how your organization will detect and analyze **{incident-type}** incidents.
 
 From your organizational context in Section 1:
+
 - SIEM Platform: {siem-platform}
 - EDR Platform: {edr-platform}
 - Other Monitoring: {other-tools}
@@ -94,32 +95,38 @@ For **{incident-type}** incidents, what indicators would signal this type of att
 Let's think through different indicator categories:
 
 **Network Indicators:**
+
 - What network patterns would indicate {incident-type}? (e.g., connections to known C2 IPs, unusual outbound traffic volumes, DNS requests to suspicious domains)
 - What protocols might be abused?
 - What destination IPs/domains should trigger alerts?
 
 **Endpoint Indicators:**
+
 - What file system changes would indicate compromise? (e.g., file encryption for ransomware, new scheduled tasks for persistence)
 - What process behaviors would be suspicious? (e.g., PowerShell with encoded commands, LSASS access)
 - What registry modifications signal {incident-type}?
 
 **Log-Based Indicators:**
+
 - What authentication patterns suggest compromise? (e.g., failed logins followed by success, impossible travel)
 - What user behaviors would be anomalous?
 - What application logs should be monitored?
 
 **Threat Intelligence Indicators:**
+
 - Are there known threat actor groups targeting your industry with {incident-type}?
 - What are their known IOCs? (I can search for recent threat intel if helpful)
 
 Would you like me to use **Web-Browsing** to research recent {incident-type} campaigns and associated IOCs?"
 
 **If user requests Web-Browsing:**
+
 - Execute web search for: "{incident-type} IOCs 2025 threat intelligence"
 - Execute web search for: "{incident-type} {industry} recent attacks"
 - Summarize findings and integrate into IOC list
 
 Document IOCs in categories:
+
 - Network IOCs (IPs, domains, URLs, protocols, ports)
 - File IOCs (hashes, file paths, extensions, signatures)
 - Behavioral IOCs (process chains, authentication patterns, lateral movement)
@@ -132,6 +139,7 @@ Document IOCs in categories:
 Based on your environment, where will alerts come from?
 
 **SIEM ({siem-platform}):**
+
 - What log sources feed your SIEM for {incident-type} detection?
   - Firewall logs
   - Proxy logs
@@ -145,25 +153,30 @@ Based on your environment, where will alerts come from?
 - What alerting thresholds should trigger escalation?
 
 **EDR ({edr-platform}):**
+
 - What EDR detections cover {incident-type}?
 - What behavioral analytics are enabled?
 - What response actions can EDR take automatically?
 
 **Other Monitoring Tools:**
+
 - {list-other-tools-from-section-1}
 - How do these integrate with SIEM/EDR?
 
 **External Sources:**
+
 - Threat intelligence feeds subscribed?
 - Information sharing communities (ISAC, etc.)?
 - Vendor security advisories?
 
 **User Reports:**
+
 - How do users report suspicious activity?
 - What training has been provided for {incident-type} awareness?
 - What's the triage process for user reports?"
 
 Document all alert sources with:
+
 - Source name
 - Data types collected
 - Integration method
@@ -179,11 +192,13 @@ When an alert fires that may indicate {incident-type}, how does the SOC analyst 
 Let's create a decision tree:
 
 **Initial Validation:**
+
 - Question 1: Is this a true positive or false positive?
   - What evidence confirms true positive?
   - What patterns indicate false positive?
 
 **Severity Assessment:**
+
 - Question 2: If true positive, what's the severity?
   - Critical: {critical-criteria-from-section-1}
   - High: {high-criteria-from-section-1}
@@ -191,6 +206,7 @@ Let's create a decision tree:
   - Low: {low-criteria-from-section-1}
 
 **Scope Determination:**
+
 - Question 3: How widespread is the incident?
   - Single endpoint?
   - Multiple endpoints in one segment?
@@ -198,11 +214,13 @@ Let's create a decision tree:
   - Enterprise-wide?
 
 **Escalation Decision:**
+
 - Question 4: Who needs to be notified immediately?
   - Escalation matrix from Section 1
   - Based on severity and scope
 
 **Initial Containment:**
+
 - Question 5: Are immediate containment actions needed?
   - What actions can SOC take without approval? (e.g., isolate endpoint)
   - What actions require management approval? (e.g., network segmentation)
@@ -210,6 +228,7 @@ Let's create a decision tree:
 Let's work through this together. What's the first validation check your SOC analyst should perform when they see a potential {incident-type} alert?"
 
 Work conversationally to build the decision tree with:
+
 - Clear yes/no decision points
 - Specific evidence requirements at each node
 - Escalation triggers
@@ -223,6 +242,7 @@ Work conversationally to build the decision tree with:
 When a {incident-type} incident is confirmed, what information must be gathered immediately?
 
 **Incident Metadata:**
+
 - [ ] Incident ID assigned (format: {your-format})
 - [ ] Detection timestamp
 - [ ] Analyst name
@@ -230,30 +250,35 @@ When a {incident-type} incident is confirmed, what information must be gathered 
 - [ ] Alert source(s)
 
 **Affected Assets:**
+
 - [ ] List of affected systems (hostnames/IPs)
 - [ ] Business criticality of affected systems
 - [ ] Data classification of affected systems
 - [ ] User accounts involved
 
 **Technical Details:**
+
 - [ ] IOCs observed (list from Section 2.1)
 - [ ] Attack vector identified
 - [ ] Timeline of observed activity
 - [ ] Current state (active/contained/eradicated)
 
 **Scope Questions:**
+
 - [ ] How many systems affected?
 - [ ] What data is at risk?
 - [ ] Is attacker still active in environment?
 - [ ] What access level does attacker have?
 
 **Business Impact:**
+
 - [ ] Services impacted
 - [ ] Users affected
 - [ ] Revenue impact (if known)
 - [ ] Regulatory notification required?
 
 **Evidence Preservation:**
+
 - [ ] Memory dumps captured
 - [ ] Disk images acquired
 - [ ] Logs collected and secured
@@ -270,18 +295,21 @@ Customize the checklist based on user input and organizational needs.
 Would you like to integrate threat intelligence into your detection procedures?
 
 **Option 1:** I can use **Web-Browsing** to research:
+
 - Recent {incident-type} campaigns targeting {industry}
 - Known threat actor TTPs
 - Emerging IOCs for {incident-type}
 - Recommended detection signatures
 
 **Option 2:** We can use **Party Mode** to bring in **Cipher** (our threat intelligence specialist) to:
+
 - Provide deep analysis of {incident-type} threat landscape
 - Recommend threat intel feeds and sources
 - Design threat hunting procedures
 - Create adversary emulation scenarios for testing
 
 **Option 3:** We can use **Brainstorming** to:
+
 - Explore creative detection strategies
 - Identify gaps in current detection coverage
 - Design proactive threat hunting procedures
@@ -339,6 +367,7 @@ Append to Section 2 (Detection & Analysis Procedures) in output file:
 ### 2.3 Triage Decision Tree
 
 ```
+
 [Alert Fired: Potential {incident-type}]
     |
     ├─> [Validate Alert]
@@ -362,6 +391,7 @@ Append to Section 2 (Detection & Analysis Procedures) in output file:
     └─> [Immediate Actions]
           ├─> SOC can take: {soc-authorized-actions}
           └─> Requires approval: {management-approval-required-actions}
+
 ```
 
 ### 2.4 Initial Assessment Checklist
@@ -452,6 +482,7 @@ Append to Section 2 (Detection & Analysis Procedures) in output file:
 ```
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2a, 3a]
 lastUpdated: '{timestamp}'
@@ -461,14 +492,14 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [B] Brainstorming [W] Web-Browsing [C] Continue
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then redisplay the menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with focus on "quality and completeness of detection procedures"
 - IF P: Execute {partyModeWorkflow} - User can select Cipher (threat intel), Trace (forensics), or other experts
@@ -489,7 +520,7 @@ ONLY WHEN C is selected and Section 2 is complete will you load, read entire fil
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Comprehensive IOC list documented for {incident-type}
 - All alert sources identified and documented
@@ -500,7 +531,7 @@ ONLY WHEN C is selected and Section 2 is complete will you load, read entire fil
 - Frontmatter updated with stepsCompleted: [1, 2a, 3a]
 - Menu presented and user input handled correctly
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Generic IOCs not specific to {incident-type} or organization
 - Skipping triage decision tree

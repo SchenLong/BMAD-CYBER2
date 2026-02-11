@@ -21,9 +21,9 @@ templateReportFile: '{workflow_path}/templates/template-incident-report.md'
 
 # Step 1: Incident Response Workflow Initialization
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -31,7 +31,7 @@ templateReportFile: '{workflow_path}/templates/template-incident-report.md'
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an expert Incident Response specialist
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -40,7 +40,7 @@ templateReportFile: '{workflow_path}/templates/template-incident-report.md'
 - ✅ User brings organizational context and response execution capability
 - ✅ Maintain professional, calm tone throughout (especially critical during Mode B crisis situations)
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on initialization and mode selection
 - 🚫 FORBIDDEN to look ahead to future steps
@@ -48,25 +48,25 @@ templateReportFile: '{workflow_path}/templates/template-incident-report.md'
 - 🚪 DETECT existing workflow state and handle continuation properly
 - 🔀 BRANCH to appropriate mode based on user selection
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Show analysis before taking any action
 - 💾 Initialize document and update frontmatter
 - 📖 Set up frontmatter `stepsCompleted: [1]` before loading next step
 - 🚫 FORBIDDEN to load next step until setup is complete
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Variables from workflow.md are available in memory
 - Previous context = what's in output document + frontmatter + sidecar file (if exists)
 - Don't assume knowledge from other steps
 - Output document location depends on mode selection
 
-## STEP GOAL:
+## STEP GOAL
 
 To initialize the Incident Response workflow by detecting continuation state, selecting execution mode (Playbook Creation or Guided Execution), and creating the appropriate output document for the chosen mode.
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Check for Existing Workflows
 
@@ -75,6 +75,7 @@ To initialize the Incident Response workflow by detecting continuation state, se
 Look for files matching pattern: `{output_folder}/planning/incident-response/playbook-*.md`
 
 If found:
+
 - Read each file to check for `stepsCompleted` in frontmatter
 - Identify incomplete vs complete playbooks
 
@@ -83,6 +84,7 @@ If found:
 Look for files matching pattern: `{output_folder}/incidents/incident-*.md`
 
 If found:
+
 - Read each file to check for `stepsCompleted` in frontmatter
 - Identify active vs closed incidents
 - Check for corresponding sidecar files
@@ -102,14 +104,17 @@ Display:
 [List any incidents with stepsCompleted but not workflowComplete]
 
 Would you like to:
+
 1. Continue an existing workflow
 2. Start a new workflow"
 
 If user selects option 1:
+
 - **STOP here** and load `{continueFile}` immediately
 - Let step-01b handle the continuation logic
 
 If user selects option 2:
+
 - Continue to fresh workflow setup below
 
 ### 3. Handle Completed Workflows
@@ -119,6 +124,7 @@ If user selects option 2:
 Display found workflows and ask:
 
 "I found [N] completed playbook(s) and [M] closed incident(s). Would you like to:
+
 1. Create a new playbook (Mode A)
 2. Respond to a new incident (Mode B)
 3. Review existing playbooks or incidents"
@@ -138,6 +144,7 @@ Display:
 This workflow supports two distinct modes:
 
 **Mode A: Playbook Creation** 📋
+
 - Create comprehensive incident response playbooks
 - Document detection, containment, eradication, recovery procedures
 - Prepare for incidents before they happen
@@ -145,6 +152,7 @@ This workflow supports two distinct modes:
 - Output: Complete IR playbook with NIST lifecycle procedures
 
 **Mode B: Guided Execution** 🚨
+
 - Respond to active incident in real-time
 - Step-by-step crisis guidance
 - Forensic-quality evidence collection
@@ -173,6 +181,7 @@ If user selects 'A':
 4. Copy template from `{templatePlaybookFile}` to new playbook file
 
 5. Initialize frontmatter:
+
    ```yaml
    ---
    stepsCompleted: [1]
@@ -223,6 +232,7 @@ If user selects 'B':
 5. Copy template from `{templateReportFile}` to new incident file
 
 6. Initialize frontmatter:
+
    ```yaml
    ---
    stepsCompleted: [1]
@@ -241,6 +251,7 @@ If user selects 'B':
    ```
 
 7. Create sidecar file for timeline tracking:
+
    ```yaml
    ---
    incidentId: '{incident-id}'
@@ -282,7 +293,7 @@ If user selects 'B':
 
 9. Immediately load, read entire file, then follow `{step02bFile}` to begin Mode B
 
-## ✅ SUCCESS METRICS:
+## ✅ SUCCESS METRICS
 
 - Mode selected (A or B)
 - Appropriate output document created from template
@@ -291,7 +302,7 @@ If user selects 'B':
 - User ready to proceed to mode-appropriate step 2
 - OR existing workflow properly routed to step-01b-continue.md
 
-## ❌ FAILURE MODES TO AVOID:
+## ❌ FAILURE MODES TO AVOID
 
 - Not checking for existing documents properly
 - Creating duplicate documents
@@ -304,7 +315,7 @@ If user selects 'B':
 
 **Display:** Proceeding to [Mode A: Incident Type Selection / Mode B: Incident Triage]...
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - This is an initialization step with no user choices (except mode selection)
 - After mode selection and document creation, proceed directly to next step
@@ -315,7 +326,7 @@ If user selects 'B':
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Continuation detection worked correctly
 - Mode selected appropriately
@@ -325,7 +336,7 @@ If user selects 'B':
 - Welcome message appropriate for selected mode
 - Proceeded to correct step-02 file
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Not checking for existing workflows
 - Not routing to continuation step when needed

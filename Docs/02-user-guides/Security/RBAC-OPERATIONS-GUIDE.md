@@ -11,6 +11,7 @@
 BMAD-CYBER2 implements Role-Based Access Control (RBAC) to manage access to modules, agents, and workflows. This guide covers operational procedures for role assignment, permission management, and authorization troubleshooting.
 
 **Key Principles:**
+
 - **Deny by Default** - All access is denied unless explicitly granted
 - **Role Inheritance** - Roles can inherit permissions from parent roles
 - **Module-Level Gating** - Coarse-grained control at module level
@@ -126,23 +127,27 @@ node _bmad/core/security/generate-token.js
 ### Checking User Permissions
 
 **View All Permissions:**
+
 ```bash
 node _bmad/core/security/check-authorization.js
 ```
 
 **Check Module Access:**
+
 ```bash
 node _bmad/core/security/check-authorization.js module intel-team
 node _bmad/core/security/check-authorization.js module cybersec-team
 ```
 
 **Check Workflow Access:**
+
 ```bash
 node _bmad/core/security/check-authorization.js workflow operation-mosaic
 node _bmad/core/security/check-authorization.js workflow incident-response
 ```
 
 **Check Agent Access:**
+
 ```bash
 node _bmad/core/security/check-authorization.js agent intel-team/osint-lead
 node _bmad/core/security/check-authorization.js agent cybersec-team/red-team-lead
@@ -228,24 +233,28 @@ rbac:
 ### Modifying RBAC Configuration
 
 **Prerequisites:**
+
 - Must have `admin` role
 - Changes require service restart
 
 **Procedure:**
 
 1. **Edit Configuration:**
+
    ```bash
    # Edit the RBAC config file
    vim _bmad/core/security/rbac-config.yaml
    ```
 
 2. **Validate Configuration:**
+
    ```bash
    # Check YAML syntax
    python3 -c "import yaml; yaml.safe_load(open('_bmad/core/security/rbac-config.yaml'))"
    ```
 
 3. **Test Changes:**
+
    ```bash
    # Verify role definitions
    node _bmad/core/security/check-authorization.js roles

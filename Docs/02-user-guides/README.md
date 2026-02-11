@@ -5,19 +5,23 @@ This directory contains all implementation guides and technical documentation fo
 ## 🛠️ Available Implementation Guides
 
 ### Dependency Management
+
 - [BMAD-DEPENDENCY-MANAGEMENT-GUIDE.md](BMAD-DEPENDENCY-MANAGEMENT-GUIDE.md) - Comprehensive dependency management guide
 - [BMAD-DEPENDENCY-SYSTEM-SUMMARY.md](BMAD-DEPENDENCY-SYSTEM-SUMMARY.md) - Dependency system overview and summary
 
 ### Schema & Data Structures
+
 - [BMAD-SCHEMA-IMPLEMENTATION-GUIDE.md](BMAD-SCHEMA-IMPLEMENTATION-GUIDE.md) - Schema implementation guide for BMAD METHOD compliance
 
 ### Agent & Module Development
+
 - [agent-conversion-spec.md](agent-conversion-spec.md) - Agent conversion specification and standards
 - [module-compatibility-matrix.md](module-compatibility-matrix.md) - Module compatibility matrix and requirements
 
 ## 📋 Guide Categories
 
 ### 🔧 Development Guides
+
 | Guide | Focus | Audience |
 |-------|-------|----------|
 | Dependency Management | Package & dependency handling | Developers |
@@ -25,6 +29,7 @@ This directory contains all implementation guides and technical documentation fo
 | Agent Conversion | Agent development standards | Agent Developers |
 
 ### 🏗️ Architecture Guides
+
 | Guide | Focus | Audience |
 |-------|-------|----------|
 | Module Compatibility | Cross-module integration | System Architects |

@@ -18,9 +18,9 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 1: Mobile Security Testing Initialization
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
@@ -34,13 +34,14 @@ Before proceeding, check if {outputFile} exists:
 - IF EXISTS: Load, read entire file, and then follow {continueStepFile}
 - IF NOT EXISTS: Continue with fresh testing initialization below
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Testing Welcome
 
 "Welcome to the Mobile Security Testing workflow. I'm Phantom, your mobile security specialist.
 
 This comprehensive assessment covers:
+
 - OWASP Mobile Top 10 vulnerabilities
 - Platform-specific security (iOS/Android)
 - Static analysis (binary, decompilation)
@@ -56,12 +57,14 @@ Let's begin by understanding your testing scope."
 "What mobile platform(s) are we testing?
 
 **Platform:**
+
 - [ ] iOS
 - [ ] Android
 - [ ] Cross-platform (React Native, Flutter, etc.)
 - [ ] Hybrid (Cordova, Ionic)
 
 **App Type:**
+
 - [ ] Native application
 - [ ] Hybrid application
 - [ ] PWA (Progressive Web App)
@@ -73,18 +76,21 @@ Which platform(s) should we focus on?"
 "Please provide app information:
 
 **iOS App:**
+
 - App Store URL or IPA file
 - Bundle ID
 - Minimum iOS version
 - Jailbreak detection present?
 
 **Android App:**
+
 - Play Store URL or APK file
 - Package name
 - Target SDK version
 - Root detection present?
 
 **Additional Info:**
+
 - Backend API endpoints
 - Authentication method (OAuth, custom, biometric)
 - Push notification service
@@ -103,6 +109,7 @@ What's your app information?"
 | Android | [Model] | [Version] | [Yes/No] |
 
 **Tools Available:**
+
 - [ ] Frida
 - [ ] objection
 - [ ] jadx/apktool
@@ -117,6 +124,7 @@ What testing environment do you have?"
 "What should we focus on?
 
 **Testing Areas:**
+
 - [ ] Full OWASP Mobile Top 10
 - [ ] Authentication/Authorization
 - [ ] Data Storage
@@ -126,6 +134,7 @@ What testing environment do you have?"
 - [ ] API Security (mobile backend)
 
 **Constraints:**
+
 - Time limit?
 - Specific features to focus on?
 - Known areas of concern?
@@ -211,6 +220,7 @@ status: in_progress
 "**Testing Scope Defined**
 
 I've documented your mobile security testing scope:
+
 - Platform: [Summary]
 - App: [Summary]
 - Focus areas: [Summary]
@@ -223,7 +233,7 @@ Ready to proceed to static analysis?"
 
 Display: **Initialization Complete - Select an Option:** [C] Continue to Static Analysis [R] Review/Revise Scope
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 1 content, allow revisions, then redisplay menu

@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 8: Deal Recommendation
 
-## STEP GOAL:
+## STEP GOAL
 
 Synthesize all due diligence findings into a clear, board-ready recommendation with supporting rationale, key risks, and conditions for proceeding.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor presenting final recommendations
-- Invoke multiple advisor perspectives for balanced view
+- Load multiple advisor perspectives for balanced view
 - Focus on clear, actionable recommendation
 - Document dissenting views and conditions
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Recommendation must be clear: Proceed, Proceed with conditions, or Do not proceed
 - FORBIDDEN to give ambiguous recommendation
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Review All Findings
 
@@ -44,6 +45,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me review all our due diligence findings..."
 
 **Summary of each phase:**
+
 - Deal Thesis: [key points]
 - Strategic Fit: [key findings]
 - Financial Assessment: [key findings]
@@ -94,6 +96,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Based on all analysis, my recommendation is:"
 
 **Recommendation options:**
+
 - **PROCEED**: Deal is attractive, risks manageable, recommend moving forward
 - **PROCEED WITH CONDITIONS**: Deal is attractive but specific conditions must be met
 - **PAUSE/RENEGOTIATE**: Deal structure needs significant changes
@@ -109,14 +112,17 @@ You MUST respond in **{communication_language}** throughout this step.
 "The following conditions must be satisfied:"
 
 **Pre-signing conditions:**
+
 1. [condition]
 2. [condition]
 
 **Closing conditions:**
+
 1. [condition]
 2. [condition]
 
 **Post-closing commitments:**
+
 1. [commitment]
 2. [commitment]
 
@@ -137,10 +143,12 @@ You MUST respond in **{communication_language}** throughout this step.
 "For a balanced view, here are dissenting perspectives:"
 
 **Case against the deal:**
+
 - [argument]
 - [argument]
 
 **Rebuttals:**
+
 - [counter-argument]
 
 ### 8. Next Steps
@@ -203,6 +211,7 @@ This due diligence was conducted using the M&A Due Diligence workflow, incorpora
 ```
 
 Update frontmatter:
+
 - Add `step-08-deal-recommendation` to stepsCompleted
 - Change `status: complete`
 
@@ -220,20 +229,24 @@ Update frontmatter:
 **Deal Scorecard:** [X/5 overall]
 
 **Key Value Drivers:**
+
 1. [driver]
 2. [driver]
 3. [driver]
 
 **Critical Risks:**
+
 1. [risk]
 2. [risk]
 3. [risk]
 
 **Conditions (if applicable):**
+
 1. [condition]
 2. [condition]
 
 **Next Steps:**
+
 1. [step]
 2. [step]
 
@@ -248,7 +261,8 @@ This document is ready for board review and decision-making."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Recommendation [E] Export/Share [X] Exit Workflow"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -259,7 +273,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Recomme
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Clear recommendation provided (not ambiguous)
 - All advisor perspectives synthesized
 - Scorecard completed
@@ -269,7 +284,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Recomme
 - Document marked complete
 - Output file finalized
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Ambiguous recommendation
 - Missing advisor perspectives
 - Not addressing key risks

@@ -6,4 +6,4 @@ description: Identify fake accounts, sock puppets, bots, and impersonators throu
 # Doppelganger Hunt
 
 Load and follow the workflow at:
-`@_bmad/intel-team/workflows/doppelganger-hunt/workflow.md`
+`@src/intel-team/workflows/doppelganger-hunt/workflow.md`

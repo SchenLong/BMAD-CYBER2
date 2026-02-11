@@ -18,7 +18,7 @@ import { fileURLToPath } from 'url';
  * @type {Object<string, string|string[]>}
  */
 export const FEATURE_TO_VALIDATOR = {
-  'auth': '_bmad/core/security/authorization.js',
+  'auth': 'src/core/security/authorization.js',
   'validators-6': [
     '.claude/validators-node/src/guards/bash-safety.js',
     '.claude/validators-node/src/guards/env-protection.js',
@@ -33,26 +33,26 @@ export const FEATURE_TO_VALIDATOR = {
   'production-guard': '.claude/validators-node/src/guards/production.js',
   'secret-detection': '.claude/validators-node/src/guards/secret.js',
   'pii-protection': '.claude/validators-node/src/guards/pii/index.js',
-  'rbac': '_bmad/core/security/rbac-config.yaml',
-  'session-management': '_bmad/core/security/session-manager.js',
+  'rbac': 'src/core/security/rbac-config.yaml',
+  'session-management': 'src/core/security/session-manager.js',
   'token-management': [
-    '_bmad/core/security/generate-token.js',
-    '_bmad/core/security/validate-token.js',
-    '_bmad/core/security/check-authorization.js'
+    'src/core/security/generate-token.js',
+    'src/core/security/validate-token.js',
+    'src/core/security/check-authorization.js'
   ],
   'audit-logging': '_bmad/framework/dist/audit/index.js',
   'integrity-verification': [
-    '_bmad/core/security/verify-integrity.sh',
-    '_bmad/core/security/MANIFEST.sha256',
-    '_bmad/core/security/sign-manifest.sh'
+    'src/core/security/verify-integrity.sh',
+    'src/core/security/MANIFEST.sha256',
+    'src/core/security/sign-manifest.sh'
   ],
   'pii-advanced': [
     '.claude/validators-node/src/guards/pii/patterns.js',
     '.claude/validators-node/src/guards/pii/validators.js'
   ],
-  'threat-modeling': '_bmad/core/security/OWASP-AI-SECURITY-CHECKLIST.md',
-  'plugin-isolation': '_bmad/core/security/PLUGIN-ISOLATION-RESEARCH.md',
-  'owasp-remediation': '_bmad/core/security/OWASP-REMEDIATION-PLAN.md'
+  'threat-modeling': 'src/core/security/OWASP-AI-SECURITY-CHECKLIST.md',
+  'plugin-isolation': 'src/core/security/PLUGIN-ISOLATION-RESEARCH.md',
+  'owasp-remediation': 'src/core/security/OWASP-REMEDIATION-PLAN.md'
 };
 
 /**

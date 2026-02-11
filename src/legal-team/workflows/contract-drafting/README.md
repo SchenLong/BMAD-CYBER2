@@ -1,21 +1,26 @@
 # Contract Drafting Workflow
 
 ## Purpose
+
 Create jurisdiction-appropriate contracts from scratch or modify existing templates based on requirements.
 
 ## Type
+
 Document
 
 ## Primary Users
+
 Business owners needing contracts for transactions
 
 ## Key Outputs
+
 - Draft contract document
 - Explanatory notes on key provisions
 - Jurisdiction-specific adaptations
 - Negotiation guidance for counterparty discussions
 
 ## Workflow Steps (Planned)
+
 1. Requirements gathering (parties, transaction, terms)
 2. Governing law selection with rationale
 3. Template selection or structure design
@@ -27,15 +32,18 @@ Business owners needing contracts for transactions
 9. Final draft with commentary
 
 ## Agents Involved
+
 - Covenant (primary - drafting)
 - Jurisdiction specialists for local law requirements
 
 ## Integration Points
+
 - May follow Contract Review (redlining existing contract)
 - May follow Legal Matter Intake
 - Output may need review by jurisdiction specialist
 
 ## Contract Types Supported
+
 - Service agreements
 - Sales/purchase agreements
 - NDAs/Confidentiality agreements

@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/debate-coach.md
+# Full agent: src/strategy-team/agents/debate-coach.md
 agent_id: "debate-coach"
 name: "Cicero"
 title: "Argumentation & Rhetoric Master"

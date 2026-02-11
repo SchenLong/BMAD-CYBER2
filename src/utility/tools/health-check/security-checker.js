@@ -34,7 +34,7 @@ export const GUARDS_PATH = '.claude/validators-node/src/guards/';
  * Path to security config file relative to project root
  * @type {string}
  */
-export const SECURITY_CONFIG_PATH = '_bmad/core/security/security-config.yaml';
+export const SECURITY_CONFIG_PATH = 'src/core/security/security-config.yaml';
 
 /**
  * Path to audit log directory relative to project root

@@ -27,26 +27,26 @@ step09File: '{workflow_path}/steps/step-09-report-generation.md'
 
 # Step 1B: Cloud Security Assessment Continuation
 
-## STEP GOAL:
+## STEP GOAL
 
 To resume the Cloud Security Assessment workflow from where it was left off, ensuring smooth continuation without loss of context.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on analyzing and resuming workflow state
 - FORBIDDEN to modify content completed in previous steps
 - DETECT exact continuation point from frontmatter
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Analyze Current State
 
@@ -58,6 +58,7 @@ Review the frontmatter of {outputFile} to understand:
 - `complianceFrameworks`: Compliance requirements
 
 **Step Mapping:**
+
 - Step 1: Initialization & Scope
 - Step 2: IAM Assessment
 - Step 3: Network Security
@@ -90,6 +91,7 @@ Based on the last value in `stepsCompleted` array:
 I see we've completed [X] steps of the assessment.
 
 **Progress Summary:**
+
 - Scope & Initialization Complete
 [If step 2 complete:] - IAM Assessment Complete
 [If step 3 complete:] - Network Security Complete
@@ -107,7 +109,7 @@ Are you ready to continue?"
 
 Display: **Resuming - Select an Option:** [C] Continue to [Next Step] [R] Review Previous Work
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `lastContinued`, then load and follow appropriate next step file
 - IF R: Display summary of completed sections, then redisplay menu

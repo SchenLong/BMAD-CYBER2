@@ -18,13 +18,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5A: Eradication Steps
 
-## STEP GOAL:
+## STEP GOAL
 
 To document comprehensive eradication procedures including root cause identification, complete threat actor removal (malware, persistence, backdoors), vulnerability remediation, and validation procedures for {incident-type} incidents.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -32,7 +32,7 @@ To document comprehensive eradication procedures including root cause identifica
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an IR Planning Consultant
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -41,7 +41,7 @@ To document comprehensive eradication procedures including root cause identifica
 - ✅ User brings organizational knowledge and requirements
 - ✅ Maintain collaborative, consultative tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on eradication procedures and validation
 - 🚫 FORBIDDEN to start defining recovery procedures (that's step 6a)
@@ -49,21 +49,21 @@ To document comprehensive eradication procedures including root cause identifica
 - 🌐 Web-Browsing ENCOURAGED for CVE details and patch information
 - 👥 Party Mode (Trace) AVAILABLE for forensic validation expertise
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Leverage all previous sections (context, detection, containment)
 - 💾 Append to Section 4 (Eradication Steps) in output file
 - 📖 Update frontmatter `stepsCompleted: [1, 2a, 3a, 4a, 5a]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Containment procedures defined in step 4a
 - Focus on HOW to completely remove threat and vulnerabilities
 - Don't define HOW to recover systems yet (that's step 6a)
 - Eradication must be thorough - incomplete eradication leads to reinfection
 
-## ERADICATION PROCEDURE SEQUENCE:
+## ERADICATION PROCEDURE SEQUENCE
 
 ### 1. Review Context
 
@@ -74,12 +74,14 @@ Display:
 Containment (Section 3) has stopped the bleeding. Now we need to completely remove the threat actor and fix the vulnerabilities that allowed the {incident-type} incident.
 
 **NIST Eradication Phase Goals:**
+
 1. **Identify Root Cause:** How did the attacker get in?
 2. **Remove Threat Actor:** Eliminate all malware, persistence mechanisms, and backdoors
 3. **Remediate Vulnerabilities:** Patch, harden, and fix the weakness
 4. **Validate Clean State:** Prove the threat is gone before recovery
 
 **From Previous Sections:**
+
 - Incident Type: {incident-type}
 - IOCs: {summary-from-section-2}
 - Affected Systems: {summary-from-containment}
@@ -101,6 +103,7 @@ Before we can prevent this from happening again, we need to understand exactly h
 **Root Cause Investigation Checklist:**
 
 **Initial Access Vector:**
+
 - [ ] How did the attacker first get in?
   - Phishing email? (check email logs, attachments)
   - Vulnerable service? (check CVE, patch status)
@@ -109,6 +112,7 @@ Before we can prevent this from happening again, we need to understand exactly h
   - Physical access? (check badge logs)
 
 **Vulnerability Exploitation:**
+
 - [ ] What vulnerability was exploited?
   - Software vulnerability: {CVE-number-if-known}
   - Configuration weakness: {misconfiguration-type}
@@ -117,6 +121,7 @@ Before we can prevent this from happening again, we need to understand exactly h
   - Social engineering: {attack-technique}
 
 **Why Did Detection/Prevention Fail?**
+
 - [ ] Why didn't existing controls prevent this?
   - AV/EDR: Why no detection? (signature gap, disabled, bypassed)
   - Firewall: Why was malicious traffic allowed?
@@ -125,6 +130,7 @@ Before we can prevent this from happening again, we need to understand exactly h
   - Patching: Why was vulnerability unpatched?
 
 **Timeline Reconstruction:**
+
 - [ ] What was the full attack timeline?
   - Initial access: {timestamp}
   - Persistence established: {timestamp}
@@ -136,6 +142,7 @@ Before we can prevent this from happening again, we need to understand exactly h
 For your organization, what's the process for root cause analysis? Who conducts it? What tools do you use for forensic investigation?"
 
 Document:
+
 - RCA process owner
 - Forensic tools available ({forensic-tools-from-section-1})
 - Timeline for completing RCA
@@ -172,6 +179,7 @@ For {incident-type}, what malware is typically deployed?
 3. **Remove Malware:**
 
    **EDR-Based Removal ({edr-platform}):**
+
    ```
    {quarantine-file-command}
    {delete-file-command}
@@ -180,6 +188,7 @@ For {incident-type}, what malware is typically deployed?
    ```
 
    **Manual Removal (if EDR unavailable):**
+
    ```powershell
    # Stop malicious process
    Stop-Process -Name {malware-process} -Force
@@ -205,6 +214,7 @@ For {incident-type}, what malware is typically deployed?
 {Incident-type} attackers commonly use these persistence techniques:
 
 - [ ] **Scheduled Tasks:** Check for suspicious scheduled tasks
+
   ```powershell
   Get-ScheduledTask | Where-Object {$_.TaskPath -notlike '\\Microsoft*'} | Select TaskName,TaskPath,State
   # Remove malicious task
@@ -212,6 +222,7 @@ For {incident-type}, what malware is typically deployed?
   ```
 
 - [ ] **Services:** Check for suspicious services
+
   ```powershell
   Get-Service | Where-Object {$_.DisplayName -like '*{suspicious-pattern}*'}
   # Remove malicious service
@@ -219,6 +230,7 @@ For {incident-type}, what malware is typically deployed?
   ```
 
 - [ ] **Registry Run Keys:** Check autorun locations
+
   ```powershell
   Get-ItemProperty -Path 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run'
   Get-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run'
@@ -227,6 +239,7 @@ For {incident-type}, what malware is typically deployed?
   ```
 
 - [ ] **WMI Event Subscriptions:** Check for malicious WMI persistence
+
   ```powershell
   Get-WmiObject -Namespace root\\subscription -Class __EventFilter
   Get-WmiObject -Namespace root\\subscription -Class CommandLineEventConsumer
@@ -234,6 +247,7 @@ For {incident-type}, what malware is typically deployed?
   ```
 
 - [ ] **Backdoor Accounts:** Check for attacker-created accounts
+
   ```powershell
   Get-LocalUser | Where-Object {$_.Description -eq '' -or $_.LastLogon -eq $null}
   # Remove backdoor account
@@ -254,30 +268,35 @@ What persistence mechanisms are most relevant for {incident-type} in your enviro
 If credentials were compromised (likely for {incident-type}), ALL potentially compromised credentials must be reset.
 
 **User Accounts:**
+
 - [ ] Identify all compromised user accounts
 - [ ] Force password reset for: {scope-e.g.-all-admin-accounts-all-users-affected-dept}
 - [ ] Revoke all active sessions
 - [ ] Require MFA re-enrollment (if MFA was bypassed)
 
 **Administrator/Privileged Accounts:**
+
 - [ ] Domain Admin credentials: RESET
 - [ ] Enterprise Admin credentials: RESET
 - [ ] Local Administrator (LAPS): Rotate on ALL systems
 - [ ] Service account credentials: RESET (requires app reconfiguration)
 
 **Service Accounts and API Keys:**
+
 - [ ] Identify service accounts used on affected systems: {list}
 - [ ] Reset service account passwords
 - [ ] Rotate API keys/tokens: {which-apis}
 - [ ] Rotate database credentials: {which-databases}
 
 **Cloud Platform Credentials:**
+
 - [ ] AWS IAM: Rotate access keys, reset passwords
 - [ ] Azure AD: Reset passwords, revoke tokens
 - [ ] Office 365: Reset passwords, revoke sessions
 - [ ] SaaS applications: {list-of-saas-apps-requiring-credential-reset}
 
 **Certificate/Key Material:**
+
 - [ ] If certificates compromised: Revoke and reissue
 - [ ] If SSH keys compromised: Regenerate authorized_keys
 - [ ] If encryption keys compromised: {key-rotation-procedure}
@@ -316,6 +335,7 @@ Now that the threat is removed, fix the vulnerabilities to prevent reinfection.
 **Vulnerability Remediation Checklist:**
 
 **Patch Management:**
+
 - [ ] Identify vulnerability exploited: {CVE-or-description}
 - [ ] Identify patch/update required: {KB-number-or-version}
 - [ ] Test patch on non-production system (if time allows)
@@ -333,6 +353,7 @@ Would you like me to use **Web-Browsing** to research the CVE and patch details?
 What configuration weaknesses enabled {incident-type}?
 
 - [ ] **Disable unnecessary services:** {services-to-disable}
+
   ```powershell
   Stop-Service -Name {service} -Force
   Set-Service -Name {service} -StartupType Disabled
@@ -380,40 +401,52 @@ Before moving to recovery, we must prove eradication was complete.
 **Validation Checklist:**
 
 **1. Forensic Validation:**
+
 - [ ] No malware hashes detected on any system
+
   ```
   {edr-platform-sweep-command}
   ```
+
 - [ ] No suspicious processes running
+
   ```
   {edr-platform-process-query}
   ```
+
 - [ ] No unauthorized scheduled tasks/services
+
   ```powershell
   # Sweep all systems for suspicious tasks
   Invoke-Command -ComputerName (Get-ADComputer -Filter *).Name -ScriptBlock {
       Get-ScheduledTask | Where-Object {$_.TaskPath -notlike '\\Microsoft*' -and $_.Author -notlike 'Microsoft*'}
   }
   ```
+
 - [ ] No suspicious registry keys
 - [ ] No web shells detected (if applicable)
 
 **2. Network Validation:**
+
 - [ ] No beaconing to C2 infrastructure
   - SIEM query: {query-for-iocs-from-section-2}
   - Firewall logs: No connections to blocked IPs/domains
   - DNS logs: No queries to malicious domains
 
 **3. Authentication Validation:**
+
 - [ ] All compromised credentials reset (verified)
 - [ ] No unauthorized accounts exist
+
   ```powershell
   # Check for accounts created during incident timeframe
   Get-ADUser -Filter * -Properties WhenCreated | Where-Object {$_.WhenCreated -gt '{incident-start-date}'}
   ```
+
 - [ ] All sessions revoked (no stale tokens)
 
 **4. Threat Hunting Validation:**
+
 - [ ] Proactive hunt using IOCs from Section 2.1
 - [ ] Hunt for living-off-the-land techniques
 - [ ] Hunt for lateral movement indicators
@@ -422,14 +455,18 @@ Before moving to recovery, we must prove eradication was complete.
 - [ ] Duration: {hunt-duration-e.g.-minimum-7-days}
 
 **5. EDR/AV Validation:**
+
 - [ ] Full system scans on all affected systems
+
   ```
   {edr-platform-full-scan-command}
   ```
+
 - [ ] Updated signatures/definitions: {verify-up-to-date}
 - [ ] No detections: {confirm-clean}
 
 **6. External Validation (Optional but Recommended):**
+
 - [ ] Third-party forensic firm validates eradication
 - [ ] Compromise Assessment scan
 - [ ] Penetration test simulating same attack vector
@@ -444,6 +481,7 @@ Who must sign off that eradication is complete before recovery begins?
 - [ ] Forensic Investigator: {name-and-timestamp-if-external}
 
 **If Validation Fails:**
+
 - Do NOT proceed to recovery
 - Return to threat removal step
 - Document what was missed
@@ -459,24 +497,28 @@ Would you like to use **Party Mode - Trace** (forensic expert) to review the val
 Eradication requires coordination across teams.
 
 **Timeline:**
+
 - Eradication planning: {duration-e.g.-4-hours-after-containment}
 - Eradication execution: {duration-e.g.-8-hour-window}
 - Validation: {duration-e.g.-48-hours}
 - Sign-off: {duration-e.g.-before-recovery-begins}
 
 **Team Coordination:**
+
 - IR Team: {responsibilities}
 - IT Operations: {responsibilities}
 - Security Engineering: {responsibilities}
 - Application Teams: {responsibilities-for-service-account-resets}
 
 **Communication:**
+
 - Status updates: {frequency-and-to-whom}
 - Completion notification: {stakeholders}
 - Validation results: {stakeholders}
 
 **Rollback Plan:**
 If eradication causes critical system failures:
+
 - Decision maker: {role}
 - Rollback procedure: {high-level-steps}
 - Compensating controls: {if-must-rollback}"
@@ -547,7 +589,9 @@ Append to Section 4 (Eradication Steps) in output file:
 2. **Locate Malware:**
    - [ ] EDR sweep: Search for hashes from Section 2.1 IOCs
    ```
+
    {edr-search-command}
+
    ```
    - [ ] SIEM query: {query-for-malware-indicators}
    - [ ] Manual hunt: {filesystem-paths-to-check}
@@ -556,9 +600,11 @@ Append to Section 4 (Eradication Steps) in output file:
 
    **EDR-Based Removal ({edr-platform}):**
    ```
+
    {quarantine-command}
    {delete-command}
    {kill-process-command}
+
    ```
 
    **Manual Removal:**
@@ -571,6 +617,7 @@ Append to Section 4 (Eradication Steps) in output file:
 For {incident-type}, check and remove:
 
 - [ ] **Scheduled Tasks:**
+
   ```powershell
   Get-ScheduledTask | Where-Object {$_.TaskPath -notlike '\\Microsoft*'}
   # Review and remove malicious tasks
@@ -578,23 +625,27 @@ For {incident-type}, check and remove:
   ```
 
 - [ ] **Services:**
+
   ```powershell
   Get-Service | Where-Object {$_.DisplayName -like '*{suspicious-pattern}*'}
   sc.exe delete {malicious-service}
   ```
 
 - [ ] **Registry Run Keys:**
+
   ```powershell
   {check-registry-autorun-locations}
   Remove-ItemProperty -Path {registry-path} -Name {malicious-key}
   ```
 
 - [ ] **WMI Event Subscriptions:**
+
   ```powershell
   {check-wmi-subscriptions}
   ```
 
 - [ ] **Backdoor Accounts:**
+
   ```powershell
   {check-for-unauthorized-accounts}
   Remove-LocalUser -Name {malicious-account}
@@ -610,18 +661,21 @@ For {incident-type}, check and remove:
 **All potentially compromised credentials MUST be reset:**
 
 **User Accounts:**
+
 - [ ] Scope: {all-affected-users-all-admins-entire-organization}
 - [ ] Force password reset
 - [ ] Revoke all active sessions
 - [ ] Require MFA re-enrollment (if MFA bypassed)
 
 **Administrator/Privileged Accounts:**
+
 - [ ] Domain Admin: RESET ALL
 - [ ] Enterprise Admin: RESET ALL
 - [ ] Local Administrator (LAPS): Rotate on ALL systems
 - [ ] Service accounts: {list-and-reset-procedure}
 
 **Service Accounts and API Keys:**
+
 - [ ] Service accounts: {list}
   - Reset password: {procedure}
   - Update application configurations: {responsible-team}
@@ -629,12 +683,14 @@ For {incident-type}, check and remove:
 - [ ] Database credentials: {which-databases}
 
 **Cloud Platform Credentials:**
+
 - [ ] AWS: Rotate IAM access keys
 - [ ] Azure: Reset passwords, revoke tokens
 - [ ] Office 365: Reset passwords, revoke sessions
 - [ ] SaaS applications: {list-requiring-resets}
 
 **Credential Reset Commands:**
+
 ```powershell
 {bulk-password-reset-commands}
 {session-revocation-commands}
@@ -642,6 +698,7 @@ For {incident-type}, check and remove:
 ```
 
 **Approval Requirements:**
+
 - User account resets: {approver}
 - Service account resets: {approver-e.g.-app-owner-ciso}
 - Production service accounts: {additional-approval-required}
@@ -651,6 +708,7 @@ For {incident-type}, check and remove:
 **Vulnerabilities Enabling {incident-type}:**
 
 **Patch Management:**
+
 - [ ] Vulnerability: {CVE-or-description}
 - [ ] Patch/Update: {KB-number-or-version-number}
 - [ ] Testing: {skip-or-abbreviated-testing}
@@ -664,6 +722,7 @@ For {incident-type}, check and remove:
 **Configuration Hardening:**
 
 - [ ] **Disable unnecessary services:**
+
   ```powershell
   {disable-services-commands}
   ```
@@ -706,6 +765,7 @@ For {incident-type}, check and remove:
 **Validation Checklist:**
 
 **1. Forensic Validation:**
+
 - [ ] No malware detected (EDR full sweep)
 - [ ] No suspicious processes
 - [ ] No unauthorized scheduled tasks/services
@@ -713,16 +773,19 @@ For {incident-type}, check and remove:
 - [ ] No web shells (if applicable)
 
 **2. Network Validation:**
+
 - [ ] No C2 beaconing (SIEM query: {query})
 - [ ] No connections to blocked IPs/domains
 - [ ] No DNS queries to malicious domains
 
 **3. Authentication Validation:**
+
 - [ ] All compromised credentials reset (verified)
 - [ ] No unauthorized accounts
 - [ ] All sessions revoked
 
 **4. Threat Hunting:**
+
 - [ ] Hunt using Section 2.1 IOCs
 - [ ] Hunt for LOLBAS techniques
 - [ ] Hunt for lateral movement
@@ -731,22 +794,26 @@ For {incident-type}, check and remove:
 - [ ] Responsible: {team}
 
 **5. EDR/AV Validation:**
+
 - [ ] Full system scans (all affected systems)
 - [ ] Signatures up-to-date
 - [ ] No detections
 
 **6. External Validation (Optional):**
+
 - [ ] Third-party forensic validation
 - [ ] Compromise assessment
 - [ ] Penetration test
 
 **Validation Sign-Off (Required before recovery):**
+
 - [ ] IR Team Lead: _________________ Date: _______
 - [ ] Security Team Lead: _________________ Date: _______
 - [ ] CISO: _________________ Date: _______
 - [ ] Forensic Investigator: _________________ Date: _______ (if external)
 
 **If Validation Fails:**
+
 - Do NOT proceed to recovery
 - Return to Section 4.2 (Threat Actor Removal)
 - Document what was missed
@@ -756,26 +823,31 @@ For {incident-type}, check and remove:
 ### 4.6 Eradication Timeline and Coordination
 
 **Timeline:**
+
 - Planning: {duration} after containment
 - Execution: {window-e.g.-8-hours}
 - Validation: {duration-e.g.-48-hours}
 - Sign-off: Before recovery begins
 
 **Team Responsibilities:**
+
 - IR Team: {responsibilities}
 - IT Operations: {responsibilities}
 - Security Engineering: {responsibilities}
 - Application Teams: {responsibilities}
 
 **Communication:**
+
 - Status updates: {frequency} to {stakeholders}
 - Completion: Notify {stakeholders}
 - Validation results: Distribute to {stakeholders}
 
 **Rollback Plan:**
+
 - Decision maker: {role}
 - Rollback procedure: {high-level-steps}
 - Compensating controls: {if-rollback-required}
+
 ```
 
 Update frontmatter:
@@ -788,14 +860,14 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [W] Web-Browsing [C] Continue
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then redisplay the menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with focus on "thoroughness and completeness of eradication and validation procedures"
 - IF P: Execute {partyModeWorkflow} - Recommend Trace (forensic expert) for validation procedures
@@ -815,7 +887,7 @@ ONLY WHEN C is selected and Section 4 is complete will you load, read entire fil
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Root cause analysis procedures documented
 - Complete threat actor removal procedures with tool-specific commands
@@ -826,7 +898,7 @@ ONLY WHEN C is selected and Section 4 is complete will you load, read entire fil
 - Frontmatter updated with stepsCompleted: [1, 2a, 3a, 4a, 5a]
 - Menu presented and user input handled correctly
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Incomplete removal procedures (missing persistence mechanisms)
 - No validation procedures (high risk of reinfection)

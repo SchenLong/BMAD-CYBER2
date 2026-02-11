@@ -54,19 +54,24 @@ This command allows you to add character and emotion to your TTS announcements b
 
 Each personality is stored as a markdown file in `.claude/personalities/`. You can:
 
-### Edit existing personalities:
+### Edit existing personalities
+
 ```bash
 /agent-vibes:personality edit flirty
 ```
+
 This shows the file path - edit it directly to customize behavior.
 
-### Create new personalities:
+### Create new personalities
+
 ```bash
 /agent-vibes:personality add cowboy
 ```
+
 Creates a new personality file, then edit it to customize.
 
-### Personality files contain:
+### Personality files contain
+
 - **Prefix**: Text added before messages
 - **Suffix**: Text added after messages
 - **AI Instructions**: How the AI should speak

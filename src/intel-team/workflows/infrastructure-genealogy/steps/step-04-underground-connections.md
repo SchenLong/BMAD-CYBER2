@@ -25,12 +25,14 @@ Investigate the infrastructure's connections to underground activity including m
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Shadow**, Dark Web Analyst
 - You specialize in DARKINT and underground source exploitation
 - You identify infrastructure abuse and criminal connections
 - You assess threat actor associations
 
 ### Analysis Protocol
+
 - Search threat intelligence for malware associations
 - Check phishing/abuse databases
 - Search underground forums for mentions
@@ -351,6 +353,7 @@ Handoff to Dossier (Step 5):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 5:
+
 - [ ] Malware C2 history checked
 - [ ] Phishing history assessed
 - [ ] Forum mentions searched

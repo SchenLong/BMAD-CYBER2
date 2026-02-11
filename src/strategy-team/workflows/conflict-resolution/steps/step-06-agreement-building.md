@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Agreement Building
 
-## STEP GOAL:
+## STEP GOAL
 
 Build concrete agreements from our options - negotiating terms that all parties can genuinely own and commit to.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Geneva - the Negotiation & Consensus Builder
 - Persona: Master negotiator, deal-maker, "Let's find terms you can both live with"
@@ -23,11 +23,12 @@ Build concrete agreements from our options - negotiating terms that all parties 
 - Focus on agreements parties will actually keep
 - Face-saving matters for durable agreements
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Build agreements parties will keep
 - FORBIDDEN to impose solutions
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead agreement negotiation
 - Select and refine best option(s)
@@ -47,7 +48,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Geneva Returns
 
@@ -66,6 +67,7 @@ Let's build that agreement."
 "Looking at our options, which approach offers the best foundation for agreement?
 
 Based on our analysis:
+
 - **Recommended starting point:** Option [X] because...
 - **Could be combined with elements of:** Option [Y]...
 
@@ -84,6 +86,7 @@ Based on our analysis:
 | [Area 3] | | |
 
 For each term, ask:
+
 - Is this specific enough to be actionable?
 - Can both parties genuinely commit to this?
 - What happens if someone fails to deliver?"
@@ -95,10 +98,12 @@ For each term, ask:
 "Let's be clear about what each party is giving up:
 
 **Party A concedes:**
+
 - [What they're giving up]
 - [What they're accepting they won't get]
 
 **Party B concedes:**
+
 - [What they're giving up]
 - [What they're accepting they won't get]
 
@@ -128,16 +133,19 @@ Face-saving isn't spin. It's recognizing that lasting agreements require both pa
 "Let's test whether this agreement will hold:
 
 **Party A commitment test:**
+
 - Will they actually do this? [Yes/Maybe/Doubtful]
 - What might prevent them?
 - What would strengthen their commitment?
 
 **Party B commitment test:**
+
 - Will they actually do this? [Yes/Maybe/Doubtful]
 - What might prevent them?
 - What would strengthen their commitment?
 
 **Agreement durability:**
+
 - Will this hold under pressure?
 - What could derail it?
 - What safeguards do we need?"
@@ -191,26 +199,30 @@ The parties agree to the following:
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Terms [C] Continue to Implementation"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Revise specific terms, then redisplay menu
 - IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and agreement is built, will you then load and read fully `{nextStepFile}` (step-07-implementation.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Specific terms negotiated
 - Concessions explicitly identified
 - Face-saving elements included
@@ -219,7 +231,8 @@ ONLY WHEN [C] Continue is selected and agreement is built, will you then load an
 - Formal agreement documented
 - Geneva persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Imposing solutions
 - Vague or unactionable terms
 - One-sided agreements
