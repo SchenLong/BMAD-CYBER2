@@ -77,11 +77,15 @@ describe('TTS Shell Injection Analysis - P3-16', () => {
     });
 
     it('should reject voice names containing pipes', () => {
-      expect(playTtsSource).toMatch(/VOICE_OVERRIDE.*[|]/);
+      // validate_voice_name blocks pipes via DANGEROUS_CHARS
+      expect(playTtsSource).toContain('validate_voice_name');
+      expect(inputValidationSource).toMatch(/[|]/);
     });
 
     it('should reject voice names containing backticks', () => {
-      expect(playTtsSource).toMatch(/VOICE_OVERRIDE.*[`]/);
+      // validate_voice_name blocks backticks via DANGEROUS_CHARS
+      expect(playTtsSource).toContain('validate_voice_name');
+      expect(inputValidationSource).toMatch(/[`]/);
     });
 
     it('should reject voice names containing dollar signs', () => {
@@ -200,7 +204,9 @@ describe('TTS Shell Injection Analysis - P3-16', () => {
     });
 
     it('should document that backtick command substitution is blocked in voice names', () => {
-      expect(playTtsSource).toMatch(/VOICE_OVERRIDE.*`/);
+      // validate_voice_name in input-validation.sh blocks backticks
+      expect(playTtsSource).toContain('validate_voice_name');
+      expect(inputValidationSource).toMatch(/`/);
     });
 
     it('should document that semicolon command chaining is blocked in voice names', () => {
@@ -208,7 +214,9 @@ describe('TTS Shell Injection Analysis - P3-16', () => {
     });
 
     it('should document that pipe command is blocked in voice names', () => {
-      expect(playTtsSource).toMatch(/VOICE_OVERRIDE.*\|/);
+      // validate_voice_name in input-validation.sh blocks pipes
+      expect(playTtsSource).toContain('validate_voice_name');
+      expect(inputValidationSource).toMatch(/\|/);
     });
 
     it('should note that TEXT passes through Claude backslash cleanup', () => {

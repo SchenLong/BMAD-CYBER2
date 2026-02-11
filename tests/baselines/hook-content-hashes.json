@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "capturedAt": "2026-02-11T22:29:19.774Z",
+  "capturedAt": "2026-02-11T22:44:52.668Z",
   "fileCount": 19,
   "hashes": {
     ".claude/hooks/session-security-init.js": "51711998491af8aa3b2c67d72a5adb83f7df305fc8bfc8212b882d379966a6b7",
-    ".claude/hooks/session-start-tts.sh": "ac7f02cc635454023f88bec49ac80e3ce8b487fd56c9e24570a2fd302e859190",
+    ".claude/hooks/session-start-tts.sh": "ceec47fdd8fa3efd3185e5d5caaa9e21fa1f1f102b3020e9a24cc1e591441bc9",
     ".claude/validators-node/bin/bash-safety.js": "8b21c369c123efc3bc27987f586020aebf4a9acb5e6f2c6b551a12c8fbc846cd",
     ".claude/validators-node/bin/env-protection.js": "f5233738b62640fbe6e0f25ee51d80a9cfd202269bc228e7f0a36c6e90b10fe3",
     ".claude/validators-node/bin/jailbreak.js": "8d5956a1e4ce81a84bd676ac08e33beb7ede8c64d26357590e66cf6454ac5816",

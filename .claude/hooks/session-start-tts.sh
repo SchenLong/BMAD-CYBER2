@@ -13,6 +13,11 @@ export LC_ALL=C
 # Get script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Check if AgentVibes is installed
 if [[ ! -f "$SCRIPT_DIR/play-tts.sh" ]]; then
   # AgentVibes not installed, don't inject anything
