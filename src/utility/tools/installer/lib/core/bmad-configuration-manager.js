@@ -625,7 +625,7 @@ class BMADConfigurationManager {
      * Finalize configuration with validation and cleanup
      */
     async finalizeConfiguration(config, context) {
-        let finalConfig = { ...config };
+        const finalConfig = { ...config };
 
         // Remove internal metadata
         delete finalConfig._environment;
@@ -685,7 +685,7 @@ class BMADConfigurationManager {
                 const networkInterfaces = os.networkInterfaces();
                 const primaryInterface = Object.values(networkInterfaces)
                     .flat()
-                    .find(interface => !interface.internal && interface.family === 'IPv4');
+                    .find(iface => !iface.internal && iface.family === 'IPv4');
 
                 if (primaryInterface) {
                     networkVars.LOCAL_IP = primaryInterface.address;

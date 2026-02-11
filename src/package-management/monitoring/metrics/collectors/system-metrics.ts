@@ -16,13 +16,13 @@ import { performance } from 'perf_hooks';
 
 // Health Monitoring Integration
 import {
-  ResourceUsage,
   CPUUsage,
-  MemoryUsage,
+  Datapoint,
   DiskUsage,
-  NetworkUsage,
+  MemoryUsage,
   MetricTimeSeries,
-  Datapoint
+  NetworkUsage,
+  ResourceUsage
 } from '../performance-metrics';
 
 // Epic 1 Security Integration

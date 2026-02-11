@@ -164,7 +164,7 @@ export function logTierChangeAttempt(projectRoot, attempt) {
   }
 
   // Write log atomically
-  const tempPath = logPath + '.tmp';
+  const tempPath = `${logPath  }.tmp`;
   fs.writeFileSync(tempPath, JSON.stringify(log, null, 2), 'utf8');
   fs.renameSync(tempPath, logPath);
 }
@@ -364,6 +364,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   console.log(`   advanced -> standard: ${requiresAuthentication('advanced', 'standard')}`);
   console.log(`   enterprise -> essential: ${requiresAuthentication('enterprise', 'essential')}`);
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete.');
 }

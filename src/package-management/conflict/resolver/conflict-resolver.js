@@ -493,7 +493,7 @@ class ConflictResolver extends EventEmitter {
 
         try {
             switch (conflict.type) {
-                case 'version':
+                case 'version': {
                     // Always use the latest compatible version
                     const latestVersion = await this.findLatestCompatibleVersion(
                         conflict.packages,
@@ -510,8 +510,9 @@ class ConflictResolver extends EventEmitter {
                         });
                     }
                     break;
+                }
 
-                case 'circular':
+                case 'circular': {
                     // Break circular dependencies by removing the least critical dependency
                     const dependencyToRemove = await this.findLeastCriticalDependency(
                         conflict.packages,
@@ -527,8 +528,9 @@ class ConflictResolver extends EventEmitter {
                         });
                     }
                     break;
+                }
 
-                case 'peer':
+                case 'peer': {
                     // Add missing peer dependencies
                     const missingPeers = await this.findMissingPeerDependencies(
                         conflict.packages,
@@ -545,6 +547,7 @@ class ConflictResolver extends EventEmitter {
                         });
                     }
                     break;
+                }
 
                 default:
                     return {
@@ -588,7 +591,7 @@ class ConflictResolver extends EventEmitter {
             }
 
             switch (conflict.type) {
-                case 'version':
+                case 'version': {
                     // Only update if it's a patch version change
                     const safeVersion = await this.findSafestCompatibleVersion(
                         conflict.packages,
@@ -605,6 +608,7 @@ class ConflictResolver extends EventEmitter {
                         });
                     }
                     break;
+                }
 
                 default:
                     return {
@@ -740,7 +744,7 @@ class ConflictResolver extends EventEmitter {
 
             // Prioritize security over compatibility
             switch (conflict.type) {
-                case 'version':
+                case 'version': {
                     const secureVersion = await this.findMostSecureVersion(
                         conflict.packages,
                         context.graph
@@ -757,8 +761,9 @@ class ConflictResolver extends EventEmitter {
                         });
                     }
                     break;
+                }
 
-                case 'dependency':
+                case 'dependency': {
                     // Remove dependencies with security issues
                     const insecureDeps = await this.identifyInsecureDependencies(
                         conflict.packages
@@ -774,6 +779,7 @@ class ConflictResolver extends EventEmitter {
                         });
                     }
                     break;
+                }
             }
 
             return {

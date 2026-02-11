@@ -220,7 +220,7 @@ function saveSessionsContainer(container: SessionsContainer): void {
     }
 
     // Write to temp file first for atomic operation
-    const tempFile = sessionFile + '.tmp.' + process.pid + '.' + Date.now();
+    const tempFile = `${sessionFile  }.tmp.${  process.pid  }.${  Date.now()}`;
     fs.writeFileSync(tempFile, JSON.stringify(container, null, 2), 'utf-8');
 
     // Atomic rename
@@ -275,7 +275,7 @@ export function updateSessionState(
       }
       if (!shouldEscalate) {
         shouldEscalate = true;
-        escalationReason = 'Category "' + finding.category + '" detected ' + categoryCount + ' times across session (threshold: ' + CATEGORY_REPEAT_THRESHOLD + ')';
+        escalationReason = `Category "${  finding.category  }" detected ${  categoryCount  } times across session (threshold: ${  CATEGORY_REPEAT_THRESHOLD  })`;
       }
     }
   }
@@ -302,7 +302,7 @@ export function updateSessionState(
   // Check accumulated weight threshold
   if (state.accumulated_weight >= ACCUMULATION_THRESHOLD && !shouldEscalate) {
     shouldEscalate = true;
-    escalationReason = 'Accumulated risk weight ' + state.accumulated_weight.toFixed(1) + ' exceeds threshold ' + ACCUMULATION_THRESHOLD;
+    escalationReason = `Accumulated risk weight ${  state.accumulated_weight.toFixed(1)  } exceeds threshold ${  ACCUMULATION_THRESHOLD}`;
   }
 
   // Save updated state
@@ -340,7 +340,7 @@ export function isSessionEscalated(sessionId: string): {
   if (state.accumulated_weight >= ACCUMULATION_THRESHOLD) {
     return {
       escalated: true,
-      reason: 'Accumulated weight ' + state.accumulated_weight.toFixed(1) + ' >= ' + ACCUMULATION_THRESHOLD,
+      reason: `Accumulated weight ${  state.accumulated_weight.toFixed(1)  } >= ${  ACCUMULATION_THRESHOLD}`,
       riskScore: state.accumulated_weight,
     };
   }
@@ -350,7 +350,7 @@ export function isSessionEscalated(sessionId: string): {
     if (count >= CATEGORY_REPEAT_THRESHOLD) {
       return {
         escalated: true,
-        reason: 'Category "' + category + '" repeated ' + count + ' times',
+        reason: `Category "${  category  }" repeated ${  count  } times`,
         riskScore: state.accumulated_weight,
       };
     }

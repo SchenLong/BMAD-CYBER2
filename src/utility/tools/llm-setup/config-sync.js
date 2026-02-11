@@ -157,7 +157,7 @@ export function writeTxtProvider(projectRoot, provider) {
       fs.mkdirSync(dir, { recursive: true });
     }
 
-    fs.writeFileSync(txtPath, provider + '\n', 'utf8');
+    fs.writeFileSync(txtPath, `${provider  }\n`, 'utf8');
     return true;
   } catch (error) {
     return false;

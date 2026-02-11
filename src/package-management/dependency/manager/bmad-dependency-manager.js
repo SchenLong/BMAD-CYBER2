@@ -458,8 +458,8 @@ class BMADDependencyManager extends EventEmitter {
           'package-integrity-mismatch',
           {
             packagePath,
-            expectedHash: expectedHash.substring(0, 16) + '...',
-            computedHash: computedHash.substring(0, 16) + '...',
+            expectedHash: `${expectedHash.substring(0, 16)  }...`,
+            computedHash: `${computedHash.substring(0, 16)  }...`,
             timestamp: new Date().toISOString()
           }
         );
@@ -549,8 +549,8 @@ class BMADDependencyManager extends EventEmitter {
             );
 
             throw new Error(
-              `Package integrity verification failed for ${integrityErrors.length} package(s): ` +
-              integrityErrors.map(e => `${e.package}: ${e.error}`).join('; ')
+              `Package integrity verification failed for ${integrityErrors.length} package(s): ${ 
+              integrityErrors.map(e => `${e.package}: ${e.error}`).join('; ')}`
             );
           }
         }

@@ -33,7 +33,7 @@ export default defineConfig({
       reporter: ['text', 'json', 'html', 'json-summary'],
       include: [
         '_bmad/framework/**/*.ts',
-        'src/core/**/*.ts',
+        'src/**/*.{js,ts}',
         '.claude/validators-node/src/**/*.ts'
       ],
       exclude: [

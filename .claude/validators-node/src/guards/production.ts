@@ -20,12 +20,12 @@
 
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../common/index.js';
-import type { BashToolInput, WriteToolInput, EditToolInput } from '../types/index.js';
+import type { BashToolInput, EditToolInput, WriteToolInput } from '../types/index.js';
 import { EXIT_CODES } from '../types/index.js';
 
 const VALIDATOR_NAME = 'production_guard';
@@ -251,8 +251,8 @@ export function validateProductionGuard(content: string, filePath: string | null
 
   printBlockMessage({
     title: 'PRODUCTION TARGETING BLOCKED',
-    message: `Detected ${indicators.length} production indicator(s):\n` +
-      indicators.slice(0, 3).map(i => `  - ${i.pattern}: "${i.match}"`).join('\n'),
+    message: `Detected ${indicators.length} production indicator(s):\n${ 
+      indicators.slice(0, 3).map(i => `  - ${i.pattern}: "${i.match}"`).join('\n')}`,
     target: content.slice(0, 200),
     overrideVar: 'BMAD_ALLOW_PRODUCTION',
     recommendations: [

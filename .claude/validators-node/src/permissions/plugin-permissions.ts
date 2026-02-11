@@ -478,7 +478,7 @@ class PluginPermissionChecker {
    */
   private fnmatch(name: string, pattern: string): boolean {
     // Convert glob pattern to regex
-    let regex = pattern
+    const regex = pattern
       .replace(/[.+^${}()|[\]\\]/g, '\\$&') // Escape special chars
       .replace(/\*\*/g, '{{GLOBSTAR}}')      // Temp replace **
       .replace(/\*/g, '[^/]*')               // * matches anything except /
@@ -523,7 +523,7 @@ class PluginPermissionChecker {
     }
 
     // Normalize target path
-    let targetNormalized = target.replace(PROJECT_DIR + '/', '');
+    let targetNormalized = target.replace(`${PROJECT_DIR  }/`, '');
     targetNormalized = targetNormalized.replace(/^\.\//, '');
 
     if (this.matchPathPattern(targetNormalized, allowedPatterns)) {
@@ -676,7 +676,7 @@ class PluginPermissionChecker {
         }
       }
     } else if (capability === 'network' || capability === 'sensitive_data') {
-      const capPerm = rbacPerms[capability as 'network' | 'sensitive_data'];
+      const capPerm = rbacPerms[capability];
       if (capPerm) {
         return [true, `RBAC override (${this.currentRole})`];
       }
@@ -789,7 +789,7 @@ class PluginPermissionChecker {
       allowed,
       reason,
       manifest_found: this.manifests.has(plugin),
-    }, severity as 'INFO' | 'BLOCKED');
+    }, severity);
 
     return result;
   }

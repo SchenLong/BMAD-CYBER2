@@ -39,8 +39,8 @@ function findProjectRoot() {
 const PROJECT_ROOT = findProjectRoot();
 const SETTINGS_PATH = path.join(PROJECT_ROOT, '.claude', 'settings.json');
 const HASH_BASELINE_PATH = path.join(PROJECT_ROOT, 'tests', 'baselines', 'hook-content-hashes.json');
-const RBAC_CONFIG_PATH = path.join(PROJECT_ROOT, '_bmad', 'core', 'security', 'rbac-config.yaml');
-const AUTH_MODULE_PATH = path.join(PROJECT_ROOT, '_bmad', 'core', 'security', 'authorization.js');
+const RBAC_CONFIG_PATH = path.join(PROJECT_ROOT, 'src', 'core', 'security', 'rbac-config.yaml');
+const AUTH_MODULE_PATH = path.join(PROJECT_ROOT, 'src', 'core', 'security', 'authorization.js');
 
 // Required PreToolUse matchers (12 total)
 const REQUIRED_MATCHERS = [

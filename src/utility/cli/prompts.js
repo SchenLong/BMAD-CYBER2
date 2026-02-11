@@ -40,7 +40,7 @@ export function isSilent() {
 export function handleCancel(value, message = 'Operation cancelled') {
   if (p.isCancel(value)) {
     p.cancel(message);
-    // eslint-disable-next-line n/no-process-exit -- Intentional clean exit on user cancellation (Ctrl+C)
+     
     process.exit(0);
   }
   return false;
@@ -346,7 +346,7 @@ function defaultAutocompleteFilter(search, option) {
  * @param {Array} [options.lockedValues] - Values that are always selected and cannot be toggled off
  * @returns {Promise<Array>} Array of selected values
  */
-// eslint-disable-next-line max-lines-per-function -- Complex v6 upstream custom component, intentionally kept as single unit
+ 
 export async function autocompleteMultiselect(options) {
   // Dynamic import to avoid loading @clack/core internals when not needed
   const { AutocompletePrompt } = await import('@clack/core');
@@ -365,7 +365,7 @@ export async function autocompleteMultiselect(options) {
       return undefined;
     },
     initialValue: [...new Set([...(options.initialValues || []), ...(options.lockedValues || [])])],
-    // eslint-disable-next-line max-lines-per-function, complexity -- Complex render ported from v6 upstream
+     
     render() {
       const barColor = this.state === 'error' ? pc.yellow : pc.cyan;
       const bar = barColor(p.S_BAR);
@@ -482,7 +482,7 @@ export async function group(prompts, options = {}) {
   const result = await p.group(prompts, {
     onCancel: () => {
       p.cancel('Operation cancelled');
-      // eslint-disable-next-line n/no-process-exit -- Intentional clean exit on user cancellation (Ctrl+C)
+       
       process.exit(0);
     },
     ...options,
@@ -563,7 +563,7 @@ export function renderInstallSummary(results, options = {}) {
  * @param {Array} questions - Array of Inquirer-style question objects
  * @returns {Promise<Object>} Object with answers keyed by question name
  */
-// eslint-disable-next-line max-lines-per-function, complexity -- Inquirer compatibility shim requires mapping all prompt types
+ 
 export async function prompt(questions) {
   const answers = {};
 

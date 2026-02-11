@@ -113,7 +113,7 @@ class CacheIntegrity extends EventEmitter {
 
       } catch (error) {
         // Clean up temp file
-        try { await fs.remove(tempPath); } catch {}
+        try { await fs.remove(tempPath); } catch { /* intentionally empty — best-effort cleanup */ }
         throw error;
       }
 

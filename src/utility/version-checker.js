@@ -9,8 +9,8 @@
  * @version 1.0.0
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { resolve, dirname } from 'path';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import semver from 'semver';
 
@@ -265,9 +265,9 @@ export async function displayUpdateNotice(info) {
     console.log('');
     console.log('+-------------------------------------------------+');
     console.log('|                                                 |');
-    console.log(`|  Update available: ${info.current} -> ${info.latest}`.padEnd(50) + '|');
-    console.log(`|  Type: ${info.updateType} update`.padEnd(50) + '|');
-    console.log(`|  Run: ${updateCommand}`.padEnd(50) + '|');
+    console.log(`${`|  Update available: ${info.current} -> ${info.latest}`.padEnd(50)  }|`);
+    console.log(`${`|  Type: ${info.updateType} update`.padEnd(50)  }|`);
+    console.log(`${`|  Run: ${updateCommand}`.padEnd(50)  }|`);
     console.log('|                                                 |');
     console.log('+-------------------------------------------------+');
     console.log('');

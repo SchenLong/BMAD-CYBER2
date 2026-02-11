@@ -6,18 +6,18 @@
  * authorization checks, session management, and RBAC capabilities.
  *
  * Note: The core security modules (generate-token, validate-token, etc.)
- * are located at _bmad/core/security/ and can be imported directly.
+ * are located at src/core/security/ and can be imported directly.
  */
 
 import crypto from 'crypto';
 
 // Import token generator for internal use
-import TokenGenerator from '../../core/security/generate-token.js';
+import TokenGenerator from '../../../src/core/security/generate-token.js';
 
 // Re-export the token generator class
 export { TokenGenerator };
-export type { GeneratedToken, TokenClaims } from '../../core/security/generate-token.js';
-export { SessionManager } from '../../core/security/session-manager.js';
+export type { GeneratedToken, TokenClaims } from '../../../src/core/security/generate-token.js';
+export { SessionManager } from '../../../src/core/security/session-manager.js';
 
 // Internal token generator instance with default key
 const defaultKey = TokenGenerator.generateKey('bmad-framework-default-key');

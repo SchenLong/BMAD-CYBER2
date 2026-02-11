@@ -67,7 +67,7 @@ npm_dependencies:
 
 # Cross-Module Dependencies (Peer Dependencies)
 cross_module:
-  required:
+  required: []
     # No strictly required cross-module dependencies for cybersec-team
 
   optional:

@@ -568,11 +568,12 @@ class BMADInstallationOrchestrator {
                         extension = 'json';
                         break;
                     case 'yaml':
-                    default:
+                    default: {
                         const yaml = require('yaml');
                         content = yaml.stringify(result.configuration, null, 2);
                         extension = 'yaml';
                         break;
+                    }
                 }
 
                 const filePath = path.join(outputPath, `${teamCode}.${extension}`);

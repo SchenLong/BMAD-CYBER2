@@ -20,8 +20,8 @@
  * - .bmad-key: Encryption key file (600 permissions required)
  */
 import { spawnSync } from 'child_process';
-import { existsSync, readFileSync, writeFileSync, statSync, mkdirSync, chmodSync, utimesSync, } from 'fs';
-import { join, dirname } from 'path';
+import { chmodSync, existsSync, mkdirSync, readFileSync, statSync, utimesSync, writeFileSync, } from 'fs';
+import { dirname, join } from 'path';
 import { AuditLogger, getProjectDir, printBlockMessage } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 // ============================================================================

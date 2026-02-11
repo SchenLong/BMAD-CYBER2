@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import { text, confirm, select } from '../../cli/prompts.js';
+import { confirm, select, text } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -189,7 +189,7 @@ export async function promptCustomModel(options = {}) {
       if (!input || !input.trim()) {
         return 'Model name is required';
       }
-      if (!/^[\w\-.:\/]+$/.test(input.trim())) {
+      if (!/^[\w\-.:/]+$/.test(input.trim())) {
         return 'Invalid model name format';
       }
       return undefined;

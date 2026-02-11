@@ -113,7 +113,7 @@ function parseYaml(content) {
           break;
         }
         if (nextLine.trim()) {
-          multilineValue += nextLine.trim() + '\n';
+          multilineValue += `${nextLine.trim()  }\n`;
         }
         j++;
       }
@@ -249,7 +249,7 @@ class AuthorizationManager {
 
       if (pattern.endsWith('/*')) {
         const prefix = pattern.slice(0, -2);
-        if (value.startsWith(prefix + '/') || value === prefix) {
+        if (value.startsWith(`${prefix  }/`) || value === prefix) {
           return true;
         }
       }
@@ -551,8 +551,8 @@ class AuthorizationManager {
     let currentLine = '';
 
     for (const word of words) {
-      if ((currentLine + ' ' + word).trim().length <= width) {
-        currentLine = (currentLine + ' ' + word).trim();
+      if ((`${currentLine  } ${  word}`).trim().length <= width) {
+        currentLine = (`${currentLine  } ${  word}`).trim();
       } else {
         if (currentLine) lines.push(currentLine);
         currentLine = word;

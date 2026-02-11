@@ -13,13 +13,13 @@ import { performance } from 'perf_hooks';
 
 // Health Monitoring Integration
 import {
-  HealthMetrics,
-  PredictiveAnalytics,
+  CapacityForecast,
   HealthForecast,
-  RiskAssessment,
+  HealthMetrics,
   HealthRecommendation,
   MaintenanceWindow,
-  CapacityForecast,
+  PredictiveAnalytics,
+  RiskAssessment,
   RiskLevel,
   TrendDirection
 } from './health-monitoring';

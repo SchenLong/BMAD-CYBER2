@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * BMAD CYBERCOMMAND Multi-Module Builder
@@ -283,7 +282,7 @@ class MultiModuleBuilder {
       if (lines[i].startsWith('# ') && i + 1 < lines.length) {
         let desc = '';
         for (let j = i + 1; j < lines.length && !lines[j].startsWith('#'); j++) {
-          if (lines[j].trim()) desc += lines[j] + ' ';
+          if (lines[j].trim()) desc += `${lines[j]  } `;
         }
         return desc.trim();
       }
@@ -331,7 +330,7 @@ class MultiModuleBuilder {
           description: ''
         };
       } else if (currentStep && line.trim() && !line.startsWith('#')) {
-        currentStep.description += line + ' ';
+        currentStep.description += `${line  } `;
       }
     }
 

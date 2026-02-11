@@ -17,12 +17,12 @@
 import * as path from 'node:path';
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../common/index.js';
-import type { WriteToolInput, EditToolInput } from '../types/index.js';
+import type { EditToolInput, WriteToolInput } from '../types/index.js';
 import { EXIT_CODES } from '../types/index.js';
 
 const VALIDATOR_NAME = 'secret_guard';
@@ -412,8 +412,8 @@ export function validateSecretGuard(content: string, filePath: string): number {
 
   printBlockMessage({
     title: 'HARDCODED SECRETS DETECTED',
-    message: `Found ${detections.length} potential secret(s):\n${secretSummary}` +
-      (detections.length > 3 ? `\n  ... and ${detections.length - 3} more` : ''),
+    message: `Found ${detections.length} potential secret(s):\n${secretSummary}${ 
+      detections.length > 3 ? `\n  ... and ${detections.length - 3} more` : ''}`,
     target: filePath,
     overrideVar: 'BMAD_ALLOW_SECRETS',
     recommendations: [

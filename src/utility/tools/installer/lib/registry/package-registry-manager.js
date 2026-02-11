@@ -330,7 +330,7 @@ class BMADPackageRegistryManager {
      */
     async installPackage(packageName, version, options = {}) {
         try {
-            console.log(`[Package Registry Manager] Installing package: ${packageName}${version ? '@' + version : ''}`);
+            console.log(`[Package Registry Manager] Installing package: ${packageName}${version ? `@${  version}` : ''}`);
 
             // Get package information
             const packageInfo = await this.getPackageInfo(packageName, version);

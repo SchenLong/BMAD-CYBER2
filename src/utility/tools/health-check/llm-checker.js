@@ -139,7 +139,7 @@ export function parseSimpleYaml(content) {
     // Parse providers section
     if (inProviders) {
       // Check for provider name (2-space indentation)
-      const providerMatch = line.match(/^  (\w+):\s*$/);
+      const providerMatch = line.match(/^ {2}(\w+):\s*$/);
       if (providerMatch) {
         currentProvider = providerMatch[1];
         config.providers[currentProvider] = {};
@@ -148,7 +148,7 @@ export function parseSimpleYaml(content) {
 
       // Parse provider properties (4-space indentation)
       if (currentProvider) {
-        const propMatch = line.match(/^    (\w+):\s*(.+)?$/);
+        const propMatch = line.match(/^ {4}(\w+):\s*(.+)?$/);
         if (propMatch) {
           const key = propMatch[1];
           let value = propMatch[2]?.trim() || '';

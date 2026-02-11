@@ -9,9 +9,9 @@
  */
 
 import { EventEmitter } from "events";
-import { TamperEvidentAuditLogger, SecurityLevel } from "./audit-logger";
+import { SecurityLevel, TamperEvidentAuditLogger } from "./audit-logger";
 import { SiemIntegration } from "./siem-integration";
-import { ComplianceReporter, ComplianceMetrics } from "./compliance-reporter";
+import { ComplianceMetrics, ComplianceReporter } from "./compliance-reporter";
 
 // Type alias for compatibility
 type AuditLogger = TamperEvidentAuditLogger;

@@ -16,7 +16,7 @@
  * Security Note: This validator uses harmless test patterns.
  * See lessonlearned.md - NEVER use destructive commands in test strings.
  */
-import { AuditLogger, OverrideManager, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, printWarning, } from '../common/index.js';
+import { AuditLogger, getToolInputFromStdinSync, OverrideManager, printBlockMessage, printOverrideConsumed, printWarning, } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 const VALIDATOR_NAME = 'prompt_injection_guard';
 /**
@@ -497,7 +497,7 @@ export function detectBase64Payloads(text) {
             findings.push({
                 category: 'base64_payload',
                 severity: containsInjection ? 'CRITICAL' : 'WARNING',
-                match_preview: potentialBase64.slice(0, 30) + '...',
+                match_preview: `${potentialBase64.slice(0, 30)  }...`,
                 decoded_preview: decoded.slice(0, 50) + (decoded.length > 50 ? '...' : ''),
                 description: containsInjection
                     ? 'Base64 encoded content contains injection patterns'

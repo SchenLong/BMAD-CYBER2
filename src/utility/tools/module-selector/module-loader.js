@@ -225,7 +225,7 @@ function parseSimpleYaml(yamlContent) {
     if (keyValueMatch) {
       const indent = keyValueMatch[1].length;
       const key = keyValueMatch[2];
-      let value = keyValueMatch[3].trim();
+      const value = keyValueMatch[3].trim();
 
       // Top-level key (no indent)
       if (indent === 0) {

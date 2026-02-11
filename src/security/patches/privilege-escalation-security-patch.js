@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * BMAD-CYBER2 Security Patch: Privilege Escalation Controls
  * Addresses: VULN-002 (CRITICAL - CVSS 9.8)
@@ -169,7 +168,7 @@ class PrivilegeEscalationProtection {
         // Log to security monitoring system
         fs.appendFileSync(
             '/Users/paultinp/BMAD-CYBER2/security-testing/alerts/privilege-escalation-alerts.log',
-            JSON.stringify(securityAlert) + '\n'
+            `${JSON.stringify(securityAlert)  }\n`
         );
     }
 

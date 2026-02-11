@@ -46,7 +46,7 @@ function rotateIfNeeded() {
             const stats = fs.statSync(logFile);
             if (stats.size > MAX_LOG_SIZE) {
                 // Rotate: rename current to .old
-                const oldLog = logFile + '.old';
+                const oldLog = `${logFile  }.old`;
                 if (fs.existsSync(oldLog)) {
                     fs.unlinkSync(oldLog);
                 }
@@ -160,7 +160,7 @@ export class AuditLogger {
         }
         try {
             const logFile = getLogFile();
-            fs.appendFileSync(logFile, JSON.stringify(processedEntry) + '\n');
+            fs.appendFileSync(logFile, `${JSON.stringify(processedEntry)  }\n`);
         }
         catch (e) {
             // Log to stderr if file logging fails
@@ -230,7 +230,7 @@ export class AuditLogger {
         }
         try {
             const logFile = getLogFile();
-            fs.appendFileSync(logFile, JSON.stringify(processedEntry) + '\n');
+            fs.appendFileSync(logFile, `${JSON.stringify(processedEntry)  }\n`);
         }
         catch {
             // Log to stderr if file logging fails

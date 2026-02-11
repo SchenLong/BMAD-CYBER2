@@ -1424,31 +1424,13 @@ class CompatibilityMatrixGenerator extends EventEmitter {
     }
 
     /**
-     * Get package maintainers
-     * @param {string} packageName - Package name
-     * @returns {Promise<Array>} Package maintainers
-     */
-    async getPackageMaintainers(packageName) {
-        try {
-            // In a real implementation, this would fetch from package registry
-            return ['Example Maintainer'];
-        } catch (error) {
-            return [];
-        }
-    }
-
-    /**
      * Get package license
      * @param {string} packageName - Package name
      * @returns {Promise<string>} Package license
      */
     async getPackageLicense(packageName) {
-        try {
-            // In a real implementation, this would fetch from package registry
-            return 'MIT';
-        } catch (error) {
-            return 'Unknown';
-        }
+        // In a real implementation, this would fetch from package registry
+        return 'MIT';
     }
 
     /**
@@ -1457,12 +1439,8 @@ class CompatibilityMatrixGenerator extends EventEmitter {
      * @returns {Promise<Array>} Package keywords
      */
     async getPackageKeywords(packageName) {
-        try {
-            // In a real implementation, this would fetch from package registry
-            return ['javascript', 'nodejs'];
-        } catch (error) {
-            return [];
-        }
+        // In a real implementation, this would fetch from package registry
+        return ['javascript', 'nodejs'];
     }
 
     /**

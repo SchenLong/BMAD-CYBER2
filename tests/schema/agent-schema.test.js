@@ -122,10 +122,10 @@ describe('Agent Manifest Entry Schema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('rejects path not starting with _bmad/', () => {
+  it('rejects path not starting with _bmad/ or src/', () => {
     const result = agentManifestEntrySchema.safeParse({
       ...validEntry,
-      path: 'src/agents/test.md',
+      path: 'other/agents/test.md',
     });
     expect(result.success).toBe(false);
   });

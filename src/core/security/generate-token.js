@@ -47,7 +47,7 @@ export class TokenGenerator {
         const authTag = cipher.getAuthTag();
         // Combine: iv + authTag + encrypted
         const combined = Buffer.concat([iv, authTag, encrypted]);
-        return 'bmad.v1.' + combined.toString('base64url');
+        return `bmad.v1.${  combined.toString('base64url')}`;
     }
     /**
      * Decrypt and validate token
@@ -108,9 +108,9 @@ async function interactiveGeneration() {
     const question = (prompt) => {
         return new Promise(resolve => rl.question(prompt, resolve));
     };
-    console.log('\n' + '='.repeat(70));
+    console.log(`\n${  '='.repeat(70)}`);
     console.log('              BMAD Authentication Token Generator');
-    console.log('='.repeat(70) + '\n');
+    console.log(`${'='.repeat(70)  }\n`);
     // Gather user information
     const name = await question('Enter your name: ');
     if (!name.trim()) {
@@ -189,7 +189,7 @@ async function interactiveGeneration() {
     // Save token
     fs.writeFileSync(tokenPath, result.token);
     fs.chmodSync(tokenPath, 0o600);
-    console.log('\n' + '='.repeat(70));
+    console.log(`\n${  '='.repeat(70)}`);
     console.log('                   Token Generated Successfully');
     console.log('='.repeat(70));
     console.log(`\n  Name:    ${result.claims.name}`);

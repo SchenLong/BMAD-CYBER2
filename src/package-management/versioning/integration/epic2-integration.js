@@ -713,30 +713,26 @@ class Epic2IntegrationController extends EventEmitter {
      * @returns {Promise<Object>} Installation feasibility analysis
      */
     async analyzeInstallationFeasibility(analysisRequest) {
-        try {
-            // Stub implementation for installation feasibility analysis
-            return {
-                feasible: true,
-                requirements: {
-                    diskSpace: '1GB',
-                    memory: '512MB',
-                    networkAccess: true
-                },
-                estimatedTime: '5 minutes',
-                risks: ['low'],
-                recommendations: [
-                    'Ensure sufficient disk space',
-                    'Verify network connectivity'
-                ],
-                compatibility: {
-                    os: 'compatible',
-                    runtime: 'compatible',
-                    dependencies: 'compatible'
-                }
-            };
-        } catch (error) {
-            throw new Error(`Installation feasibility analysis failed: ${error.message}`);
-        }
+        // Stub implementation for installation feasibility analysis
+        return {
+            feasible: true,
+            requirements: {
+                diskSpace: '1GB',
+                memory: '512MB',
+                networkAccess: true
+            },
+            estimatedTime: '5 minutes',
+            risks: ['low'],
+            recommendations: [
+                'Ensure sufficient disk space',
+                'Verify network connectivity'
+            ],
+            compatibility: {
+                os: 'compatible',
+                runtime: 'compatible',
+                dependencies: 'compatible'
+            }
+        };
     }
 
     /**

@@ -310,7 +310,7 @@ export function saveModuleConfig(moduleCode, config, projectRoot = process.cwd()
     // Build YAML content with header comment
     const header = `# Module configuration for ${moduleCode}\n`;
     const yamlContent = serializeYaml(configWithMetadata);
-    const fullContent = header + yamlContent + '\n';
+    const fullContent = `${header + yamlContent  }\n`;
 
     // Write to temp file first (atomic write pattern)
     fs.writeFileSync(tempPath, fullContent, 'utf8');
@@ -384,7 +384,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 
   // Test 1: createOutputDirectory
   console.log('\n1. createOutputDirectory() Test:');
-  const testDir = '/tmp/bmad-test-' + Date.now();
+  const testDir = `/tmp/bmad-test-${  Date.now()}`;
   const dirResult = createOutputDirectory(testDir);
   console.log(`   Created directory: ${dirResult.success ? 'PASS' : 'FAIL'}`);
   console.log(`   Path: ${dirResult.path}`);
@@ -442,7 +442,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.log('   Removed test config file');
   }
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete.\n');
   console.log('Exported functions:');
   console.log('  - MODULES_CONFIG_DIR');

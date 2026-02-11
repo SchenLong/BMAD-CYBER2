@@ -98,12 +98,12 @@ describe('Workflow Manifest Entry Schema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('rejects path not starting with _bmad/', () => {
+  it('rejects path not starting with _bmad/ or src/', () => {
     const result = workflowManifestEntrySchema.safeParse({
       name: 'test-workflow',
       description: 'A valid workflow description',
       module: 'cybersec-team',
-      path: 'src/test.yaml',
+      path: 'other/test.yaml',
     });
     expect(result.success).toBe(false);
   });

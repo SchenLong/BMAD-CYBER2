@@ -63,6 +63,7 @@ export function isUrlOrAnchor(ref) {
   if (trimmed.startsWith('mailto:')) return true;
   if (trimmed.startsWith('#')) return true;
   if (trimmed.startsWith('data:')) return true;
+  // eslint-disable-next-line no-script-url -- detecting dangerous URLs is the purpose of this validator
   if (trimmed.startsWith('javascript:')) return true;
   return false;
 }

@@ -17,7 +17,7 @@ import * as path from 'node:path';
 import { promisify } from 'node:util';
 import { getProjectDir } from '../common/path-utils.js';
 import { AuditLogger } from '../common/audit-logger.js';
-import { runDailyArchival, ArchivalError } from './log-archiver.js';
+import { ArchivalError, runDailyArchival } from './log-archiver.js';
 import { ArchivalConfigManager } from './archival-config.js';
 
 const writeFile = promisify(fs.writeFile);
@@ -293,7 +293,7 @@ export class ArchivalScheduler {
         ...result,
       };
 
-      await writeFile(this.logFile, JSON.stringify(logEntry) + '\n', { flag: 'a' });
+      await writeFile(this.logFile, `${JSON.stringify(logEntry)  }\n`, { flag: 'a' });
     } catch (error) {
       // Don't fail the job if logging fails
       console.warn(`Failed to log archival job result: ${error instanceof Error ? error.message : String(error)}`);
@@ -489,7 +489,7 @@ export class ArchivalScheduler {
       });
 
       if (retainedLines.length < lines.length) {
-        await writeFile(this.logFile, retainedLines.join('\n') + '\n', 'utf8');
+        await writeFile(this.logFile, `${retainedLines.join('\n')  }\n`, 'utf8');
 
         await AuditLogger.log(
           'archival_scheduler',

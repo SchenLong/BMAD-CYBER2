@@ -17,14 +17,14 @@
 import { Command } from 'commander';
 import { createLogArchiver } from '../src/observability/log-archiver.js';
 import {
-  createConfigManager,
   checkConfiguration,
+  createConfigManager,
 } from '../src/observability/archival-config.js';
 import {
   getArchivalScheduler,
   getArchivalStatus,
-  triggerArchival,
   initializeArchivalScheduling,
+  triggerArchival,
 } from '../src/observability/archival-scheduler.js';
 
 const program = new Command();
@@ -75,7 +75,7 @@ function formatBytes(bytes: number): string {
   const k = 1024;
   const sizes = ['B', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))  } ${  sizes[i]}`;
 }
 
 /**

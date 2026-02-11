@@ -21,13 +21,13 @@
 
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../common/index.js';
 import { EXIT_CODES, type Severity } from '../types/index.js';
-import { updateSessionState, type SessionPatternFinding } from './session-tracker.js';
+import { type SessionPatternFinding, updateSessionState } from './session-tracker.js';
 
 const VALIDATOR_NAME = 'jailbreak_guard';
 
@@ -810,7 +810,7 @@ export function analyzeContent(content: string, sessionId?: string): JailbreakAn
   const obfuscationDetected = normalized.length < content.length * 0.9;
 
   // 2. Pattern matching on normalized text
-  let findings = detectPatterns(normalized);
+  const findings = detectPatterns(normalized);
 
   // Also run on original if significantly different
   if (obfuscationDetected) {
@@ -859,7 +859,7 @@ export function analyzeContent(content: string, sessionId?: string): JailbreakAn
       ...fuzzyFindings.map((f) => ({
         category: f.category,
         weight: f.weight,
-        pattern_name: 'fuzzy_' + f.target_keyword,
+        pattern_name: `fuzzy_${  f.target_keyword}`,
         timestamp: Date.now(),
       })),
       ...heuristicFindings.map((f) => ({

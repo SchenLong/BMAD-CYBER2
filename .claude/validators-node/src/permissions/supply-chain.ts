@@ -33,10 +33,10 @@ import { spawnSync } from 'child_process';
 import { createHash } from 'crypto';
 import {
   existsSync,
+  mkdirSync,
+  readdirSync,
   readFileSync,
   writeFileSync,
-  readdirSync,
-  mkdirSync,
 } from 'fs';
 import * as path from 'node:path';
 import {
@@ -792,7 +792,7 @@ export function generateManifest(
 
   // Sign if requested
   if (sign) {
-    const sigPath = targetPath + '.asc';
+    const sigPath = `${targetPath  }.asc`;
     try {
       // Use spawnSync with argument array to prevent injection attacks
       const result = spawnSync('gpg', [

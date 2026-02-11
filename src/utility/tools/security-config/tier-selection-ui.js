@@ -13,16 +13,16 @@
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 
-import { select, confirm } from '../../cli/prompts.js';
+import { confirm, select } from '../../cli/prompts.js';
 
 import {
-  SECURITY_TIERS,
-  getTierById,
-  getDefaultTier,
-  getTierFeatures,
-  getFeatureDetails,
   compareTiers,
-  getTierDisplayInfo
+  getDefaultTier,
+  getFeatureDetails,
+  getTierById,
+  getTierDisplayInfo,
+  getTierFeatures,
+  SECURITY_TIERS
 } from './tier-definitions.js';
 
 /**
@@ -59,10 +59,10 @@ export function formatTierChoice(tier) {
   }
 
   // Add description on new line with indentation
-  name += '\n      ' + chalk.dim(tier.description);
+  name += `\n      ${  chalk.dim(tier.description)}`;
 
   if (tier.isBeta) {
-    name += '\n      ' + chalk.yellow.dim(BETA_WARNING);
+    name += `\n      ${  chalk.yellow.dim(BETA_WARNING)}`;
   }
 
   return name;
@@ -318,7 +318,7 @@ export function showSelectionSummary(tierId) {
   }
 
   console.log('');
-  console.log(chalk.green.bold('Security tier selected: ' + tier.name));
+  console.log(chalk.green.bold(`Security tier selected: ${  tier.name}`));
   console.log(chalk.dim(`  ${tier.features.length} features will be enabled.`));
 
   if (tier.isBeta) {
@@ -339,12 +339,12 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       // Test 1: Show tier selector
       console.log('\n1. Testing showTierSelector():');
       const selectedTier = await showTierSelector();
-      console.log('   Selected: ' + selectedTier);
+      console.log(`   Selected: ${  selectedTier}`);
 
       // Test 2: Show feature confirmation
       console.log('\n2. Testing showFeatureConfirmation():');
       const confirmed = await showFeatureConfirmation(selectedTier);
-      console.log('   Confirmed: ' + confirmed);
+      console.log(`   Confirmed: ${  confirmed}`);
 
       // Test 3: Show comparison (if not essential)
       if (selectedTier !== 'essential') {
@@ -360,7 +360,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       console.log('\n5. Testing showSelectionSummary():');
       showSelectionSummary(selectedTier);
 
-      console.log('\n' + '='.repeat(60));
+      console.log(`\n${  '='.repeat(60)}`);
       console.log('Interactive test complete.');
     } catch (error) {
       console.error('Error:', error.message);

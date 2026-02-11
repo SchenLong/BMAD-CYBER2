@@ -131,6 +131,7 @@ export function padString(str, width) {
  * @returns {string} Plain string
  */
 export function stripAnsi(str) {
+  // eslint-disable-next-line no-control-regex -- intentional: strips ANSI escape sequences
   return str.replace(/\x1b\[[0-9;]*m/g, '');
 }
 
@@ -223,13 +224,13 @@ export function displayModuleSummary(enabledModules, allModules) {
 
     lines.push(
       BOX.light.vertical +
-      padString(' ' + moduleCode, colWidths.module) +
+      padString(` ${  moduleCode}`, colWidths.module) +
       BOX.light.vertical +
-      padString(' ' + agents.toString(), colWidths.agents) +
+      padString(` ${  agents.toString()}`, colWidths.agents) +
       BOX.light.vertical +
-      padString(' ' + workflows.toString(), colWidths.workflows) +
+      padString(` ${  workflows.toString()}`, colWidths.workflows) +
       BOX.light.vertical +
-      padString(' ' + chalk.green('\u2713'), colWidths.status) +
+      padString(` ${  chalk.green('\u2713')}`, colWidths.status) +
       BOX.light.vertical
     );
   }
@@ -296,8 +297,8 @@ export function displayQuickStartCommands(enabledModules) {
 
   if (enabledModules.includes('core')) {
     const coreCommands = MODULE_COMMANDS.core;
-    lines.push(chalk.dim('  \u2022 ') + coreCommands.commands[0].description + ':');
-    lines.push(chalk.yellow('    ' + coreCommands.commands[0].command));
+    lines.push(`${chalk.dim('  \u2022 ') + coreCommands.commands[0].description  }:`);
+    lines.push(chalk.yellow(`    ${  coreCommands.commands[0].command}`));
   }
 
   for (const moduleCode of enabledModules) {
@@ -306,8 +307,8 @@ export function displayQuickStartCommands(enabledModules) {
     const moduleCommands = MODULE_COMMANDS[moduleCode];
     if (moduleCommands && moduleCommands.commands.length > 0) {
       const firstCmd = moduleCommands.commands[0];
-      lines.push(chalk.dim('  \u2022 ') + firstCmd.description + ':');
-      lines.push(chalk.yellow('    ' + firstCmd.command));
+      lines.push(`${chalk.dim('  \u2022 ') + firstCmd.description  }:`);
+      lines.push(chalk.yellow(`    ${  firstCmd.command}`));
     }
   }
 
@@ -316,7 +317,7 @@ export function displayQuickStartCommands(enabledModules) {
   );
 
   if (teamModules.length >= 2 && enabledModules.includes('core')) {
-    lines.push(chalk.dim('  \u2022 ') + 'Start multi-agent Party Mode:');
+    lines.push(`${chalk.dim('  \u2022 ')  }Start multi-agent Party Mode:`);
     lines.push(chalk.yellow('    /bmad:core:workflows:party-mode'));
   }
 
@@ -333,7 +334,7 @@ export function displayDocumentationLinks() {
   lines.push(chalk.cyan('\n\uD83D\uDCDA Documentation:'));
 
   for (const [key, link] of Object.entries(DOCUMENTATION_LINKS)) {
-    lines.push(chalk.dim('  \u2022 ') + link.name + ': ' + chalk.blue.underline(link.url));
+    lines.push(`${chalk.dim('  \u2022 ') + link.name  }: ${  chalk.blue.underline(link.url)}`);
   }
 
   return lines.join('\n');
@@ -348,7 +349,7 @@ export function displayAttribution() {
   const separator = createSeparator(width, '\u2500');
 
   const lines = [];
-  lines.push('\n' + chalk.dim(separator));
+  lines.push(`\n${  chalk.dim(separator)}`);
   lines.push(chalk.dim(centerText(ATTRIBUTION, width)));
   lines.push(chalk.dim(separator));
 

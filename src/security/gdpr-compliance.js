@@ -205,15 +205,16 @@ export class PIIScanner {
      */
     _redactMatch(match, type) {
         switch (type) {
-            case 'email':
+            case 'email': {
                 const [local, domain] = match.split('@');
                 return `${local.charAt(0)}***@${domain}`;
+            }
             case 'phone':
                 return match.replace(/\d(?=\d{4})/g, '*');
             case 'ssn':
-                return '***-**-' + match.slice(-4);
+                return `***-**-${  match.slice(-4)}`;
             case 'creditCard':
-                return '**** **** **** ' + match.slice(-4);
+                return `**** **** **** ${  match.slice(-4)}`;
             case 'ipv4':
             case 'ipv6':
                 return match.split('.').map((o, i) => i < 2 ? '***' : o).join('.');
@@ -308,7 +309,7 @@ export class DataSubjectRequestHandler {
         };
 
         const logPath = path.join(this.storagePath, 'activity-log.jsonl');
-        fs.appendFileSync(logPath, JSON.stringify(activity) + '\n');
+        fs.appendFileSync(logPath, `${JSON.stringify(activity)  }\n`);
 
         return activity;
     }

@@ -454,7 +454,7 @@ class MigrationExecutor extends EventEmitter {
                     result = { operation: 'created', filePath: absolutePath };
                     break;
 
-                case 'update':
+                case 'update': {
                     const existingContent = await fs.readFile(absolutePath, 'utf8');
                     const newContent = options.merge ?
                         this.mergeContent(existingContent, content, options.mergeStrategy) :
@@ -466,13 +466,14 @@ class MigrationExecutor extends EventEmitter {
                         merged: options.merge
                     };
                     break;
+                }
 
                 case 'delete':
                     await fs.unlink(absolutePath);
                     result = { operation: 'deleted', filePath: absolutePath };
                     break;
 
-                case 'rename':
+                case 'rename': {
                     const newPath = path.resolve(
                         path.dirname(absolutePath),
                         options.newName
@@ -484,6 +485,7 @@ class MigrationExecutor extends EventEmitter {
                         newPath
                     };
                     break;
+                }
 
                 default:
                     throw new Error(`Unknown file operation: ${operation}`);

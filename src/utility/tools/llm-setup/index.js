@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * LLM Setup Entry Point - INST-018
@@ -22,7 +21,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 import chalk from 'chalk';
-import { password, confirm } from '../../cli/prompts.js';
+import { confirm, password } from '../../cli/prompts.js';
 
 import {
   detectLocalProviders,
@@ -30,25 +29,25 @@ import {
 } from './local-detector.js';
 
 import {
-  ensureSynced,
-  getConfigStatus,
-  formatConfigStatus,
   detectDrift,
+  ensureSynced,
+  formatConfigStatus,
+  getConfigStatus,
   getEffectiveProvider
 } from './config-sync.js';
 
 import {
-  showProviderSelector,
-  getProviderByCode,
-  requiresApiKey,
-  getProviderGroup,
   CLOUD_PROVIDERS,
-  LOCAL_PROVIDER_DEFS
+  getProviderByCode,
+  getProviderGroup,
+  LOCAL_PROVIDER_DEFS,
+  requiresApiKey,
+  showProviderSelector
 } from './provider-selection-ui.js';
 
 import {
-  showModelSelector,
-  COMMON_MODEL_DESCRIPTIONS
+  COMMON_MODEL_DESCRIPTIONS,
+  showModelSelector
 } from './model-selection-ui.js';
 
 import {
@@ -60,9 +59,9 @@ import {
 } from './connection-tester.js';
 
 import {
-  writeConfigs,
   displaySavedConfig,
-  validateConfig
+  validateConfig,
+  writeConfigs
 } from './provider-config.js';
 
 /**
@@ -76,7 +75,7 @@ export const WIZARD_VERSION = '2.0.0';
 function displayBanner() {
   console.log(chalk.bold.blue('\n╔══════════════════════════════════════════════════════════════╗'));
   console.log(chalk.bold.blue('║                 BMAD LLM Provider Setup Wizard               ║'));
-  console.log(chalk.bold.blue('║                        Version ' + WIZARD_VERSION.padEnd(26) + '║'));
+  console.log(chalk.bold.blue(`║                        Version ${  WIZARD_VERSION.padEnd(26)  }║`));
   console.log(chalk.bold.blue('╚══════════════════════════════════════════════════════════════╝\n'));
 }
 
@@ -220,7 +219,7 @@ export async function runLlmSetup(options = {}) {
     if (!providerInfo) {
       console.log(chalk.red(`\nUnknown provider: ${preselectedProvider}`));
       const allProviders = [...CLOUD_PROVIDERS, ...LOCAL_PROVIDER_DEFS].map(p => p.code);
-      console.log(chalk.dim('Available providers: ' + allProviders.join(', ') + '\n'));
+      console.log(chalk.dim(`Available providers: ${  allProviders.join(', ')  }\n`));
       return { success: false, error: 'Unknown provider' };
     }
     selectedProvider = preselectedProvider;

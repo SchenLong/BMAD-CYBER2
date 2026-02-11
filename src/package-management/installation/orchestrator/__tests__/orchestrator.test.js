@@ -17,7 +17,7 @@
  * @classification DO-084-001 / VAL-10-002
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { EventEmitter } from 'events';
 import path from 'path';
 import os from 'os';
@@ -86,7 +86,7 @@ describe('BMADInstallationOrchestrator', () => {
 
       constructor(config = {}) {
         super();
-        this.id = 'test-' + Date.now();
+        this.id = `test-${  Date.now()}`;
         this.config = { concurrency: { max: config?.concurrency?.max || 10 }, ...config };
         this.state = 'initializing';
         this.isInitialized = false;
@@ -142,7 +142,7 @@ describe('BMADInstallationOrchestrator', () => {
 
       async queueInstallation(request) {
         if (!this.isInitialized) throw new Error('Orchestrator not initialized');
-        const installation = { id: 'inst-' + Date.now(), ...request };
+        const installation = { id: `inst-${  Date.now()}`, ...request };
         this.installationQueues.get(request.priority || 2).push(installation);
         return installation.id;
       }
@@ -421,7 +421,7 @@ describe('InstallationHealthMonitor', () => {
       this.healthMetrics.checksPerformed++;
       this.healthMetrics.lastHealthCheck = Date.now();
       return {
-        id: 'check-' + Date.now(),
+        id: `check-${  Date.now()}`,
         overallStatus: 'healthy',
         checkResults: {},
         duration: 100
@@ -448,7 +448,7 @@ describe('InstallationHealthMonitor', () => {
     }
 
     async _generateAlert(alertType, message, severity) {
-      const alertId = 'alert-' + Date.now();
+      const alertId = `alert-${  Date.now()}`;
       const alert = { id: alertId, type: alertType, message, severity, acknowledged: false };
       this.activeAlerts.set(alertId, alert);
       this.emit(severity === 'critical' ? 'health.critical' : 'health.warning', alert);
@@ -1165,7 +1165,7 @@ describe('RollbackManager', () => {
     }
 
     async createSnapshot(installation, snapshotTypes = null) {
-      const snapshotId = 'snap-' + Date.now();
+      const snapshotId = `snap-${  Date.now()}`;
       const types = snapshotTypes || ['filesystem', 'registry', 'configuration'];
       const snapshotData = {
         id: snapshotId,
@@ -1193,7 +1193,7 @@ describe('RollbackManager', () => {
       this.isRollbackInProgress = true;
       try {
         const strategy = options.strategy || 'full';
-        const rollbackId = 'rb-' + Date.now();
+        const rollbackId = `rb-${  Date.now()}`;
         this.rollbackOperations.set(rollbackId, { id: rollbackId, installationId: installation.id });
         await new Promise(resolve => setTimeout(resolve, 10));
         this.rollbackMetrics.totalRollbacks++;

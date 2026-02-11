@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import { text, password, confirm, select } from '../../cli/prompts.js';
+import { confirm, password, select, text } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -73,7 +73,7 @@ export function validateModelName(model) {
   const trimmed = model.trim();
 
   // Allow alphanumeric, hyphens, underscores, dots, colons, slashes
-  if (!/^[\w\-.:\/]+$/.test(trimmed)) {
+  if (!/^[\w\-.:/]+$/.test(trimmed)) {
     return 'Model name contains invalid characters';
   }
 

@@ -340,7 +340,7 @@ class InstallationLogger {
     const category = logEntry.category.padEnd(15);
 
     let colorCode = '';
-    let resetCode = '\x1b[0m';
+    const resetCode = '\x1b[0m';
 
     // Color coding for different log levels
     switch (logEntry.level) {
@@ -371,7 +371,7 @@ class InstallationLogger {
 
     try {
       const logLine = this.formatLogEntry(logEntry);
-      await fs.appendFile(this.logFilePath, logLine + '\n');
+      await fs.appendFile(this.logFilePath, `${logLine  }\n`);
 
       // Check file size and rotate if necessary
       const stats = await fs.stat(this.logFilePath);

@@ -118,7 +118,7 @@ export function getGpgVersion(options = {}) {
     const major = parseInt(versionMatch[1], 10);
     const minor = parseInt(versionMatch[2], 10);
     const patch = versionMatch[3] ? parseInt(versionMatch[3], 10) : 0;
-    const version = major + '.' + minor + '.' + patch;
+    const version = `${major  }.${  minor  }.${  patch}`;
 
     return {
       version,
@@ -386,10 +386,10 @@ export function formatGpgCapability(capability) {
 
     if (capability.installInstructions) {
       lines.push('  Installation Instructions:');
-      lines.push('    Platform: ' + capability.installInstructions.name);
-      lines.push('    Command:  ' + capability.installInstructions.command);
+      lines.push(`    Platform: ${  capability.installInstructions.name}`);
+      lines.push(`    Command:  ${  capability.installInstructions.command}`);
       if (capability.installInstructions.note) {
-        lines.push('    Note:     ' + capability.installInstructions.note);
+        lines.push(`    Note:     ${  capability.installInstructions.note}`);
       }
     }
 
@@ -397,19 +397,19 @@ export function formatGpgCapability(capability) {
   }
 
   lines.push('');
-  lines.push('  [INSTALLED] GPG version ' + capability.version);
-  lines.push('  Path: ' + capability.gpgPath);
-  lines.push('  Version Type: GPG ' + capability.major + '.x');
+  lines.push(`  [INSTALLED] GPG version ${  capability.version}`);
+  lines.push(`  Path: ${  capability.gpgPath}`);
+  lines.push(`  Version Type: GPG ${  capability.major  }.x`);
 
   lines.push('');
   if (capability.existingKeys.length > 0) {
-    lines.push('  Public Keys (' + capability.existingKeys.length + '):');
+    lines.push(`  Public Keys (${  capability.existingKeys.length  }):`);
     for (const key of capability.existingKeys.slice(0, 5)) {
       const keyInfo = key.email || key.uid || key.keyId;
-      lines.push('    - ' + keyInfo);
+      lines.push(`    - ${  keyInfo}`);
     }
     if (capability.existingKeys.length > 5) {
-      lines.push('    ... and ' + (capability.existingKeys.length - 5) + ' more');
+      lines.push(`    ... and ${  capability.existingKeys.length - 5  } more`);
     }
   } else {
     lines.push('  Public Keys: None');
@@ -417,13 +417,13 @@ export function formatGpgCapability(capability) {
 
   lines.push('');
   if (capability.secretKeys.length > 0) {
-    lines.push('  Secret Keys (' + capability.secretKeys.length + '):');
+    lines.push(`  Secret Keys (${  capability.secretKeys.length  }):`);
     for (const key of capability.secretKeys.slice(0, 5)) {
       const keyInfo = key.email || key.uid || key.keyId;
-      lines.push('    - ' + keyInfo);
+      lines.push(`    - ${  keyInfo}`);
     }
     if (capability.secretKeys.length > 5) {
-      lines.push('    ... and ' + (capability.secretKeys.length - 5) + ' more');
+      lines.push(`    ... and ${  capability.secretKeys.length - 5  } more`);
     }
   } else {
     lines.push('  Secret Keys: None (you can generate a new key pair)');

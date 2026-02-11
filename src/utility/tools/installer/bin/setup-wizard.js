@@ -221,7 +221,7 @@ export async function main(args = process.argv.slice(2), env = process.env) {
   if (inCI && !options.force) {
     const ciName = getDetectedCI(env) || 'CI';
     if (!options.quiet) {
-      console.log(chalk.cyan(ciName + ' environment detected, skipping interactive wizard.'));
+      console.log(chalk.cyan(`${ciName  } environment detected, skipping interactive wizard.`));
       console.log(chalk.dim("Run 'npm run setup' manually to configure."));
     }
     return 0;

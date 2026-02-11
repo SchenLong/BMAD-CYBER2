@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Cross-File Reference Validator CLI
  * Task 0.2 - Command-line interface for the reference validator

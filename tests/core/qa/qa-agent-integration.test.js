@@ -39,19 +39,20 @@ function findProjectRoot() {
 
 const PROJECT_ROOT = findProjectRoot();
 const BMAD_DIR = join(PROJECT_ROOT, '_bmad');
+const SRC_DIR = join(PROJECT_ROOT, 'src');
 const CONFIG_DIR = join(BMAD_DIR, '_config');
 
-// File paths
-const QA_AGENT_PATH = join(BMAD_DIR, 'bmm', 'agents', 'qa.md');
-const QA_WORKFLOW_DIR = join(BMAD_DIR, 'bmm', 'workflows', 'qa', 'automate');
+// File paths (modules migrated from _bmad/ to src/ in Story 17)
+const QA_AGENT_PATH = join(SRC_DIR, 'bmm', 'agents', 'qa.md');
+const QA_WORKFLOW_DIR = join(SRC_DIR, 'bmm', 'workflows', 'qa', 'automate');
 const QA_WORKFLOW_YAML = join(QA_WORKFLOW_DIR, 'workflow.yaml');
 const QA_INSTRUCTIONS = join(QA_WORKFLOW_DIR, 'instructions.md');
 const QA_CHECKLIST = join(QA_WORKFLOW_DIR, 'checklist.md');
 const AGENT_MANIFEST = join(CONFIG_DIR, 'agent-manifest.csv');
 const WORKFLOW_MANIFEST = join(CONFIG_DIR, 'workflow-manifest.csv');
 const WORKFLOW_ALIASES = join(CONFIG_DIR, 'workflow-aliases.yaml');
-const HELP_OVERVIEW = join(BMAD_DIR, 'core', 'help', 'templates', 'overview.md');
-const HELP_BMM = join(BMAD_DIR, 'core', 'help', 'templates', 'module-bmm.md');
+const HELP_OVERVIEW = join(SRC_DIR, 'core', 'help', 'templates', 'overview.md');
+const HELP_BMM = join(SRC_DIR, 'core', 'help', 'templates', 'module-bmm.md');
 const RBAC_MATRIX = join(PROJECT_ROOT, 'Docs', '03-developer-docs', 'RBAC-MIGRATION-MATRIX.md');
 const SLASH_CMD_REF = join(PROJECT_ROOT, 'Docs', '02-user-guides', 'SLASH-COMMAND-REFERENCE.md');
 
@@ -269,7 +270,7 @@ describe('RBAC & Security Integration (ACs 6-7)', () => {
 
   it('QA-10-027: RBAC migration matrix includes QA agent', () => {
     expect(rbacMatrix).toContain('bmm/qa');
-    expect(rbacMatrix).toContain('src/bmm/agents/qa');
+    expect(rbacMatrix).toMatch(/bmm\/agents\/qa/);
   });
 
   it('QA-10-028: RBAC matrix shows BMM module with 10 agents', () => {
@@ -282,7 +283,7 @@ describe('RBAC & Security Integration (ACs 6-7)', () => {
 
   it('QA-10-030: QA agent has bmm/* RBAC pattern', () => {
     const qaLine = rbacMatrix.split('\n').find(
-      line => line.includes('bmm/qa') && line.includes('src/bmm/agents/qa')
+      line => line.includes('bmm/qa') && /bmm\/agents\/qa/.test(line)
     );
     expect(qaLine).toBeDefined();
     expect(qaLine).toContain('bmm/*');

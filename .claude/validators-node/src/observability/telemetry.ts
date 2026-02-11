@@ -60,7 +60,7 @@ const LOCK_TIMEOUT_MS = 5000;
  * Acquire a file-based lock for telemetry writes.
  */
 function acquireTelemetryLock(filepath: string, timeout: number = LOCK_TIMEOUT_MS): boolean {
-  const lockFile = filepath + '.lock';
+  const lockFile = `${filepath  }.lock`;
 
   const startTime = Date.now();
   while (Date.now() - startTime < timeout) {
@@ -103,7 +103,7 @@ function acquireTelemetryLock(filepath: string, timeout: number = LOCK_TIMEOUT_M
  */
 function releaseTelemetryLock(filepath: string): void {
   try {
-    fs.unlinkSync(filepath + '.lock');
+    fs.unlinkSync(`${filepath  }.lock`);
   } catch {
     // Ignore
   }
@@ -266,7 +266,7 @@ export class TelemetryCollector {
     if (!acquireTelemetryLock(filepath)) {
       // Non-blocking fallback - proceed without lock
       try {
-        fs.appendFileSync(filepath, JSON.stringify(entry) + '\n');
+        fs.appendFileSync(filepath, `${JSON.stringify(entry)  }\n`);
         return true;
       } catch {
         return false;
@@ -274,7 +274,7 @@ export class TelemetryCollector {
     }
 
     try {
-      fs.appendFileSync(filepath, JSON.stringify(entry) + '\n');
+      fs.appendFileSync(filepath, `${JSON.stringify(entry)  }\n`);
       return true;
     } catch {
       // Silent failure - telemetry should not impact validator operation

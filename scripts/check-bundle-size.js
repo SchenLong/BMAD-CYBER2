@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * BMAD CYBERCOMMAND - Bundle Size Checker

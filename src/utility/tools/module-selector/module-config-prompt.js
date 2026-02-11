@@ -14,7 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { text, select, confirm } from '../../cli/prompts.js';
+import { confirm, select, text } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 // ESM equivalent of __dirname
@@ -249,7 +249,7 @@ export async function promptForModuleConfig(module, context) {
   // Create a working context that accumulates configured fields
   const workingContext = {
     projectRoot: context?.projectRoot || process.cwd(),
-    configuredFields: { ...context?.configuredFields } || {}
+    configuredFields: { ...(context?.configuredFields || {}) }
   };
 
   // Iterate through interactive fields and prompt user
@@ -456,13 +456,13 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   console.log(`   Result: ${previewPass ? chalk.green('PASS') : chalk.red('FAIL')}`);
 
   // Test 6: Interactive demo (optional)
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete.');
   console.log('\nTo test interactive prompts, run with --interactive flag:');
   console.log('  node module-config-prompt.js --interactive\n');
 
   if (process.argv.includes('--interactive')) {
-    console.log('\n' + '='.repeat(60));
+    console.log(`\n${  '='.repeat(60)}`);
     console.log('Interactive Demo\n');
 
     const mockModule = {
@@ -484,7 +484,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 
     promptForModuleConfig(mockModule, context)
       .then(config => {
-        console.log('\n' + '='.repeat(60));
+        console.log(`\n${  '='.repeat(60)}`);
         console.log('Configuration Result:');
         console.log(JSON.stringify(config, null, 2));
       })

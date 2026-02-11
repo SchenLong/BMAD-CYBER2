@@ -11,7 +11,7 @@
 
 import { Command } from 'commander';
 import chalk from 'chalk';
-import { select, confirm } from '../../../../cli/prompts.js';
+import { confirm, select } from '../../../../cli/prompts.js';
 import { table } from 'table';
 import fs from 'fs/promises';
 import path from 'path';
@@ -562,7 +562,7 @@ class PackageRegistryCLI {
             return;
         }
 
-        console.log('\n' + '─'.repeat(50) + '\n');
+        console.log(`\n${  '─'.repeat(50)  }\n`);
       }
 
     } catch (error) {

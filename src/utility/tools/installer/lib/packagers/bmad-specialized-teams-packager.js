@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * BMAD Module Packaging Workflow Engine
  * Epic 4, Story 4.1 - Module Packaging Workflow Engine
@@ -524,7 +523,7 @@ class BMAdModulePackager {
 
         extraction: {
           source_format: 'markdown',
-          source_file: path.basename(frontmatter.name || 'unknown') + '.md',
+          source_file: `${path.basename(frontmatter.name || 'unknown')  }.md`,
           conversion_date: new Date().toISOString(),
           bmad_builder_compatible: true
         },

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Configuration File Signer - INST-028
  * Epic: BMAD-CYBER Installation Wizard Enhancement

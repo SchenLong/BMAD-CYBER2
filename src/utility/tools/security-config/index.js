@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * Security Configuration Entry Point - INST-011
@@ -22,35 +21,35 @@ import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 
 import {
-  SECURITY_TIERS,
-  getTierById,
+  getAllTierIds,
   getDefaultTier,
+  getTierById,
   isValidTierId,
-  getAllTierIds
+  SECURITY_TIERS
 } from './tier-definitions.js';
 
 import {
-  showTierSelector,
-  showFeatureConfirmation,
-  showTierComparison,
-  showCurrentConfig,
   promptAdvancedCustomization,
-  showSelectionSummary
+  showCurrentConfig,
+  showFeatureConfirmation,
+  showSelectionSummary,
+  showTierComparison,
+  showTierSelector
 } from './tier-selection-ui.js';
 
 import {
   applySecurityTier,
-  getCurrentTier,
   getCurrentFeatures,
+  getCurrentTier,
   isSecurityConfigured,
   SECURITY_CONFIG_PATH
 } from './security-writer.js';
 
 import {
-  showAdvancedConfig,
-  validateFeatureSelection,
   confirmFeatureSelection,
-  determineEffectiveTier
+  determineEffectiveTier,
+  showAdvancedConfig,
+  validateFeatureSelection
 } from './advanced-override.js';
 
 // ESM equivalent of __dirname
@@ -68,7 +67,7 @@ export const VERSION = '1.0.0';
 function displayBanner() {
   console.log(chalk.bold.cyan('\n==================================================================='));
   console.log(chalk.bold.cyan('              BMAD Security Configuration Wizard                  '));
-  console.log(chalk.bold.cyan('                        Version ' + VERSION + '                           '));
+  console.log(chalk.bold.cyan(`                        Version ${  VERSION  }                           `));
   console.log(chalk.bold.cyan('===================================================================\n'));
 }
 

@@ -181,7 +181,7 @@ class YamlToMdConverter {
    * Build agent content section
    */
   buildAgentContent(agentData) {
-    let content = [];
+    const content = [];
 
     // Add persona information
     if (agentData.persona) {
@@ -254,7 +254,7 @@ class YamlToMdConverter {
    * Build agent XML block for BMAD runtime
    */
   buildAgentXml(agentData) {
-    let xml = [];
+    const xml = [];
 
     xml.push('<agent>\n');
 
@@ -308,7 +308,7 @@ class YamlToMdConverter {
    * Assemble full MD content
    */
   assembleMdContent(frontmatter, content, xmlBlock) {
-    let fullContent = [];
+    const fullContent = [];
 
     // Add frontmatter
     fullContent.push('---\n');
@@ -380,7 +380,7 @@ class YamlToMdConverter {
    * Build workflow content
    */
   buildWorkflowContent(workflowData) {
-    let content = [];
+    const content = [];
 
     // Add workflow overview
     content.push('## Workflow Overview\n');
@@ -436,7 +436,7 @@ class YamlToMdConverter {
    * Assemble workflow MD content
    */
   assembleWorkflowMdContent(frontmatter, content) {
-    let fullContent = [];
+    const fullContent = [];
 
     // Add frontmatter
     fullContent.push('---\n');

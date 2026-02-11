@@ -225,7 +225,7 @@ export function sanitizePath(
   // Check if the collapsed path is inside the project directory
   if (
     collapsed === normalizedProjectDir ||
-    collapsed.startsWith(normalizedProjectDir + '/')
+    collapsed.startsWith(`${normalizedProjectDir  }/`)
   ) {
     // Inside project: replace root with placeholder, keep relative portion
     const relative = collapsed.slice(normalizedProjectDir.length);

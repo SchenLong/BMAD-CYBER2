@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * Module Selector Entry Point - INST-006
@@ -21,41 +20,41 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 import chalk from 'chalk';
-import { select, confirm } from '../../cli/prompts.js';
+import { confirm, select } from '../../cli/prompts.js';
 
 // Import module-selector components
 import {
-  loadAllModules,
+  findModuleByCode,
   getModuleSummary,
-  findModuleByCode
+  loadAllModules
 } from './module-loader.js';
 
 import {
   buildModuleChoices,
-  showModuleSelector,
   calculateSelectionSummary,
+  showModuleSelector,
   validateSelection
 } from './module-selection-ui.js';
 
 import {
-  getRecommendedModules,
   applyRecommendations,
-  sortModulesByRecommendation,
+  getRecommendedModules,
   isValidRole,
+  sortModulesByRecommendation,
   VALID_ROLES
 } from './role-recommendations.js';
 
 import {
-  updateManifest,
-  readExistingManifest,
   MANIFEST_PATH,
+  readExistingManifest,
+  updateManifest,
   WIZARD_VERSION
 } from './manifest-writer.js';
 
 import {
-  hasInteractiveFields,
   configureAllModules,
-  getConfigurationStatus
+  getConfigurationStatus,
+  hasInteractiveFields
 } from './module-config-orchestrator.js';
 
 // ESM equivalent of __dirname
@@ -68,7 +67,7 @@ const __dirname = path.dirname(__filename);
 function displayBanner() {
   console.log(chalk.bold.cyan('\n╔══════════════════════════════════════════════════════════════╗'));
   console.log(chalk.bold.cyan('║                 BMAD Module Selection Wizard                 ║'));
-  console.log(chalk.bold.cyan('║                        Version ' + WIZARD_VERSION.padEnd(26) + '║'));
+  console.log(chalk.bold.cyan(`║                        Version ${  WIZARD_VERSION.padEnd(26)  }║`));
   console.log(chalk.bold.cyan('╚══════════════════════════════════════════════════════════════╝\n'));
 }
 
@@ -224,7 +223,7 @@ export async function runModuleSelector(options = {}) {
   console.log(`  Modules: ${chalk.cyan(selectionSummary.moduleCount)}`);
   console.log(`  Agents:  ${chalk.cyan(selectionSummary.agentCount)}`);
   console.log(`  Workflows: ${chalk.cyan(selectionSummary.workflowCount)}`);
-  console.log(`  Est. Size: ${chalk.cyan(selectionSummary.estimatedSizeMB + ' MB')}`);
+  console.log(`  Est. Size: ${chalk.cyan(`${selectionSummary.estimatedSizeMB  } MB`)}`);
   console.log(chalk.bold('═══════════════════════════════════════════════════════════════\n'));
 
   // Step 7: Confirm selection

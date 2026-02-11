@@ -7,8 +7,8 @@
  */
 
 import {
-  initializeFramework,
-  type FrameworkConfig
+  type FrameworkConfig,
+  initializeFramework
 } from '../index.js';
 
 import {
@@ -27,14 +27,14 @@ import {
 } from '../scripts/index.js';
 
 import {
-  createAuthManager,
-  type AuthConfig
+  type AuthConfig,
+  createAuthManager
 } from '../auth/index.js';
 
 import {
+  type AuditConfig,
   createAuditLogger,
-  initializeGlobalAuditLogger,
-  type AuditConfig
+  initializeGlobalAuditLogger
 } from '../audit/index.js';
 
 /**

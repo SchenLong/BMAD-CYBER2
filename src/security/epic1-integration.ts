@@ -9,7 +9,7 @@
  */
 
 import { AESEncryption } from './encryption/aes-encryption';
-import { generateSecureRandom, CRYPTO_CONFIG } from './encryption/crypto-utils';
+import { CRYPTO_CONFIG, generateSecureRandom } from './encryption/crypto-utils';
 import { HashChain } from './encryption/hash-chains';
 import { TokenGenerator } from './encryption/generate-token';
 

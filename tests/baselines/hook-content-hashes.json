@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
-  "capturedAt": "2026-02-11T10:26:47.267Z",
+  "capturedAt": "2026-02-11T22:29:19.774Z",
   "fileCount": 19,
   "hashes": {
-    ".claude/hooks/session-security-init.js": "c26c94001056226dfdecd51a4c087ad60124d4801420563c02922d61e48768a4",
+    ".claude/hooks/session-security-init.js": "51711998491af8aa3b2c67d72a5adb83f7df305fc8bfc8212b882d379966a6b7",
     ".claude/hooks/session-start-tts.sh": "ac7f02cc635454023f88bec49ac80e3ce8b487fd56c9e24570a2fd302e859190",
     ".claude/validators-node/bin/bash-safety.js": "8b21c369c123efc3bc27987f586020aebf4a9acb5e6f2c6b551a12c8fbc846cd",
     ".claude/validators-node/bin/env-protection.js": "f5233738b62640fbe6e0f25ee51d80a9cfd202269bc228e7f0a36c6e90b10fe3",
@@ -20,7 +20,7 @@
     ".claude/validators-node/bin/session-init.js": "54d03251853e48be060034fa913932be2f9ee79c8e858e30cea6d1e0372dd795",
     ".claude/validators-node/bin/supply-chain.js": "9506c4641b309bbaa2721bfc2946207d069d3652a5d455643f412e97c84f2e7a",
     ".claude/validators-node/bin/token-validator.js": "3831fadf4555ca732eceb05323dec66c115f3f5f0bc41c12fd35f42c8398482a",
-    "src/core/security/authorization.js": "4ffcc84d855dffffd7459a79f6c7c3f15ba0e0dd9a23ca8510fa7407d505fa3e",
-    "src/utility/tools/reference-validator/cli.js": "c6a7ca38656962ef1a5c9a67b5690f965907bb38a92e9ea43f17821f881878dc"
+    "src/core/security/authorization.js": "e00ade8deb4d450d0f287096525359fc342a74411e5318884eeca7c1e12ca826",
+    "src/utility/tools/reference-validator/cli.js": "639024cd0420805a03d09bb0bbaf08d7be7ee64234ac3d447ffdc4ded0d2a374"
   }
 }

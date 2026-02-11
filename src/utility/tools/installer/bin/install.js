@@ -246,7 +246,7 @@ class BMAdInstaller extends EventEmitter {
     this.progressReporter.startPhase('Dependency Resolution', modules.length + 1);
 
     try {
-      let dependencyGraph = new Map();
+      const dependencyGraph = new Map();
 
       // Load dependency information for each module
       for (let i = 0; i < modules.length; i++) {

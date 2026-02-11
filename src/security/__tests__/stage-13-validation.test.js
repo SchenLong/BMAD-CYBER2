@@ -486,7 +486,7 @@ test('RemediationTracker generates report', async () => {
 // =====================================================
 // Print Results
 // =====================================================
-console.log('\n' + '='.repeat(60));
+console.log(`\n${  '='.repeat(60)}`);
 console.log('STAGE 13 VALIDATION TEST RESULTS');
 console.log('='.repeat(60));
 console.log(`Total Tests: ${results.passed + results.failed}`);

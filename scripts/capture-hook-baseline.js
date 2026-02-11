@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Hook Content Baseline Capture
  * ==============================
@@ -56,7 +55,7 @@ function main() {
   const settingsPath = path.join(projectRoot, '.claude', 'settings.json');
 
   if (!fs.existsSync(settingsPath)) {
-    console.error('settings.json not found at: ' + settingsPath);
+    console.error(`settings.json not found at: ${  settingsPath}`);
     process.exit(1);
   }
 
@@ -85,7 +84,7 @@ function main() {
   }
 
   const outputPath = path.join(outputDir, 'hook-content-hashes.json');
-  fs.writeFileSync(outputPath, JSON.stringify(baseline, null, 2) + '\n');
+  fs.writeFileSync(outputPath, `${JSON.stringify(baseline, null, 2)  }\n`);
 
   console.log(`Baseline captured: ${Object.keys(hashes).length} files`);
   console.log(`Output: ${outputPath}`);

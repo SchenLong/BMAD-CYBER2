@@ -41,7 +41,7 @@ import { spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 import type { AuditLogEntry } from '../types/index.js';
 import { getProjectDir } from '../common/path-utils.js';
-import { processLineForReading, isEncryptionEnabled } from './audit-encryption.js';
+import { isEncryptionEnabled, processLineForReading } from './audit-encryption.js';
 
 // Promisified utilities
 const readFile = promisify(fs.readFile);
@@ -441,7 +441,7 @@ export class LogArchiver {
 
             // Convert to JSON without pretty-printing for better performance
             const entryJson = JSON.stringify(archiveEntry);
-            return Buffer.from(entryJson + '\n---\n', 'utf8');
+            return Buffer.from(`${entryJson  }\n---\n`, 'utf8');
 
           } catch (error) {
             throw new ArchivalError(
@@ -703,7 +703,7 @@ export class LogArchiver {
 
       // Read and verify hash
       const chunks: Uint8Array[] = [];
-      const reader = response.Body as any;
+      const reader = response.Body;
       for await (const chunk of reader) {
         chunks.push(chunk);
       }

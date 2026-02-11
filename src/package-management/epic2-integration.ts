@@ -10,9 +10,9 @@
  */
 
 // Core Epic 2 Component Imports
-import { PackageRegistryAPI, APIConfig, createPackageRegistryAPI } from './api/package-registry-api';
-import { SDKGenerator, SDKConfig, generateAllSDKs } from './api/sdk-generator';
-import { APIGateway, GatewayConfig, createAPIGateway } from './api/api-gateway';
+import { APIConfig, createPackageRegistryAPI, PackageRegistryAPI } from './api/package-registry-api';
+import { generateAllSDKs, SDKConfig, SDKGenerator } from './api/sdk-generator';
+import { APIGateway, createAPIGateway, GatewayConfig } from './api/api-gateway';
 import { generateOpenAPISpec, validateSpec } from './api/openapi-spec';
 
 // Registry Components
@@ -34,12 +34,12 @@ import { epic1Security, Epic1SecurityInfrastructure } from '../security/epic1-in
 
 // Types
 import {
-  PackageIdentifier,
   DependencyDeclaration,
+  PackageIdentifier,
+  PackageManagerConfig,
   PackageQuery,
   QualityMetrics,
-  UsageMetrics,
-  PackageManagerConfig
+  UsageMetrics
 } from './registry/interfaces/package-types';
 
 /**

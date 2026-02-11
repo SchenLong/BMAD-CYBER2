@@ -69,7 +69,7 @@ function validate() {
 
   // Step 1: Check file exists
   if (!fs.existsSync(SETTINGS_PATH)) {
-    errors.push('settings.json not found at: ' + SETTINGS_PATH);
+    errors.push(`settings.json not found at: ${  SETTINGS_PATH}`);
     return { valid: false, errors, warnings };
   }
 
@@ -79,7 +79,7 @@ function validate() {
     const content = fs.readFileSync(SETTINGS_PATH, 'utf-8');
     settings = JSON.parse(content);
   } catch (e) {
-    errors.push('Invalid JSON: ' + e.message);
+    errors.push(`Invalid JSON: ${  e.message}`);
     return { valid: false, errors, warnings };
   }
 
@@ -175,7 +175,7 @@ function validate() {
     try {
       baseline = JSON.parse(fs.readFileSync(HASH_BASELINE_PATH, 'utf-8'));
     } catch (e) {
-      warnings.push('Could not parse hash baseline: ' + e.message);
+      warnings.push(`Could not parse hash baseline: ${  e.message}`);
     }
 
     if (baseline?.hashes) {
@@ -240,7 +240,7 @@ function updateBaseline() {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
-  fs.writeFileSync(HASH_BASELINE_PATH, JSON.stringify(baseline, null, 2) + '\n');
+  fs.writeFileSync(HASH_BASELINE_PATH, `${JSON.stringify(baseline, null, 2)  }\n`);
 }
 
 function main() {
@@ -283,7 +283,7 @@ function main() {
         fs.copyFileSync(BACKUP_PATH, SETTINGS_PATH);
         console.error('Backup restored successfully.');
       } else {
-        console.error('\nNo backup found at: ' + BACKUP_PATH);
+        console.error(`\nNo backup found at: ${  BACKUP_PATH}`);
       }
     }
 

@@ -174,7 +174,7 @@ function logAuditEvent(validator, action, details, severity) {
       details: details
     };
 
-    fs.appendFileSync(logFile, JSON.stringify(entry) + '\n');
+    fs.appendFileSync(logFile, `${JSON.stringify(entry)  }\n`);
   } catch (_e) {
     // Don't fail routing due to logging issues
   }

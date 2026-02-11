@@ -14,10 +14,10 @@ import { performance } from 'perf_hooks';
 
 // Epic 1 Security Infrastructure imports
 import {
+  ComponentStatus,
   epic1Security,
   Epic1SecurityInfrastructure,
-  SecurityStatus,
-  ComponentStatus
+  SecurityStatus
 } from '../security/epic1-integration';
 import { AuditLogger } from '../security/audit/audit-logger';
 import { SecurityMonitor } from '../security/monitoring/security-monitor';

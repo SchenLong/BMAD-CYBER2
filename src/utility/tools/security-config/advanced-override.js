@@ -13,16 +13,16 @@
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 
-import { select, multiselect, confirm } from '../../cli/prompts.js';
+import { confirm, multiselect, select } from '../../cli/prompts.js';
 
 import {
-  SECURITY_TIERS,
+  compareTiers,
   FEATURE_DETAILS,
-  getTierById,
-  getTierFeatures,
   getFeaturesByTier,
   getMinimumTierForFeature,
-  compareTiers
+  getTierById,
+  getTierFeatures,
+  SECURITY_TIERS
 } from './tier-definitions.js';
 
 /**
@@ -45,7 +45,7 @@ function formatFeatureChoice(featureCode, detail, isEnabled) {
   name += chalk.gray(` [${detail.category}]`);
 
   // Add description on new line
-  name += '\n        ' + chalk.dim(detail.description);
+  name += `\n        ${  chalk.dim(detail.description)}`;
 
   return {
     name,

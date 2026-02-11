@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import * as fs from 'fs';
 import * as path from 'path';
 const PROJECT_DIR = process.env.CLAUDE_PROJECT_DIR || process.cwd();
@@ -83,7 +82,7 @@ function logSessionStart(status, issues) {
         }
     };
     try {
-        fs.appendFileSync(logFile, JSON.stringify(logEntry) + '\n');
+        fs.appendFileSync(logFile, `${JSON.stringify(logEntry)  }\n`);
     }
     catch {
         // Don't fail session start due to logging issues

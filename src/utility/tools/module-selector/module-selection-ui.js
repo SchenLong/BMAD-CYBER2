@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import { multiselect, confirm } from '../../cli/prompts.js';
+import { confirm, multiselect } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -131,7 +131,7 @@ function truncateDescription(description, maxLength) {
   if (description.length <= maxLength) {
     return description;
   }
-  return description.substring(0, maxLength - 3) + '...';
+  return `${description.substring(0, maxLength - 3)  }...`;
 }
 
 /**
@@ -251,7 +251,7 @@ function displaySelectionSummary(summary, selectedCodes, modules) {
   console.log(`  ${chalk.bold('Modules:')}     ${chalk.green(summary.moduleCount)}`);
   console.log(`  ${chalk.bold('Agents:')}      ${chalk.green(summary.agentCount)}`);
   console.log(`  ${chalk.bold('Workflows:')}   ${chalk.green(summary.workflowCount)}`);
-  console.log(`  ${chalk.bold('Est. Size:')}   ${chalk.green('~' + summary.estimatedSizeMB + ' MB')}`);
+  console.log(`  ${chalk.bold('Est. Size:')}   ${chalk.green(`~${  summary.estimatedSizeMB  } MB`)}`);
 
   console.log('');
   console.log(chalk.cyan('='.repeat(60)));

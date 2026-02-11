@@ -456,5 +456,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.log(`   Features: ${tier.features.length}`);
     console.log(`   ${tier.description}`);
   }
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
 }

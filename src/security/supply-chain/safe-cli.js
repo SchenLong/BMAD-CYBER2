@@ -407,8 +407,8 @@ class SafeCLI extends EventEmitter {
   _executeSecure(command, args, options) {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
-      let stdout = '';
-      let stderr = '';
+      const stdout = '';
+      const stderr = '';
 
       // Use execFile which doesn't use shell
       const child = execFile(command, args, {

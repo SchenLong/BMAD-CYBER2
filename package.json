@@ -82,7 +82,8 @@
     "pgp:setup": "node src/utility/tools/pgp-setup/index.js",
     "validate:refs": "node src/utility/tools/reference-validator/cli.js",
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
-    "test:schemas": "node tools/validate-agent-schema.js && node tools/validate-workflow-schema.js && node tools/validate-module-schema.js"
+    "test:schemas": "node tools/validate-agent-schema.js && node tools/validate-workflow-schema.js && node tools/validate-module-schema.js",
+    "qa": "npm run test:schemas && npm run lint && npm run lint:md && npm test && bash scripts/security-regression.sh"
   },
   "keywords": [
     "bmad",

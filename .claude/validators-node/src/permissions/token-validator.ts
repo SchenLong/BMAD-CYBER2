@@ -22,15 +22,15 @@
 
 import { spawnSync } from 'child_process';
 import {
-  existsSync,
-  readFileSync,
-  writeFileSync,
-  statSync,
-  mkdirSync,
   chmodSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  statSync,
   utimesSync,
+  writeFileSync,
 } from 'fs';
-import { join, dirname } from 'path';
+import { dirname, join } from 'path';
 import { AuditLogger, getProjectDir, printBlockMessage } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 

@@ -127,7 +127,7 @@ export class TamperEvidentAuditLogger {
     if (this.logBuffer.length === 0) return;
 
     try {
-      const logData = this.logBuffer.map(entry => JSON.stringify(entry)).join("\n") + "\n";
+      const logData = `${this.logBuffer.map(entry => JSON.stringify(entry)).join("\n")  }\n`;
       await fs.appendFile(this.logPath, logData);
       
       // Clear buffer after successful write

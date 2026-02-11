@@ -42,10 +42,32 @@ jobs:
         run: npm run type-check
 
       - name: Run unit tests
-        run: npm run test:unit
+        id: unit_tests
+        run: |
+          OUTPUT=$(npm run test:unit 2>&1)
+          echo "$OUTPUT"
+          PASSED=$(echo "$OUTPUT" | grep -oE '[0-9]+ passed' | tail -1 | grep -oE '[0-9]+')
+          echo "count=${PASSED:-0}" >> $GITHUB_OUTPUT
 
       - name: Run integration tests
-        run: npm run test:integration
+        id: integration_tests
+        run: |
+          OUTPUT=$(npm run test:integration 2>&1)
+          echo "$OUTPUT"
+          PASSED=$(echo "$OUTPUT" | grep -oE '[0-9]+ passed' | tail -1 | grep -oE '[0-9]+')
+          echo "count=${PASSED:-0}" >> $GITHUB_OUTPUT
+
+      - name: Assert minimum test count
+        run: |
+          UNIT=${{ steps.unit_tests.outputs.count }}
+          INT=${{ steps.integration_tests.outputs.count }}
+          TOTAL=$(( ${UNIT:-0} + ${INT:-0} ))
+          MIN=$(cat .github/test-minimum.txt | head -1 | tr -d '[:space:]')
+          echo "Unit: $UNIT, Integration: $INT, Total: $TOTAL (minimum: $MIN)"
+          if [ "$TOTAL" -lt "$MIN" ]; then
+            echo "::error::Test count $TOTAL is below minimum $MIN. Update .github/test-minimum.txt if tests were intentionally removed."
+            exit 1
+          fi
 
       - name: Check test coverage
         run: npm run test:coverage
@@ -58,6 +80,12 @@ jobs:
 
       - name: Validate framework exports
         run: npm run validate:exports
+
+      - name: Validate schemas (agents, workflows, modules)
+        run: npm run test:schemas
+
+      - name: Lint markdown
+        run: npm run lint:md
 
   security-scan:
     name: Security Analysis
@@ -92,6 +120,24 @@ jobs:
 
       - name: Validate framework security
         run: npm run security:validate-framework
+
+      - name: Hook content hash drift detection
+        run: |
+          node -e "
+            var fs = require('fs');
+            var crypto = require('crypto');
+            var p = require('path');
+            var b = JSON.parse(fs.readFileSync('tests/baselines/hook-content-hashes.json', 'utf-8'));
+            var d = 0;
+            Object.entries(b.hashes).forEach(function(e) {
+              var rel = e[0], exp = e[1], full = p.resolve(rel);
+              if (!fs.existsSync(full)) { console.log('MISSING: ' + rel); d++; return; }
+              var act = crypto.createHash('sha256').update(fs.readFileSync(full, 'utf-8'), 'utf-8').digest('hex');
+              if (act !== exp) { console.log('DRIFTED: ' + rel); d++; }
+            });
+            if (d > 0) { console.error(d + ' hook file(s) drifted from baseline'); process.exit(1); }
+            console.log('All ' + b.fileCount + ' hook hashes match baseline');
+          "
 
   performance-check:
     name: Performance Validation

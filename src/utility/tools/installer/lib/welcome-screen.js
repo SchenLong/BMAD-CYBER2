@@ -261,16 +261,16 @@ export function displayProfileSummary(profile) {
   console.log();
   console.log(chalk.bold('Profile Summary:'));
   console.log(chalk.dim('-'.repeat(40)));
-  console.log('  ' + chalk.cyan('Name:') + ' ' + profile.name);
+  console.log(`  ${  chalk.cyan('Name:')  } ${  profile.name}`);
 
   if (profile.email) {
-    console.log('  ' + chalk.cyan('Email:') + ' ' + profile.email);
+    console.log(`  ${  chalk.cyan('Email:')  } ${  profile.email}`);
   }
 
-  console.log('  ' + chalk.cyan('Role:') + ' ' + formatRoleName(profile.role));
+  console.log(`  ${  chalk.cyan('Role:')  } ${  formatRoleName(profile.role)}`);
 
   if (profile.organization) {
-    console.log('  ' + chalk.cyan('Organization:') + ' ' + profile.organization);
+    console.log(`  ${  chalk.cyan('Organization:')  } ${  profile.organization}`);
   }
 
   console.log(chalk.dim('-'.repeat(40)));

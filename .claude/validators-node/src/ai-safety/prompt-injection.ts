@@ -19,13 +19,13 @@
 
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
   printWarning,
 } from '../common/index.js';
-import type { WriteToolInput, EditToolInput, ReadToolInput } from '../types/index.js';
+import type { EditToolInput, ReadToolInput, WriteToolInput } from '../types/index.js';
 import { EXIT_CODES, type Severity } from '../types/index.js';
 
 const VALIDATOR_NAME = 'prompt_injection_guard';
@@ -632,7 +632,7 @@ export function detectBase64Payloads(text: string): Base64Finding[] {
       findings.push({
         category: 'base64_payload',
         severity: containsInjection ? 'CRITICAL' : 'WARNING',
-        match_preview: potentialBase64.slice(0, 30) + '...',
+        match_preview: `${potentialBase64.slice(0, 30)  }...`,
         decoded_preview: decoded.slice(0, 50) + (decoded.length > 50 ? '...' : ''),
         description: containsInjection
           ? 'Base64 encoded content contains injection patterns'

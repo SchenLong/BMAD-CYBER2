@@ -16,9 +16,9 @@
  * - Test file and fake data exclusion
  * - Single-use override tokens with 5-minute timeout
  */
-import { AuditLogger, OverrideManager, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, } from '../../common/index.js';
+import { AuditLogger, getToolInputFromStdinSync, OverrideManager, printBlockMessage, printOverrideConsumed, } from '../../common/index.js';
 import { EXIT_CODES } from '../../types/index.js';
-import { ALL_PATTERNS, SENSITIVE_CONTEXT_PATTERNS, FAKE_DATA_INDICATORS, TEST_FILE_INDICATORS, } from './patterns.js';
+import { ALL_PATTERNS, FAKE_DATA_INDICATORS, SENSITIVE_CONTEXT_PATTERNS, TEST_FILE_INDICATORS, } from './patterns.js';
 const VALIDATOR_NAME = 'pii_guard';
 // ============================================================================
 // Context Detection
@@ -196,8 +196,8 @@ export function validatePiiGuard(content, filePath) {
     });
     printBlockMessage({
         title: 'PII DETECTED - DATA PROTECTION BLOCK',
-        message: `Found ${criticalPii.length + warningPii.length} sensitive PII pattern(s):\n${piiSummary}` +
-            (detections.length > 5 ? `\n  ... and ${detections.length - 5} more` : ''),
+        message: `Found ${criticalPii.length + warningPii.length} sensitive PII pattern(s):\n${piiSummary}${ 
+            detections.length > 5 ? `\n  ... and ${detections.length - 5} more` : ''}`,
         target: filePath,
         overrideVar: 'BMAD_ALLOW_PII',
         recommendations: [

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * BMAD CYBERCOMMAND Multi-Module Validator

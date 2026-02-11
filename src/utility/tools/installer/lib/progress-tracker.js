@@ -121,7 +121,7 @@ export function readProgressFile(projectRoot) {
     if (error instanceof SyntaxError) {
       console.warn(chalk.yellow('Warning: Progress file is corrupted (invalid JSON)'));
     } else {
-      console.warn(chalk.yellow('Warning: Could not read progress file: ' + error.message));
+      console.warn(chalk.yellow(`Warning: Could not read progress file: ${  error.message}`));
     }
     return null;
   }
@@ -136,7 +136,7 @@ export function readProgressFile(projectRoot) {
  */
 export function writeProgressFile(state, projectRoot) {
   const filePath = getProgressFilePath(projectRoot);
-  const tempPath = filePath + '.tmp';
+  const tempPath = `${filePath  }.tmp`;
 
   try {
     // Validate state before writing
@@ -268,16 +268,16 @@ export async function promptForRecovery(state) {
   console.log(chalk.yellow.bold('  Partial Installation Detected'));
   console.log(chalk.yellow('  ================================'));
   console.log('');
-  console.log('  ' + chalk.gray('Started:') + '     ' + startedDate);
-  console.log('  ' + chalk.gray('Version:') + '     ' + state.wizard_version);
-  console.log('  ' + chalk.gray('Progress:') + '    ' + completedCount + '/' + totalCount + ' steps completed');
+  console.log(`  ${  chalk.gray('Started:')  }     ${  startedDate}`);
+  console.log(`  ${  chalk.gray('Version:')  }     ${  state.wizard_version}`);
+  console.log(`  ${  chalk.gray('Progress:')  }    ${  completedCount  }/${  totalCount  } steps completed`);
 
   if (lastStep) {
-    console.log('  ' + chalk.gray('Last step:') + '   ' + chalk.green(lastStep.id) + ' (completed)');
+    console.log(`  ${  chalk.gray('Last step:')  }   ${  chalk.green(lastStep.id)  } (completed)`);
   }
 
   if (currentStep) {
-    console.log('  ' + chalk.gray('Current:') + '     ' + chalk.cyan(currentStep.id) + ' (in progress)');
+    console.log(`  ${  chalk.gray('Current:')  }     ${  chalk.cyan(currentStep.id)  } (in progress)`);
   }
 
   console.log('');
@@ -286,17 +286,17 @@ export async function promptForRecovery(state) {
     message: 'How would you like to proceed?',
     choices: [
       {
-        name: chalk.green('Resume') + ' - Continue from where you left off',
+        name: `${chalk.green('Resume')  } - Continue from where you left off`,
         value: RecoveryAction.RESUME,
         short: 'Resume'
       },
       {
-        name: chalk.yellow('Restart') + ' - Start fresh (clears progress)',
+        name: `${chalk.yellow('Restart')  } - Start fresh (clears progress)`,
         value: RecoveryAction.RESTART,
         short: 'Restart'
       },
       {
-        name: chalk.red('Rollback') + ' - Undo all changes and exit',
+        name: `${chalk.red('Rollback')  } - Undo all changes and exit`,
         value: RecoveryAction.ROLLBACK,
         short: 'Rollback'
       }
@@ -399,7 +399,7 @@ export function saveCheckpoint(stepId, status, data = null, rollbackAction = nul
  * @returns {{ success: boolean, error?: string }} Add result
  */
 export function addRollbackAction(rollbackAction, projectRoot) {
-  let state = readProgressFile(projectRoot);
+  const state = readProgressFile(projectRoot);
 
   if (!state) {
     return { success: false, error: 'No progress file found' };
@@ -433,7 +433,7 @@ export function executeRollbackAction(action, projectRoot) {
 
         if (fs.existsSync(filePath)) {
           fs.unlinkSync(filePath);
-          console.log(chalk.gray('  Deleted file: ' + action.path));
+          console.log(chalk.gray(`  Deleted file: ${  action.path}`));
         }
         return { success: true };
       }
@@ -445,7 +445,7 @@ export function executeRollbackAction(action, projectRoot) {
 
         if (fs.existsSync(dirPath)) {
           fs.rmSync(dirPath, { recursive: true, force: true });
-          console.log(chalk.gray('  Deleted directory: ' + action.path));
+          console.log(chalk.gray(`  Deleted directory: ${  action.path}`));
         }
         return { success: true };
       }
@@ -467,7 +467,7 @@ export function executeRollbackAction(action, projectRoot) {
 
           // Copy backup to target
           fs.copyFileSync(sourcePath, targetPath);
-          console.log(chalk.gray('  Restored: ' + action.target));
+          console.log(chalk.gray(`  Restored: ${  action.target}`));
 
           // Remove backup file
           fs.unlinkSync(sourcePath);
@@ -476,7 +476,7 @@ export function executeRollbackAction(action, projectRoot) {
       }
 
       default:
-        console.warn(chalk.yellow('  Unknown rollback action type: ' + action.type));
+        console.warn(chalk.yellow(`  Unknown rollback action type: ${  action.type}`));
         return { success: true }; // Continue with other actions
     }
   } catch (error) {
@@ -504,7 +504,7 @@ export function executeRollback(progressState, projectRoot) {
   console.log(chalk.yellow.bold('  Executing Rollback'));
   console.log(chalk.yellow('  =================='));
   console.log('');
-  console.log('  ' + chalk.gray('Actions to reverse:') + ' ' + progressState.rollback_actions.length);
+  console.log(`  ${  chalk.gray('Actions to reverse:')  } ${  progressState.rollback_actions.length}`);
   console.log('');
 
   // Execute rollback actions in reverse order (LIFO)
@@ -513,7 +513,7 @@ export function executeRollback(progressState, projectRoot) {
   for (const action of reversedActions) {
     const result = executeRollbackAction(action, projectRoot);
     if (!result.success) {
-      errors.push(action.type + ': ' + result.error);
+      errors.push(`${action.type  }: ${  result.error}`);
     }
   }
 
@@ -523,7 +523,7 @@ export function executeRollback(progressState, projectRoot) {
   if (errors.length > 0) {
     console.log('');
     console.log(chalk.yellow('  Rollback completed with errors:'));
-    errors.forEach(err => console.log(chalk.red('    - ' + err)));
+    errors.forEach(err => console.log(chalk.red(`    - ${  err}`)));
   } else {
     console.log('');
     console.log(chalk.green('  Rollback completed successfully'));
@@ -677,13 +677,13 @@ export function validateProgressState(state) {
   if (Array.isArray(state.steps)) {
     state.steps.forEach((step, index) => {
       if (!step.id) {
-        errors.push('Step ' + index + ': missing id');
+        errors.push(`Step ${  index  }: missing id`);
       }
       if (!step.status) {
-        errors.push('Step ' + index + ': missing status');
+        errors.push(`Step ${  index  }: missing status`);
       }
       if (step.status && !Object.values(StepStatus).includes(step.status)) {
-        errors.push('Step ' + index + ': invalid status "' + step.status + '"');
+        errors.push(`Step ${  index  }: invalid status "${  step.status  }"`);
       }
     });
   }

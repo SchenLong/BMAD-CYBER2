@@ -39,7 +39,7 @@ import * as zlib from 'node:zlib';
 import { spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 import { getProjectDir } from '../common/path-utils.js';
-import { processLineForReading, isEncryptionEnabled } from './audit-encryption.js';
+import { isEncryptionEnabled, processLineForReading } from './audit-encryption.js';
 // Promisified utilities
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -334,7 +334,7 @@ export class LogArchiver {
                     };
                     // Convert to JSON without pretty-printing for better performance
                     const entryJson = JSON.stringify(archiveEntry);
-                    return Buffer.from(entryJson + '\n---\n', 'utf8');
+                    return Buffer.from(`${entryJson  }\n---\n`, 'utf8');
                 }
                 catch (error) {
                     throw new ArchivalError(`Failed to process log file ${logFile.path}: ${error instanceof Error ? error.message : String(error)}`, 'LOG_PROCESSING_ERROR');

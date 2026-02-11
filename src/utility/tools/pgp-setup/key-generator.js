@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * PGP Key Generation Wizard - INST-026
  * Epic 4, Story 1 - PGP Key Generation Interface
@@ -22,10 +21,10 @@
 
 import { execSync, spawn } from 'child_process';
 import { fileURLToPath } from 'url';
-import { writeFileSync, unlinkSync, existsSync } from 'fs';
+import { existsSync, unlinkSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { select, confirm, text, password } from '../../cli/prompts.js';
+import { confirm, password, select, text } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -220,7 +219,7 @@ export async function promptForAlgorithm() {
     } else {
       name += chalk.cyan(' (modern)');
     }
-    name += '\n    ' + chalk.dim(value.description);
+    name += `\n    ${  chalk.dim(value.description)}`;
     return { name, value: key, short: value.name };
   });
 

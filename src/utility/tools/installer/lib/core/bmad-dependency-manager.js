@@ -1104,7 +1104,7 @@ class BMADDependencyManager {
      * @returns {Promise<Object>} - Connectivity status
      */
     async checkNetworkConnectivity() {
-        return this.networkResilience.checkConnectivity(this.config.npmRegistry + '/-/ping');
+        return this.networkResilience.checkConnectivity(`${this.config.npmRegistry  }/-/ping`);
     }
 
     /**

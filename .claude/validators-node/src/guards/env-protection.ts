@@ -17,12 +17,12 @@
 import * as path from 'node:path';
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../common/index.js';
-import type { WriteToolInput, EditToolInput } from '../types/index.js';
+import type { EditToolInput, WriteToolInput } from '../types/index.js';
 import { EXIT_CODES } from '../types/index.js';
 
 const VALIDATOR_NAME = 'env_protection';
@@ -159,7 +159,7 @@ const SENSITIVE_KEYWORDS = ['secret', 'cred', 'key', 'token', 'auth', 'pass', 'p
  * Supports: * (any chars except /), ? (single char), ** (any path)
  */
 function globToRegex(pattern: string): RegExp {
-  let regex = pattern
+  const regex = pattern
     .replace(/[.+^${}()|[\]\\]/g, '\\$&') // Escape special regex chars except * and ?
     .replace(/\*\*/g, '{{GLOBSTAR}}')      // Temporarily replace **
     .replace(/\*/g, '[^/]*')               // * matches anything except /

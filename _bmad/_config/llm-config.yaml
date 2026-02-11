@@ -134,7 +134,7 @@ providers:
 # Module-specific overrides (optional)
 # Use when certain modules need specific providers
 # Uncomment and modify as needed
-module_overrides:
+module_overrides: {}
   # strategy-team: claude    # Keep executive decisions on Claude
   # legal-team: claude       # Legal advice stays on Claude
   # cybersec-team: ollama    # Security analysis on local
@@ -144,7 +144,7 @@ module_overrides:
 # More granular than module - overrides module settings for specific agents
 # Format: module/agent-name: provider
 # Check: .claude/hooks/llm-provider-manager.sh get cybersec-team forensic-investigator
-agent_overrides:
+agent_overrides: {}
   # cybersec-team/forensic-investigator: ollama   # Forensics always local
   # cybersec-team/incident-commander: ollama      # IR data stays local
   # intel-team/dark-web-analyst: ollama           # Dark web intel local
