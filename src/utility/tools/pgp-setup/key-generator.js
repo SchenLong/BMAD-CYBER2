@@ -19,7 +19,7 @@
  * @version 1.0.0
  */
 
-import { execSync, spawn } from 'child_process';
+import { execFileSync, execSync, spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import { existsSync, unlinkSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
@@ -481,9 +481,10 @@ export async function generateKey(params, options = {}) {
  */
 export function extractFingerprint(email) {
   try {
-    const output = execSync(`gpg --list-keys --with-colons "${email}" 2>/dev/null`, {
+    const output = execFileSync('gpg', ['--list-keys', '--with-colons', email], {
       encoding: 'utf8',
-      timeout: 10000
+      timeout: 10000,
+      stdio: ['pipe', 'pipe', 'pipe']
     });
 
     const lines = output.split('\n');
@@ -509,7 +510,7 @@ export function extractFingerprint(email) {
  */
 export function getKeyIdByEmail(email) {
   try {
-    const result = execSync(`gpg --list-keys --keyid-format long "${email}"`, {
+    const result = execFileSync('gpg', ['--list-keys', '--keyid-format', 'long', email], {
       encoding: 'utf8',
       stdio: ['pipe', 'pipe', 'pipe']
     });

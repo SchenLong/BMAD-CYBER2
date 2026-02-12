@@ -680,7 +680,7 @@ class MigrationExecutor extends EventEmitter {
             const child = spawn(cmd, args, {
                 cwd: options.cwd || this.config.environment.workingDirectory,
                 env: options.env || process.env,
-                shell: options.shell !== false
+                shell: options.shell === true
             });
 
             // Set timeout if specified

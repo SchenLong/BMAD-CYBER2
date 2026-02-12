@@ -211,9 +211,10 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
     },
     chmod: true,
     onReadEntry: (entry) => {
-      // Preserve permissions from archive
+      // Strip setuid (4000), setgid (2000), sticky (1000) bits for security
+      // Only preserve standard permission bits (owner/group/other rwx)
       if (entry.mode) {
-        entry.mode = entry.mode;
+        entry.mode = entry.mode & 0o0777;
       }
     }
   });

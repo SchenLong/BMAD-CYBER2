@@ -356,9 +356,18 @@ class SafeCLI extends EventEmitter {
       }
     }
 
-    // URLs can have special characters
+    // URLs can have special characters — validate structurally
     if (arg.startsWith('http://') || arg.startsWith('https://')) {
-      return true;
+      try {
+        new URL(arg);
+        // Reject URLs with command substitution or backticks
+        if (arg.includes('$(') || arg.includes('`') || arg.includes('\n')) {
+          return false;
+        }
+        return true;
+      } catch {
+        return false;
+      }
     }
 
     return false;

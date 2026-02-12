@@ -165,14 +165,20 @@ function agentPathResolver(agentId) {
   if (!agentId || typeof agentId !== 'string') {
     return { module: '', agent: '', format: 'invalid' };
   }
+  // Reject path traversal, URL-encoded chars, double slashes
+  if (agentId.includes('..') || agentId.includes('%') || agentId.includes('//')) {
+    return { module: '', agent: '', format: 'invalid' };
+  }
+  // Normalize trailing slashes
+  const normalizedId = agentId.replace(/\/+$/, '');
   // Handle v6 format: src/{module}/agents/{name} (post-migration)
   // Also handle legacy _bmad/{module}/agents/{name} for backward compatibility
-  if (agentId.startsWith('src/') || agentId.startsWith('_bmad/')) {
-    const parts = agentId.split('/');
+  if (normalizedId.startsWith('src/') || normalizedId.startsWith('_bmad/')) {
+    const parts = normalizedId.split('/');
     return { module: parts[1] || '', agent: parts[3] || '', format: 'v6' };
   }
   // Handle legacy format: {module}/{name} or single segment
-  const parts = agentId.split('/');
+  const parts = normalizedId.split('/');
   return { module: parts[0], agent: parts[1] || parts[0], format: parts.length > 1 ? 'legacy' : 'single' };
 }
 

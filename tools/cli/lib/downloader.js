@@ -207,7 +207,8 @@ async function downloadSourceTarball(url, tagName) {
   const tempDir = join(tmpdir(), CONFIG.TEMP_DIR_PREFIX);
   await mkdir(tempDir, { recursive: true });
 
-  const filename = `${tagName}.tar.gz`;
+  const safeTagName = tagName.replace(/[/\\]/g, '_');
+  const filename = `${safeTagName}.tar.gz`;
   const filePath = join(tempDir, filename);
 
   const headers = {
