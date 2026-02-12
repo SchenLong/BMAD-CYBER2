@@ -154,6 +154,7 @@
   "files": [
     "_bmad/framework/dist/**/*",
     ".claude/validators-node/dist/**/*",
+    "!**/__tests__/**",
     "README.md",
     "LICENSE",
     "CHANGELOG.md",

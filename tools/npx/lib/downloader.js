@@ -39,11 +39,9 @@ function validateDownloadUrl(urlString) {
       };
     }
 
-    // Must be from allowed host
+    // Must be from allowed host (exact match only — no subdomain wildcards)
     const hostname = url.hostname.toLowerCase();
-    const isAllowed = ALLOWED_HOSTS.some(allowed =>
-      hostname === allowed || hostname.endsWith('.' + allowed)
-    );
+    const isAllowed = ALLOWED_HOSTS.some(allowed => hostname === allowed);
 
     if (!isAllowed) {
       return {
@@ -73,7 +71,36 @@ async function safeFetch(url, options = {}) {
   if (!validation.valid) {
     throw new Error(`Security: ${validation.error}`);
   }
-  return fetch(url, options);
+
+  // Follow redirects manually to revalidate each target URL
+  const MAX_REDIRECTS = 5;
+  let currentUrl = url;
+
+  for (let i = 0; i <= MAX_REDIRECTS; i++) {
+    const response = await fetch(currentUrl, { ...options, redirect: 'manual' });
+
+    // Not a redirect — return the final response
+    if (response.status < 300 || response.status >= 400) {
+      return response;
+    }
+
+    // Redirect — revalidate the target URL before following
+    const location = response.headers.get('location');
+    if (!location) {
+      throw new Error('Security: Redirect response missing Location header');
+    }
+
+    // Resolve relative redirects against current URL
+    const redirectUrl = new URL(location, currentUrl).href;
+    const redirectValidation = validateDownloadUrl(redirectUrl);
+    if (!redirectValidation.valid) {
+      throw new Error(`Security: Redirect blocked — ${redirectValidation.error}`);
+    }
+
+    currentUrl = redirectUrl;
+  }
+
+  throw new Error(`Security: Too many redirects (max ${MAX_REDIRECTS})`);
 }
 
 /**

@@ -159,6 +159,18 @@ describe('NPM Pack Integrity', () => {
       const devFiles = packFiles.filter((f) => f.startsWith('dev-tools/'));
       expect(devFiles).toHaveLength(0);
     });
+
+    it('should NOT include _bmad-output/', () => {
+      const outputFiles = packFiles.filter((f) => f.startsWith('_bmad-output/'));
+      expect(outputFiles, `Found _bmad-output files: ${outputFiles.join(', ')}`).toHaveLength(0);
+    });
+
+    it('should NOT include __tests__ directories in dist', () => {
+      const testDirs = packFiles.filter(
+        (f) => f.includes('__tests__/')
+      );
+      expect(testDirs, `Found __tests__ files: ${testDirs.join(', ')}`).toHaveLength(0);
+    });
   });
 
   // --------------------------------------------------------------------------

@@ -67,9 +67,7 @@ export function validateRepoUrl(repoUrl) {
 
   // Check if hostname is in trusted domains
   const hostname = url.hostname.toLowerCase();
-  const isTrusted = TRUSTED_DOMAINS.some(domain =>
-    hostname === domain || hostname.endsWith('.' + domain)
-  );
+  const isTrusted = TRUSTED_DOMAINS.some(domain => hostname === domain);
 
   if (!isTrusted) {
     return {

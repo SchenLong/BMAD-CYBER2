@@ -290,7 +290,101 @@ describe('Workflow Alias Count Validation (L16)', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 5. Workflow YAML Validation
+  // 5. Alias Uniqueness
+  // --------------------------------------------------------------------------
+  describe('Alias Uniqueness', () => {
+    it('should have unique workflow names (aliases) within each module', () => {
+      const duplicates = [];
+
+      for (const moduleName of AGENT_MODULES) {
+        const moduleYaml = yamlWorkflows.filter((w) => w.module === moduleName);
+        const aliases = new Map(); // alias -> [file paths]
+
+        for (const wf of moduleYaml) {
+          try {
+            const content = fs.readFileSync(wf.filePath, 'utf-8');
+            const nameMatch = content.match(/^name:\s*['"]?([^\s'"#]+)/m);
+            if (!nameMatch) continue;
+
+            const alias = nameMatch[1];
+            const existing = aliases.get(alias) || [];
+            existing.push(wf.relativePath);
+            aliases.set(alias, existing);
+          } catch {
+            // Skip unreadable files
+          }
+        }
+
+        for (const [alias, files] of aliases) {
+          if (files.length > 1) {
+            duplicates.push(`${moduleName}: "${alias}" in ${files.join(', ')}`);
+          }
+        }
+      }
+
+      expect(
+        duplicates,
+        `Duplicate workflow aliases within modules:\n${duplicates.join('\n')}`
+      ).toHaveLength(0);
+    });
+
+    it('should report cross-module duplicate aliases (informational)', () => {
+      // Cross-module duplicates are expected (e.g., bmgd forks bmm workflows).
+      // The slash command system namespaces by module, so this is safe.
+      const globalAliases = new Map(); // alias -> [module names]
+
+      for (const wf of yamlWorkflows) {
+        try {
+          const content = fs.readFileSync(wf.filePath, 'utf-8');
+          const nameMatch = content.match(/^name:\s*['"]?([^\s'"#]+)/m);
+          if (!nameMatch) continue;
+
+          const alias = nameMatch[1];
+          const existing = globalAliases.get(alias) || new Set();
+          existing.add(wf.module);
+          globalAliases.set(alias, existing);
+        } catch {
+          // Skip
+        }
+      }
+
+      const crossModuleDupes = [];
+      for (const [alias, modules] of globalAliases) {
+        if (modules.size > 1) {
+          crossModuleDupes.push(`"${alias}" in: ${[...modules].join(', ')}`);
+        }
+      }
+
+      if (crossModuleDupes.length > 0) {
+        console.log(`Cross-module duplicate aliases (expected): ${crossModuleDupes.length}`);
+        crossModuleDupes.forEach((d) => console.log(`  ${d}`));
+      }
+
+      // This is informational — cross-module duplicates are by design
+      expect(crossModuleDupes.length).toBeDefined();
+    });
+
+    it('should report total unique alias count', () => {
+      const aliases = new Set();
+
+      for (const wf of yamlWorkflows) {
+        try {
+          const content = fs.readFileSync(wf.filePath, 'utf-8');
+          const nameMatch = content.match(/^name:\s*['"]?([^\s'"#]+)/m);
+          if (nameMatch) aliases.add(nameMatch[1]);
+        } catch {
+          // Skip
+        }
+      }
+
+      console.log(`Unique workflow aliases from YAML: ${aliases.size}`);
+      // Should have a reasonable number of unique aliases
+      expect(aliases.size).toBeGreaterThanOrEqual(50);
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 6. Workflow YAML Validation
   // --------------------------------------------------------------------------
   describe('Workflow YAML Basic Validation', () => {
     it('should have all workflow.yaml files be valid YAML (parseable)', () => {

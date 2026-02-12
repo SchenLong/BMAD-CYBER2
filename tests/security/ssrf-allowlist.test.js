@@ -52,6 +52,27 @@ describe('SSRF Allowlist Prevention - P3-15', () => {
       expect(downloaderSource).toMatch(/protocol\s*!==\s*['"]https:['"]|url\.protocol/);
     });
 
+    it('should use exact match only — no endsWith subdomain wildcards', () => {
+      // The fix removed hostname.endsWith('.' + allowed)
+      expect(downloaderSource).not.toMatch(/hostname\.endsWith\s*\(\s*['"]\.['"\s]*\+/);
+      // Should use strict exact match
+      expect(downloaderSource).toMatch(/hostname\s*===\s*allowed/);
+    });
+
+    it('should use redirect: manual in safeFetch to intercept redirects', () => {
+      expect(downloaderSource).toContain("redirect: 'manual'");
+    });
+
+    it('should revalidate redirect URLs before following', () => {
+      expect(downloaderSource).toContain('validateDownloadUrl(redirectUrl)');
+      expect(downloaderSource).toContain('Redirect blocked');
+    });
+
+    it('should limit maximum redirects to prevent loops', () => {
+      expect(downloaderSource).toContain('MAX_REDIRECTS');
+      expect(downloaderSource).toContain('Too many redirects');
+    });
+
     it('should define a safeFetch function that validates URLs before fetching', () => {
       expect(downloaderSource).toContain('function safeFetch');
       expect(downloaderSource).toContain('validateDownloadUrl(url)');
@@ -86,9 +107,7 @@ describe('SSRF Allowlist Prevention - P3-15', () => {
           return { valid: false, error: 'Only HTTPS URLs are allowed' };
         }
         const hostname = url.hostname.toLowerCase();
-        const isAllowed = ALLOWED_HOSTS.some(allowed =>
-          hostname === allowed || hostname.endsWith('.' + allowed)
-        );
+        const isAllowed = ALLOWED_HOSTS.some(allowed => hostname === allowed);
         if (!isAllowed) {
           return { valid: false, error: 'URL host not in allowed list' };
         }
@@ -115,15 +134,15 @@ describe('SSRF Allowlist Prevention - P3-15', () => {
       expect(validateDownloadUrl('https://codeload.github.com/path').valid).toBe(true);
     });
 
-    // SSRF: Subdomain spoofing
-    it('should REJECT evil.github.com (not an exact match or valid subdomain)', () => {
-      // evil.github.com ends with .github.com, so the current implementation
-      // allows subdomains. This test documents the current behavior.
+    // SSRF: Subdomain spoofing — exact match only (no wildcard subdomains)
+    it('should REJECT evil.github.com (subdomain not in allowlist)', () => {
       const result = validateDownloadUrl('https://evil.github.com/path');
-      // NOTE: Current implementation allows subdomains via endsWith('.github.com')
-      // This is a KNOWN acceptance - GitHub subdomains are controlled by GitHub.
-      // If this changes to strict matching, update this test.
-      expect(result.valid).toBe(true);
+      expect(result.valid).toBe(false);
+    });
+
+    it('should REJECT evil-api.github.com (subdomain spoof)', () => {
+      const result = validateDownloadUrl('https://evil-api.github.com/path');
+      expect(result.valid).toBe(false);
     });
 
     it('should REJECT evil-github.com (hyphenated domain spoof)', () => {
@@ -226,7 +245,80 @@ describe('SSRF Allowlist Prevention - P3-15', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 3. Checksum verification
+  // 3. Redirect revalidation (SSRF via redirect)
+  // --------------------------------------------------------------------------
+  describe('Redirect revalidation', () => {
+    // Re-implement validateDownloadUrl for redirect tests (exact match only)
+    const ALLOWED_HOSTS = [
+      'api.github.com',
+      'github.com',
+      'objects.githubusercontent.com',
+      'github-releases.githubusercontent.com',
+      'codeload.github.com'
+    ];
+
+    function validateDownloadUrl(urlString) {
+      try {
+        const url = new URL(urlString);
+        if (url.protocol !== 'https:') {
+          return { valid: false, error: 'Only HTTPS URLs are allowed' };
+        }
+        const hostname = url.hostname.toLowerCase();
+        const isAllowed = ALLOWED_HOSTS.some(allowed => hostname === allowed);
+        if (!isAllowed) {
+          return { valid: false, error: 'URL host not in allowed list' };
+        }
+        return { valid: true };
+      } catch {
+        return { valid: false, error: 'Invalid URL format' };
+      }
+    }
+
+    it('should REJECT redirect to 169.254.169.254 (AWS metadata SSRF)', () => {
+      const redirectTarget = 'https://169.254.169.254/latest/meta-data';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(false);
+    });
+
+    it('should REJECT redirect to http://169.254.169.254 (protocol downgrade)', () => {
+      const redirectTarget = 'http://169.254.169.254/latest/meta-data';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(false);
+    });
+
+    it('should REJECT redirect to localhost', () => {
+      const redirectTarget = 'https://localhost/admin';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(false);
+    });
+
+    it('should REJECT redirect to 127.0.0.1', () => {
+      const redirectTarget = 'https://127.0.0.1/admin';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(false);
+    });
+
+    it('should REJECT redirect to evil-api.github.com (subdomain spoof)', () => {
+      const redirectTarget = 'https://evil-api.github.com/data';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(false);
+    });
+
+    it('should ACCEPT redirect to github.com (exact match in allowlist)', () => {
+      const redirectTarget = 'https://github.com/org/repo/releases/download/v1/file.tar.gz';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(true);
+    });
+
+    it('should ACCEPT redirect to objects.githubusercontent.com (exact match)', () => {
+      const redirectTarget = 'https://objects.githubusercontent.com/v4/asset';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(true);
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 4. Checksum verification
   // --------------------------------------------------------------------------
   describe('Checksum verification', () => {
     it('should validate SHA256 hash format (64 hex characters)', () => {
