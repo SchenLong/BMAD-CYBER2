@@ -10,19 +10,20 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 
 # Step 2: Web Application Reconnaissance
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Ask questions, gather information, then document
 
-## RECONNAISSANCE SEQUENCE:
+## RECONNAISSANCE SEQUENCE
 
 ### 1. Technology Fingerprinting
 
 "Let's map the application's technology stack.
 
 **Web Server & Frameworks:**
+
 - Server headers (Apache, Nginx, IIS)?
 - Application framework (React, Angular, Vue, Django, Rails)?
 - Backend technology (PHP, Node.js, Java, .NET)?
@@ -35,6 +36,7 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 "Now let's map the attack surface.
 
 **Endpoint Discovery:**
+
 - Authenticated vs unauthenticated areas
 - API endpoints (REST, GraphQL, SOAP)
 - File upload functionality
@@ -44,6 +46,7 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 - User input forms
 
 **URL Structure:**
+
 - Parameter patterns
 - Hidden directories (robots.txt, sitemap.xml)
 - Backup files (.bak, .old, .swp)
@@ -55,6 +58,7 @@ What endpoints and functionality should we document?"
 "Let's document authentication entry points.
 
 **Login Mechanisms:**
+
 - Username/password forms
 - OAuth/OIDC providers
 - SAML/SSO integration
@@ -63,6 +67,7 @@ What endpoints and functionality should we document?"
 - Multi-factor authentication
 
 **Account Features:**
+
 - Registration
 - Password reset
 - Account lockout behavior
@@ -75,6 +80,7 @@ What authentication methods does the application use?"
 "Let's check security header configuration.
 
 **Headers to Analyze:**
+
 - Content-Security-Policy (CSP)
 - X-Frame-Options
 - X-Content-Type-Options
@@ -131,6 +137,7 @@ Append to {outputFile} Section 2:
 "**Reconnaissance Complete**
 
 **Identified:**
+
 - [Technology summary]
 - [Endpoint count] endpoints mapped
 - [Authentication types] authentication mechanisms
@@ -146,4 +153,4 @@ Display: [C] Continue to Authentication Testing [R] Review/Add Reconnaissance Da
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2]`, then follow {nextStepFile}.

@@ -26,12 +26,14 @@ incident-response-playbook/
 ## Dual-Mode Operation
 
 ### Mode A: Playbook Creation
+
 - Create organization-specific incident response playbooks
 - Define procedures for different incident types
 - Establish escalation paths and communication templates
 - Build runbooks for common scenarios
 
 ### Mode B: Guided Execution
+
 - Execute real-time incident response
 - Follow established playbook procedures
 - Document timeline and evidence

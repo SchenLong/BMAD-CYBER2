@@ -18,7 +18,7 @@
  * - Read: Checks file_path
  * - Glob/Grep: Checks path if provided
  */
-import { AuditLogger, OverrideManager, isPathInRepo, getProjectDir, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
+import { AuditLogger, getProjectDir, getToolInputFromStdinSync, isPathInRepo, OverrideManager, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 const VALIDATOR_NAME = 'outside_repo_guard';
 // ============================================================================

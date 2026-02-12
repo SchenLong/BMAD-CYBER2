@@ -7,37 +7,37 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  PHASES,
-  DEFAULT_BAR_WIDTH,
-  DEFAULT_FILLED_CHAR,
-  DEFAULT_EMPTY_CHAR,
-  getPhaseById,
-  createProgressBar,
+  clearConsole,
   createColoredProgressBar,
-  displayPhaseStart,
-  displaySubStep,
+  createProgressBar,
+  DEFAULT_BAR_WIDTH,
+  DEFAULT_EMPTY_CHAR,
+  DEFAULT_FILLED_CHAR,
+  displayError,
+  displayInfo,
+  displayList,
+  displayOverallProgress,
   displayPhaseComplete,
   displayPhaseError,
-  displayOverallProgress,
-  startSpinner,
-  stopSpinner,
-  formatDuration,
-  estimateTimeRemaining,
-  displaySummary,
-  displayWelcomeBanner,
+  displayPhaseStart,
   displaySectionHeader,
-  displayInfo,
-  displayWarning,
-  displayError,
+  displaySubStep,
   displaySuccess,
-  clearConsole,
-  displayList
+  displaySummary,
+  displayWarning,
+  displayWelcomeBanner,
+  estimateTimeRemaining,
+  formatDuration,
+  getPhaseById,
+  PHASES,
+  startSpinner,
+  stopSpinner
 } from './progress-display.js';
 
 const __filename = fileURLToPath(import.meta.url);

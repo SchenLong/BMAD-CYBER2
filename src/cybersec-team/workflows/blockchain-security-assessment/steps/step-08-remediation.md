@@ -16,26 +16,26 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 8: Remediation Roadmap
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on creating actionable remediation guidance
 - This is the FINAL step - ensure comprehensive coverage
 - Provide code examples where applicable
 
-## STEP GOAL:
+## STEP GOAL
 
 To create a prioritized remediation roadmap with specific fixes, code examples, and timeline recommendations.
 
-## REMEDIATION SEQUENCE:
+## REMEDIATION SEQUENCE
 
 ### 1. Priority Categorization
 
@@ -57,6 +57,7 @@ Let's assign priorities to all findings."
 "Let's detail fixes for CRITICAL findings:
 
 **For each critical finding:**
+
 - Specific code changes required
 - Testing requirements
 - Deployment considerations
@@ -71,6 +72,7 @@ Which critical findings should we address first?"
 **Common Fix Patterns:**
 
 **Reentrancy Fix:**
+
 ```solidity
 // Before: Vulnerable
 function withdraw(uint256 amount) external {
@@ -89,6 +91,7 @@ function withdraw(uint256 amount) external nonReentrant {
 ```
 
 **Access Control Fix:**
+
 ```solidity
 // Add proper access control
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -107,6 +110,7 @@ Would you like specific code fixes for your findings?"
 "Let's plan secure deployment:
 
 **Pre-deployment Checklist:**
+
 - [ ] All critical/high findings fixed
 - [ ] Fixes reviewed by second auditor
 - [ ] Comprehensive test coverage
@@ -116,6 +120,7 @@ Would you like specific code fixes for your findings?"
 - [ ] Bug bounty prepared
 
 **Deployment Strategy:**
+
 - Phased rollout recommended
 - TVL caps for initial period
 - Emergency pause mechanism ready
@@ -175,6 +180,7 @@ Update Section 8 of {outputFile}:
 ### 8.3 High Finding Remediations
 
 **H-01: [Finding Title]**
+
 - **Fix:** [Specific remediation]
 - **Code:** [If applicable]
 - **Testing:** [Requirements]
@@ -189,12 +195,14 @@ Update Section 8 of {outputFile}:
 ### 8.5 Deployment Recommendations
 
 **Pre-deployment Requirements:**
+
 - [ ] All P0 findings fixed
 - [ ] All P1 findings fixed or mitigated
 - [ ] Test coverage >95%
 - [ ] External re-audit of critical fixes
 
 **Deployment Strategy:**
+
 | Phase | Action | TVL Limit | Duration |
 |-------|--------|-----------|----------|
 | 1 | Initial launch | [Cap] | [Time] |
@@ -216,6 +224,7 @@ Update Section 8 of {outputFile}:
 |------------|-------|--------|----------|----------|
 | C-01 | ⬜ | ⬜ | ⬜ | ⬜ |
 | H-01 | ⬜ | ⬜ | ⬜ | ⬜ |
+
 ```
 
 ### 7. Appendices
@@ -262,6 +271,7 @@ This assessment represents a point-in-time review. Blockchain security is an evo
 I've prepared your comprehensive security assessment including:
 
 **Report Sections:**
+
 1. Assessment Overview
 2. Smart Contract Security Review
 3. Access Control Analysis
@@ -273,11 +283,13 @@ I've prepared your comprehensive security assessment including:
 9. Appendices
 
 **Summary Statistics:**
+
 - Total findings: [X]
 - Critical/High requiring immediate action: [X]
 - Overall risk rating: [Rating]
 
 **Next Steps:**
+
 1. Review and prioritize fixes
 2. Implement P0/P1 remediations
 3. Schedule re-audit for critical fixes
@@ -292,7 +304,7 @@ Would you like to review any section or export the report?"
 
 Display: **Assessment Complete - Select an Option:** [E] Export/Review Final Report [Q] Ask Questions [D] Done - Conclude Workflow
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF E: Display complete document sections or export guidance
 - IF Q: Answer questions about any finding or recommendation
@@ -303,6 +315,7 @@ Display: **Assessment Complete - Select an Option:** [E] Export/Review Final Rep
 ## CRITICAL STEP COMPLETION NOTE
 
 This is the FINAL step. When user selects 'D' (Done):
+
 1. Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8]`
 2. Add `workflowComplete: true` to frontmatter
 3. Add `completedDate: [current date]` to frontmatter

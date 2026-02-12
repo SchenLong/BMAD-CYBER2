@@ -10,28 +10,28 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  SIGNATURE_FIELD,
-  SIGNED_AT_FIELD,
-  SIGNING_KEY_ENV,
-  getSigningKey,
-  hasCustomSigningKey,
   canonicalizeConfig,
   computeSignature,
-  signConfig,
-  verifySignature,
-  isSigned,
   getSignatureMetadata,
-  stripSignature,
-  signConfigFile,
-  verifyConfigFile,
+  getSigningKey,
+  hasCustomSigningKey,
+  isSigned,
   parseConfigForSigning,
-  validateConfigIntegrity
+  SIGNATURE_FIELD,
+  signConfig,
+  signConfigFile,
+  SIGNED_AT_FIELD,
+  SIGNING_KEY_ENV,
+  stripSignature,
+  validateConfigIntegrity,
+  verifyConfigFile,
+  verifySignature
 } from './config-signing.js';
 
 // ESM equivalent of __dirname

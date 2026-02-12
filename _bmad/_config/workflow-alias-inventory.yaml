@@ -1,0 +1,1002 @@
+# Workflow Alias Inventory
+# Generated for BMAD-CYBERSEC v6 Hybrid Upgrade - Story 01
+# Task 1.1: Audit Current Skill Invocation Paths
+# Generated: 2026-02-09
+# Source: _bmad/_config/workflow-manifest.csv (139 workflows)
+
+version: "1.0.0"
+total_workflows: 139
+total_conflicts: 13
+
+# Module summary
+modules:
+  bmm:
+    count: 32
+    prefix: "bmm"
+  bmgd:
+    count: 26
+    prefix: "game"
+  intel-team:
+    count: 19
+    prefix: "intel"
+  strategy-team:
+    count: 16
+    prefix: "strategy"
+  core:
+    count: 15
+    prefix: "core"
+  cybersec-team:
+    count: 13
+    prefix: "sec"
+  legal-team:
+    count: 7
+    prefix: "legal"
+  bmb:
+    count: 6
+    prefix: "bmb"
+  cis:
+    count: 4
+    prefix: "cis"
+
+# Naming conflicts requiring disambiguation
+conflicts:
+  code-review:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:code-review"
+      bmm: "bmm:code-review"
+  conflict-resolution:
+    modules: [core, strategy-team]
+    aliases:
+      core: "core:conflict-resolution"
+      strategy-team: "strategy:conflict-resolution"
+  correct-course:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:correct-course"
+      bmm: "bmm:correct-course"
+  create-story:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:create-story"
+      bmm: "bmm:create-story"
+  create-tech-spec:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:create-tech-spec"
+      bmm: "bmm:create-tech-spec"
+  dev-story:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:dev-story"
+      bmm: "bmm:dev-story"
+  generate-project-context:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:generate-project-context"
+      bmm: "bmm:generate-project-context"
+  quick-dev:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:quick-dev"
+      bmm: "bmm:quick-dev"
+  retrospective:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:retrospective"
+      bmm: "bmm:retrospective"
+  sprint-planning:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:sprint-planning"
+      bmm: "bmm:sprint-planning"
+  sprint-status:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:sprint-status"
+      bmm: "bmm:sprint-status"
+  workflow-init:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:workflow-init"
+      bmm: "bmm:workflow-init"
+  workflow-status:
+    modules: [bmgd, bmm]
+    aliases:
+      bmgd: "game:workflow-status"
+      bmm: "bmm:workflow-status"
+
+# Complete workflow inventory
+# Fields: name, module, full_path, alias, status, note (optional)
+workflows:
+
+  # =========================================================================
+  # BMB Module (6 workflows)
+  # =========================================================================
+
+  - name: "Meal Prep & Nutrition Plan"
+    module: bmb
+    full_path: "bmad:bmb:workflows:Meal Prep & Nutrition Plan"
+    alias: "meal-prep-nutrition-plan"
+    status: UNIQUE
+    note: "Name contains spaces and ampersand - alias uses kebab-case"
+
+  - name: agent
+    module: bmb
+    full_path: "bmad:bmb:workflows:agent"
+    alias: agent
+    status: UNIQUE
+
+  - name: create-module
+    module: bmb
+    full_path: "bmad:bmb:workflows:create-module"
+    alias: create-module
+    status: UNIQUE
+
+  - name: create-workflow
+    module: bmb
+    full_path: "bmad:bmb:workflows:create-workflow"
+    alias: create-workflow
+    status: UNIQUE
+
+  - name: edit-workflow
+    module: bmb
+    full_path: "bmad:bmb:workflows:edit-workflow"
+    alias: edit-workflow
+    status: UNIQUE
+
+  - name: workflow-compliance-check
+    module: bmb
+    full_path: "bmad:bmb:workflows:workflow-compliance-check"
+    alias: workflow-compliance-check
+    status: UNIQUE
+
+  # =========================================================================
+  # BMGD Module (26 workflows)
+  # =========================================================================
+
+  - name: brainstorm-game
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:brainstorm-game"
+    alias: brainstorm-game
+    status: UNIQUE
+
+  - name: code-review
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:code-review"
+    alias: "game:code-review"
+    status: CONFLICT
+    note: "Conflicts with bmm:code-review"
+
+  - name: correct-course
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:correct-course"
+    alias: "game:correct-course"
+    status: CONFLICT
+    note: "Conflicts with bmm:correct-course"
+
+  - name: create-game-brief
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:create-game-brief"
+    alias: create-game-brief
+    status: UNIQUE
+
+  - name: create-gdd
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:create-gdd"
+    alias: create-gdd
+    status: UNIQUE
+
+  - name: create-story
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:create-story"
+    alias: "game:create-story"
+    status: CONFLICT
+    note: "Conflicts with bmm:create-story"
+
+  - name: create-tech-spec
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:create-tech-spec"
+    alias: "game:create-tech-spec"
+    status: CONFLICT
+    note: "Conflicts with bmm:create-tech-spec"
+
+  - name: dev-story
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:dev-story"
+    alias: "game:dev-story"
+    status: CONFLICT
+    note: "Conflicts with bmm:dev-story"
+
+  - name: game-architecture
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:game-architecture"
+    alias: game-architecture
+    status: UNIQUE
+
+  - name: game-brief
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:game-brief"
+    alias: game-brief
+    status: UNIQUE
+
+  - name: gametest-automate
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:gametest-automate"
+    alias: gametest-automate
+    status: UNIQUE
+
+  - name: gametest-framework
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:gametest-framework"
+    alias: gametest-framework
+    status: UNIQUE
+
+  - name: gametest-performance
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:gametest-performance"
+    alias: gametest-performance
+    status: UNIQUE
+
+  - name: gametest-playtest-plan
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:gametest-playtest-plan"
+    alias: gametest-playtest-plan
+    status: UNIQUE
+
+  - name: gametest-test-design
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:gametest-test-design"
+    alias: gametest-test-design
+    status: UNIQUE
+
+  - name: gametest-test-review
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:gametest-test-review"
+    alias: gametest-test-review
+    status: UNIQUE
+
+  - name: gdd
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:gdd"
+    alias: gdd
+    status: UNIQUE
+
+  - name: generate-project-context
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:generate-project-context"
+    alias: "game:generate-project-context"
+    status: CONFLICT
+    note: "Conflicts with bmm:generate-project-context"
+
+  - name: narrative
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:narrative"
+    alias: narrative
+    status: UNIQUE
+
+  - name: quick-dev
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:quick-dev"
+    alias: "game:quick-dev"
+    status: CONFLICT
+    note: "Conflicts with bmm:quick-dev"
+
+  - name: quick-prototype
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:quick-prototype"
+    alias: quick-prototype
+    status: UNIQUE
+
+  - name: retrospective
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:retrospective"
+    alias: "game:retrospective"
+    status: CONFLICT
+    note: "Conflicts with bmm:retrospective"
+
+  - name: sprint-planning
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:sprint-planning"
+    alias: "game:sprint-planning"
+    status: CONFLICT
+    note: "Conflicts with bmm:sprint-planning"
+
+  - name: sprint-status
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:sprint-status"
+    alias: "game:sprint-status"
+    status: CONFLICT
+    note: "Conflicts with bmm:sprint-status"
+
+  - name: workflow-init
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:workflow-init"
+    alias: "game:workflow-init"
+    status: CONFLICT
+    note: "Conflicts with bmm:workflow-init"
+
+  - name: workflow-status
+    module: bmgd
+    full_path: "bmad:bmgd:workflows:workflow-status"
+    alias: "game:workflow-status"
+    status: CONFLICT
+    note: "Conflicts with bmm:workflow-status"
+
+  # =========================================================================
+  # BMM Module (32 workflows)
+  # =========================================================================
+
+  - name: check-implementation-readiness
+    module: bmm
+    full_path: "bmad:bmm:workflows:check-implementation-readiness"
+    alias: check-implementation-readiness
+    status: UNIQUE
+
+  - name: code-review
+    module: bmm
+    full_path: "bmad:bmm:workflows:code-review"
+    alias: "bmm:code-review"
+    status: CONFLICT
+    note: "Conflicts with bmgd:code-review"
+
+  - name: correct-course
+    module: bmm
+    full_path: "bmad:bmm:workflows:correct-course"
+    alias: "bmm:correct-course"
+    status: CONFLICT
+    note: "Conflicts with bmgd:correct-course"
+
+  - name: create-architecture
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-architecture"
+    alias: create-architecture
+    status: UNIQUE
+
+  - name: create-epics-and-stories
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-epics-and-stories"
+    alias: create-epics-and-stories
+    status: UNIQUE
+
+  - name: create-excalidraw-dataflow
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-excalidraw-dataflow"
+    alias: create-excalidraw-dataflow
+    status: UNIQUE
+
+  - name: create-excalidraw-diagram
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-excalidraw-diagram"
+    alias: create-excalidraw-diagram
+    status: UNIQUE
+
+  - name: create-excalidraw-flowchart
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-excalidraw-flowchart"
+    alias: create-excalidraw-flowchart
+    status: UNIQUE
+
+  - name: create-excalidraw-wireframe
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-excalidraw-wireframe"
+    alias: create-excalidraw-wireframe
+    status: UNIQUE
+
+  - name: create-prd
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-prd"
+    alias: create-prd
+    status: UNIQUE
+
+  - name: create-product-brief
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-product-brief"
+    alias: create-product-brief
+    status: UNIQUE
+
+  - name: create-story
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-story"
+    alias: "bmm:create-story"
+    status: CONFLICT
+    note: "Conflicts with bmgd:create-story"
+
+  - name: create-tech-spec
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-tech-spec"
+    alias: "bmm:create-tech-spec"
+    status: CONFLICT
+    note: "Conflicts with bmgd:create-tech-spec"
+
+  - name: create-ux-design
+    module: bmm
+    full_path: "bmad:bmm:workflows:create-ux-design"
+    alias: create-ux-design
+    status: UNIQUE
+
+  - name: dev-story
+    module: bmm
+    full_path: "bmad:bmm:workflows:dev-story"
+    alias: "bmm:dev-story"
+    status: CONFLICT
+    note: "Conflicts with bmgd:dev-story"
+
+  - name: document-project
+    module: bmm
+    full_path: "bmad:bmm:workflows:document-project"
+    alias: document-project
+    status: UNIQUE
+
+  - name: generate-project-context
+    module: bmm
+    full_path: "bmad:bmm:workflows:generate-project-context"
+    alias: "bmm:generate-project-context"
+    status: CONFLICT
+    note: "Conflicts with bmgd:generate-project-context"
+
+  - name: quick-dev
+    module: bmm
+    full_path: "bmad:bmm:workflows:quick-dev"
+    alias: "bmm:quick-dev"
+    status: CONFLICT
+    note: "Conflicts with bmgd:quick-dev"
+
+  - name: research
+    module: bmm
+    full_path: "bmad:bmm:workflows:research"
+    alias: research
+    status: UNIQUE
+
+  - name: retrospective
+    module: bmm
+    full_path: "bmad:bmm:workflows:retrospective"
+    alias: "bmm:retrospective"
+    status: CONFLICT
+    note: "Conflicts with bmgd:retrospective"
+
+  - name: sprint-planning
+    module: bmm
+    full_path: "bmad:bmm:workflows:sprint-planning"
+    alias: "bmm:sprint-planning"
+    status: CONFLICT
+    note: "Conflicts with bmgd:sprint-planning"
+
+  - name: sprint-status
+    module: bmm
+    full_path: "bmad:bmm:workflows:sprint-status"
+    alias: "bmm:sprint-status"
+    status: CONFLICT
+    note: "Conflicts with bmgd:sprint-status"
+
+  - name: testarch-atdd
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-atdd"
+    alias: testarch-atdd
+    status: UNIQUE
+
+  - name: testarch-automate
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-automate"
+    alias: testarch-automate
+    status: UNIQUE
+
+  - name: testarch-ci
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-ci"
+    alias: testarch-ci
+    status: UNIQUE
+
+  - name: testarch-framework
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-framework"
+    alias: testarch-framework
+    status: UNIQUE
+
+  - name: testarch-nfr
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-nfr"
+    alias: testarch-nfr
+    status: UNIQUE
+
+  - name: testarch-test-design
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-test-design"
+    alias: testarch-test-design
+    status: UNIQUE
+
+  - name: testarch-test-review
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-test-review"
+    alias: testarch-test-review
+    status: UNIQUE
+
+  - name: testarch-trace
+    module: bmm
+    full_path: "bmad:bmm:workflows:testarch-trace"
+    alias: testarch-trace
+    status: UNIQUE
+
+  - name: workflow-init
+    module: bmm
+    full_path: "bmad:bmm:workflows:workflow-init"
+    alias: "bmm:workflow-init"
+    status: CONFLICT
+    note: "Conflicts with bmgd:workflow-init"
+
+  - name: workflow-status
+    module: bmm
+    full_path: "bmad:bmm:workflows:workflow-status"
+    alias: "bmm:workflow-status"
+    status: CONFLICT
+    note: "Conflicts with bmgd:workflow-status"
+
+  # =========================================================================
+  # CIS Module (4 workflows)
+  # =========================================================================
+
+  - name: design-thinking
+    module: cis
+    full_path: "bmad:cis:workflows:design-thinking"
+    alias: design-thinking
+    status: UNIQUE
+
+  - name: innovation-strategy
+    module: cis
+    full_path: "bmad:cis:workflows:innovation-strategy"
+    alias: innovation-strategy
+    status: UNIQUE
+
+  - name: problem-solving
+    module: cis
+    full_path: "bmad:cis:workflows:problem-solving"
+    alias: problem-solving
+    status: UNIQUE
+
+  - name: storytelling
+    module: cis
+    full_path: "bmad:cis:workflows:storytelling"
+    alias: storytelling
+    status: UNIQUE
+
+  # =========================================================================
+  # CORE Module (15 workflows)
+  # =========================================================================
+
+  - name: assign-task
+    module: core
+    full_path: "bmad:core:workflows:assign-task"
+    alias: assign-task
+    status: UNIQUE
+
+  - name: brainstorming
+    module: core
+    full_path: "bmad:core:workflows:brainstorming"
+    alias: brainstorming
+    status: UNIQUE
+
+  - name: compliance-first
+    module: core
+    full_path: "bmad:core:workflows:compliance-first"
+    alias: compliance-first
+    status: UNIQUE
+
+  - name: conflict-resolution
+    module: core
+    full_path: "bmad:core:workflows:conflict-resolution"
+    alias: "core:conflict-resolution"
+    status: CONFLICT
+    note: "Conflicts with strategy-team:conflict-resolution"
+
+  - name: create-project
+    module: core
+    full_path: "bmad:core:workflows:create-project"
+    alias: create-project
+    status: UNIQUE
+
+  - name: cross-module
+    module: core
+    full_path: "bmad:core:workflows:cross-module"
+    alias: cross-module
+    status: UNIQUE
+
+  - name: incident-response
+    module: core
+    full_path: "bmad:core:workflows:incident-response"
+    alias: incident-response
+    status: UNIQUE
+
+  - name: party-mode
+    module: core
+    full_path: "bmad:core:workflows:party-mode"
+    alias: party-mode
+    status: UNIQUE
+
+  - name: phase-gate
+    module: core
+    full_path: "bmad:core:workflows:phase-gate"
+    alias: phase-gate
+    status: UNIQUE
+
+  - name: project-status
+    module: core
+    full_path: "bmad:core:workflows:project-status"
+    alias: project-status
+    status: UNIQUE
+
+  - name: secure-software
+    module: core
+    full_path: "bmad:core:workflows:secure-software"
+    alias: secure-software
+    status: UNIQUE
+
+  - name: select-preset
+    module: core
+    full_path: "bmad:core:workflows:select-preset"
+    alias: select-preset
+    status: UNIQUE
+
+  - name: select-template
+    module: core
+    full_path: "bmad:core:workflows:select-template"
+    alias: select-template
+    status: UNIQUE
+
+  - name: strategic-decision
+    module: core
+    full_path: "bmad:core:workflows:strategic-decision"
+    alias: strategic-decision
+    status: UNIQUE
+
+  - name: whats-next
+    module: core
+    full_path: "bmad:core:workflows:whats-next"
+    alias: whats-next
+    status: UNIQUE
+
+  # =========================================================================
+  # CYBERSEC-TEAM Module (13 workflows)
+  # =========================================================================
+
+  - name: blockchain-security-assessment
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:blockchain-security-assessment"
+    alias: blockchain-security-assessment
+    status: UNIQUE
+
+  - name: cloud-security-assessment
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:cloud-security-assessment"
+    alias: cloud-security-assessment
+    status: UNIQUE
+
+  - name: compliance-audit-prep
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:compliance-audit-prep"
+    alias: compliance-audit-prep
+    status: UNIQUE
+
+  - name: incident-response-playbook
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:incident-response-playbook"
+    alias: incident-response-playbook
+    status: UNIQUE
+
+  - name: infrastructure-security-testing
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:infrastructure-security-testing"
+    alias: infrastructure-security-testing
+    status: UNIQUE
+
+  - name: mobile-security-testing
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:mobile-security-testing"
+    alias: mobile-security-testing
+    status: UNIQUE
+
+  - name: network-assessment
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:network-assessment"
+    alias: network-assessment
+    status: UNIQUE
+
+  - name: security-architecture-review
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:security-architecture-review"
+    alias: security-architecture-review
+    status: UNIQUE
+
+  - name: security-awareness-training
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:security-awareness-training"
+    alias: security-awareness-training
+    status: UNIQUE
+
+  - name: threat-modeling
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:threat-modeling"
+    alias: threat-modeling
+    status: UNIQUE
+
+  - name: virtual-ciso-consulting
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:virtual-ciso-consulting"
+    alias: virtual-ciso-consulting
+    status: UNIQUE
+
+  - name: vulnerability-management
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:vulnerability-management"
+    alias: vulnerability-management
+    status: UNIQUE
+
+  - name: web-app-security-testing
+    module: cybersec-team
+    full_path: "bmad:cybersec-team:workflows:web-app-security-testing"
+    alias: web-app-security-testing
+    status: UNIQUE
+
+  # =========================================================================
+  # INTEL-TEAM Module (19 workflows)
+  # =========================================================================
+
+  - name: approach-vector
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:approach-vector"
+    alias: approach-vector
+    status: UNIQUE
+
+  - name: attribution-chain
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:attribution-chain"
+    alias: attribution-chain
+    status: UNIQUE
+
+  - name: breach-archaeology
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:breach-archaeology"
+    alias: breach-archaeology
+    status: UNIQUE
+
+  - name: campaign-ai
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:campaign-ai"
+    alias: campaign-ai
+    status: UNIQUE
+
+  - name: campaign-planner-org
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:campaign-planner-org"
+    alias: campaign-planner-org
+    status: UNIQUE
+
+  - name: campaign-planner-person
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:campaign-planner-person"
+    alias: campaign-planner-person
+    status: UNIQUE
+
+  - name: counter-intel-audit
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:counter-intel-audit"
+    alias: counter-intel-audit
+    status: UNIQUE
+
+  - name: digital-necromancy
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:digital-necromancy"
+    alias: digital-necromancy
+    status: UNIQUE
+
+  - name: doppelganger-hunt
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:doppelganger-hunt"
+    alias: doppelganger-hunt
+    status: UNIQUE
+
+  - name: flash-assessment
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:flash-assessment"
+    alias: flash-assessment
+    status: UNIQUE
+
+  - name: ground-truth
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:ground-truth"
+    alias: ground-truth
+    status: UNIQUE
+
+  - name: infrastructure-genealogy
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:infrastructure-genealogy"
+    alias: infrastructure-genealogy
+    status: UNIQUE
+
+  - name: operation-mosaic
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:operation-mosaic"
+    alias: operation-mosaic
+    status: UNIQUE
+
+  - name: pattern-of-life
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:pattern-of-life"
+    alias: pattern-of-life
+    status: UNIQUE
+
+  - name: signal-landscape
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:signal-landscape"
+    alias: signal-landscape
+    status: UNIQUE
+
+  - name: spider-web
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:spider-web"
+    alias: spider-web
+    status: UNIQUE
+
+  - name: the-synthesis
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:the-synthesis"
+    alias: the-synthesis
+    status: UNIQUE
+
+  - name: threat-constellation
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:threat-constellation"
+    alias: threat-constellation
+    status: UNIQUE
+
+  - name: tripwire
+    module: intel-team
+    full_path: "bmad:intel-team:workflows:tripwire"
+    alias: tripwire
+    status: UNIQUE
+
+  # =========================================================================
+  # LEGAL-TEAM Module (7 workflows)
+  # =========================================================================
+
+  - name: contract-drafting
+    module: legal-team
+    full_path: "bmad:legal-team:workflows:contract-drafting"
+    alias: contract-drafting
+    status: UNIQUE
+
+  - name: contract-review
+    module: legal-team
+    full_path: "bmad:legal-team:workflows:contract-review"
+    alias: contract-review
+    status: UNIQUE
+
+  - name: corporate-formation
+    module: legal-team
+    full_path: "bmad:legal-team:workflows:corporate-formation"
+    alias: corporate-formation
+    status: UNIQUE
+
+  - name: cross-border-matter
+    module: legal-team
+    full_path: "bmad:legal-team:workflows:cross-border-matter"
+    alias: cross-border-matter
+    status: UNIQUE
+
+  - name: dispute-strategy
+    module: legal-team
+    full_path: "bmad:legal-team:workflows:dispute-strategy"
+    alias: dispute-strategy
+    status: UNIQUE
+
+  - name: legal-matter-intake
+    module: legal-team
+    full_path: "bmad:legal-team:workflows:legal-matter-intake"
+    alias: legal-matter-intake
+    status: UNIQUE
+
+  - name: tax-planning
+    module: legal-team
+    full_path: "bmad:legal-team:workflows:tax-planning"
+    alias: tax-planning
+    status: UNIQUE
+
+  # =========================================================================
+  # STRATEGY-TEAM Module (16 workflows)
+  # =========================================================================
+
+  - name: board-presentation-prep
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:board-presentation-prep"
+    alias: board-presentation-prep
+    status: UNIQUE
+
+  - name: board-relations-management
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:board-relations-management"
+    alias: board-relations-management
+    status: UNIQUE
+
+  - name: competitive-warfare
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:competitive-warfare"
+    alias: competitive-warfare
+    status: UNIQUE
+
+  - name: conflict-resolution
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:conflict-resolution"
+    alias: "strategy:conflict-resolution"
+    status: CONFLICT
+    note: "Conflicts with core:conflict-resolution"
+
+  - name: corporate-political-game
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:corporate-political-game"
+    alias: corporate-political-game
+    status: UNIQUE
+
+  - name: crisis-response-planning
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:crisis-response-planning"
+    alias: crisis-response-planning
+    status: UNIQUE
+
+  - name: ethical-dilemma-resolution
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:ethical-dilemma-resolution"
+    alias: ethical-dilemma-resolution
+    status: UNIQUE
+
+  - name: leadership-philosophy
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:leadership-philosophy"
+    alias: leadership-philosophy
+    status: UNIQUE
+
+  - name: leadership-transition-planning
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:leadership-transition-planning"
+    alias: leadership-transition-planning
+    status: UNIQUE
+
+  - name: ma-due-diligence
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:ma-due-diligence"
+    alias: ma-due-diligence
+    status: UNIQUE
+
+  - name: performance-review-preparation
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:performance-review-preparation"
+    alias: performance-review-preparation
+    status: UNIQUE
+
+  - name: policy-development
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:policy-development"
+    alias: policy-development
+    status: UNIQUE
+
+  - name: political-risk-assessment
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:political-risk-assessment"
+    alias: political-risk-assessment
+    status: UNIQUE
+
+  - name: stakeholder-negotiation-prep
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:stakeholder-negotiation-prep"
+    alias: stakeholder-negotiation-prep
+    status: UNIQUE
+
+  - name: strategic-decision-workshop
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:strategic-decision-workshop"
+    alias: strategic-decision-workshop
+    status: UNIQUE
+
+  - name: strategic-planning-session
+    module: strategy-team
+    full_path: "bmad:strategy-team:workflows:strategic-planning-session"
+    alias: strategic-planning-session
+    status: UNIQUE

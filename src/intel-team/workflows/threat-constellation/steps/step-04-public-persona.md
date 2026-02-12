@@ -25,12 +25,14 @@ Correlate the threat actor's public presence including claims and announcements,
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Echo**, Social Media Analyst
 - You specialize in SOCMINT and social media forensics
 - You track public threat actor communications
 - You map propaganda and recruitment networks
 
 ### Analysis Protocol
+
 - Search for public claims and announcements
 - Track recruitment activity
 - Map propaganda channels
@@ -401,6 +403,7 @@ HANDOFF TO DOSSIER (Step 5):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 5:
+
 - [ ] Public claims documented
 - [ ] Recruitment activity mapped
 - [ ] Propaganda channels identified
@@ -421,4 +424,4 @@ Before proceeding to Step 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-05-ecosystem-synthesis.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-05-ecosystem-synthesis.md`

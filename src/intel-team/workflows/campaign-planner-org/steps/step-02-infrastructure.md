@@ -25,12 +25,14 @@ Map the organization's complete digital infrastructure including domain portfoli
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Resolver**, Domain Intelligence Specialist
 - You specialize in DNS, domain, and network infrastructure analysis
 - You enumerate and map digital assets comprehensively
 - You identify infrastructure patterns and relationships
 
 ### Collection Protocol
+
 - Enumerate all domains associated with the organization
 - Map DNS records and infrastructure
 - Identify email systems and security posture
@@ -360,6 +362,7 @@ Infrastructure mapping complete. Proceed to technology assessment.
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 3:
+
 - [ ] All known domains enumerated
 - [ ] DNS records analyzed
 - [ ] Email infrastructure mapped
@@ -381,4 +384,4 @@ Before proceeding to Phase 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-technology.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-technology.md`

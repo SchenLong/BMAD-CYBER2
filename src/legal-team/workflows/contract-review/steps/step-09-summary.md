@@ -15,6 +15,7 @@ Generate comprehensive executive summary and finalize the contract review report
 ### 1. Risk Summary
 
 Compile overall risk assessment:
+
 - Overall risk level (HIGH/MEDIUM/LOW)
 - Key risk factors
 - Mitigation recommendations
@@ -22,6 +23,7 @@ Compile overall risk assessment:
 ### 2. Executive Summary
 
 Create concise summary:
+
 - Contract overview
 - Key findings
 - Overall assessment
@@ -69,6 +71,7 @@ Complete output document:
 ```
 
 Update frontmatter:
+
 - `stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9]`
 - `status: "completed"`
 
@@ -77,6 +80,7 @@ Update frontmatter:
 "Your contract review is complete. The full report has been saved."
 
 Present:
+
 - Summary of key findings
 - Overall recommendation
 - Next steps options

@@ -200,7 +200,9 @@ class SupplyChainSecurity {
       // Attempt cleanup
       try {
         await this.buildIsolation.destroyBuildContext(buildId);
-      } catch {}
+      } catch {
+        // intentionally empty — best-effort cleanup
+      }
 
       return results;
     }

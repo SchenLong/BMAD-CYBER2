@@ -14,6 +14,7 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 1. Core Dependency Management Engine
 
 **File**: `bmad-dependency-manager.js`
+
 - **BMADDependencyManager** class
 - Cross-module dependency resolution algorithm
 - Installation order optimization
@@ -21,6 +22,7 @@ I have successfully designed and implemented a comprehensive dependency manageme
 - Integration points with Amelia's framework
 
 **Key Features**:
+
 - Topological sort for dependency ordering
 - Parallel and sequential installation support
 - Version conflict resolution strategies
@@ -29,12 +31,14 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 2. Version Compatibility System
 
 **File**: `bmad-version-compatibility.js`
+
 - **BMADVersionChecker** class
 - BMAD core version requirements validation
 - Semantic versioning compliance
 - Agent and workflow availability checking
 
 **Key Features**:
+
 - Runtime BMAD core version detection
 - Module compatibility validation
 - Upgrade safety assessment
@@ -43,12 +47,14 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 3. Circular Dependency Detection
 
 **File**: `bmad-circular-detection.js`
+
 - **BMADCircularDetector** class
 - Advanced cycle detection using DFS and Tarjan's algorithm
 - Resolution strategy generation
 - Installation plan validation
 
 **Key Features**:
+
 - Multiple detection algorithms (DFS + Tarjan's)
 - Cycle severity assessment
 - Resolution strategies (lazy loading, dependency injection, etc.)
@@ -57,12 +63,14 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 4. Node.js & NPM Integration
 
 **File**: `package-registry-manager.js`
+
 - **BMADPackageRegistryManager** class
 - Node.js runtime compatibility verification
 - NPM package management integration
 - Security audit capabilities
 
 **Key Features**:
+
 - Runtime environment detection
 - Node.js feature compatibility checking
 - Security vulnerability scanning
@@ -71,12 +79,14 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 5. Dependencies Configuration Format
 
 **File**: `dependencies.yaml`
+
 - Comprehensive dependency specification format
 - Support for all specialized teams
 - Cross-module dependency definitions
 - Installation phase configuration
 
 **Schema Sections**:
+
 - Package identification
 - BMAD core dependencies
 - Runtime requirements (Node.js, NPM)
@@ -88,6 +98,7 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 6. Specialized Team Configurations
 
 **Generated Examples**:
+
 - `cybersec-team-module.yaml.example` (15 agents)
 - `intel-team-module.yaml.example` (11 agents)
 - `legal-team-module.yaml.example` (13 agents)
@@ -96,6 +107,7 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 7. Comprehensive Documentation
 
 **File**: `BMAD-DEPENDENCY-MANAGEMENT-GUIDE.md`
+
 - Complete integration guide (60+ pages)
 - Architecture overview and component descriptions
 - Installation and setup instructions
@@ -106,6 +118,7 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ### 8. Validation System
 
 **File**: `src/utility/tools/bmad-dependency-validator.py`
+
 - System validation and integrity checking
 - Configuration schema validation
 - Integration readiness assessment
@@ -136,36 +149,42 @@ I have successfully designed and implemented a comprehensive dependency manageme
 ## 🎯 Key Achievements
 
 ### 1. Comprehensive Dependency Resolution
+
 - ✅ Cross-module dependency graph building
 - ✅ Version conflict detection and resolution
 - ✅ Installation order optimization via topological sort
 - ✅ Circular dependency detection with resolution strategies
 
 ### 2. Version Management Excellence
+
 - ✅ BMAD core compatibility checking (>=2.0.0)
 - ✅ Semantic versioning compliance
 - ✅ Agent and workflow availability validation
 - ✅ Upgrade safety assessment
 
 ### 3. Advanced Circular Dependency Handling
+
 - ✅ DFS-based cycle detection
 - ✅ Tarjan's algorithm for strongly connected components
 - ✅ Multiple resolution strategies (lazy loading, dependency injection, etc.)
 - ✅ Installation plan validation
 
 ### 4. Runtime Environment Integration
-- ✅ Node.js compatibility verification (>=18.0.0)
-- ✅ NPM version checking (>=8.0.0)
+
+- ✅ Node.js compatibility verification (>=20.0.0)
+- ✅ NPM version checking (>=10.0.0)
 - ✅ Feature availability detection
 - ✅ Security audit integration
 
 ### 5. Specialized Teams Support
+
 - ✅ Cybersecurity Team (15 agents, 13 workflows)
 - ✅ Intelligence Team (11 agents, 12 workflows)
 - ✅ Legal Team (13 agents, 7 workflows)
 - ✅ Strategy Team (14 agents, 15 workflows)
 
 ### 6. Amelia Framework Integration
+
 - ✅ Seamless integration points
 - ✅ Installation plan execution
 - ✅ Progress monitoring capabilities
@@ -205,21 +224,25 @@ I have successfully designed and implemented a comprehensive dependency manageme
 The dependency management system provides clean integration points:
 
 ### 1. Pre-Installation Validation
+
 ```javascript
 const validationResult = await dependencyManager.validateInstallationPlan(plan);
 ```
 
 ### 2. Dependency Resolution
+
 ```javascript
 const resolution = await dependencyManager.resolveDependencies(moduleConfig);
 ```
 
 ### 3. Installation Execution
+
 ```javascript
 const result = await dependencyManager.executeInstallationPlan(plan, options);
 ```
 
 ### 4. Progress Monitoring
+
 ```javascript
 dependencyManager.on('module_installed', (moduleId) => {
     console.log(`Installed: ${moduleId}`);
@@ -249,10 +272,10 @@ bmad_core:
 
 runtime:
   node:
-    version: ">=18.0.0"
+    version: ">=20.0.0"
     recommended: "20.x"
   npm:
-    version: ">=8.0.0"
+    version: ">=10.0.0"
 
 cross_module:
   optional:

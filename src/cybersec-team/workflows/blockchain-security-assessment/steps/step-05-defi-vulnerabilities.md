@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 5: DeFi-Specific Vulnerabilities
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on DeFi-specific vulnerabilities
 - FORBIDDEN to discuss infrastructure yet
 - Cover protocol-specific attack vectors
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess DeFi-specific vulnerabilities including flash loans, composability risks, and protocol-type-specific attack vectors.
 
-## DEFI VULNERABILITY SEQUENCE:
+## DEFI VULNERABILITY SEQUENCE
 
 ### 1. Flash Loan Attack Vectors
 
@@ -53,6 +53,7 @@ To assess DeFi-specific vulnerabilities including flash loans, composability ris
 | Arbitrage exploitation | ? | ? |
 
 **Questions:**
+
 - Does the protocol use spot prices anywhere?
 - Can governance be influenced within one block?
 - Are there time-weighted protections?
@@ -85,24 +86,28 @@ What external protocols does this integrate with?"
 "Based on your protocol type, let's check specific vulnerabilities:
 
 **For DEX/AMM:**
+
 - Sandwich attack exposure
 - Impermanent loss protection
 - LP token security
 - Swap slippage handling
 
 **For Lending:**
+
 - Liquidation manipulation
 - Bad debt scenarios
 - Collateral valuation
 - Interest rate manipulation
 
 **For Yield/Staking:**
+
 - Reward distribution bugs
 - Stake/unstake reentrancy
 - Reward timing attacks
 - Compounding vulnerabilities
 
 **For Bridges:**
+
 - Message verification
 - Finality assumptions
 - Multi-chain state consistency
@@ -124,6 +129,7 @@ Which vulnerabilities are relevant to your protocol type?"
 | Pool draining protection | ? | ? |
 
 **Price Impact Analysis:**
+
 - What happens with large trades?
 - Is there circuit breaker on price impact?
 - How is slippage calculated?
@@ -144,6 +150,7 @@ How does the protocol handle low liquidity scenarios?"
 | Migration procedures | ? | ? |
 
 **Upgrade Security:**
+
 - Who can upgrade?
 - Is there a timelock?
 - Can upgrades drain funds?
@@ -165,6 +172,7 @@ What upgrade mechanism is used?"
 | Chain reorganization | ? | ? |
 
 **Cross-Chain Risks:**
+
 - How are cross-chain messages verified?
 - What happens during chain reorgs?
 - Are there trusted relayers?
@@ -243,6 +251,7 @@ Update Section 5 of {outputFile}:
 "**DeFi Vulnerability Assessment Complete**
 
 I've analyzed:
+
 - Flash loan attack vectors
 - Composability risks
 - Protocol-specific vulnerabilities
@@ -258,7 +267,7 @@ Ready to proceed to infrastructure security?"
 
 Display: **DeFi Assessment Complete - Select an Option:** [C] Continue to Infrastructure Security [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 5 content, allow revisions, then redisplay menu
@@ -267,6 +276,6 @@ Display: **DeFi Assessment Complete - Select an Option:** [C] Continue to Infras
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN DeFi assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN DeFi assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

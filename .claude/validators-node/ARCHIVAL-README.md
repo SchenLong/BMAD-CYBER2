@@ -7,6 +7,7 @@ The BMAD Log Archival System implements enterprise-grade log archival to Amazon 
 ## Features
 
 ### Core Capabilities
+
 - **Daily Automated S3 Export**: Scheduled log archival with configurable frequency
 - **Immutable Storage**: S3 Object Lock prevents modification/deletion during retention period
 - **GPG Signing**: Cryptographic integrity verification and non-repudiation
@@ -16,6 +17,7 @@ The BMAD Log Archival System implements enterprise-grade log archival to Amazon 
 - **Audit Trail**: Complete logging of all archival operations
 
 ### Security Features
+
 - **WORM Compliance**: Write-Once-Read-Many storage with S3 Object Lock
 - **Encrypted Storage**: Server-side encryption (SSE-S3 or SSE-KMS)
 - **Hash Verification**: Archive integrity verification
@@ -76,6 +78,7 @@ export BMAD_S3_KMS_KEY_ID="arn:aws:kms:..."  # Required if SSE-KMS
 ### S3 Bucket Setup
 
 1. **Create bucket with Object Lock**:
+
 ```bash
 aws s3api create-bucket \
   --bucket my-company-audit-logs \
@@ -83,7 +86,8 @@ aws s3api create-bucket \
   --object-lock-enabled-for-bucket
 ```
 
-2. **Enable encryption**:
+1. **Enable encryption**:
+
 ```bash
 aws s3api put-bucket-encryption \
   --bucket my-company-audit-logs \
@@ -92,14 +96,16 @@ aws s3api put-bucket-encryption \
   }'
 ```
 
-3. **Enable versioning**:
+1. **Enable versioning**:
+
 ```bash
 aws s3api put-bucket-versioning \
   --bucket my-company-audit-logs \
   --versioning-configuration Status=Enabled
 ```
 
-4. **Configure Object Lock**:
+1. **Configure Object Lock**:
+
 ```bash
 aws s3api put-object-lock-configuration \
   --bucket my-company-audit-logs \
@@ -112,6 +118,7 @@ aws s3api put-object-lock-configuration \
 ### IAM Permissions
 
 Required S3 permissions for the archival system:
+
 ```json
 {
   "Version": "2012-10-17",
@@ -201,6 +208,7 @@ const status = await AuditLogger.getArchivalStatus();
 ## Archive Format
 
 ### Archive Structure
+
 ```
 archive.gz (compressed)
 ├── security.log (JSON Lines)
@@ -217,6 +225,7 @@ archive.gz (compressed)
 ```
 
 ### Archive Metadata
+
 ```json
 {
   "archiveId": "bmad-audit-2024-01-01-to-2024-01-02-abc123",
@@ -237,22 +246,26 @@ archive.gz (compressed)
 ## Compliance
 
 ### NIST DE.CM-1 (Data-at-rest Protection)
+
 - ✅ AES-256 encryption for audit logs at rest
 - ✅ S3 server-side encryption with managed keys
 - ✅ Object Lock preventing unauthorized modification
 
 ### ISO 27001 A.12.4.1 (Event Logging)
+
 - ✅ Comprehensive audit event logging
 - ✅ Tamper-evident log storage
 - ✅ Regular archival to external storage
 - ✅ Long-term retention (7+ years)
 
 ### SOX 404 (Records Retention)
+
 - ✅ Immutable storage with legal hold capability
 - ✅ Audit trail of all archival operations
 - ✅ Hash-based integrity verification
 
 ### GDPR Article 32 (Security of Processing)
+
 - ✅ Encryption of personal data in logs
 - ✅ Integrity and confidentiality measures
 - ✅ Regular testing of security measures
@@ -260,6 +273,7 @@ archive.gz (compressed)
 ## Monitoring and Alerting
 
 ### Health Checks
+
 - Configuration validation
 - S3 connectivity and permissions
 - Archive integrity verification
@@ -267,12 +281,14 @@ archive.gz (compressed)
 - GPG key validity
 
 ### Alerts
+
 - Failed archival jobs (after 3 consecutive failures)
 - Archive integrity failures
 - Configuration errors
 - Retention policy violations
 
 ### Metrics
+
 - Archive success/failure rates
 - Archive sizes and compression ratios
 - S3 costs and storage utilization
@@ -321,16 +337,19 @@ npm run archival verify --all
 ## Development
 
 ### Building
+
 ```bash
 npm run build
 ```
 
 ### Testing
+
 ```bash
 npm test
 ```
 
 ### Linting
+
 ```bash
 npm run lint
 ```
@@ -338,16 +357,19 @@ npm run lint
 ## Security Considerations
 
 ### Access Control
+
 - Use IAM roles with minimal required permissions
 - Rotate AWS access keys regularly
 - Monitor S3 bucket access logs
 
 ### Key Management
+
 - Store GPG private keys securely
 - Use dedicated signing keys for archival
 - Implement key rotation procedures
 
 ### Network Security
+
 - Use VPC endpoints for S3 access when possible
 - Enable CloudTrail for API monitoring
 - Configure S3 bucket policies for additional restrictions

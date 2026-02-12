@@ -121,6 +121,7 @@ privateproject/
 # ===================
 # Private signing key - NEVER commit
 _bmad/core/security/bmad-private-key.asc
+src/core/security/bmad-private-key.asc
 .bmad-token
 .bmad-key
 
@@ -172,6 +173,7 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+.version-check-cache
 
 # ===================
 # Environment Files

@@ -20,6 +20,7 @@ Understand the transaction, parties, and key terms needed for the contract.
 ### 2. Transaction Overview
 
 Gather:
+
 - **Type of Contract:** What kind of agreement? (service, sales, NDA, employment, license, partnership, etc.)
 - **Parties:** Who are the parties? (names, types, locations)
 - **Transaction:** What is being exchanged? (goods, services, rights, etc.)
@@ -29,6 +30,7 @@ Gather:
 ### 3. Party Details
 
 For each party:
+
 - Legal name
 - Entity type (individual, LLC, Corp, etc.)
 - Jurisdiction of formation
@@ -37,6 +39,7 @@ For each party:
 ### 4. Key Terms Preview
 
 Ask about:
+
 - Core obligations of each party
 - Payment structure
 - Performance standards

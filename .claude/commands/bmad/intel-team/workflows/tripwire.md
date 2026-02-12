@@ -5,5 +5,5 @@ description: Alerting & Monitoring Configuration - Configure comprehensive monit
 
 # Tripwire
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/intel-team/workflows/tripwire/workflow.md`
+Load and follow the workflow at:
+`@src/intel-team/workflows/tripwire/workflow.md`

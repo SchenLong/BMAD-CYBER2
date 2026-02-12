@@ -18,6 +18,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('yaml');
 const crypto = require('crypto');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 class BMADTemplateEngine {
     constructor(options = {}) {
@@ -280,7 +281,7 @@ class BMADTemplateEngine {
      */
     applyTeamCustomizations(baseTemplate, teamCode, context) {
         const teamConfig = this.specializedTeams[teamCode];
-        let customizedTemplate = { ...baseTemplate };
+        const customizedTemplate = { ...baseTemplate };
 
         // Team-specific prompt customizations
         if (teamCode === 'cybersec-team') {
@@ -603,7 +604,7 @@ class BMADTemplateEngine {
      * Perform variable substitution on template
      */
     performVariableSubstitution(template, context) {
-        let processedTemplate = JSON.parse(JSON.stringify(template));
+        const processedTemplate = JSON.parse(JSON.stringify(template));
         const { variables, computedValues } = context;
 
         // Recursive substitution function
@@ -646,7 +647,7 @@ class BMADTemplateEngine {
                 case 'npm_package_root':
                     return variables.get('NPM_PACKAGE_ROOT') || '';
                 case 'output_folder':
-                    return variables.get('OUTPUT_FOLDER') || '_bmad-output/' + variables.get('TEAM_MODULE_CODE');
+                    return variables.get('OUTPUT_FOLDER') || `_bmad-output/${  variables.get('TEAM_MODULE_CODE')}`;
                 case 'value':
                     return match; // Keep as-is for bmad-builder processing
                 default:
@@ -716,7 +717,7 @@ class BMADTemplateEngine {
                 return newConfig;
             }
 
-            const existingConfig = yaml.parse(fs.readFileSync(existingConfigPath, 'utf8'));
+            const existingConfig = yaml.parse(normalizeLineEndings(fs.readFileSync(existingConfigPath, 'utf8')));
 
             switch (mergeStrategy) {
                 case 'replace':
@@ -991,7 +992,7 @@ class BMADTemplateEngine {
         try {
             const templatePath = path.join(__dirname, 'module.yaml.template');
             if (fs.existsSync(templatePath)) {
-                const content = fs.readFileSync(templatePath, 'utf8');
+                const content = normalizeLineEndings(fs.readFileSync(templatePath, 'utf8'));
                 const template = yaml.parse(content);
                 this.templates.set('team-module-base', template);
             } else {
@@ -1195,7 +1196,7 @@ npm install ${config.npm.full_name}@${config.version}
 
 # Create output directories
 echo "Creating output directories..."
-mkdir -p ${config.configuration?.outputFolder || '_bmad-output/' + teamCode}
+mkdir -p ${config.configuration?.outputFolder || `_bmad-output/${  teamCode}`}
 
 # Run post-install verification
 echo "Running post-install verification..."

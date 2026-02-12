@@ -523,20 +523,20 @@ export class DiscoverySuite extends EventEmitter {
 }
 
 // Import required types for exports
-import { PackageMetadata, IPackageIndex, ISecurityScanner, ICacheManager } from '../interfaces';
+import { ICacheManager, IPackageIndex, ISecurityScanner, PackageMetadata } from '../interfaces';
 import {
-  DiscoveryQuery,
+  AlternativePackage,
+  DiscoveryConfiguration,
   DiscoveryContext,
+  DiscoveryQuery,
   DiscoveryResult,
   EnrichedPackageInfo,
-  DiscoveryConfiguration,
-  SearchIntent,
   PackageWarning,
-  AlternativePackage,
-  RecommendationRequest,
   RecommendationContext,
+  RecommendationCriteria,
+  RecommendationRequest,
   RecommendationResult,
-  RecommendationCriteria
+  SearchIntent
 } from './package-discovery-engine';
 
 // Export version information

@@ -10,8 +10,8 @@ Before installing BMAD-CYBER, ensure your system meets the following requirement
 
 | Requirement | Version | Notes |
 |-------------|---------|-------|
-| **Node.js** | >= 18.0.0 | Required for the installer and runtime |
-| **npm** or **npx** | >= 9.0.0 | Comes with Node.js |
+| **Node.js** | >= 20.0.0 | Required for the installer and runtime |
+| **npm** or **npx** | >= 10.0.0 | Comes with Node.js |
 | **Git** | Any | Optional, only needed for `--from-git` installation |
 
 ### Verifying Prerequisites
@@ -19,11 +19,11 @@ Before installing BMAD-CYBER, ensure your system meets the following requirement
 ```bash
 # Check Node.js version
 node --version
-# Should output: v18.0.0 or higher
+# Should output: v20.0.0 or higher
 
 # Check npm version
 npm --version
-# Should output: 9.0.0 or higher
+# Should output: 10.0.0 or higher
 
 # Check Git (optional)
 git --version
@@ -46,6 +46,7 @@ npx bmad-cybersec install
 ```
 
 The installer will:
+
 1. Download the latest BMAD-CYBER release
 2. Extract framework files to your project
 3. Configure package.json with required dependencies
@@ -211,6 +212,7 @@ cat CLAUDE.md | head -20
 ```
 
 Expected directory structure:
+
 ```
 your-project/
 ├── _bmad/                  # BMAD framework core
@@ -236,6 +238,7 @@ npm run health
 ```
 
 The health check verifies:
+
 - Required directories exist
 - Configuration files are valid
 - Dependencies are installed
@@ -295,6 +298,7 @@ npx bmad-cybersec update
 ```
 
 The update process:
+
 1. Detects current version
 2. Downloads the latest release
 3. Backs up your configurations
@@ -331,6 +335,7 @@ npx bmad-cybersec update --force
 ### Preserved During Updates
 
 The following configurations are automatically preserved during updates:
+
 - `_bmad/core/config.yaml`
 - `_bmad/_config/` (all custom configurations)
 - `.claude/settings.local.json`
@@ -362,6 +367,7 @@ To completely remove BMAD-CYBER from your project:
    Edit `package.json` to remove BMAD-specific scripts and dependencies:
 
    **Scripts to remove:**
+
    ```json
    {
      "scripts": {
@@ -375,6 +381,7 @@ To completely remove BMAD-CYBER from your project:
    ```
 
    **Dependencies to remove:**
+
    ```json
    {
      "dependencies": {

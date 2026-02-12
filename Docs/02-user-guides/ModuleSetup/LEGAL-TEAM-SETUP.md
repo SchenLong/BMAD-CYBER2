@@ -9,6 +9,7 @@ Complete setup guide for the BMAD-CYBER2 Legal Team module.
 > **The Legal-Team module is designed for Party Mode support and team orchestration only.**
 >
 > The module creator is NOT a legal professional. This module:
+>
 > - Does NOT provide legal advice
 > - Does NOT replace qualified legal counsel
 > - Is intended for workflow orchestration and document drafting assistance
@@ -168,6 +169,7 @@ Counsel: Please describe the legal matter.
 ### Step 4: Receive Routing
 
 Counsel analyzes and routes to appropriate:
+
 - Jurisdiction specialist(s)
 - Practice area expert(s)
 - Recommended workflow(s)
@@ -175,6 +177,7 @@ Counsel analyzes and routes to appropriate:
 ### Step 5: Proceed with Specialized Workflow
 
 Based on routing, Counsel may recommend:
+
 - Contract Review for agreement analysis
 - Dispute Strategy for conflict situations
 - Corporate Formation for entity structuring
@@ -245,6 +248,7 @@ permissions:
 ```
 
 **Key Points:**
+
 - No shell commands allowed (security restriction)
 - Network access for legal research
 - Sensitive data flag enabled (triggers local LLM routing)

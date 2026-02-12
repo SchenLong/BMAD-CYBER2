@@ -20,6 +20,7 @@ Tax specialist (Tribute) analyzes the tax implications of the selected structure
 ### 2. Tax Analysis by Jurisdiction
 
 **USA Entity Tax Analysis:**
+
 - Federal tax classification (default vs. election)
 - State tax obligations
 - Pass-through vs. corporate taxation
@@ -28,6 +29,7 @@ Tax specialist (Tribute) analyzes the tax implications of the selected structure
 - SALT deduction impacts
 
 **Spain Entity Tax Analysis:**
+
 - Impuesto sobre Sociedades (Corporate Tax)
 - VAT/IVA obligations
 - Withholding on dividends
@@ -36,6 +38,7 @@ Tax specialist (Tribute) analyzes the tax implications of the selected structure
 - Annual reporting obligations
 
 **Estonia Entity Tax Analysis:**
+
 - 0% retained earnings treatment
 - Distribution taxation (20% or 14%)
 - VAT registration thresholds
@@ -48,18 +51,21 @@ Tax specialist (Tribute) analyzes the tax implications of the selected structure
 Analyze impact on owners:
 
 **US Resident Owners:**
+
 - CFC/PFIC considerations (foreign entities)
 - GILTI implications
 - Form 5471/8865 requirements
 - FBAR/FATCA obligations
 
 **EU Resident Owners:**
+
 - CFC rules by residence country
 - Dividend taxation
 - Capital gains on disposal
 - Wealth tax considerations
 
 **Spain Resident Owners:**
+
 - IRPF implications
 - Modelo 720 requirements
 - Exit tax considerations

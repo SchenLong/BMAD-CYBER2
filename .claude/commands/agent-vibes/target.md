@@ -5,6 +5,7 @@ description: Set the language you want to learn
 Set the target language you want to learn. When learning mode is enabled, TTS will speak in your main language FIRST, then speak the translation in your target language.
 
 Usage:
+
 ```
 /agent-vibes:target spanish
 /agent-vibes:target french
@@ -12,6 +13,7 @@ Usage:
 ```
 
 Recommended voices by target language:
+
 - Spanish → Antoni (Piper TTS) / es_ES-davefx-medium (Piper)
 - French → Rachel (Piper TTS) / fr_FR-siwis-medium (Piper)
 - German → Domi (Piper TTS) / de_DE-thorsten-medium (Piper)
@@ -24,6 +26,7 @@ Recommended voices by target language:
 **Note:** The system will automatically suggest the correct voice based on your active TTS provider. After setting your target language, the suggestion will match whether you're using Piper TTS or Piper.
 
 After setting your target language:
+
 1. Set the voice for target language with `/agent-vibes:target-voice <voice>`
 2. Enable learning mode with `/agent-vibes:learn`
 

@@ -10,30 +10,33 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 
 # Step 3: Authentication Testing
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide testing, collect results, document findings
 
-## AUTHENTICATION TESTING SEQUENCE:
+## AUTHENTICATION TESTING SEQUENCE
 
 ### 1. Credential Testing
 
 "Let's test credential handling.
 
 **Password Policy:**
+
 - Minimum length?
 - Complexity requirements?
 - Common password blocking?
 
 **Credential Attacks:**
+
 - Brute force protection (lockout after X attempts)?
 - Rate limiting on login endpoint?
 - CAPTCHA implementation?
 - Timing attacks (user enumeration via response time)?
 
 **Testing Questions:**
+
 1. What happens after 5 failed login attempts?
 2. Can you enumerate valid usernames via login errors?
 3. Is the password reset vulnerable to enumeration?
@@ -45,6 +48,7 @@ What have you observed or tested?"
 "Now let's analyze session tokens.
 
 **Token Characteristics:**
+
 - Cookie or header-based?
 - Secure and HttpOnly flags set?
 - SameSite attribute?
@@ -52,6 +56,7 @@ What have you observed or tested?"
 - Predictable patterns?
 
 **Session Behavior:**
+
 - Session timeout configured?
 - Session invalidated on logout?
 - Concurrent session handling?
@@ -64,12 +69,14 @@ What session token details can you share?"
 "Let's examine password reset security.
 
 **Reset Token Analysis:**
+
 - Token length and entropy?
 - Token expiration time?
 - Single-use enforcement?
 - Transmitted via URL or POST?
 
 **Reset Vulnerabilities:**
+
 - Host header injection?
 - Token leakage in referer?
 - Account takeover via reset?
@@ -82,6 +89,7 @@ Have you tested the password reset functionality?"
 "If MFA is implemented, let's test it.
 
 **MFA Bypass Attempts:**
+
 - Can MFA step be skipped by manipulating flow?
 - Backup codes secure?
 - SMS/email code brute-forceable?
@@ -95,12 +103,14 @@ What MFA testing have you performed?"
 "For OAuth/OIDC/SAML implementations:
 
 **OAuth Security:**
+
 - State parameter implemented?
 - Redirect URI validation (open redirect)?
 - Token leakage in URL fragments?
 - Scope escalation possible?
 
 **SAML Security:**
+
 - XML signature validation?
 - XXE vulnerabilities?
 - Comment injection?
@@ -158,6 +168,7 @@ Append to {outputFile} Section 3:
 "**Authentication Testing Complete**
 
 **Findings:**
+
 - [Count] authentication vulnerabilities identified
 - [Highest severity] is the most critical
 - [Key finding summary]
@@ -172,4 +183,4 @@ Display: [C] Continue to Authorization Testing [R] Review/Add Auth Findings [E] 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3]`, then follow {nextStepFile}.

@@ -18,6 +18,7 @@ counterparty: ""
 ## 1. Negotiation Context
 
 ### Parties Involved
+
 | Party | Role | Key Representative |
 |-------|------|-------------------|
 | Us | | |
@@ -25,6 +26,7 @@ counterparty: ""
 | Others | | |
 
 ### Stakes
+
 **What we want:**
 
 **What they want:**
@@ -32,9 +34,11 @@ counterparty: ""
 **What's at risk if no agreement:**
 
 ### History
+
 [Relevant past interactions, relationships, precedents]
 
 ### Timeline
+
 - Negotiation deadline:
 - Key milestones:
 - External pressures:
@@ -44,16 +48,19 @@ counterparty: ""
 ## 2. BATNA Analysis
 
 ### Our BATNA (Best Alternative to Negotiated Agreement)
+
 **If no deal, we will:**
 
 **Strength of our BATNA:** Weak / Moderate / Strong
 
 ### Their BATNA
+
 **If no deal, they will:**
 
 **Strength of their BATNA:** Weak / Moderate / Strong
 
 ### ZOPA (Zone of Possible Agreement)
+
 [Where our acceptable range overlaps with theirs]
 
 ---
@@ -61,6 +68,7 @@ counterparty: ""
 ## 3. Interest Mapping
 
 ### Our Interests (Geneva's Analysis)
+
 | Interest | Priority | Flexible? |
 |----------|----------|-----------|
 | | High/Med/Low | Yes/No |
@@ -71,6 +79,7 @@ counterparty: ""
 **Hidden interests:**
 
 ### Their Interests
+
 | Interest | Priority | Flexible? |
 |----------|----------|-----------|
 | | High/Med/Low | Yes/No |
@@ -81,6 +90,7 @@ counterparty: ""
 **Hidden interests:**
 
 ### Shared Interests
+
 [Where our interests align]
 
 ---
@@ -88,6 +98,7 @@ counterparty: ""
 ## 4. Power Analysis (Magnus's Assessment)
 
 ### Power Sources - Us
+
 | Power Type | Strength | How to Leverage |
 |------------|----------|-----------------|
 | Information | | |
@@ -98,14 +109,17 @@ counterparty: ""
 | Resources | | |
 
 ### Power Sources - Them
+
 | Power Type | Strength | Watch For |
 |------------|----------|-----------|
 | | | |
 
 ### Power Balance
+
 **Overall assessment:** We have advantage / Balanced / They have advantage
 
 ### Coalition Opportunities
+
 [Third parties who could strengthen our position]
 
 ---
@@ -113,6 +127,7 @@ counterparty: ""
 ## 5. Argument Arsenal (Cicero's Preparation)
 
 ### Our Core Arguments
+
 1. **Argument:**
    - **Evidence:**
    - **Counter anticipated:**
@@ -129,6 +144,7 @@ counterparty: ""
    - **Rebuttal:**
 
 ### Their Likely Arguments
+
 1. **They'll say:**
    - **Our response:**
 
@@ -136,10 +152,12 @@ counterparty: ""
    - **Our response:**
 
 ### Phrases to Use
+
 -
 -
 
 ### Phrases to Avoid
+
 -
 -
 
@@ -148,11 +166,13 @@ counterparty: ""
 ## 6. Tactical Options (Sun & Musashi)
 
 ### Timing Considerations
+
 **Best time to negotiate:**
 **Worst time to negotiate:**
 **Key moments to watch:**
 
 ### Opening Strategy
+
 | Approach | Pros | Cons |
 |----------|------|------|
 | Anchor high | | |
@@ -162,11 +182,13 @@ counterparty: ""
 **Recommendation:**
 
 ### Concession Strategy
+
 | Concession | When to Offer | What to Get |
 |------------|---------------|-------------|
 | | | |
 
 ### If Deadlocked
+
 **Option 1:**
 **Option 2:**
 **Walk-away point:**
@@ -176,22 +198,27 @@ counterparty: ""
 ## 7. Message Framework (Giuseppe's Talking Points)
 
 ### Opening Statement
+
 [How to frame the negotiation from the start]
 
 ### Key Messages
+
 1.
 2.
 3.
 
 ### Value Proposition
+
 [How to articulate what we bring]
 
 ### Bridging Phrases
+
 - "I understand your concern about X, and here's how we can address that..."
 - "Building on what you said..."
 - "What if we looked at this differently..."
 
 ### If Things Get Tense
+
 [De-escalation language]
 
 ---
@@ -199,16 +226,19 @@ counterparty: ""
 ## 8. Scenario Planning
 
 ### Best Case Scenario
+
 **They agree to:**
 **We concede:**
 **Net outcome:**
 
 ### Realistic Scenario
+
 **They agree to:**
 **We concede:**
 **Net outcome:**
 
 ### Worst Case Scenario
+
 **They demand:**
 **We must:**
 **Walk-away trigger:**
@@ -225,7 +255,9 @@ counterparty: ""
 | Decision Maker | | Final authority if needed |
 
 ### Signals
+
 [How to communicate during negotiation]
+
 - Need a break:
 - Agree to this:
 - Don't agree:
@@ -250,12 +282,15 @@ counterparty: ""
 ## 11. Post-Negotiation
 
 ### Documentation
+
 [What to document during/after]
 
 ### Follow-Up
+
 [Next steps after negotiation]
 
 ### Relationship Maintenance
+
 [How to preserve relationship regardless of outcome]
 
 ---
@@ -263,8 +298,10 @@ counterparty: ""
 ## Appendix
 
 ### Research & Sources
+
 -
 -
 
 ### Methodology
+
 This playbook was developed using the Stakeholder Negotiation Prep workflow with analysis from Geneva (interests), Magnus (power), Cicero (arguments), Sun (strategy), Musashi (timing), and Giuseppe (messaging).

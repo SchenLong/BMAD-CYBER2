@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/ai-safety/jailbreak.js')
+import('../dist/src/ai-safety/jailbreak.js')
   .then((module) => {
     module.main();
   })

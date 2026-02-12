@@ -17,11 +17,13 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 ### Token Validation (5 minutes)
 
 - [ ] Verify authentication is working
+
   ```bash
   node _bmad/core/security/validate-token.js
   ```
 
 - [ ] Check for token expiration warnings
+
   ```bash
   grep "expir" .claude/logs/security.log | tail -5
   ```
@@ -29,16 +31,19 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 ### Security Log Review (10 minutes)
 
 - [ ] Check for security violations
+
   ```bash
   grep "security.violation" _bmad-output/.audit/audit.log | tail -10
   ```
 
 - [ ] Review authentication failures
+
   ```bash
   grep "auth.failure" _bmad-output/.audit/audit.log | tail -10
   ```
 
 - [ ] Check for access denied events
+
   ```bash
   grep "access.denied" _bmad-output/.audit/audit.log | tail -10
   ```
@@ -46,6 +51,7 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 ### YOLO Mode Audit (5 minutes)
 
 - [ ] Review any YOLO mode activations
+
   ```bash
   grep "yolo" _bmad-output/.audit/audit.log | tail -10
   ```
@@ -60,6 +66,7 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 ### Validator Health Check (15 minutes)
 
 - [ ] Verify all validators are present and executable
+
   ```bash
   for f in .claude/validators-node/bin/*.js; do
     node --check "$f" 2>/dev/null && echo "OK: $f" || echo "ERROR: $f"
@@ -67,12 +74,14 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
   ```
 
 - [ ] Check validator permissions
+
   ```bash
   ls -la .claude/validators-node/bin/*.js | grep -v "^-rw"
   # Should return empty (all files should be readable)
   ```
 
 - [ ] Test critical validators
+
   ```bash
   # Test bash safety validator
   echo '{"tool_name": "Bash", "tool_input": {"command": "echo test"}}' | \
@@ -83,11 +92,13 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 ### Token Rotation Check (10 minutes)
 
 - [ ] Review token expiration dates
+
   ```bash
   node _bmad/core/security/validate-token.js | grep "expires"
   ```
 
 - [ ] Rotate tokens expiring within 24 hours
+
   ```bash
   # If token expires soon:
   node _bmad/core/security/quick-token.cjs "User" "role" 168
@@ -96,11 +107,13 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 ### RBAC Audit (15 minutes)
 
 - [ ] Review current role assignments
+
   ```bash
   node _bmad/core/security/check-authorization.js roles
   ```
 
 - [ ] Verify no unauthorized role escalations
+
   ```bash
   grep "role" .claude/logs/security.log | grep -i "change\|escalat\|modif" | tail -10
   ```
@@ -111,6 +124,7 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
 ### Audit Log Integrity (10 minutes)
 
 - [ ] Verify audit log hash chain
+
   ```bash
   python3 << 'EOF'
   import json
@@ -128,6 +142,7 @@ This checklist defines regular security maintenance procedures for BMAD-CYBER2. 
   ```
 
 - [ ] Check log file permissions
+
   ```bash
   ls -la _bmad-output/.audit/audit.log
   # Should be owned by appropriate user
@@ -158,31 +173,38 @@ echo "Access Denied: $(grep -c 'access.denied' _bmad-output/.audit/audit.log)"
 #### Configuration Review
 
 - [ ] Review RBAC configuration
+
   ```bash
   cat _bmad/core/security/rbac-config.yaml
   ```
+
   - Verify role definitions are appropriate
   - Check module restrictions are current
   - Confirm workflow restrictions are accurate
 
 - [ ] Review authentication configuration
+
   ```bash
   cat _bmad/core/security/auth-config.yaml
   ```
+
   - Verify token expiration settings
   - Check session timeout values
   - Confirm allowed roles list
 
 - [ ] Review hook configuration
+
   ```bash
   cat .claude/settings.json | jq '.hooks'
   ```
+
   - Verify all security validators are configured
   - Check for any disabled validators
 
 #### Access Review
 
 - [ ] Generate user access report
+
   ```bash
   # List all users with their roles
   for f in $(find . -name ".bmad-token" 2>/dev/null); do
@@ -202,12 +224,14 @@ echo "Access Denied: $(grep -c 'access.denied' _bmad-output/.audit/audit.log)"
 #### Encryption Key Review
 
 - [ ] Verify encryption key age
+
   ```bash
   stat -f "%Sm" .bmad-key
   # Consider rotation if older than 90 days
   ```
 
 - [ ] Verify key file permissions
+
   ```bash
   ls -la .bmad-key
   # Must be -rw------- (0600)
@@ -216,12 +240,14 @@ echo "Access Denied: $(grep -c 'access.denied' _bmad-output/.audit/audit.log)"
 ### Vulnerability Assessment (2 hours)
 
 - [ ] Review validator code for vulnerabilities
+
   ```bash
   # Static analysis of Python validators
   bandit -r .claude/validators/ 2>/dev/null || echo "Install bandit: pip install bandit"
   ```
 
 - [ ] Check for outdated dependencies
+
   ```bash
   npm audit 2>/dev/null
   pip check 2>/dev/null
@@ -234,18 +260,21 @@ echo "Access Denied: $(grep -c 'access.denied' _bmad-output/.audit/audit.log)"
 ### Log Retention Management (30 minutes)
 
 - [ ] Archive old logs
+
   ```bash
   # Compress logs older than 30 days
   find _bmad-output/.audit/ -name "*.log" -mtime +30 -exec gzip {} \;
   ```
 
 - [ ] Remove expired logs
+
   ```bash
   # Remove logs older than retention period (90 days)
   find _bmad-output/.audit/ -name "*.gz" -mtime +90 -delete
   ```
 
 - [ ] Verify log storage usage
+
   ```bash
   du -sh _bmad-output/.audit/
   ```
@@ -267,6 +296,7 @@ echo "Access Denied: $(grep -c 'access.denied' _bmad-output/.audit/audit.log)"
 - [ ] Schedule rotation window
 
 - [ ] Execute key rotation
+
   ```bash
   # 1. Backup current key (encrypted)
   gpg -c .bmad-key -o .bmad-key.backup.gpg
@@ -386,17 +416,20 @@ echo "Access Denied: $(grep -c 'access.denied' _bmad-output/.audit/audit.log)"
 If a token is suspected compromised:
 
 1. **Immediate:** Revoke the compromised token
+
    ```bash
    rm .bmad-token
    ```
 
 2. **If key compromised:** Rotate encryption key
+
    ```bash
    rm .bmad-key
    node _bmad/core/security/generate-key.js
    ```
 
 3. **Audit:** Review recent activity
+
    ```bash
    grep "$(date +%Y-%m-%d)" _bmad-output/.audit/audit.log | jq .
    ```
@@ -408,17 +441,20 @@ If a token is suspected compromised:
 If a validator is failing:
 
 1. **Diagnose:** Test validator manually
+
    ```bash
    echo '{"tool_name": "Bash", "tool_input": {"command": "echo test"}}' | \
      python3 .claude/validators/<validator>.py
    ```
 
 2. **Check logs:**
+
    ```bash
    tail -50 .claude/logs/validation.log
    ```
 
 3. **Restore:** If corrupted, restore from git
+
    ```bash
    git checkout .claude/validators/<validator>.py
    ```
@@ -430,11 +466,13 @@ If a validator is failing:
 If hash chain is broken:
 
 1. **Preserve evidence:**
+
    ```bash
    cp _bmad-output/.audit/audit.log /tmp/audit-evidence-$(date +%s).log
    ```
 
 2. **Identify breach point:**
+
    ```bash
    python3 verify-audit-chain.py
    ```

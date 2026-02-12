@@ -10,23 +10,23 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  ESSENTIAL_FEATURES,
   buildFeatureChoices,
-  validateFeatureSelection,
+  determineEffectiveTier,
+  ESSENTIAL_FEATURES,
   getFeatureSummary,
-  determineEffectiveTier
+  validateFeatureSelection
 } from './advanced-override.js';
 
 import {
-  getTierFeatures,
   FEATURE_DETAILS,
-  getFeaturesByTier
+  getFeaturesByTier,
+  getTierFeatures
 } from './tier-definitions.js';
 
 // ESM equivalent of __dirname
@@ -354,13 +354,13 @@ describe('Advanced Security Override - INST-010', () => {
       expect(moduleContent).toMatch(/from\s+['"]\.\/tier-definitions\.js['"]/);
     });
 
-    it('should import inquirer and chalk', async () => {
+    it('should import prompts abstraction and chalk', async () => {
       const moduleContent = fs.readFileSync(
         path.join(__dirname, 'advanced-override.js'),
         'utf8'
       );
 
-      expect(moduleContent).toMatch(/import\s+inquirer/);
+      expect(moduleContent).toMatch(/from\s+['"]\.\.\/\.\.\/cli\/prompts\.js['"]/);
       expect(moduleContent).toMatch(/import\s+chalk/);
     });
   });

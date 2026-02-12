@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Operational Due Diligence
 
-## STEP GOAL:
+## STEP GOAL
 
 Conduct thorough operational due diligence covering operations, technology, talent, and culture to assess integration complexity and identify operational value creation opportunities.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor with Lee (Technocrat) providing operational expertise
 - Focus on operational realities and integration feasibility
 - Challenge rosy operational assumptions
 - Identify both opportunities and landmines
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on operational substance, not just financials
 - FORBIDDEN to skip culture assessment
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Operations Assessment
 
@@ -62,18 +63,21 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's assess the technology landscape:"
 
 **Core technology:**
+
 - What technology/IP is driving value?
 - How differentiated is it?
 - What's the technical debt situation?
 - Is the technology scalable?
 
 **IT infrastructure:**
+
 - What systems are in use (ERP, CRM, etc.)?
 - How compatible with acquirer systems?
 - What's the cybersecurity posture?
 - Data management and privacy compliance?
 
 **Integration considerations:**
+
 - System integration complexity
 - Data migration requirements
 - Technology redundancies
@@ -86,18 +90,21 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's assess the talent situation:"
 
 **Key personnel:**
+
 - Who are the critical employees?
 - What retention risks exist?
 - Are there key person dependencies?
 - What's the leadership quality?
 
 **Workforce analysis:**
+
 - Total headcount by function
 - Compensation comparison
 - Talent gaps or surpluses
 - Union or employment issues
 
 **Retention strategy:**
+
 - Who must be retained?
 - What retention mechanisms needed?
 - Expected voluntary attrition?
@@ -120,6 +127,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Management approach | | | |
 
 **Culture integration considerations:**
+
 - Degree of integration needed
 - Culture clash risks
 - Change management requirements
@@ -138,6 +146,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - At-risk relationships
 
 **Revenue quality:**
+
 - Recurring vs. one-time revenue
 - Revenue recognition practices
 - Pipeline health
@@ -204,10 +213,12 @@ Update frontmatter: Add `step-04-operational-diligence` to stepsCompleted
 **Overall Operational Health:** [Strong/Adequate/Concerning]
 
 **Technology Position:**
+
 - Strengths: [list]
 - Concerns: [list]
 
 **Talent Situation:**
+
 - Critical retention: [count] people
 - Risk level: [assessment]
 
@@ -216,6 +227,7 @@ Update frontmatter: Add `step-04-operational-diligence` to stepsCompleted
 **Integration Complexity:** [rating]
 
 **Key Operational Risks:**
+
 - [top 3 risks]
 
 **Lee's View:** [brief]
@@ -225,21 +237,24 @@ Update frontmatter: Add `step-04-operational-diligence` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysis [C] Continue to Risk Identification"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-05-risk-identification.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Operations thoroughly assessed
 - Technology evaluated
 - Talent and retention analyzed
@@ -247,7 +262,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Integration complexity quantified
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping culture assessment
 - Not identifying key people
 - Ignoring integration complexity

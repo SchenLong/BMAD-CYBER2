@@ -1,0 +1,11 @@
+code: "no-prompt"
+name: "No Prompt Module"
+default_selected: false
+module_code:
+  result: "no-prompt"
+module_version:
+  result: "1.0.0"
+agents_path:
+  result: "{project-root}/_bmad/no-prompt/agents"
+workflows_path:
+  result: "{project-root}/_bmad/no-prompt/workflows"

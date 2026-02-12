@@ -76,7 +76,7 @@ class FilterRegistry {
             return new Intl.NumberFormat(locale, { style: "currency", currency }).format(value);
         });
         this.register("percent", (value, decimals = 0) => {
-            return (Number(value) * 100).toFixed(decimals) + "%";
+            return `${(Number(value) * 100).toFixed(decimals)  }%`;
         });
 
         // Date filters
@@ -161,7 +161,7 @@ class FilterRegistry {
     apply(name, value, ...args) {
         const filter = this.filters.get(name);
         if (!filter) {
-            throw new Error("Unknown filter: " + name);
+            throw new Error(`Unknown filter: ${  name}`);
         }
         return filter(value, ...args);
     }
@@ -388,10 +388,11 @@ class TemplateRenderer {
                 await this.renderNodes(node.children, context, output);
                 break;
 
-            case "include":
+            case "include": {
                 const included = await this.engine.render(node.template, context);
                 output.push(included);
                 break;
+            }
         }
     }
 
@@ -456,8 +457,8 @@ class TemplateRenderer {
                 const rightVal = this.getValue(right, context) || this.parseValue(right);
 
                 switch (op) {
-                    case "==": return leftVal == rightVal;
-                    case "!=": return leftVal != rightVal;
+                    case "==": return leftVal === rightVal;
+                    case "!=": return leftVal !== rightVal;
                     case ">=": return leftVal >= rightVal;
                     case "<=": return leftVal <= rightVal;
                     case ">": return leftVal > rightVal;
@@ -484,7 +485,7 @@ class TemplateRenderer {
         // Parse for loop: for item in items
         const match = /^(\w+)\s+in\s+(.+)$/.exec(node.condition);
         if (!match) {
-            throw new Error("Invalid for loop syntax: " + node.condition);
+            throw new Error(`Invalid for loop syntax: ${  node.condition}`);
         }
 
         const [, itemVar, collectionVar] = match;
@@ -583,7 +584,7 @@ class BMADTemplateEngine extends EventEmitter {
                     const fullPath = path.join(dir, entry.name);
 
                     if (entry.isDirectory()) {
-                        await loadDir(fullPath, prefix + entry.name + "/");
+                        await loadDir(fullPath, `${prefix + entry.name  }/`);
                     } else if (entry.isFile()) {
                         const ext = path.extname(entry.name);
                         if ([".html", ".yaml", ".json", ".md", ".txt"].includes(ext)) {
@@ -601,7 +602,7 @@ class BMADTemplateEngine extends EventEmitter {
         };
 
         await loadDir(this.options.templateDir);
-        console.log("[TemplateEngine] Loaded " + this.templates.size + " templates");
+        console.log(`[TemplateEngine] Loaded ${  this.templates.size  } templates`);
     }
 
     watchTemplates() {
@@ -609,7 +610,7 @@ class BMADTemplateEngine extends EventEmitter {
             const { watch } = require("fs");
             watch(this.options.templateDir, { recursive: true }, async (eventType, filename) => {
                 if (filename) {
-                    console.log("[TemplateEngine] Template changed: " + filename);
+                    console.log(`[TemplateEngine] Template changed: ${  filename}`);
                     await this.loadTemplates();
                     this.clearCache();
                 }
@@ -646,7 +647,7 @@ class BMADTemplateEngine extends EventEmitter {
 
         const template = this.templates.get(name);
         if (!template) {
-            throw new Error("Template not found: " + name);
+            throw new Error(`Template not found: ${  name}`);
         }
 
         this.metrics.compilations++;
@@ -711,7 +712,7 @@ class BMADTemplateEngine extends EventEmitter {
             .createHash("md5")
             .update(JSON.stringify(context))
             .digest("hex");
-        return name + ":" + contextHash;
+        return `${name  }:${  contextHash}`;
     }
 
     clearCache() {
@@ -739,7 +740,7 @@ class BMADTemplateEngine extends EventEmitter {
             compiledCacheSize: this.compiledCache.size,
             renderCacheSize: this.renderCache.size,
             cacheHitRate: this.metrics.totalRenders > 0
-                ? ((this.metrics.cacheHits / this.metrics.totalRenders) * 100).toFixed(2) + "%"
+                ? `${((this.metrics.cacheHits / this.metrics.totalRenders) * 100).toFixed(2)  }%`
                 : "N/A"
         };
     }

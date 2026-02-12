@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Daily Evidence Verification Cron Job
  * Runs automated verification of all evidence manifests
@@ -18,7 +17,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { verifyEvidence, generateVerificationReport, registerAlertHandler } from '../evidence-integrity.js';
+import { generateVerificationReport, registerAlertHandler, verifyEvidence } from '../evidence-integrity.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -68,7 +67,7 @@ function logResult(message, level = 'INFO') {
         if (!fs.existsSync(logDir)) {
             fs.mkdirSync(logDir, { recursive: true });
         }
-        fs.appendFileSync(LOG_FILE, logLine + '\n');
+        fs.appendFileSync(LOG_FILE, `${logLine  }\n`);
     } catch (err) {
         console.error(`Failed to write log: ${err.message}`);
     }

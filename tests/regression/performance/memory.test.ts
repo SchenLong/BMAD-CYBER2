@@ -37,7 +37,7 @@ describe('Memory Usage', () => {
     });
 
     it('should have authorization module under memory limit', () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const stats = fs.statSync(authPath);
 
       expect(stats.size).toBeLessThan(MEMORY_THRESHOLDS.FILE_CONTENT_LIMIT);

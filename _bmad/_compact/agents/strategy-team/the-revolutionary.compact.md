@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/the-revolutionary.md
+# Full agent: src/strategy-team/agents/the-revolutionary.md
 agent_id: "the-revolutionary"
 name: "Maximilien"
 title: "The Revolutionary - Agent of Change"

@@ -102,6 +102,7 @@ _To be populated in Step 2_
 **Total Threats Identified:** [To be calculated in Step 2]
 
 **By Category:**
+
 - Spoofing (S): [Count]
 - Tampering (T): [Count]
 - Repudiation (R): [Count]

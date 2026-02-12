@@ -13,24 +13,24 @@ import { performance } from 'perf_hooks';
 
 // Health Monitoring Integration
 import {
+  ComplianceDashboard,
+  HealthAlert,
   HealthDashboard,
   HealthMetrics,
-  HealthAlert,
-  HealthStatus,
-  SLATracking,
   HealthOverview,
-  RealTimeMetrics,
-  TrendVisualization,
-  ComplianceDashboard,
+  HealthStatus,
   PredictionDashboard,
-  SLADashboard
+  RealTimeMetrics,
+  SLADashboard,
+  SLATracking,
+  TrendVisualization
 } from '../health/health-monitoring';
 
 // Performance Metrics Integration
 import {
   MetricTimeSeries,
-  PerformanceSnapshot,
-  PerformanceAnomaly
+  PerformanceAnomaly,
+  PerformanceSnapshot
 } from '../metrics/performance-metrics';
 
 // Epic 1 Security Integration

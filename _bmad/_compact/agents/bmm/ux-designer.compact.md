@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmm/agents/ux-designer.md
+# Full agent: src/bmm/agents/ux-designer.md
 agent_id: "ux-designer"
 name: "Sally"
 title: "UX Designer"

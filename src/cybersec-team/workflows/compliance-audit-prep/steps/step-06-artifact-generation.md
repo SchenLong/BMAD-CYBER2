@@ -10,11 +10,11 @@ outputFile: '{output_folder}/compliance/audit-prep-{framework}-{project_name}.md
 
 # Step 6: Audit Artifact Generation
 
-## STEP GOAL:
+## STEP GOAL
 
 To generate all required audit artifacts including control mapping matrices, evidence packages, and stakeholder documentation.
 
-## ARTIFACT GENERATION PROCESS:
+## ARTIFACT GENERATION PROCESS
 
 ### 1. Generate Control Mapping Matrix
 
@@ -27,6 +27,7 @@ From Sections 2 and 3, create comprehensive matrix:
 {complete-control-mapping}
 
 **Export Formats:**
+
 - Excel spreadsheet (for auditors)
 - PDF document (for executives)
 - Markdown (for documentation)
@@ -87,26 +88,31 @@ From Sections 2 and 3, create comprehensive matrix:
 Create 1-2 page summary including:
 
 **Audit Overview:**
+
 - Framework and scope
 - Audit date and duration
 - Organizational impact
 
 **Current Status:**
+
 - Control coverage: {percentage}%
 - Gaps identified: {count}
 - Critical gaps remediated: {count}/{total}
 
 **Readiness Assessment:**
+
 - Overall readiness: {Strong/Moderate/Needs Improvement}
 - Key strengths: {list}
 - Areas of concern: {list}
 
 **Action Items:**
+
 - Critical actions before audit: {list}
 - Responsible parties: {list}
 - Timeline: {dates}
 
 **Risk Assessment:**
+
 - Likelihood of successful audit: {High/Medium/Low}
 - Potential findings: {list}
 - Mitigation strategies: {list}
@@ -244,7 +250,8 @@ Load {nextStepFile}
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
+
 - All audit artifacts generated
 - Control mapping matrix complete
 - Readiness checklist created

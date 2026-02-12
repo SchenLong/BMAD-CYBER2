@@ -210,7 +210,7 @@ components:
     loading_strategy: lazy
     tier: full
     cacheable: true
-    location: "{project-root}/_bmad/core/workflows/party-mode/workflow.md"
+    location: "{project-root}/src/core/workflows/party-mode/workflow.md"
     priority: high
     trigger: party_mode_start
 
@@ -220,7 +220,7 @@ components:
     loading_strategy: conditional
     tier: full
     cacheable: true
-    location: "{project-root}/_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml"
+    location: "{project-root}/src/core/workflows/party-mode/presets/cross-module-groups.yaml"
     condition: using_preset
     priority: medium
 
@@ -920,93 +920,93 @@ agent_quick_map:
   # Core module
   abdul:
     module: core
-    path: "_bmad/core/agents/abdul.md"
+    path: "src/core/agents/abdul.md"
     role: "Master Project Manager"
 
   # BMM module - key agents
   winston:
     module: bmm
-    path: "_bmad/bmm/agents/architect.md"
+    path: "src/bmm/agents/architect.md"
     role: "System Architect"
     alias_for: architect
 
   dev:
     module: bmm
-    path: "_bmad/bmm/agents/dev.md"
+    path: "src/bmm/agents/dev.md"
     role: "Senior Developer"
 
   pm:
     module: bmm
-    path: "_bmad/bmm/agents/pm.md"
+    path: "src/bmm/agents/pm.md"
     role: "Product Manager"
 
   tea:
     module: bmm
-    path: "_bmad/bmm/agents/tea.md"
+    path: "src/bmm/agents/tea.md"
     role: "Test Architect"
 
   # Cybersec module - key agents
   bastion:
     module: cybersec-team
-    path: "_bmad/cybersec-team/agents/security-architect.md"
+    path: "src/cybersec-team/agents/security-architect.md"
     role: "Security Architect"
     alias_for: security-architect
 
   phoenix:
     module: cybersec-team
-    path: "_bmad/cybersec-team/agents/incident-commander.md"
+    path: "src/cybersec-team/agents/incident-commander.md"
     role: "Incident Commander"
     alias_for: incident-commander
 
   # Intel module - key agents
   vector:
     module: intel-team
-    path: "_bmad/intel-team/agents/osint-lead.md"
+    path: "src/intel-team/agents/osint-lead.md"
     role: "Intelligence Operations"
     alias_for: osint-lead
 
 workflow_quick_map:
   # Development workflows
   create-prd:
-    path: "_bmad/bmm/workflows/2-plan-workflows/prd/workflow.md"
+    path: "src/bmm/workflows/2-plan-workflows/prd/workflow.md"
     primary_agent: pm
     module: bmm
 
   create-architecture:
-    path: "_bmad/bmm/workflows/3-solutioning/create-architecture/workflow.md"
+    path: "src/bmm/workflows/3-solutioning/create-architecture/workflow.md"
     primary_agent: architect
     module: bmm
 
   dev-story:
-    path: "_bmad/bmm/workflows/4-implementation/dev-story/workflow.yaml"
+    path: "src/bmm/workflows/4-implementation/dev-story/workflow.yaml"
     primary_agent: dev
     module: bmm
 
   # Intel workflows
   flash-assessment:
-    path: "_bmad/intel-team/workflows/flash-assessment/workflow.md"
+    path: "src/intel-team/workflows/flash-assessment/workflow.md"
     primary_agent: osint-lead
     module: intel-team
 
   # Security workflows
   incident-response:
-    path: "_bmad/cybersec-team/workflows/incident-response-playbook/workflow.md"
+    path: "src/cybersec-team/workflows/incident-response-playbook/workflow.md"
     primary_agent: incident-commander
     module: cybersec-team
 
   threat-modeling:
-    path: "_bmad/cybersec-team/workflows/threat-modeling/workflow.md"
+    path: "src/cybersec-team/workflows/threat-modeling/workflow.md"
     primary_agent: security-architect
     module: cybersec-team
 
   # Core workflows
   party-mode:
-    path: "_bmad/core/workflows/party-mode/workflow.md"
+    path: "src/core/workflows/party-mode/workflow.md"
     primary_agent: null
     module: core
 
   whats-next:
-    path: "_bmad/core/workflows/project-manager/whats-next/workflow.yaml"
+    path: "src/core/workflows/project-manager/whats-next/workflow.yaml"
     primary_agent: abdul
     module: core
 

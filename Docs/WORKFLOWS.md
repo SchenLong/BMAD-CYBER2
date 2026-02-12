@@ -11,6 +11,23 @@ Workflows in the BMAD framework are structured, multi-step processes that guide 
 
 Workflows can be invoked using slash commands (e.g., `/create-prd`) or through the Skill tool.
 
+### Slash Command Routing (v6 Upgrade)
+
+Workflows support both **short commands** and **full paths**:
+
+- **Short command**: `/threat-modeling` (resolves via alias registry)
+- **Full path**: `/bmad:cybersec-team:workflows:threat-modeling` (direct invocation)
+- **Module-prefixed**: `/game:code-review` or `/bmm:code-review` (for disambiguating conflicts)
+
+Short commands are resolved through the slash command router (`_bmad/core/routing/slash-command-router.js`) which provides:
+
+- Input validation (prevents command injection)
+- RBAC enforcement (role-based access control)
+- Audit logging (every invocation logged)
+- Fuzzy matching (typo suggestions)
+
+The alias registry is defined in `_bmad/_config/workflow-aliases.yaml`. See `Docs/02-user-guides/SLASH-COMMAND-REFERENCE.md` for the complete command reference.
+
 ---
 
 ## Workflow Reference by Module

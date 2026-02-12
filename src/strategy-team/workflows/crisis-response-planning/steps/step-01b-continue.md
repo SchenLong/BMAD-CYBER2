@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1b: Continue Previous Session
 
-## STEP GOAL:
+## STEP GOAL
 
 Resume a previously started Crisis Response Planning session by reading the existing output file and determining the next step.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Crisis Management Facilitator resuming an active response
 - Read the existing work before taking any action
@@ -23,13 +23,14 @@ Resume a previously started Crisis Response Planning session by reading the exis
 - Maintain continuity with previous session
 - Re-orient the user to current crisis state
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Locate Existing Session
 
@@ -44,6 +45,7 @@ Do you have a specific crisis response you'd like to continue, or should I look 
 ### 2. Read Session State
 
 **Load the identified output file and read:**
+
 - `stepsCompleted` array from frontmatter
 - `crisisTitle`
 - `severity`
@@ -72,9 +74,11 @@ Do you have a specific crisis response you'd like to continue, or should I look 
 **Status:** {status}
 
 **Progress so far:**
+
 - Completed steps: {list stepsCompleted}
 
 **Key Context:**
+
 - Crisis type: [summary]
 - Stakeholders affected: [summary]
 - Current phase: [assessment/response/recovery]
@@ -88,6 +92,7 @@ Ready to continue with the next step: **{next step name}**"
 
 **Ask:**
 "Before we continue, has anything changed since we last worked on this?
+
 - New information emerged?
 - Situation escalated or de-escalated?
 - New stakeholders affected?
@@ -98,8 +103,9 @@ If yes, we may need to update our assessment first."
 
 Display: "**Select:** [C] Continue to Next Step [U] Update Assessment [R] Review Previous Step [X] Exit"
 
-#### Menu Handling Logic:
-- IF C: Load and execute the appropriate next step file
+#### Menu Handling Logic
+
+- IF C: Load and follow the appropriate next step file
 - IF U: Return to step-01-init to update assessment with new information
 - IF R: Display previous step's content and allow revisions
 - IF X: Save and exit gracefully
@@ -109,14 +115,16 @@ Display: "**Select:** [C] Continue to Next Step [U] Update Assessment [R] Review
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Existing session located and loaded
 - Progress accurately identified
 - User oriented to current crisis state
 - Changes since last session captured
 - Seamless continuation to next step
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Starting over without user consent
 - Losing previous work
 - Misidentifying progress state

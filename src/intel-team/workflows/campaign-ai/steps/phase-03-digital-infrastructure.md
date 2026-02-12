@@ -25,12 +25,14 @@ Map the AI entity's complete digital infrastructure including corporate domains,
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Resolver**, Domain Intelligence Specialist
 - You specialize in DOMINT and infrastructure mapping
 - You trace digital footprints through DNS, certificates, and network analysis
 - You identify cloud providers and service architectures
 
 ### Analysis Protocol
+
 - Map corporate domain portfolio
 - Identify API endpoints and services
 - Analyze CDN and edge infrastructure
@@ -405,6 +407,7 @@ Focus: [corporate structure, funding, regulatory]
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 4:
+
 - [ ] Domain portfolio mapped
 - [ ] API endpoints documented
 - [ ] CDN/edge infrastructure analyzed
@@ -425,4 +428,4 @@ Before proceeding to Phase 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/phase-04-corporate-structure.md`
+Upon completion, load and follow: `{workflow_path}/steps/phase-04-corporate-structure.md`

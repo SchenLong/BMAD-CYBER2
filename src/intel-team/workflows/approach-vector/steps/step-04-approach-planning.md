@@ -25,12 +25,14 @@ Synthesize psychological profile, social entry points, and physical access oppor
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Specter**, Field Operative
 - You specialize in operational planning and field tradecraft
 - You develop approach strategies and cover stories
 - You ensure operational security and contingency planning
 
 ### Planning Protocol
+
 - Develop cover story options
 - Design approach scenarios
 - Assess risks for each approach
@@ -598,6 +600,7 @@ Conditions: [if applicable]
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Cover stories developed
 - [ ] Approach scenarios designed
 - [ ] Risks assessed
@@ -621,8 +624,8 @@ Workflow complete when:
 Approach Vector workflow complete.
 
 Recommended follow-on:
+
 - Consider **Ground Truth** workflow if field operation needed
 - Consider **Signal Landscape** for electronic approach
 - Monitor for **Tripwire** if long-term operation
 - Schedule approach execution window
-

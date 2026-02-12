@@ -20,6 +20,7 @@
 ### Incident Response Prompts
 
 **Incident Response Playbook**
+
 ```
 Incident type: [Malware, ransomware, data breach, unauthorized access, DDoS, insider threat]
 Detection source: [SIEM alert, user report, external notification, threat intel]
@@ -30,6 +31,7 @@ Timeline: [When detected, when started (if known)]
 ```
 
 **Forensic Investigation**
+
 ```
 Incident reference: [Ticket/case number if exists]
 Evidence sources: [Logs, disk images, memory dumps, network captures]
@@ -42,6 +44,7 @@ Timeline constraints: [Reporting deadlines, legal requirements]
 ### Security Assessment Prompts
 
 **Security Architecture Review**
+
 ```
 System/application: [Name and brief description]
 Architecture type: [Monolith, microservices, serverless, hybrid]
@@ -52,6 +55,7 @@ Concerns: [Specific areas you want scrutinized]
 ```
 
 **STRIDE Threat Modeling**
+
 ```
 Application: [Name and purpose]
 Architecture diagram: [Provide or describe data flows]
@@ -62,6 +66,7 @@ Threat actors: [Who might attack - script kiddies to nation-states]
 ```
 
 **Penetration Testing Scope**
+
 ```
 Target: [Applications, networks, APIs - be specific]
 Test type: [Black box, gray box, white box]
@@ -75,6 +80,7 @@ Credentials provided: [User accounts, API keys if gray/white box]
 ### Compliance Prompts
 
 **Compliance Audit Preparation**
+
 ```
 Framework: [SOC2, ISO 27001, PCI-DSS, HIPAA, GDPR, NIST, etc.]
 Audit type: [Initial certification, renewal, surveillance]
@@ -85,6 +91,7 @@ Evidence needed: [Specific controls or documentation gaps]
 ```
 
 **Virtual CISO Consulting**
+
 ```
 Organization: [Size, industry, maturity level]
 Current security posture: [Brief assessment or unknown]
@@ -97,6 +104,7 @@ Regulatory environment: [Applicable compliance requirements]
 ### Technical Assessment Prompts
 
 **Cloud Security Assessment**
+
 ```
 Cloud provider: [AWS, Azure, GCP, multi-cloud]
 Services used: [Compute, storage, databases, serverless, etc.]
@@ -107,6 +115,7 @@ Concerns: [Data exposure, misconfigurations, cost optimization]
 ```
 
 **Web Application Security Testing**
+
 ```
 Application URL: [Target application]
 Technology stack: [Frontend, backend, database, frameworks]
@@ -117,6 +126,7 @@ Previous findings: [Known vulnerabilities or past assessments]
 ```
 
 **Network Security Assessment**
+
 ```
 Network scope: [IP ranges, VLANs, segments]
 Network type: [Corporate, OT/ICS, cloud, hybrid]
@@ -129,6 +139,7 @@ Known concerns: [Legacy systems, shadow IT, recent changes]
 ### Specialized Security Prompts
 
 **Blockchain Security Assessment**
+
 ```
 Platform: [Ethereum, Solana, private chain, etc.]
 Contract addresses: [If auditing deployed contracts]
@@ -139,6 +150,7 @@ Deployment timeline: [When going to mainnet]
 ```
 
 **Mobile Security Testing**
+
 ```
 Platform: [iOS, Android, or both]
 App distribution: [App Store, enterprise, sideload]
@@ -155,6 +167,7 @@ Offline functionality: [What works without connectivity]
 ### Investigation Prompts
 
 **Flash Assessment** (15-min quick scan)
+
 ```
 Target: [Full name / Company name / Domain]
 Context: [Why investigating - business deal, hiring, threat, etc.]
@@ -162,6 +175,7 @@ Priority: [What matters most - reputation, financial, security, connections]
 ```
 
 **Campaign Planner - Individual**
+
 ```
 Subject: [Name, known aliases]
 Known identifiers: [Email, phone, social handles, location]
@@ -171,6 +185,7 @@ Legal basis: [Employment screening, litigation, security clearance, etc.]
 ```
 
 **Campaign Planner - Organization**
+
 ```
 Entity: [Company name, registration jurisdiction]
 Known details: [Website, executives, industry, subsidiaries]
@@ -179,6 +194,7 @@ Depth required: [Surface scan, standard, comprehensive, forensic]
 ```
 
 **Campaign Planner - AI Systems**
+
 ```
 Target: [AI company/model/system name]
 Focus areas: [Training data, capabilities, safety, ownership, deployment]
@@ -188,6 +204,7 @@ Concern type: [Competitive intel, security risk, partnership evaluation, regulat
 ### Threat Analysis Prompts
 
 **Attribution Chain**
+
 ```
 Incident: [Brief description of what happened]
 Available indicators: [IPs, domains, malware hashes, TTPs observed]
@@ -196,6 +213,7 @@ Confidence threshold: [How certain do we need to be before acting]
 ```
 
 **Threat Constellation**
+
 ```
 Known actor: [Name or identifier]
 Observed activity: [What they've done]
@@ -204,6 +222,7 @@ Question: [What's their full capability? Who are they connected to?]
 ```
 
 **Doppelganger Hunt**
+
 ```
 Authentic account: [Real person/entity being impersonated]
 Suspected fakes: [Links to suspicious accounts if any]
@@ -214,6 +233,7 @@ Urgency: [Active fraud, reputation damage, monitoring only]
 ### Digital Forensics Prompts
 
 **Breach Archaeology**
+
 ```
 Entity to check: [Domain, email pattern, company name]
 Known breaches: [Any already aware of]
@@ -222,6 +242,7 @@ Risk priority: [Credentials, PII, financial, strategic]
 ```
 
 **Digital Necromancy**
+
 ```
 Target: [Person or entity]
 What's missing: [Deleted posts, removed pages, historical presence]
@@ -230,6 +251,7 @@ Purpose: [Evidence preservation, pattern analysis, due diligence]
 ```
 
 **Infrastructure Genealogy**
+
 ```
 Domain/IP: [Starting point]
 Question: [Who owned it? What was it used for? What's connected?]
@@ -239,6 +261,7 @@ Time range: [Historical scope needed]
 ### Field Operations Prompts
 
 **Ground Truth** (Physical operation prep)
+
 ```
 Location: [Address or area]
 Objective: [What needs to be observed/verified]
@@ -247,6 +270,7 @@ Risk level: [Low profile, standard, high security environment]
 ```
 
 **Approach Vector** (Social engineering assessment)
+
 ```
 Target: [Individual or organization]
 Objective: [Information needed, access required]
@@ -260,6 +284,7 @@ Ethical bounds: [Authorized pentest, awareness training, threat simulation]
 ### Contract Prompts
 
 **Contract Review**
+
 ```
 Document: [Paste contract or attach file]
 My role: [Which party am I?]
@@ -269,6 +294,7 @@ Deal context: [Strategic importance, negotiation leverage, timeline]
 ```
 
 **Contract Drafting**
+
 ```
 Contract type: [NDA, SaaS, employment, partnership, etc.]
 Parties: [Who's involved and their roles]
@@ -280,6 +306,7 @@ Special requirements: [IP assignment, non-compete, data protection]
 ### Corporate Prompts
 
 **Corporate Formation**
+
 ```
 Business type: [What the company will do]
 Founders: [Who, where located, ownership split]
@@ -289,6 +316,7 @@ Capital: [Initial funding, future fundraising plans]
 ```
 
 **Tax Planning**
+
 ```
 Current structure: [Existing entities, jurisdictions]
 Revenue sources: [Where money comes from]
@@ -300,6 +328,7 @@ Constraints: [Substance requirements, timeline, budget]
 ### Dispute Prompts
 
 **Dispute Strategy**
+
 ```
 Situation: [What happened]
 Parties: [Who's involved]
@@ -310,6 +339,7 @@ Constraints: [Budget, publicity concerns, relationships to preserve]
 ```
 
 **Legal Matter Intake** (When unsure where to start)
+
 ```
 Situation: [Describe what's happening]
 Jurisdiction: [Where this is happening]
@@ -325,6 +355,7 @@ Desired outcome: [What does success look like]
 ### Decision Making Prompts
 
 **Strategic Decision Workshop**
+
 ```
 Decision: [What needs to be decided]
 Options: [Known alternatives - or ask for options]
@@ -335,6 +366,7 @@ Risks you're worried about: [What keeps you up at night]
 ```
 
 **Ethical Dilemma Resolution**
+
 ```
 Situation: [Describe the dilemma]
 Competing values: [What principles are in tension]
@@ -344,6 +376,7 @@ Your instinct: [What you're leaning toward and why]
 ```
 
 **Political Risk Assessment**
+
 ```
 Initiative: [What you're planning]
 Jurisdictions: [Where it operates]
@@ -355,6 +388,7 @@ Scenario to stress-test: [Election change, policy shift, international tension]
 ### Negotiation Prompts
 
 **Stakeholder Negotiation Prep**
+
 ```
 Negotiation: [What you're negotiating]
 Counterparty: [Who and what you know about them]
@@ -364,6 +398,7 @@ Relationship: [One-time, ongoing, power dynamics]
 ```
 
 **Conflict Resolution**
+
 ```
 Conflict: [What's the dispute]
 Parties: [Who's involved, their roles]
@@ -375,6 +410,7 @@ Constraints: [Can't fire anyone, public visibility, legal exposure]
 ### Leadership Prompts
 
 **Board Presentation Prep**
+
 ```
 Topic: [What you're presenting]
 Ask: [What you need from the board - approval, funding, guidance]
@@ -384,6 +420,7 @@ Q&A concerns: [Questions you're dreading]
 ```
 
 **Crisis Response Planning**
+
 ```
 Crisis type: [Data breach, PR disaster, executive departure, etc.]
 Current status: [Brewing, active, post-incident]
@@ -393,6 +430,7 @@ Spokesperson: [Who will communicate]
 ```
 
 **Leadership Transition Planning**
+
 ```
 Role: [Position transitioning]
 Timeline: [When transition happens]
@@ -404,6 +442,7 @@ Risks: [Key relationships, institutional knowledge, team stability]
 ### Competitive Prompts
 
 **Competitive Warfare**
+
 ```
 Competitor: [Who]
 Battlefield: [Market, talent, technology, regulation]
@@ -414,6 +453,7 @@ Rules of engagement: [Legal/ethical boundaries]
 ```
 
 **M&A Due Diligence**
+
 ```
 Target: [Company name]
 Deal type: [Acquisition, merger, investment, partnership]
@@ -428,23 +468,28 @@ Timeline: [Deal velocity]
 ## Tips for Better Results
 
 ### Be Specific
+
 - Bad: "Research this company"
 - Good: "Assess XYZ Corp's financial stability and litigation history for vendor due diligence, focusing on the past 3 years"
 
 ### State Your Goal
+
 - Bad: "Review this contract"
 - Good: "Review this SaaS agreement from vendor's perspective, flag terms that expose us to unlimited liability or allow unilateral changes"
 
 ### Provide Context
+
 - Bad: "Plan for the board meeting"
 - Good: "Prepare board presentation for Q1 results. Revenue missed by 15%, but pipeline is strong. Board includes 2 VCs who may push for cost cuts."
 
 ### Set Boundaries
+
 - Include jurisdiction, budget, timeline, ethical limits
 - State what you can't do (fire people, break contracts, etc.)
 - Mention relationships to preserve
 
 ### Ask for Options
+
 - Instead of "Tell me what to do"
 - Try "Give me 3 options with tradeoffs"
 

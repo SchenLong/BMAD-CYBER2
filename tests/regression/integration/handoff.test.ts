@@ -22,7 +22,7 @@ describe('Agent Handoff', () => {
     });
 
     it('should have session-manager module in core security', () => {
-      const sessionPath = path.join(PROJECT_ROOT, '_bmad/core/security/session-manager.d.ts');
+      const sessionPath = path.join(PROJECT_ROOT, 'src/core/security/session-manager.d.ts');
       expect(fs.existsSync(sessionPath)).toBe(true);
     });
 
@@ -95,7 +95,7 @@ describe('Agent Handoff', () => {
     });
 
     it('should have generate-token module', () => {
-      const tokenPath = path.join(PROJECT_ROOT, '_bmad/core/security/generate-token.d.ts');
+      const tokenPath = path.join(PROJECT_ROOT, 'src/core/security/generate-token.d.ts');
       expect(fs.existsSync(tokenPath)).toBe(true);
     });
 
@@ -217,35 +217,35 @@ describe('Middleware Support', () => {
 
 describe('User Context Handoff', () => {
   it('should define UserContext in authorization module', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     expect(content).toContain('export interface UserContext');
   });
 
   it('should include userId in UserContext', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     expect(content).toContain('userId: string');
   });
 
   it('should include userName in UserContext', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     expect(content).toContain('userName: string');
   });
 
   it('should include modules in UserContext', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     expect(content).toContain('modules: string[]');
   });
 
   it('should include credentialVerified in UserContext', async () => {
-    const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+    const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
     const content = fs.readFileSync(authPath, 'utf-8');
 
     expect(content).toContain('credentialVerified');

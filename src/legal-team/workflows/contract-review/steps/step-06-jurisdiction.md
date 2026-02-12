@@ -16,6 +16,7 @@ Review contract for compliance with applicable jurisdiction's mandatory rules.
 ### 1. Identify Applicable Rules
 
 Based on governing law, identify:
+
 - Mandatory provisions that cannot be waived
 - Consumer protection rules (if B2C)
 - Industry-specific regulations
@@ -24,6 +25,7 @@ Based on governing law, identify:
 ### 2. US-Specific (if applicable)
 
 Check for:
+
 - UCC compliance (if goods)
 - State-specific requirements
 - Federal regulatory compliance
@@ -32,6 +34,7 @@ Check for:
 ### 3. EU-Specific (if applicable)
 
 Check for:
+
 - Consumer Rights Directive compliance
 - Unfair Contract Terms Directive
 - GDPR implications
@@ -40,6 +43,7 @@ Check for:
 ### 4. Spain-Specific (if applicable)
 
 Check for:
+
 - Código Civil requirements
 - Ley de Condiciones Generales
 - Notarial requirements

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * BMAD Version Compatibility System - Core Validation
  * Validates core functionality without exercising all stub methods

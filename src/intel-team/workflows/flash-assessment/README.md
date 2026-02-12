@@ -15,6 +15,7 @@
 ## Purpose
 
 Quick assessment for time-critical intelligence requirements:
+
 - Initial target assessment before deeper investigation
 - Time-sensitive intelligence requirements
 - Quick due diligence checks

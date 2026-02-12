@@ -5,5 +5,5 @@ description: Comprehensive compliance audit preparation across major frameworks 
 
 # Compliance Audit Prep
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/cybersec-team/workflows/compliance-audit-prep/workflow.md`
+Load and follow the workflow at:
+`@src/cybersec-team/workflows/compliance-audit-prep/workflow.md`

@@ -62,7 +62,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -81,6 +81,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Supported Entity Types
 
 ### USA (Liberty)
+
 - LLC (Single-member, Multi-member)
 - C-Corporation
 - S-Corporation
@@ -88,17 +89,20 @@ This uses **step-file architecture** for disciplined execution:
 - Series LLC (where available)
 
 ### EU General (Europa)
+
 - Private Limited Company equivalents
 - Branch registration
 - Representative office
 
 ### Spain (Castile)
+
 - Sociedad Limitada (SL)
 - Sociedad Anónima (SA)
 - Sociedad Limitada Nueva Empresa (SLNE)
 - Branch (Sucursal)
 
 ### Estonia (Europa)
+
 - OÜ (Private Limited Company)
 - AS (Public Limited Company)
 - e-Residency company
@@ -119,6 +123,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Agent Coordination
 
 This workflow demonstrates multi-agent collaboration:
+
 - **Counsel** provides initial routing (via legal-matter-intake)
 - **Liberty** handles USA formations
 - **Europa** handles EU/Estonia formations
@@ -144,4 +149,4 @@ Load and read full config from `{project-root}/_bmad/legal-team/config.yaml` and
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{workflow_path}/steps/step-01-consultation.md` to begin the workflow.
+Load, read the full file and then follow `{workflow_path}/steps/step-01-consultation.md` to begin the workflow.

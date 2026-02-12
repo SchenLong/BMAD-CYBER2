@@ -15,6 +15,7 @@ The **Cybersec-Team Module** provides enterprise-grade cybersecurity workflows f
 ## Module Purpose
 
 To provide structured, repeatable, and collaborative workflows that:
+
 - Guide security teams through complex security operations
 - Implement industry best practices and compliance frameworks
 - Generate professional documentation for stakeholders and auditors
@@ -30,6 +31,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Dual-mode workflow for creating incident response playbooks AND guiding real-time incident response
 
 **Key Features:**
+
 - **Mode A:** Create custom incident response playbooks (8-section NIST-compliant documents)
 - **Mode B:** Real-time guided incident response with forensic evidence collection
 - 10 incident types supported (ransomware, data breach, DDoS, etc.)
@@ -41,14 +43,17 @@ To provide structured, repeatable, and collaborative workflows that:
 - Party Mode with 4 expert agents (Bastion, Trace, Cipher, General)
 
 **Estimated Duration:**
+
 - Mode A (Playbook Creation): 3-4 hours
 - Mode B (Incident Response): Varies by incident (hours to days)
 
 **Output Documents:**
+
 - Mode A: Comprehensive 8-section incident response playbook
 - Mode B: Complete 9-section incident report with timeline
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:incident-response-playbook
 ```
@@ -62,6 +67,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Comprehensive security architecture assessment using STRIDE threat modeling and zero-trust validation
 
 **Key Features:**
+
 - STRIDE threat modeling (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege)
 - Security control assessment with gap analysis
 - Attack surface analysis with Ghost agent collaboration (optional)
@@ -74,11 +80,13 @@ To provide structured, repeatable, and collaborative workflows that:
 **Estimated Duration:** 4-6 hours (varies by architecture complexity)
 
 **Output Documents:**
+
 - 7-section Security Architecture Review Report
 - Executive summary for stakeholders
 - Technical recommendations for dev/ops teams
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:security-architecture-review
 ```
@@ -92,6 +100,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Systematic STRIDE-based threat modeling for system designs with risk assessment and mitigation strategies
 
 **Key Features:**
+
 - System decomposition and component identification
 - Iterative component analysis (analyze multiple components systematically)
 - Complete STRIDE threat identification for each component
@@ -107,6 +116,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Estimated Duration:** 2-8 hours (depends on number of components)
 
 **Output Documents:**
+
 - 6-section Threat Model Document
   1. System Overview
   2. System Decomposition
@@ -116,6 +126,7 @@ To provide structured, repeatable, and collaborative workflows that:
   6. Summary and Recommendations
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:threat-modeling
 ```
@@ -129,12 +140,14 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Comprehensive compliance audit preparation across multiple frameworks
 
 **Key Features:**
+
 - Multi-framework support (NIST 800-53, ISO 27001, SOC 2, PCI-DSS, HIPAA, GDPR, NIS2, CRA, DORA, AI Act, FedRAMP, CMMC, TISAX, CSA STAR)
 - Gap analysis and remediation tracking
 - Evidence collection guidance
 - Audit readiness scoring
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:compliance-audit-prep
 ```
@@ -148,6 +161,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Comprehensive vCISO engagement covering strategic planning, budget optimization, and governance
 
 **Key Features:**
+
 - Strategic security planning
 - Budget and ROI framework
 - Security maturity assessment
@@ -157,6 +171,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - Ongoing advisory services
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:virtual-ciso-consulting
 ```
@@ -170,6 +185,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** End-to-end vulnerability management from asset inventory through program maturity
 
 **Key Features:**
+
 - Asset inventory management
 - Vulnerability scanning guidance
 - Risk-based prioritization
@@ -177,6 +193,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - Program maturity assessment
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:vulnerability-management
 ```
@@ -190,6 +207,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Comprehensive security awareness program from risk assessment through continuous improvement
 
 **Key Features:**
+
 - Risk assessment
 - Content development
 - Phishing simulation planning
@@ -197,6 +215,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - Continuous improvement cycle
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:security-awareness-training
 ```
@@ -210,6 +229,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Comprehensive cloud security assessment for AWS, Azure, and GCP environments
 
 **Key Features:**
+
 - Multi-cloud support (AWS, Azure, GCP)
 - IAM assessment
 - Network security review
@@ -220,6 +240,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - Remediation roadmap
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:cloud-security-assessment
 ```
@@ -233,6 +254,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Smart contract and blockchain protocol security auditing
 
 **Key Features:**
+
 - Smart contract review
 - Access control analysis
 - Economic security assessment
@@ -242,6 +264,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - OWASP Smart Contract and SWC Registry compliance
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:blockchain-security-assessment
 ```
@@ -255,6 +278,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** iOS and Android mobile application security testing following OWASP MSTG
 
 **Key Features:**
+
 - Static analysis (binary protections, hardcoded secrets)
 - Dynamic analysis (runtime testing)
 - Data storage security
@@ -264,6 +288,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - OWASP MSTG and Mobile Top 10 compliance
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:mobile-security-testing
 ```
@@ -277,6 +302,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Comprehensive web application penetration testing following OWASP Testing Guide
 
 **Key Features:**
+
 - Reconnaissance and enumeration
 - Authentication testing
 - Authorization testing
@@ -286,6 +312,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - OWASP Top 10 and ASVS compliance
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:web-app-security-testing
 ```
@@ -299,6 +326,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Network penetration testing covering reconnaissance, exploitation, and segmentation
 
 **Key Features:**
+
 - Network reconnaissance
 - Port and service scanning
 - Vulnerability assessment
@@ -308,6 +336,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - PTES and OSSTMM methodologies
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:network-assessment
 ```
@@ -321,6 +350,7 @@ To provide structured, repeatable, and collaborative workflows that:
 **Purpose:** Infrastructure security assessment for servers, containers, Kubernetes, and CI/CD
 
 **Key Features:**
+
 - Server hardening assessment
 - Container security testing
 - Kubernetes security review
@@ -330,6 +360,7 @@ To provide structured, repeatable, and collaborative workflows that:
 - CIS Benchmarks compliance
 
 **Invocation:**
+
 ```
 /bmad:cybersec-team:workflows:infrastructure-security-testing
 ```
@@ -359,6 +390,7 @@ This module includes 15 specialized cybersecurity agents:
 | Ghost | Social Engineer | 🎭 | Social engineering, phishing simulation |
 
 **Agent Invocation:**
+
 ```
 /bmad:cybersec-team:agents:[agent-name]
 ```
@@ -370,7 +402,7 @@ This module includes 15 specialized cybersecurity agents:
 ### Directory Structure
 
 ```
-_bmad/cybersec-team/
+src/cybersec-team/
 ├── README.md                           # This file
 ├── config.yaml                         # Module configuration
 ├── agents/                             # 15 specialized agents
@@ -422,21 +454,25 @@ All cybersec-team workflows follow BMAD workflow architecture:
 ## Framework Integration
 
 ### NIST Cybersecurity Framework
+
 - **Incident Response:** Full NIST IR lifecycle (Preparation, Detection & Analysis, Containment/Eradication/Recovery, Post-Incident)
 - **Risk Assessment:** NIST SP 800-30 risk prioritization
 - **Zero-Trust:** NIST SP 800-207 Zero Trust Architecture
 
 ### MITRE ATT&CK
+
 - 12 tactics mapped in Incident Response Playbook
 - Technique identification during incident analysis
 - IOC documentation with ATT&CK technique references
 
 ### STRIDE Methodology
+
 - Microsoft threat modeling framework
 - Systematic threat identification across 6 categories
 - Used in both Security Architecture Review and Threat Modeling
 
 ### Regulatory Compliance
+
 - **GDPR:** 72-hour breach notification timeline
 - **PCI-DSS:** Payment card incident requirements
 - **HIPAA:** Healthcare data breach procedures
@@ -448,6 +484,7 @@ All cybersec-team workflows follow BMAD workflow architecture:
 ## Prerequisites
 
 ### System Requirements
+
 - BMAD framework installed
 - Claude API access (Sonnet 4.5 recommended)
 - File I/O permissions
@@ -456,21 +493,25 @@ All cybersec-team workflows follow BMAD workflow architecture:
 ### User Knowledge Requirements
 
 **For Incident Response Playbook:**
+
 - Basic incident response concepts
 - Familiarity with your organization's systems
 - Understanding of incident types relevant to your environment
 
 **For Security Architecture Review:**
+
 - Understanding of system architecture being reviewed
 - Ability to describe data flows and trust boundaries
 - Knowledge of existing security controls
 
 **For Threat Modeling:**
+
 - System design knowledge
 - Understanding of STRIDE categories (training provided in workflow)
 - Ability to assess likelihood and impact
 
 ### Optional Enhancements
+
 - Architecture diagrams (PNG, PDF, PlantUML)
 - Existing security documentation
 - Compliance requirements context
@@ -481,6 +522,7 @@ All cybersec-team workflows follow BMAD workflow architecture:
 ## Installation
 
 ### Option 1: Module Installer (Recommended)
+
 ```bash
 # When module installer is available
 /bmad:install:cybersec-team
@@ -489,16 +531,19 @@ All cybersec-team workflows follow BMAD workflow architecture:
 ### Option 2: Manual Installation
 
 1. **Verify module location:**
+
 ```bash
-ls -la {project-root}/_bmad/cybersec-team/
+ls -la {project-root}/src/cybersec-team/
 ```
 
-2. **Verify workflows exist:**
+1. **Verify workflows exist:**
+
 ```bash
-ls -la {project-root}/_bmad/cybersec-team/workflows/
+ls -la {project-root}/src/cybersec-team/workflows/
 ```
 
-3. **Create config.yaml** (if not exists):
+1. **Create config.yaml** (if not exists):
+
 ```yaml
 module_name: cybersec-team
 version: 1.0.0
@@ -512,8 +557,9 @@ document_output_language: English
 ### Option 3: From BMB Creations (Development)
 
 If workflows are still in staging:
+
 ```bash
-cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
+cp -r _bmad-output/bmb-creations/workflows/* src/cybersec-team/workflows/
 ```
 
 ---
@@ -528,24 +574,26 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
    - Reviewing system architecture? → Security Architecture Review
    - Modeling threats in system design? → Threat Modeling
 
-2. **Invoke the workflow:**
+2. **Load the workflow:**
+
 ```
 /bmad:cybersec-team:workflows:[workflow-name]
 ```
 
-3. **Follow step-by-step guidance:**
+1. **Follow step-by-step guidance:**
    - Workflows are highly prescriptive
    - Read each step completely before acting
    - Use menus to access Party Mode, Web-Browsing, etc.
    - Progress is automatically saved
 
-4. **Use continuation for long sessions:**
+2. **Use continuation for long sessions:**
    - All workflows support multi-session execution
-   - Simply re-invoke the workflow to continue where you left off
+   - Simply re-load the workflow to continue where you left off
 
 ### Common Usage Patterns
 
 **Pattern 1: Preparation (Peacetime)**
+
 ```
 1. Run Incident Response Playbook (Mode A) for each incident type
 2. Create library of playbooks
@@ -553,13 +601,15 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ```
 
 **Pattern 2: Active Incident (Wartime)**
+
 ```
-1. Invoke Incident Response Playbook (Mode B)
+1. Load Incident Response Playbook (Mode B)
 2. Follow guided response procedures
 3. Generate incident report for stakeholders
 ```
 
 **Pattern 3: Architecture Security**
+
 ```
 1. Run Security Architecture Review for existing systems
 2. Run Threat Modeling for new system designs
@@ -568,6 +618,7 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ```
 
 **Pattern 4: Continuous Security**
+
 ```
 1. Annual Security Architecture Review for all critical systems
 2. Threat Modeling for all new features/services
@@ -580,6 +631,7 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ## Best Practices
 
 ### Workflow Execution
+
 1. **Allocate sufficient time** - Don't rush security work
 2. **Use multi-session support** - Take breaks, workflows preserve state
 3. **Leverage collaboration tools:**
@@ -589,12 +641,14 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 4. **Be thorough over fast** - Security gaps are expensive
 
 ### Documentation Quality
+
 1. **Be specific** - "Implement TLS 1.3" not "use encryption"
 2. **Include context** - Why is this a threat? What's the business impact?
 3. **Provide evidence** - Link to CVEs, security advisories, standards
 4. **Make it actionable** - Recommendations should be implementable
 
 ### Collaboration
+
 1. **Involve Ghost agent** (Security Architecture Review) for offensive perspective
 2. **Use Party Mode** when stuck or need creative approaches
 3. **Share outputs** with stakeholders (executive summaries included)
@@ -605,6 +659,7 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ## Integration Points
 
 ### BMAD Core Tools
+
 - **Party Mode:** Multi-agent collaboration
   - Bastion (Security Architect)
   - Ghost (Penetration Tester)
@@ -616,11 +671,13 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 - **Web-Browsing:** Threat intelligence, CVE lookups, best practices
 
 ### LLM Features
+
 - **File I/O:** Diagram reading, report generation
 - **Sidecar Files:** Timeline tracking (Incident Response Mode B)
 - **Frontmatter:** State management for continuation
 
 ### External Systems (Future)
+
 - SIEM integration for automated incident data
 - Ticketing system integration (Jira, ServiceNow)
 - Threat intelligence feeds
@@ -631,18 +688,21 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ## Metrics and KPIs
 
 ### Workflow Adoption
+
 - Number of playbooks created
 - Number of incidents handled with workflow
 - Number of architecture reviews completed
 - Number of threat models created
 
 ### Security Posture Improvement
+
 - Average time to contain incidents (before/after playbooks)
 - Number of critical findings per architecture review
 - Percentage of critical findings remediated
 - Mean time to remediate (MTTR) improvement
 
 ### Quality Metrics
+
 - Stakeholder satisfaction with documentation
 - Audit findings reduction
 - Compliance gap closure rate
@@ -652,18 +712,22 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ## Troubleshooting
 
 ### Workflow Won't Continue
+
 **Symptom:** Workflow doesn't resume where you left off
 **Solution:** Check frontmatter in output document for `stepsCompleted` array
 
 ### Menu Options Not Working
+
 **Symptom:** Party Mode or Web-Browsing doesn't launch
 **Solution:** Verify BMAD core tools are installed and accessible
 
 ### Output Document Issues
+
 **Symptom:** Document not generating or incomplete
 **Solution:** Check output_folder path in config.yaml, verify write permissions
 
 ### Context Window Issues
+
 **Symptom:** Workflow performance degraded or errors
 **Solution:** Use Claude Sonnet 4.5 (200K context), break into smaller sessions
 
@@ -672,12 +736,14 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ## Roadmap
 
 ### Version 1.1 (Planned)
+
 - [ ] Additional incident types (supply chain, insider threat)
 - [ ] SIEM integration for automated data population
 - [ ] Playbook versioning and change tracking
 - [ ] Metrics dashboard for security KPIs
 
 ### Version 2.0 (Future)
+
 - [ ] Multi-organization support (MSSP use cases)
 - [ ] Ticketing system integration
 - [ ] Threat intelligence feed integration
@@ -688,16 +754,19 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 ## Support
 
 ### Documentation
+
 - Workflow-specific README files in each workflow directory
 - Workflow planning documents (`workflow-plan-*.md`)
 - Step-by-step guidance within workflows
 
 ### Getting Help
+
 - Review workflow plan documents for design decisions
 - Consult agent personas (Bastion, Ghost, Trace) for domain expertise
 - Use Advanced Elicitation within workflows for quality review
 
 ### Reporting Issues
+
 - Document specific step where issue occurred
 - Include frontmatter from output document
 - Describe expected vs actual behavior
@@ -709,6 +778,7 @@ cp -r _bmad-output/bmb-creations/workflows/* _bmad/cybersec-team/workflows/
 **Created By:** BMAD Framework + Claude Sonnet 4.5
 **Workflow Architect:** workflow-builder (create-workflow)
 **Expert Agents:**
+
 - Bastion (Security Architecture, IR Planning)
 - Ghost (Offensive Security, Attack Surface)
 - Trace (Digital Forensics, Evidence)
@@ -726,6 +796,7 @@ Part of the BMAD (BMAD Makes Amazing Development) Framework.
 ## Version History
 
 ### v1.3.0 (2026-01-11)
+
 - ✅ Expanded to 13 production-ready workflows
 - ✅ Added 15 specialized cybersecurity agents
 - ✅ 150+ total files
@@ -733,6 +804,7 @@ Part of the BMAD (BMAD Makes Amazing Development) Framework.
 - ✅ Added cloud, mobile, blockchain, and infrastructure security workflows
 
 ### v1.0.0 (2026-01-08)
+
 - ✅ Initial release
 - ✅ 3 production-ready workflows
 - ✅ 38 total workflow files

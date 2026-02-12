@@ -2,9 +2,9 @@
 
 This guide provides comprehensive instructions for upgrading BMAD CYBERCOMMAND between versions. Whether you are performing a patch, minor, or major upgrade, follow the appropriate sections to ensure a smooth transition.
 
-**Current Version**: 2.0.0
-**Documentation Version**: 1.0.0
-**Last Updated**: January 2025
+**Current Version**: 2.2.0
+**Documentation Version**: 1.1.0
+**Last Updated**: February 2026
 
 ---
 
@@ -92,6 +92,7 @@ npx bmad-cybersec backup verify --latest
 ```
 
 **Critical files to backup manually**:
+
 - `_bmad/core/config.yaml` - Core configuration
 - `_bmad/*/config.yaml` - Team-specific configurations
 - `.claude/settings.json` - Claude Code settings
@@ -101,10 +102,10 @@ npx bmad-cybersec backup verify --latest
 ### 2. Version Requirements Check
 
 ```bash
-# Check Node.js version (must be >= 18.0.0)
+# Check Node.js version (must be >= 20.0.0)
 node --version
 
-# Check npm version (must be >= 9.0.0)
+# Check npm version (must be >= 10.0.0)
 npm --version
 
 # Check current BMAD installation
@@ -153,6 +154,7 @@ npx bmad-cybersec validate
 ```
 
 **What happens during patch upgrade**:
+
 1. Downloads new version
 2. Replaces module files
 3. Verifies no breaking changes
@@ -185,6 +187,7 @@ npx bmad-cybersec update-docs
 ```
 
 **What to expect**:
+
 - New agents available (non-conflicting)
 - New workflows added (non-breaking)
 - New Party Mode presets available
@@ -257,6 +260,66 @@ For major upgrades, follow this dependency order:
 
 ## Breaking Changes by Version
 
+### Version 2.2.0 (from 2.0.x)
+
+#### Breaking: Node.js 18 Dropped
+
+- **Minimum Node.js version is now 20.0.0** (previously 18.0.0)
+- **Minimum npm version is now 10.0.0** (previously 9.0.0)
+- Users on Node 18 must upgrade before installing v2.2.0
+- Run `node --version` to check your current version
+
+#### New Features
+
+- **Slash Command Router**: Direct workflow invocation via aliases (e.g., `/threat-modeling` instead of `bmad:cybersec-team:workflows:threat-modeling`)
+- **AI-Powered Help System**: Interactive `/bmad-help` command for discovering modules, agents, and workflows
+- **Bug Fixes Backport**: Path sanitization, YAML normalization, cross-file reference validation
+
+#### Migration from 2.0.x
+
+```bash
+# 1. Ensure Node.js >= 20
+node --version  # Must show v20.x or higher
+
+# 2. Update to v2.2.0
+git fetch --tags
+git checkout v2.2.0
+
+# 3. Clean install
+npm ci
+
+# 4. Verify
+npm test
+```
+
+#### Rollback to v2.0.0
+
+```bash
+# Rollback via git tag
+git checkout v2.0.0
+npm ci
+npm test
+```
+
+#### Rollback to v2.1.1 (bug fixes only, no Node 20 change)
+
+```bash
+# Rollback to post-Story-0 state
+git checkout v2.1.1
+npm ci
+npm test
+```
+
+#### Per-Stage Backup Tags
+
+| Tag | State | Commit |
+|-----|-------|--------|
+| `pre-v6-stage0-backup` | Before any v6 work (v2.0.0 equivalent) | Pre-upgrade baseline |
+| `pre-v6-stage2-backup` | After Story 0 bug fixes (v2.1.1 equivalent) | Post bug fixes |
+| `pre-v6-stage1-backup` | Before slash command work | Pre-slash-commands |
+| `pre-v6-stage3-backup` | Before help system work | Pre-help-system |
+| `v2.2.0` | Full v6 hybrid upgrade complete | Release |
+
 ### Version 2.0.0 (from 1.x)
 
 #### Configuration Changes
@@ -278,7 +341,7 @@ For major upgrades, follow this dependency order:
 #### New Requirements
 
 - BMAD Core >= 6.0.0 required for all team modules
-- Node.js >= 18.0.0 required
+- Node.js >= 20.0.0 required
 - Updated Claude Code hooks format
 
 #### Migration Script
@@ -402,6 +465,7 @@ cp -r backup/_bmad .
 **Error**: `Core version X.Y.Z is below minimum required X.Y.Z`
 
 **Solution**:
+
 ```bash
 # Upgrade BMAD Core first
 npx bmad-cybersec update core
@@ -412,6 +476,7 @@ npx bmad-cybersec update core
 **Error**: `Agent name 'X' exists in both module1 and module2`
 
 **Solution**:
+
 1. Check if conflict is intentional (same agent in different modules)
 2. If unintentional, contact support or rename agent in custom module
 3. Update all references to renamed agent
@@ -421,12 +486,13 @@ npx bmad-cybersec update core
 **Error**: `Workflow ID 'X' is duplicated`
 
 **Solution**:
+
 ```bash
 # List conflicting workflows
 npx bmad-cybersec workflow list --conflicts
 
 # Update workflow naming to use unique IDs
-# Format: {module_code}:{workflow_name}
+# Format: {module_code}:{workflow-name}
 ```
 
 #### VER_001: Mixed Major Versions
@@ -434,6 +500,7 @@ npx bmad-cybersec workflow list --conflicts
 **Warning**: `Mixed major versions detected: [versions]`
 
 **Solution**:
+
 ```bash
 # Upgrade all modules to same major version
 npx bmad-cybersec update --all --major
@@ -444,6 +511,7 @@ npx bmad-cybersec update --all --major
 **Error**: `Security vulnerability in module X version Y`
 
 **Solution**:
+
 ```bash
 # Upgrade affected module immediately
 npx bmad-cybersec update <module-name> --security
@@ -495,12 +563,13 @@ npx bmad-cybersec party-mode rebuild-cache
    - `Docs/02-user-guides/module-compatibility-matrix.md`
 
 2. **Run Diagnostics**:
+
    ```bash
    npx bmad-cybersec doctor --full-report > diagnostic-report.txt
    ```
 
 3. **Contact Support**:
-   - GitHub Issues: https://github.com/blackunicorn-tech/bmad-cybercommand/issues
+   - GitHub Issues: <https://github.com/blackunicorn-tech/bmad-cybercommand/issues>
    - Include diagnostic report and version information
 
 4. **Community Resources**:
@@ -519,6 +588,7 @@ npx bmad-cybersec party-mode rebuild-cache
 ---
 
 **Document Control**:
+
 - Author: BlackUnicorn.Tech
 - Version: 1.0.0
 - Last Updated: January 2025

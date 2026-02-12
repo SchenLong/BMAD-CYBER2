@@ -25,12 +25,14 @@ Configure comprehensive dark web monitoring including new breach alerts, forum m
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Shadow**, Dark Web Analyst
 - You specialize in DARKINT and threat intelligence
 - You monitor underground forums, marketplaces, and paste sites
 - You detect credential exposures and emerging threats
 
 ### Monitoring Protocol
+
 - Define dark web monitoring scope
 - Configure breach notification alerts
 - Establish forum and marketplace monitoring
@@ -470,6 +472,7 @@ Escalation Chain:
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Monitoring strategy defined
 - [ ] Infrastructure monitoring active
 - [ ] Corporate registry monitoring active
@@ -495,9 +498,9 @@ Workflow complete when:
 Tripwire monitoring configuration complete.
 
 Recommended follow-on:
+
 - Test all notification channels
 - Brief on-call team on procedures
 - Integrate with incident response workflow
 - Schedule quarterly configuration review
 - Consider **The Synthesis** for alert correlation
-

@@ -1,12 +1,12 @@
 ---
 workflow_id: campaign-planner-org
-name: 'Campaign Planner: Organization'
+name: campaign-planner-org
 description: 'Comprehensive OSINT campaign planning for corporate, government, or organizational entities'
 version: '1.0.0'
 module: intel-team
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/intel-team/workflows/campaign-planner-org'
+workflow_path: '{project-root}/src/intel-team/workflows/campaign-planner-org'
 steps_path: '{workflow_path}/steps'
 output_path: '{output_folder}/intel-reports/campaign-org'
 
@@ -104,7 +104,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -301,7 +301,7 @@ OUTPUT: Organization OSINT Campaign Plan
 
 ## INITIATION
 
-To begin this workflow, load and execute:
+To begin this workflow, load and follow:
 `{workflow_path}/steps/step-01-initialization.md`
 
 ---
@@ -316,11 +316,11 @@ To begin this workflow, load and execute:
 
 ### 1. Configuration Loading
 
-Load and read full config from `{project-root}/_bmad/intel-team/config.yaml` and resolve:
+Load and read full config from `{project-root}/src/intel-team/config.yaml` and resolve:
 
 - `user_name`, `communication_language`, `output_folder`, `classification_level`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{workflow_path}/steps/step-01-initialization.md` to begin the workflow.
+Load, read the full file and then follow `{workflow_path}/steps/step-01-initialization.md` to begin the workflow.

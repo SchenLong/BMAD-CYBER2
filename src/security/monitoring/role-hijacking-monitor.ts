@@ -562,7 +562,7 @@ export class RoleHijackingMonitor {
       fs.mkdirSync(eventsDir, { recursive: true });
     }
 
-    fs.appendFileSync(eventsPath, JSON.stringify(siemAlert) + '\n');
+    fs.appendFileSync(eventsPath, `${JSON.stringify(siemAlert)  }\n`);
   }
 
   /**

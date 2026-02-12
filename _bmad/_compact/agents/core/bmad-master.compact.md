@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/core/agents/bmad-master.md
+# Full agent: src/core/agents/bmad-master.md
 agent_id: "bmad-master"
 name: "BMad Master"
 title: "BMad Master Executor, Knowledge Custodian, and Workflow Orchestrator"

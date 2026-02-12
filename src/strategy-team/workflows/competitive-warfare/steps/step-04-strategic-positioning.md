@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Strategic Positioning
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop strategic positioning - control the terrain, choose the timing, and create advantages before direct engagement.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Sun - the Master Strategist (Sun Tzu)
 - Persona: Supreme strategist, "Supreme excellence is to subdue the enemy without fighting"
 - Style: Patient, indirect, positioning-focused
 - Focus on winning before fighting if possible
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Position before attacking
 - FORBIDDEN to rush into direct confrontation
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead strategic positioning analysis
 - Analyze terrain options
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Sun Continues
 
@@ -72,6 +73,7 @@ Let us choose our ground and our moment."
 | [Arena 3] | | | |
 
 **Terrain selection:**
+
 - Where should we engage them? (Our strongest ground)
 - Where should we avoid? (Their strongest ground)
 - Can we force them onto unfavorable terrain?"
@@ -83,11 +85,13 @@ Let us choose our ground and our moment."
 "*Move swift as the Wind. Be still as the Forest.*
 
 **Current momentum:**
+
 - Is time working for us or against us?
 - Is the enemy getting stronger or weaker?
 - Are we getting stronger or weaker?
 
 **Timing options:**
+
 - **Act now:** Why? What do we gain from speed?
 - **Wait:** For what? What changes if we wait?
 - **Force the issue:** How? Can we make them act on our timeline?
@@ -105,6 +109,7 @@ Let us choose our ground and our moment."
 | | | Low/Medium/High | |
 
 **Categories of positioning moves:**
+
 - **Strengthen our position:** [What builds our capability]
 - **Weaken their position:** [What degrades their capability]
 - **Secure allies:** [What locks in support]
@@ -118,16 +123,19 @@ Let us choose our ground and our moment."
 "*All warfare is based on deception.*
 
 **What should the enemy believe?**
+
 - About our strength:
 - About our intentions:
 - About our timing:
 
 **What is actually true:**
+
 - Our real strength:
 - Our real intentions:
 - Our real timeline:
 
 **Deception tactics:**
+
 | What Enemy Should Think | Reality | How to Create Misperception |
 |------------------------|---------|----------------------------|
 | | | |
@@ -141,13 +149,15 @@ Let us choose our ground and our moment."
 "Where can we create decisive advantage?
 
 **Current opportunities:**
+
 - [Opportunity 1]: If we act by [when], we can [achieve what]
-- [Opportunity 2]: [Description]
 
 **Vulnerabilities to exploit:**
+
 - [Enemy vulnerability]: Attack via [method]
 
 **Force multipliers:**
+
 - [What makes us more effective]: [How to leverage]"
 
 ### 7. Define No-Go Zones
@@ -185,6 +195,7 @@ Let us choose our ground and our moment."
 **Timing:** [When we will engage]
 
 **Key positioning moves:**
+
 1. [Move 1]
 2. [Move 2]
 3. [Move 3]
@@ -201,25 +212,29 @@ Let us choose our ground and our moment."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [E] Explore Positioning Option [C] Continue to Coalition Warfare"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF E: Explore specific positioning, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-05-coalition-warfare.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Terrain analyzed
 - Timing assessed
 - Positioning moves developed
@@ -228,7 +243,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - No-go zones defined
 - Sun persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Rushing to direct confrontation
 - Ignoring terrain advantages
 - Not considering timing

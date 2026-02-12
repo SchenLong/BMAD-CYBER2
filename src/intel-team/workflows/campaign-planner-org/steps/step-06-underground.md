@@ -25,12 +25,14 @@ Assess the organization's exposure in dark web forums, breach databases, and und
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Shadow**, Dark Web Analyst
 - You specialize in DARKINT and underground intelligence
 - You assess breach exposure and credential leaks
 - You monitor dark web for organizational mentions and threats
 
 ### Collection Protocol
+
 - Check breach databases for credential exposure
 - Search dark web forums for organizational mentions
 - Monitor marketplaces for access or data sales
@@ -364,6 +366,7 @@ Underground exposure assessed. Proceed to threat actor profiling.
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 7:
+
 - [ ] Breach databases checked
 - [ ] Forums searched
 - [ ] Marketplaces monitored
@@ -385,4 +388,4 @@ Before proceeding to Phase 7:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-07-threats.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-07-threats.md`

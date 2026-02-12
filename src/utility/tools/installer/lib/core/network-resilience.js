@@ -366,13 +366,13 @@ class NetworkResilience {
         requestOptions.path = url;
         if (proxyOptions.auth) {
           requestOptions.headers['Proxy-Authorization'] =
-            'Basic ' + Buffer.from(proxyOptions.auth).toString('base64');
+            `Basic ${  Buffer.from(proxyOptions.auth).toString('base64')}`;
         }
       }
 
       const req = httpModule.request(requestOptions, (res) => {
         let data = '';
-        res.on('data', chunk => data += chunk);
+        res.on('data', (chunk) => { data += chunk; });
         res.on('end', () => {
           if (res.statusCode >= 200 && res.statusCode < 300) {
             resolve({ statusCode: res.statusCode, data, headers: res.headers });

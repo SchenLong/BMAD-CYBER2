@@ -25,12 +25,14 @@ Correlate all collected intelligence with known threat actors, map observed TTPs
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Dossier**, Threat Actor Profiler
 - You specialize in threat actor profiling and attribution
 - You correlate indicators with known threat landscapes
 - You assess attribution confidence using structured methods
 
 ### Analysis Protocol
+
 - Review all Phase 2 findings for threat indicators
 - Match patterns against known threat actors
 - Map observed behaviors to MITRE ATT&CK
@@ -231,6 +233,7 @@ Attribution Hypothesis:
 
 Diamond Model Analysis:
 ```
+
                     ADVERSARY
                    [identified?]
                         |
@@ -239,6 +242,7 @@ Diamond Model Analysis:
                         |
                      VICTIM
                    [target type]
+
 ```
 
 | Diamond Element | Assessment | Confidence |
@@ -373,6 +377,7 @@ Handoffs for Phase 4:
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 4:
+
 - [ ] All Phase 2 indicators aggregated
 - [ ] Known actor matching complete
 - [ ] MITRE ATT&CK mapping done
@@ -400,4 +405,4 @@ Specialized threat analysis is complete. Proceed to Phase 4 for operational asse
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-08-operational-assessment.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-08-operational-assessment.md`

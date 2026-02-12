@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/observability/anomaly-detector.js')
+import('../dist/src/observability/anomaly-detector.js')
   .then((module) => {
     module.main();
   })

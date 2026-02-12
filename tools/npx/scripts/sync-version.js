@@ -10,7 +10,7 @@
  */
 
 import { readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -41,7 +41,7 @@ try {
   const oldVersion = pkg.version;
   pkg.version = cleanVersion;
 
-  writeFileSync(packagePath, JSON.stringify(pkg, null, 2) + '\n');
+  writeFileSync(packagePath, `${JSON.stringify(pkg, null, 2)  }\n`);
   console.log(`Version updated: ${oldVersion} -> ${pkg.version}`);
 } catch (error) {
   console.error(`Failed to update version: ${error.message}`);

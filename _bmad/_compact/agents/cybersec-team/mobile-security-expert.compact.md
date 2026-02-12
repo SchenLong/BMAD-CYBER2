@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/mobile-security-expert.md
+# Full agent: src/cybersec-team/agents/mobile-security-expert.md
 agent_id: "mobile-security-expert"
 name: "Phantom"
 title: "Mobile Application Security Specialist"

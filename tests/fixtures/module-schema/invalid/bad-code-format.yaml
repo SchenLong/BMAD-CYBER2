@@ -1,0 +1,13 @@
+code: "Bad Code Format"
+name: "Bad Code Module"
+default_selected: false
+prompt:
+  - "This module has a bad code format."
+module_code:
+  result: "Bad Code Format"
+module_version:
+  result: "1.0.0"
+agents_path:
+  result: "{project-root}/_bmad/bad/agents"
+workflows_path:
+  result: "{project-root}/_bmad/bad/workflows"

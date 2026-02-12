@@ -1,4 +1,3 @@
-#!/usr/bin/env npx ts-node
 /**
  * BMAD Agent Compressor
  *
@@ -107,7 +106,7 @@ function compressIdentity(identity, role) {
     }
     // Truncate to ~200 chars
     if (compressed.length > 200) {
-        compressed = compressed.substring(0, 197) + '...';
+        compressed = `${compressed.substring(0, 197)  }...`;
     }
     return compressed;
 }
@@ -139,7 +138,7 @@ function compressVoice(style) {
     voice = voice.replace(/\s+/g, ' ').trim();
     // Truncate to 150 chars
     if (voice.length > 150) {
-        voice = voice.substring(0, 147) + '...';
+        voice = `${voice.substring(0, 147)  }...`;
     }
     return voice;
 }
@@ -173,12 +172,12 @@ function compressPrinciples(principles) {
             return firstPart.length < 40 ? firstPart : '';
         }).filter(k => k.length > 0);
         if (keywords.length >= 2) {
-            core = keywords.join('. ') + '.';
+            core = `${keywords.join('. ')  }.`;
         }
     }
     // Truncate to 75 chars
     if (core.length > 75) {
-        core = core.substring(0, 72) + '...';
+        core = `${core.substring(0, 72)  }...`;
     }
     return core;
 }

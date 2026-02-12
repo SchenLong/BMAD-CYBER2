@@ -7,17 +7,17 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  validateEndpointUrl,
-  validateModelName,
   API_FORMATS,
   parseEndpointUrl,
-  suggestApiFormat
+  suggestApiFormat,
+  validateEndpointUrl,
+  validateModelName
 } from './custom-endpoint-ui.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -263,13 +263,13 @@ describe('Custom Endpoint UI - INST-015', () => {
       expect(moduleContent).toMatch(/\bexport\s+(const|async|function)/);
     });
 
-    it('should import inquirer and chalk', async () => {
+    it('should import prompts abstraction and chalk', async () => {
       const moduleContent = fs.readFileSync(
         path.join(__dirname, 'custom-endpoint-ui.js'),
         'utf8'
       );
 
-      expect(moduleContent).toMatch(/import\s+inquirer\s+from\s+['"]inquirer['"]/);
+      expect(moduleContent).toMatch(/import\s+\{.*\}\s+from\s+['"].*cli\/prompts\.js['"]/);
       expect(moduleContent).toMatch(/import\s+chalk\s+from\s+['"]chalk['"]/);
     });
   });

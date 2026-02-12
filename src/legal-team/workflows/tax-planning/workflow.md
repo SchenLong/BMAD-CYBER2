@@ -62,7 +62,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -81,6 +81,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Scope
 
 **Covered Areas:**
+
 - Corporate tax planning
 - Individual tax planning (business-related)
 - International tax structures
@@ -91,6 +92,7 @@ This uses **step-file architecture** for disciplined execution:
 - Exit planning/Succession
 
 **NOT Covered:**
+
 - Tax return preparation
 - Audit representation
 - Tax litigation
@@ -106,6 +108,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Key Tax Considerations by Jurisdiction
 
 ### USA
+
 - C-Corp vs. Pass-through taxation
 - State tax nexus and apportionment
 - SALT deduction limitations
@@ -113,6 +116,7 @@ This uses **step-file architecture** for disciplined execution:
 - International provisions (GILTI, FDII, BEAT)
 
 ### Spain
+
 - Impuesto sobre Sociedades (Corporate Tax)
 - IRPF for individuals
 - Beckham Law regime
@@ -120,6 +124,7 @@ This uses **step-file architecture** for disciplined execution:
 - Holding company structures (ETVE)
 
 ### Estonia
+
 - 0% retained earnings model
 - 20% distribution tax
 - Reduced rate (14%) for regular dividends
@@ -158,4 +163,4 @@ Load and read full config from `{project-root}/_bmad/legal-team/config.yaml` and
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{workflow_path}/steps/step-01-situation.md` to begin the workflow.
+Load, read the full file and then follow `{workflow_path}/steps/step-01-situation.md` to begin the workflow.

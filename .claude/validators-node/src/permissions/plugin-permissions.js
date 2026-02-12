@@ -355,7 +355,7 @@ class PluginPermissionChecker {
      */
     fnmatch(name, pattern) {
         // Convert glob pattern to regex
-        let regex = pattern
+        const regex = pattern
             .replace(/[.+^${}()|[\]\\]/g, '\\$&') // Escape special chars
             .replace(/\*\*/g, '{{GLOBSTAR}}') // Temp replace **
             .replace(/\*/g, '[^/]*') // * matches anything except /
@@ -389,7 +389,7 @@ class PluginPermissionChecker {
             return [false, `No ${operation} patterns defined for plugin ${plugin}`];
         }
         // Normalize target path
-        let targetNormalized = target.replace(PROJECT_DIR + '/', '');
+        let targetNormalized = target.replace(`${PROJECT_DIR  }/`, '');
         targetNormalized = targetNormalized.replace(/^\.\//, '');
         if (this.matchPathPattern(targetNormalized, allowedPatterns)) {
             return [true, 'Path matches allowed pattern'];

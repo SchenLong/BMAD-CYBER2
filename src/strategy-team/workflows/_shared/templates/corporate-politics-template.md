@@ -23,6 +23,7 @@ objectiveTitle: '{objective}'
 ## 1. Situation & Objective
 
 ### Political Goal
+
 **What do you want to achieve?**
 
 **Why does it matter?**
@@ -30,16 +31,19 @@ objectiveTitle: '{objective}'
 **What's the timeline?**
 
 ### Current State
+
 - **Your current position:**
 - **Your current reputation:**
 - **Your current relationships:**
 
 ### Obstacles
+
 | Obstacle | Severity | Can Be Overcome? |
 |----------|----------|------------------|
 | | | |
 
 ### Success Definition
+
 **What does winning look like?**
 
 **What's acceptable?**
@@ -51,16 +55,19 @@ objectiveTitle: '{objective}'
 ## 2. Power Map
 
 ### Formal Power Structure
+
 ```
 [Org chart or power hierarchy]
 ```
 
 ### Decision Rights
+
 | Decision | Who Decides | Who Influences | Who Vetoes |
 |----------|-------------|----------------|------------|
 | | | | |
 
 ### Resource Control
+
 | Resource | Who Controls | Access Method |
 |----------|--------------|---------------|
 | Budget | | |
@@ -69,6 +76,7 @@ objectiveTitle: '{objective}'
 | Access to leadership | | |
 
 ### Informal Power
+
 | Person | Source of Informal Power | Trajectory |
 |--------|--------------------------|------------|
 | | | Rising/Stable/Falling |
@@ -78,17 +86,20 @@ objectiveTitle: '{objective}'
 ## 3. Player Analysis
 
 ### Key Player 1: [Name]
+
 **Role:**
 **Formal power:**
 **Informal power:**
 
 **What they want:**
+
 - Stated:
 - Hidden:
 
 **What they fear:**
 
 **Relationship to your goal:**
+
 - [ ] Ally
 - [ ] Potential ally
 - [ ] Neutral
@@ -100,17 +111,20 @@ objectiveTitle: '{objective}'
 **Leverage points:**
 
 ### Key Player 2: [Name]
+
 **Role:**
 **Formal power:**
 **Informal power:**
 
 **What they want:**
+
 - Stated:
 - Hidden:
 
 **What they fear:**
 
 **Relationship to your goal:**
+
 - [ ] Ally
 - [ ] Potential ally
 - [ ] Neutral
@@ -122,9 +136,11 @@ objectiveTitle: '{objective}'
 **Leverage points:**
 
 ### Key Player 3: [Name]
+
 [Repeat structure]
 
 ### Hidden Agendas Identified
+
 | Player | Public Position | Likely Hidden Agenda | Evidence |
 |--------|-----------------|---------------------|----------|
 | | | | |
@@ -134,6 +150,7 @@ objectiveTitle: '{objective}'
 ## 4. Coalition Math
 
 ### Your Coalition (Current)
+
 | Ally | What They Bring | What They Want | Reliability |
 |------|-----------------|----------------|-------------|
 | | | | |
@@ -141,17 +158,20 @@ objectiveTitle: '{objective}'
 **Coalition strength:** [X out of needed Y]
 
 ### Target Coalition (Needed)
+
 | Player | Currently | Target | Conversion Strategy |
 |--------|-----------|--------|---------------------|
 | | Ally/Neutral/Opposed | | |
 
 ### Path to Winning Coalition
+
 1. **Secure:** [Already committed]
 2. **Convert:** [Can be brought over]
 3. **Neutralize:** [Can't win but can stop opposing]
 4. **Accept opposition:** [Will oppose regardless]
 
 ### Coalition Vulnerabilities
+
 - **What could break your coalition?**
 - **Who is your weakest link?**
 - **What would make allies defect?**
@@ -161,23 +181,28 @@ objectiveTitle: '{objective}'
 ## 5. Persuasion Strategy
 
 ### Key Arguments
+
 | Audience | Argument | Evidence | Emotional Appeal |
 |----------|----------|----------|------------------|
 | | | | |
 
 ### Framing
+
 **How to frame this initiative:**
+
 - For leadership:
 - For peers:
 - For team:
 - Publicly:
 
 ### Objection Handling
+
 | Likely Objection | Response | Evidence |
 |------------------|----------|----------|
 | | | |
 
 ### Rhetorical Approach
+
 - **Lead with:** [Logic / Emotion / Credibility]
 - **Key metaphor:**
 - **Soundbite:**
@@ -187,21 +212,25 @@ objectiveTitle: '{objective}'
 ## 6. Relationship Plan
 
 ### Relationships to Build
+
 | Person | Current State | Target State | Investment Needed |
 |--------|---------------|--------------|-------------------|
 | | | | |
 
 ### Relationships to Maintain
+
 | Person | Current State | Risk of Decay | Maintenance Plan |
 |--------|---------------|---------------|------------------|
 | | | | |
 
 ### Relationships to Repair
+
 | Person | Current Damage | Repair Strategy | Priority |
 |--------|----------------|-----------------|----------|
 | | | | |
 
 ### Alliance Building Actions
+
 | Action | Target | Timeline | Owner |
 |--------|--------|----------|-------|
 | | | | |
@@ -211,7 +240,9 @@ objectiveTitle: '{objective}'
 ## 7. Reputation Management
 
 ### Current Brand
+
 **How are you perceived?**
+
 - By leadership:
 - By peers:
 - By team:
@@ -221,19 +252,23 @@ objectiveTitle: '{objective}'
 **What's not working:**
 
 ### Target Brand
+
 **How do you want to be perceived?**
 
 ### Brand Building Actions
+
 | Action | Message It Sends | Audience | Timeline |
 |--------|------------------|----------|----------|
 | | | | |
 
 ### Narrative Positioning
+
 **Your story:**
 
 **Counter-narratives to address:**
 
 ### Visibility Strategy
+
 | Opportunity | Visibility Type | How to Position |
 |-------------|-----------------|-----------------|
 | | | |
@@ -243,7 +278,9 @@ objectiveTitle: '{objective}'
 ## 8. Execution Playbook
 
 ### Phase 1: Foundation (Weeks 1-2)
+
 **Objective:**
+
 | Action | Target | Owner | Deadline |
 |--------|--------|-------|----------|
 | | | | |
@@ -251,7 +288,9 @@ objectiveTitle: '{objective}'
 **Milestone:**
 
 ### Phase 2: Building (Weeks 3-6)
+
 **Objective:**
+
 | Action | Target | Owner | Deadline |
 |--------|--------|-------|----------|
 | | | | |
@@ -259,7 +298,9 @@ objectiveTitle: '{objective}'
 **Milestone:**
 
 ### Phase 3: Execution (Weeks 7-12)
+
 **Objective:**
+
 | Action | Target | Owner | Deadline |
 |--------|--------|-------|----------|
 | | | | |
@@ -267,11 +308,13 @@ objectiveTitle: '{objective}'
 **Milestone:**
 
 ### Timing Considerations
+
 - **Windows of opportunity:**
 - **Timing traps to avoid:**
 - **Triggers to wait for:**
 
 ### Contingencies
+
 | If This Happens | Then Do |
 |-----------------|---------|
 | Key ally defects | |
@@ -320,6 +363,7 @@ objectiveTitle: '{objective}'
 ---
 
 ## Document History
+
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 0.1 | {date} | Corporate Political Game Workflow | Initial creation |

@@ -19,15 +19,16 @@
  * See lessonlearned.md - NEVER use destructive commands in test strings.
  */
 
+import { randomUUID } from 'node:crypto';
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../common/index.js';
 import { EXIT_CODES, type Severity } from '../types/index.js';
-import { updateSessionState, type SessionPatternFinding } from './session-tracker.js';
+import { type SessionPatternFinding, updateSessionState } from './session-tracker.js';
 
 const VALIDATOR_NAME = 'jailbreak_guard';
 
@@ -810,7 +811,7 @@ export function analyzeContent(content: string, sessionId?: string): JailbreakAn
   const obfuscationDetected = normalized.length < content.length * 0.9;
 
   // 2. Pattern matching on normalized text
-  let findings = detectPatterns(normalized);
+  const findings = detectPatterns(normalized);
 
   // Also run on original if significantly different
   if (obfuscationDetected) {
@@ -859,7 +860,7 @@ export function analyzeContent(content: string, sessionId?: string): JailbreakAn
       ...fuzzyFindings.map((f) => ({
         category: f.category,
         weight: f.weight,
-        pattern_name: 'fuzzy_' + f.target_keyword,
+        pattern_name: `fuzzy_${  f.target_keyword}`,
         timestamp: Date.now(),
       })),
       ...heuristicFindings.map((f) => ({
@@ -938,7 +939,10 @@ export function analyzeContent(content: string, sessionId?: string): JailbreakAn
   }
 
   // Determine if we should block
-  const shouldBlock = highestSeverity === 'WARNING' || highestSeverity === 'CRITICAL';
+  // SA-02 LOW: Also block when cumulative risk_score reaches HIGH threshold,
+  // even if individual findings are only INFO severity (session accumulation attack)
+  const shouldBlock = highestSeverity === 'WARNING' || highestSeverity === 'CRITICAL' ||
+                      (riskScore >= 25 && isEscalating);
 
   return {
     findings,
@@ -1108,9 +1112,10 @@ export function main(): void {
   }
 
   // Generate session ID from environment or create temporary one
+  // SA-02 LOW: Use crypto.randomUUID instead of predictable pid+timestamp
   const sessionId = process.env.CLAUDE_SESSION_ID ||
                    process.env.ANTHROPIC_SESSION_ID ||
-                   `temp-${process.pid}-${Math.floor(Date.now() / 60000)}`; // 1-minute buckets for temp sessions
+                   `temp-${randomUUID()}`;
 
   const { exitCode, result } = validateJailbreak(content, input.tool_name, sessionId);
 

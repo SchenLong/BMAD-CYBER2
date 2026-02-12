@@ -10,15 +10,15 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  VERSION,
+  runSecurityConfig,
   showCurrentConfiguration,
-  runSecurityConfig
+  VERSION
 } from './index.js';
 
 import {
@@ -34,7 +34,7 @@ const __dirname = path.dirname(__filename);
 
 // Test fixtures
 const MOCK_PROJECT_ROOT = path.join(__dirname, '__test_fixtures_index__');
-const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, '_bmad/core/security');
+const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, 'src/core/security');
 
 // Setup and teardown
 function setupTestFixtures() {

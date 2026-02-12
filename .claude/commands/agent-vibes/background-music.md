@@ -11,12 +11,14 @@ tags: [user]
 4. Test with TTS to confirm the change took effect
 
 **CRITICAL PATH INFORMATION:**
+
 - The script is ALWAYS at `.claude/hooks/background-music-manager.sh` (relative to current directory)
 - DO NOT use global paths like `/agent-vibes/cli.sh` or `~/.agentvibes/cli.sh`
 - DO NOT search for the script - it's always in the same location
 - Use either `bash .claude/hooks/background-music-manager.sh` OR just `.claude/hooks/background-music-manager.sh`
 
 **NEVER:**
+
 - Search for background-music-manager.sh (you already know where it is)
 - Use global installation paths
 - Manually edit config files directly
@@ -46,10 +48,12 @@ Control background music that plays behind TTS voice output.
 ## How It Works
 
 When enabled, TTS audio is mixed with ambient background music:
+
 - **Party mode** - Uses room ambiance track for multi-agent discussions
 - **Solo agent** - Uses agent-specific theme music (if configured)
 
 Background music:
+
 - Fades in/out smoothly
 - Plays at configurable volume (default 40%)
 - Requires `sox` and `ffmpeg` installed
@@ -59,6 +63,7 @@ Background music:
 Background tracks are stored in `.claude/audio/tracks/`
 
 Agent-specific themes are configured in `.claude/config/audio-effects.cfg`:
+
 ```
 # Format: AGENT_NAME|SOX_EFFECTS|BACKGROUND_FILE|VOLUME
 John|gain -1|electronica.mp3|0.30

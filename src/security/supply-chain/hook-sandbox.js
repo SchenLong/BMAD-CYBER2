@@ -360,13 +360,13 @@ class HookSandbox extends EventEmitter {
       if (typeof arg === 'object') {
         try {
           const str = JSON.stringify(arg);
-          return str.length > maxLogLength ? str.slice(0, maxLogLength) + '...' : str;
+          return str.length > maxLogLength ? `${str.slice(0, maxLogLength)  }...` : str;
         } catch {
           return '[Object]';
         }
       }
       const str = String(arg);
-      return str.length > maxLogLength ? str.slice(0, maxLogLength) + '...' : str;
+      return str.length > maxLogLength ? `${str.slice(0, maxLogLength)  }...` : str;
     };
 
     return {

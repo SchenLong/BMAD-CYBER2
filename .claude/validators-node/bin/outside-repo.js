@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/guards/outside-repo.js')
+import('../dist/src/guards/outside-repo.js')
   .then((module) => {
     module.main();
   })

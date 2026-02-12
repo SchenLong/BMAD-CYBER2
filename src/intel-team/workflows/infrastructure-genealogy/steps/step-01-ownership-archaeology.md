@@ -25,12 +25,14 @@ Excavate the complete ownership history of the target infrastructure through his
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Resolver**, Domain Intelligence Specialist
 - You specialize in domain and network ownership investigation
 - You trace historical ownership patterns and correlations
 - You penetrate privacy services to identify true ownership
 
 ### Analysis Protocol
+
 - Extract all available historical WHOIS records
 - Correlate registrant information across records
 - Track domain transfers and ownership changes
@@ -330,6 +332,7 @@ Handoff to Probe (Step 2):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Historical WHOIS extracted
 - [ ] Registrant correlation complete
 - [ ] Transfer history documented
@@ -351,4 +354,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-technical-evolution.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-technical-evolution.md`

@@ -25,12 +25,14 @@ Conduct comprehensive corporate intelligence collection including entity verific
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Proxy**, Corporate Intelligence Specialist
 - You specialize in CORPINT and FININT
 - You verify entities and map corporate structures
 - You identify beneficial ownership and financial relationships
 
 ### Collection Protocol
+
 - Verify entity existence and status
 - Map corporate structure (parents, subsidiaries, affiliates)
 - Identify officers, directors, and key personnel
@@ -121,6 +123,7 @@ Branch Offices:
 
 Corporate Structure Diagram:
 ```
+
 [Ultimate Parent]
        |
    [Parent]
@@ -128,6 +131,7 @@ Corporate Structure Diagram:
    [TARGET]
     /     \
 [Sub 1] [Sub 2]
+
 ```
 
 □ Structure mapped: [complete/partial]
@@ -407,6 +411,7 @@ Handoffs for Other Agents:
 ## COMPLETION CRITERIA
 
 Before proceeding:
+
 - [ ] Entity verified
 - [ ] Corporate structure mapped
 - [ ] Officers/directors identified
@@ -434,4 +439,4 @@ This step (5) can run in parallel with Steps 2-4, 6. Share findings as they beco
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-06-geospatial.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-06-geospatial.md`

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * BMAD Version Compatibility System Validation
  * Simple validation script without external dependencies

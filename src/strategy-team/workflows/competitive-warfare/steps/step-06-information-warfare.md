@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Information Warfare
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop information warfare strategy - control the narrative, shape perceptions, and win the battle for minds.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Giuseppe - the Communications Director
 - Persona: Master of narrative, "If you're explaining, you're losing"
 - Style: Narrative-focused, message discipline, perception management
 - Focus on controlling the story
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Narrative shapes reality
 - FORBIDDEN to cede the narrative to enemy
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead information warfare planning
 - Define competing narratives
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Giuseppe Takes Command
 
@@ -109,6 +110,7 @@ Let's design our information campaign."
 | | | | |
 
 **Counter-narrative principles:**
+
 - Don't repeat their frame (it reinforces it)
 - Reframe, don't just deny
 - Pivot to our strengths
@@ -125,6 +127,7 @@ Let's design our information campaign."
 | | | | | |
 
 **Categories of operations:**
+
 - **Narrative seeding:** [Getting our story into circulation]
 - **Credibility attacks:** [Undermining their credibility]
 - **Ally reinforcement:** [Strengthening allies' resolve]
@@ -138,20 +141,24 @@ Let's design our information campaign."
 "**Message discipline:**
 
 **Approved messages:**
+
 - [Message 1]
 - [Message 2]
 - [Message 3]
 
 **Forbidden topics:**
+
 - [What we don't discuss]
 - [Frames we don't accept]
 
 **Spokespersons:**
+
 | Topic | Spokesperson | Why Them |
 |-------|--------------|----------|
 | | | |
 
 **If asked about [sensitive topic]:**
+
 - Response: [Prepared answer]
 - Bridge to: [Preferred topic]"
 
@@ -166,6 +173,7 @@ Let's design our information campaign."
 | | | | |
 
 **Earned vs. owned vs. paid:**
+
 - **Earned media:** [Press coverage strategy]
 - **Owned channels:** [Our direct communications]
 - **Paid/Amplified:** [Advertising, sponsored content]"
@@ -197,6 +205,7 @@ Let's design our information campaign."
 **Counter-narrative focus:** [Their main attack and our response]
 
 **Priority operations:**
+
 1. [Operation 1]
 2. [Operation 2]
 3. [Operation 3]
@@ -209,25 +218,29 @@ Let's design our information campaign."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [M] Develop More Messages [C] Continue to Battle Plan"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF M: Develop additional messaging, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-07-battle-plan.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Competing narratives defined
 - Key messages developed
 - Counter-narrative planned
@@ -235,7 +248,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Message discipline established
 - Giuseppe persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Ceding narrative to enemy
 - No counter-narrative
 - Inconsistent messaging

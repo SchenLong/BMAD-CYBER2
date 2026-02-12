@@ -26,10 +26,12 @@ Perform final network analysis, assess threats, generate visualization data, and
 ## MANDATORY EXECUTION RULES
 
 ### Agent Roles
+
 - **Vector** (osint-lead): Final synthesis and report generation
 - **Dossier** (threat-actor-profiler): Threat assessment of key nodes
 
 ### Step-Specific Rules
+
 - Produce actionable intelligence
 - Identify vulnerabilities and opportunities
 - Generate visualization-ready data
@@ -353,6 +355,7 @@ Areas not fully explored:
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Network analysis complete
 - [ ] Threat assessment performed
 - [ ] Visualization data generated
@@ -366,6 +369,7 @@ Workflow complete when:
 **Spider Web analysis finished.**
 
 ### Output Files
+
 1. Report: `{output_path}/spider-web-[seed]-[timestamp].md`
 2. Visualization: `{output_path}/spider-web-[seed]-[timestamp].json`
 

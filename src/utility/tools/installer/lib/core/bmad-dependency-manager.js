@@ -14,6 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const semver = require('semver');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 const BMADVersionChecker = require('./bmad-version-compatibility.js');
 const BMADCircularDetector = require('./bmad-circular-detection.js');
 const { NetworkResilience } = require('./network-resilience.js');
@@ -134,7 +135,7 @@ class BMADDependencyManager {
 
         // If it's a file path, load the configuration
         if (typeof moduleConfig === 'string' && fs.existsSync(moduleConfig)) {
-            const content = fs.readFileSync(moduleConfig, 'utf8');
+            const content = normalizeLineEndings(fs.readFileSync(moduleConfig, 'utf8'));
             if (moduleConfig.endsWith('.yaml') || moduleConfig.endsWith('.yml')) {
                 config = yaml.parse(content);
             } else if (moduleConfig.endsWith('.json')) {
@@ -185,11 +186,11 @@ class BMADDependencyManager {
 
         return {
             node: {
-                version: runtime.node?.version || '>=18.0.0',
+                version: runtime.node?.version || '>=20.0.0',
                 recommended: runtime.node?.recommended || '20.x'
             },
             npm: {
-                version: runtime.npm?.version || '>=8.0.0',
+                version: runtime.npm?.version || '>=10.0.0',
                 recommended: runtime.npm?.recommended || '10.x'
             }
         };
@@ -432,7 +433,7 @@ class BMADDependencyManager {
         for (const configPath of localPaths) {
             try {
                 if (fs.existsSync(configPath)) {
-                    const content = fs.readFileSync(configPath, 'utf8');
+                    const content = normalizeLineEndings(fs.readFileSync(configPath, 'utf8'));
                     let config;
 
                     if (configPath.endsWith('.yaml') || configPath.endsWith('.yml')) {
@@ -471,7 +472,7 @@ class BMADDependencyManager {
             type: 'specialized-team',
             scope: '@bmad-cybercommand',
             bmadCore: { version: '>=2.0.0', agents: ['abdul', 'bmad-master'], workflows: ['party-mode', 'cross-module'] },
-            runtime: { node: { version: '>=18.0.0' }, npm: { version: '>=8.0.0' } },
+            runtime: { node: { version: '>=20.0.0' }, npm: { version: '>=10.0.0' } },
             npm: { production: [], development: [], optional: [] },
             crossModule: { required: [], optional: [] },
             external: { required: [], optional: [] },
@@ -1103,7 +1104,7 @@ class BMADDependencyManager {
      * @returns {Promise<Object>} - Connectivity status
      */
     async checkNetworkConnectivity() {
-        return this.networkResilience.checkConnectivity(this.config.npmRegistry + '/-/ping');
+        return this.networkResilience.checkConnectivity(`${this.config.npmRegistry  }/-/ping`);
     }
 
     /**

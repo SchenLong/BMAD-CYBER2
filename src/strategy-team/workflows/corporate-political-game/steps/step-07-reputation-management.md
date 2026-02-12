@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Reputation Management
 
-## STEP GOAL:
+## STEP GOAL
 
 Manage and shape your reputation, personal brand, and the narrative around you.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Giuseppe - the Communications Director
 - Persona: Master of narrative, "If you're explaining, you're losing"
 - Style: Narrative-focused, message discipline, perception management
 - Focus on controlling how you're seen
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Perception is reality in politics
 - FORBIDDEN to ignore how you're perceived
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead reputation strategy development
 - Assess current reputation
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Giuseppe Takes Command
 
@@ -62,15 +63,18 @@ Political success requires more than good arguments and good relationships. It r
 "Reputation audit:
 
 **What are you known for?**
+
 | Attribute | Positive/Negative | How Strong |
 |-----------|-------------------|------------|
 | | | |
 
 **What's your brand in the organization?**
+
 - How would people describe you in one sentence?
 - What do you want them to say?
 
 **Reputation by audience:**
+
 | Audience | How They See You | Based On |
 |----------|-----------------|----------|
 | Senior leadership | | |
@@ -79,11 +83,13 @@ Political success requires more than good arguments and good relationships. It r
 | Key stakeholders | | |
 
 **Reputation assets:**
+
 - What positive perceptions help you?
 - What credibility do you have?
 - What achievements are you known for?
 
 **Reputation liabilities:**
+
 - What negative perceptions hurt you?
 - What misconceptions exist?
 - What past incidents still affect perception?"
@@ -98,16 +104,19 @@ Political success requires more than good arguments and good relationships. It r
 'I want to be known as someone who [X]'
 
 **Key brand attributes:**
+
 | Attribute | Current State | Target State | Gap |
 |-----------|--------------|--------------|-----|
 | | Weak/Moderate/Strong | | |
 
 **Brand positioning:**
+
 - Compared to peers, what's your distinctive value?
 - What's your professional 'lane'?
 - What do you want to own?
 
 **Consistency check:**
+
 - Is this brand authentic to who you are?
 - Can you deliver on this brand?
 - Does it align with your goals?"
@@ -119,26 +128,31 @@ Political success requires more than good arguments and good relationships. It r
 "Reputation building actions:
 
 **Visibility opportunities:**
+
 | Opportunity | Brand Attribute It Builds | Timeline |
 |-------------|--------------------------|----------|
 | (Presentation, project, meeting, etc.) | | |
 
 **Credibility builders:**
+
 | Action | How It Builds Credibility | Audience |
 |--------|--------------------------|----------|
 | | | |
 
 **Association strategy:**
+
 - Who should you be seen with?
 - What initiatives should you be associated with?
 - What communities should you be part of?
 
 **Content and visibility:**
+
 | Platform/Forum | How to Contribute | Frequency |
 |----------------|-------------------|-----------|
 | | | |
 
 **Key moments to leverage:**
+
 | Event/Moment | Reputation Opportunity | Action |
 |--------------|----------------------|--------|
 | | | |"
@@ -150,18 +164,22 @@ Political success requires more than good arguments and good relationships. It r
 "Narrative management:
 
 **Your origin story:**
+
 - How did you get here?
 - What's compelling about your journey?
 
 **Your current narrative:**
+
 - What chapter are you in?
 - What's the story of what you're doing now?
 
 **Your vision narrative:**
+
 - Where are you going?
 - What's your ambition?
 
 **Key talking points about yourself:**
+
 | Topic | What You Say | What You Don't Say |
 |-------|-------------|-------------------|
 | Your background | | |
@@ -170,6 +188,7 @@ Political success requires more than good arguments and good relationships. It r
 | This initiative | | |
 
 **Soundbites:**
+
 - About yourself: [Memorable phrase]
 - About your work: [Memorable phrase]
 - About this initiative: [Memorable phrase]"
@@ -181,11 +200,13 @@ Political success requires more than good arguments and good relationships. It r
 "Reputation vulnerabilities:
 
 **Potential attacks:**
+
 | Attack | Who Might Make It | Response | Prevention |
 |--------|------------------|----------|------------|
 | | | | |
 
 **Weak points to shore up:**
+
 | Vulnerability | Mitigation | Timeline |
 |---------------|------------|----------|
 | | | |
@@ -194,12 +215,14 @@ Political success requires more than good arguments and good relationships. It r
 If attacked on [X], respond with: [Y]
 
 **Track record defense:**
+
 | Criticism | Counter-evidence |
 |-----------|-----------------|
 | | |
 
 **Character witnesses:**
 Who would vouch for you if needed?
+
 | Person | Why They're Credible | What They'd Say |
 |--------|---------------------|-----------------|
 | | | |"
@@ -215,14 +238,17 @@ Who would vouch for you if needed?
 | | | | |
 
 **Under-recognized strengths:**
+
 - What do you do well that people don't know about?
 - How do we make this visible?
 
 **Misperceptions to correct:**
+
 - What do people believe that isn't true?
 - How do we correct without being defensive?
 
 **Perception change strategy:**
+
 | Target Perception | Current State | Actions | Timeline |
 |-------------------|--------------|---------|----------|
 | | | | |"
@@ -234,21 +260,25 @@ Who would vouch for you if needed?
 "Initiative reputation impact:
 
 **If you win:**
+
 - How does it enhance your reputation?
 - New brand attributes you gain?
 - New credibility?
 
 **If you lose:**
+
 - How might it damage your reputation?
 - Mitigation strategies?
 - How to lose well if necessary?
 
 **During the campaign:**
+
 - How to be seen as [leader/team player/etc.]?
 - What behaviors reinforce your brand?
 - What behaviors would hurt your brand?
 
 **Regardless of outcome:**
+
 - How to build reputation through the process?
 - What do you want people to say about how you conducted yourself?"
 
@@ -277,6 +307,7 @@ Who would vouch for you if needed?
 **Key gap to close:** [Most important perception to change]
 
 **Reputation building:**
+
 1. [Top visibility opportunity]
 2. [Key credibility builder]
 3. [Important association]
@@ -298,25 +329,29 @@ Now Magnus will bring it all together in the Execution Playbook."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [D] Develop Specific Brand Element [C] Continue to Execution Playbook"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF D: Develop specific brand or narrative element, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-08-execution-playbook.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Current reputation assessed
 - Target brand defined
 - Building strategy developed
@@ -324,7 +359,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Defenses prepared
 - Giuseppe persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Ignoring current perception
 - Inauthentic brand goals
 - No defense preparation

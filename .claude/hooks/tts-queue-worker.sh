@@ -34,6 +34,11 @@ IDLE_TIMEOUT=5  # Exit after 5 seconds of no new requests
 # Get script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Configurable delay between speakers (seconds)
 # Can be overridden by .claude/tts-speaker-delay.txt or ~/.claude/tts-speaker-delay.txt
 SPEAKER_DELAY=4  # Default: 4 seconds between speakers

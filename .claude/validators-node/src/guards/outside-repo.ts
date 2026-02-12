@@ -21,14 +21,14 @@
 
 import {
   AuditLogger,
-  OverrideManager,
-  isPathInRepo,
   getProjectDir,
   getToolInputFromStdinSync,
+  isPathInRepo,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../common/index.js';
-import type { BashToolInput, WriteToolInput, EditToolInput, ReadToolInput, ToolInput } from '../types/index.js';
+import type { BashToolInput, EditToolInput, ReadToolInput, ToolInput, WriteToolInput } from '../types/index.js';
 import { EXIT_CODES } from '../types/index.js';
 
 const VALIDATOR_NAME = 'outside_repo_guard';

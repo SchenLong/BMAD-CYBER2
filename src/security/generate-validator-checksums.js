@@ -1,12 +1,11 @@
-#!/usr/bin/env node
 /**
  * Validator Checksum Generator
  * Generates SHA256 checksums for all validator files to establish an integrity baseline.
  * Usage: node src/security/generate-validator-checksums.js
  */
 import { createHash } from 'crypto';
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'fs';
-import { resolve, relative, join, dirname } from 'path';
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
+import { dirname, join, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -82,8 +81,8 @@ function generateChecksums() {
 }
 
 console.log('Generating validator checksums...');
-console.log('Project root: ' + PROJECT_ROOT);
+console.log(`Project root: ${  PROJECT_ROOT}`);
 const manifest = generateChecksums();
 writeFileSync(OUTPUT_FILE, JSON.stringify(manifest, null, 2));
-console.log('Generated checksums for ' + manifest.fileCount + ' validator files');
-console.log('Manifest written to: ' + OUTPUT_FILE);
+console.log(`Generated checksums for ${  manifest.fileCount  } validator files`);
+console.log(`Manifest written to: ${  OUTPUT_FILE}`);

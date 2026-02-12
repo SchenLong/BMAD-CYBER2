@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * PGP Key Export - INST-027
  * Epic 3 - Key Export and Storage
@@ -459,7 +458,7 @@ export function savePgpConfig(fingerprint, projectRoot = process.cwd(), options 
 
   try {
     const yamlContent = serializeYaml(config);
-    fs.writeFileSync(configPath, header + yamlContent + '\n', 'utf8');
+    fs.writeFileSync(configPath, `${header + yamlContent  }\n`, 'utf8');
     return { success: true, path: configPath };
   } catch (error) {
     return { success: false, error: `Failed to write PGP config: ${error.message}` };
@@ -472,7 +471,7 @@ export function savePgpConfig(fingerprint, projectRoot = process.cwd(), options 
  * @param {string} fingerprint - Key fingerprint
  */
 export function displayExportSummary(result, fingerprint) {
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('PGP Key Export Summary');
   console.log('='.repeat(60));
 
@@ -497,9 +496,9 @@ export function displayExportSummary(result, fingerprint) {
   console.log('  Public Key:     644 (world readable)');
   console.log('  Private Key:    600 (owner only)');
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Key export complete!');
-  console.log('='.repeat(60) + '\n');
+  console.log(`${'='.repeat(60)  }\n`);
 }
 
 /**
@@ -649,26 +648,26 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 
   // Test 1: Check GPG availability
   console.log('\n1. GPG availability:');
-  console.log('   Available: ' + isGpgAvailable());
+  console.log(`   Available: ${  isGpgAvailable()}`);
 
   // Test 2: Validate fingerprint
   console.log('\n2. Fingerprint validation:');
   const testFp = 'ABCD1234ABCD1234ABCD1234ABCD1234ABCD1234';
-  console.log('   Valid format: ' + isValidFingerprint(testFp));
-  console.log('   Cleaned: ' + cleanFingerprint('ABCD 1234 ABCD 1234 ABCD 1234 ABCD 1234 ABCD 1234'));
+  console.log(`   Valid format: ${  isValidFingerprint(testFp)}`);
+  console.log(`   Cleaned: ${  cleanFingerprint('ABCD 1234 ABCD 1234 ABCD 1234 ABCD 1234 ABCD 1234')}`);
 
   // Test 3: Check existing keys
   console.log('\n3. Existing keys:');
   const existingKeys = checkExistingKeys();
-  console.log('   Keys exist: ' + existingKeys.exists);
-  console.log('   Public key: ' + existingKeys.publicKey);
-  console.log('   Private key: ' + existingKeys.privateKey);
+  console.log(`   Keys exist: ${  existingKeys.exists}`);
+  console.log(`   Public key: ${  existingKeys.publicKey}`);
+  console.log(`   Private key: ${  existingKeys.privateKey}`);
 
   // Test 4: Platform detection
   console.log('\n4. Platform:');
-  console.log('   Windows: ' + isWindows());
-  console.log('   Keys dir: ' + KEYS_DIR);
+  console.log(`   Windows: ${  isWindows()}`);
+  console.log(`   Keys dir: ${  KEYS_DIR}`);
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete. (No keys were exported)');
 }

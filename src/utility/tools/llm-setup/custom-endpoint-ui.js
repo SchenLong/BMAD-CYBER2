@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
+import { confirm, password, select, text } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -73,7 +73,7 @@ export function validateModelName(model) {
   const trimmed = model.trim();
 
   // Allow alphanumeric, hyphens, underscores, dots, colons, slashes
-  if (!/^[\w\-.:\/]+$/.test(trimmed)) {
+  if (!/^[\w\-.:/]+$/.test(trimmed)) {
     return 'Model name contains invalid characters';
   }
 
@@ -120,17 +120,16 @@ export const API_FORMATS = [
 export async function promptEndpointUrl(options = {}) {
   const { defaultUrl = 'http://localhost:8000/v1' } = options;
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'url',
-      message: 'Enter API endpoint URL:',
-      default: defaultUrl,
-      validate: validateEndpointUrl
+  const url = await text({
+    message: 'Enter API endpoint URL:',
+    default: defaultUrl,
+    validate: (value) => {
+      const result = validateEndpointUrl(value);
+      return result === true ? undefined : result;
     }
-  ]);
+  });
 
-  return answer.url.trim();
+  return url.trim();
 }
 
 /**
@@ -143,17 +142,16 @@ export async function promptEndpointUrl(options = {}) {
 export async function promptModelName(options = {}) {
   const { defaultModel } = options;
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'model',
-      message: 'Enter model name/identifier:',
-      default: defaultModel,
-      validate: validateModelName
+  const model = await text({
+    message: 'Enter model name/identifier:',
+    default: defaultModel,
+    validate: (value) => {
+      const result = validateModelName(value);
+      return result === true ? undefined : result;
     }
-  ]);
+  });
 
-  return answer.model.trim();
+  return model.trim();
 }
 
 /**
@@ -167,36 +165,27 @@ export async function promptApiKey(options = {}) {
   const { required = false } = options;
 
   if (!required) {
-    const skipAnswer = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'hasKey',
-        message: 'Does this endpoint require an API key?',
-        default: false
-      }
-    ]);
+    const hasKey = await confirm({
+      message: 'Does this endpoint require an API key?',
+      initialValue: false
+    });
 
-    if (!skipAnswer.hasKey) {
+    if (!hasKey) {
       return null;
     }
   }
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'password',
-      name: 'apiKey',
-      message: 'Enter API key:',
-      mask: '*',
-      validate: (input) => {
-        if (required && (!input || !input.trim())) {
-          return 'API key is required';
-        }
-        return true;
+  const apiKey = await password({
+    message: 'Enter API key:',
+    validate: (input) => {
+      if (required && (!input || !input.trim())) {
+        return 'API key is required';
       }
+      return undefined;
     }
-  ]);
+  });
 
-  return answer.apiKey || null;
+  return apiKey || null;
 }
 
 /**
@@ -215,19 +204,13 @@ export async function promptApiFormat(options = {}) {
     short: format.name
   }));
 
-  const defaultIndex = API_FORMATS.findIndex(f => f.value === defaultFormat);
+  const format = await select({
+    message: 'Select API format:',
+    choices,
+    default: defaultFormat
+  });
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'format',
-      message: 'Select API format:',
-      choices,
-      default: defaultIndex >= 0 ? defaultIndex : 0
-    }
-  ]);
-
-  return answer.format;
+  return format;
 }
 
 /**
@@ -274,16 +257,12 @@ export async function showCustomEndpointFlow(options = {}) {
   console.log('');
 
   // Confirm
-  const confirmAnswer = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirm',
-      message: 'Is this configuration correct?',
-      default: true
-    }
-  ]);
+  const confirmed = await confirm({
+    message: 'Is this configuration correct?',
+    initialValue: true
+  });
 
-  if (!confirmAnswer.confirm) {
+  if (!confirmed) {
     console.log(chalk.yellow('Configuration cancelled. Starting over...'));
     return showCustomEndpointFlow(options);
   }

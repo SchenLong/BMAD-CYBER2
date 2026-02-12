@@ -15,6 +15,7 @@
 ## Purpose
 
 Map communications infrastructure and signal opportunities:
+
 - Communications infrastructure mapping
 - Protocol identification
 - Vulnerability assessment

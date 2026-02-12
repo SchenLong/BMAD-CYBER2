@@ -3,57 +3,7 @@
 
 code: "cybersec-team"
 name: "Cybersecurity Team (Cybersec-Team)"
-version: "2.1.0"
-type: "specialized-team"
-category: "bmad-cybercommand"
 default_selected: false
-
-# NPM Publishing Configuration
-npm:
-  scope: "@bmad-cybercommand"
-  package_name: "cybersec-team"
-  full_name: "@bmad-cybercommand/cybersec-team"
-
-repository:
-  type: "git"
-  url: "https://github.com/bmad-code-org/bmad-cybercommand.git"
-  directory: "src/cybersec-team"
-
-description: "Comprehensive cybersecurity operations with 15 specialized security agents"
-keywords:
-  - "bmad"
-  - "agent"
-  - "workflow"
-  - "security"
-  - "cybersecurity"
-  - "penetration-testing"
-  - "compliance"
-
-license: "MIT"
-
-# Module Capabilities
-capabilities:
-  agents:
-    count: 15
-    format: "agent.yaml"
-    path: "agents/"
-  workflows:
-    count: 13
-    format: "workflow.yaml"
-    path: "workflows/"
-
-# Dependencies
-dependencies:
-  core:
-    - module: "bmad:core"
-      version: ">=2.0.0"
-      required: true
-
-# Build Configuration
-build:
-  validation: true
-  format: "bmad-builder"
-  target: "distribution"
 
 # Welcome message shown during installation
 prompt:
@@ -107,14 +57,14 @@ module_code:
   result: "cybersec-team"
 
 module_version:
-  result: "2.1.0"
+  result: "1.3.0"
 
 # STATIC: Module paths
 agents_path:
-  result: "{project-root}/_bmad/cybersec-team/agents"
+  result: "{project-root}/src/cybersec-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/cybersec-team/workflows"
+  result: "{project-root}/src/cybersec-team/workflows"
 
 # STATIC: Automatic subdirectory configuration
 # These are derived from output_folder and created automatically by agents
@@ -130,9 +80,3 @@ documentation:
 # User skill level for security operations
 user_skill_level:
   result: "intermediate"
-
-# Generation metadata
-generated:
-  date: "2026-01-23T16:44:40.125Z"
-  by: "bmad-module-packager"
-  version: "1.0.0"

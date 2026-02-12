@@ -18,6 +18,7 @@ Guide the client through selecting the optimal jurisdiction for their corporate 
 Display supported jurisdictions with key characteristics:
 
 **USA Options:**
+
 | State | Best For | Key Features |
 |-------|----------|--------------|
 | Delaware | Most corporations | Business-friendly courts, flexible law |
@@ -26,6 +27,7 @@ Display supported jurisdictions with key characteristics:
 | [Client's State] | Local operations | Simplicity if operating there |
 
 **EU Options:**
+
 | Country | Best For | Key Features |
 |---------|----------|--------------|
 | Estonia | Digital business, e-residency | 0% on retained earnings, fully digital |
@@ -37,18 +39,21 @@ Display supported jurisdictions with key characteristics:
 Based on consultation data, analyze fit:
 
 **USA Factors:**
+
 - Presence of US customers/operations
 - US investor requirements
 - Banking needs
 - State tax implications
 
 **EU Factors:**
+
 - EU market access needs
 - VAT considerations
 - Substance requirements
 - Local presence requirements
 
 **Cross-Border Factors:**
+
 - Holding structure benefits
 - Treaty access
 - Repatriation considerations

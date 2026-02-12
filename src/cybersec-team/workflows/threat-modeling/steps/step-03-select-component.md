@@ -14,13 +14,13 @@ outputFile: '{output_folder}/threat-model-{project_name}.md'
 
 # Step 3: Component Selection
 
-## STEP GOAL:
+## STEP GOAL
 
 To present the component inventory, allow user to select the next component for threat analysis, track analysis progress, and route appropriately when all components are analyzed.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -28,7 +28,7 @@ To present the component inventory, allow user to select the next component for 
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -36,32 +36,33 @@ To present the component inventory, allow user to select the next component for 
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on component selection and progress tracking
 - 🚫 FORBIDDEN to perform threat analysis in this step
 - 💬 Present clear component list with analysis status
 - 🚪 Route to summary if all components analyzed
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Load components and componentsAnalyzed from frontmatter
 - 💾 Display component selection menu with status indicators
 - 📖 Update frontmatter with currentComponent before loading next step
 - 🚫 FORBIDDEN to load STRIDE analysis until component is selected
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Components array populated from step 2
 - componentsAnalyzed array tracks completed analyses
 - currentComponent indicates active analysis target
 - Must check completion before proceeding
 
-## COMPONENT SELECTION PROCESS:
+## COMPONENT SELECTION PROCESS
 
 ### 1. Load Current State
 
 Read {outputFile} frontmatter to extract:
+
 - `components` - Array of all identified components
 - `componentsAnalyzed` - Array of components already analyzed
 - `currentComponent` - Component currently being analyzed (if any)
@@ -81,7 +82,7 @@ All components have been analyzed. Display:
 
 Proceeding to summary and recommendations..."
 
-Immediately load, read entire file, then execute {summaryStepFile}
+Immediately load, read entire file, then follow {summaryStepFile}
 
 **STOP** - Do not proceed with component selection.
 
@@ -90,6 +91,7 @@ Immediately load, read entire file, then execute {summaryStepFile}
 **IF components remain to be analyzed:**
 
 Create two lists:
+
 1. **Analyzed** - Components in `componentsAnalyzed` array
 2. **Remaining** - Components NOT in `componentsAnalyzed` array
 
@@ -118,6 +120,7 @@ Enter the number of the component you want to analyze for threats using the STRI
 Wait for user to select a component by number.
 
 **Validation:**
+
 - Ensure selected number is valid (1 to remaining.length)
 - Ensure selected component is not already in componentsAnalyzed
 
@@ -128,6 +131,7 @@ Return to selection prompt.
 ### 6. Set Current Component
 
 Once valid component selected, extract component details:
+
 - Component name
 - Component type
 - Component technology
@@ -145,6 +149,7 @@ Display confirmation:
 We'll now perform a systematic STRIDE analysis to identify potential threats to this component.
 
 **STRIDE Categories:**
+
 - **S**poofing - Identity verification threats
 - **T**ampering - Data/code integrity threats
 - **R**epudiation - Audit and logging threats
@@ -177,13 +182,13 @@ user_name: '{user_name}'
 
 ### 8. Route to STRIDE Analysis
 
-Immediately load, read entire file, then execute {nextStepFile} to begin STRIDE threat analysis for the selected component.
+Immediately load, read entire file, then follow {nextStepFile} to begin STRIDE threat analysis for the selected component.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Component list displayed with analysis status
 - Progress tracking accurate (X of Y analyzed)
@@ -192,7 +197,7 @@ Immediately load, read entire file, then execute {nextStepFile} to begin STRIDE 
 - Routed to STRIDE analysis (step 4)
 - OR routed to summary if all components analyzed
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Not checking if all components analyzed
 - Proceeding without component selection
@@ -204,4 +209,4 @@ Immediately load, read entire file, then execute {nextStepFile} to begin STRIDE 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN a component is selected (OR all components are analyzed) will you update frontmatter and immediately load, read entire file, then execute the appropriate next step file ({nextStepFile} for analysis or {summaryStepFile} if complete).
+ONLY WHEN a component is selected (OR all components are analyzed) will you update frontmatter and immediately load and follow the appropriate next step file ({nextStepFile} for analysis or {summaryStepFile} if complete).

@@ -50,8 +50,8 @@ describe('Installation Verification', () => {
       expect(fs.existsSync(frameworkDir)).toBe(true);
     });
 
-    it('should have _bmad/core directory', () => {
-      const coreDir = path.join(PROJECT_ROOT, '_bmad/core');
+    it('should have src/core directory (migrated from _bmad/core)', () => {
+      const coreDir = path.join(PROJECT_ROOT, 'src/core');
       expect(fs.existsSync(coreDir)).toBe(true);
     });
 

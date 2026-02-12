@@ -11,6 +11,7 @@
 
 const yaml = require('js-yaml');
 const path = require('path');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 /**
  * YAML to MD Conversion Engine
@@ -42,7 +43,7 @@ class YamlToMdConverter {
     try {
       // Parse YAML if string
       const agentData = typeof yamlAgent === 'string'
-        ? yaml.load(yamlAgent, { schema: yaml.CORE_SCHEMA })
+        ? yaml.load(normalizeLineEndings(yamlAgent), { schema: yaml.CORE_SCHEMA })
         : yamlAgent;
 
       // Validate YAML structure
@@ -92,7 +93,7 @@ class YamlToMdConverter {
     try {
       // Parse YAML if string
       const workflowData = typeof yamlWorkflow === 'string'
-        ? yaml.load(yamlWorkflow, { schema: yaml.CORE_SCHEMA })
+        ? yaml.load(normalizeLineEndings(yamlWorkflow), { schema: yaml.CORE_SCHEMA })
         : yamlWorkflow;
 
       // Validate YAML structure
@@ -180,7 +181,7 @@ class YamlToMdConverter {
    * Build agent content section
    */
   buildAgentContent(agentData) {
-    let content = [];
+    const content = [];
 
     // Add persona information
     if (agentData.persona) {
@@ -253,7 +254,7 @@ class YamlToMdConverter {
    * Build agent XML block for BMAD runtime
    */
   buildAgentXml(agentData) {
-    let xml = [];
+    const xml = [];
 
     xml.push('<agent>\n');
 
@@ -307,7 +308,7 @@ class YamlToMdConverter {
    * Assemble full MD content
    */
   assembleMdContent(frontmatter, content, xmlBlock) {
-    let fullContent = [];
+    const fullContent = [];
 
     // Add frontmatter
     fullContent.push('---\n');
@@ -379,7 +380,7 @@ class YamlToMdConverter {
    * Build workflow content
    */
   buildWorkflowContent(workflowData) {
-    let content = [];
+    const content = [];
 
     // Add workflow overview
     content.push('## Workflow Overview\n');
@@ -435,7 +436,7 @@ class YamlToMdConverter {
    * Assemble workflow MD content
    */
   assembleWorkflowMdContent(frontmatter, content) {
-    let fullContent = [];
+    const fullContent = [];
 
     // Add frontmatter
     fullContent.push('---\n');

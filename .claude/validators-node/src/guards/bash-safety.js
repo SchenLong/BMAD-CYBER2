@@ -17,7 +17,7 @@
  * - Command substitution detection
  * - Improved regex patterns for edge cases
  */
-import { AuditLogger, OverrideManager, isPathInRepo, getProjectDir, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
+import { AuditLogger, getProjectDir, getToolInputFromStdinSync, isPathInRepo, OverrideManager, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 const VALIDATOR_NAME = 'bash_safety';
 /**
@@ -83,7 +83,7 @@ export function extractRmTargets(cmd) {
  * Check for dangerous rm commands.
  */
 function checkVariableSafety(t) { const m = t.match(/^\$\{?([A-Za-z_][A-Za-z0-9_]*)\}?/); if (!m)
-    return { isSafe: false, varName: t }; return { isSafe: SAFE_VARIABLES.has("$" + m[1]), varName: "$" + m[1] }; }
+    return { isSafe: false, varName: t }; return { isSafe: SAFE_VARIABLES.has(`$${  m[1]}`), varName: `$${  m[1]}` }; }
 export function checkDangerousRm(cmd, cwd) {
     // Improved patterns - handle command chaining and comments
     // Match dangerous rm even when followed by other commands
@@ -117,7 +117,7 @@ export function checkDangerousRm(cmd, cwd) {
                     return {
                         isDangerous: true,
                         isAbsolute: true,
-                        message: "ABSOLUTE BLOCK: rm -rf uses unverified variable: " + varName,
+                        message: `ABSOLUTE BLOCK: rm -rf uses unverified variable: ${  varName}`,
                     };
                 }
                 continue;
@@ -142,7 +142,7 @@ export function checkDangerousRm(cmd, cwd) {
                     return {
                         isDangerous: true,
                         isAbsolute: false,
-                        message: "STRICT BLOCK: rm uses unverified variable: " + varName,
+                        message: `STRICT BLOCK: rm uses unverified variable: ${  varName}`,
                     };
                 }
                 continue;

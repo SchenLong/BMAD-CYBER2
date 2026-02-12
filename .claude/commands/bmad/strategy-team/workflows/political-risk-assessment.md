@@ -5,5 +5,5 @@ description: Evaluate political risks in strategic decisions and initiatives wit
 
 # Political Risk Assessment
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/strategy-team/workflows/political-risk-assessment/workflow.md`
+Load and follow the workflow at:
+`@src/strategy-team/workflows/political-risk-assessment/workflow.md`

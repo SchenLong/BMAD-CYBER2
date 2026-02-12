@@ -267,6 +267,7 @@ What phase of development?
 ### When to Use Core Module
 
 Use Core workflows for:
+
 - **Project initiation**: `create-project`
 - **Task routing**: `assign-task`, `whats-next`
 - **Cross-module coordination**: `cross-module`, `select-template`
@@ -277,6 +278,7 @@ Use Core workflows for:
 ### When to Use Cybersec Module
 
 Use Cybersec workflows for:
+
 - **Active security incidents** requiring immediate response
 - **Security assessments** of applications, infrastructure, or processes
 - **Compliance preparation** for audits (NIST, SOC2, PCI-DSS, HIPAA, GDPR)
@@ -284,6 +286,7 @@ Use Cybersec workflows for:
 - **Security program development** (vCISO, training)
 
 **Key Indicators:**
+
 - Risk to confidentiality, integrity, or availability
 - Regulatory compliance requirements
 - Pre-launch security validation
@@ -292,6 +295,7 @@ Use Cybersec workflows for:
 ### When to Use Intel Module
 
 Use Intel workflows for:
+
 - **Investigation** of individuals, organizations, or threat actors
 - **Exposure assessment** (breach archaeology, counter-intel)
 - **Technical reconnaissance** (infrastructure, SIGINT)
@@ -299,6 +303,7 @@ Use Intel workflows for:
 - **Intelligence fusion** (synthesis, operation-mosaic)
 
 **Key Indicators:**
+
 - Need to understand external entities
 - Threat actor attribution required
 - Due diligence on third parties
@@ -307,6 +312,7 @@ Use Intel workflows for:
 ### When to Use Legal Module
 
 Use Legal workflows for:
+
 - **Any legal matter** (start with `legal-matter-intake`)
 - **Contracts** (drafting, review, negotiation)
 - **Corporate formation** across jurisdictions
@@ -314,6 +320,7 @@ Use Legal workflows for:
 - **Tax optimization** strategies
 
 **Key Indicators:**
+
 - Contractual obligations or rights
 - Regulatory compliance (GDPR, employment, etc.)
 - Multi-jurisdiction considerations
@@ -322,6 +329,7 @@ Use Legal workflows for:
 ### When to Use Strategy Module
 
 Use Strategy workflows for:
+
 - **Major decisions** requiring multiple perspectives
 - **Crisis situations** requiring coordinated response
 - **Stakeholder management** and negotiations
@@ -329,6 +337,7 @@ Use Strategy workflows for:
 - **Leadership and governance** matters
 
 **Key Indicators:**
+
 - Board-level visibility
 - High-stakes outcomes
 - Political complexity
@@ -337,6 +346,7 @@ Use Strategy workflows for:
 ### When to Use BMM Module
 
 Use BMM workflows for:
+
 - **New product development** (brief through implementation)
 - **Agile execution** (sprints, stories, retrospectives)
 - **Architecture decisions** for software systems
@@ -344,6 +354,7 @@ Use BMM workflows for:
 - **Documentation** and diagramming
 
 **Key Indicators:**
+
 - Software development lifecycle
 - Product/feature definition
 - Technical implementation
@@ -417,17 +428,20 @@ Before selecting a workflow, consider:
 ## Quick Reference: All Workflows by Module
 
 ### Core (10 workflows)
+
 - `create-project`, `assign-task`, `cross-module`, `project-status`, `whats-next`
 - `strategic-decision`, `incident-response`, `secure-software`, `compliance-first`, `phase-gate`
 - `conflict-resolution`, `select-template`, `party-mode`, `select-preset`
 
 ### Cybersec (13 workflows)
+
 - `threat-modeling`, `security-architecture-review`, `vulnerability-management`, `compliance-audit-prep`
 - `web-app-security-testing`, `mobile-security-testing`, `cloud-security-assessment`, `blockchain-security-assessment`
 - `network-assessment`, `infrastructure-security-testing`, `incident-response-playbook`
 - `virtual-ciso-consulting`, `security-awareness-training`
 
 ### Intel (19 workflows)
+
 - `flash-assessment`, `campaign-planner-person`, `campaign-planner-org`, `campaign-ai`
 - `attribution-chain`, `threat-constellation`, `breach-archaeology`, `infrastructure-genealogy`
 - `signal-landscape`, `spider-web`, `operation-mosaic`
@@ -435,10 +449,12 @@ Before selecting a workflow, consider:
 - `counter-intel-audit`, `tripwire`, `the-synthesis`
 
 ### Legal (7 workflows)
+
 - `legal-matter-intake`, `contract-review`, `contract-drafting`
 - `corporate-formation`, `dispute-strategy`, `tax-planning`, `cross-border-matter`
 
 ### Strategy (16 workflows)
+
 - `strategic-decision-workshop`, `strategic-planning-session`, `crisis-response-planning`
 - `stakeholder-negotiation-prep`, `competitive-warfare`, `corporate-political-game`
 - `ma-due-diligence`, `board-presentation-prep`, `board-relations-management`
@@ -446,6 +462,7 @@ Before selecting a workflow, consider:
 - `policy-development`, `political-risk-assessment`, `ethical-dilemma-resolution`, `conflict-resolution`
 
 ### BMM (25+ workflows)
+
 - **Analysis**: `create-product-brief`, `research`
 - **Planning**: `create-prd`, `create-ux-design`
 - **Solutioning**: `create-architecture`, `create-epics-and-stories`, `check-implementation-readiness`

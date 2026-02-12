@@ -22,24 +22,28 @@ Understand all parties involved in the matter, their roles, relationships, and l
 ## PARTY CATEGORIES
 
 ### Client/User
+
 - Individual or entity?
 - Role in the matter (buyer, seller, plaintiff, defendant, etc.)
 - Authority to act
 - Capacity concerns
 
 ### Counterparty
+
 - Individual or entity?
 - Their role
 - Relationship to client
 - Known concerns about them
 
 ### Third Parties
+
 - Other involved parties
 - Guarantors, sureties
 - Agents, representatives
 - Regulators, authorities
 
 ### Representatives
+
 - Existing legal counsel
 - Other advisors
 - Decision makers
@@ -51,6 +55,7 @@ Understand all parties involved in the matter, their roles, relationships, and l
 "Let's map out everyone involved in this matter."
 
 For each party, gather:
+
 - Name/identity
 - Type (individual, corporation, government, etc.)
 - Role in the matter
@@ -60,6 +65,7 @@ For each party, gather:
 ### 2. Client Position Analysis
 
 Understand the user's position:
+
 - What is your role? (buyer, seller, claimant, defendant, etc.)
 - What is your relationship with the counterparty?
 - Have you dealt with them before?
@@ -68,6 +74,7 @@ Understand the user's position:
 ### 3. Capacity and Authority
 
 Verify:
+
 - Does the user have authority to proceed?
 - Any capacity concerns (minors, mental capacity, corporate authority)?
 - Who are the decision makers?
@@ -105,11 +112,13 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4, 5]`
 ### 5. Present Menu
 
 **Select an Option:**
+
 - **[C]** Continue to document review
 - **[A]** Add more parties
 - **[Q]** Questions about parties
 
-#### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+#### Menu Handling
+
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF A: Add additional parties, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

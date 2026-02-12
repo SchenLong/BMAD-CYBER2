@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Stakeholder & Communication Strategy
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop comprehensive communications strategy for all stakeholder groups throughout the deal lifecycle - announcement, close, and integration phases.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor with Giuseppe (Communications Director) providing messaging expertise
 - Focus on clear, consistent messaging across all audiences
 - Address concerns proactively
 - Plan for difficult questions and scenarios
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Tailor messaging to each stakeholder group
 - FORBIDDEN to use generic communications
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Stakeholder Mapping
 
@@ -62,6 +63,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me bring in Giuseppe's communications expertise to develop key messages..."
 
 **Core narrative:**
+
 - Why this deal makes sense
 - What it means for stakeholders
 - Vision for the combined entity
@@ -70,18 +72,21 @@ You MUST respond in **{communication_language}** throughout this step.
 **Audience-specific messages:**
 
 **For employees:**
+
 - Job security message
 - Career opportunity message
 - Culture message
 - Timeline clarity
 
 **For customers:**
+
 - Service continuity
 - Value enhancement
 - Relationship commitment
 - Support contacts
 
 **For investors:**
+
 - Strategic rationale
 - Value creation thesis
 - Synergy commitments
@@ -124,6 +129,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's prepare FAQ responses:"
 
 **Employee FAQs:**
+
 - Will there be layoffs?
 - What happens to my role?
 - How will compensation/benefits change?
@@ -131,12 +137,14 @@ You MUST respond in **{communication_language}** throughout this step.
 - What about our culture?
 
 **Customer FAQs:**
+
 - Will pricing change?
 - Will my contacts change?
 - Will service be disrupted?
 - What are the benefits to me?
 
 **Investor FAQs:**
+
 - What are the synergies?
 - What's the integration timeline?
 - What are the risks?
@@ -168,11 +176,13 @@ You MUST respond in **{communication_language}** throughout this step.
 - Subject matter experts: [who for what topics]
 
 **Key talking points:**
+
 1. [point]
 2. [point]
 3. [point]
 
 **Messages to avoid:**
+
 - [what not to say]
 
 ### 8. Update Output File
@@ -223,11 +233,13 @@ Update frontmatter: Add `step-07-stakeholder-comms` to stepsCompleted
 [1-2 sentence summary]
 
 **Critical Stakeholder Actions:**
+
 1. [stakeholder + action]
 2. [stakeholder + action]
 3. [stakeholder + action]
 
 **Communication Timeline:**
+
 - Announcement: [date/timing]
 - Close communications: [date/timing]
 - Integration cadence: [frequency]
@@ -242,21 +254,24 @@ Update frontmatter: Add `step-07-stakeholder-comms` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysis [C] Continue to Deal Recommendation"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-08-deal-recommendation.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All stakeholders mapped
 - Key messages developed for each audience
 - Timeline and channels planned
@@ -264,7 +279,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Contingency scenarios addressed
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Generic one-size-fits-all messaging
 - Skipping employee communications
 - Not preparing for difficult questions

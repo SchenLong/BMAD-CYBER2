@@ -41,6 +41,7 @@ Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Polish,
 ## Implementation
 
 This command tells Claude AI to:
+
 1. Validate the language is supported
 2. Save to `.claude/tts-language.txt`
 3. Switch to an appropriate multilingual voice if needed

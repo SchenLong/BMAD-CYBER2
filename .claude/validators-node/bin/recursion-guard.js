@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/resource-management/recursion-guard.js')
+import('../dist/src/resource-management/recursion-guard.js')
   .then((module) => {
     module.main();
   })

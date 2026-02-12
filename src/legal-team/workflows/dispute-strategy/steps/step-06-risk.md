@@ -18,6 +18,7 @@ Conduct comprehensive risk assessment including litigation costs, outcomes, and 
 Evaluate likely outcomes:
 
 **If Proceeding to Trial:**
+
 | Outcome | Probability | Basis |
 |---------|-------------|-------|
 | Complete win | [%] | [Factors] |
@@ -31,16 +32,19 @@ Evaluate likely outcomes:
 Calculate potential exposure:
 
 **If Claimant:**
+
 - Best case recovery: $[Amount]
 - Likely recovery: $[Amount]
 - Worst case (lose + costs): $[Amount]
 
 **If Defendant:**
+
 - Best case (complete defense): $[Defense costs only]
 - Likely exposure: $[Amount]
 - Worst case exposure: $[Amount + fees + interest]
 
 **Costs to Litigate:**
+
 | Phase | Estimated Cost |
 |-------|----------------|
 | Pre-litigation | $[Amount] |
@@ -57,18 +61,21 @@ Calculate potential exposure:
 Assess non-monetary considerations:
 
 **Business Impact:**
+
 - Distraction from operations
 - Customer/Supplier relationships
 - Competitive implications
 - Regulatory attention
 
 **Reputational Risk:**
+
 - Publicity exposure
 - Industry standing
 - Personal reputation
 - Social media impact
 
 **Relationship Consequences:**
+
 - Key relationships at stake
 - Future business opportunities
 - Industry network effects
@@ -78,11 +85,13 @@ Assess non-monetary considerations:
 Calculate risk-adjusted outcomes:
 
 **Expected Value Calculation:**
+
 ```
 EV = (P(Win) × Recovery) - (P(Lose) × Loss) - (Certain Costs)
 ```
 
 **Break-Even Analysis:**
+
 - Settlement equivalent value
 - Point where litigation costs exceed benefit
 - Time value considerations

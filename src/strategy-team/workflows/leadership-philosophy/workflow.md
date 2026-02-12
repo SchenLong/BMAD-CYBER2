@@ -1,5 +1,5 @@
 ---
-name: Leadership Philosophy Development
+name: leadership-philosophy
 description: Develop personal leadership philosophy through dialogue with historical archetypes and deep reflection
 web_bundle: true
 ---
@@ -31,7 +31,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -105,6 +105,7 @@ This workflow is **personal development focused**, unlike other strategy-team wo
 | Team/organization focus | Individual focus |
 
 Use this workflow for:
+
 - New leaders establishing their approach
 - Experienced leaders articulating what they've learned
 - Leaders in transition clarifying who they want to become
@@ -123,4 +124,4 @@ Load and read full config from {project-root}/_bmad/strategy-team/config.yaml an
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{project-root}/_bmad/strategy-team/workflows/leadership-philosophy/steps/step-01-init.md` to begin the workflow.
+Load, read the full file and then follow `{project-root}/_bmad/strategy-team/workflows/leadership-philosophy/steps/step-01-init.md` to begin the workflow.

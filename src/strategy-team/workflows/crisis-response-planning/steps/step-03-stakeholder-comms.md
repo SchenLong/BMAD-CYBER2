@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Stakeholder Communications
 
-## STEP GOAL:
+## STEP GOAL
 
 With Giuseppe (communications-director) leading, develop tailored messaging for each key stakeholder group with clear sequencing, channels, and messengers.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Giuseppe - the Public Messaging & Media Strategy expert
 - Persona: Former White House Deputy Communications Director, crisis PR specialist
@@ -24,11 +24,12 @@ With Giuseppe (communications-director) leading, develop tailored messaging for 
 - In crisis: Get ahead of the story. Bad news doesn't get better with age.
 - Speed kills, but accuracy is oxygen
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on stakeholder communications - media is next step
 - FORBIDDEN to use same message for all audiences
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Adopt Giuseppe persona for this step
 - Develop distinct messages per stakeholder
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Crisis assessment, immediate actions
 - Focus: Stakeholder messaging (not media - that's Step 4)
@@ -57,7 +58,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Giuseppe Takes Command
 
@@ -95,6 +96,7 @@ Can you say all three without notes? If not, we simplify."
 "Internal first. Always. Your people should never learn about this from outside.
 
 **Employees:**
+
 - **What they care about:** Job security, safety, 'are we the bad guys?'
 - **Core message to them:** [tailored to employee concerns]
 - **Messenger:** [CEO/direct manager - authenticity matters]
@@ -103,6 +105,7 @@ Can you say all three without notes? If not, we simplify."
 - **Q&A prepared:** Yes - they'll have questions
 
 **Leadership/Board:**
+
 - **What they care about:** Liability, reputation, business impact
 - **Core message to them:** [facts + actions + ask]
 - **Key data points:** [what they need to know]
@@ -117,6 +120,7 @@ Can you say all three without notes? If not, we simplify."
 "Now external. Different audiences, different angles on same truth.
 
 **Customers/Clients:**
+
 - **What they care about:** 'Does this affect me? Can I trust you?'
 - **Core message to them:** [reassurance + transparency]
 - **What to acknowledge:** [impact on them if any]
@@ -126,12 +130,14 @@ Can you say all three without notes? If not, we simplify."
 - **Timing:** [after internal, before media]
 
 **Partners/Vendors:**
+
 - **What they care about:** 'Are we exposed? What do we tell our people?'
 - **Core message to them:** [facts + containment + ask for discretion]
 - **Messenger:** [relationship owner]
 - **Timing:** [coordinate with their needs]
 
 **Regulators/Authorities:**
+
 - **Required notifications:** [list specific requirements]
 - **Deadline:** [mandatory reporting windows]
 - **Contact:** [who to notify]
@@ -139,6 +145,7 @@ Can you say all three without notes? If not, we simplify."
 - **Tone:** [cooperative, transparent, proactive]
 
 **Investors (if applicable):**
+
 - **What they care about:** Material impact, competence of response
 - **Message:** [facts + actions + confidence]
 - **Disclosure requirements:** [legal obligations]"
@@ -152,6 +159,7 @@ Can you say all three without notes? If not, we simplify."
 **The Golden Rule:** No one should learn about something that affects them from someone else.
 
 **Sequence:**
+
 1. **Hour 0:** Crisis team aligned on message
 2. **Hour X:** [First notification - usually internal leadership]
 3. **Hour X+1:** [All employees]
@@ -161,6 +169,7 @@ Can you say all three without notes? If not, we simplify."
 7. **Hour X+8:** [Media if proactive approach]
 
 **Cascade checkpoints:**
+
 - Before each external message, confirm internal received
 - Before media, confirm key stakeholders notified
 - Have holding statement ready before first external"
@@ -181,6 +190,7 @@ Can you say all three without notes? If not, we simplify."
 | Partners | Partnership lead | Established trust | Executive |
 
 **Messenger prep needed:**
+
 - [ ] Talking points for each
 - [ ] Q&A for each audience
 - [ ] Escalation path if stumped"
@@ -201,10 +211,12 @@ Can you say all three without notes? If not, we simplify."
 **Our response holds because:** [validation]
 
 **Weak spots I'm seeing:**
+
 - [vulnerability in message 1]
 - [gap in message 2]
 
 **Recommendations:**
+
 - [adjustment 1]
 - [adjustment 2]"
 
@@ -239,26 +251,30 @@ Can you say all three without notes? If not, we simplify."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [M] Refine Message for [Stakeholder] [C] Continue to Media Strategy"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Geneva for stakeholder concerns, when finished redisplay the menu
 - IF M: Deep dive on messaging for specific stakeholder, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and stakeholder communications are planned, will you then load and read fully `{nextStepFile}` (step-04-media-strategy.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Core message established
 - Each key stakeholder has tailored message
 - Messengers assigned
@@ -266,7 +282,8 @@ ONLY WHEN [C] Continue is selected and stakeholder communications are planned, w
 - Internal before external
 - Giuseppe persona maintained throughout
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Same generic message for all audiences
 - No sequencing plan
 - Messengers not identified

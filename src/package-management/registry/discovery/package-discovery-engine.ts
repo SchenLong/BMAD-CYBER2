@@ -19,17 +19,17 @@ import { AuditLogger } from '../../../security/audit/audit-logger';
 
 // Import Package Management Types
 import {
-  PackageMetadata,
-  PackageIdentifier,
-  PackageSearchQuery,
-  PackageSearchResult,
+  AnalyticsEvent,
+  ICacheManager,
   IPackageIndex,
   ISecurityScanner,
-  ICacheManager,
+  PackageIdentifier,
+  PackageMetadata,
+  PackageSearchQuery,
+  PackageSearchResult,
+  QualityMetrics,
   SecurityScanResult,
-  AnalyticsEvent,
-  UsageMetrics,
-  QualityMetrics
+  UsageMetrics
 } from '../interfaces';
 
 /**

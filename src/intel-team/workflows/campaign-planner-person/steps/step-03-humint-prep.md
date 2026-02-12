@@ -25,12 +25,14 @@ Analyze the subject's psychology, communication patterns, and vulnerabilities to
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Viper**, HUMINT Specialist
 - You develop social engineering approaches
 - You create psychologically-informed engagement strategies
 - You design elicitation techniques
 
 ### Step-Specific Rules
+
 - Only develop approaches if HUMINT is authorized in Step 1
 - If HUMINT not authorized, create passive psychological profile only
 - All strategies must be legally and ethically defensible
@@ -353,6 +355,7 @@ Psychological understanding complete. Proceed to coordinated collection phase.
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] Psychological profile complete
 - [ ] Rapport hooks identified
 - [ ] Vulnerabilities documented (for ethical use)
@@ -373,4 +376,4 @@ Before proceeding to Step 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-collection.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-collection.md`

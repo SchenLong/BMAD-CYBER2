@@ -1,23 +1,18 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { mkdtempSync, rmSync, writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import tar from 'tar';
+import * as tar from 'tar';
 
 // Mock dependencies before importing the module under test
-vi.mock('ora', () => ({
-  default: () => ({
-    start: vi.fn().mockReturnThis(),
-    stop: vi.fn().mockReturnThis(),
-    succeed: vi.fn().mockReturnThis(),
-    fail: vi.fn().mockReturnThis()
+vi.mock('../../../src/utility/cli/prompts.js', () => ({
+  select: vi.fn(),
+  isCancel: vi.fn().mockReturnValue(false),
+  createSpinner: () => ({
+    start: vi.fn(),
+    stop: vi.fn(),
+    message: vi.fn()
   })
-}));
-
-vi.mock('inquirer', () => ({
-  default: {
-    prompt: vi.fn()
-  }
 }));
 
 vi.mock('../lib/logger.js', () => ({
@@ -32,7 +27,7 @@ vi.mock('../lib/logger.js', () => ({
 
 // Import after mocks are set up
 import { extractFramework } from '../lib/extractor.js';
-import inquirer from 'inquirer';
+import { select } from '../../../src/utility/cli/prompts.js';
 import { logger } from '../lib/logger.js';
 
 describe('extractor', () => {
@@ -153,13 +148,13 @@ describe('extractor', () => {
         { path: '_bmad/new.yml', content: 'brand new file' }
       ]);
 
-      // Mock inquirer to return 'cancel' when conflicts found
-      inquirer.prompt.mockResolvedValue({ action: 'cancel' });
+      // Mock select to return 'cancel' when conflicts found
+      select.mockResolvedValue('cancel');
 
       const result = await extractFramework(tarballPath, targetDir, { force: false });
 
       expect(result.cancelled).toBe(true);
-      expect(inquirer.prompt).toHaveBeenCalled();
+      expect(select).toHaveBeenCalled();
     });
 
     it('does not prompt when no conflicts exist', async () => {
@@ -170,7 +165,7 @@ describe('extractor', () => {
       const result = await extractFramework(tarballPath, targetDir, { force: false });
 
       expect(result.success).toBe(true);
-      expect(inquirer.prompt).not.toHaveBeenCalled();
+      expect(select).not.toHaveBeenCalled();
     });
 
     it('skips conflict check when force is true', async () => {
@@ -186,7 +181,7 @@ describe('extractor', () => {
       const result = await extractFramework(tarballPath, targetDir, { force: true });
 
       expect(result.success).toBe(true);
-      expect(inquirer.prompt).not.toHaveBeenCalled();
+      expect(select).not.toHaveBeenCalled();
 
       // Verify file was overwritten
       const content = readFileSync(join(targetDir, '_bmad', 'existing.yml'), 'utf-8');
@@ -287,17 +282,19 @@ describe('extractor', () => {
         { path: '_bmad/config.yml', content: 'new content' }
       ]);
 
-      inquirer.prompt.mockResolvedValue({ action: 'overwrite' });
+      select.mockResolvedValue('overwrite');
 
       await extractFramework(tarballPath, targetDir, { force: false });
 
-      expect(inquirer.prompt).toHaveBeenCalledWith(
-        expect.arrayContaining([
-          expect.objectContaining({
-            type: 'list',
-            name: 'action'
-          })
-        ])
+      expect(select).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: expect.any(String),
+          options: expect.arrayContaining([
+            expect.objectContaining({ value: 'overwrite' }),
+            expect.objectContaining({ value: 'skip' }),
+            expect.objectContaining({ value: 'cancel' })
+          ])
+        })
       );
     });
 
@@ -311,7 +308,7 @@ describe('extractor', () => {
         { path: '_bmad/config.yml', content: 'new content' }
       ]);
 
-      inquirer.prompt.mockResolvedValue({ action: 'overwrite' });
+      select.mockResolvedValue('overwrite');
 
       const result = await extractFramework(tarballPath, targetDir, { force: false });
 
@@ -331,7 +328,7 @@ describe('extractor', () => {
         { path: '_bmad/another.yml', content: 'another' }
       ]);
 
-      inquirer.prompt.mockResolvedValue({ action: 'cancel' });
+      select.mockResolvedValue('cancel');
 
       const result = await extractFramework(tarballPath, targetDir, { force: false });
 

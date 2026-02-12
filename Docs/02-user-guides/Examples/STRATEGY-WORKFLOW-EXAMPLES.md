@@ -35,9 +35,11 @@ The Strategy Team provides multi-perspective strategic analysis through 14 philo
 ## Example 1: Strategic Decision Workshop
 
 ### Scenario
+
 Your company must decide whether to pursue an aggressive acquisition or organic growth strategy given market conditions.
 
 ### Invocation
+
 ```
 /bmad:strategy-team:workflows:strategic-decision-workshop
 ```
@@ -45,6 +47,7 @@ Your company must decide whether to pursue an aggressive acquisition or organic 
 ### Workflow Steps
 
 **Step 1: Decision Framing**
+
 ```
 User Input: "Market leader competitor is struggling financially.
 We have $50M cash reserves. Options:
@@ -158,6 +161,7 @@ Each archetype provides their view:
 ```
 
 **Step 3: Synthesis and Debate**
+
 ```
 Moderator synthesizes:
 
@@ -288,9 +292,11 @@ cost of $150K (legal, financial, technical advisors).
 ## Example 2: Crisis Response Planning
 
 ### Scenario
+
 A data breach has been discovered affecting customer data. Need coordinated response strategy.
 
 ### Invocation
+
 ```
 /bmad:strategy-team:workflows:crisis-response-planning
 ```
@@ -298,6 +304,7 @@ A data breach has been discovered affecting customer data. Need coordinated resp
 ### Workflow Steps
 
 **Step 1: Situation Assessment**
+
 ```
 User Input: "Discovered unauthorized access to customer database.
 ~50,000 customer records potentially exposed (names, emails,
@@ -306,6 +313,7 @@ not yet public. B2B SaaS company, EU and US customers."
 ```
 
 **Step 2: Multi-Team Coordination**
+
 ```
 Giuseppe (Communications) leads with support:
 
@@ -422,6 +430,7 @@ Sequence communications strategically."
 
 ### Customer Email
 ```
+
 Subject: Important Security Notice from [Company]
 
 Dear [Customer Name],
@@ -430,18 +439,23 @@ We are writing to inform you of a security incident that may
 have affected your account information...
 
 [Full template with all required elements]
+
 ```
 
 ### Regulatory Notification (GDPR Article 33)
 ```
+
 [Structured notification per DPA requirements]
+
 ```
 
 ### Press Statement (Hold)
 ```
+
 "[Company] recently identified unauthorized access to our
 systems. We immediately contained the incident and are
 working with cybersecurity experts to investigate..."
+
 ```
 
 ---
@@ -492,9 +506,11 @@ working with cybersecurity experts to investigate..."
 ## Example 3: Stakeholder Negotiation Prep
 
 ### Scenario
+
 Preparing for a critical contract renegotiation with your largest customer (40% of revenue).
 
 ### Invocation
+
 ```
 /bmad:strategy-team:workflows:stakeholder-negotiation-prep
 ```
@@ -502,6 +518,7 @@ Preparing for a critical contract renegotiation with your largest customer (40% 
 ### Workflow Steps
 
 **Step 1: Stakeholder Analysis**
+
 ```
 Geneva (Mediator) leads analysis:
 
@@ -694,9 +711,11 @@ Contingency plan:
 ## Example 4: Competitive Warfare
 
 ### Scenario
+
 A well-funded competitor is aggressively pursuing your customers with below-cost pricing.
 
 ### Invocation
+
 ```
 /bmad:strategy-team:workflows:competitive-warfare
 ```
@@ -704,6 +723,7 @@ A well-funded competitor is aggressively pursuing your customers with below-cost
 ### Workflow Overview
 
 **Strategic Council Preset**: `all-out-war`
+
 - Niccolo (Ruthless realism)
 - Sun (Strategic positioning)
 - Musashi (Timing and execution)
@@ -742,9 +762,11 @@ is a story to tell about their tactics."
 ## Example 5: Leadership Philosophy Development
 
 ### Scenario
+
 A new executive wants to develop their personal leadership philosophy.
 
 ### Invocation
+
 ```
 /bmad:strategy-team:workflows:leadership-philosophy
 ```
@@ -752,6 +774,7 @@ A new executive wants to develop their personal leadership philosophy.
 ### Workflow Steps
 
 **Step 1: Self-Assessment**
+
 ```
 Dialogue with archetypes:
 
@@ -841,6 +864,7 @@ When facing difficult decisions, I will:
 ## Workflow Combinations
 
 ### Major Strategic Decisions
+
 ```
 1. strategic-decision-workshop (full council)
 2. stakeholder-negotiation-prep (if negotiation needed)
@@ -848,6 +872,7 @@ When facing difficult decisions, I will:
 ```
 
 ### M&A Strategy
+
 ```
 1. ma-due-diligence (strategy team)
 2. campaign-planner-org (intel team)
@@ -855,6 +880,7 @@ When facing difficult decisions, I will:
 ```
 
 ### Board Preparation
+
 ```
 1. board-presentation-prep (narrative and evidence)
 2. strategic-decision-workshop (anticipate questions)

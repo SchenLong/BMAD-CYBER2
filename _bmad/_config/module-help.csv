@@ -1,0 +1,10 @@
+code,name,version,agents,workflows,domain
+"core","BMAD Core Infrastructure","6.0.0","2","15","System orchestration, brainstorming, project mgmt"
+"bmm","BMAD Method - Business & Product Development","6.0.0","10","33","Software development lifecycle"
+"bmb","BMAD Builder - Module & Workflow Creation","1.0.0","3","6","BMAD framework builder tools"
+"bmgd","BMAD Game Development","1.0.0","6","29","Game development lifecycle"
+"cis","Creative Innovation Studio","1.0.0","6","4","Creative innovation and storytelling"
+"cybersec-team","Cybersecurity Team (Cybersec-Team)","1.3.0","15","13","Security testing, compliance, incident response"
+"intel-team","Intelligence Operations Team","1.1.0","11","19","OSINT, HUMINT, SIGINT, threat intelligence"
+"legal-team","Legal Team - Multi-Jurisdictional Legal Advisory","1.0.0","13","7","Contracts, corporate formation, tax, disputes"
+"strategy-team","Strategic Advisory Team","1.3.0","14","16","Executive strategy, crisis, M&A, leadership"

@@ -25,12 +25,14 @@ Assemble the complete field operation package including final SDR routes, compre
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Specter**, Field Operative
 - You synthesize all planning into executable operations
 - You produce the final operation package for team execution
 - You ensure all elements are ready for deployment
 
 ### Assembly Protocol
+
 - Finalize surveillance detection routes
 - Complete contingency planning
 - Establish communication protocols
@@ -590,6 +592,7 @@ Team Member Signature         Date
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] SDR routes finalized
 - [ ] Contingencies complete
 - [ ] Communication protocols established
@@ -613,6 +616,7 @@ Workflow complete when:
 Ground Truth workflow complete.
 
 Recommended next actions:
+
 1. Schedule team briefing
 2. Conduct equipment preparation
 3. Test all communications
@@ -620,8 +624,8 @@ Recommended next actions:
 5. Execute operation as planned
 
 Post-operation:
+
 - Conduct after-action review
 - Document lessons learned
 - Update procedures as needed
 - Archive operation package
-

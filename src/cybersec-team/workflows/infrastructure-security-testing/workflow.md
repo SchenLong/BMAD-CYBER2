@@ -1,5 +1,5 @@
 ---
-name: Infrastructure Security Testing
+name: infrastructure-security-testing
 description: Comprehensive infrastructure security assessment covering servers, containers, Kubernetes, CI/CD pipelines, and cloud infrastructure hardening
 web_bundle: true
 ---
@@ -31,7 +31,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -57,11 +57,11 @@ This uses **step-file architecture** for disciplined execution:
 
 ### 1. Configuration Loading
 
-Load and read full config from {project-root}/_bmad/cybersec-team/config.yaml and resolve:
+Load and read full config from {project-root}/src/cybersec-team/config.yaml and resolve:
 
 - `project_name`, `output_folder`, `user_name`, `communication_language`, `document_output_language`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{project-root}/_bmad/cybersec-team/workflows/infrastructure-security-testing/steps/step-01-init.md` to begin the workflow.
+Load, read the full file and then follow `{project-root}/src/cybersec-team/workflows/infrastructure-security-testing/steps/step-01-init.md` to begin the workflow.

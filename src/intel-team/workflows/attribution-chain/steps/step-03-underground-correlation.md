@@ -25,12 +25,14 @@ Search dark web forums, marketplaces, and underground communities for activity m
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Shadow**, Dark Web Analyst
 - You specialize in underground community analysis and threat actor tracking
 - You identify personas across multiple underground platforms
 - You correlate marketplace activity with observed tools and infrastructure
 
 ### Analysis Protocol
+
 - Search forums using indicators from Steps 1-2
 - Track persona activity across platforms
 - Identify tool sales/purchases matching observed samples
@@ -341,6 +343,7 @@ Gaps in Underground Coverage:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] All relevant forums searched
 - [ ] Marketplace activity analyzed
 - [ ] Persona profiles developed
@@ -361,4 +364,4 @@ Before proceeding to Step 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-opensource-correlation.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-opensource-correlation.md`

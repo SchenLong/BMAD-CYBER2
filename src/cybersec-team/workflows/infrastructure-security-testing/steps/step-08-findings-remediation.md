@@ -9,19 +9,20 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 # Step 8: Findings Summary & Remediation
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Compile findings from all previous sections
 
-## FINDINGS CONSOLIDATION SEQUENCE:
+## FINDINGS CONSOLIDATION SEQUENCE
 
 ### 1. Findings Compilation
 
 "Let's consolidate all findings from the assessment.
 
 **Review Each Section:**
+
 1. Server hardening (SRV-xxx)
 2. Container security (CTR-xxx)
 3. Kubernetes security (K8S-xxx)
@@ -30,6 +31,7 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 6. Infrastructure as Code (IAC-xxx)
 
 **Severity Classification:**
+
 - **Critical**: Immediate exploitation risk, full compromise
 - **High**: Serious impact, readily exploitable
 - **Medium**: Moderate impact, requires conditions
@@ -43,11 +45,13 @@ Let me compile the findings. Please confirm or add any missed."
 "Mapping findings to compliance frameworks.
 
 **CIS Benchmarks:**
+
 - Linux/Windows hardening
 - Docker/Kubernetes benchmarks
 - Cloud provider benchmarks
 
 **Other Frameworks:**
+
 - SOC 2 controls
 - PCI DSS requirements
 - NIST guidelines
@@ -60,6 +64,7 @@ Which compliance mappings are relevant?"
 "Let's document attack chains through infrastructure.
 
 **Common Attack Paths:**
+
 1. Container escape → Host access
 2. CI/CD compromise → Production deployment
 3. Secret exposure → Lateral movement
@@ -67,6 +72,7 @@ Which compliance mappings are relevant?"
 5. Kubernetes privilege escalation → Cluster admin
 
 **Key Metrics:**
+
 - Time to initial access
 - Time to privilege escalation
 - Critical assets reachable
@@ -78,6 +84,7 @@ What attack paths were demonstrated?"
 "Let's prioritize findings for remediation.
 
 **Priority Factors:**
+
 1. Severity (impact level)
 2. Exploitability (ease of exploitation)
 3. Exposure (attack surface)
@@ -85,6 +92,7 @@ What attack paths were demonstrated?"
 5. Remediation effort
 
 **Priority Categories:**
+
 - **P1 - Immediate**: Fix within 24-48 hours
 - **P2 - Short-term**: Fix within 1-2 weeks
 - **P3 - Medium-term**: Fix within 30 days
@@ -97,31 +105,37 @@ How should we prioritize these findings?"
 "Providing remediation for key findings.
 
 **Server Hardening:**
+
 - CIS benchmark implementation
 - Patch management
 - Access control hardening
 
 **Container Security:**
+
 - Image hardening
 - Runtime controls
 - Registry security
 
 **Kubernetes:**
+
 - RBAC tightening
 - Pod security standards
 - Network policies
 
 **CI/CD:**
+
 - Pipeline hardening
 - Secret management
 - Supply chain controls
 
 **Secrets:**
+
 - Vault implementation
 - Rotation automation
 - Access controls
 
 **IaC:**
+
 - Policy as Code
 - Drift detection
 - Security scanning
@@ -133,6 +147,7 @@ Which findings need detailed remediation guidance?"
 "Identifying quick remediation wins.
 
 **Low Effort, High Impact:**
+
 - Enable security features (already available)
 - Remove default credentials
 - Apply security patches
@@ -258,12 +273,14 @@ Update {outputFile} with complete report:
 "**Infrastructure Security Assessment Complete**
 
 **Summary:**
+
 - Total findings: [Count]
 - Critical: [Count] | High: [Count] | Medium: [Count] | Low: [Count]
 - Attack paths demonstrated: [Count]
 - Immediate actions: [Count] items
 
 **Next Steps:**
+
 1. Review report with DevOps/Platform team
 2. Begin P1 remediation immediately
 3. Implement quick wins
@@ -283,6 +300,7 @@ Display: [E] Export Report [R] Review Specific Section [A] Add Finding [D] Dismi
 ## CRITICAL STEP COMPLETION NOTE
 
 Update frontmatter to:
+
 ```yaml
 stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8]
 status: complete

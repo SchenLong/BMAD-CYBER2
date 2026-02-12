@@ -17,13 +17,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2: System Decomposition
 
-## STEP GOAL:
+## STEP GOAL
 
 To systematically identify and document all major system components, their relationships, data flows, entry/exit points, and trust boundaries in preparation for threat analysis.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -31,7 +31,7 @@ To systematically identify and document all major system components, their relat
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -39,28 +39,28 @@ To systematically identify and document all major system components, their relat
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on component identification and decomposition
 - 🚫 FORBIDDEN to identify threats in this step
 - 💬 Guide systematic component discovery
 - 🚫 DO NOT proceed without identifying all major components
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Guide user through component identification
 - 💾 Document all components with descriptions and relationships
 - 📖 Update frontmatter `stepsCompleted: [1, 2]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - System Overview (Section 1) already captured in document
 - Focus ONLY on decomposing system into analyzable components
 - Components will be analyzed individually in subsequent steps
 - This is discovery phase, not analysis phase
 
-## COMPONENT DECOMPOSITION PROCESS:
+## COMPONENT DECOMPOSITION PROCESS
 
 ### 1. Initialize Component Discovery
 
@@ -75,6 +75,7 @@ Now that we understand your system at a high level, let's break it down into com
 **System:** {systemName}
 
 We'll identify:
+
 - Major architectural components
 - External systems and dependencies
 - Data stores
@@ -90,6 +91,7 @@ This decomposition will guide our threat analysis in subsequent steps."
 "**What is a Component?**
 
 For threat modeling purposes, a component is any distinct element of your system that:
+
 - Processes data
 - Stores data
 - Communicates with other components
@@ -97,6 +99,7 @@ For threat modeling purposes, a component is any distinct element of your system
 - Has distinct security characteristics
 
 **Examples:**
+
 - Web Application Frontend
 - REST API Backend
 - User Authentication Service
@@ -107,6 +110,7 @@ For threat modeling purposes, a component is any distinct element of your system
 - Admin Dashboard
 
 **Granularity Guidance:**
+
 - Too broad: 'The Backend' (should be API Server, Auth Service, Database, etc.)
 - Too narrow: Individual API endpoints
 - Just right: Logical services or architectural layers"
@@ -125,6 +129,7 @@ For threat modeling purposes, a component is any distinct element of your system
 Start with the first major component:"
 
 For each component user provides, collect:
+
 - Name
 - Type
 - Description
@@ -134,6 +139,7 @@ For each component user provides, collect:
 
 After collecting 2-3 components, ask:
 "What other major components are part of the system? Think about:
+
 - Where is data stored?
 - What external services do you integrate with?
 - Are there different client applications?
@@ -181,6 +187,7 @@ Let's trace how sensitive data moves through your system:
    - Where is it transmitted?
 
 For each data flow, identify:
+
 - Source component
 - Destination component(s)
 - Data classification (Public, Internal, Confidential, Restricted)
@@ -195,6 +202,7 @@ Collect data flow mappings with classifications.
 Where does data enter and leave your system?
 
 **Entry Points** (potential attack surface):
+
 - Public web interface
 - API endpoints
 - Mobile app
@@ -204,6 +212,7 @@ Where does data enter and leave your system?
 - etc.
 
 **Exit Points** (potential data leakage):
+
 - Third-party API calls
 - Email sending
 - Log aggregation services
@@ -235,6 +244,7 @@ Collect trust boundary definitions.
 ### 8. Create Component List
 
 Compile complete component list with:
+
 - Component name
 - Type
 - Description
@@ -322,7 +332,7 @@ user_name: '{user_name}'
 
 Display: **Select an Option:** [B] Brainstorming [P] Party Mode [C] Continue to Component Selection
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -330,18 +340,18 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [C] Continue to 
 - User can chat or ask questions - always respond and then end with display again of the menu options
 - Use menu handling logic section below
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF B: Execute {brainstormingTask} with prompt: "Help me brainstorm additional system components, edge cases, or hidden dependencies I might have missed in my system decomposition"
 - IF P: Execute {partyModeWorkflow} with focus: "Review system decomposition for completeness - are there components, data flows, or trust boundaries we've overlooked?"
-- IF C: Verify components array is not empty, update frontmatter with stepsCompleted: [1, 2], then load, read entire file, then execute {nextStepFile}
+- IF C: Verify components array is not empty, update frontmatter with stepsCompleted: [1, 2], then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All major components identified with descriptions
 - Component relationships mapped
@@ -352,7 +362,7 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [C] Continue to 
 - Frontmatter updated with components array
 - Ready to proceed to component selection (step 3)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping component identification
 - Not documenting relationships
@@ -365,4 +375,4 @@ Display: **Select an Option:** [B] Brainstorming [P] Party Mode [C] Continue to 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected AND all components are documented in the threat model will you load, read entire file, then execute {nextStepFile} to begin component selection for threat analysis.
+ONLY WHEN C is selected AND all components are documented in the threat model will you load, read entire file, then follow {nextStepFile} to begin component selection for threat analysis.

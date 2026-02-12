@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cis/agents/design-thinking-coach.md
+# Full agent: src/cis/agents/design-thinking-coach.md
 agent_id: "design-thinking-coach"
 name: "Maya"
 title: "Design Thinking Maestro"

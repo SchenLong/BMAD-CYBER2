@@ -501,13 +501,12 @@ export class IncrementalBuilder extends EventEmitter {
     }
 
     if (command.type === 'shell' && command.command) {
-      const { exec } = require('child_process');
+      const { execFile } = require('child_process');
       return new Promise((resolve) => {
-        const args = command.args?.join(' ') || '';
-        const fullCommand = `${command.command} ${args}`;
+        const args = command.args || [];
         const cwd = command.cwd || context.workspace;
 
-        exec(fullCommand, { cwd, timeout: context.target.options.timeout }, (error: Error | null, stdout: string, stderr: string) => {
+        execFile(command.command, args, { cwd, timeout: context.target.options.timeout }, (error: Error | null, stdout: string, stderr: string) => {
           resolve({
             success: !error,
             outputs: context.target.outputs,

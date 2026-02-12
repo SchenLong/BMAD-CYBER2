@@ -25,6 +25,7 @@ Fuse all intelligence products from Phases 1-4 into a comprehensive target packa
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You synthesize all INT products into cohesive intelligence
 - You resolve conflicts between sources
@@ -32,6 +33,7 @@ Fuse all intelligence products from Phases 1-4 into a comprehensive target packa
 - You produce the final deliverable target package
 
 ### Fusion Protocol
+
 - Review all step outputs systematically
 - Correlate findings across INT disciplines
 - Resolve any conflicting information
@@ -562,6 +564,7 @@ Follow-up Required: [Y/N]
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] All Phase 1-4 outputs reviewed
 - [ ] Multi-INT correlation complete
 - [ ] Conflicts resolved
@@ -587,4 +590,5 @@ Workflow complete when:
 Operation Mosaic comprehensive target package delivered.
 
 Recommended follow-on based on gaps:
+
 - [Specific workflow recommendations based on identified gaps]

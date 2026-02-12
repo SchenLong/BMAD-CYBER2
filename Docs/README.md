@@ -35,18 +35,21 @@ BMAD documentation is organized into 7 categories for easy navigation:
 ## Find Documentation by Role
 
 ### End Users
+
 - **[Workflows Reference](02-user-guides/WORKFLOWS-REFERENCE.md)** - All 143+ available workflows
 - **[Agents Reference](02-user-guides/AGENTS-REFERENCE.md)** - All 80+ specialized agents
 - **[Party Mode Guide](02-user-guides/PARTY-MODE-GUIDE.md)** - Multi-agent collaborative sessions
 - **[Troubleshooting](02-user-guides/TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### Developers
+
 - **[Architecture Deep Dive](03-developer-docs/ARCHITECTURE-DEEP-DIVE.md)** - System architecture
 - **[Contributing Guide](03-developer-docs/CONTRIBUTING-GUIDE.md)** - How to contribute
 - **[Testing Framework](03-developer-docs/TESTING-FRAMEWORK.md)** - Testing approach
 - **[API Documentation](03-developer-docs/API/)** - API reference
 
 ### Administrators
+
 - **[Enterprise Deployment](03-developer-docs/ENTERPRISE-DEPLOYMENT-GUIDE.md)** - Production deployment
 - **[Security Operations](04-operations/security/)** - Security configuration
 - **[Incident Response](04-operations/INCIDENT-RESPONSE-RUNBOOK.md)** - Incident procedures
@@ -57,19 +60,27 @@ BMAD documentation is organized into 7 categories for easy navigation:
 ## Specialized Team Documentation
 
 ### Cybersecurity Team
+
 13 workflows for security assessments, penetration testing, and compliance
+
 - **[Cybersec Team Guide](02-user-guides/teams/cybersec-team.md)**
 
 ### Intelligence Team
+
 19 workflows for OSINT, threat intelligence, and attribution
+
 - **[Intel Team Guide](02-user-guides/teams/intel-team.md)**
 
 ### Strategy Team
+
 16 workflows for executive decision making, negotiations, and crisis management
+
 - **[Strategy Team Guide](02-user-guides/teams/strategy-team.md)**
 
 ### Legal Team
+
 7 workflows for contract review, compliance, and multi-jurisdictional matters
+
 - **[Legal Team Guide](02-user-guides/teams/legal-team.md)**
 
 ---

@@ -15,6 +15,7 @@
 ## Purpose
 
 Complete preparation package for physical/field operations including surveillance, site surveys, and operational planning:
+
 - Operation framework definition
 - Site analysis
 - Electronic environment assessment

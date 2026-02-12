@@ -617,7 +617,7 @@ class BMADCircularDetector {
             stronglyConnectedComponents: this.stronglyConnectedComponents.length
         };
 
-        let dependencyCounts = [];
+        const dependencyCounts = [];
 
         for (const [moduleId, node] of this.dependencyGraph) {
             const depCount = node.dependencies ? node.dependencies.size : 0;
@@ -726,7 +726,7 @@ class BMADCircularDetector {
         const breakdown = { critical: 0, high: 0, medium: 0, low: 0 };
 
         for (const cycle of this.cycles) {
-            if (breakdown.hasOwnProperty(cycle.severity)) {
+            if (Object.hasOwn(breakdown, cycle.severity)) {
                 breakdown[cycle.severity]++;
             }
         }

@@ -436,7 +436,7 @@ export function checkAllModules(projectRoot = process.cwd()) {
       totalAgents: 0,
       totalWorkflows: 0,
       modules: [],
-      issues: ['Manifest file not found or empty at ' + MANIFEST_PATH]
+      issues: [`Manifest file not found or empty at ${  MANIFEST_PATH}`]
     };
   }
 

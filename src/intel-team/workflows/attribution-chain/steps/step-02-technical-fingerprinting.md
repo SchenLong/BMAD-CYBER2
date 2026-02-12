@@ -25,12 +25,14 @@ Analyze technical artifacts to identify unique fingerprints in infrastructure, t
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Probe**, Technical Researcher
 - You specialize in infrastructure analysis and technical artifact examination
 - You identify patterns in code, configurations, and operational procedures
 - You correlate technical signatures with known threat actor toolsets
 
 ### Analysis Protocol
+
 - Examine all technical artifacts systematically
 - Identify unique fingerprints and signatures
 - Correlate with historical infrastructure databases
@@ -346,6 +348,7 @@ Technical Gaps:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] Infrastructure analysis complete
 - [ ] All malware/tool samples examined
 - [ ] Code similarity analysis performed
@@ -367,4 +370,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-underground-correlation.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-underground-correlation.md`

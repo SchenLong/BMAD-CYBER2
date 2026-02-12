@@ -22,13 +22,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Attack Surface Analysis (Optional)
 
-## STEP GOAL:
+## STEP GOAL
 
 To optionally enhance the security assessment with an offensive security perspective by collaborating with Ghost agent (penetration tester) to identify attack vectors, exploitation paths, and practical attack scenarios that might not be obvious from defensive analysis alone.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -36,7 +36,7 @@ To optionally enhance the security assessment with an offensive security perspec
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona) facilitating offensive perspective
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this role
@@ -46,28 +46,28 @@ To optionally enhance the security assessment with an offensive security perspec
 - ✅ Together we identify real-world attack paths
 - ✅ Maintain collaborative, security-focused, practical tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on attack surface analysis and exploitation perspectives
 - 🚫 FORBIDDEN to jump ahead to zero-trust or recommendations
 - 💬 Approach: Offer Ghost collaboration, facilitate if accepted, skip if declined
 - 📋 This step is OPTIONAL - user chooses whether to invoke
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Present option to collaborate with Ghost agent for offensive perspective
 - 💾 If Ghost collaboration occurs, document findings in Section 4 addendum
 - 📖 Update frontmatter `stepsCompleted` to include 4 before loading next step
 - 🚫 FORBIDDEN to force Ghost collaboration - user must opt in
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Architecture Overview (Section 2), Threat Model (Section 3), Control Assessment (Section 4)
 - Focus: Offensive security perspective on exploitability and attack paths
 - Limits: Don't assume attack scenarios without offensive security validation
 - Dependencies: Benefits from completed control assessment
 
-## ATTACK SURFACE ANALYSIS SEQUENCE:
+## ATTACK SURFACE ANALYSIS SEQUENCE
 
 ### 1. Present Attack Surface Analysis Option
 
@@ -101,6 +101,7 @@ If user chooses to involve Ghost:
 "**Initiating Ghost Collaboration**
 
 I'll bring Ghost into the conversation with context about:
+
 - Your architecture (components, data flows, tech stack)
 - Identified STRIDE threats
 - Existing security controls and gaps
@@ -226,6 +227,7 @@ _Note: This optional analysis can be added later by resuming the workflow._
 ### 3. Update Frontmatter
 
 Update frontmatter in {outputFile}:
+
 - Add 4 to `stepsCompleted` array: `stepsCompleted: [1, 2, 3, 4]`
 - Set `lastStep: 'attack-surface'`
 - Add `ghostCollaboration: [true/false]`
@@ -234,12 +236,12 @@ Update frontmatter in {outputFile}:
 
 Display: **Select an Option:** [C] Continue to Zero-Trust Validation
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
-- IF C: Save attack surface analysis (if conducted) to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Save attack surface analysis (if conducted) to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#4-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -250,13 +252,13 @@ Display: **Select an Option:** [C] Continue to Zero-Trust Validation
 ONLY WHEN 'C' is selected AND attack surface analysis is complete (or explicitly skipped) AND documented in {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2, 3, 4]`, `lastStep: 'attack-surface'`
-2. Load, read entire file, then execute {nextStepFile} to begin zero-trust validation
+2. Load, read entire file, then follow {nextStepFile} to begin zero-trust validation
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - User presented with clear option to involve Ghost
 - If Ghost involved: Party Mode executed with proper context
@@ -266,7 +268,7 @@ ONLY WHEN 'C' is selected AND attack surface analysis is complete (or explicitly
 - User choice respected (no forcing collaboration)
 - Frontmatter updated with step 4 completion
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Not offering Ghost collaboration option
 - Forcing Ghost involvement without user choice

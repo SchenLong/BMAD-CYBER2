@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Relationship Action Plan
 
-## STEP GOAL:
+## STEP GOAL
 
 Compile all planning into a concrete, actionable board relations plan with specific actions, timelines, and success metrics.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Board Relations Advisor completing the planning process
 - Synthesize all planning into actionable items
 - Ensure plan is practical and executable
 - Establish clear success metrics
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on actionable, time-bound commitments
 - FORBIDDEN to leave actions vague
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Review All Sections
 
@@ -44,6 +45,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me review all sections of the board relations plan..."
 
 **Completeness check:**
+
 - [ ] Board assessment
 - [ ] Director profiles
 - [ ] Engagement strategy
@@ -59,16 +61,19 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's compile the key actions into a prioritized plan:"
 
 **Immediate Actions (Next 30 Days)**
+
 | Action | Owner | Deadline | Success Metric |
 |--------|-------|----------|----------------|
 | | | | |
 
 **Short-Term Actions (30-90 Days)**
+
 | Action | Owner | Deadline | Success Metric |
 |--------|-------|----------|----------------|
 | | | | |
 
 **Ongoing Actions (Quarterly/Annual)**
+
 | Action | Frequency | Owner | Success Metric |
 |--------|-----------|-------|----------------|
 | | | | |
@@ -84,6 +89,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | | 1-5 | 1-5 | | |
 
 **Overall relationship goals:**
+
 - Board confidence score target: [X/5]
 - Number of strong relationships: [X of Y]
 - Specific relationship improvements: [list]
@@ -108,6 +114,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How will you track board engagement?"
 
 **Tracking elements:**
+
 - One-on-one completion tracking
 - Communication feedback collection
 - Relationship pulse checks
@@ -115,6 +122,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - Action item completion
 
 **Review cadence:**
+
 - Weekly: [what to track]
 - Monthly: [what to review]
 - Quarterly: [what to assess]
@@ -182,6 +190,7 @@ This board relations plan was developed using the Board Relations Management wor
 ```
 
 Update frontmatter:
+
 - Add `step-06-action-plan` to stepsCompleted
 - Change `status: complete`
 
@@ -195,19 +204,23 @@ Update frontmatter:
 ## BOARD RELATIONS PLAN - {YEAR}
 
 **Board Overview:**
+
 - Directors: [count]
 - Key focus relationships: [count]
 
 **Priority Actions (Next 30 Days):**
+
 1. [action]
 2. [action]
 3. [action]
 
 **Relationship Goals:**
+
 - Target relationship improvements: [count]
 - Overall confidence target: [X/5]
 
 **Communication Rhythm:**
+
 - [summary of cadence]
 
 **Success Metrics:**
@@ -224,7 +237,8 @@ This plan is ready for implementation."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [E] Export/Share [X] Exit Workflow"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -235,7 +249,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [E
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All sections reviewed
 - Actions prioritized with owners
 - Relationship goals set
@@ -245,7 +260,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [E
 - Document marked complete
 - Output file finalized
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Vague action items
 - No owners or deadlines
 - Missing success metrics

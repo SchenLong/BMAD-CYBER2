@@ -496,11 +496,11 @@ class ConflictDetector {
       return 'exact_match';
     }
 
-    if (newNormalized.startsWith(existingNormalized + '/')) {
+    if (newNormalized.startsWith(`${existingNormalized  }/`)) {
       return 'parent_child';
     }
 
-    if (existingNormalized.startsWith(newNormalized + '/')) {
+    if (existingNormalized.startsWith(`${newNormalized  }/`)) {
       return 'child_parent';
     }
 

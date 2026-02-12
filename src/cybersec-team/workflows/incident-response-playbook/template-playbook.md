@@ -143,16 +143,19 @@ approvedBy: "{approver_name}"
 ### 3.4 Specific Commands and Procedures
 
 **Network Isolation:**
+
 ```bash
 {network_isolation_commands}
 ```
 
 **System Quarantine:**
+
 ```bash
 {quarantine_commands}
 ```
 
 **Access Revocation:**
+
 ```bash
 {access_revocation_commands}
 ```
@@ -302,21 +305,25 @@ approvedBy: "{approver_name}"
 ### 7.1 Internal Stakeholder Notification
 
 **IT Team:**
+
 - **When:** {it_notification_timing}
 - **How:** {it_notification_method}
 - **Contact:** {it_contacts}
 
 **Management:**
+
 - **When:** {management_notification_timing}
 - **How:** {management_notification_method}
 - **Contact:** {management_contacts}
 
 **Legal:**
+
 - **When:** {legal_notification_timing}
 - **How:** {legal_notification_method}
 - **Contact:** {legal_contacts}
 
 **HR:**
+
 - **When:** {hr_notification_timing}
 - **How:** {hr_notification_method}
 - **Contact:** {hr_contacts}
@@ -324,16 +331,19 @@ approvedBy: "{approver_name}"
 ### 7.2 External Stakeholder Notification
 
 **Customers:**
+
 - **Criteria:** {customer_notification_criteria}
 - **Timeline:** {customer_notification_timeline}
 - **Method:** {customer_notification_method}
 
 **Partners:**
+
 - **Criteria:** {partner_notification_criteria}
 - **Timeline:** {partner_notification_timeline}
 - **Method:** {partner_notification_method}
 
 **Regulators:**
+
 - **Requirements:** {regulatory_requirements}
 - **Timeline:** {regulatory_timeline} (e.g., GDPR 72 hours)
 - **Method:** {regulatory_method}
@@ -352,6 +362,7 @@ approvedBy: "{approver_name}"
 ### 7.4 Timeline Requirements
 
 **Regulatory Deadlines:**
+
 - GDPR: 72 hours from discovery
 - PCI-DSS: {pci_timeline}
 - HIPAA: {hipaa_timeline}
@@ -364,21 +375,25 @@ approvedBy: "{approver_name}"
 ### 8.1 Tool-Specific Commands
 
 **SIEM Queries:**
+
 ```
 {siem_queries}
 ```
 
 **EDR Actions:**
+
 ```
 {edr_commands}
 ```
 
 **Forensics Procedures:**
+
 ```
 {forensics_procedures}
 ```
 
 **Network Analysis:**
+
 ```
 {network_analysis_commands}
 ```
@@ -433,10 +448,12 @@ approvedBy: "{approver_name}"
 | {version} | {date} | {author} | {changes} |
 
 **Review Schedule:**
+
 - Next review: {next_review_date}
 - Review frequency: {review_frequency}
 
 **Approval:**
+
 - Approved by: {approver_name}
 - Date: {approval_date}
 - Signature: {signature}

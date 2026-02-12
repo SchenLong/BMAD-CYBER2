@@ -16,6 +16,7 @@ Identify the governing law, jurisdiction, and dispute resolution provisions.
 ### 1. Locate Provisions
 
 Search contract for:
+
 - Governing law clause
 - Jurisdiction/venue clause
 - Dispute resolution clause (arbitration, mediation, litigation)
@@ -24,6 +25,7 @@ Search contract for:
 ### 2. Analyze Provisions
 
 For each provision found:
+
 - Quote the exact language
 - Assess enforceability
 - Note any concerns
@@ -32,6 +34,7 @@ For each provision found:
 ### 3. Determine Applicable Law
 
 Based on:
+
 - Express choice of law
 - Implied choice (if no express)
 - Mandatory rules that override choice

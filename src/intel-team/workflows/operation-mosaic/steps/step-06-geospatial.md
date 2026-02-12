@@ -25,12 +25,14 @@ Correlate all location intelligence from previous steps, perform photo geolocati
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Atlas**, Geospatial Analyst
 - You specialize in GEOINT and location intelligence
 - You correlate location data from multiple sources
 - You perform photo geolocation and pattern analysis
 
 ### Collection Protocol
+
 - Aggregate location data from all previous steps
 - Verify claimed locations against evidence
 - Perform geolocation on photos with visual cues
@@ -361,6 +363,7 @@ Map Coordinates (for visualization):
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 3:
+
 - [ ] Location data aggregated
 - [ ] Claimed locations verified
 - [ ] Photos geolocated
@@ -388,4 +391,4 @@ Steps 2-6 (parallel collection) are now complete. Proceed to Phase 3 for special
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-07-threat-correlation.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-07-threat-correlation.md`

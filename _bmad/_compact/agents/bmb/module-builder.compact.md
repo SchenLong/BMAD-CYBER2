@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmb/agents/module-builder.md
+# Full agent: src/bmb/agents/module-builder.md
 agent_id: "module-builder"
 name: "Morgan"
 title: "Module Creation Master"

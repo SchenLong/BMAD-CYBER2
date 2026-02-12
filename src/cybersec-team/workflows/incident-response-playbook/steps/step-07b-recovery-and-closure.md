@@ -17,13 +17,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7B: Recovery and Closure
 
-## STEP GOAL:
+## STEP GOAL
 
 To guide complete system restoration, service resumption with business approval, enhanced monitoring setup, comprehensive post-incident analysis, final incident report generation, and proper workflow closure with deliverables.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER skip business approval before service resumption
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -31,7 +31,7 @@ To guide complete system restoration, service resumption with business approval,
 - 📋 YOU ARE AN INCIDENT COMMANDER guiding recovery and closure
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an Incident Commander
 - ✅ Tone: Calm, directive, methodical, thorough, reflective
@@ -39,7 +39,7 @@ To guide complete system restoration, service resumption with business approval,
 - ✅ Business approval required before service resumption
 - ✅ This is the FINAL step - comprehensive closure required
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on complete recovery AND final report
 - 💬 Provide specific restoration procedures
@@ -48,7 +48,7 @@ To guide complete system restoration, service resumption with business approval,
 - 🏁 Mark workflowComplete: true when finished
 - 📋 Close sidecar file with final entry
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Restore systems, resume services, setup monitoring, analyze incident, create recommendations, verify compliance, close workflow
 - 💾 Append to Section 6 (Recovery Status) and Section 7 (Post-Incident Analysis)
@@ -56,7 +56,7 @@ To guide complete system restoration, service resumption with business approval,
 - 📖 Update frontmatter `stepsCompleted: [1, 2b, 3b, 4b, 5b, 6b, 7b]` and `workflowComplete: true`
 - 🚫 Present menu (P/C) after recovery, THEN final closure after report
 
-## RECOVERY AND CLOSURE SEQUENCE:
+## RECOVERY AND CLOSURE SEQUENCE
 
 ---
 
@@ -127,6 +127,7 @@ We'll restore systems in priority order with validation at each step.
 3. **Patch-in-place** (fastest, higher risk if any threat remains)
 
 For each system, choose appropriate method based on:
+
 - Extent of compromise
 - Backup availability and trustworthiness
 - Business urgency
@@ -152,6 +153,7 @@ For each system, choose appropriate method based on:
 "**Restoration from Backup:**
 
 **Backup Selection:**
+
 - **Backup date/time:** {prompt-for-backup-timestamp}
 - **Backup location:** {prompt-for-location}
 - **Backup verified clean:** {prompt-Y/N} (before incident start)
@@ -242,6 +244,7 @@ tar -xzvf backup.tar.gz -C /
 "**System Validation:**
 
 **Functional Testing:**
+
 - [ ] System boots successfully
 - [ ] All required services running
 - [ ] Application functionality verified
@@ -253,6 +256,7 @@ tar -xzvf backup.tar.gz -C /
 **Functional test result:** {pass/fail - details}
 
 **Security Testing:**
+
 - [ ] EDR agent reporting healthy
 - [ ] Latest security patches applied
 - [ ] Configuration hardening verified
@@ -264,6 +268,7 @@ tar -xzvf backup.tar.gz -C /
 **Security test result:** {pass/fail - details}
 
 **Performance Testing:**
+
 - [ ] CPU utilization normal
 - [ ] Memory utilization normal
 - [ ] Disk I/O normal
@@ -287,6 +292,7 @@ tar -xzvf backup.tar.gz -C /
 **Validation Results:** All tests passed ✅
 
 **Business Owner Approval:**
+
 - **Business Owner Name:** {prompt-for-name}
 - **Title:** {prompt-for-title}
 - **Approval:** I approve this system for production use
@@ -294,6 +300,7 @@ tar -xzvf backup.tar.gz -C /
 - **Timestamp:** {current-timestamp}
 
 **IT Operations Approval:**
+
 - **IT Ops Manager Name:** {prompt-for-name}
 - **Title:** {prompt-for-title}
 - **Approval:** I confirm system is operationally ready
@@ -344,7 +351,7 @@ List all services/applications that need to be brought back online:
 
 **Dependencies ready:** {Y/N}
 
-2. **Service Startup:**
+1. **Service Startup:**
    - [ ] Service configuration reviewed
    - [ ] Service started successfully
    - [ ] Health checks passing
@@ -352,7 +359,7 @@ List all services/applications that need to be brought back online:
 
 **Service started:** {Y/N}
 
-3. **Integration Testing:**
+1. **Integration Testing:**
    - [ ] Upstream integrations working
    - [ ] Downstream integrations working
    - [ ] End-to-end transaction test passed
@@ -360,7 +367,7 @@ List all services/applications that need to be brought back online:
 
 **Integration test result:** {pass/fail}
 
-4. **Business Approval:**
+1. **Business Approval:**
    - **Business Owner:** {name}
    - **Approval:** Service ready for customers/users
    - **Timestamp:** {timestamp}
@@ -392,6 +399,7 @@ After an incident, we implement heightened monitoring for 30-90 days.
 Monitor for any return of known IOCs from this incident.
 
 **IOCs to monitor (from step 4b):**
+
 - Malicious IPs: {list}
 - Malicious domains: {list}
 - Malware hashes: {list}
@@ -664,7 +672,7 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [P] Party Mode [C] Continue to Post-Incident Analysis
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF P: Execute {partyModeWorkflow} - Recommend Bastion (strategic advisor) for recovery review
 - IF C: Continue to Part 2 (Post-Incident Analysis and Final Report)
@@ -693,6 +701,7 @@ Now that operations are restored, let's conduct comprehensive post-incident anal
 What aspects of the incident response were effective?
 
 Examples:
+
 - Detection was rapid
 - Containment prevented lateral movement
 - Communication was clear
@@ -710,6 +719,7 @@ Examples:
 What aspects of the incident response need improvement?
 
 Examples:
+
 - Detection was delayed
 - Containment took too long
 - Communication gaps existed
@@ -728,6 +738,7 @@ Examples:
 What challenges or obstacles did the team encounter?
 
 Examples:
+
 - Lack of visibility into certain systems
 - Difficulty coordinating with third parties
 - Legal/compliance questions caused delays
@@ -745,26 +756,31 @@ Examples:
 Let's calculate key incident response metrics.
 
 **Mean Time to Detect (MTTD):**
+
 - **Attack started (estimated):** {prompt-for-estimated-start}
 - **First detection:** {detection-timestamp-from-step-2b}
 - **MTTD:** {calculated-duration}
 
 **Mean Time to Contain (MTTC):**
+
 - **First detection:** {detection-timestamp}
 - **Containment complete:** {containment-timestamp-from-step-3b}
 - **MTTC:** {calculated-duration}
 
 **Mean Time to Eradicate (MTTE):**
+
 - **Eradication start:** {eradication-start-from-step-6b}
 - **Eradication complete:** {eradication-complete}
 - **MTTE:** {calculated-duration}
 
 **Mean Time to Recover (MTTR):**
+
 - **Recovery start:** {recovery-start-timestamp}
 - **Recovery complete:** {recovery-complete-timestamp}
 - **MTTR:** {calculated-duration}
 
 **Total Incident Duration:**
+
 - **Attack start (estimated):** {estimated-start}
 - **Incident closed:** {current-timestamp}
 - **Total Duration:** {calculated-duration}
@@ -778,6 +794,7 @@ Let's calculate key incident response metrics.
 "**EFFECTIVENESS RATINGS**
 
 Rate the effectiveness of each phase on a scale of 1-5:
+
 - **1** = Ineffective, major failures
 - **2** = Below expectations, significant issues
 - **3** = Adequate, met basic requirements
@@ -785,30 +802,37 @@ Rate the effectiveness of each phase on a scale of 1-5:
 - **5** = Excellent, exceeded expectations across the board
 
 **Detection Effectiveness:**
+
 - **Rating (1-5):** {prompt-for-rating}
 - **Rationale:** {prompt-for-explanation}
 
 **Containment Effectiveness:**
+
 - **Rating (1-5):** {prompt-for-rating}
 - **Rationale:** {prompt-for-explanation}
 
 **Eradication Effectiveness:**
+
 - **Rating (1-5):** {prompt-for-rating}
 - **Rationale:** {prompt-for-explanation}
 
 **Recovery Effectiveness:**
+
 - **Rating (1-5):** {prompt-for-rating}
 - **Rationale:** {prompt-for-explanation}
 
 **Communication Effectiveness:**
+
 - **Rating (1-5):** {prompt-for-rating}
 - **Rationale:** {prompt-for-explanation}
 
 **Tool Effectiveness:**
+
 - **Rating (1-5):** {prompt-for-rating}
 - **Rationale:** {prompt-for-explanation}
 
 **Overall Response Effectiveness:**
+
 - **Rating (1-5):** {prompt-for-rating}
 - **Rationale:** {prompt-for-explanation}
 
@@ -829,6 +853,7 @@ Based on this incident, what improvements should be made?
 What technical improvements would improve detection?
 
 Examples:
+
 - Deploy EDR to uncovered systems
 - Implement UEBA (User and Entity Behavior Analytics)
 - Add new SIEM correlation rules
@@ -843,6 +868,7 @@ Examples:
 What technical improvements would prevent similar incidents?
 
 Examples:
+
 - Patch management improvements
 - Configuration hardening standards
 - Network segmentation
@@ -858,6 +884,7 @@ Examples:
 What technical improvements would improve response?
 
 Examples:
+
 - Automated containment capabilities
 - Forensic collection automation
 - Threat intelligence integration
@@ -873,6 +900,7 @@ Examples:
 What process improvements are needed?
 
 Examples:
+
 - Update incident response playbooks
 - Clarify escalation procedures
 - Improve communication templates
@@ -890,6 +918,7 @@ Examples:
 What training is needed?
 
 Examples:
+
 - Incident response tabletop exercises
 - Technical tool training (EDR, SIEM, forensics)
 - Threat hunting training
@@ -906,6 +935,7 @@ Examples:
 What tools are needed or need improvement?
 
 Examples:
+
 - EDR platform upgrade
 - SIEM platform upgrade
 - Threat intelligence platform
@@ -935,6 +965,7 @@ Convert recommendations into actionable follow-up items.
 **For each recommendation, create follow-up action:**
 
 **Action Item 1:**
+
 - **Action:** {description}
 - **Owner:** {prompt-for-name}
 - **Due Date:** {prompt-for-date}
@@ -1073,25 +1104,31 @@ Let's estimate the total cost of this incident.
 **DIRECT COSTS**
 
 **Incident Response Team Time:**
+
 - **Internal IR team hours:** {prompt-for-hours}
 - **Average hourly rate:** {prompt-for-rate}
 - **IR team cost:** ${calculated}
 
 **External Forensics:**
+
 - **Forensic firm engaged:** {Y/N}
 - **If YES, cost:** ${prompt-for-cost}
 
 **Legal Fees:**
+
 - **Legal counsel cost:** ${prompt-for-cost}
 
 **Notifications:**
+
 - **Notification letters/emails cost:** ${prompt-for-cost}
 - **Credit monitoring (if offered):** ${prompt-for-cost}
 
 **Regulatory Fines:**
+
 - **Fines assessed (if any):** ${prompt-for-cost}
 
 **Insurance Deductible:**
+
 - **Deductible paid:** ${prompt-for-cost}
 
 **Direct Costs Subtotal:** ${sum-of-direct-costs}
@@ -1101,17 +1138,21 @@ Let's estimate the total cost of this incident.
 **INDIRECT COSTS**
 
 **System Downtime:**
+
 - **Revenue-generating systems down:** {hours}
 - **Estimated revenue loss:** ${prompt-for-estimate}
 
 **Productivity Loss:**
+
 - **Employee productivity impact:** ${prompt-for-estimate}
 
 **Reputation Damage:**
+
 - **Customer churn (estimated):** {count} customers
 - **Lost future revenue (estimated):** ${prompt-for-estimate}
 
 **Recovery and Remediation:**
+
 - **System rebuild costs:** ${prompt-for-cost}
 - **Security improvements cost:** ${prompt-for-cost}
 
@@ -1426,6 +1467,7 @@ Display:
 **Summary:**
 
 **Response Timeline:**
+
 - **Detection:** {detection-date}
 - **Containment:** {containment-date} ({mttc})
 - **Eradication:** {eradication-date} ({mtte})
@@ -1434,6 +1476,7 @@ Display:
 - **Total Duration:** {total-duration}
 
 **Systems Impact:**
+
 - **Systems Affected:** {count}
 - **Systems Restored:** {count} (100%)
 - **Services Restored:** {count} (100%)
@@ -1491,6 +1534,7 @@ Display:
    - Insurance claim filed ✅
 
 **Files Location:**
+
 - **Incident Report:** {outputFile}
 - **Incident Timeline:** {sidecarFile}
 
@@ -1510,7 +1554,7 @@ Would you like me to generate any additional documentation or analysis? (Y/N)"
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All systems restored to operational status
 - Business approval received for all systems/services
@@ -1530,7 +1574,7 @@ Would you like me to generate any additional documentation or analysis? (Y/N)"
 - Frontmatter updated: workflowComplete: true, stepsCompleted: [1, 2b, 3b, 4b, 5b, 6b, 7b]
 - Success message displayed with deliverables
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping business approval (systems returned to production without authorization)
 - Not configuring enhanced monitoring (missing potential re-compromise)

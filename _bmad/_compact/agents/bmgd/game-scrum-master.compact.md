@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmgd/agents/game-scrum-master.md
+# Full agent: src/bmgd/agents/game-scrum-master.md
 agent_id: "game-scrum-master"
 name: "Max"
 title: "Game Dev Scrum Master"

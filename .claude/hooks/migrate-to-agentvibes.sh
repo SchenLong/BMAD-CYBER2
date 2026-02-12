@@ -35,6 +35,12 @@ else
     PROJECT_ROOT="$(pwd)"
 fi
 
+# Source input validation library
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 cd "$PROJECT_ROOT"
 
 # Create timestamped backup directory

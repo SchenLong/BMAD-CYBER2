@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/permissions/supply-chain.js')
+import('../dist/src/permissions/supply-chain.js')
   .then((module) => {
     module.main();
   })

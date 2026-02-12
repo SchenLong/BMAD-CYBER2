@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/political-strategist.md
+# Full agent: src/strategy-team/agents/political-strategist.md
 agent_id: "political-strategist"
 name: "Magnus"
 title: "Campaign & Political Strategy"

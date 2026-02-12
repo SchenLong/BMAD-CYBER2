@@ -8,7 +8,7 @@
  * - PERM-003: Authorization checks with role-based context
  */
 
-import { Permission, PermissionType, PermissionConstraint } from "./permission-types";
+import { Permission, PermissionConstraint, PermissionType } from "./permission-types";
 import { PERMISSION_MANIFESTS } from "./permission-manifests";
 
 /**

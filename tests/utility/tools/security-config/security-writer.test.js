@@ -10,26 +10,26 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  SECURITY_CONFIG_PATH,
-  CONFIG_VERSION,
-  serializeYaml,
-  parseYaml,
-  getCurrentUserName,
-  createSecurityConfig,
-  readSecurityConfig,
-  ensureSecurityConfigDirectory,
-  writeSecurityConfigAtomic,
-  validateSecurityConfig,
   applySecurityTier,
-  getCurrentTier,
+  CONFIG_VERSION,
+  createSecurityConfig,
+  ensureSecurityConfigDirectory,
   getCurrentFeatures,
-  isSecurityConfigured
+  getCurrentTier,
+  getCurrentUserName,
+  isSecurityConfigured,
+  parseYaml,
+  readSecurityConfig,
+  SECURITY_CONFIG_PATH,
+  serializeYaml,
+  validateSecurityConfig,
+  writeSecurityConfigAtomic
 } from './security-writer.js';
 
 import { getTierFeatures, getValidatorPaths } from './tier-definitions.js';
@@ -40,7 +40,7 @@ const __dirname = path.dirname(__filename);
 
 // Test fixtures
 const MOCK_PROJECT_ROOT = path.join(__dirname, '__test_fixtures_security__');
-const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, '_bmad/core/security');
+const MOCK_SECURITY_PATH = path.join(MOCK_PROJECT_ROOT, 'src/core/security');
 
 // Setup and teardown
 function setupTestFixtures() {
@@ -65,7 +65,7 @@ describe('Security Configuration Writer - INST-009', () => {
 
   describe('Constants', () => {
     it('should have correct config path', () => {
-      expect(SECURITY_CONFIG_PATH).toBe('_bmad/core/security/security-config.yaml');
+      expect(SECURITY_CONFIG_PATH).toBe('src/core/security/security-config.yaml');
     });
 
     it('should have version string', () => {
@@ -393,7 +393,7 @@ describe('Security Configuration Writer - INST-009', () => {
       const content = 'test: content';
       writeSecurityConfigAtomic(content, MOCK_PROJECT_ROOT);
 
-      const tempPath = path.join(MOCK_PROJECT_ROOT, SECURITY_CONFIG_PATH + '.tmp');
+      const tempPath = path.join(MOCK_PROJECT_ROOT, `${SECURITY_CONFIG_PATH  }.tmp`);
       expect(fs.existsSync(tempPath)).toBe(false);
     });
   });

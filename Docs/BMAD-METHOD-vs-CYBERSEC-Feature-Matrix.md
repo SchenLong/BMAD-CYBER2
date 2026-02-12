@@ -478,22 +478,26 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 ## Section 6: Suggested PR Sequence
 
 ### Phase 1: Security Foundation
+
 1. **Security Validator Suite** (standalone, high value)
 2. **OWASP AI Security Framework** (builds on validators)
 
 ### Phase 2: Operational Teams
-3. **Cybersec-Team Module** (standalone, universal value)
-4. **Intel-Team Module** (standalone, threat intel)
-5. **Strategy-Team Module** (standalone, executive tools)
+
+1. **Cybersec-Team Module** (standalone, universal value)
+2. **Intel-Team Module** (standalone, threat intel)
+3. **Strategy-Team Module** (standalone, executive tools)
 
 ### Phase 3: Enhancements
-6. **Enhanced Party Mode** (builds on teams)
-7. **Abdul Orchestrator** (coordination layer)
-8. **Compliance Frameworks** (builds on cybersec)
+
+1. **Enhanced Party Mode** (builds on teams)
+2. **Abdul Orchestrator** (coordination layer)
+3. **Compliance Frameworks** (builds on cybersec)
 
 ### Phase 4: Infrastructure
-9. **CI/CD Pipeline** (quality gates)
-10. **Documentation Structure** (user experience)
+
+1. **CI/CD Pipeline** (quality gates)
+2. **Documentation Structure** (user experience)
 
 ---
 
@@ -544,11 +548,13 @@ _bmad/
 | 2.x | Expected | Architecture aligned |
 
 ### Breaking Changes
+
 - None anticipated for modular PR approach
 - Security validators require Node.js 18+ (Node.js 20+ recommended)
 - Framework components use TypeScript (compiled to JavaScript)
 
 ### Migration Path
+
 - Modules are additive (no existing functionality modified)
 - Optional adoption (users choose which modules to install)
 - Graceful degradation (features work independently)

@@ -122,6 +122,7 @@ const result = await detector.detectConflicts(dependencyGraph, context);
 ```
 
 **Detection Capabilities:**
+
 - Version conflicts
 - Circular dependencies
 - Peer dependency issues
@@ -149,6 +150,7 @@ const result = await resolver.resolveConflicts(conflicts, dependencyGraph, optio
 ```
 
 **Resolution Strategies:**
+
 - **Aggressive**: Resolve all conflicts automatically
 - **Conservative**: Only resolve safe conflicts
 - **Interactive**: Require user confirmation
@@ -176,6 +178,7 @@ const result = await prevention.preventConflicts(operation, dependencyGraph, con
 ```
 
 **Prevention Features:**
+
 - Predictive conflict analysis
 - Proactive intervention
 - Policy enforcement
@@ -543,8 +546,8 @@ This project is part of the BMAD Component Export Platform and is licensed under
 
 - **Issues**: Create GitHub issues for bugs and feature requests
 - **Discussions**: Use GitHub Discussions for questions
-- **Security**: Report security issues to security@bmad-cyber.com
-- **Enterprise Support**: Contact enterprise@bmad-cyber.com
+- **Security**: Report security issues to <security@bmad-cyber.com>
+- **Enterprise Support**: Contact <enterprise@bmad-cyber.com>
 
 ---
 

@@ -19,13 +19,13 @@ brainstormingWorkflow: '{project-root}/_bmad/core/workflows/brainstorming/workfl
 
 # Step 4A: Containment Procedures
 
-## STEP GOAL:
+## STEP GOAL
 
 To design comprehensive short-term and long-term containment strategies with clear decision criteria and tool-specific commands for containing {incident-type} incidents while minimizing business disruption.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -33,7 +33,7 @@ To design comprehensive short-term and long-term containment strategies with cle
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an IR Planning Consultant
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -42,7 +42,7 @@ To design comprehensive short-term and long-term containment strategies with cle
 - ✅ User brings organizational knowledge and requirements
 - ✅ Maintain collaborative, consultative tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on containment strategies and immediate response actions
 - 🚫 FORBIDDEN to start defining eradication procedures (that's step 5a)
@@ -50,21 +50,21 @@ To design comprehensive short-term and long-term containment strategies with cle
 - 🎨 Brainstorming ENCOURAGED for innovative containment strategies
 - 👥 Party Mode (Bastion) AVAILABLE for architecture-aware containment guidance
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Leverage organizational context from Section 1 and detection procedures from Section 2
 - 💾 Append to Section 3 (Containment Procedures) in output file
 - 📖 Update frontmatter `stepsCompleted: [1, 2a, 3a, 4a]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Detection procedures defined in step 3a
 - Focus on HOW to contain the incident
 - Don't define HOW to eradicate yet (that's step 5a)
 - Containment must balance security with business continuity
 
-## CONTAINMENT PROCEDURE SEQUENCE:
+## CONTAINMENT PROCEDURE SEQUENCE
 
 ### 1. Review Context
 
@@ -75,17 +75,20 @@ Display:
 Let's define how your organization will contain **{incident-type}** incidents.
 
 **From Section 1 (Organizational Context):**
+
 - SIEM: {siem-platform}
 - EDR: {edr-platform}
 - Firewall: {firewall-platform-if-documented}
 - Network Segmentation: {network-architecture-summary}
 
 **From Section 2 (Detection):**
+
 - Key IOCs: {summary-of-iocs}
 - Affected Systems Profile: {typical-affected-systems}
 
 **NIST Containment Approach:**
 NIST defines two containment stages:
+
 1. **Short-term containment:** Immediate actions to limit damage (isolate systems, block IPs, revoke access)
 2. **Long-term containment:** Sustained measures while preparing for eradication (patching unaffected systems, monitoring, maintaining business operations)
 
@@ -159,6 +162,7 @@ For compromised or suspicious accounts:
 For {incident-type}, which accounts are typically compromised? What's your containment priority?"
 
 Work through each containment category and document:
+
 - Specific actions
 - Who has authority to execute
 - Approval required? (Yes/No, and from whom)
@@ -179,6 +183,7 @@ What commands will your team use?
 Examples for common EDR platforms:
 
 - **CrowdStrike:**
+
   ```
   # Isolate host
   $ falcon-cli contain <hostname>
@@ -191,6 +196,7 @@ Examples for common EDR platforms:
   ```
 
 - **SentinelOne:**
+
   ```
   # Network quarantine
   API: POST /web/api/v2.1/agents/actions/disconnect
@@ -200,6 +206,7 @@ Examples for common EDR platforms:
   ```
 
 - **Microsoft Defender:**
+
   ```powershell
   # Isolate device
   Invoke-MDATPDeviceAction -DeviceId <id> -Action Isolate
@@ -225,6 +232,7 @@ What firewall commands will you use?
 Examples:
 
 - **Palo Alto:**
+
   ```
   # Block IP address
   > configure
@@ -236,6 +244,7 @@ Examples:
   ```
 
 - **Cisco ASA:**
+
   ```
   # Block IP
   access-list OUTSIDE-IN deny ip host <malicious-IP> any
@@ -243,6 +252,7 @@ Examples:
   ```
 
 - **FortiGate:**
+
   ```
   # Block IP address
   config firewall address
@@ -274,6 +284,7 @@ Set-ADUser -Identity <service-account> -Enabled $false
 **Cloud Platform Commands (if applicable):**
 
 - **AWS:**
+
   ```bash
   # Revoke IAM user sessions
   aws iam delete-access-key --access-key-id <key-id> --user-name <user>
@@ -286,6 +297,7 @@ Set-ADUser -Identity <service-account> -Enabled $false
   ```
 
 - **Azure:**
+
   ```powershell
   # Isolate VM (remove from network security group)
   Remove-AzNetworkInterfaceIpConfig -NetworkInterface <nic> -Name <config>
@@ -303,6 +315,7 @@ Let's document the exact commands for your environment."
 After short-term containment limits immediate damage, how will you maintain containment while preparing for eradication?
 
 **System Patching (Unaffected Systems):**
+
 - Patch all unaffected systems to prevent spread
 - Vulnerability that enabled {incident-type}: {vulnerability-if-known}
 - Patch priority: Critical systems first
@@ -310,6 +323,7 @@ After short-term containment limits immediate damage, how will you maintain cont
 - Patching timeline: {timeline}
 
 **Enhanced Monitoring:**
+
 - What additional monitoring will you implement?
 - SIEM rule adjustments
 - EDR policy changes
@@ -317,18 +331,21 @@ After short-term containment limits immediate damage, how will you maintain cont
 - Log collection enhancements
 
 **Threat Hunting:**
+
 - Hunt for additional compromised systems
 - Use IOCs from Section 2
 - Frequency: {how-often}
 - Scope: {what-to-hunt}
 
 **Maintaining Business Operations:**
+
 - What workarounds are needed?
 - Can users work with systems isolated?
 - Alternative systems available?
 - Communication to users about limitations
 
 **Temporary Hardening:**
+
 - MFA enforcement (if not already)
 - Application whitelisting
 - Elevated logging
@@ -346,6 +363,7 @@ Not all incidents require the same containment approach. Let's create a decision
 For {incident-type} incidents:
 
 **If Severity = Critical:**
+
 - Affected systems: {action-e.g.-immediate-isolation}
 - Network: {action-e.g.-segment-VLAN}
 - Accounts: {action-e.g.-disable-immediately}
@@ -353,6 +371,7 @@ For {incident-type} incidents:
 - Business impact: {accept-for-critical-incidents}
 
 **If Severity = High:**
+
 - Affected systems: {action}
 - Network: {action}
 - Accounts: {action}
@@ -360,17 +379,20 @@ For {incident-type} incidents:
 - Business impact consideration: {factors}
 
 **If Severity = Medium:**
+
 - Affected systems: {action}
 - Network: {action}
 - Accounts: {action}
 - Approval required: {level}
 
 **If Severity = Low:**
+
 - Affected systems: {action}
 - Network: {action}
 - Accounts: {action}
 
 **Special Considerations for {incident-type}:**
+
 - If ransomware encryption in progress → {immediate-action}
 - If data exfiltration detected → {immediate-action}
 - If critical system affected → {immediate-action}
@@ -385,21 +407,25 @@ Let's work through this matrix together."
 Containment actions can break things. How will you roll back if needed?
 
 **If endpoint isolation causes critical business disruption:**
+
 - Decision maker: {who-can-authorize-rollback}
 - Rollback procedure: {steps-to-release-isolation}
 - Compensating controls: {what-controls-if-you-must-release}
 
 **If firewall rules block legitimate traffic:**
+
 - Monitoring for false positives: {how}
 - Rule refinement process: {process}
 - Emergency rule removal: {who-and-how}
 
 **If account disabling affects critical service:**
+
 - Identify critical service accounts upfront: {list}
 - Alternative authentication: {options}
 - Temporary access procedure: {process}
 
 **Communication for Rollback:**
+
 - Who must be notified?
 - Documentation requirements
 - Lessons learned capture
@@ -413,12 +439,14 @@ Have you experienced containment actions causing business disruption in the past
 Would you like to explore innovative containment strategies or consult with experts?
 
 **Option 1: Brainstorming**
+
 - Creative containment approaches
 - Minimizing business impact
 - Deception techniques (honeypots, decoys)
 - Automated containment workflows
 
 **Option 2: Party Mode - Bastion (Architecture Expert)**
+
 - Architecture-aware containment strategies
 - Network segmentation recommendations
 - Cloud-specific containment tactics
@@ -448,9 +476,11 @@ Append to Section 3 (Containment Procedures) in output file:
 
 **EDR ({edr-platform}) Commands:**
 ```
+
 {isolation-command}
 {verification-command}
 {release-command}
+
 ```
 
 **Network Containment:**
@@ -463,9 +493,11 @@ Append to Section 3 (Containment Procedures) in output file:
 
 **Firewall ({firewall-platform}) Commands:**
 ```
+
 {block-ip-command}
 {block-domain-command}
 {segment-vlan-command}
+
 ```
 
 **Account Containment:**
@@ -485,6 +517,7 @@ Append to Section 3 (Containment Procedures) in output file:
 ```
 
 **Cloud Platform Containment (if applicable):**
+
 ```
 {cloud-isolation-commands}
 ```
@@ -494,6 +527,7 @@ Append to Section 3 (Containment Procedures) in output file:
 **Goal:** Maintain containment while preparing for eradication; prevent reinfection
 
 **System Hardening (Unaffected Systems):**
+
 - [ ] Patch vulnerability: {vulnerability-CVE-or-description}
 - [ ] Priority systems: {critical-systems-list}
 - [ ] Patching timeline: {timeline-e.g.-within-24-hours}
@@ -501,6 +535,7 @@ Append to Section 3 (Containment Procedures) in output file:
 - [ ] Responsible: {patch-management-team}
 
 **Enhanced Monitoring:**
+
 - [ ] SIEM rule adjustments: {new-rules-or-threshold-changes}
 - [ ] EDR policy changes: {policy-changes}
 - [ ] Network traffic analysis: {focus-areas}
@@ -508,6 +543,7 @@ Append to Section 3 (Containment Procedures) in output file:
 - [ ] Monitoring duration: {how-long-e.g.-30-days-post-eradication}
 
 **Threat Hunting:**
+
 - [ ] Hunt for additional compromised systems using Section 2 IOCs
 - [ ] Frequency: {frequency-e.g.-every-4-hours}
 - [ ] Scope: {what-systems-to-hunt}
@@ -515,12 +551,14 @@ Append to Section 3 (Containment Procedures) in output file:
 - [ ] Documentation: {where-to-document-findings}
 
 **Business Operations Workarounds:**
+
 - {workaround-1-for-isolated-systems}
 - {workaround-2-for-disabled-accounts}
 - {workaround-3-for-network-segmentation}
 - Communication: {how-users-are-informed}
 
 **Temporary Security Enhancements:**
+
 - [ ] MFA enforcement: {scope}
 - [ ] Application whitelisting: {affected-systems}
 - [ ] Elevated logging: {systems-and-duration}
@@ -566,6 +604,7 @@ Append to Section 3 (Containment Procedures) in output file:
 **If containment actions cause unacceptable business disruption:**
 
 **Endpoint Isolation Rollback:**
+
 - Decision maker: {role}
 - Rollback procedure:
   1. {step-1}
@@ -574,16 +613,19 @@ Append to Section 3 (Containment Procedures) in output file:
 - Compensating controls: {controls-if-must-release-isolation}
 
 **Firewall Rule Rollback:**
+
 - False positive monitoring: {monitoring-method}
 - Rule refinement: {process}
 - Emergency removal: {who-and-how}
 
 **Account Re-enablement:**
+
 - Critical service accounts: {pre-identified-list}
 - Temporary access: {procedure}
 - Documentation: {requirements}
 
 **Communication:**
+
 - Notify: {stakeholders}
 - Document: {what-to-document}
 - Lessons learned: {capture-process}
@@ -600,6 +642,7 @@ Append to Section 3 (Containment Procedures) in output file:
 - [ ] EDR telemetry shows containment holding
 
 **Containment Success Criteria:**
+
 - No new infections for {timeframe-e.g.-72-hours}
 - All known-affected systems isolated or remediated
 - Network traffic to malicious infrastructure blocked
@@ -607,9 +650,11 @@ Append to Section 3 (Containment Procedures) in output file:
 - IR Team Lead sign-off: {signature-and-timestamp}
 
 **If Containment Fails:**
+
 - Escalate to: {escalation-path}
 - Re-assess containment strategy
 - Consider: {more-aggressive-containment-options}
+
 ```
 
 Update frontmatter:
@@ -622,30 +667,30 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [B] Brainstorming [C] Continue
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then redisplay the menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with focus on "quality and completeness of containment procedures and decision matrix"
 - IF P: Execute {partyModeWorkflow} - Recommend Bastion (architecture expert) for containment strategies
 - IF B: Execute {brainstormingWorkflow} with focus on "innovative containment strategies that minimize business impact"
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Section 3 is complete will you load, read entire file, then execute `{nextStepFile}` to begin defining eradication procedures.
+ONLY WHEN C is selected and Section 3 is complete will you load, read entire file, then follow `{nextStepFile}` to begin defining eradication procedures.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Short-term and long-term containment strategies documented
 - Tool-specific commands provided for {edr-platform}, {firewall-platform}, and other tools
@@ -656,7 +701,7 @@ ONLY WHEN C is selected and Section 3 is complete will you load, read entire fil
 - Frontmatter updated with stepsCompleted: [1, 2a, 3a, 4a]
 - Menu presented and user input handled correctly
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Generic containment procedures not tailored to organization's tools
 - Missing decision matrix or approval workflows

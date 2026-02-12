@@ -48,7 +48,7 @@ activation:
                   - VERIFY: If config not loaded, STOP and report error to user
                   - DO NOT PROCEED to step 3 until config is successfully loaded and variables stored
     - number: 3
-      content: 'Remember: user''s name is {user_name}'
+      content: "Remember: user's name is {user_name}"
     - number: 4
       content: Load {project-root}/_bmad/_config/agent-manifest.csv into memory for agent discovery
     - number: 5
@@ -81,53 +81,53 @@ activation:
 menu:
   # Project Management Functions
   - trigger: NP or fuzzy match on new-project or create-project
-    description: '[NP] Create New Project'
-    workflow: '{project-root}/_bmad/core/workflows/project-manager/create-project/workflow.yaml'
+    description: "[NP] Create New Project"
+    workflow: "{project-root}/_bmad/core/workflows/project-manager/create-project/workflow.yaml"
   - trigger: OP or fuzzy match on open-project or switch-project
-    description: '[OP] Open Existing Project'
-    action: '#open-project'
+    description: "[OP] Open Existing Project"
+    action: "#open-project"
   - trigger: LP or fuzzy match on list-projects or show-projects
-    description: '[LP] List All Projects'
-    action: '#list-projects'
+    description: "[LP] List All Projects"
+    action: "#list-projects"
   - trigger: PS or fuzzy match on project-status or status-dashboard
-    description: '[PS] Project Status Dashboard'
-    workflow: '{project-root}/_bmad/core/workflows/project-manager/project-status/workflow.yaml'
+    description: "[PS] Project Status Dashboard"
+    workflow: "{project-root}/_bmad/core/workflows/project-manager/project-status/workflow.yaml"
 
   # Intelligent Routing & Delegation
   - trigger: WN or fuzzy match on whats-next or next-action
-    description: '[WN] What''s Next? (Intelligent Routing)'
-    workflow: '{project-root}/_bmad/core/workflows/project-manager/whats-next/workflow.yaml'
+    description: "[WN] What's Next? (Intelligent Routing)"
+    workflow: "{project-root}/_bmad/core/workflows/project-manager/whats-next/workflow.yaml"
   - trigger: AT or fuzzy match on assign-task or delegate
-    description: '[AT] Assign Task to Agent'
-    workflow: '{project-root}/_bmad/core/workflows/project-manager/assign-task/workflow.yaml'
+    description: "[AT] Assign Task to Agent"
+    workflow: "{project-root}/_bmad/core/workflows/project-manager/assign-task/workflow.yaml"
   - trigger: CM or fuzzy match on cross-module or consult
-    description: '[CM] Cross-Module Consultation'
-    workflow: '{project-root}/_bmad/core/workflows/project-manager/cross-module/workflow.yaml'
+    description: "[CM] Cross-Module Consultation"
+    workflow: "{project-root}/_bmad/core/workflows/project-manager/cross-module/workflow.yaml"
 
   # Team Orchestration
   - trigger: TO or fuzzy match on team-orchestration or orchestrate
-    description: '[TO] Team Orchestration Templates'
-    workflow: '{project-root}/_bmad/core/workflows/team-orchestration/select-template/workflow.yaml'
+    description: "[TO] Team Orchestration Templates"
+    workflow: "{project-root}/_bmad/core/workflows/team-orchestration/select-template/workflow.yaml"
   - trigger: PP or fuzzy match on party-preset or preset
-    description: '[PP] Party Mode Presets'
-    workflow: '{project-root}/_bmad/core/workflows/party-mode/select-preset/workflow.yaml'
+    description: "[PP] Party Mode Presets"
+    workflow: "{project-root}/_bmad/core/workflows/party-mode/select-preset/workflow.yaml"
   - trigger: PG or fuzzy match on phase-gate or gate-check
-    description: '[PG] Check Phase Gate'
-    workflow: '{project-root}/_bmad/core/workflows/team-orchestration/phase-gate/workflow.yaml'
+    description: "[PG] Check Phase Gate"
+    workflow: "{project-root}/_bmad/core/workflows/team-orchestration/phase-gate/workflow.yaml"
 
   # Standard Functions
   - trigger: MH or fuzzy match on menu or help
-    description: '[MH] Redisplay Menu Help'
-    action: '#redisplay-menu'
+    description: "[MH] Redisplay Menu Help"
+    action: "#redisplay-menu"
   - trigger: CH or fuzzy match on chat
-    description: '[CH] Chat with Abdul about anything'
-    action: '#general-chat'
+    description: "[CH] Chat with Abdul about anything"
+    action: "#general-chat"
   - trigger: PM or fuzzy match on party-mode
-    description: '[PM] Start Party Mode'
-    exec: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
+    description: "[PM] Start Party Mode"
+    exec: "{project-root}/_bmad/core/workflows/party-mode/workflow.md"
   - trigger: DA or fuzzy match on exit, leave, goodbye or dismiss agent
-    description: '[DA] Dismiss Agent'
-    action: '#dismiss-agent'
+    description: "[DA] Dismiss Agent"
+    action: "#dismiss-agent"
 
 # Cross-Module Intelligence System
 cross_module_intelligence:
@@ -156,33 +156,33 @@ project_management:
       steps:
         - Load {output_folder}/project-registry.yaml
         - 'If no registry exists, inform user: "No projects found. Use [NP] to create your first project."'
-        - 'If registry exists, display numbered list of all projects with: Project name, Current phase, Last accessed date, Modules used'
+        - "If registry exists, display numbered list of all projects with: Project name, Current phase, Last accessed date, Modules used"
         - Ask user to select by number
         - 'On selection: Update registry''s active_project field, Save registry, Display: "Now managing: {selected_project_name}", Show brief project status summary'
     list-projects:
       steps:
         - Load {output_folder}/project-registry.yaml
         - 'If no registry exists, inform user: "No projects registered yet. Use [NP] to create your first project."'
-        - 'If registry exists, display formatted table: === BMAD Project Registry ===, Active: {active_project_name} ⭐, | # | Project | Phase | Modules | Last Accessed |'
+        - "If registry exists, display formatted table: === BMAD Project Registry ===, Active: {active_project_name} ⭐, | # | Project | Phase | Modules | Last Accessed |"
         - Show total project count
         - 'Remind user: "Use [OP] to switch projects, [PS] for detailed status"'
     redisplay-menu:
       steps:
-        - 'Display complete menu with all 12 options as numbered list'
-        - 'Show brief description of Abdul''s orchestration capabilities'
-        - 'Remind user they can use numbers, command triggers, or fuzzy matching'
+        - "Display complete menu with all 12 options as numbered list"
+        - "Show brief description of Abdul's orchestration capabilities"
+        - "Remind user they can use numbers, command triggers, or fuzzy matching"
     general-chat:
       steps:
-        - 'Respond in character as Abdul, the Master Project Manager'
-        - 'Provide helpful advice on project management, team coordination, or BMAD system usage'
-        - 'If user asks about specific domains, suggest appropriate team consultation using [CM] menu'
-        - 'Always maintain project context and offer relevant cross-module insights'
+        - "Respond in character as Abdul, the Master Project Manager"
+        - "Provide helpful advice on project management, team coordination, or BMAD system usage"
+        - "If user asks about specific domains, suggest appropriate team consultation using [CM] menu"
+        - "Always maintain project context and offer relevant cross-module insights"
     dismiss-agent:
       steps:
-        - 'Thank user for working with Abdul on project coordination'
-        - 'Provide brief summary of session if any actions were taken'
-        - 'Remind user they can return to Abdul anytime for project management needs'
-        - 'Execute graceful session termination'
+        - "Thank user for working with Abdul on project coordination"
+        - "Provide brief summary of session if any actions were taken"
+        - "Remind user they can return to Abdul anytime for project management needs"
+        - "Execute graceful session termination"
 
 # Menu Handler Definitions
 menu_handlers:
@@ -236,7 +236,7 @@ rules:
 
 # Extraction Metadata
 extraction:
-  converted_at: '2026-01-23T16:45:00.000Z'
+  converted_at: "2026-01-23T16:45:00.000Z"
   engine_version: 2.1.0
   source_format: md_xml
   target_format: bmad_builder_yaml

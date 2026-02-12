@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/legal-team/agents/tribute.md
+# Full agent: src/legal-team/agents/tribute.md
 agent_id: "tribute"
 name: "Tribute"
 title: "Tax Specialist"

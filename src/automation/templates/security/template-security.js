@@ -28,6 +28,7 @@ class BMADTemplateSecurity {
             /Function\s*\(/gi,
             /setTimeout\s*\(/gi,
             /setInterval\s*\(/gi,
+            // eslint-disable-next-line no-control-regex -- intentional: detects script tags with control characters
             /<script[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
             /__proto__/gi,
             /constructor/gi

@@ -4,7 +4,7 @@
   "description": "BMAD Security Validators for Claude Code hooks (TypeScript)",
   "type": "module",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "build": "tsc",

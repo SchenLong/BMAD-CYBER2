@@ -16,6 +16,7 @@ Review contract for clarity, readability, and plain language.
 ### 1. Clarity Review
 
 Check for:
+
 - Unnecessarily complex sentences
 - Ambiguous language
 - Legalese that can be simplified
@@ -24,6 +25,7 @@ Check for:
 ### 2. Readability Assessment
 
 Review:
+
 - Sentence length
 - Paragraph structure
 - Logical flow
@@ -32,6 +34,7 @@ Review:
 ### 3. Simplification
 
 Where appropriate:
+
 - Simplify complex provisions
 - Add clarifying language
 - Improve structure

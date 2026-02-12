@@ -16,26 +16,26 @@ outputFile: '{output_folder}/security/security-awareness-program-{project_name}.
 
 # Step 7: Continuous Improvement Plan
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on continuous improvement and program evolution
 - This is the FINAL step - ensure comprehensive summary
 - Help user plan for long-term program success
 
-## STEP GOAL:
+## STEP GOAL
 
 To create a continuous improvement plan including maturity progression, feedback mechanisms, annual planning cycles, and long-term program evolution.
 
-## CONTINUOUS IMPROVEMENT SEQUENCE:
+## CONTINUOUS IMPROVEMENT SEQUENCE
 
 ### 1. Program Maturity Model
 
@@ -44,18 +44,21 @@ To create a continuous improvement plan including maturity progression, feedback
 **Maturity Levels:**
 
 **Level 1 - Initial:**
+
 - Ad-hoc training
 - No formal program
 - Reactive to incidents
 - No metrics
 
 **Level 2 - Developing:**
+
 - Annual compliance training
 - Basic phishing tests
 - Manual tracking
 - Limited metrics
 
 **Level 3 - Defined:**
+
 - Structured curriculum
 - Regular phishing campaigns
 - Automated enrollment
@@ -63,6 +66,7 @@ To create a continuous improvement plan including maturity progression, feedback
 - Manager involvement
 
 **Level 4 - Managed:**
+
 - Role-based training
 - Progressive phishing difficulty
 - Behavior change measurement
@@ -70,6 +74,7 @@ To create a continuous improvement plan including maturity progression, feedback
 - Continuous content updates
 
 **Level 5 - Optimizing:**
+
 - Adaptive learning paths
 - Real-time risk scoring
 - Gamification and engagement
@@ -84,18 +89,21 @@ Based on our program design, where do you assess your current/target maturity?"
 "Let's establish feedback loops:
 
 **User Feedback:**
+
 - Post-training surveys (after each module)
 - Phishing simulation feedback
 - Annual program survey
 - Focus groups (quarterly)
 
 **Stakeholder Feedback:**
+
 - Manager effectiveness reviews
 - HR partnership check-ins
 - Executive sponsor updates
 - Compliance/audit feedback
 
 **Performance Feedback:**
+
 - Metric trend analysis
 - Incident correlation
 - Benchmark comparison
@@ -108,6 +116,7 @@ How will you collect and act on feedback?"
 "Let's define your annual planning cycle:
 
 **Q4 - Annual Review & Planning:**
+
 - Review year's metrics
 - Analyze program effectiveness
 - Gather stakeholder input
@@ -115,18 +124,21 @@ How will you collect and act on feedback?"
 - Budget planning
 
 **Q1 - Content Refresh:**
+
 - Update core curriculum
 - Refresh phishing templates
 - Address new threat trends
 - Launch new initiatives
 
 **Q2 - Mid-Year Assessment:**
+
 - Review first-half metrics
 - Adjust campaigns if needed
 - Address struggling groups
 - Plan fall activities
 
 **Q3 - Preparation & Innovation:**
+
 - Test new approaches
 - Pilot new content
 - Security awareness month planning
@@ -139,18 +151,21 @@ What annual cycle fits your organization?"
 "Let's identify improvement opportunities:
 
 **Short-term Improvements (Next 6 months):**
+
 - [Based on current gaps identified]
 - Process efficiency gains
 - Content updates
 - Tool optimization
 
 **Medium-term Enhancements (6-12 months):**
+
 - Advanced capabilities
 - New training tracks
 - Deeper integrations
 - Expanded metrics
 
 **Long-term Evolution (12+ months):**
+
 - Culture transformation
 - Adaptive learning
 - Advanced analytics
@@ -271,6 +286,7 @@ This Security Awareness Training Program establishes a comprehensive approach to
 I've finalized your comprehensive Security Awareness Training Program including:
 
 **Documented Deliverables:**
+
 1. Executive Summary
 2. Program Overview with current state
 3. Human Risk Assessment
@@ -281,6 +297,7 @@ I've finalized your comprehensive Security Awareness Training Program including:
 8. Continuous Improvement Plan
 
 **Immediate Actions:**
+
 - Secure executive sponsorship
 - Configure training platform
 - Develop/source content
@@ -296,7 +313,7 @@ Would you like help with any specific area, or shall we conclude?"
 
 Display: **Workflow Complete - Select an Option:** [E] Export/Review Final Document [Q] Ask Questions [D] Done - Conclude Workflow
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF E: Display complete document or provide export guidance
 - IF Q: Answer questions about any section
@@ -307,6 +324,7 @@ Display: **Workflow Complete - Select an Option:** [E] Export/Review Final Docum
 ## CRITICAL STEP COMPLETION NOTE
 
 This is the FINAL step. When user selects 'D' (Done):
+
 1. Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`
 2. Add `workflowComplete: true` to frontmatter
 3. Add `completedDate: [current date]` to frontmatter

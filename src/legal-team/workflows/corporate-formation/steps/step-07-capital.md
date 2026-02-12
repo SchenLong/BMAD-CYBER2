@@ -31,6 +31,7 @@ Define the capital structure, ownership percentages, and share/membership classe
 Gather ownership details:
 
 **For Each Owner:**
+
 - Name and legal status (individual/entity)
 - Ownership percentage
 - Capital contribution amount
@@ -41,18 +42,21 @@ Gather ownership details:
 ### 3. Share/Membership Class Analysis
 
 **Single Class Structure:**
+
 - Simplest approach
 - Equal rights per share/unit
 - Suitable for most SMEs
 
 **Multi-Class Structure:**
 Consider if:
+
 - Different investment amounts with different rights
 - Founder vs. investor shares
 - Voting control concentration needed
 - Dividend preferences required
 
 **Example Multi-Class:**
+
 - Class A: Full voting, standard dividends
 - Class B: Limited/no voting, same dividends
 - Preferred: Liquidation preference, dividend priority
@@ -60,6 +64,7 @@ Consider if:
 ### 4. Capital Contribution Timeline
 
 Plan contribution schedule:
+
 - Initial capital at formation
 - Additional contributions (if planned)
 - Capital call provisions

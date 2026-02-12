@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Conversation Preparation
 
-## STEP GOAL:
+## STEP GOAL
 
 Prepare thoroughly for the performance review conversation, including difficult feedback delivery, anticipating reactions, and planning the conversation flow.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Executive Coach with Geneva (Stakeholder Mediator) providing conversation expertise
 - Focus on productive, developmental conversations
 - Prepare for difficult moments
 - Plan to maintain relationship while delivering honest feedback
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on conversation effectiveness
 - FORBIDDEN to skip difficult feedback preparation
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Conversation Structure
 
@@ -62,6 +63,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How will you open the conversation?"
 
 **Opening elements:**
+
 - Tone setting (appreciative, developmental)
 - Agenda preview
 - Two-way dialogue invitation
@@ -84,6 +86,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | [performance concern] | | | |
 
 **SBI framework for difficult feedback:**
+
 - **S**ituation: When/where did this happen?
 - **B**ehavior: What specifically did they do?
 - **I**mpact: What was the effect?
@@ -108,6 +111,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Acceptance | | |
 
 **Key response principles:**
+
 - Listen fully before responding
 - Acknowledge feelings
 - Return to specific evidence
@@ -121,6 +125,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "What questions will help make this a dialogue?"
 
 **Understanding questions:**
+
 - How do you feel about your performance this period?
 - What are you most proud of?
 - Where do you think you could improve?
@@ -128,6 +133,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - What obstacles have you faced?
 
 **Development questions:**
+
 - Where do you want to grow?
 - What would help you be more successful?
 - What feedback do you have for me?
@@ -139,6 +145,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "If they strongly disagree with the assessment, how will you handle it?"
 
 **Disagreement protocol:**
+
 1. Listen fully to their perspective
 2. Acknowledge their view
 3. Share specific evidence again
@@ -147,6 +154,7 @@ You MUST respond in **{communication_language}** throughout this step.
 6. Document differing views if needed
 
 **Non-negotiables:**
+
 - What feedback must be delivered regardless of reaction?
 - What ratings are firm?
 
@@ -203,21 +211,26 @@ Update frontmatter: Add `step-05-conversation-prep` to stepsCompleted
 "Here's the conversation preparation summary:
 
 **Conversation Flow:**
+
 - Total time: [X minutes]
 - Key phases: [list]
 
 **Difficult Feedback to Deliver:**
+
 1. [feedback + approach]
 2. [feedback + approach]
 
 **Most Likely Reaction:** [reaction]
+
 - Response strategy: [approach]
 
 **Key Questions to Ask:**
+
 1. [question]
 2. [question]
 
 **Logistics:**
+
 - When: [time]
 - Where: [location]
 
@@ -228,21 +241,24 @@ Update frontmatter: Add `step-05-conversation-prep` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Prep [C] Continue to Review Document"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-06-review-document.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Conversation structure planned
 - Opening prepared
 - Difficult feedback delivery prepared
@@ -252,7 +268,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Logistics planned
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - No difficult feedback preparation
 - Ignoring potential reactions
 - No questions planned

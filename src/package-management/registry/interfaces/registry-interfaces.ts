@@ -11,18 +11,18 @@
 
 import { EventEmitter } from 'events';
 import {
-  PackageMetadata,
+  AnalyticsEvent,
+  DependencyGraph,
+  InstallationContext,
+  PackageError,
   PackageIdentifier,
+  PackageMetadata,
   PackageSearchQuery,
   PackageSearchResult,
-  DependencyGraph,
-  RegistryContext,
-  InstallationContext,
   QualityMetrics,
-  UsageMetrics,
-  AnalyticsEvent,
-  PackageError,
+  RegistryContext,
   SemverVersion,
+  UsageMetrics,
   VersionRange
 } from './package-types';
 

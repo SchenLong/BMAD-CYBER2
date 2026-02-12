@@ -38,6 +38,7 @@ fi
 **Advanced Options:**
 
 To unmute globally (removes global mute AND project mute):
+
 ```bash
 rm -f "$HOME/.agentvibes-muted"
 rm -f "$(pwd)/.claude/agentvibes-muted" 2>/dev/null || true

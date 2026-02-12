@@ -20,16 +20,16 @@ import { SecurityMonitor } from '../../security/monitoring/security-monitor';
 
 // Import Package Management Types
 import {
-  PackageIdentifier,
-  PackageMetadata,
-  DependencyDeclaration,
-  DependencyGraph,
-  DependencyNode,
-  DependencyEdge,
   DependencyConflict,
   DependencyCycle,
-  VersionRange,
-  SemverVersion
+  DependencyDeclaration,
+  DependencyEdge,
+  DependencyGraph,
+  DependencyNode,
+  PackageIdentifier,
+  PackageMetadata,
+  SemverVersion,
+  VersionRange
 } from '../interfaces/package-types';
 
 import { PackageRegistry } from '../interfaces/registry-interfaces';
@@ -1050,7 +1050,7 @@ export class DependencyResolver extends EventEmitter {
           if (!securityConstraints.allowedVulnerabilities.includes(vuln.id)) {
             warnings.push({
               type: 'security-advisory',
-              severity: vuln.severity as any,
+              severity: vuln.severity,
               package: node.package,
               message: `Security vulnerability: ${vuln.title}`,
               suggestion: `Update to version ${vuln.patchedVersions?.[0] || 'latest'}`

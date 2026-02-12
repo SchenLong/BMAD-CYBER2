@@ -29,6 +29,7 @@ Day 1          Week 1           Week 2-4         Ongoing
 ## Phase 1: Day 1 - Installation & First Steps
 
 ### Goals
+
 - [ ] Install BMAD successfully
 - [ ] Run your first agent
 - [ ] Understand basic concepts
@@ -37,11 +38,13 @@ Day 1          Week 1           Week 2-4         Ongoing
 ### Step 1.1: Installation (15 minutes)
 
 **Prerequisites:**
+
 - Claude Code (Anthropic's CLI) or compatible AI IDE with skill support
 - Git installed
 - Terminal access
 
 **Install BMAD:**
+
 ```bash
 # Clone the repository
 git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
@@ -52,10 +55,12 @@ npm install
 ```
 
 **Open in Claude Code:**
+
 1. Open Claude Code in the BMAD-CYBERSEC directory
 2. The BMAD skills are automatically available via the `_bmad/` folder
 
 **Verification - Test Your First Skill:**
+
 ```
 # In Claude Code, type:
 /bmad:core:agents:abdul
@@ -80,6 +85,7 @@ npm install
 | **Abdul** | Master project manager for coordination |
 
 **Module Structure:**
+
 ```
 _bmad/
 ├── core/           # Always installed
@@ -91,6 +97,7 @@ _bmad/
 ```
 
 **How It Works:**
+
 1. You invoke an agent or workflow
 2. The agent accesses its specialized knowledge
 3. Output is saved to your configured folder
@@ -101,6 +108,7 @@ _bmad/
 ### Step 1.3: Your First Agent Interaction (10 minutes)
 
 **Try the BMAD Master:**
+
 ```bash
 # Start BMAD Master for system overview
 /bmad:core:agents:bmad-master
@@ -109,6 +117,7 @@ _bmad/
 Ask: "What modules are installed and what can I do with them?"
 
 **Try Abdul (Project Manager):**
+
 ```bash
 /bmad:core:agents:abdul
 ```
@@ -122,11 +131,13 @@ Ask: "Help me understand my options for starting a new project"
 ### Step 1.4: Your First Workflow (15 minutes)
 
 **Run the Brainstorming Workflow:**
+
 ```bash
 /bmad:core:workflows:brainstorming
 ```
 
 **Follow the prompts to:**
+
 1. Define a topic (e.g., "Ideas for a mobile app")
 2. Select brainstorming technique
 3. Generate ideas with agent facilitation
@@ -153,6 +164,7 @@ Ask: "Help me understand my options for starting a new project"
 ## Phase 2: Week 1 - Explore & Learn
 
 ### Goals
+
 - [ ] Try 3-5 different agents
 - [ ] Complete 2-3 workflows
 - [ ] Use Party Mode for the first time
@@ -163,31 +175,39 @@ Ask: "Help me understand my options for starting a new project"
 **If you have BMM (Product Development):**
 
 Try the Product Manager:
+
 ```bash
 /bmad:bmm:agents:pm
 ```
+
 Ask: "I want to build a task management app. Help me create a product brief."
 
 Try the Architect:
+
 ```bash
 /bmad:bmm:agents:architect
 ```
+
 Ask: "Design a simple architecture for a REST API with user authentication"
 
 **If you have Cybersec-Team:**
 
 Try the Security Architect:
+
 ```bash
 /bmad:cybersec-team:agents:security-architect
 ```
+
 Ask: "What security considerations should I have for a new web application?"
 
 **If you have Strategy-Team:**
 
 Try the Master Strategist:
+
 ```bash
 /bmad:strategy-team:agents:the-master-strategist
 ```
+
 Ask: "Analyze the competitive landscape for project management tools"
 
 **Checkpoint:** You've tried agents from multiple domains.
@@ -199,29 +219,37 @@ Ask: "Analyze the competitive landscape for project management tools"
 **BMM Workflows to Try:**
 
 1. **Create a Product Brief:**
+
 ```bash
 /bmad:bmm:workflows:create-product-brief
 ```
+
 Follow the guided process to create a complete product brief.
 
-2. **Create Architecture:**
+1. **Create Architecture:**
+
 ```bash
 /bmad:bmm:workflows:create-architecture
 ```
+
 Design system architecture with AI guidance.
 
 **Core Workflows to Try:**
 
 1. **Party Mode:**
+
 ```bash
 /bmad:core:workflows:party-mode
 ```
+
 Assemble multiple agents for a collaborative discussion.
 
-2. **Project Status:**
+1. **Project Status:**
+
 ```bash
 /bmad:core:workflows:project-status
 ```
+
 Generate a project status dashboard.
 
 ---
@@ -233,6 +261,7 @@ Generate a project status dashboard.
 Party Mode assembles multiple agents for collaborative discussion. It's like having a team meeting with specialists.
 
 **Your First Party Mode Session:**
+
 ```bash
 /bmad:core:workflows:party-mode
 ```
@@ -243,11 +272,13 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 4. **Facilitate the conversation**
 
 **Example Scenario:**
+
 - Topic: "Should we pivot our product strategy?"
 - Agents: Product Manager + Strategist + Market Analyst
 - Output: Multi-perspective analysis
 
 **Party Mode Tips:**
+
 - Start with 2-3 agents, add more as needed
 - Let agents build on each other's points
 - Summarize key insights at the end
@@ -273,6 +304,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 ## Phase 3: Weeks 2-4 - Advanced Usage
 
 ### Goals
+
 - [ ] Build a complete project with BMAD
 - [ ] Master cross-module workflows
 - [ ] Customize your workflow
@@ -283,6 +315,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 **Project Challenge:** Build a complete product specification
 
 **Day 1-2: Discovery Phase**
+
 ```bash
 # Start with business analysis
 /bmad:bmm:agents:analyst
@@ -292,6 +325,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 ```
 
 **Day 3-4: Planning Phase**
+
 ```bash
 # Create PRD
 /bmad:bmm:workflows:create-prd
@@ -301,6 +335,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 ```
 
 **Day 5-7: Specification Phase**
+
 ```bash
 # Create epics and stories
 /bmad:bmm:workflows:create-epics-and-stories
@@ -318,6 +353,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 **Combine Modules for Powerful Workflows:**
 
 **Security-Aware Development (BMM + Cybersec):**
+
 ```bash
 # 1. Create architecture
 /bmad:bmm:workflows:create-architecture
@@ -330,6 +366,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 ```
 
 **Strategic Product Planning (BMM + Strategy):**
+
 ```bash
 # 1. Competitive analysis
 /bmad:strategy-team:agents:the-master-strategist
@@ -342,6 +379,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 ```
 
 **Intelligence-Driven Security (Intel + Cybersec):**
+
 ```bash
 # 1. Threat landscape analysis
 /bmad:intel-team:agents:threat-actor-profiler
@@ -373,6 +411,7 @@ Party Mode assembles multiple agents for collaborative discussion. It's like hav
 
 **1. Chained Workflows:**
 Use output from one workflow as input to another:
+
 ```bash
 # Create brief, then immediately create PRD
 /bmad:bmm:workflows:create-product-brief
@@ -382,13 +421,16 @@ Use output from one workflow as input to another:
 
 **2. Abdul Orchestration:**
 Let Abdul manage complex multi-step tasks:
+
 ```bash
 /bmad:core:agents:abdul
 ```
+
 "Coordinate a complete security assessment: threat model, architecture review, and recommendations"
 
 **3. Preset Party Modes:**
 Use pre-configured team assemblies:
+
 ```bash
 /bmad:core:workflows:select-preset
 ```
@@ -412,6 +454,7 @@ Use pre-configured team assemblies:
 ## Phase 4: Ongoing - Master & Grow
 
 ### Goals
+
 - [ ] Develop personal best practices
 - [ ] Contribute improvements
 - [ ] Train others
@@ -428,6 +471,7 @@ Use pre-configured team assemblies:
 | End of day | Document progress, plan tomorrow |
 
 **Weekly Review:**
+
 - What agents were most useful?
 - Which workflows need improvement?
 - Any new use cases discovered?
@@ -437,6 +481,7 @@ Use pre-configured team assemblies:
 ### Best Practices
 
 **DO:**
+
 - Start with clear objectives
 - Use Party Mode for complex decisions
 - Save and version control outputs
@@ -444,6 +489,7 @@ Use pre-configured team assemblies:
 - Combine perspectives from multiple agents
 
 **DON'T:**
+
 - Rush through agent responses
 - Ignore agent recommendations
 - Use security/legal agents without proper context
@@ -467,16 +513,19 @@ Use pre-configured team assemblies:
 ### Measuring Success
 
 **Beginner Metrics (Month 1):**
+
 - [ ] 10+ agent interactions
 - [ ] 5+ completed workflows
 - [ ] 1+ complete project artifact
 
 **Intermediate Metrics (Month 2-3):**
+
 - [ ] Cross-module workflow mastery
 - [ ] Custom workflow developed
 - [ ] Team member trained
 
 **Advanced Metrics (Month 3+):**
+
 - [ ] Contributing improvements
 - [ ] Complex multi-agent orchestration
 - [ ] Integrated into daily workflow
@@ -486,12 +535,14 @@ Use pre-configured team assemblies:
 ### Getting Help
 
 **Resources:**
+
 - `/help` - Built-in help system
 - `Docs/` - Full documentation
 - `Docs/02-user-guides/` - User guides
 - Issues - GitHub issue tracker
 
 **Community:**
+
 - Ask Abdul for guidance
 - Use BMAD Master for system questions
 - Check workflow README files
@@ -503,9 +554,11 @@ Use pre-configured team assemblies:
 ### Skill Path Format
 
 BMAD skills follow this pattern:
+
 ```
 /bmad:{module}:{type}:{name}
 ```
+
 - **module**: `core`, `bmm`, `cybersec-team`, `strategy-team`, `intel-team`, etc.
 - **type**: `agents` or `workflows`
 - **name**: specific agent or workflow name
@@ -573,7 +626,7 @@ BMAD skills follow this pattern:
 
 ---
 
-## Congratulations!
+## Congratulations
 
 You now have a clear path from BMAD beginner to power user. Remember:
 

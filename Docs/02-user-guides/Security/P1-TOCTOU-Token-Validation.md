@@ -4,6 +4,7 @@
 **Status:** Implemented & Tested
 **Date:** 2026-01-16
 **Related Files:**
+
 - `.claude/validators-node/bin/security-common.js` - Override manager with atomic locking
 - `.claude/validators-node/bin/token-validator.js` - Token validation module
 - `.claude/validators-node/bin/session-security-init.js` - Session initialization
@@ -237,11 +238,13 @@ Result: ✅ PASS
 ### Enabling Token Validation
 
 1. **Generate a token:**
+
    ```bash
    node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
    ```
 
 2. **Set the token:**
+
    ```bash
    export BMAD_AUTH_TOKEN="<generated-token>"
    # Or save to file:
@@ -270,10 +273,12 @@ export BMAD_ALLOW_OUTSIDE_REPO=true
 ### Troubleshooting
 
 **"Could not acquire lock" errors:**
+
 - Another process may be holding the lock
 - Wait and retry, or check for stale lock file
 
 **"Token validation failed" errors:**
+
 - Verify token is not expired
 - Check `BMAD_AUTH_TOKEN` is set correctly
 - Ensure `validate-token.js` is accessible

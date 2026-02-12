@@ -137,7 +137,7 @@ export function createSpinner(text) {
   let currentText = text;
 
   const clearLine = () => {
-    process.stdout.write('\r' + ' '.repeat(80) + '\r');
+    process.stdout.write(`\r${  ' '.repeat(80)  }\r`);
   };
 
   return {

@@ -9,19 +9,20 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 
 # Step 8: Findings Summary & Remediation
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Compile findings from all previous sections
 
-## FINDINGS CONSOLIDATION SEQUENCE:
+## FINDINGS CONSOLIDATION SEQUENCE
 
 ### 1. Findings Compilation
 
 "Let's consolidate all findings from the assessment.
 
 **Review Each Section:**
+
 1. Authentication (AUTH-xxx)
 2. Authorization (AUTHZ-xxx)
 3. Input Validation (INJ-xxx)
@@ -29,6 +30,7 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 5. Business Logic (BL-xxx)
 
 **Severity Classification (CVSS-based):**
+
 - **Critical (9.0-10.0)**: Immediate exploitation, full compromise
 - **High (7.0-8.9)**: Serious impact, readily exploitable
 - **Medium (4.0-6.9)**: Moderate impact, requires conditions
@@ -61,6 +63,7 @@ Which categories have findings?"
 "Let's prioritize findings for remediation.
 
 **Priority Factors:**
+
 1. Severity (CVSS score)
 2. Exploitability (how easy to exploit)
 3. Business impact (data, reputation, financial)
@@ -68,6 +71,7 @@ Which categories have findings?"
 5. Remediation complexity
 
 **Priority Categories:**
+
 - **P1 - Immediate**: Fix before go-live or within 24-48 hours
 - **P2 - Short-term**: Fix within 1-2 weeks
 - **P3 - Medium-term**: Fix within 30 days
@@ -80,6 +84,7 @@ How should we prioritize the findings?"
 "Providing remediation for critical findings.
 
 **For Each Finding, I'll Cover:**
+
 - Root cause
 - Remediation approach
 - Code example (if applicable)
@@ -93,26 +98,31 @@ Let's start with the highest priority findings. Which should we address first?"
 "Standard remediation guidance by vulnerability type:
 
 **SQL Injection:**
+
 - Use parameterized queries/prepared statements
 - ORM with proper escaping
 - Input validation as defense-in-depth
 
 **XSS:**
+
 - Context-aware output encoding
 - Content-Security-Policy headers
 - Sanitize HTML with trusted libraries
 
 **IDOR:**
+
 - Implement proper authorization checks
 - Use indirect object references
 - Verify ownership on every access
 
 **CSRF:**
+
 - Anti-CSRF tokens in all forms
 - SameSite cookie attribute
 - Verify origin/referer headers
 
 **Session Issues:**
+
 - Regenerate session on login
 - Set secure cookie attributes
 - Implement proper logout
@@ -124,6 +134,7 @@ Which findings need detailed remediation guidance?"
 "Let's create the executive summary.
 
 **Summary Components:**
+
 - Overall risk rating
 - Finding statistics by severity
 - Key risk areas
@@ -225,19 +236,24 @@ Update {outputFile} with complete report:
 [How to verify the fix]
 
 ### 8.6 Recommendations
+
 1. [Strategic recommendation]
 2. [Process improvement]
 3. [Training need]
 
 ### 8.7 Conclusion
+
 [Assessment conclusion and next steps]
 
 ---
+
 ## Assessment Metadata
+
 - **Tester:** {user_name}
 - **Date Range:** [Start] - [End]
 - **Methodology:** OWASP Testing Guide v4.2
 - **Status:** Complete
+
 ```
 
 ### 8. Finalization

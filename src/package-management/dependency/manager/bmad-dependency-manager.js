@@ -14,6 +14,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const crypto = require('crypto');
 const { performance } = require('perf_hooks');
+const { normalizeLineEndings } = require('../../../utility/normalize-line-endings.cjs');
 
 // Import Epic 1 Security Infrastructure
 const { epic1Security } = require('../../security/epic1-integration');
@@ -307,7 +308,7 @@ class BMADDependencyManager extends EventEmitter {
 
       for (const configFile of configFiles) {
         try {
-          const content = await fs.readFile(configFile, 'utf8');
+          const content = normalizeLineEndings(await fs.readFile(configFile, 'utf8'));
           let config;
 
           if (configFile.endsWith('.json')) {
@@ -345,7 +346,7 @@ class BMADDependencyManager extends EventEmitter {
     for (const team of teams) {
       try {
         const teamConfigPath = path.join(this.projectRoot, `${team}-dependency-config.yaml`);
-        const content = await fs.readFile(teamConfigPath, 'utf8');
+        const content = normalizeLineEndings(await fs.readFile(teamConfigPath, 'utf8'));
         const yaml = require('yaml');
         const teamConfig = yaml.parse(content);
 
@@ -457,8 +458,8 @@ class BMADDependencyManager extends EventEmitter {
           'package-integrity-mismatch',
           {
             packagePath,
-            expectedHash: expectedHash.substring(0, 16) + '...',
-            computedHash: computedHash.substring(0, 16) + '...',
+            expectedHash: `${expectedHash.substring(0, 16)  }...`,
+            computedHash: `${computedHash.substring(0, 16)  }...`,
             timestamp: new Date().toISOString()
           }
         );
@@ -548,8 +549,8 @@ class BMADDependencyManager extends EventEmitter {
             );
 
             throw new Error(
-              `Package integrity verification failed for ${integrityErrors.length} package(s): ` +
-              integrityErrors.map(e => `${e.package}: ${e.error}`).join('; ')
+              `Package integrity verification failed for ${integrityErrors.length} package(s): ${ 
+              integrityErrors.map(e => `${e.package}: ${e.error}`).join('; ')}`
             );
           }
         }

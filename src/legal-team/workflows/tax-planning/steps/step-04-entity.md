@@ -18,11 +18,13 @@ Evaluate current entity structure and identify optimization opportunities.
 Analyze existing setup:
 
 **Strengths:**
+
 - What's working well?
 - Tax-efficient elements?
 - Operational efficiency?
 
 **Weaknesses:**
+
 - Excess tax leakage?
 - Unnecessary complexity?
 - Compliance burden?
@@ -33,6 +35,7 @@ Analyze existing setup:
 Compare entity options for primary operations:
 
 **USA Options:**
+
 | Entity | Tax Treatment | Best For | Considerations |
 |--------|---------------|----------|----------------|
 | C-Corp | Entity-level 21% | VC funding, IPO | Double tax on dividends |
@@ -41,6 +44,7 @@ Compare entity options for primary operations:
 | LLC (C-Corp elect) | Entity-level | Best of both | Election formalities |
 
 **Spain Options:**
+
 | Entity | Rate | Best For | Considerations |
 |--------|------|----------|----------------|
 | SL | 25% (15% new) | Most businesses | Simple, flexible |
@@ -49,6 +53,7 @@ Compare entity options for primary operations:
 | ETVE | Participation exemption | Holdings | Substance requirements |
 
 **Estonia Options:**
+
 | Entity | Rate | Best For | Considerations |
 |--------|------|----------|----------------|
 | OÜ | 0%/20% | Reinvesting businesses | CFC rules for owners |
@@ -59,16 +64,19 @@ Compare entity options for primary operations:
 Develop alternative structures:
 
 **Scenario A: [Simple Structure]**
+
 ```
 [Owner]
     |
 [Operating Entity - Single Jurisdiction]
 ```
+
 - Pros: Simplicity, low compliance
 - Cons: May miss optimization opportunities
 - Estimated tax impact: [Assessment]
 
 **Scenario B: [Holding Structure]**
+
 ```
 [Owner]
     |
@@ -76,11 +84,13 @@ Develop alternative structures:
     |
 [Operating Entity - Primary market]
 ```
+
 - Pros: Dividend efficiency, flexibility
 - Cons: Complexity, substance needs
 - Estimated tax impact: [Assessment]
 
 **Scenario C: [Multi-Entity Structure]**
+
 ```
 [Owner]
     |
@@ -88,6 +98,7 @@ Develop alternative structures:
    /    \
 [OpCo1]  [OpCo2]
 ```
+
 - Pros: Risk isolation, optimization
 - Cons: Compliance cost, management
 - Estimated tax impact: [Assessment]
@@ -97,16 +108,19 @@ Develop alternative structures:
 If changes recommended:
 
 **Tax-Free Options:**
+
 - Reorganization provisions
 - Contribution transactions
 - Conversion elections
 
 **Taxable Events:**
+
 - Liquidation consequences
 - Gain recognition
 - Withholding requirements
 
 **Practical Steps:**
+
 - Implementation timeline
 - Regulatory approvals
 - Cost estimates

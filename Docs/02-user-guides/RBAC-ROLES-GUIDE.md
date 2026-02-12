@@ -110,6 +110,7 @@ node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
 | Actions | read, execute |
 
 **Special Requirements:**
+
 - Credential verification required for module access
 - Some workflows require additional approval
 
@@ -211,6 +212,7 @@ node _bmad/core/security/quick-token.cjs "YourName" "developer" 168
 | Actions | read |
 
 **Restrictions:**
+
 - Session timeout: 60 minutes (vs 8 hours standard)
 - Rate limited: 100 requests/hour
 
@@ -332,6 +334,7 @@ node _bmad/core/security/check-authorization.js
 ```
 
 Output shows:
+
 - Your user ID and name
 - Your assigned roles
 - Effective permissions (modules, agents, workflows)
@@ -410,11 +413,13 @@ When access is denied, you'll see a message like:
 ### "Access Denied" for a workflow you should have access to
 
 1. Check your current roles:
+
    ```bash
    node _bmad/core/security/check-authorization.js
    ```
 
 2. Check the workflow requirements:
+
    ```bash
    node _bmad/core/security/check-authorization.js workflow <workflow-name>
    ```
@@ -424,12 +429,14 @@ When access is denied, you'll see a message like:
 ### "Requires verified credentials"
 
 Some resources require credential verification:
+
 - This must be set when generating your token
 - Typically requires administrator verification
 
 ### Token expired
 
 Generate a new token:
+
 ```bash
 node _bmad/core/security/quick-token.cjs "YourName" "your_role" 168
 ```

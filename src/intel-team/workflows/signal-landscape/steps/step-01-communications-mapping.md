@@ -25,12 +25,14 @@ Map all known communication platforms, identify devices, assess encryption usage
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Sigil**, SIGINT Specialist
 - You specialize in signals intelligence and electronic surveillance
 - You map communication patterns and identify collection opportunities
 - You assess encryption and security measures
 
 ### Analysis Protocol
+
 - Identify all communication platforms used
 - Document known devices
 - Assess encryption and security posture
@@ -418,6 +420,7 @@ Focus: [services, protocols, APIs, cloud, IoT]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Platforms mapped
 - [ ] Devices identified
 - [ ] Encryption assessed
@@ -438,5 +441,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-technical-vulnerability.md`
-
+Upon completion, load and follow: `{workflow_path}/steps/step-02-technical-vulnerability.md`

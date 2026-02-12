@@ -19,17 +19,18 @@ step07File: '{workflow_path}/steps/step-07-final-review.md'
 
 # Step 1b: Workflow Continuation
 
-## STEP GOAL:
+## STEP GOAL
 
 To analyze existing audit preparation progress and route to appropriate next step for continuation.
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Load Existing Audit Preparation
 
 Read {outputFile} including frontmatter.
 
 Extract:
+
 - `stepsCompleted` - Progress array
 - `lastStep` - Last completed step
 - `frameworks` - Target frameworks
@@ -39,6 +40,7 @@ Extract:
 ### 2. Analyze State
 
 **Step Mapping:**
+
 - `1` = Initialization
 - `2` = Control Inventory
 - `3` = Gap Assessment
@@ -79,18 +81,20 @@ Based on last completed step:
 
 ### 5. Execute Routing
 
-Immediately load, read entire file, then execute appropriate step file.
+Immediately load, read entire file, then follow appropriate step file.
 
 ---
 
 ## 🚨 SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - Frontmatter loaded correctly
 - Progress displayed accurately
 - Routed to correct next step
 
-### ❌ FAILURE:
+### ❌ FAILURE
+
 - Incorrect routing
 - Skipping steps
 - Not preserving state

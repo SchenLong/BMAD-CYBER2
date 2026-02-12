@@ -47,6 +47,7 @@ Based on all gathered information, recommend the appropriate specialist agent(s)
 ### 1. Analyze Routing Factors
 
 Review all information gathered:
+
 - Matter type → determines workflow
 - Jurisdiction → determines specialist
 - Complexity → may require multiple specialists
@@ -55,6 +56,7 @@ Review all information gathered:
 ### 2. Formulate Recommendation
 
 Determine:
+
 - **Primary Specialist:** Who should lead this matter?
 - **Supporting Specialists:** Who else should be consulted?
 - **Recommended Workflow:** Which workflow to execute?
@@ -65,6 +67,7 @@ Determine:
 "Based on everything we've discussed, here's my recommendation for how to proceed..."
 
 Present:
+
 - Primary specialist and why
 - Supporting specialists and their roles
 - Recommended workflow
@@ -74,6 +77,7 @@ Present:
 ### 4. Discuss Options
 
 If user has questions or preferences:
+
 - Explain trade-offs
 - Discuss alternatives
 - Confirm approach
@@ -108,11 +112,13 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`
 ### 6. Present Menu
 
 **Select an Option:**
+
 - **[C]** Continue to generate matter brief
 - **[D]** Discuss routing options
 - **[A]** Request different specialist
 
-#### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+#### Menu Handling
+
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF D: Discuss alternatives, then redisplay menu
 - IF A: Adjust routing, then redisplay menu

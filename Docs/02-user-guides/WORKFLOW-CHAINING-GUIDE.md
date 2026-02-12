@@ -69,6 +69,7 @@ Many real-world scenarios require capabilities from multiple modules. Workflow c
 ```
 
 **Invocation Sequence**:
+
 ```
 # Phase 1
 /bmad:cybersec-team:workflows:incident-response-playbook
@@ -314,6 +315,7 @@ Select preset: incident-war-room
 ## Chaining Patterns
 
 ### Sequential Chain
+
 Workflows execute one after another, each depending on previous outputs.
 
 ```
@@ -323,6 +325,7 @@ Workflow A → Output A → Workflow B → Output B → Workflow C
 **When to use**: Linear dependencies, each stage requires previous completion.
 
 ### Parallel Chain
+
 Independent workflows execute simultaneously, then converge.
 
 ```
@@ -334,6 +337,7 @@ Workflow A ─┼→ Workflow C ─┼→ Workflow E
 **When to use**: Independent investigations or analyses that feed into synthesis.
 
 ### Conditional Chain
+
 Next workflow depends on previous outcome.
 
 ```
@@ -345,6 +349,7 @@ Workflow A → [Decision Point]
 **When to use**: Different paths based on findings (e.g., incident severity).
 
 ### Loop Chain
+
 Repeat workflow until condition met.
 
 ```
@@ -359,6 +364,7 @@ Workflow A → [Check] → Not Done → Workflow A (repeat)
 ## Context Passing Best Practices
 
 ### 1. Document Outputs Clearly
+
 Each workflow should produce structured output that the next workflow can consume.
 
 ```markdown
@@ -376,6 +382,7 @@ Each workflow should produce structured output that the next workflow can consum
 ```
 
 ### 2. Use Standard Handoff Format
+
 ```markdown
 ## WORKFLOW HANDOFF
 
@@ -404,7 +411,9 @@ Each workflow should produce structured output that the next workflow can consum
 ```
 
 ### 3. Reference Previous Outputs
+
 When starting a new workflow in chain:
+
 ```
 "Continuing from [previous workflow] output dated [date].
 Key findings were:
@@ -421,6 +430,7 @@ This workflow will address: [scope of current workflow]"
 Insert quality checks between major phases:
 
 ### Standard Gate Checklist
+
 ```markdown
 ## PHASE GATE: [Phase Name] → [Next Phase]
 
@@ -462,6 +472,7 @@ Identify when to escalate from sequential workflows to multi-agent Party Mode:
 ## Chain Templates
 
 ### Quick Start: Incident Response
+
 ```bash
 # Step 1: Contain
 /bmad:cybersec-team:workflows:incident-response-playbook
@@ -475,6 +486,7 @@ Select preset: incident-war-room
 ```
 
 ### Quick Start: New Product
+
 ```bash
 # Step 1: Define
 /bmad:bmm:workflows:create-product-brief
@@ -493,6 +505,7 @@ Select preset: incident-war-room
 ```
 
 ### Quick Start: Deal Analysis
+
 ```bash
 # Step 1: Research
 /bmad:intel-team:workflows:flash-assessment

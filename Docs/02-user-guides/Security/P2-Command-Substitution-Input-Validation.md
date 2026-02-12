@@ -4,6 +4,7 @@
 **Status:** Implemented & Tested
 **Date:** 2026-01-16
 **Related Files:**
+
 - `.claude/validators-node/bin/outside-repo.js` - Command substitution blocking
 - `.claude/hooks/lib/input-validation.sh` - Shell input validation library
 - `.claude/hooks/bmad-speak.sh` - Updated with input validation
@@ -289,12 +290,14 @@ DANGEROUS_CHARS='[;|&$`<>(){}!\\]'
 ### For Shell Script Developers
 
 1. **Source the validation library:**
+
    ```bash
    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
    source "$SCRIPT_DIR/lib/input-validation.sh"
    ```
 
 2. **Validate all user inputs:**
+
    ```bash
    AGENT_NAME="$1"
    if ! validate_agent_name "$AGENT_NAME"; then
@@ -304,6 +307,7 @@ DANGEROUS_CHARS='[;|&$`<>(){}!\\]'
    ```
 
 3. **Sanitize before using in commands:**
+
    ```bash
    # For grep/awk patterns
    safe_pattern=$(sanitize_for_regex "$user_input")

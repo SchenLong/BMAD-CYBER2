@@ -5,6 +5,7 @@ Transform AI into a trusted executive advisory council that provides strategic c
 ## Version
 
 **v1.3.0** - Cross-Module Integration Release (2026-01-11)
+
 - Added 4 new workflows: M&A Due Diligence, Leadership Transition, Board Relations, Performance Review
 - Added cross-module integration steps for 8 workflows (cybersec, intel, legal)
 - Total: 16 executive workflows with 132 step files
@@ -12,12 +13,14 @@ Transform AI into a trusted executive advisory council that provides strategic c
 - Added module.yaml installation template
 
 **v1.2.0** - Additional Workflows Release (2026-01-09)
+
 - Added 3 new workflows: Political Risk Assessment, Ethical Dilemma Resolution, Leadership Philosophy
 - Total: 12 executive workflows with 95+ step files
 - New output templates for risk, ethics, and leadership documents
 - Enhanced personal development capabilities
 
 **v1.1.0** - Workflows Release (2026-01-09)
+
 - Added 9 executive workflows with 73 step files
 - Created shared agent roster and output templates
 - Full step-file architecture for disciplined execution
@@ -53,7 +56,7 @@ These agents channel historical figures to provide distinct ideological perspect
 
 ## Quick Start
 
-Invoke any agent using their slash command:
+Load any agent using their slash command:
 
 ```
 /strategy-team:policy-analyst      # Augustus - Evidence-based policy analysis
@@ -102,9 +105,10 @@ Located in `_bmad/core/workflows/party-mode/presets/cross-module-groups.yaml`:
 | `competitive-intelligence-war-room` | Strategy + Intel | Competitive analysis and strategy |
 | `executive-security-council` | Strategy + Cybersec + Legal | Security-aware executive decisions |
 
-### Invoke a Preset
+### Load a Preset
 
 During any workflow or Party Mode session:
+
 ```
 "Use the strategic-council preset"
 "Let's run the ethics-review preset for this decision"
@@ -116,24 +120,28 @@ Full preset documentation: `_bmad/strategy-team/workflows/_shared/party-mode-pre
 ## Use Cases
 
 ### Strategic Decision-Making
+
 - Major organizational pivots
 - M&A analysis and integration
 - Market entry strategies
 - Competitive positioning
 
 ### Political Navigation
+
 - Stakeholder management
 - Coalition building
 - Internal politics
 - Board relations
 
 ### Crisis Management
+
 - Communications strategy
 - Narrative control
 - Rapid response
 - Damage limitation
 
 ### Argumentation & Persuasion
+
 - Debate preparation
 - Pitch refinement
 - Counter-argument anticipation
@@ -216,6 +224,7 @@ The following workflows include optional cross-module steps that bring in expert
 ### Workflow Architecture
 
 All workflows use **step-file architecture** for disciplined execution:
+
 - **Micro-file Design**: Each step is a self-contained instruction file
 - **Just-In-Time Loading**: Only current step in memory
 - **Sequential Enforcement**: Complete steps in order
@@ -302,6 +311,7 @@ _bmad/strategy-team/
 ## Configuration
 
 The module uses `_bmad/strategy-team/config.yaml` for configuration including:
+
 - User preferences (name, language)
 - Output folder locations
 - Agent registry
@@ -309,12 +319,14 @@ The module uses `_bmad/strategy-team/config.yaml` for configuration including:
 ## Roadmap
 
 ### v1.4 (Planned)
+
 - Workflow chaining (one workflow leading into another)
 - Continue/Resume enhancements for all workflows
 - Out-of-the-box thinking layer for creative problem-solving
 - Additional cross-module integration patterns
 
 ### v1.3 (Current) ✓
+
 - ✅ M&A due diligence workflow
 - ✅ Leadership transition planning
 - ✅ Board relations management workflow

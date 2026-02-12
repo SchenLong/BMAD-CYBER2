@@ -16,12 +16,14 @@ Analyze tax treatment across relevant jurisdictions.
 ### 1. USA Tax Analysis (if applicable)
 
 **Federal Taxation:**
+
 - Corporate rate: 21% flat
 - Individual rates: 10% - 37%
 - Capital gains: 0%, 15%, 20% + 3.8% NIIT
 - Pass-through: QBI deduction up to 20%
 
 **State Tax Considerations:**
+
 | State | Corporate | Individual | Key Features |
 |-------|-----------|------------|--------------|
 | California | 8.84% | Up to 13.3% | Worldwide combined reporting |
@@ -33,6 +35,7 @@ Analyze tax treatment across relevant jurisdictions.
 | New York | 6.5% | Up to 10.9% | Complex nexus rules |
 
 **Key US Planning Considerations:**
+
 - State nexus and apportionment
 - SALT deduction cap ($10,000)
 - Interest limitation (163(j))
@@ -41,17 +44,20 @@ Analyze tax treatment across relevant jurisdictions.
 ### 2. Spain Tax Analysis (if applicable)
 
 **Corporate Taxation (Impuesto sobre Sociedades):**
+
 - Standard rate: 25%
 - New entities: 15% (first 2 years)
 - Small companies: Various incentives
 - Patent Box: Effective 10% on qualifying IP
 
 **Individual Taxation (IRPF):**
+
 - Progressive rates: 19% - 47%
 - Savings income: 19% - 28%
 - Beckham Law: Flat 24% for qualifying expats
 
 **Special Regimes:**
+
 - ETVE (Holding company): Participation exemption
 - Madeira Alternative: Portugal Free Trade Zone
 - Regional incentives: Canary Islands, Basque Country
@@ -59,16 +65,19 @@ Analyze tax treatment across relevant jurisdictions.
 ### 3. Estonia Tax Analysis (if applicable)
 
 **Corporate Taxation:**
+
 - 0% on retained/reinvested earnings
 - 20% on distributions
 - 14% on regular dividends (from 3rd year)
 
 **Individual Taxation:**
+
 - Flat 20% income tax
 - No wealth tax
 - No inheritance tax
 
 **E-Residency Benefits:**
+
 - Fully digital administration
 - EU company, non-resident ownership
 - No double taxation if owner non-resident

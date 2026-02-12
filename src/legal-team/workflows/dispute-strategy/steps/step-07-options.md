@@ -18,6 +18,7 @@ Compare and evaluate available resolution pathways.
 Evaluate negotiation path:
 
 **Advantages:**
+
 - Lowest cost
 - Fastest resolution
 - Preserves relationships
@@ -25,12 +26,14 @@ Evaluate negotiation path:
 - Maximum flexibility
 
 **Disadvantages:**
+
 - No neutral facilitator
 - Power imbalances may persist
 - May not be taken seriously
 - No binding mechanism
 
 **Best For:**
+
 - Ongoing business relationships
 - Simple disputes
 - Parties who communicate well
@@ -41,6 +44,7 @@ Evaluate negotiation path:
 Evaluate mediation path:
 
 **Advantages:**
+
 - Neutral facilitator
 - Non-binding (control preserved)
 - Creative solutions possible
@@ -48,12 +52,14 @@ Evaluate mediation path:
 - Moderate cost
 
 **Disadvantages:**
+
 - Not binding if no agreement
 - Requires both party participation
 - May not work with bad faith party
 - Time and cost if unsuccessful
 
 **Best For:**
+
 - Parties willing to compromise
 - Complex multi-issue disputes
 - Emotional/relationship conflicts
@@ -64,6 +70,7 @@ Evaluate mediation path:
 Evaluate arbitration path:
 
 **Advantages:**
+
 - Binding decision
 - Generally faster than court
 - Expert arbitrators available
@@ -71,6 +78,7 @@ Evaluate arbitration path:
 - Limited discovery (cost savings)
 
 **Disadvantages:**
+
 - Limited appeal rights
 - Arbitrator fees can be significant
 - Less formal discovery may hurt
@@ -78,6 +86,7 @@ Evaluate arbitration path:
 - May not be cheaper for simple cases
 
 **Best For:**
+
 - Technical/industry disputes
 - International matters
 - Confidentiality-sensitive cases
@@ -88,6 +97,7 @@ Evaluate arbitration path:
 Evaluate litigation path:
 
 **Advantages:**
+
 - Full discovery tools
 - Established procedures
 - Appeal rights
@@ -95,6 +105,7 @@ Evaluate litigation path:
 - Jury option (USA)
 
 **Disadvantages:**
+
 - Highest cost
 - Longest timeline
 - Public record
@@ -102,6 +113,7 @@ Evaluate litigation path:
 - Relationship-destroying
 
 **Best For:**
+
 - When principle matters
 - Public vindication needed
 - Precedent setting

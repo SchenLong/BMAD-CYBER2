@@ -32,12 +32,14 @@ performance-review-preparation/
 ## Advisor Perspectives
 
 **Primary Advisors:**
+
 - Jean-Luc (Principled Commander): Fair leadership, development focus, dignity
 - Sophia (Ethics Advisor): Fairness, bias avoidance, ethical considerations
 - Geneva (Stakeholder Mediator): Relationship preservation, difficult conversations
 - Cicero (Debate Coach): Clear communication, persuasive delivery
 
 **Supporting Perspectives:**
+
 - Augustus (Policy Analyst): Evidence-based assessment, data rigor
 - Charles (Liberator): Growth mindset, transformation potential
 - Lee (Technocrat): Performance metrics, objective measures

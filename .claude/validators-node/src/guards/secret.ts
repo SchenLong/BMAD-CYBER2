@@ -17,12 +17,12 @@
 import * as path from 'node:path';
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../common/index.js';
-import type { WriteToolInput, EditToolInput } from '../types/index.js';
+import type { EditToolInput, WriteToolInput } from '../types/index.js';
 import { EXIT_CODES } from '../types/index.js';
 
 const VALIDATOR_NAME = 'secret_guard';
@@ -90,6 +90,16 @@ const CRITICAL_PATTERNS: SecretPattern[] = [
 
   // Mailgun
   { pattern: /key-[A-Za-z0-9]{32}/g, secretType: 'Mailgun API Key', confidence: 'critical' },
+
+  // Azure (SA-02 LOW: Missing Azure token patterns)
+  { pattern: /SharedAccessSignature\s+sr=[^\s&]+&sig=[A-Za-z0-9%+/=]+&/g, secretType: 'Azure Shared Access Signature', confidence: 'critical' },
+
+  // GitLab (SA-02 LOW: Missing GitLab token patterns)
+  { pattern: /glpat-[A-Za-z0-9\-_]{20,}/g, secretType: 'GitLab Personal Access Token', confidence: 'critical' },
+  { pattern: /gldt-[A-Za-z0-9\-_]{20,}/g, secretType: 'GitLab Deploy Token', confidence: 'critical' },
+
+  // npm (SA-02 LOW: Missing npm token patterns)
+  { pattern: /npm_[A-Za-z0-9]{36}/g, secretType: 'npm Access Token', confidence: 'critical' },
 
   // Private Keys
   { pattern: /-----BEGIN\s+(?:RSA\s+|EC\s+|DSA\s+|OPENSSH\s+)?PRIVATE\s+KEY-----/g, secretType: 'Private Key', confidence: 'critical' },
@@ -412,8 +422,8 @@ export function validateSecretGuard(content: string, filePath: string): number {
 
   printBlockMessage({
     title: 'HARDCODED SECRETS DETECTED',
-    message: `Found ${detections.length} potential secret(s):\n${secretSummary}` +
-      (detections.length > 3 ? `\n  ... and ${detections.length - 3} more` : ''),
+    message: `Found ${detections.length} potential secret(s):\n${secretSummary}${ 
+      detections.length > 3 ? `\n  ... and ${detections.length - 3} more` : ''}`,
     target: filePath,
     overrideVar: 'BMAD_ALLOW_SECRETS',
     recommendations: [

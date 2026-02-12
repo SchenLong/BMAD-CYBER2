@@ -18,6 +18,7 @@ Design the contract structure and outline.
 Based on contract type, propose structure:
 
 **Standard Structure:**
+
 1. Parties and Recitals
 2. Definitions
 3. Core Obligations
@@ -32,6 +33,7 @@ Based on contract type, propose structure:
 ### 2. Customization
 
 Adjust structure for:
+
 - Contract type specifics
 - Industry requirements
 - Jurisdiction requirements

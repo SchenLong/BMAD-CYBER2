@@ -36,6 +36,7 @@ This document covers the following types of evidence and artifacts:
 ### 2.2 Exclusions
 
 This document does not cover:
+
 - Transient runtime data not persisted to logs
 - User personal data (covered by separate privacy policies)
 - Third-party API responses (covered by vendor agreements)
@@ -51,6 +52,7 @@ This document does not cover:
 The BMAD system automatically collects evidence through the following components:
 
 **Audit Logger** (`src/security/audit/audit-logger.ts`)
+
 ```typescript
 // All security events are automatically captured with:
 {
@@ -69,6 +71,7 @@ The BMAD system automatically collects evidence through the following components
 ```
 
 **Evidence Integrity Module** (`src/security/evidence-integrity.js`)
+
 ```javascript
 // Generate evidence manifest for a directory
 const manifest = await createEvidenceManifest(
@@ -88,6 +91,7 @@ When collecting evidence manually:
 4. **Create chain entry**: Log the collection event in the audit system
 
 **Collection Script Example:**
+
 ```bash
 #!/bin/bash
 # Manual evidence collection with chain of custody
@@ -155,6 +159,7 @@ Evidence storage adheres to the following access control requirements:
 | Auditor (External) | Specified scope only | None | None |
 
 **Access is controlled via:**
+
 - RBAC configuration: `_bmad/core/security/rbac-config.yaml`
 - Token validation: `src/security/encryption/generate-token.ts`
 - Session management: `src/security/session-manager.ts`
@@ -180,6 +185,7 @@ When transferring evidence between internal systems or personnel:
 4. **Verify integrity post-transfer**: Compare hashes before and after
 
 **Transfer Record Format:**
+
 ```json
 {
   "transferId": "uuid-v4",
@@ -215,6 +221,7 @@ External evidence transfer (to auditors, legal counsel, regulators) requires:
 #### 3.3.3 Transfer Prohibition
 
 Evidence must **never** be transferred via:
+
 - Unencrypted email
 - Personal storage devices without encryption
 - Public file sharing services
@@ -245,6 +252,7 @@ console.log(generateVerificationReport(result));
 ```
 
 **Verification Report Output:**
+
 ```
 ═══════════════════════════════════════════════════════════════
                 EVIDENCE INTEGRITY VERIFICATION REPORT
@@ -364,6 +372,7 @@ console.log(result.valid ? 'VALID' : 'INVALID');
 ### 5.3 Legal Hold
 
 When a legal hold is in effect:
+
 - Normal retention periods are suspended
 - Evidence must not be destroyed regardless of age
 - Legal team must explicitly release the hold
@@ -453,6 +462,7 @@ Regular verification schedule:
 ### 7.3 Standards Compliance
 
 This document supports compliance with:
+
 - SOC 2 Type II (CC6.1, CC7.2, CC7.3)
 - ISO 27001:2022 (A.5.33, A.8.15, A.8.16)
 - NIST 800-53 (AU-2, AU-3, AU-9, AU-10, AU-11)

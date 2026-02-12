@@ -14,10 +14,10 @@ import crypto from 'crypto';
 
 // Health Monitoring Integration
 import {
-  SLATracking,
   ComplianceMetrics,
   HealthMetrics,
-  HealthStatus
+  HealthStatus,
+  SLATracking
 } from './health-monitoring';
 
 // Epic 1 Security Integration

@@ -127,6 +127,7 @@ grep "[AFFECTED_USER]" _bmad-output/.audit/audit.log > /tmp/user-activity.log
 ### Playbook: Token Compromise
 
 **Indicators:**
+
 - Unexpected token usage from different location
 - Token used outside normal hours
 - Simultaneous sessions from multiple IPs
@@ -170,6 +171,7 @@ node _bmad/core/security/generate-key.js
 ### Playbook: RBAC Bypass Attempt
 
 **Indicators:**
+
 - `access.denied` events followed by successful access
 - Unexpected module/workflow access
 - Role assignment outside normal process
@@ -207,6 +209,7 @@ vim _bmad/core/security/rbac-config.yaml
 ### Playbook: Validator Bypass
 
 **Indicators:**
+
 - Dangerous commands executed without blocking
 - Security events missing from logs
 - Validator errors in logs
@@ -249,6 +252,7 @@ grep "Bash" _bmad-output/.audit/audit.log | jq '.details.command'
 ### Playbook: Audit Log Tampering
 
 **Indicators:**
+
 - Hash chain broken
 - Log file timestamp anomalies
 - Missing expected events
@@ -299,6 +303,7 @@ grep "file.write\|file.delete" _bmad-output/.audit/audit.log | grep -i audit
 ### Playbook: Jailbreak/Prompt Injection
 
 **Indicators:**
+
 - Unusual agent behavior
 - Unexpected file modifications
 - Security validator blocks with injection patterns
@@ -335,6 +340,7 @@ grep "agent.tool_use" _bmad-output/.audit/audit.log | tail -50 | jq .
 ### Playbook: YOLO Mode Abuse
 
 **Indicators:**
+
 - Frequent YOLO invocations
 - YOLO used for high-risk operations
 - YOLO used outside normal procedures

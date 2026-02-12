@@ -22,6 +22,7 @@ Evaluate the urgency of the matter and identify any critical deadlines or time-s
 ## URGENCY FACTORS
 
 ### Immediate (Days)
+
 - Court filing deadlines
 - Response deadlines
 - Regulatory submissions
@@ -29,12 +30,14 @@ Evaluate the urgency of the matter and identify any critical deadlines or time-s
 - Statute of limitations expiring
 
 ### Near-term (Weeks)
+
 - Negotiation timelines
 - Transaction closing dates
 - Registration deadlines
 - Compliance deadlines
 
 ### Planning (Months+)
+
 - Strategic planning
 - Entity structuring
 - Tax planning
@@ -47,6 +50,7 @@ Evaluate the urgency of the matter and identify any critical deadlines or time-s
 "Let's understand the timing of your matter. Are there any deadlines I should know about?"
 
 Explore:
+
 - Known deadlines (contractual, court, regulatory)
 - Statute of limitations concerns
 - Business timeline pressures
@@ -57,16 +61,19 @@ Explore:
 Classify the matter:
 
 **IMMEDIATE** - Action needed within days
+
 - Court/regulatory deadlines
 - Expiring limitations periods
 - Emergency situations
 
 **NEAR-TERM** - Action needed within weeks
+
 - Active negotiations
 - Upcoming transactions
 - Compliance deadlines
 
 **PLANNING** - No immediate deadline
+
 - Strategic matters
 - General advisory
 - Preventive planning
@@ -74,6 +81,7 @@ Classify the matter:
 ### 3. Deadline Mapping
 
 Create a timeline of relevant dates:
+
 - Statutory deadlines
 - Contractual deadlines
 - Court/regulatory deadlines
@@ -101,11 +109,13 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4]`
 ### 5. Present Menu
 
 **Select an Option:**
+
 - **[C]** Continue to party analysis
 - **[D]** Discuss timeline further
 - **[Q]** Questions about deadlines
 
-#### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+#### Menu Handling
+
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF D: Explore timing issues, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

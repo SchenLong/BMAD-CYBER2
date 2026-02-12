@@ -15,6 +15,7 @@
 ## Purpose
 
 Specialized OSINT campaign planning targeting AI entities:
+
 - AI companies and startups
 - AI models and capabilities
 - AI applications and infrastructure

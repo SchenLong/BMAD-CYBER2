@@ -22,11 +22,13 @@ Complete guide to multi-agent collaboration in BMAD-CYBER2.
 ### Invoking Party Mode
 
 From any agent, type:
+
 ```
 > PM
 ```
 
 Or use the direct command:
+
 ```
 /bmad:core:workflows:party-mode
 ```
@@ -127,6 +129,7 @@ Pre-configured agent teams for common scenarios.
 **Purpose:** Review system architecture for security vulnerabilities and design flaws.
 
 **Agents:**
+
 | Agent | Module | Role |
 |-------|--------|------|
 | Winston | bmm | Technical architecture owner - presents the design |
@@ -134,15 +137,18 @@ Pre-configured agent teams for common scenarios.
 | Cipher | cybersec-team | Threat intelligence context - maps to real-world threats |
 
 **Use When:**
+
 - Architecture review before implementation
 - Security assessment of existing systems
 - Threat modeling sessions
 
 **Artifacts Needed:**
+
 - `architecture.md`
 - `prd.md` (optional)
 
 **Expected Outputs:**
+
 - `security-review-findings.md`
 - `threat-model.yaml`
 
@@ -153,6 +159,7 @@ Pre-configured agent teams for common scenarios.
 **Purpose:** Coordinated incident response team for security incidents requiring multi-domain expertise.
 
 **Agents:**
+
 | Agent | Module | Role |
 |-------|--------|------|
 | Phoenix | cybersec-team | Lead incident response - coordinates technical containment |
@@ -161,17 +168,20 @@ Pre-configured agent teams for common scenarios.
 | Counsel | legal-team | Legal obligations - ensures regulatory compliance |
 
 **Use When:**
+
 - Data breaches
 - Ransomware attacks
 - Significant security incidents
 - Any incident with regulatory implications
 
 **Timeline Constraints:**
+
 - GDPR: 72-hour notification deadline
 - HIPAA: 60-day notification deadline
 - PCI-DSS: Immediate card brand notification
 
 **Expected Outputs:**
+
 - `incident-response-plan.md`
 - `attribution-report.md`
 - `notification-timeline.md`
@@ -184,6 +194,7 @@ Pre-configured agent teams for common scenarios.
 **Purpose:** All 8 historical archetype advisors for major strategic decisions.
 
 **Agents:**
+
 | Agent | Archetype | Perspective |
 |-------|-----------|-------------|
 | Sun | Master Strategist | Strategic positioning |
@@ -196,6 +207,7 @@ Pre-configured agent teams for common scenarios.
 | Jean-Luc | Principled Commander | Ethical leadership |
 
 **Use When:**
+
 - Major strategic decisions requiring multi-perspective analysis
 - Build vs Buy decisions
 - Market entry decisions

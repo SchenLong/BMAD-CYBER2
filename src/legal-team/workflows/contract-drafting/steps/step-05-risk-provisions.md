@@ -16,6 +16,7 @@ Draft representations, warranties, indemnification, and liability provisions.
 ### 1. Representations & Warranties
 
 Draft R&Ws for each party:
+
 - Authority and capacity
 - Compliance with laws
 - No conflicts
@@ -24,6 +25,7 @@ Draft R&Ws for each party:
 ### 2. Indemnification
 
 Draft indemnity provisions:
+
 - Indemnification triggers
 - Scope and exclusions
 - Procedures
@@ -32,6 +34,7 @@ Draft indemnity provisions:
 ### 3. Limitation of Liability
 
 Draft liability limits:
+
 - Cap amount/formula
 - Consequential damages
 - Exclusions from cap

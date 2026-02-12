@@ -11,17 +11,18 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
 import chalk from 'chalk';
 
+import { confirm, select } from '../../cli/prompts.js';
+
 import {
-  SECURITY_TIERS,
-  getTierById,
-  getDefaultTier,
-  getTierFeatures,
-  getFeatureDetails,
   compareTiers,
-  getTierDisplayInfo
+  getDefaultTier,
+  getFeatureDetails,
+  getTierById,
+  getTierDisplayInfo,
+  getTierFeatures,
+  SECURITY_TIERS
 } from './tier-definitions.js';
 
 /**
@@ -58,10 +59,10 @@ export function formatTierChoice(tier) {
   }
 
   // Add description on new line with indentation
-  name += '\n      ' + chalk.dim(tier.description);
+  name += `\n      ${  chalk.dim(tier.description)}`;
 
   if (tier.isBeta) {
-    name += '\n      ' + chalk.yellow.dim(BETA_WARNING);
+    name += `\n      ${  chalk.yellow.dim(BETA_WARNING)}`;
   }
 
   return name;
@@ -107,19 +108,13 @@ export async function showTierSelector() {
   console.log(chalk.dim('(Use arrow keys to navigate, enter to confirm)'));
   console.log('');
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'selectedTier',
-      message: 'Choose a security configuration tier:',
-      choices,
-      default: defaultIndex,
-      pageSize: 10,
-      loop: false
-    }
-  ]);
+  const selectedTier = await select({
+    message: 'Choose a security configuration tier:',
+    choices,
+    initialValue: choices[defaultIndex]?.value
+  });
 
-  return answer.selectedTier;
+  return selectedTier;
 }
 
 /**
@@ -176,14 +171,10 @@ export async function showFeatureConfirmation(tierId) {
   }
 
   // Confirmation prompt
-  const { confirmed } = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirmed',
-      message: 'Apply this security configuration?',
-      default: true
-    }
-  ]);
+  const confirmed = await confirm({
+    message: 'Apply this security configuration?',
+    initialValue: true
+  });
 
   return confirmed;
 }
@@ -307,14 +298,10 @@ export function showCurrentConfig(tierId) {
 export async function promptAdvancedCustomization() {
   console.log('');
 
-  const { wantsAdvanced } = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'wantsAdvanced',
-      message: 'Would you like to customize individual features? (Advanced)',
-      default: false
-    }
-  ]);
+  const wantsAdvanced = await confirm({
+    message: 'Would you like to customize individual features? (Advanced)',
+    initialValue: false
+  });
 
   return wantsAdvanced;
 }
@@ -331,7 +318,7 @@ export function showSelectionSummary(tierId) {
   }
 
   console.log('');
-  console.log(chalk.green.bold('Security tier selected: ' + tier.name));
+  console.log(chalk.green.bold(`Security tier selected: ${  tier.name}`));
   console.log(chalk.dim(`  ${tier.features.length} features will be enabled.`));
 
   if (tier.isBeta) {
@@ -352,12 +339,12 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       // Test 1: Show tier selector
       console.log('\n1. Testing showTierSelector():');
       const selectedTier = await showTierSelector();
-      console.log('   Selected: ' + selectedTier);
+      console.log(`   Selected: ${  selectedTier}`);
 
       // Test 2: Show feature confirmation
       console.log('\n2. Testing showFeatureConfirmation():');
       const confirmed = await showFeatureConfirmation(selectedTier);
-      console.log('   Confirmed: ' + confirmed);
+      console.log(`   Confirmed: ${  confirmed}`);
 
       // Test 3: Show comparison (if not essential)
       if (selectedTier !== 'essential') {
@@ -373,7 +360,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       console.log('\n5. Testing showSelectionSummary():');
       showSelectionSummary(selectedTier);
 
-      console.log('\n' + '='.repeat(60));
+      console.log(`\n${  '='.repeat(60)}`);
       console.log('Interactive test complete.');
     } catch (error) {
       console.error('Error:', error.message);

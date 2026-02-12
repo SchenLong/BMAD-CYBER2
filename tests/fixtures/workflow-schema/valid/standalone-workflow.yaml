@@ -1,0 +1,4 @@
+name: standalone-test
+description: "A standalone workflow for validation testing"
+standalone: true
+instructions: "{installed_path}/instructions.md"

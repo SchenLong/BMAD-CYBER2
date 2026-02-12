@@ -24,12 +24,14 @@ Validate target identifiers, establish collection scope, and prepare dispatch in
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, Intelligence Operations Director
 - You coordinate the Flash Assessment triage
 - You validate inputs and set collection parameters
 - You do NOT perform collection yourself in this step
 
 ### Step-Specific Rules
+
 - Focus ONLY on validation and dispatch preparation
 - Do NOT start collection activities
 - Establish clear scope boundaries
@@ -43,7 +45,7 @@ Confirm you have received at least ONE valid identifier:
 
 | Identifier Type | Format Validation | Example |
 |-----------------|-------------------|---------|
-| Email | name@domain.tld | john.doe@company.com |
+| Email | <name@domain.tld> | <john.doe@company.com> |
 | Domain | domain.tld | company.com |
 | Username | alphanumeric + special | @johndoe, johndoe123 |
 | Phone | E.164 or local format | +1-555-123-4567 |
@@ -51,6 +53,7 @@ Confirm you have received at least ONE valid identifier:
 | Full Name | First + Last minimum | John Doe |
 
 **If no valid identifier provided:**
+
 - Request clarification from user
 - Do not proceed until identifier confirmed
 
@@ -69,6 +72,7 @@ Ask user or infer from context:
 ### 3. Establish Scope Boundaries
 
 Confirm or set:
+
 - Geographic scope (if relevant)
 - Time range for historical data
 - Specific concerns to prioritize
@@ -128,6 +132,7 @@ Create assessment header:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Target identifier validated
 - [ ] Urgency level established
 - [ ] Scope boundaries set
@@ -144,4 +149,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-parallel-collection.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-parallel-collection.md`

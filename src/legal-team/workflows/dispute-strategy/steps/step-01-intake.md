@@ -20,6 +20,7 @@ Present welcome message:
 "Welcome to the Dispute Strategy Workflow. I'm Advocate, specialized in dispute resolution and litigation strategy.
 
 **Important:** This workflow covers civil disputes only. It does NOT provide guidance on:
+
 - Criminal matters
 - Criminal defense
 - Any prosecution-related issues
@@ -33,16 +34,19 @@ Let's understand your dispute situation."
 Gather core details:
 
 **Your Position:**
+
 - Are you the potential claimant or defendant?
 - Individual or business entity?
 - Any co-parties on your side?
 
 **Opposing Party:**
+
 - Individual or business entity?
 - Known legal representation?
 - Multiple opposing parties?
 
 **Nature of Dispute:**
+
 - Brief description of the conflict
 - What is at stake? (money, property, rights, reputation)
 - Current status (threats, demand letters, filed suit?)
@@ -52,11 +56,13 @@ Gather core details:
 Determine applicable jurisdiction:
 
 **Where did the dispute arise?**
+
 - Location of contract signing
 - Location of incident/breach
 - Location of parties
 
 **Any jurisdiction clauses?**
+
 - Forum selection in contracts
 - Arbitration agreements
 - Choice of law provisions
@@ -97,6 +103,7 @@ Evaluate time pressures:
 ```
 
 Update frontmatter:
+
 - `disputeType: "[type]"`
 - `jurisdiction: "[jurisdiction]"`
 - `stepsCompleted: [1]`

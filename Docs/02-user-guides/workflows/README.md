@@ -22,11 +22,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ## Cybersec-Team Workflows (13)
 
 ### 1. Incident Response Playbook
+
 **Type:** Dual-Mode (Creation + Execution)
 **Complexity:** 19 steps
 **Output:** Professional incident response playbook (50-150 pages)
 
 **Modes:**
+
 - **Playbook Creation:** Design custom IR playbooks for your organization
 - **Guided Execution:** Step-by-step incident response during active events
 
@@ -34,6 +36,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Compliance:** GDPR, PCI-DSS, HIPAA, SOC 2, ISO 27001
 
 **Perfect for:**
+
 - Building organizational IR capabilities
 - Executing live incident response
 - Meeting compliance requirements
@@ -42,11 +45,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 2. Security Architecture Review
+
 **Type:** Linear
 **Complexity:** 8 steps
 **Output:** Comprehensive architecture security assessment
 
 **Capabilities:**
+
 - STRIDE-based threat modeling
 - Zero-trust validation
 - Cloud security review (AWS/Azure/GCP)
@@ -56,6 +61,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** STRIDE, NIST CSF, CIS Controls, OWASP ASVS, Zero Trust
 
 **Perfect for:**
+
 - Pre-deployment security reviews
 - Architecture security validation
 - Security design consultations
@@ -64,11 +70,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 3. STRIDE Threat Modeling
+
 **Type:** Iterative-Linear
 **Complexity:** 11 steps (with component iteration)
 **Output:** Detailed threat model with prioritized mitigations
 
 **Coverage:**
+
 - **S**poofing threats
 - **T**ampering threats
 - **R**epudiation threats
@@ -79,6 +87,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** STRIDE (Microsoft), NIST SP 800-30
 
 **Perfect for:**
+
 - Application security design
 - System architecture threat analysis
 - Security requirements generation
@@ -87,17 +96,20 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 4. Compliance Audit Preparation
+
 **Type:** Linear
 **Complexity:** 10 steps
 **Output:** Audit-ready compliance package with evidence inventory
 
 **Supported Frameworks (20+):**
+
 - **US:** NIST 800-53, SOC 2, PCI-DSS, HIPAA, FedRAMP, CMMC
 - **EU:** GDPR, NIS2, Cyber Resilience Act (CRA), DORA, AI Act
 - **Global:** ISO 27001/27017/27018, CIS Controls, CSA STAR
 - **Industry:** SWIFT CSP, NERC CIP, TISAX
 
 **Perfect for:**
+
 - Pre-audit preparation
 - Gap assessment and remediation
 - Evidence collection planning
@@ -106,11 +118,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 5. Virtual CISO Consulting
+
 **Type:** Linear
 **Complexity:** 11 steps
 **Output:** Comprehensive vCISO engagement document (50-100 pages)
 
 **Deliverables:**
+
 - Strategic security planning & roadmaps
 - Budget optimization with ROI framework
 - Security maturity assessment
@@ -122,6 +136,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** NIST CSF, ISO 27001, CIS Controls, NIST 800-53
 
 **Perfect for:**
+
 - vCISO service engagements
 - Security program development
 - Executive security advisory
@@ -130,11 +145,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 6. Blockchain Security Assessment
+
 **Type:** Linear
 **Complexity:** 9 steps
 **Output:** Smart contract audit report with vulnerability analysis
 
 **Coverage:**
+
 - Smart contract code review (Solidity, Vyper, Rust)
 - DeFi protocol security analysis
 - Token economics review
@@ -145,6 +162,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** SWC Registry, DeFi Security Best Practices, Trail of Bits Guidelines
 
 **Perfect for:**
+
 - Pre-deployment smart contract audits
 - DeFi protocol security reviews
 - Token launch security validation
@@ -153,11 +171,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 7. Mobile Security Testing
+
 **Type:** Linear
 **Complexity:** 9 steps
 **Output:** Mobile application security assessment report
 
 **Coverage:**
+
 - Static analysis (SAST)
 - Dynamic analysis (DAST)
 - Binary protection analysis
@@ -169,6 +189,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** OWASP MSTG, MASVS, Platform Security Guides
 
 **Perfect for:**
+
 - Mobile app security assessments
 - Pre-release security validation
 - Regulatory compliance (PCI, HIPAA)
@@ -177,11 +198,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 8. Web Application Security Testing
+
 **Type:** Linear
 **Complexity:** 8 steps
 **Output:** Web application penetration test report
 
 **Coverage:**
+
 - OWASP Top 10 vulnerability assessment
 - Authentication and authorization testing
 - Session management analysis
@@ -192,6 +215,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** OWASP Testing Guide, OWASP Top 10, ASVS, WSTG
 
 **Perfect for:**
+
 - Web application penetration tests
 - Pre-deployment security assessments
 - Compliance-driven testing
@@ -200,11 +224,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 9. Network Assessment
+
 **Type:** Linear
 **Complexity:** 8 steps
 **Output:** Network penetration test report
 
 **Coverage:**
+
 - External and internal network testing
 - Active Directory security assessment
 - Network segmentation analysis
@@ -215,6 +241,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** PTES, NIST SP 800-115, OSSTMM
 
 **Perfect for:**
+
 - Network penetration tests
 - Active Directory assessments
 - Segmentation validation
@@ -223,11 +250,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 10. Infrastructure Security Testing
+
 **Type:** Linear
 **Complexity:** 9 steps
 **Output:** Infrastructure security assessment report
 
 **Coverage:**
+
 - Server hardening assessment
 - Container security (Docker, Kubernetes)
 - CI/CD pipeline security
@@ -238,6 +267,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** CIS Benchmarks, NIST 800-123, Docker/K8s Security Guides
 
 **Perfect for:**
+
 - Infrastructure security assessments
 - DevSecOps maturity reviews
 - Container security audits
@@ -246,11 +276,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 11. Cloud Security Assessment
+
 **Type:** Linear
 **Complexity:** 9 steps
 **Output:** Cloud security posture assessment report
 
 **Coverage:**
+
 - IAM and identity governance
 - Network security configuration
 - Data protection and encryption
@@ -261,6 +293,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** CIS Benchmarks (AWS/Azure/GCP), CSA CCM, Well-Architected
 
 **Perfect for:**
+
 - Cloud security assessments
 - Multi-cloud security reviews
 - Cloud migration security planning
@@ -269,11 +302,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 12. Vulnerability Management
+
 **Type:** Linear
 **Complexity:** 8 steps
 **Output:** Vulnerability management program documentation
 
 **Coverage:**
+
 - Asset inventory and criticality
 - Scanning strategy and tooling
 - Vulnerability prioritization (CVSS, EPSS)
@@ -284,6 +319,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** NIST, FIRST EPSS, ISO 27001 A.12.6
 
 **Perfect for:**
+
 - Vulnerability management program design
 - VM program maturity improvement
 - Compliance preparation
@@ -292,11 +328,13 @@ For detailed, user-focused guides on each team's workflows, see:
 ---
 
 ### 13. Security Awareness Training
+
 **Type:** Linear
 **Complexity:** 7 steps
 **Output:** Security awareness program design document
 
 **Coverage:**
+
 - Risk assessment and threat analysis
 - Training content development
 - Phishing simulation design
@@ -307,6 +345,7 @@ For detailed, user-focused guides on each team's workflows, see:
 **Frameworks:** NIST 800-50, SANS Security Awareness, ISO 27001 A.7.2.2
 
 **Perfect for:**
+
 - Security awareness program design
 - Phishing program development
 - Human risk management
@@ -463,6 +502,7 @@ Pre-configured multi-agent combinations for common executive scenarios:
 ### Primary Use Case
 
 These workflows provide legal perspective when other modules require legal input:
+
 - **Cybersec-Team:** Compliance considerations during security assessments
 - **Intel-Team:** Contractual implications in corporate intelligence
 - **Strategy-Team:** Regulatory concerns in executive strategy sessions

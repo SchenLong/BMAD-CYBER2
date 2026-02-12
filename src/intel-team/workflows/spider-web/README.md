@@ -15,6 +15,7 @@
 ## Purpose
 
 Map relationship networks and affiliations:
+
 - Corporate relationship mapping
 - Beneficial ownership chains
 - Influence network analysis

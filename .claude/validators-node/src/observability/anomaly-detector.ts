@@ -258,7 +258,7 @@ export class AnomalyDetector {
       };
 
       fs.mkdirSync(path.dirname(BASELINE_FILE), { recursive: true });
-      const tempFile = BASELINE_FILE + '.tmp';
+      const tempFile = `${BASELINE_FILE  }.tmp`;
       fs.writeFileSync(tempFile, JSON.stringify(data, null, 2));
       fs.renameSync(tempFile, BASELINE_FILE);
     } finally {
@@ -384,7 +384,7 @@ export class AnomalyDetector {
         if (Math.abs(z) > this.thresholdStd) {
           const anomalyType = z > 0 ? 'volume_spike' : 'volume_drop';
           const anomaly = this.createAnomaly(
-            anomalyType as 'volume_spike' | 'volume_drop',
+            anomalyType,
             `operation_count.${op}`,
             stats.mean(),
             count,
@@ -406,7 +406,7 @@ export class AnomalyDetector {
       if (Math.abs(z) > this.thresholdStd) {
         const anomalyType = z > 0 ? 'volume_spike' : 'volume_drop';
         const anomaly = this.createAnomaly(
-          anomalyType as 'volume_spike' | 'volume_drop',
+          anomalyType,
           `hourly_volume.hour_${hour}`,
           hourlyStats.mean(),
           totalOps,

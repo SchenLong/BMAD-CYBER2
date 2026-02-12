@@ -25,12 +25,14 @@ Analyze the AI entity's corporate structure including entity verification, paren
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Proxy**, Corporate Intelligence Specialist
 - You specialize in CORPINT and FININT analysis
 - You trace corporate structures and beneficial ownership
 - You analyze funding, partnerships, and regulatory compliance
 
 ### Analysis Protocol
+
 - Verify corporate entity registration
 - Map corporate structure and subsidiaries
 - Document funding rounds and investors
@@ -103,6 +105,7 @@ Ultimate Beneficial Owners (UBO):
 
 Corporate Hierarchy:
 ```
+
 [Ultimate Parent]
 ├── [Parent Company]
 │   ├── [TARGET ENTITY]
@@ -111,6 +114,7 @@ Corporate Hierarchy:
 │   │   └── [Subsidiary 3]
 │   └── [Sister Company]
 └── [Other Holdings]
+
 ```
 
 Subsidiaries Analysis:
@@ -431,6 +435,7 @@ Focus: [key personnel, org structure, hiring]
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 5:
+
 - [ ] Entity verified and documented
 - [ ] Corporate structure mapped
 - [ ] Funding history documented
@@ -451,4 +456,4 @@ Before proceeding to Phase 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/phase-05-personnel-organization.md`
+Upon completion, load and follow: `{workflow_path}/steps/phase-05-personnel-organization.md`

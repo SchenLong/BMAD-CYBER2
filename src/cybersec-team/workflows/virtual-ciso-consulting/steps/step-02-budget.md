@@ -11,18 +11,18 @@ brainstormingTask: '{project-root}/_bmad/core/tasks/brainstorming.xml'
 
 # Step 2: Budget & Resource Planning
 
-## STEP GOAL:
+## STEP GOAL
 
 To collaboratively define a realistic security budget with resource allocation, ROI framework, and multi-year projections that align with organizational constraints and strategic priorities.
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - 🛑 NEVER generate content without user input
 - 📖 Read complete step before acting
 - 📋 YOU ARE A FACILITATOR for budget planning
 - ✅ Speak in {communication_language}
 
-## BUDGET PLANNING PROCESS:
+## BUDGET PLANNING PROCESS
 
 ### 1. Initialize Budget Planning
 
@@ -40,6 +40,7 @@ Display:
 Based on your engagement scope, let's develop a realistic security budget that aligns with business priorities and demonstrates clear ROI.
 
 Security budgets typically fall into these categories:
+
 - **People**: Security staff, training, awareness programs
 - **Technology**: Tools, platforms, cloud security services
 - **Services**: Consulting, audits, penetration testing, managed services
@@ -53,6 +54,7 @@ Let's start by understanding your current security spend and budget constraints.
 "**Current Security Spend:**
 
 **Existing Budget:**
+
 - What is the current annual security budget? ($ amount or 'none/unknown')
 - What percentage of IT budget goes to security? (% or 'unknown')
 - Current security spending breakdown (if known):
@@ -85,6 +87,7 @@ For each category, guide budget allocation:
 Based on your current team ({team-structure}), what staffing investments are needed?
 
 Options:
+
 - Hire full-time security engineer(s): $___/year each
 - Contract/part-time security staff: $___/year
 - Security awareness training program: $___/year
@@ -100,6 +103,7 @@ Collect: **People Budget**
 What security tools and platforms are needed?
 
 Common categories:
+
 - SIEM/Log management: $___ /year
 - Endpoint protection (EDR): $___ /year
 - Cloud security (CSPM/CWPP): $___ /year
@@ -175,6 +179,7 @@ Display:
 | **TOTAL** | **${grand-total}** | |
 
 **Budget vs Constraints:**
+
 - Proposed: ${proposed-total}
 - Available: ${budget-constraint}
 - Variance: ${variance} ({over/under/on-target})
@@ -190,17 +195,20 @@ If over budget, collaborate on adjustments.
 Let's quantify the business value of this security investment.
 
 **Risk Reduction:**
+
 - Estimated annual loss expectancy without security program: $___
 - Estimated risk reduction with proposed program: ___% (e.g., 50%, 70%)
 - Potential annual loss avoidance: $___
 
 **Business Enablement:**
+
 - Revenue opportunities enabled by security compliance: $___
   (e.g., enterprise customers requiring SOC 2, FedRAMP opportunities)
 - Cost avoidance from preventing breaches: $___
   (industry average breach cost × likelihood reduction)
 
 **Productivity Gains:**
+
 - Time saved from automated security: ___ hours/year
 - Reduced downtime from better resilience: ___ hours/year
 
@@ -209,6 +217,7 @@ Define ROI factors:"
 Collect: **ROI Data**
 
 Calculate ROI:
+
 - Total Investment (Year 1): ${total-budget}
 - Estimated Annual Value: ${risk-reduction + business-value + productivity}
 - ROI: {(value - investment) / investment × 100}%
@@ -222,12 +231,14 @@ Project budget needs for Years 2 and 3:
 
 **Year 1** (Current): ${year1-total}
 **Year 2** (Projected):
+
 - Assume ___% inflation adjustment
 - Additional tool costs: $___
 - Staff growth: $___
 - Total Year 2: ${year2-total}
 
 **Year 3** (Projected):
+
 - Assume ___% inflation adjustment
 - Maturity improvements: $___
 - Additional compliance costs: $___
@@ -359,6 +370,7 @@ Update {outputFile} with:
 ### 8. Update Frontmatter
 
 Update frontmatter with:
+
 ```yaml
 stepsCompleted: [1, 2]
 lastStep: 'budget'
@@ -373,11 +385,10 @@ Display: **Select an Option:** [B] Brainstorming [C] Continue to Assessment
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
 
 - Comprehensive budget defined across all categories
 - ROI framework established with quantified value
 - Multi-year projection provided
 - Section 2 appended to document
 - Ready for current state assessment
-

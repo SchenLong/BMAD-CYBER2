@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/legal-team/agents/castile.md
+# Full agent: src/legal-team/agents/castile.md
 agent_id: "castile"
 name: "Castile"
 title: "Spanish Law Specialist"

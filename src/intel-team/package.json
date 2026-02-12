@@ -1,6 +1,6 @@
 {
   "name": "@bmad-cybercommand/intel-team",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Open source intelligence and threat analysis with 11 specialized agents",
   "keywords": [
     "bmad",
@@ -28,7 +28,7 @@
     "README.md"
   ],
   "bmad": {
-    "version": "2.1.0",
+    "version": "2.2.0",
     "team": "intel-team",
     "format": "bmad-builder",
     "agents": 11,

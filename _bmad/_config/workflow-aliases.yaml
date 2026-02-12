@@ -1,0 +1,1056 @@
+# =============================================================================
+# Workflow Alias Registry
+# =============================================================================
+# BMAD-CYBERSEC v6 Hybrid Upgrade - Story 01, Task 1.2
+# Generated: 2026-02-09
+# Source: _bmad/_config/workflow-manifest.csv (139 workflows)
+#
+# Maps short alias names to full workflow paths with conflict disambiguation
+# and reserved names blocklist for security hardening.
+#
+# Security References:
+#   VULN-008 (Ghost Command Injection) - Reserved names prevent alias/validator collision
+#   REC-P1-04 - Input validation on alias names
+# =============================================================================
+
+version: "1.0.0"
+generated: "2026-02-09"
+
+# Counts:
+#   Unique (non-conflicted) aliases:    113
+#   Module-prefixed conflict aliases:    26
+#   Conflict disambiguation entries:     13
+#   Total resolvable aliases:           139
+#   Total entries:                      152
+
+# =============================================================================
+# RESERVED NAMES BLOCKLIST
+# =============================================================================
+# These MUST NOT be used as aliases (VULN-008, Ghost Command Injection)
+# Collision with security validators could bypass security guards.
+# Any attempt to register an alias matching a reserved name MUST be rejected.
+
+reserved_names:
+  # Security validator entry points (from .claude/validators-node/bin/)
+  - anomaly-detector
+  - archival-cli
+  - audit-integrity
+  - bash-safety
+  - confidence-tracker
+  - context-manager
+  - env-protection
+  - jailbreak
+  - outside-repo
+  - pii
+  - plugin-permissions
+  - production
+  - prompt-injection
+  - rate-limiter
+  - recursion-guard
+  - resource-limits
+  - secret
+  - session-init
+  - settings-integrity
+  - supply-chain
+  - telemetry
+  - token-validator
+  # System commands (prevent hijacking built-in commands)
+  - help
+  - bmad-help
+  - clear
+  - exit
+  - status
+  # BMAD core agent names (prevent confusion between agents and workflows)
+  - abdul
+  - bmad-master
+
+# =============================================================================
+# INPUT VALIDATION RULES
+# =============================================================================
+# All alias names MUST pass these checks before resolution.
+
+validation:
+  # Alias name pattern: lowercase alphanumeric, hyphens, colons allowed mid-string
+  pattern: "^[a-z0-9][a-z0-9:-]*[a-z0-9]$"
+  max_length: 100
+  min_length: 2
+
+# =============================================================================
+# MODULE PREFIX MAPPING
+# =============================================================================
+# Short prefixes used for disambiguation when multiple modules share a name.
+# Format: <prefix>:<workflow-name>
+
+module_prefixes:
+  bmb: "bmb"
+  bmgd: "game"
+  bmm: "bmm"
+  cis: "cis"
+  core: "core"
+  cybersec-team: "sec"
+  intel-team: "intel"
+  legal-team: "legal"
+  strategy-team: "strategy"
+
+# =============================================================================
+# ALIASES
+# =============================================================================
+# Maps short names to full bmad skill paths.
+#
+# Structure per entry:
+#   alias_name:
+#     target: full bmad skill path
+#     module: source module name
+#     description: brief description (under 60 chars)
+#     conflict: true  (only on module-prefixed and disambiguation entries)
+#
+# For conflicts:
+#   - The bare name entry has conflict: true with an options array
+#   - Each module-prefixed alias resolves directly to its target
+
+aliases:
+
+  # ============================================================================
+  # CORE MODULE (15 workflows: 14 unique + 1 conflicted)
+  # ============================================================================
+
+  assign-task:
+    target: "bmad:core:workflows:assign-task"
+    module: core
+    description: "Delegate task to appropriate agent"
+
+  brainstorming:
+    target: "bmad:core:workflows:brainstorming"
+    module: core
+    description: "Facilitate creative brainstorming sessions"
+
+  compliance-first:
+    target: "bmad:core:workflows:compliance-first"
+    module: core
+    description: "Compliance-driven software development"
+
+  create-project:
+    target: "bmad:core:workflows:create-project"
+    module: core
+    description: "Initialize new project with module selection"
+
+  cross-module:
+    target: "bmad:core:workflows:cross-module"
+    module: core
+    description: "Invoke cross-module expertise"
+
+  incident-response:
+    target: "bmad:core:workflows:incident-response"
+    module: core
+    description: "Multi-team coordinated incident response"
+
+  party-mode:
+    target: "bmad:core:workflows:party-mode"
+    module: core
+    description: "Multi-agent group discussion"
+
+  phase-gate:
+    target: "bmad:core:workflows:phase-gate"
+    module: core
+    description: "Validate phase gate requirements"
+
+  project-status:
+    target: "bmad:core:workflows:project-status"
+    module: core
+    description: "Generate project status dashboard"
+
+  secure-software:
+    target: "bmad:core:workflows:secure-software"
+    module: core
+    description: "Security-aware software development"
+
+  select-preset:
+    target: "bmad:core:workflows:select-preset"
+    module: core
+    description: "Select cross-module agent group preset"
+
+  select-template:
+    target: "bmad:core:workflows:select-template"
+    module: core
+    description: "Select team orchestration template"
+
+  strategic-decision:
+    target: "bmad:core:workflows:strategic-decision"
+    module: core
+    description: "Multi-perspective strategic decision making"
+
+  whats-next:
+    target: "bmad:core:workflows:whats-next"
+    module: core
+    description: "Analyze project state and recommend next"
+
+  # --- CORE conflicted (module-prefixed) ---
+
+  core:conflict-resolution:
+    target: "bmad:core:workflows:conflict-resolution"
+    module: core
+    description: "Core team conflict resolution"
+    conflict: true
+
+  # ============================================================================
+  # BMB MODULE (6 workflows: 6 unique + 0 conflicted)
+  # ============================================================================
+
+  agent:
+    target: "bmad:bmb:workflows:agent"
+    module: bmb
+    description: "Create, edit, validate BMAD agents"
+
+  create-module:
+    target: "bmad:bmb:workflows:create-module"
+    module: bmb
+    description: "Build complete BMAD modules"
+
+  create-workflow:
+    target: "bmad:bmb:workflows:create-workflow"
+    module: bmb
+    description: "Create structured standalone workflows"
+
+  edit-workflow:
+    target: "bmad:bmb:workflows:edit-workflow"
+    module: bmb
+    description: "Modify existing workflows"
+
+  meal-prep-nutrition-plan:
+    target: "bmad:bmb:workflows:meal-prep-nutrition-plan"
+    module: bmb
+    description: "Personalized meal planning workflow"
+
+  workflow-compliance-check:
+    target: "bmad:bmb:workflows:workflow-compliance-check"
+    module: bmb
+    description: "Validate workflows against BMAD standards"
+
+  # ============================================================================
+  # BMGD MODULE (26 workflows: 14 unique + 12 conflicted)
+  # ============================================================================
+
+  brainstorm-game:
+    target: "bmad:bmgd:workflows:brainstorm-game"
+    module: bmgd
+    description: "Game brainstorming sessions"
+
+  create-game-brief:
+    target: "bmad:bmgd:workflows:create-game-brief"
+    module: bmgd
+    description: "Collaborative game brief creation"
+
+  create-gdd:
+    target: "bmad:bmgd:workflows:create-gdd"
+    module: bmgd
+    description: "Create game design document"
+
+  game-architecture:
+    target: "bmad:bmgd:workflows:game-architecture"
+    module: bmgd
+    description: "Collaborative game architecture design"
+
+  game-brief:
+    target: "bmad:bmgd:workflows:game-brief"
+    module: bmgd
+    description: "Interactive game brief creation"
+
+  gametest-automate:
+    target: "bmad:bmgd:workflows:gametest-automate"
+    module: bmgd
+    description: "Generate automated game tests"
+
+  gametest-framework:
+    target: "bmad:bmgd:workflows:gametest-framework"
+    module: bmgd
+    description: "Initialize game test framework"
+
+  gametest-performance:
+    target: "bmad:bmgd:workflows:gametest-performance"
+    module: bmgd
+    description: "Game performance testing strategy"
+
+  gametest-playtest-plan:
+    target: "bmad:bmgd:workflows:gametest-playtest-plan"
+    module: bmgd
+    description: "Structured playtesting session planning"
+
+  gametest-test-design:
+    target: "bmad:bmgd:workflows:gametest-test-design"
+    module: bmgd
+    description: "Comprehensive game test scenario design"
+
+  gametest-test-review:
+    target: "bmad:bmgd:workflows:gametest-test-review"
+    module: bmgd
+    description: "Review game test quality and coverage"
+
+  gdd:
+    target: "bmad:bmgd:workflows:gdd"
+    module: bmgd
+    description: "Game design document workflow"
+
+  narrative:
+    target: "bmad:bmgd:workflows:narrative"
+    module: bmgd
+    description: "Narrative design for story-driven games"
+
+  quick-prototype:
+    target: "bmad:bmgd:workflows:quick-prototype"
+    module: bmgd
+    description: "Rapid game prototyping"
+
+  # --- BMGD conflicted (module-prefixed) ---
+
+  game:code-review:
+    target: "bmad:bmgd:workflows:code-review"
+    module: bmgd
+    description: "Game dev adversarial code review"
+    conflict: true
+
+  game:correct-course:
+    target: "bmad:bmgd:workflows:correct-course"
+    module: bmgd
+    description: "Game dev sprint course correction"
+    conflict: true
+
+  game:create-story:
+    target: "bmad:bmgd:workflows:create-story"
+    module: bmgd
+    description: "Create game dev user story"
+    conflict: true
+
+  game:create-tech-spec:
+    target: "bmad:bmgd:workflows:create-tech-spec"
+    module: bmgd
+    description: "Game dev conversational spec engineering"
+    conflict: true
+
+  game:dev-story:
+    target: "bmad:bmgd:workflows:dev-story"
+    module: bmgd
+    description: "Execute game dev story implementation"
+    conflict: true
+
+  game:generate-project-context:
+    target: "bmad:bmgd:workflows:generate-project-context"
+    module: bmgd
+    description: "Generate game project context file"
+    conflict: true
+
+  game:quick-dev:
+    target: "bmad:bmgd:workflows:quick-dev"
+    module: bmgd
+    description: "Flexible game development workflow"
+    conflict: true
+
+  game:retrospective:
+    target: "bmad:bmgd:workflows:retrospective"
+    module: bmgd
+    description: "Game dev epic retrospective"
+    conflict: true
+
+  game:sprint-planning:
+    target: "bmad:bmgd:workflows:sprint-planning"
+    module: bmgd
+    description: "Game dev sprint planning and tracking"
+    conflict: true
+
+  game:sprint-status:
+    target: "bmad:bmgd:workflows:sprint-status"
+    module: bmgd
+    description: "Game dev sprint status summary"
+    conflict: true
+
+  game:workflow-init:
+    target: "bmad:bmgd:workflows:workflow-init"
+    module: bmgd
+    description: "Initialize new game dev project"
+    conflict: true
+
+  game:workflow-status:
+    target: "bmad:bmgd:workflows:workflow-status"
+    module: bmgd
+    description: "Game dev workflow status checker"
+    conflict: true
+
+  # ============================================================================
+  # BMM MODULE (33 workflows: 21 unique + 12 conflicted)
+  # ============================================================================
+
+  check-implementation-readiness:
+    target: "bmad:bmm:workflows:check-implementation-readiness"
+    module: bmm
+    description: "Validate PRD/arch/stories before impl"
+
+  create-architecture:
+    target: "bmad:bmm:workflows:create-architecture"
+    module: bmm
+    description: "Collaborative architecture facilitation"
+
+  create-epics-and-stories:
+    target: "bmad:bmm:workflows:create-epics-and-stories"
+    module: bmm
+    description: "Transform PRD into epics and stories"
+
+  create-excalidraw-dataflow:
+    target: "bmad:bmm:workflows:create-excalidraw-dataflow"
+    module: bmm
+    description: "Create data flow diagrams in Excalidraw"
+
+  create-excalidraw-diagram:
+    target: "bmad:bmm:workflows:create-excalidraw-diagram"
+    module: bmm
+    description: "Create architecture diagrams in Excalidraw"
+
+  create-excalidraw-flowchart:
+    target: "bmad:bmm:workflows:create-excalidraw-flowchart"
+    module: bmm
+    description: "Create flowcharts in Excalidraw format"
+
+  create-excalidraw-wireframe:
+    target: "bmad:bmm:workflows:create-excalidraw-wireframe"
+    module: bmm
+    description: "Create wireframes in Excalidraw format"
+
+  create-prd:
+    target: "bmad:bmm:workflows:create-prd"
+    module: bmm
+    description: "Collaborative PRD creation"
+
+  create-product-brief:
+    target: "bmad:bmm:workflows:create-product-brief"
+    module: bmm
+    description: "Collaborative product brief discovery"
+
+  create-ux-design:
+    target: "bmad:bmm:workflows:create-ux-design"
+    module: bmm
+    description: "Plan UX patterns and look and feel"
+
+  document-project:
+    target: "bmad:bmm:workflows:document-project"
+    module: bmm
+    description: "Analyze and document brownfield projects"
+
+  qa-automate:
+    target: "bmad:bmm:workflows:qa-automate"
+    module: bmm
+    description: "Generate tests rapidly for existing features"
+
+  research:
+    target: "bmad:bmm:workflows:research"
+    module: bmm
+    description: "Comprehensive multi-domain research"
+
+  testarch-atdd:
+    target: "bmad:bmm:workflows:testarch-atdd"
+    module: bmm
+    description: "Acceptance test driven development"
+
+  testarch-automate:
+    target: "bmad:bmm:workflows:testarch-automate"
+    module: bmm
+    description: "Expand test automation coverage"
+
+  testarch-ci:
+    target: "bmad:bmm:workflows:testarch-ci"
+    module: bmm
+    description: "Scaffold CI/CD quality pipeline"
+
+  testarch-framework:
+    target: "bmad:bmm:workflows:testarch-framework"
+    module: bmm
+    description: "Initialize test framework architecture"
+
+  testarch-nfr:
+    target: "bmad:bmm:workflows:testarch-nfr"
+    module: bmm
+    description: "Assess non-functional requirements"
+
+  testarch-test-design:
+    target: "bmad:bmm:workflows:testarch-test-design"
+    module: bmm
+    description: "System or epic level test planning"
+
+  testarch-test-review:
+    target: "bmad:bmm:workflows:testarch-test-review"
+    module: bmm
+    description: "Review test quality and best practices"
+
+  testarch-trace:
+    target: "bmad:bmm:workflows:testarch-trace"
+    module: bmm
+    description: "Requirements-to-tests traceability matrix"
+
+  # --- BMM conflicted (module-prefixed) ---
+
+  bmm:code-review:
+    target: "bmad:bmm:workflows:code-review"
+    module: bmm
+    description: "Software dev adversarial code review"
+    conflict: true
+
+  bmm:correct-course:
+    target: "bmad:bmm:workflows:correct-course"
+    module: bmm
+    description: "Software dev sprint course correction"
+    conflict: true
+
+  bmm:create-story:
+    target: "bmad:bmm:workflows:create-story"
+    module: bmm
+    description: "Create software dev user story"
+    conflict: true
+
+  bmm:create-tech-spec:
+    target: "bmad:bmm:workflows:create-tech-spec"
+    module: bmm
+    description: "Conversational spec engineering"
+    conflict: true
+
+  bmm:dev-story:
+    target: "bmad:bmm:workflows:dev-story"
+    module: bmm
+    description: "Execute software dev story implementation"
+    conflict: true
+
+  bmm:generate-project-context:
+    target: "bmad:bmm:workflows:generate-project-context"
+    module: bmm
+    description: "Generate project context file"
+    conflict: true
+
+  bmm:quick-dev:
+    target: "bmad:bmm:workflows:quick-dev"
+    module: bmm
+    description: "Flexible dev with optional planning"
+    conflict: true
+
+  bmm:retrospective:
+    target: "bmad:bmm:workflows:retrospective"
+    module: bmm
+    description: "Software dev epic retrospective"
+    conflict: true
+
+  bmm:sprint-planning:
+    target: "bmad:bmm:workflows:sprint-planning"
+    module: bmm
+    description: "Software dev sprint planning and tracking"
+    conflict: true
+
+  bmm:sprint-status:
+    target: "bmad:bmm:workflows:sprint-status"
+    module: bmm
+    description: "Software dev sprint status summary"
+    conflict: true
+
+  bmm:workflow-init:
+    target: "bmad:bmm:workflows:workflow-init"
+    module: bmm
+    description: "Initialize new software dev project"
+    conflict: true
+
+  bmm:workflow-status:
+    target: "bmad:bmm:workflows:workflow-status"
+    module: bmm
+    description: "Software dev workflow status checker"
+    conflict: true
+
+  # ============================================================================
+  # CIS MODULE (4 workflows: 4 unique + 0 conflicted)
+  # ============================================================================
+
+  design-thinking:
+    target: "bmad:cis:workflows:design-thinking"
+    module: cis
+    description: "Human-centered design process guidance"
+
+  innovation-strategy:
+    target: "bmad:cis:workflows:innovation-strategy"
+    module: cis
+    description: "Disruption and business model innovation"
+
+  problem-solving:
+    target: "bmad:cis:workflows:problem-solving"
+    module: cis
+    description: "Systematic problem-solving methodologies"
+
+  storytelling:
+    target: "bmad:cis:workflows:storytelling"
+    module: cis
+    description: "Craft compelling narratives"
+
+  # ============================================================================
+  # CYBERSEC-TEAM MODULE (13 workflows: 13 unique + 0 conflicted)
+  # ============================================================================
+
+  blockchain-security-assessment:
+    target: "bmad:cybersec-team:workflows:blockchain-security-assessment"
+    module: cybersec-team
+    description: "Smart contract and blockchain security audit"
+
+  cloud-security-assessment:
+    target: "bmad:cybersec-team:workflows:cloud-security-assessment"
+    module: cybersec-team
+    description: "Cloud IAM, network, data security review"
+
+  compliance-audit-prep:
+    target: "bmad:cybersec-team:workflows:compliance-audit-prep"
+    module: cybersec-team
+    description: "Multi-framework compliance audit prep"
+
+  incident-response-playbook:
+    target: "bmad:cybersec-team:workflows:incident-response-playbook"
+    module: cybersec-team
+    description: "NIST-aligned incident response workflow"
+
+  infrastructure-security-testing:
+    target: "bmad:cybersec-team:workflows:infrastructure-security-testing"
+    module: cybersec-team
+    description: "Server, container, and CI/CD security"
+
+  mobile-security-testing:
+    target: "bmad:cybersec-team:workflows:mobile-security-testing"
+    module: cybersec-team
+    description: "iOS and Android app security testing"
+
+  network-assessment:
+    target: "bmad:cybersec-team:workflows:network-assessment"
+    module: cybersec-team
+    description: "Network penetration testing"
+
+  security-architecture-review:
+    target: "bmad:cybersec-team:workflows:security-architecture-review"
+    module: cybersec-team
+    description: "Zero-Trust security architecture review"
+
+  security-awareness-training:
+    target: "bmad:cybersec-team:workflows:security-awareness-training"
+    module: cybersec-team
+    description: "Security awareness program development"
+
+  threat-modeling:
+    target: "bmad:cybersec-team:workflows:threat-modeling"
+    module: cybersec-team
+    description: "STRIDE-based threat modeling"
+
+  virtual-ciso-consulting:
+    target: "bmad:cybersec-team:workflows:virtual-ciso-consulting"
+    module: cybersec-team
+    description: "vCISO strategic planning and governance"
+
+  vulnerability-management:
+    target: "bmad:cybersec-team:workflows:vulnerability-management"
+    module: cybersec-team
+    description: "End-to-end vulnerability management"
+
+  web-app-security-testing:
+    target: "bmad:cybersec-team:workflows:web-app-security-testing"
+    module: cybersec-team
+    description: "OWASP web app penetration testing"
+
+  # ============================================================================
+  # INTEL-TEAM MODULE (19 workflows: 19 unique + 0 conflicted)
+  # ============================================================================
+
+  approach-vector:
+    target: "bmad:intel-team:workflows:approach-vector"
+    module: intel-team
+    description: "HUMINT operation planning"
+
+  attribution-chain:
+    target: "bmad:intel-team:workflows:attribution-chain"
+    module: intel-team
+    description: "Evidence-based attribution analysis"
+
+  breach-archaeology:
+    target: "bmad:intel-team:workflows:breach-archaeology"
+    module: intel-team
+    description: "Data exposure assessment across breaches"
+
+  campaign-ai:
+    target: "bmad:intel-team:workflows:campaign-ai"
+    module: intel-team
+    description: "OSINT campaign for AI systems/entities"
+
+  campaign-planner-org:
+    target: "bmad:intel-team:workflows:campaign-planner-org"
+    module: intel-team
+    description: "OSINT campaign for organizations"
+
+  campaign-planner-person:
+    target: "bmad:intel-team:workflows:campaign-planner-person"
+    module: intel-team
+    description: "OSINT campaign for individuals"
+
+  counter-intel-audit:
+    target: "bmad:intel-team:workflows:counter-intel-audit"
+    module: intel-team
+    description: "Internal exposure and OPSEC assessment"
+
+  digital-necromancy:
+    target: "bmad:intel-team:workflows:digital-necromancy"
+    module: intel-team
+    description: "Recover deleted digital presence"
+
+  doppelganger-hunt:
+    target: "bmad:intel-team:workflows:doppelganger-hunt"
+    module: intel-team
+    description: "Identify fake accounts and impersonators"
+
+  flash-assessment:
+    target: "bmad:intel-team:workflows:flash-assessment"
+    module: intel-team
+    description: "Rapid 15-minute OSINT triage"
+
+  ground-truth:
+    target: "bmad:intel-team:workflows:ground-truth"
+    module: intel-team
+    description: "Field operation preparation package"
+
+  infrastructure-genealogy:
+    target: "bmad:intel-team:workflows:infrastructure-genealogy"
+    module: intel-team
+    description: "Trace digital infrastructure history"
+
+  operation-mosaic:
+    target: "bmad:intel-team:workflows:operation-mosaic"
+    module: intel-team
+    description: "Full spectrum coordinated intel package"
+
+  pattern-of-life:
+    target: "bmad:intel-team:workflows:pattern-of-life"
+    module: intel-team
+    description: "Behavioral analysis and prediction"
+
+  signal-landscape:
+    target: "bmad:intel-team:workflows:signal-landscape"
+    module: intel-team
+    description: "SIGINT opportunity mapping"
+
+  spider-web:
+    target: "bmad:intel-team:workflows:spider-web"
+    module: intel-team
+    description: "Network mapping and expansion"
+
+  the-synthesis:
+    target: "bmad:intel-team:workflows:the-synthesis"
+    module: intel-team
+    description: "Multi-source intelligence fusion"
+
+  threat-constellation:
+    target: "bmad:intel-team:workflows:threat-constellation"
+    module: intel-team
+    description: "Map threat actor ecosystem"
+
+  tripwire:
+    target: "bmad:intel-team:workflows:tripwire"
+    module: intel-team
+    description: "Alerting and monitoring configuration"
+
+  # ============================================================================
+  # LEGAL-TEAM MODULE (7 workflows: 7 unique + 0 conflicted)
+  # ============================================================================
+
+  contract-drafting:
+    target: "bmad:legal-team:workflows:contract-drafting"
+    module: legal-team
+    description: "Jurisdiction-appropriate contract creation"
+
+  contract-review:
+    target: "bmad:legal-team:workflows:contract-review"
+    module: legal-team
+    description: "Contract risk and obligation analysis"
+
+  corporate-formation:
+    target: "bmad:legal-team:workflows:corporate-formation"
+    module: legal-team
+    description: "Multi-jurisdictional entity formation"
+
+  cross-border-matter:
+    target: "bmad:legal-team:workflows:cross-border-matter"
+    module: legal-team
+    description: "Multi-jurisdictional legal coordination"
+
+  dispute-strategy:
+    target: "bmad:legal-team:workflows:dispute-strategy"
+    module: legal-team
+    description: "Dispute analysis and resolution strategy"
+
+  legal-matter-intake:
+    target: "bmad:legal-team:workflows:legal-matter-intake"
+    module: legal-team
+    description: "Legal case intake and routing"
+
+  tax-planning:
+    target: "bmad:legal-team:workflows:tax-planning"
+    module: legal-team
+    description: "Tax optimization and compliance planning"
+
+  # ============================================================================
+  # STRATEGY-TEAM MODULE (16 workflows: 15 unique + 1 conflicted)
+  # ============================================================================
+
+  board-presentation-prep:
+    target: "bmad:strategy-team:workflows:board-presentation-prep"
+    module: strategy-team
+    description: "Prepare compelling board presentations"
+
+  board-relations-management:
+    target: "bmad:strategy-team:workflows:board-relations-management"
+    module: strategy-team
+    description: "Board engagement and relationship mgmt"
+
+  competitive-warfare:
+    target: "bmad:strategy-team:workflows:competitive-warfare"
+    module: strategy-team
+    description: "Maximum intensity competitive strategy"
+
+  corporate-political-game:
+    target: "bmad:strategy-team:workflows:corporate-political-game"
+    module: strategy-team
+    description: "Navigate internal politics and power"
+
+  crisis-response-planning:
+    target: "bmad:strategy-team:workflows:crisis-response-planning"
+    module: strategy-team
+    description: "Crisis communication and response"
+
+  ethical-dilemma-resolution:
+    target: "bmad:strategy-team:workflows:ethical-dilemma-resolution"
+    module: strategy-team
+    description: "Multi-perspective ethical analysis"
+
+  leadership-philosophy:
+    target: "bmad:strategy-team:workflows:leadership-philosophy"
+    module: strategy-team
+    description: "Develop personal leadership philosophy"
+
+  leadership-transition-planning:
+    target: "bmad:strategy-team:workflows:leadership-transition-planning"
+    module: strategy-team
+    description: "Succession and leadership handover"
+
+  ma-due-diligence:
+    target: "bmad:strategy-team:workflows:ma-due-diligence"
+    module: strategy-team
+    description: "M&A evaluation and integration strategy"
+
+  performance-review-preparation:
+    target: "bmad:strategy-team:workflows:performance-review-preparation"
+    module: strategy-team
+    description: "Executive performance review prep"
+
+  policy-development:
+    target: "bmad:strategy-team:workflows:policy-development"
+    module: strategy-team
+    description: "Internal policy with ethics review"
+
+  political-risk-assessment:
+    target: "bmad:strategy-team:workflows:political-risk-assessment"
+    module: strategy-team
+    description: "Political risk evaluation for decisions"
+
+  stakeholder-negotiation-prep:
+    target: "bmad:strategy-team:workflows:stakeholder-negotiation-prep"
+    module: strategy-team
+    description: "Critical negotiation preparation"
+
+  strategic-decision-workshop:
+    target: "bmad:strategy-team:workflows:strategic-decision-workshop"
+    module: strategy-team
+    description: "Multi-advisor strategic decision analysis"
+
+  strategic-planning-session:
+    target: "bmad:strategy-team:workflows:strategic-planning-session"
+    module: strategy-team
+    description: "Long-term strategic planning session"
+
+  # --- STRATEGY-TEAM conflicted (module-prefixed) ---
+
+  strategy:conflict-resolution:
+    target: "bmad:strategy-team:workflows:conflict-resolution"
+    module: strategy-team
+    description: "Strategic conflict resolution"
+    conflict: true
+
+  # ============================================================================
+  # CONFLICT DISAMBIGUATION ENTRIES
+  # ============================================================================
+  # When a bare conflicted name is used, resolution MUST prompt the user
+  # to select from the module-prefixed options listed below.
+  # These entries do NOT resolve directly -- they require disambiguation.
+
+  code-review:
+    conflict: true
+    description: "Adversarial code review (multiple modules)"
+    options:
+      - alias: "game:code-review"
+        target: "bmad:bmgd:workflows:code-review"
+        module: bmgd
+        description: "Game dev adversarial code review"
+      - alias: "bmm:code-review"
+        target: "bmad:bmm:workflows:code-review"
+        module: bmm
+        description: "Software dev adversarial code review"
+
+  conflict-resolution:
+    conflict: true
+    description: "Conflict resolution (multiple modules)"
+    options:
+      - alias: "core:conflict-resolution"
+        target: "bmad:core:workflows:conflict-resolution"
+        module: core
+        description: "Core team conflict resolution"
+      - alias: "strategy:conflict-resolution"
+        target: "bmad:strategy-team:workflows:conflict-resolution"
+        module: strategy-team
+        description: "Strategic conflict resolution"
+
+  correct-course:
+    conflict: true
+    description: "Sprint course correction (multiple modules)"
+    options:
+      - alias: "game:correct-course"
+        target: "bmad:bmgd:workflows:correct-course"
+        module: bmgd
+        description: "Game dev sprint course correction"
+      - alias: "bmm:correct-course"
+        target: "bmad:bmm:workflows:correct-course"
+        module: bmm
+        description: "Software dev sprint course correction"
+
+  create-story:
+    conflict: true
+    description: "Create user story (multiple modules)"
+    options:
+      - alias: "game:create-story"
+        target: "bmad:bmgd:workflows:create-story"
+        module: bmgd
+        description: "Create game dev user story"
+      - alias: "bmm:create-story"
+        target: "bmad:bmm:workflows:create-story"
+        module: bmm
+        description: "Create software dev user story"
+
+  create-tech-spec:
+    conflict: true
+    description: "Tech spec engineering (multiple modules)"
+    options:
+      - alias: "game:create-tech-spec"
+        target: "bmad:bmgd:workflows:create-tech-spec"
+        module: bmgd
+        description: "Game dev spec engineering"
+      - alias: "bmm:create-tech-spec"
+        target: "bmad:bmm:workflows:create-tech-spec"
+        module: bmm
+        description: "Software dev spec engineering"
+
+  dev-story:
+    conflict: true
+    description: "Execute story implementation (multiple modules)"
+    options:
+      - alias: "game:dev-story"
+        target: "bmad:bmgd:workflows:dev-story"
+        module: bmgd
+        description: "Execute game dev story"
+      - alias: "bmm:dev-story"
+        target: "bmad:bmm:workflows:dev-story"
+        module: bmm
+        description: "Execute software dev story"
+
+  generate-project-context:
+    conflict: true
+    description: "Generate project context (multiple modules)"
+    options:
+      - alias: "game:generate-project-context"
+        target: "bmad:bmgd:workflows:generate-project-context"
+        module: bmgd
+        description: "Generate game project context"
+      - alias: "bmm:generate-project-context"
+        target: "bmad:bmm:workflows:generate-project-context"
+        module: bmm
+        description: "Generate software project context"
+
+  quick-dev:
+    conflict: true
+    description: "Flexible development (multiple modules)"
+    options:
+      - alias: "game:quick-dev"
+        target: "bmad:bmgd:workflows:quick-dev"
+        module: bmgd
+        description: "Flexible game development"
+      - alias: "bmm:quick-dev"
+        target: "bmad:bmm:workflows:quick-dev"
+        module: bmm
+        description: "Flexible software development"
+
+  retrospective:
+    conflict: true
+    description: "Epic retrospective (multiple modules)"
+    options:
+      - alias: "game:retrospective"
+        target: "bmad:bmgd:workflows:retrospective"
+        module: bmgd
+        description: "Game dev epic retrospective"
+      - alias: "bmm:retrospective"
+        target: "bmad:bmm:workflows:retrospective"
+        module: bmm
+        description: "Software dev epic retrospective"
+
+  sprint-planning:
+    conflict: true
+    description: "Sprint planning and tracking (multiple modules)"
+    options:
+      - alias: "game:sprint-planning"
+        target: "bmad:bmgd:workflows:sprint-planning"
+        module: bmgd
+        description: "Game dev sprint planning"
+      - alias: "bmm:sprint-planning"
+        target: "bmad:bmm:workflows:sprint-planning"
+        module: bmm
+        description: "Software dev sprint planning"
+
+  sprint-status:
+    conflict: true
+    description: "Sprint status summary (multiple modules)"
+    options:
+      - alias: "game:sprint-status"
+        target: "bmad:bmgd:workflows:sprint-status"
+        module: bmgd
+        description: "Game dev sprint status"
+      - alias: "bmm:sprint-status"
+        target: "bmad:bmm:workflows:sprint-status"
+        module: bmm
+        description: "Software dev sprint status"
+
+  workflow-init:
+    conflict: true
+    description: "Initialize new project (multiple modules)"
+    options:
+      - alias: "game:workflow-init"
+        target: "bmad:bmgd:workflows:workflow-init"
+        module: bmgd
+        description: "Initialize game dev project"
+      - alias: "bmm:workflow-init"
+        target: "bmad:bmm:workflows:workflow-init"
+        module: bmm
+        description: "Initialize software dev project"
+
+  workflow-status:
+    conflict: true
+    description: "Workflow status checker (multiple modules)"
+    options:
+      - alias: "game:workflow-status"
+        target: "bmad:bmgd:workflows:workflow-status"
+        module: bmgd
+        description: "Game dev workflow status"
+      - alias: "bmm:workflow-status"
+        target: "bmad:bmm:workflows:workflow-status"
+        module: bmm
+        description: "Software dev workflow status"
+
+# =============================================================================
+# END OF WORKFLOW ALIAS REGISTRY
+# =============================================================================

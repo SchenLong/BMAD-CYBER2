@@ -330,7 +330,7 @@ class BMADPackageRegistryManager {
      */
     async installPackage(packageName, version, options = {}) {
         try {
-            console.log(`[Package Registry Manager] Installing package: ${packageName}${version ? '@' + version : ''}`);
+            console.log(`[Package Registry Manager] Installing package: ${packageName}${version ? `@${  version}` : ''}`);
 
             // Get package information
             const packageInfo = await this.getPackageInfo(packageName, version);
@@ -393,9 +393,8 @@ class BMADPackageRegistryManager {
 
         if (options.saveDev) {
             cmd += ' --save-dev';
-        } else if (options.save !== false) {
-            cmd += ' --save';
         }
+        // Note: --save is the default in npm 5+, no need to specify it explicitly
 
         const packageSpec = version ? `${packageName}@${version}` : packageName;
         cmd += ` ${packageSpec}`;
@@ -459,8 +458,8 @@ class BMADPackageRegistryManager {
 
             // Set stricter requirements for specialized teams
             baseInfo.engines = {
-                node: '>=18.0.0',
-                npm: '>=8.0.0'
+                node: '>=20.0.0',
+                npm: '>=10.0.0'
             };
         }
 

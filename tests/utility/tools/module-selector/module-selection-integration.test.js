@@ -17,66 +17,66 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import all module-selector components
 import {
-  scanModuleDirectories,
-  parseModuleYaml,
-  loadAllModules,
+  findModuleByCode,
   getModuleSummary,
-  findModuleByCode
+  loadAllModules,
+  parseModuleYaml,
+  scanModuleDirectories
 } from './module-loader.js';
 
 import {
+  applyRecommendations,
   buildModuleChoices,
   calculateSelectionSummary,
-  validateSelection,
-  applyRecommendations
+  validateSelection
 } from './module-selection-ui.js';
 
 import {
-  getRecommendedModules,
   applyRecommendations as applyRoleRecommendations,
-  sortModulesByRecommendation,
+  getRecommendedModules,
   isValidRole,
   ROLE_MODULE_MAP,
+  sortModulesByRecommendation,
   VALID_ROLES
 } from './role-recommendations.js';
 
 import {
-  updateManifest,
-  readExistingManifest,
   createManifestStructure,
-  validateManifestStructure,
-  parseYaml,
-  serializeYaml,
   MANIFEST_PATH,
+  parseYaml,
+  readExistingManifest,
+  serializeYaml,
+  updateManifest,
+  validateManifestStructure,
   WIZARD_VERSION
 } from './manifest-writer.js';
 
 import {
-  extractInteractiveFields,
   expandPlaceholders,
+  extractInteractiveFields,
   getFieldType,
   validateFieldConfig
 } from './module-config-prompt.js';
 
 import {
   createOutputDirectory,
-  saveModuleConfig,
-  readModuleConfig,
   ensureModulesConfigDirectory,
-  MODULES_CONFIG_DIR
+  MODULES_CONFIG_DIR,
+  readModuleConfig,
+  saveModuleConfig
 } from './module-config-persistence.js';
 
 import {
-  hasInteractiveFields,
   createAllOutputDirectories,
-  getConfigurationStatus
+  getConfigurationStatus,
+  hasInteractiveFields
 } from './module-config-orchestrator.js';
 
 // ESM equivalent of __dirname
@@ -117,10 +117,10 @@ prompt:
   - "This module is required for all installations"
 
 agents_path:
-  result: "{project-root}/_bmad/core/agents"
+  result: "{project-root}/src/core/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/core/workflows"
+  result: "{project-root}/src/core/workflows"
 
 module_version:
   result: "6.0.0"
@@ -154,10 +154,10 @@ reports:
   result: "{output_folder}/reports"
 
 agents_path:
-  result: "{project-root}/_bmad/intel-team/agents"
+  result: "{project-root}/src/intel-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/intel-team/workflows"
+  result: "{project-root}/src/intel-team/workflows"
 
 module_version:
   result: "1.1.0"
@@ -182,10 +182,10 @@ output_folder:
   result: "{project-root}/{value}"
 
 agents_path:
-  result: "{project-root}/_bmad/cybersec-team/agents"
+  result: "{project-root}/src/cybersec-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/cybersec-team/workflows"
+  result: "{project-root}/src/cybersec-team/workflows"
 
 module_version:
   result: "1.0.0"
@@ -205,10 +205,10 @@ prompt:
   - "Includes PRD creation, architecture design, and sprint planning"
 
 agents_path:
-  result: "{project-root}/_bmad/bmm/agents"
+  result: "{project-root}/src/bmm/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/bmm/workflows"
+  result: "{project-root}/src/bmm/workflows"
 
 module_version:
   result: "2.0.0"
@@ -228,10 +228,10 @@ prompt:
   - "Includes specialized legal counsel agents"
 
 agents_path:
-  result: "{project-root}/_bmad/legal-team/agents"
+  result: "{project-root}/src/legal-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/legal-team/workflows"
+  result: "{project-root}/src/legal-team/workflows"
 
 module_version:
   result: "1.0.0"

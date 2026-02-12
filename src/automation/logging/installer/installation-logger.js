@@ -83,7 +83,7 @@ class InstallationLogger extends EventEmitter {
 
     startOperation(operationId, metadata = {}) {
         const operation = { id: operationId, startTime: Date.now(), metadata, status: "running" };
-        this.info("Operation started: " + operationId, metadata);
+        this.info(`Operation started: ${  operationId}`, metadata);
         this.audit("OPERATION_STARTED", { operationId, metadata });
         return { end: (result = {}) => this._endOperation(operation, result), fail: (error) => this._failOperation(operation, error) };
     }
@@ -113,7 +113,7 @@ class InstallationLogger extends EventEmitter {
             case "json": return JSON.stringify(this.logs, null, 2);
             case "csv": return this._exportToCSV();
             case "text": return this._exportToText();
-            default: throw new Error("Unsupported export format: " + format);
+            default: throw new Error(`Unsupported export format: ${  format}`);
         }
     }
 
@@ -149,32 +149,32 @@ class InstallationLogger extends EventEmitter {
         const reset = "\x1b[0m";
         const color = this.config.colorOutput ? colors[entry.level] : "";
         const resetCode = this.config.colorOutput ? reset : "";
-        const prefix = "[" + entry.timestamp + "] " + color + "[" + entry.level + "]" + resetCode;
-        const contextStr = Object.keys(entry.context).length > 0 ? " " + JSON.stringify(entry.context) : "";
-        console.log(prefix + " " + entry.message + contextStr);
+        const prefix = `[${  entry.timestamp  }] ${  color  }[${  entry.level  }]${  resetCode}`;
+        const contextStr = Object.keys(entry.context).length > 0 ? ` ${  JSON.stringify(entry.context)}` : "";
+        console.log(`${prefix  } ${  entry.message  }${contextStr}`);
     }
 
     _writeToFile(entry) {
         if (!this.logFileStream) return;
-        const line = this.config.structuredLogs ? JSON.stringify(entry) + "\n" : "[" + entry.timestamp + "] [" + entry.level + "] " + entry.message + " " + JSON.stringify(entry.context) + "\n";
+        const line = this.config.structuredLogs ? `${JSON.stringify(entry)  }\n` : `[${  entry.timestamp  }] [${  entry.level  }] ${  entry.message  } ${  JSON.stringify(entry.context)  }\n`;
         this.logFileStream.write(line);
         this._checkLogRotation();
     }
 
-    _writeAuditEntry(entry) { if (!this.auditFileStream) return; this.auditFileStream.write(JSON.stringify(entry) + "\n"); }
-    _generateSessionId() { return "install-" + Date.now() + "-" + crypto.randomBytes(4).toString("hex"); }
+    _writeAuditEntry(entry) { if (!this.auditFileStream) return; this.auditFileStream.write(`${JSON.stringify(entry)  }\n`); }
+    _generateSessionId() { return `install-${  Date.now()  }-${  crypto.randomBytes(4).toString("hex")}`; }
     _getTimestamp() { const now = new Date(); return this.config.timestampFormat === "ISO" ? now.toISOString() : now.toLocaleString(); }
     async _ensureLogDirectory() { const dir = this.config.logDirectory; if (!fs.existsSync(dir)) { fs.mkdirSync(dir, { recursive: true }); } }
 
     async _initializeLogFile() {
         const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-        this.currentLogFile = path.join(this.config.logDirectory, "installation-" + timestamp + ".log");
+        this.currentLogFile = path.join(this.config.logDirectory, `installation-${  timestamp  }.log`);
         this.logFileStream = fs.createWriteStream(this.currentLogFile, { flags: "a", encoding: "utf8" });
     }
 
     async _initializeAuditFile() {
         const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-        const auditFile = path.join(this.config.logDirectory, "audit-" + timestamp + ".log");
+        const auditFile = path.join(this.config.logDirectory, `audit-${  timestamp  }.log`);
         this.auditFileStream = fs.createWriteStream(auditFile, { flags: "a", encoding: "utf8" });
     }
 
@@ -185,7 +185,7 @@ class InstallationLogger extends EventEmitter {
 
     _rotateLogFile() {
         if (this.logFileStream) { this.logFileStream.end(); }
-        const rotatedFile = this.currentLogFile + "." + Date.now();
+        const rotatedFile = `${this.currentLogFile  }.${  Date.now()}`;
         fs.renameSync(this.currentLogFile, rotatedFile);
         this._cleanupOldLogs();
         this.logFileStream = fs.createWriteStream(this.currentLogFile, { flags: "a", encoding: "utf8" });
@@ -210,7 +210,7 @@ class InstallationLogger extends EventEmitter {
     _endOperation(operation, result) {
         const duration = Date.now() - operation.startTime;
         operation.status = "completed"; operation.duration = duration; operation.result = result;
-        this.info("Operation completed: " + operation.id, { duration: duration + "ms", ...result });
+        this.info(`Operation completed: ${  operation.id}`, { duration: `${duration  }ms`, ...result });
         this.audit("OPERATION_COMPLETED", { operationId: operation.id, duration, result });
         return operation;
     }
@@ -218,20 +218,20 @@ class InstallationLogger extends EventEmitter {
     _failOperation(operation, error) {
         const duration = Date.now() - operation.startTime;
         operation.status = "failed"; operation.duration = duration; operation.error = error;
-        this.error("Operation failed: " + operation.id, { duration: duration + "ms", error: error.message || error });
+        this.error(`Operation failed: ${  operation.id}`, { duration: `${duration  }ms`, error: error.message || error });
         this.audit("OPERATION_FAILED", { operationId: operation.id, duration, error: error.message || error });
         return operation;
     }
 
-    _formatDuration(ms) { if (ms < 1000) return ms + "ms"; if (ms < 60000) return (ms / 1000).toFixed(2) + "s"; const minutes = Math.floor(ms / 60000); const seconds = ((ms % 60000) / 1000).toFixed(0); return minutes + "m " + seconds + "s"; }
+    _formatDuration(ms) { if (ms < 1000) return `${ms  }ms`; if (ms < 60000) return `${(ms / 1000).toFixed(2)  }s`; const minutes = Math.floor(ms / 60000); const seconds = ((ms % 60000) / 1000).toFixed(0); return `${minutes  }m ${  seconds  }s`; }
 
     _exportToCSV() {
         const headers = "timestamp,level,sessionId,message,context\n";
-        const rows = this.logs.map(log => { const msg = log.message.replace(/"/g, '""'); const ctx = JSON.stringify(log.context).replace(/"/g, '""'); return '"' + log.timestamp + '","' + log.level + '","' + log.sessionId + '","' + msg + '","' + ctx + '"'; }).join("\n");
+        const rows = this.logs.map(log => { const msg = log.message.replace(/"/g, '""'); const ctx = JSON.stringify(log.context).replace(/"/g, '""'); return `"${  log.timestamp  }","${  log.level  }","${  log.sessionId  }","${  msg  }","${  ctx  }"`; }).join("\n");
         return headers + rows;
     }
 
-    _exportToText() { return this.logs.map(log => "[" + log.timestamp + "] [" + log.level + "] " + log.message).join("\n"); }
+    _exportToText() { return this.logs.map(log => `[${  log.timestamp  }] [${  log.level  }] ${  log.message}`).join("\n"); }
 }
 
 class ProgressTracker {
@@ -240,13 +240,13 @@ class ProgressTracker {
         this.currentStep = 0; this.status = "pending"; this.startTime = null; this.endTime = null; this.steps = []; this.metadata = {};
     }
 
-    start() { this.status = "running"; this.startTime = Date.now(); if (this.logger) { this.logger.info("Progress started: " + this.description, { trackerId: this.id, totalSteps: this.totalSteps }); } return this; }
+    start() { this.status = "running"; this.startTime = Date.now(); if (this.logger) { this.logger.info(`Progress started: ${  this.description}`, { trackerId: this.id, totalSteps: this.totalSteps }); } return this; }
 
     update(step, message = "") {
         this.currentStep = step;
         const percentComplete = Math.round((step / this.totalSteps) * 100);
         this.steps.push({ step, message, timestamp: Date.now(), percentComplete });
-        if (this.logger) { this.logger.debug("Progress: " + this.description, { trackerId: this.id, step, total: this.totalSteps, percentComplete: percentComplete + "%", message }); }
+        if (this.logger) { this.logger.debug(`Progress: ${  this.description}`, { trackerId: this.id, step, total: this.totalSteps, percentComplete: `${percentComplete  }%`, message }); }
         return this;
     }
 
@@ -254,13 +254,13 @@ class ProgressTracker {
 
     complete(metadata = {}) {
         this.status = "completed"; this.currentStep = this.totalSteps; this.endTime = Date.now(); this.metadata = { ...this.metadata, ...metadata };
-        if (this.logger) { this.logger.info("Progress completed: " + this.description, { trackerId: this.id, duration: this.getDuration(), totalSteps: this.totalSteps }); }
+        if (this.logger) { this.logger.info(`Progress completed: ${  this.description}`, { trackerId: this.id, duration: this.getDuration(), totalSteps: this.totalSteps }); }
         return this;
     }
 
     fail(error) {
         this.status = "failed"; this.endTime = Date.now(); this.metadata.error = error;
-        if (this.logger) { this.logger.error("Progress failed: " + this.description, { trackerId: this.id, error: error.message || error, lastStep: this.currentStep }); }
+        if (this.logger) { this.logger.error(`Progress failed: ${  this.description}`, { trackerId: this.id, error: error.message || error, lastStep: this.currentStep }); }
         return this;
     }
 

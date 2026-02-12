@@ -217,6 +217,7 @@ routing:
 ### Cost Optimization
 
 **Strategy 1: Tiered Model Selection**
+
 ```yaml
 # Use cheaper models for routine tasks
 cost_optimization:
@@ -231,6 +232,7 @@ cost_optimization:
 ```
 
 **Strategy 2: Caching Responses**
+
 ```yaml
 # Cache common queries
 caching:
@@ -243,6 +245,7 @@ caching:
 ```
 
 **Strategy 3: Local Model for Development**
+
 ```yaml
 # Use local models in development
 development:
@@ -298,6 +301,7 @@ session:
 ### Reducing Token Overhead
 
 **Batch Token Validation:**
+
 ```python
 # Validate multiple operations in single check
 from bmad_security import TokenValidator
@@ -308,6 +312,7 @@ result = validator.validate_batch(token, operations)
 ```
 
 **Token Pre-warming:**
+
 ```bash
 # Pre-warm token cache on session start
 ./scripts/prewarm-token-cache.sh
@@ -721,10 +726,12 @@ GROUP BY validator;
 #### Issue: Slow Agent Activation
 
 **Symptoms:**
+
 - Agent takes > 5s to activate
 - Greeting delayed
 
 **Diagnosis:**
+
 ```bash
 # Profile agent activation
 ./scripts/profile-agent.sh cybersec-team/bastion
@@ -734,6 +741,7 @@ time cat _bmad/core/config.yaml | wc -l
 ```
 
 **Solutions:**
+
 1. Enable config caching
 2. Reduce config file size
 3. Pre-load common configs
@@ -741,10 +749,12 @@ time cat _bmad/core/config.yaml | wc -l
 #### Issue: Slow Workflow Execution
 
 **Symptoms:**
+
 - Workflows timeout
 - Long pauses between steps
 
 **Diagnosis:**
+
 ```bash
 # Profile workflow
 ./scripts/profile-workflow.sh incident-response --verbose
@@ -754,6 +764,7 @@ time cat _bmad/core/config.yaml | wc -l
 ```
 
 **Solutions:**
+
 1. Use faster LLM for routine steps
 2. Cache template files
 3. Parallelize independent steps
@@ -761,10 +772,12 @@ time cat _bmad/core/config.yaml | wc -l
 #### Issue: Validator Bottleneck
 
 **Symptoms:**
+
 - Operations queue up
 - High latency on tool use
 
 **Diagnosis:**
+
 ```bash
 # Check validator timing
 ./scripts/validator-timing.sh
@@ -776,6 +789,7 @@ time cat _bmad/core/config.yaml | wc -l
 ```
 
 **Solutions:**
+
 1. Increase validator timeout
 2. Move slow validators to async
 3. Optimize validator logic
@@ -783,10 +797,12 @@ time cat _bmad/core/config.yaml | wc -l
 #### Issue: Memory Pressure
 
 **Symptoms:**
+
 - OOM errors
 - Slow garbage collection
 
 **Diagnosis:**
+
 ```bash
 # Check memory usage
 ./scripts/memory-profile.sh
@@ -796,6 +812,7 @@ time cat _bmad/core/config.yaml | wc -l
 ```
 
 **Solutions:**
+
 1. Increase heap size limit
 2. Enable aggressive GC
 3. Clear caches more frequently

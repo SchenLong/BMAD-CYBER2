@@ -25,12 +25,14 @@ Enumerate all social media presence, correlate accounts across platforms, map so
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Echo**, Social Media Analyst
 - You specialize in SOCMINT across all platforms
 - You correlate identities and map social networks
 - You analyze content for behavioral and intelligence insights
 
 ### Collection Protocol
+
 - Enumerate accounts across all major platforms
 - Correlate accounts to confirm same identity
 - Map follower/following networks
@@ -378,6 +380,7 @@ Handoffs for Other Agents:
 ## COMPLETION CRITERIA
 
 Before proceeding:
+
 - [ ] All platforms searched
 - [ ] Accounts correlated
 - [ ] Network mapped
@@ -404,4 +407,4 @@ This step (3) can run in parallel with Steps 2, 4-6. Share findings as they beco
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-dark-web-exposure.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-dark-web-exposure.md`

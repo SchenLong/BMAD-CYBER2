@@ -24,9 +24,9 @@ templateFile: '{workflow_path}/templates/report-template.md'
 
 # Step 1: Security Architecture Review Initialization
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -34,7 +34,7 @@ templateFile: '{workflow_path}/templates/report-template.md'
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona)
 - ✅ We engage in collaborative dialogue, not command-response
@@ -43,32 +43,32 @@ templateFile: '{workflow_path}/templates/report-template.md'
 - ✅ Together we produce a thorough security analysis better than either could alone
 - ✅ Maintain collaborative, professional, technically precise tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on initialization and architecture context gathering
 - 🚫 FORBIDDEN to look ahead to threat modeling or other analysis steps
 - 💬 Handle initialization professionally with clear questions
 - 🚪 DETECT existing workflow state and handle continuation properly
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Show analysis before taking any action
 - 💾 Initialize document and update frontmatter
 - 📖 Set up frontmatter `stepsCompleted: [1]` before loading next step
 - 🚫 FORBIDDEN to load next step until setup is complete
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Variables from workflow.md are available in memory
 - Previous context = what's in output document + frontmatter
 - Don't assume knowledge from other steps
 - Architecture diagram discovery happens in this step
 
-## STEP GOAL:
+## STEP GOAL
 
 To initialize the Security Architecture Review workflow by detecting continuation state, gathering essential architecture context, creating the output document, and preparing for STRIDE threat modeling.
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Check for Existing Workflow
 
@@ -224,6 +224,7 @@ _Phased remediation plan to be completed in Step 6_
 ```
 
 Update frontmatter:
+
 - Add architecture docs to `architectureDocs` array if found
 - Set `stepsCompleted: [1]`
 - Set `lastStep: 'init'`
@@ -236,7 +237,7 @@ I've initialized your Security Architecture Review document with the system over
 
 Ready to proceed to threat modeling?"
 
-## ✅ SUCCESS METRICS:
+## ✅ SUCCESS METRICS
 
 - Document created from template structure (for fresh workflows)
 - Frontmatter initialized with `stepsCompleted: [1]`
@@ -245,7 +246,7 @@ Ready to proceed to threat modeling?"
 - Ready to proceed to STRIDE threat modeling
 - OR continuation properly routed to step-01b-continue.md
 
-## ❌ FAILURE MODES TO AVOID:
+## ❌ FAILURE MODES TO AVOID
 
 - Proceeding with threat modeling without document initialization
 - Not checking for existing documents properly
@@ -260,15 +261,15 @@ After document initialization and architecture context gathering:
 
 **Proceeding to STRIDE Threat Modeling...**
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
-- After setup completion and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}` to begin structured threat modeling
+- After setup completion and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}` to begin structured threat modeling
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Document created with proper 7-section structure (for fresh workflows)
 - Frontmatter initialized with `stepsCompleted: [1]`
@@ -277,7 +278,7 @@ After document initialization and architecture context gathering:
 - User understands next step (STRIDE threat modeling)
 - OR existing workflow properly routed to step-01b-continue.md
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Proceeding with threat modeling without architecture context
 - Not checking for existing documents properly
@@ -290,4 +291,4 @@ After document initialization and architecture context gathering:
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete, architecture context is documented, and user confirms readiness will you then update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}` to begin STRIDE threat modeling.
+ONLY WHEN initialization setup is complete, architecture context is documented, and user confirms readiness will you then update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}` to begin STRIDE threat modeling.

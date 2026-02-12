@@ -18,13 +18,13 @@ outputFile: '{output_folder}/planning/architecture/security-review-{project_name
 
 # Step 5: Zero-Trust Validation
 
-## STEP GOAL:
+## STEP GOAL
 
 To validate the architecture against zero-trust security principles, identify where the architecture relies on implicit trust, and assess maturity toward a "never trust, always verify" security model.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -32,7 +32,7 @@ To validate the architecture against zero-trust security principles, identify wh
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona) specializing in zero-trust architecture
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this role
@@ -42,28 +42,28 @@ To validate the architecture against zero-trust security principles, identify wh
 - ✅ Together we assess zero-trust maturity and identify trust boundaries
 - ✅ Maintain collaborative, analytical, forward-looking tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on zero-trust principle validation
 - 🚫 FORBIDDEN to jump ahead to recommendations (that's Step 6)
 - 💬 Approach: Validate against each principle, identify implicit trust, assess maturity
 - 📋 Reference NIST SP 800-207 (Zero Trust Architecture) where applicable
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Assess architecture against 7 core zero-trust principles
 - 💾 Document zero-trust assessment in new section before Section 5 (Risk Matrix)
 - 📖 Update frontmatter `stepsCompleted` to include 5 before loading next step
 - 🚫 FORBIDDEN to recommend specific controls here (that's Step 6)
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Architecture, threats, controls, attack surface analysis
 - Focus: Validate zero-trust alignment and identify implicit trust
 - Limits: Don't assume zero-trust implementation without user confirmation
 - Dependencies: Benefits from understanding existing controls
 
-## ZERO-TRUST VALIDATION SEQUENCE:
+## ZERO-TRUST VALIDATION SEQUENCE
 
 ### 1. Initialize Zero-Trust Validation
 
@@ -98,6 +98,7 @@ Zero-trust requires explicit verification for every access request using all ava
 5. **Continuous Authentication**: Are sessions re-verified, or is authentication one-time at login?
 
 **Common Gaps:**
+
 - Internal services trust network location (no authentication)
 - MFA only at perimeter, not for internal resource access
 - No device posture checks before granting access
@@ -124,6 +125,7 @@ Users and services should have minimum necessary permissions for their function.
 5. **Permission Reviews**: Are access permissions regularly reviewed and pruned?
 
 **Common Gaps:**
+
 - Users have more permissions than needed \"just in case\"
 - Service accounts with overly broad permissions
 - Long-lived credentials instead of temporary
@@ -150,6 +152,7 @@ Design assumes attackers are already inside the network; limit lateral movement 
 5. **Least Privilege Network**: Do firewall rules allow only necessary flows, not broad network access?
 
 **Common Gaps:**
+
 - Flat network where all services can reach all others
 - No encryption for internal traffic (only external)
 - Single compromise leads to full environment access
@@ -176,6 +179,7 @@ Comprehensive visibility into all access, data flows, and user activity.
 5. **User and Entity Behavior Analytics (UEBA)**: Do you detect anomalous behavior patterns?
 
 **Common Gaps:**
+
 - Incomplete logging (missing authorization decisions, data access)
 - Logs stored locally (attacker can delete)
 - No real-time alerting on suspicious activity
@@ -202,6 +206,7 @@ All devices accessing resources must be secure and monitored.
 5. **Device-Based Conditional Access**: Can you block access from non-compliant devices?
 
 **Common Gaps:**
+
 - No device health verification before granting access
 - BYOD devices accessing resources without security controls
 - No visibility into device posture
@@ -228,6 +233,7 @@ Network segmented into small zones with granular access controls.
 5. **Network Location Irrelevance**: Is access granted based on identity, not network location?
 
 **Common Gaps:**
+
 - Perimeter-based security (once inside, everything accessible)
 - VPN gives broad network access instead of specific resources
 - No segmentation between internal services
@@ -254,6 +260,7 @@ Trust is never static; continuously reevaluate and adapt based on risk signals.
 5. **Dynamic Policy Updates**: Can policies be updated in real-time based on threat intelligence?
 
 **Common Gaps:**
+
 - Authentication only at login, then unlimited session duration
 - No re-verification when accessing sensitive resources
 - Unable to revoke access in real-time
@@ -272,6 +279,7 @@ How often is trust reverified? Can you revoke access dynamically if risk increas
 Based on your responses, let's assess maturity for each principle:
 
 **Maturity Levels:**
+
 - **Level 1 - Traditional**: Perimeter-based security, implicit trust inside network
 - **Level 2 - Initial**: Some zero-trust concepts (MFA, basic segmentation)
 - **Level 3 - Advanced**: Strong zero-trust implementation across multiple principles
@@ -422,6 +430,7 @@ Insert new section in {outputFile} after Section 4 (before Risk Matrix section):
 ```
 
 Update frontmatter in {outputFile}:
+
 - Add 5 to `stepsCompleted` array: `stepsCompleted: [1, 2, 3, 4, 5]`
 - Set `lastStep: 'zero-trust'`
 - Add `zeroTrustMaturity: [calculated level]`
@@ -430,12 +439,12 @@ Update frontmatter in {outputFile}:
 
 Display: **Select an Option:** [C] Continue to Recommendations
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
-- IF C: Save zero-trust assessment to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Save zero-trust assessment to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#11-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -446,13 +455,13 @@ Display: **Select an Option:** [C] Continue to Recommendations
 ONLY WHEN 'C' is selected AND zero-trust validation is complete across all 7 principles AND documented in Section 4b of {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2, 3, 4, 5]`, `lastStep: 'zero-trust'`
-2. Load, read entire file, then execute {nextStepFile} to begin recommendations and remediation
+2. Load, read entire file, then follow {nextStepFile} to begin recommendations and remediation
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All 7 zero-trust principles assessed
 - Maturity level assigned for each principle
@@ -464,7 +473,7 @@ ONLY WHEN 'C' is selected AND zero-trust validation is complete across all 7 pri
 - User validated assessment completeness
 - Frontmatter updated with step 5 completion
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping zero-trust principles
 - Not identifying implicit trust boundaries

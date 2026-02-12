@@ -21,13 +21,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2A: Incident Type Selection & Organizational Context
 
-## STEP GOAL:
+## STEP GOAL
 
 To determine which incident type(s) this playbook will cover and gather essential organizational context that will inform all procedures documented in subsequent steps.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -35,7 +35,7 @@ To determine which incident type(s) this playbook will cover and gather essentia
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an IR Planning Consultant
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -44,28 +44,28 @@ To determine which incident type(s) this playbook will cover and gather essentia
 - ✅ User brings organizational knowledge and requirements
 - ✅ Maintain collaborative, consultative tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on incident type selection and org context gathering
 - 🚫 FORBIDDEN to start defining procedures (that's step 3a onward)
 - 💬 Guide through conversational exploration, not interrogation
 - 📋 Document all context - it informs every subsequent step
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Load incident types data and present options clearly
 - 💾 Append to Section 1 (Incident Overview) in output file
 - 📖 Update frontmatter `stepsCompleted: [1, 2a]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Playbook file was created in step 1
 - Focus on WHAT incident type and WHO the organization is
 - Don't define HOW to respond yet (that's steps 3a-7a)
 - Context gathered here shapes all subsequent procedures
 
-## INCIDENT TYPE SELECTION SEQUENCE:
+## INCIDENT TYPE SELECTION SEQUENCE
 
 ### 1. Load and Present Incident Types
 
@@ -102,6 +102,7 @@ Once user selects type:
 How would you define a {incident-type} incident for your organization? (I can suggest a definition based on industry standards, or you can provide your own)"
 
 Discuss and document:
+
 - Incident type name
 - Organizational definition
 - Common characteristics specific to their environment
@@ -114,11 +115,13 @@ Discuss and document:
 To create actionable procedures, I need to understand your organization's environment:
 
 **Organization Profile:**
+
 - What's your organization size? (Employees, locations)
 - What industry/sector?
 - What's your security maturity level? (Developing/Defined/Managed/Optimized)
 
 **Regulatory Requirements:**
+
 - Which regulations apply? (GDPR, PCI-DSS, HIPAA, SOC2, ISO 27001, etc.)
 - What are your notification requirements? (e.g., GDPR 72 hours)
 - Any industry-specific compliance needs?"
@@ -130,22 +133,27 @@ To create actionable procedures, I need to understand your organization's enviro
 What security tools does your team use?
 
 **SIEM (Security Information and Event Management):**
+
 - Platform: (Splunk, Elastic, QRadar, Sentinel, etc.)
 - Access level:
 - Key data sources:
 
 **EDR (Endpoint Detection and Response):**
+
 - Platform: (CrowdStrike, SentinelOne, Carbon Black, Defender, etc.)
 - Deployment coverage:
 
 **Forensics Tools:**
+
 - Available tools: (FTK, EnCase, Volatility, etc.)
 - Capabilities:
 
 **Ticketing/Case Management:**
+
 - System: (Jira, ServiceNow, etc.)
 
 **Other Relevant Tools:**
+
 - Firewall management:
 - Network monitoring:
 - Threat intelligence:
@@ -158,6 +166,7 @@ What security tools does your team use?
 Who responds to incidents in your organization?
 
 **Team Members:**
+
 - SOC Analysts:
 - Incident Response Team:
 - Security Engineering:
@@ -167,12 +176,14 @@ Who responds to incidents in your organization?
 - Communications/PR:
 
 **Escalation Paths:**
+
 - When does a SOC analyst escalate?
 - When is senior management notified?
 - When is legal involved?
 - When is PR/Communications involved?
 
 **Availability:**
+
 - 24/7 coverage?
 - On-call rotation?
 - External support available? (Vendor, MSSP, consulting)"
@@ -184,11 +195,13 @@ Who responds to incidents in your organization?
 How does your team communicate during incidents?
 
 **Primary Channels:**
+
 - Real-time collaboration: (Slack, Teams, etc.)
 - Voice/video: (Zoom, phone bridge, etc.)
 - Incident documentation: (SharePoint, Confluence, etc.)
 
 **Contact Information:**
+
 - Emergency contact list exists?
 - Escalation contact list maintained?
 - External stakeholder contacts documented?"
@@ -200,6 +213,7 @@ How does your team communicate during incidents?
 Does your organization have existing severity levels for incidents? If yes, please share them. If no, I can propose a framework based on NIST best practices.
 
 We'll need to define:
+
 - Severity levels (Critical, High, Medium, Low)
 - Criteria for each level
 - Response time requirements
@@ -272,6 +286,7 @@ This playbook covers {incident-type} incidents affecting {organization-name}.
 ```
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2a]
 incidentType: '{incident-type}'
@@ -283,29 +298,29 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Continue
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then redisplay the menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask}
 - IF P: Execute {partyModeWorkflow}
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Section 1 is complete will you load, read entire file, then execute `{nextStepFile}` to begin defining detection procedures.
+ONLY WHEN C is selected and Section 1 is complete will you load, read entire file, then follow `{nextStepFile}` to begin defining detection procedures.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Incident type clearly selected and defined
 - Organizational context comprehensively gathered
@@ -316,7 +331,7 @@ ONLY WHEN C is selected and Section 1 is complete will you load, read entire fil
 - Frontmatter updated with stepsCompleted: [1, 2a]
 - Menu presented and user input handled correctly
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping organizational context gathering
 - Generic procedures without org-specific context

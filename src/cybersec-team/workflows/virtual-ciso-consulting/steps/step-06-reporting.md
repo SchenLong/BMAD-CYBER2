@@ -12,17 +12,18 @@ advancedElicitationTask: '{project-root}/_bmad/core/workflows/advanced-elicitati
 
 # Step 6: Board/Executive Reporting
 
-## STEP GOAL:
+## STEP GOAL
 
 To design board-ready security reports, executive dashboards, KPI frameworks, and communication cadence that translate technical security into business language.
 
-## EXECUTIVE REPORTING PROCESS:
+## EXECUTIVE REPORTING PROCESS
 
 ### 1. Board Report Template
 
 Design quarterly board security report:
 
 **Report Structure:**
+
 1. Executive Summary (1-page, business language)
 2. Security Posture Overview (maturity trends)
 3. Key Risks & Mitigation Status
@@ -33,6 +34,7 @@ Design quarterly board security report:
 8. Recommendations & Decisions Needed
 
 For each section, define:
+
 - Key metrics/content
 - Visualization approach
 - Business context
@@ -43,12 +45,14 @@ For each section, define:
 Define security KPIs for executive monitoring:
 
 **Strategic KPIs:**
+
 - Security maturity score (trend)
 - Risk exposure (critical/high risks open)
 - Compliance status (% compliant)
 - Strategic initiative completion rate
 
 **Operational KPIs:**
+
 - Mean time to detect (MTTD)
 - Mean time to respond (MTTR)
 - Vulnerability remediation rate
@@ -56,12 +60,14 @@ Define security KPIs for executive monitoring:
 - Policy compliance rate
 
 **Risk KPIs:**
+
 - Critical vulnerabilities open
 - High-risk vendors count
 - Security incidents (trend)
 - Days since last breach
 
 For each KPI:
+
 - Metric definition
 - Target/threshold
 - Data source
@@ -71,6 +77,7 @@ For each KPI:
 ### 3. Executive Dashboard Design
 
 Design visual dashboard:
+
 - Risk heat map
 - Maturity radar chart
 - Incident trend graph
@@ -83,24 +90,28 @@ Design visual dashboard:
 Define reporting schedule:
 
 **Board of Directors:**
+
 - Frequency: Quarterly
 - Format: Formal report + presentation
 - Duration: 15-20 minutes
 - Focus: Strategic risks, compliance, major initiatives
 
 **Executive Leadership:**
+
 - Frequency: Monthly
 - Format: Security scorecard + brief
 - Duration: 30 minutes
 - Focus: Operational metrics, risks, decisions needed
 
 **Audit Committee:**
+
 - Frequency: Quarterly
 - Format: Compliance report
 - Duration: 30 minutes
 - Focus: Audit findings, compliance status, remediation
 
 **All-Hands:**
+
 - Frequency: Quarterly
 - Format: Security awareness brief
 - Duration: 10 minutes
@@ -111,12 +122,14 @@ Define reporting schedule:
 Define incident communication plan:
 
 **Severity Levels:**
+
 - Critical: Board notification within 2 hours
 - High: Executive notification within 4 hours
 - Medium: Weekly summary to leadership
 - Low: Monthly reporting
 
 **Communication Templates:**
+
 - Initial notification template
 - Status update template
 - Post-incident summary template
@@ -124,6 +137,7 @@ Define incident communication plan:
 ### 6. Append Section 6
 
 Update {outputFile} with:
+
 - Board report template (complete structure)
 - KPI framework with targets
 - Executive dashboard design
@@ -148,7 +162,7 @@ Display: **[B] Brainstorming [A] Advanced Elicitation [C] Continue to Vendor Ris
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
 
 - Board report template complete
 - KPI framework established

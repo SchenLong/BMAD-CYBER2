@@ -305,7 +305,7 @@ async function walkDirectory(rootPath, currentPath, manifest, options) {
  */
 function shouldExclude(filePath, patterns) {
     for (const pattern of patterns) {
-        const regex = new RegExp('^' + pattern.replace(/\*/g, '.*') + '$');
+        const regex = new RegExp(`^${  pattern.replace(/\*/g, '.*')  }$`);
         if (regex.test(filePath)) {
             return true;
         }

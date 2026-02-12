@@ -21,13 +21,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5B: Detailed Analysis
 
-## STEP GOAL:
+## STEP GOAL
 
 To conduct comprehensive root cause analysis, reconstruct the complete attack timeline, map observed activity to MITRE ATT&CK framework, and determine full incident scope.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER skip root cause analysis
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -35,14 +35,14 @@ To conduct comprehensive root cause analysis, reconstruct the complete attack ti
 - 📋 YOU ARE AN INCIDENT COMMANDER guiding technical analysis
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an Incident Commander
 - ✅ Tone: Analytical, methodical, thorough
 - ✅ Root cause understanding prevents recurrence
 - ✅ MITRE ATT&CK mapping standardizes analysis
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on analysis and understanding
 - 🚫 FORBIDDEN to start eradication (that's step 6b)
@@ -50,7 +50,7 @@ To conduct comprehensive root cause analysis, reconstruct the complete attack ti
 - 📝 Map to MITRE ATT&CK using CSV data
 - 🌐 Web-Browsing for threat intelligence
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Complete root cause analysis with evidence
 - 💾 Append to Section 5 (Technical Analysis) in output file
@@ -58,7 +58,7 @@ To conduct comprehensive root cause analysis, reconstruct the complete attack ti
 - 📖 Update frontmatter `stepsCompleted: [1, 2b, 3b, 4b, 5b]` before proceeding
 - 🚫 Present menu (P/W/C) after analysis complete
 
-## ANALYSIS SEQUENCE:
+## ANALYSIS SEQUENCE
 
 ### 1. Analysis Overview
 
@@ -69,6 +69,7 @@ Display:
 **Incident:** {incident-id} - {incident-type}
 
 **Analysis Goals:**
+
 1. Determine root cause (how did attacker succeed?)
 2. Reconstruct complete attack timeline
 3. Map activity to MITRE ATT&CK framework
@@ -110,6 +111,7 @@ Your answer:"
 What specific vulnerability or weakness did the attacker exploit?
 
 For {incident-type}:
+
 - Software vulnerability (CVE number if known): {prompt}
 - Configuration weakness: {prompt}
 - Weak/stolen credentials: {prompt}
@@ -130,20 +132,25 @@ For {incident-type}:
 Why didn't existing security controls prevent this?
 
 **Endpoint Protection:**
+
 - Why didn't EDR detect/prevent?: {prompt}
 - Why didn't antivirus detect?: {prompt}
 
 **Network Security:**
+
 - Why didn't firewall block?: {prompt}
 - Why didn't IDS/IPS detect?: {prompt}
 
 **Email Security (if phishing):**
+
 - Why did phishing email get through?: {prompt}
 
 **User Awareness:**
+
 - Why did user fall for social engineering?: {prompt}
 
 **Patching:**
+
 - Why was vulnerability unpatched?: {prompt}
 
 **Root Cause Summary:**
@@ -168,47 +175,55 @@ Using evidence from step 4b, let's reconstruct the complete attack timeline.
 **Let me guide you through each phase:**
 
 **Phase 1: Initial Access**
+
 - Timestamp: {prompt-for-first-observed-activity}
 - Activity: {prompt-for-what-happened}
 - Evidence: {prompt-for-evidence-source}
 - IOCs: {prompt-for-iocs}
 
 **Phase 2: Execution**
+
 - Timestamp: {prompt}
 - Activity: {prompt-for-malware-execution-or-command}
 - Evidence: {prompt}
 - IOCs: {prompt}
 
 **Phase 3: Persistence**
+
 - Timestamp: {prompt}
 - Activity: {prompt-for-persistence-mechanism}
 - Evidence: {prompt}
 - IOCs: {prompt}
 
 **Phase 4: Privilege Escalation (if applicable)**
+
 - Timestamp: {prompt}
 - Activity: {prompt}
 - Evidence: {prompt}
 - IOCs: {prompt}
 
 **Phase 5: Lateral Movement (if applicable)**
+
 - Timestamp: {prompt}
 - Activity: {prompt-for-systems-accessed}
 - Evidence: {prompt}
 - IOCs: {prompt}
 
 **Phase 6: Collection / Exfiltration / Impact**
+
 - Timestamp: {prompt}
 - Activity: {prompt-for-objective-achieved}
 - Evidence: {prompt}
 - IOCs: {prompt}
 
 **Phase 7: Detection**
+
 - Timestamp: {detection-time-from-step-2b}
 - Activity: Incident detected by {detection-method}
 - Evidence: {alert-or-report}
 
 **Dwell Time Calculation:**
+
 - First Activity: {first-timestamp}
 - Detection: {detection-timestamp}
 - **Dwell Time:** {calculated-duration} days/hours/minutes
@@ -232,6 +247,7 @@ For each tactic, indicate if you observed activity:
 **TA0001 - Initial Access:**
 Did attacker gain initial access? (Y/N):
 If Yes, which technique?
+
 - T1566 Phishing
 - T1190 Exploit Public-Facing Application
 - T1078 Valid Accounts
@@ -242,6 +258,7 @@ Observed indicators: {prompt}
 **TA0002 - Execution:**
 Did attacker execute code? (Y/N):
 If Yes, which technique?
+
 - T1059 Command and Scripting Interpreter (PowerShell, cmd, bash)
 - T1203 Exploitation for Client Execution
 - T1204 User Execution
@@ -252,6 +269,7 @@ Observed indicators: {prompt}
 **TA0003 - Persistence:**
 Did attacker establish persistence? (Y/N):
 If Yes, which technique?
+
 - T1543 Create or Modify System Process (services, daemons)
 - T1053 Scheduled Task/Job
 - T1547 Boot or Logon Autostart Execution (registry run keys)
@@ -263,6 +281,7 @@ Observed indicators: {prompt}
 **TA0004 - Privilege Escalation:**
 Did attacker escalate privileges? (Y/N):
 If Yes, which technique?
+
 - T1068 Exploitation for Privilege Escalation
 - T1078 Valid Accounts (privileged)
 - Other: {prompt}
@@ -272,6 +291,7 @@ Observed indicators: {prompt}
 **TA0005 - Defense Evasion:**
 Did attacker evade defenses? (Y/N):
 If Yes, which technique?
+
 - T1027 Obfuscated Files or Information
 - T1070 Indicator Removal (log clearing)
 - T1562 Impair Defenses (disable AV)
@@ -282,6 +302,7 @@ Observed indicators: {prompt}
 **TA0006 - Credential Access:**
 Did attacker steal credentials? (Y/N):
 If Yes, which technique?
+
 - T1003 OS Credential Dumping (LSASS, SAM)
 - T1110 Brute Force
 - T1056 Input Capture (keylogging)
@@ -292,6 +313,7 @@ Observed indicators: {prompt}
 **TA0007 - Discovery:**
 Did attacker perform reconnaissance? (Y/N):
 If Yes, which technique?
+
 - T1082 System Information Discovery
 - T1083 File and Directory Discovery
 - T1087 Account Discovery
@@ -303,6 +325,7 @@ Observed indicators: {prompt}
 **TA0008 - Lateral Movement:**
 Did attacker move laterally? (Y/N):
 If Yes, which technique?
+
 - T1021 Remote Services (RDP, SSH, SMB)
 - T1550 Use Alternate Authentication Material (pass-the-hash)
 - Other: {prompt}
@@ -313,6 +336,7 @@ Observed indicators: {prompt}
 **TA0009 - Collection:**
 Did attacker collect data? (Y/N):
 If Yes, which technique?
+
 - T1005 Data from Local System
 - T1039 Data from Network Shared Drive
 - T1113 Screen Capture
@@ -324,6 +348,7 @@ Observed indicators: {prompt}
 **TA0011 - Command and Control:**
 Did attacker establish C2? (Y/N):
 If Yes, which technique?
+
 - T1071 Application Layer Protocol (HTTP, HTTPS, DNS)
 - T1095 Non-Application Layer Protocol (raw sockets)
 - Other: {prompt}
@@ -334,6 +359,7 @@ Observed indicators: {prompt}
 **TA0010 - Exfiltration:**
 Did attacker exfiltrate data? (Y/N):
 If Yes, which technique?
+
 - T1041 Exfiltration Over C2 Channel
 - T1567 Exfiltration Over Web Service (cloud storage)
 - Other: {prompt}
@@ -344,6 +370,7 @@ Observed indicators: {prompt}
 **TA0040 - Impact:**
 Did attacker cause impact? (Y/N):
 If Yes, which technique?
+
 - T1486 Data Encrypted for Impact (ransomware)
 - T1485 Data Destruction
 - T1490 Inhibit System Recovery (delete backups)
@@ -377,6 +404,7 @@ Let's determine the full scope of the incident.
 **Total systems compromised:** {count}
 
 **System Categories:**
+
 - Servers: {count}
 - Workstations: {count}
 - Network devices: {count}
@@ -391,6 +419,7 @@ Let's determine the full scope of the incident.
 "**Data Exfiltration Details:**
 
 **Data Types:**
+
 - [ ] Personal Identifiable Information (PII): {Y/N} - Records: {count}
 - [ ] Protected Health Information (PHI): {Y/N} - Records: {count}
 - [ ] Payment Card Data: {Y/N} - Records: {count}
@@ -400,6 +429,7 @@ Let's determine the full scope of the incident.
 - [ ] Other: {prompt}
 
 **Data Sensitivity:**
+
 - Confidential: {Y/N}
 - Internal: {Y/N}
 - Public: {Y/N}
@@ -407,6 +437,7 @@ Let's determine the full scope of the incident.
 **Estimated Volume:** {prompt-for-file-sizes-or-record-counts}
 
 **Regulatory Impact:**
+
 - GDPR applies?: {Y/N}
 - PCI-DSS applies?: {Y/N}
 - HIPAA applies?: {Y/N}
@@ -415,6 +446,7 @@ Let's determine the full scope of the incident.
 "**Incident Duration:**
 
 **Timeline:**
+
 - First Observed Activity: {from-timeline}
 - Detection: {from-timeline}
 - Containment: {from-step-3b}
@@ -430,6 +462,7 @@ Let's determine the full scope of the incident.
 Map: {initial-system} → {system-2} → {system-3} → ...
 
 **Scope Summary:**
+
 - Systems: {count}
 - Data: {types-and-volumes}
 - Duration: {dwell-time}
@@ -636,13 +669,13 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [P] Party Mode [W] Web-Browsing [C] Continue to Eradication
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After Party Mode or Web-Browsing execution, return to this menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF P: Execute {partyModeWorkflow} - Recommend Cipher (threat intelligence expert) for TTP analysis and attribution guidance
 - IF W: Offer web search options:
@@ -650,18 +683,18 @@ Display: **Select an Option:** [P] Party Mode [W] Web-Browsing [C] Continue to E
   - Threat actor TTPs and attribution
   - Similar campaign research
   - MITRE ATT&CK technique details
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and analysis is complete will you load, read entire file, then execute `{nextStepFile}` to begin eradication.
+ONLY WHEN C is selected and analysis is complete will you load, read entire file, then follow `{nextStepFile}` to begin eradication.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Root cause analysis complete with evidence
 - Attack timeline reconstructed with timestamps
@@ -673,7 +706,7 @@ ONLY WHEN C is selected and analysis is complete will you load, read entire file
 - Frontmatter updated with stepsCompleted: [1, 2b, 3b, 4b, 5b]
 - Menu presented (P/W/C)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping root cause analysis (will repeat incident)
 - Missing MITRE ATT&CK mapping (incomplete analysis)

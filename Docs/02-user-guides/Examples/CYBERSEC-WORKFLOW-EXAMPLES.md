@@ -16,9 +16,11 @@ This guide provides detailed walkthrough examples for the most commonly used cyb
 ## Example 1: Incident Response Playbook
 
 ### Scenario
+
 Your SOC has detected unusual data exfiltration patterns from a production database server. Initial triage suggests potential compromise.
 
 ### Invocation
+
 ```
 /bmad:cybersec-team:workflows:incident-response-playbook
 ```
@@ -26,6 +28,7 @@ Your SOC has detected unusual data exfiltration patterns from a production datab
 ### Workflow Steps
 
 **Step 1: Incident Classification**
+
 ```
 User Input: "Potential data exfiltration from prod-db-01. Anomalous outbound
 traffic to external IP 203.0.113.45. ~500GB transferred over 48 hours."
@@ -37,6 +40,7 @@ Phoenix (Incident Commander) classifies as:
 ```
 
 **Step 2: Initial Containment**
+
 ```
 Phoenix coordinates immediate actions:
 - [ ] Isolate prod-db-01 from network (preserve running state)
@@ -47,6 +51,7 @@ Phoenix coordinates immediate actions:
 ```
 
 **Step 3: Evidence Collection**
+
 ```
 Trace (Forensic Investigator) guides evidence preservation:
 - Memory acquisition using winpmem/LiME
@@ -57,6 +62,7 @@ Trace (Forensic Investigator) guides evidence preservation:
 ```
 
 **Step 4: Analysis Phase**
+
 ```
 Cipher (Threat Analyst) performs:
 - IOC extraction from memory and disk
@@ -69,6 +75,7 @@ Cipher (Threat Analyst) performs:
 ```
 
 **Step 5: Eradication & Recovery**
+
 ```
 Phoenix coordinates:
 - Remove persistence mechanisms
@@ -119,9 +126,11 @@ Combined with weak service account password (unchanged for 18 months).
 ## Example 2: Threat Modeling (STRIDE)
 
 ### Scenario
+
 You're designing a new payment processing microservice and need to identify security threats before implementation.
 
 ### Invocation
+
 ```
 /bmad:cybersec-team:workflows:threat-modeling
 ```
@@ -129,6 +138,7 @@ You're designing a new payment processing microservice and need to identify secu
 ### Workflow Steps
 
 **Step 1: System Description**
+
 ```
 User Input: "New payment processing service. Accepts credit card data
 from mobile app, tokenizes with Stripe, stores transaction metadata in
@@ -169,6 +179,7 @@ Bastion applies STRIDE to each component:
 ```
 
 **Step 3: Data Flow Diagram Threat Analysis**
+
 ```
 Bastion identifies threats at each boundary crossing:
 
@@ -188,6 +199,7 @@ DFD5 Threats: Webhook spoofing, replay attacks, SSRF
 ```
 
 **Step 4: Risk Prioritization**
+
 ```
 High Priority (Must fix before launch):
 1. Card data in logs (PCI DSS violation)
@@ -246,9 +258,11 @@ Low Priority (Track for future):
 ## Example 3: Penetration Testing (Web Application)
 
 ### Scenario
+
 Pre-launch security assessment for a new SaaS application before going to production.
 
 ### Invocation
+
 ```
 /bmad:cybersec-team:workflows:web-app-security-testing
 ```
@@ -256,6 +270,7 @@ Pre-launch security assessment for a new SaaS application before going to produc
 ### Workflow Steps
 
 **Step 1: Scope Definition**
+
 ```
 User Input: "SaaS HR application. Test environment at
 https://staging.hrapp.example.com. Credentials provided.
@@ -269,6 +284,7 @@ Ghost (Penetration Tester) confirms:
 ```
 
 **Step 2: Reconnaissance**
+
 ```
 Ghost performs:
 - Technology fingerprinting: React frontend, Node.js backend, PostgreSQL
@@ -322,6 +338,7 @@ Severity: C=Critical, H=High, M=Medium, L=Low
 ```
 
 **Step 4: Exploitation (Proof of Concept)**
+
 ```
 Ghost demonstrates impact:
 
@@ -386,9 +403,11 @@ Tools: Burp Suite Pro, SQLMap, Nikto, custom scripts.
 ## Example 4: Compliance Audit Preparation
 
 ### Scenario
+
 Preparing for SOC 2 Type II audit scheduled in 3 months.
 
 ### Invocation
+
 ```
 /bmad:cybersec-team:workflows:compliance-audit-prep
 ```
@@ -396,6 +415,7 @@ Preparing for SOC 2 Type II audit scheduled in 3 months.
 ### Workflow Steps
 
 **Step 1: Framework Selection**
+
 ```
 User Input: "SOC 2 Type II audit in 90 days. First-time audit.
 SaaS product with customer data. AWS infrastructure."
@@ -431,6 +451,7 @@ Sentinel assesses current state against SOC 2 criteria:
 ```
 
 **Step 3: Evidence Collection Roadmap**
+
 ```
 Sentinel creates evidence requirements:
 
@@ -490,9 +511,11 @@ Week 9-12: Audit preparation
 ## Example 5: vCISO Consulting Engagement
 
 ### Scenario
+
 Startup seeking strategic security guidance without full-time CISO.
 
 ### Invocation
+
 ```
 /bmad:cybersec-team:workflows:virtual-ciso-consulting
 ```
@@ -500,6 +523,7 @@ Startup seeking strategic security guidance without full-time CISO.
 ### Workflow Overview
 
 **Initial Assessment Phase**
+
 ```
 Bastion leads security program assessment:
 
@@ -522,6 +546,7 @@ Bastion leads security program assessment:
 ```
 
 **Strategic Roadmap Phase**
+
 ```
 Bastion develops security strategy:
 
@@ -539,6 +564,7 @@ Budget Recommendations:
 ```
 
 **Ongoing Advisory**
+
 ```
 Monthly deliverables:
 - Security metrics dashboard
@@ -559,6 +585,7 @@ Quarterly deliverables:
 ## Workflow Combinations
 
 ### Security Architecture + Threat Modeling
+
 ```
 For new system designs, combine:
 1. security-architecture-review (high-level design)
@@ -567,6 +594,7 @@ For new system designs, combine:
 ```
 
 ### Incident Response + Intelligence
+
 ```
 For sophisticated threats, combine:
 1. incident-response-playbook (containment)

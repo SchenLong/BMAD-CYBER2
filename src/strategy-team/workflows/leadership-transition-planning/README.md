@@ -34,12 +34,14 @@ leadership-transition-planning/
 ## Advisor Perspectives
 
 **Primary Advisors:**
+
 - Jean-Luc (Principled Commander): Leadership principles, legacy, dignity
 - Geneva (Stakeholder Mediator): Stakeholder concerns, relationship continuity
 - Charles (Liberator): Transformation, renewal, fresh perspectives
 - Burke (Conservative): Stability, institutional knowledge, tradition
 
 **Supporting Perspectives:**
+
 - Giuseppe (Communications Director): Transition communications, messaging
 - Magnus (Political Strategist): Organizational politics, power dynamics
 - Sophia (Ethics Advisor): Fairness, transparency, stakeholder equity

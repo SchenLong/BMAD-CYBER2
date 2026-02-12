@@ -1,8 +1,7 @@
-import tar from 'tar';
+import * as tar from 'tar';
 import { existsSync, promises as fs, realpathSync } from 'fs';
-import { join, dirname, basename, resolve, relative, normalize } from 'path';
-import inquirer from 'inquirer';
-import ora from 'ora';
+import { basename, dirname, join, normalize, relative, resolve } from 'path';
+import { createSpinner, isCancel, select } from '../../../src/utility/cli/prompts.js';
 import { logger } from './logger.js';
 
 /**
@@ -126,7 +125,7 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
     dryRun = false
   } = options;
 
-  const spinner = ora();
+  const spinner = createSpinner();
 
   // 1. Build file filter
   const filter = buildFilter({ withDocs, withDev });
@@ -210,19 +209,15 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
       fileCount++;
       return true;
     },
-    onentry: (entry) => {
-      // Preserve permissions
-      if (entry.mode) {
-        entry.mode = entry.mode;
-      }
-    }
+    chmod: true,
+    // Permissions are preserved from archive via chmod: true above
   });
 
   if (securityViolations.length > 0) {
     logger.warn(`\nSecurity: ${securityViolations.length} potentially malicious entries were blocked during extraction.`);
   }
 
-  spinner.succeed(`Extracted ${fileCount} files`);
+  spinner.stop(`Extracted ${fileCount} files`);
 
   return { success: true, filesExtracted: fileCount };
 }
@@ -281,7 +276,7 @@ async function findConflicts(tarballPath, targetDir, filter) {
   const entries = [];
   await tar.list({
     file: tarballPath,
-    onentry: (entry) => {
+    onReadEntry: (entry) => {
       if (entry.type === 'File' && shouldExtract(entry.path, filter)) {
         // Remove top-level directory from path
         const parts = entry.path.split('/');
@@ -316,18 +311,19 @@ async function promptOverwrite(conflicts) {
     logger.info(`  ... and ${conflicts.length - 10} more`);
   }
 
-  const { action } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'action',
-      message: 'How would you like to handle existing files?',
-      choices: [
-        { name: 'Overwrite all', value: 'overwrite' },
-        { name: 'Skip existing files', value: 'skip' },
-        { name: 'Cancel installation', value: 'cancel' }
-      ]
-    }
-  ]);
+  const action = await select({
+    message: 'How would you like to handle existing files?',
+    options: [
+      { label: 'Overwrite all', value: 'overwrite' },
+      { label: 'Skip existing files', value: 'skip' },
+      { label: 'Cancel installation', value: 'cancel' }
+    ]
+  });
+
+  // Handle cancellation (Ctrl+C)
+  if (isCancel(action)) {
+    return 'cancel';
+  }
 
   return action;
 }
@@ -337,7 +333,7 @@ async function listTarballContents(tarballPath, filter) {
 
   await tar.list({
     file: tarballPath,
-    onentry: (entry) => {
+    onReadEntry: (entry) => {
       if (entry.type === 'File' && shouldExtract(entry.path, filter)) {
         const parts = entry.path.split('/');
         parts.shift();

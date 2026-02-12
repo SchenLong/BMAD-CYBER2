@@ -7,21 +7,21 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  LOCAL_PROVIDERS,
   DEFAULT_PROBE_TIMEOUT,
-  probeEndpoint,
-  detectProvider,
   detectLocalProviders,
+  detectProvider,
+  formatDetectedProviders,
+  getProviderByCode,
   getRunningProviders,
   hasLocalProvider,
-  getProviderByCode,
-  formatDetectedProviders
+  LOCAL_PROVIDERS,
+  probeEndpoint
 } from './local-detector.js';
 
 const __filename = fileURLToPath(import.meta.url);

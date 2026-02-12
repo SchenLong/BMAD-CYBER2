@@ -85,12 +85,14 @@ claude:
 ```
 
 **Strengths:**
+
 - Excellent reasoning and analysis
 - Native tool/function calling
 - Large context window (200K tokens)
 - Best for legal, strategy, and complex security analysis
 
 **Considerations:**
+
 - API costs
 - Data leaves local environment
 - Requires internet connection
@@ -125,6 +127,7 @@ ollama:
 | `deepseek-coder-v2` | 236B | Best for code |
 
 **Installation:**
+
 ```bash
 # Install Ollama
 curl -fsSL https://ollama.com/install.sh | sh
@@ -157,6 +160,7 @@ vllm:
 ```
 
 **Installation:**
+
 ```bash
 # Requires CUDA-capable GPU
 pip install vllm
@@ -168,6 +172,7 @@ python -m vllm.entrypoints.openai.api_server \
 ```
 
 **Advantages:**
+
 - Supports function calling
 - High throughput with PagedAttention
 - Efficient GPU memory usage
@@ -189,6 +194,7 @@ lmstudio:
 ```
 
 **Setup:**
+
 1. Download LM Studio from lmstudio.ai
 2. Download models through the UI
 3. Start local server (Server tab)
@@ -214,6 +220,7 @@ llamacpp:
 ```
 
 **Installation:**
+
 ```bash
 # Build llama.cpp
 git clone https://github.com/ggerganov/llama.cpp
@@ -244,6 +251,7 @@ openai:
 ```
 
 **Setup:**
+
 ```bash
 export OPENAI_API_KEY="sk-..."
 ```
@@ -266,6 +274,7 @@ groq:
 ```
 
 **Advantages:**
+
 - Extremely fast inference
 - Competitive pricing
 - Open model access
@@ -350,8 +359,8 @@ module_overrides:
 
 agent_overrides:
   # Specific agents needing speed
-  cybersec-team/incident-commander: groq
-  intel-team/osint-lead: groq
+  _bmad/cybersec-team/agents/incident-commander: groq
+  _bmad/intel-team/agents/osint-lead: groq
 ```
 
 ---
@@ -377,18 +386,18 @@ Override specific agents (takes precedence over module):
 
 ```yaml
 agent_overrides:
-  # Format: module/agent-name: provider
+  # Format: _bmad/module/agents/agent-name: provider
 
   # Security team exceptions
-  cybersec-team/forensic-investigator: ollama   # Always local
-  cybersec-team/incident-commander: groq        # Needs speed
+  _bmad/cybersec-team/agents/forensic-investigator: ollama   # Always local
+  _bmad/cybersec-team/agents/incident-commander: groq        # Needs speed
 
   # Intel team exceptions
-  intel-team/dark-web-analyst: ollama           # OPSEC critical
-  intel-team/humint-specialist: ollama          # Privacy critical
+  _bmad/intel-team/agents/dark-web-analyst: ollama           # OPSEC critical
+  _bmad/intel-team/agents/humint-specialist: ollama          # Privacy critical
 
   # Strategy team exceptions
-  strategy-team/the-realist: claude             # Needs Claude quality
+  _bmad/strategy-team/agents/the-realist: claude             # Needs Claude quality
 ```
 
 ### Runtime Override

@@ -18,9 +18,11 @@ The Intel Team provides comprehensive intelligence collection and analysis capab
 ## Example 1: Flash Assessment (15-Minute Triage)
 
 ### Scenario
+
 You need a rapid overview of a potential business partner before an urgent meeting.
 
 ### Invocation
+
 ```
 /bmad:intel-team:workflows:flash-assessment
 ```
@@ -28,6 +30,7 @@ You need a rapid overview of a potential business partner before an urgent meeti
 ### Workflow Execution
 
 **Input**
+
 ```
 Target: Acme Innovations Ltd
 Context: Considering partnership for AI integration project.
@@ -35,6 +38,7 @@ Meeting in 2 hours. Need quick risk assessment.
 ```
 
 **Step 1: Digital Footprint Scan (5 min)**
+
 ```
 Resolver (Domain Intel) performs:
 - Domain registration check: acmeinnovations.co.uk
@@ -45,6 +49,7 @@ Resolver (Domain Intel) performs:
 ```
 
 **Step 2: Corporate Verification (5 min)**
+
 ```
 Proxy (Corporate Intel) verifies:
 - Companies House: Active, registered 2019
@@ -55,6 +60,7 @@ Proxy (Corporate Intel) verifies:
 ```
 
 **Step 3: Reputation Scan (5 min)**
+
 ```
 Echo (Social Media) reviews:
 - LinkedIn: 47 employees, active posting
@@ -123,9 +129,11 @@ Echo (Social Media) reviews:
 ## Example 2: Attribution Chain (Threat Actor Investigation)
 
 ### Scenario
+
 Following a security incident, you've collected IOCs and need to attribute the attack to a specific threat actor.
 
 ### Invocation
+
 ```
 /bmad:intel-team:workflows:attribution-chain
 ```
@@ -133,6 +141,7 @@ Following a security incident, you've collected IOCs and need to attribute the a
 ### Workflow Steps
 
 **Step 1: Indicator Collection**
+
 ```
 User Input: "Incident IOCs:
 - C2 Domain: update-service[.]net
@@ -145,6 +154,7 @@ Dossier (Threat Actor Profiler) initiates analysis.
 ```
 
 **Step 2: Infrastructure Analysis**
+
 ```
 Resolver (Domain Intel) investigates:
 
@@ -167,6 +177,7 @@ IP: 185.220.101.42
 ```
 
 **Step 3: Malware Analysis Correlation**
+
 ```
 Cipher (Threat Analyst) performs:
 
@@ -184,6 +195,7 @@ MITRE ATT&CK Mapping:
 ```
 
 **Step 4: Actor Attribution**
+
 ```
 Dossier synthesizes:
 
@@ -218,6 +230,7 @@ Diamond Model Analysis:
 ```
 
 **Step 5: Intelligence Product**
+
 ```
 Vector (Director) produces final assessment.
 ```
@@ -322,9 +335,11 @@ infrastructure patterns, and victim targeting consistency.
 ## Example 3: Campaign Planner - Organization
 
 ### Scenario
+
 Pre-acquisition due diligence on a technology company.
 
 ### Invocation
+
 ```
 /bmad:intel-team:workflows:campaign-planner-org
 ```
@@ -332,6 +347,7 @@ Pre-acquisition due diligence on a technology company.
 ### Workflow Steps
 
 **Step 1: Collection Requirements**
+
 ```
 User Input: "Target: TechCorp Solutions Inc.
 Purpose: Acquisition due diligence
@@ -347,6 +363,7 @@ Vector establishes collection plan:
 ```
 
 **Step 2: Corporate Intelligence**
+
 ```
 Proxy (Corporate Intel) investigates:
 
@@ -371,6 +388,7 @@ IP Portfolio:
 ```
 
 **Step 3: Technical Reconnaissance**
+
 ```
 Probe (Technical Researcher) assesses:
 
@@ -394,6 +412,7 @@ Technology Stack:
 ```
 
 **Step 4: Personnel Intelligence**
+
 ```
 Echo (Social Media) + Viper (HUMINT context) analyze:
 
@@ -414,6 +433,7 @@ Cultural Indicators:
 ```
 
 **Step 5: Synthesis**
+
 ```
 Vector produces integrated assessment.
 ```
@@ -481,9 +501,11 @@ two active litigation matters requiring deeper investigation.
 ## Example 4: Operation Mosaic (Full Spectrum)
 
 ### Scenario
+
 Comprehensive target package using all 11 intelligence agents.
 
 ### Invocation
+
 ```
 /bmad:intel-team:workflows:operation-mosaic
 ```
@@ -491,6 +513,7 @@ Comprehensive target package using all 11 intelligence agents.
 ### Workflow Overview
 
 **Phase 1: Collection Tasking**
+
 ```
 Vector assigns each agent:
 
@@ -510,12 +533,14 @@ Vector         | Fusion and synthesis
 ```
 
 **Phase 2: Parallel Collection**
+
 ```
 All agents work simultaneously on assigned tasks.
 Results consolidated in shared evidence repository.
 ```
 
 **Phase 3: Multi-Source Fusion**
+
 ```
 Vector synthesizes:
 - Cross-reference findings between agents
@@ -588,9 +613,11 @@ Vector synthesizes:
 ## Example 5: Counter-Intelligence Audit
 
 ### Scenario
+
 Assess your own organization's exposure and vulnerability to intelligence collection.
 
 ### Invocation
+
 ```
 /bmad:intel-team:workflows:counter-intel-audit
 ```
@@ -598,6 +625,7 @@ Assess your own organization's exposure and vulnerability to intelligence collec
 ### Workflow Steps
 
 **Step 1: External Footprint Assessment**
+
 ```
 What can an adversary learn about you?
 
@@ -616,6 +644,7 @@ Corporate Exposure:
 ```
 
 **Step 2: Credential/Data Exposure**
+
 ```
 Shadow (Dark Web) searches:
 
@@ -631,6 +660,7 @@ Dark Web Monitoring:
 ```
 
 **Step 3: Physical Security Assessment**
+
 ```
 Atlas + Specter evaluate:
 
@@ -646,6 +676,7 @@ Access Control Indicators:
 ```
 
 **Step 4: Recommendations**
+
 ```
 Vector provides remediation roadmap.
 ```
@@ -708,6 +739,7 @@ among employees.
 ## Workflow Combinations
 
 ### Incident Response + Attribution
+
 ```
 1. flash-assessment (immediate triage)
 2. attribution-chain (actor identification)
@@ -716,6 +748,7 @@ among employees.
 ```
 
 ### Due Diligence Package
+
 ```
 1. campaign-planner-org (comprehensive research)
 2. breach-archaeology (exposure assessment)
@@ -723,6 +756,7 @@ among employees.
 ```
 
 ### Threat Hunting Support
+
 ```
 1. threat-constellation (understand actor landscape)
 2. pattern-of-life (predict actor behavior)

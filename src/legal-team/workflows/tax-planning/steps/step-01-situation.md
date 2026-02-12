@@ -20,6 +20,7 @@ Present welcome message:
 "Welcome to the Tax Planning Workflow. I'm Tribute, the tax specialist.
 
 **Important:** This workflow provides tax planning guidance and concepts. It is NOT:
+
 - Tax return preparation
 - Audit representation
 - A substitute for professional tax advice
@@ -33,6 +34,7 @@ Let's understand your current situation."
 Gather taxpayer information:
 
 **Taxpayer Type:**
+
 - Individual / Sole proprietor
 - Partnership / Multi-member LLC
 - Corporation (C-Corp, S-Corp)
@@ -40,12 +42,14 @@ Gather taxpayer information:
 - Mixed structures
 
 **Tax Residency:**
+
 - Country of tax residence
 - Secondary residencies
 - Time spent in each jurisdiction
 - Visa/Immigration status (if relevant)
 
 **Filing History:**
+
 - Currently compliant?
 - Any outstanding issues?
 - Prior planning implemented?
@@ -55,11 +59,13 @@ Gather taxpayer information:
 Document existing structure:
 
 **Entities Owned:**
+
 | Entity | Type | Jurisdiction | Ownership % | Purpose |
 |--------|------|--------------|-------------|---------|
 | [Name] | [Type] | [Location] | [%] | [Business purpose] |
 
 **Intercompany Relationships:**
+
 - Parent-subsidiary relationships
 - Service arrangements
 - IP ownership
@@ -70,11 +76,13 @@ Document existing structure:
 Gather financial picture:
 
 **Income Sources:**
+
 | Source | Type | Amount (Annual) | Jurisdiction |
 |--------|------|-----------------|--------------|
 | [Source] | [Active/Passive] | [Range] | [Location] |
 
 **Key Assets:**
+
 | Asset | Type | Value | Location | Tax Basis |
 |-------|------|-------|----------|-----------|
 | [Asset] | [Category] | [Value] | [Location] | [Basis] |

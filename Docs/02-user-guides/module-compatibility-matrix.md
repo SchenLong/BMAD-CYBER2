@@ -9,7 +9,8 @@
 
 This document defines the comprehensive compatibility matrix for BMAD Specialized Teams distributed modules, ensuring safe installation, version compatibility, and conflict prevention across the 4 core team modules.
 
-### Key Findings:
+### Key Findings
+
 - **Core Dependency**: All team modules require BMAD Core >=6.0.0
 - **Cross-Module Integration**: 47 documented workflow integration points via Party Mode presets
 - **Version Constraints**: Semantic versioning with strict compatibility rules
@@ -20,6 +21,7 @@ This document defines the comprehensive compatibility matrix for BMAD Specialize
 ## Module Overview
 
 ### Current Module Versions
+
 | Module | Version | Status | Core Requirement | NPM Package |
 |--------|---------|---------|------------------|-------------|
 | **bmad:core** | 6.0.0 | Required | Self | @bmad/core |
@@ -29,6 +31,7 @@ This document defines the comprehensive compatibility matrix for BMAD Specialize
 | **strategy-team** | 1.0.0 | Optional | >=6.0.0 | @bmad-cybercommand/strategy-team |
 
 ### Module Capabilities Summary
+
 | Module | Agents | Workflows | Output Paths | Unique Features |
 |--------|---------|-----------|--------------|-----------------|
 | **cybersec-team** | 15 | 13 | `/security` | NIST framework, penetration testing |
@@ -67,6 +70,7 @@ core_dependencies:
 Based on analysis of Party Mode presets and workflow definitions:
 
 #### **Primary Integration Workflows**
+
 | Source Module | Target Module | Integration Point | Preset Name | Use Case |
 |---------------|---------------|------------------|-------------|----------|
 | **cybersec-team** → **intel-team** | Threat Intelligence | `threat-intel-fusion` | APT campaign analysis |
@@ -77,6 +81,7 @@ Based on analysis of Party Mode presets and workflow definitions:
 | **legal-team** → **strategy-team** | Risk Assessment | `strategic-decision-validated` | Board-level decisions with legal validation |
 
 #### **Secondary Integration Points**
+
 | Preset | Modules Required | Description | Failure Mode Addressed |
 |--------|------------------|-------------|------------------------|
 | `secure-architecture-workshop` | cybersec + bmm + strategy | Architecture design with security validation | Late security vulnerability discovery |
@@ -146,6 +151,7 @@ All modules follow semantic versioning (`MAJOR.MINOR.PATCH`):
 ### 2. Compatibility Matrix
 
 #### **Core Version Requirements**
+
 | Team Module Version | Minimum Core Version | Reason |
 |-------------------|---------------------|---------|
 | cybersec-team >=1.0.0 | core >=6.0.0 | Party Mode preset integration |
@@ -154,6 +160,7 @@ All modules follow semantic versioning (`MAJOR.MINOR.PATCH`):
 | strategy-team >=1.0.0 | core >=6.0.0 | Workflow trigger framework |
 
 #### **Cross-Team Version Compatibility**
+
 | Module A | Module B | Compatible Versions | Breaking Changes |
 |----------|----------|-------------------|------------------|
 | **cybersec-team** | **intel-team** | 1.0.0+ ↔ 1.0.0+ | None identified |
@@ -196,6 +203,7 @@ upgrade_matrix:
 ### 1. Agent Name Conflicts
 
 **Detection Rules:**
+
 ```yaml
 agent_conflict_detection:
   unique_agent_names:
@@ -215,6 +223,7 @@ agent_conflict_detection:
 ```
 
 **Conflict Resolution:**
+
 - Agent names are globally unique across all modules
 - Team-specific prefixes prevent cross-team collisions
 - Core agents (`abdul`, `bmad-master`) are reserved
@@ -291,7 +300,7 @@ pre_install_validation:
 
   system_requirements:
     - check: "nodejs_version"
-      requirement: ">= 18.0.0"
+      requirement: ">= 20.0.0"
       failure_action: "warn"
 
     - check: "disk_space"
@@ -365,6 +374,7 @@ post_install_validation:
 ### 1. Safe Upgrade Scenarios
 
 #### **Patch Version Upgrades** (e.g., 1.0.1 → 1.0.2)
+
 ```yaml
 patch_upgrade:
   risk_level: "minimal"
@@ -382,6 +392,7 @@ patch_upgrade:
 ```
 
 #### **Minor Version Upgrades** (e.g., 1.0.0 → 1.1.0)
+
 ```yaml
 minor_upgrade:
   risk_level: "low"
@@ -403,6 +414,7 @@ minor_upgrade:
 ### 2. Breaking Upgrade Scenarios
 
 #### **Major Version Upgrades** (e.g., 1.x.x → 2.0.0)
+
 ```yaml
 major_upgrade:
   risk_level: "high"
@@ -460,6 +472,7 @@ downgrade_support:
 **Scenario**: Two modules attempt to register agents with the same name.
 
 **Resolution Process**:
+
 ```yaml
 agent_conflict_resolution:
   detection: "pre_install_validation"
@@ -484,6 +497,7 @@ agent_conflict_resolution:
 **Scenario**: Module A depends on workflow from Module B, which depends on workflow from Module A.
 
 **Resolution Process**:
+
 ```yaml
 dependency_cycle_resolution:
   detection: "static_analysis_of_workflow_triggers"
@@ -503,6 +517,7 @@ dependency_cycle_resolution:
 **Scenario**: Module A requires Module B v1.x, but user has Module B v2.x installed.
 
 **Resolution Process**:
+
 ```yaml
 version_incompatibility_resolution:
   detection: "dependency_version_check"
@@ -656,23 +671,27 @@ test_automation:
 ## Implementation Roadmap
 
 ### Phase 1: Core Infrastructure (Completed)
+
 - ✅ Module template standardization (Morgan's work)
 - ✅ Party Mode preset analysis
 - ✅ Current dependency mapping
 
 ### Phase 2: Compatibility Matrix (Current)
+
 - ✅ Version compatibility rules
 - ✅ Conflict detection specifications
 - ✅ Installation validation logic
 - 🟡 Automated testing framework
 
 ### Phase 3: Advanced Features (Next)
+
 - 🔄 Cross-module workflow triggers
 - 🔄 Dynamic dependency resolution
 - 🔄 Performance optimization
 - 🔄 Security hardening
 
 ### Phase 4: Production Readiness
+
 - ⏳ Full test coverage
 - ⏳ Documentation completion
 - ⏳ Performance benchmarking
@@ -707,6 +726,7 @@ test_automation:
 ---
 
 **Document Control**:
+
 - **Author**: Winston (System Architect)
 - **Reviewers**: Abdul (Project Manager), Morgan (Module Template Designer)
 - **Status**: Draft v1.0

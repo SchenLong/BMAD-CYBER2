@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -15,14 +15,14 @@ import { fileURLToPath } from 'url';
 
 import {
   API_KEY_ENV_VARS,
-  getApiKeyEnvVar,
   backupConfigs,
+  getApiKeyEnvVar,
   updateProviderSettings,
-  writeConfigs,
-  validateConfig
+  validateConfig,
+  writeConfigs
 } from './provider-config.js';
 
-import { CONFIG_PATHS, readYamlProvider, readTxtProvider } from './config-sync.js';
+import { CONFIG_PATHS, readTxtProvider, readYamlProvider } from './config-sync.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

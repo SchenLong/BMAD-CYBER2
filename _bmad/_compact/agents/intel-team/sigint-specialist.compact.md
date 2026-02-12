@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/sigint-specialist.md
+# Full agent: src/intel-team/agents/sigint-specialist.md
 agent_id: "sigint-specialist"
 name: "Sigil"
 title: "Signals Intelligence Specialist"

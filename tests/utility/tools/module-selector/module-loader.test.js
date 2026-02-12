@@ -10,20 +10,20 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  scanModuleDirectories,
-  parseModuleYaml,
+  calculateEstimatedSize,
   countAgents,
   countWorkflows,
-  calculateEstimatedSize,
-  loadAllModules,
+  findModuleByCode,
   getModuleSummary,
-  findModuleByCode
+  loadAllModules,
+  parseModuleYaml,
+  scanModuleDirectories
 } from './module-loader.js';
 
 // ESM equivalent of __dirname
@@ -51,10 +51,10 @@ prompt:
   - "This module is required"
 
 agents_path:
-  result: "{project-root}/_bmad/core/agents"
+  result: "{project-root}/src/core/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/core/workflows"
+  result: "{project-root}/src/core/workflows"
 
 module_version:
   result: "6.0.0"
@@ -191,8 +191,8 @@ describe('Module Loader - INST-001', () => {
       const modulePath = path.join(MOCK_BMAD_PATH, 'core');
       const result = parseModuleYaml(modulePath);
 
-      expect(result.agentsPath).toContain('_bmad/core/agents');
-      expect(result.workflowsPath).toContain('_bmad/core/workflows');
+      expect(result.agentsPath).toContain('src/core/agents');
+      expect(result.workflowsPath).toContain('src/core/workflows');
     });
 
     it('should count agents correctly', () => {

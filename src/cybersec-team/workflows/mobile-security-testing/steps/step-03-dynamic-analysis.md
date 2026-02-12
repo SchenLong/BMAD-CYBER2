@@ -17,27 +17,30 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 3: Dynamic Analysis
 
-## STEP GOAL:
+## STEP GOAL
 
 To perform runtime dynamic analysis including Frida hooking, traffic interception, and behavior monitoring.
 
-## DYNAMIC ANALYSIS SEQUENCE:
+## DYNAMIC ANALYSIS SEQUENCE
 
 ### 1. Runtime Environment Setup
 
 "Let's set up for dynamic analysis:
 
 **iOS Setup:**
+
 - Device jailbroken with Frida installed
 - SSL Kill Switch or similar for cert pinning bypass
 - Cycript for runtime exploration
 
 **Android Setup:**
+
 - Device rooted or use Frida gadget
 - Magisk for root management
 - Frida server running
 
 **Proxy Setup:**
+
 - Burp Suite/mitmproxy configured
 - CA cert installed on device
 - Traffic routing configured
@@ -65,6 +68,7 @@ What's your runtime environment status?"
 | Xposed module | TrustMeAlready | ? |
 
 **objection bypass:**
+
 ```bash
 objection -g com.app.name explore
 ios sslpinning disable
@@ -101,6 +105,7 @@ Java.perform(function() {
 ```
 
 **Target Functions:**
+
 - [ ] Authentication methods
 - [ ] Crypto operations
 - [ ] Root/jailbreak detection
@@ -123,6 +128,7 @@ What methods should we hook?"
 | SafetyNet/Play Integrity | Magisk Hide | ? |
 
 **objection bypass:**
+
 ```bash
 android root disable
 ios jailbreak disable
@@ -141,6 +147,7 @@ Was detection successfully bypassed?"
 | [URL] | [GET/POST] | [Type] | [Yes/No] |
 
 **Analysis Points:**
+
 - [ ] HTTPS enforcement
 - [ ] Certificate validation
 - [ ] Sensitive data in requests
@@ -165,6 +172,7 @@ What traffic patterns were observed?"
 | Crash handling | ? | Stack trace leak |
 
 **Logging Check:**
+
 ```bash
 # iOS
 idevicesyslog | grep AppName
@@ -231,6 +239,7 @@ Update Section 3 of {outputFile}:
 "**Dynamic Analysis Complete**
 
 I've analyzed:
+
 - Certificate pinning and bypass
 - Method hooking for sensitive functions
 - Root/jailbreak detection bypass
@@ -249,4 +258,4 @@ Display: **Dynamic Analysis Complete - Select an Option:** [C] Continue to Data 
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN dynamic analysis is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN dynamic analysis is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then follow `{nextStepFile}`.

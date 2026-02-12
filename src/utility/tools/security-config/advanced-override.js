@@ -11,17 +11,18 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
 import chalk from 'chalk';
 
+import { confirm, multiselect, select } from '../../cli/prompts.js';
+
 import {
-  SECURITY_TIERS,
+  compareTiers,
   FEATURE_DETAILS,
-  getTierById,
-  getTierFeatures,
   getFeaturesByTier,
   getMinimumTierForFeature,
-  compareTiers
+  getTierById,
+  getTierFeatures,
+  SECURITY_TIERS
 } from './tier-definitions.js';
 
 /**
@@ -44,7 +45,7 @@ function formatFeatureChoice(featureCode, detail, isEnabled) {
   name += chalk.gray(` [${detail.category}]`);
 
   // Add description on new line
-  name += '\n        ' + chalk.dim(detail.description);
+  name += `\n        ${  chalk.dim(detail.description)}`;
 
   return {
     name,
@@ -61,7 +62,7 @@ function formatFeatureChoice(featureCode, detail, isEnabled) {
  * @returns {Object} Inquirer separator
  */
 function createSeparator(text) {
-  return new inquirer.Separator(text);
+  return { type: 'separator', name: text };
 }
 
 /**
@@ -131,27 +132,12 @@ export async function showAdvancedConfig(options = {}) {
 
   const choices = buildFeatureChoices(enabledFeatures);
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'checkbox',
-      name: 'features',
-      message: 'Select security features:',
-      choices,
-      pageSize: 20,
-      loop: false,
-      validate: (selected) => {
-        // Ensure essential features are included
-        for (const essential of ESSENTIAL_FEATURES) {
-          if (!selected.includes(essential)) {
-            return `Cannot disable essential feature: ${essential}`;
-          }
-        }
-        return true;
-      }
-    }
-  ]);
+  const features = await multiselect({
+    message: 'Select security features:',
+    choices
+  });
 
-  return answer.features;
+  return features;
 }
 
 /**
@@ -273,14 +259,10 @@ export async function confirmFeatureSelection(validation) {
   console.log(chalk.gray('-'.repeat(60)));
   console.log('');
 
-  const { confirmed } = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'confirmed',
-      message: 'Apply this custom configuration?',
-      default: validation.warnings.length === 0
-    }
-  ]);
+  const confirmed = await confirm({
+    message: 'Apply this custom configuration?',
+    initialValue: validation.warnings.length === 0
+  });
 
   return confirmed;
 }
@@ -308,17 +290,13 @@ export async function selectBaseTier() {
     };
   });
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'baseTier',
-      message: 'Select a base tier to customize:',
-      choices,
-      default: 'standard'
-    }
-  ]);
+  const baseTier = await select({
+    message: 'Select a base tier to customize:',
+    choices,
+    initialValue: 'standard'
+  });
 
-  return answer.baseTier;
+  return baseTier;
 }
 
 /**

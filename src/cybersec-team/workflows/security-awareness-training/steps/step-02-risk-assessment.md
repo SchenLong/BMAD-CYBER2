@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/security-awareness-program-{project_name}.
 
 # Step 2: Human Risk Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on risk assessment and threat identification
 - FORBIDDEN to discuss content development yet
 - Help user identify highest-risk populations and threats
 
-## STEP GOAL:
+## STEP GOAL
 
 To identify human-targeted threats relevant to the organization, determine high-risk user populations, and establish baseline metrics for measuring program effectiveness.
 
-## RISK ASSESSMENT SEQUENCE:
+## RISK ASSESSMENT SEQUENCE
 
 ### 1. Threat Landscape Analysis
 
@@ -97,6 +97,7 @@ Are there any unique high-risk roles specific to your business?"
 "Let's establish baseline metrics to measure improvement:
 
 **If you have existing data:**
+
 - Current phishing click rate: [X]%
 - Reporting rate (users who report phish): [X]%
 - Training completion rate: [X]%
@@ -104,6 +105,7 @@ Are there any unique high-risk roles specific to your business?"
 
 **If starting fresh:**
 We'll establish baselines through:
+
 - Initial phishing simulation campaign
 - Pre-training knowledge assessment
 - Current incident data review
@@ -167,6 +169,7 @@ Update Section 3 of {outputFile}:
 "**Human Risk Assessment Complete**
 
 I've documented:
+
 - Relevant threat landscape for your organization
 - High-risk populations identified and scored
 - Baseline metrics established
@@ -180,7 +183,7 @@ Ready to proceed to content development?"
 
 Display: **Risk Assessment Complete - Select an Option:** [C] Continue to Content Development [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 3 content, allow revisions, then redisplay menu
@@ -189,6 +192,6 @@ Display: **Risk Assessment Complete - Select an Option:** [C] Continue to Conten
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN risk assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN risk assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

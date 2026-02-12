@@ -6,7 +6,7 @@
 
 ## How to Use Presets
 
-When at a MENU step and selecting **[P] Party Mode**, invoke a preset by name:
+When at a MENU step and selecting **[P] Party Mode**, load a preset by name:
 
 ```
 "Use the Strategic Council preset"
@@ -31,6 +31,7 @@ Or specify individual agents from any preset:
 **Best For:** High-stakes decisions, transformational initiatives, board-level strategy
 
 **Agents (8):**
+
 | Icon | Name | Role in Council |
 |------|------|-----------------|
 | 🦊 | Niccolo | Power dynamics, realpolitik analysis |
@@ -44,6 +45,7 @@ Or specify individual agents from any preset:
 
 **Discussion Format:**
 Each archetype offers 1-2 paragraphs on the topic, with explicit bias acknowledgment. Expect tensions between:
+
 - Niccolo vs Charles (realism vs idealism)
 - Maximilien vs Burke (revolution vs tradition)
 - Lee vs Jean-Luc (efficiency vs principles)
@@ -57,6 +59,7 @@ Each archetype offers 1-2 paragraphs on the topic, with explicit bias acknowledg
 **Best For:** Decisions with moral dimensions, stakeholder impact, reputation risk
 
 **Agents (3):**
+
 | Icon | Name | Role in Review |
 |------|------|----------------|
 | ⚖️ | Sophia | Primary ethical framework analysis |
@@ -67,6 +70,7 @@ Each archetype offers 1-2 paragraphs on the topic, with explicit bias acknowledg
 Sophia leads with ethical framework application (utilitarian, deontological, virtue, care ethics). Jean-Luc challenges with leadership principles. Charles frames in terms of higher purpose and unity.
 
 **Typical Questions:**
+
 - What values are in tension?
 - Who bears the burden of this decision?
 - What precedent does this set?
@@ -81,6 +85,7 @@ Sophia leads with ethical framework application (utilitarian, deontological, vir
 **Best For:** Stakeholder mapping, coalition building, competitive positioning
 
 **Agents (3):**
+
 | Icon | Name | Role in Analysis |
 |------|------|------------------|
 | ♟️ | Magnus | Coalition math, political pathways |
@@ -91,6 +96,7 @@ Sophia leads with ethical framework application (utilitarian, deontological, vir
 Magnus maps the political landscape and paths to victory. Niccolo exposes the uncomfortable truths about power and motivation. Sun provides the grand strategic view of positioning and timing.
 
 **Typical Questions:**
+
 - Who has real power vs nominal power?
 - What do they actually want?
 - Where's the path to majority support?
@@ -105,6 +111,7 @@ Magnus maps the political landscape and paths to victory. Niccolo exposes the un
 **Best For:** Announcements, crisis communications, stakeholder messaging
 
 **Agents (3):**
+
 | Icon | Name | Role in Strategy |
 |------|------|------------------|
 | 📢 | Giuseppe | Narrative crafting, media strategy |
@@ -115,6 +122,7 @@ Magnus maps the political landscape and paths to victory. Niccolo exposes the un
 Giuseppe develops the core narrative and key messages. Cicero stress-tests arguments and strengthens persuasive elements. Geneva ensures messaging resonates with diverse stakeholder concerns.
 
 **Typical Questions:**
+
 - What's the headline we want?
 - Where are the rhetorical weak points?
 - How will each audience receive this?
@@ -129,6 +137,7 @@ Giuseppe develops the core narrative and key messages. Cicero stress-tests argum
 **Best For:** Major initiatives, policy changes, strategic shifts
 
 **Agents (3):**
+
 | Icon | Name | Role in Assessment |
 |------|------|-------------------|
 | 🏛️ | Burke | Unintended consequences, what could go wrong |
@@ -139,6 +148,7 @@ Giuseppe develops the core narrative and key messages. Cicero stress-tests argum
 Burke raises concerns about disruption and unforeseen effects. Lee applies systematic risk analysis and operational metrics. Augustus grounds the discussion in evidence and historical precedent data.
 
 **Typical Questions:**
+
 - What unintended consequences might emerge?
 - What does history tell us about similar changes?
 - What are the operational failure modes?
@@ -153,6 +163,7 @@ Burke raises concerns about disruption and unforeseen effects. Lee applies syste
 **Best For:** Organizational change, policy reform, digital transformation
 
 **Agents (3):**
+
 | Icon | Name | Role in Council |
 |------|------|-----------------|
 | 🕊️ | Charles | Transformation vision, moral imperative |
@@ -173,6 +184,7 @@ Charles articulates the case for change and higher purpose. Burke ensures wisdom
 **Best For:** Contract negotiations, stakeholder discussions, conflict resolution
 
 **Agents (3):**
+
 | Icon | Name | Role in Prep |
 |------|------|--------------|
 | 🤝 | Geneva | Interest mapping, BATNA analysis |
@@ -183,6 +195,7 @@ Charles articulates the case for change and higher purpose. Burke ensures wisdom
 Geneva maps underlying interests and identifies zones of possible agreement. Magnus analyzes power dynamics and leverage. Cicero prepares the persuasive framework and anticipates objections.
 
 **Output Focus:**
+
 - Interest vs position mapping
 - BATNA analysis for all parties
 - Key leverage points
@@ -197,6 +210,7 @@ Geneva maps underlying interests and identifies zones of possible agreement. Mag
 **Best For:** PR crises, operational failures, external threats
 
 **Agents (4):**
+
 | Icon | Name | Role in Response |
 |------|------|------------------|
 | 📢 | Giuseppe | Crisis communications lead |
@@ -208,6 +222,7 @@ Geneva maps underlying interests and identifies zones of possible agreement. Mag
 Giuseppe frames the communications response. Magnus manages stakeholder dynamics. Jean-Luc ensures decisions remain principled under pressure. Musashi advises on timing and when to act decisively.
 
 **Crisis Protocol:**
+
 1. Assess: What do we know? What don't we know?
 2. Stakeholders: Who needs to hear from us first?
 3. Messaging: What do we say and when?
@@ -222,6 +237,7 @@ Giuseppe frames the communications response. Magnus manages stakeholder dynamics
 **Best For:** Board meetings, investor presentations, executive briefings
 
 **Agents (3):**
+
 | Icon | Name | Role in Prep |
 |------|------|--------------|
 | 📊 | Augustus | Evidence synthesis, data rigor |
@@ -232,6 +248,7 @@ Giuseppe frames the communications response. Magnus manages stakeholder dynamics
 Augustus ensures data is rigorous and defensible. Giuseppe structures the narrative for maximum impact. Cicero stress-tests arguments and prepares for tough questions.
 
 **Output Focus:**
+
 - Executive summary with evidence
 - Narrative arc for presentation
 - Anticipated questions with prepared answers
@@ -246,6 +263,7 @@ Augustus ensures data is rigorous and defensible. Giuseppe structures the narrat
 **Best For:** Annual planning, strategic reviews, vision setting
 
 **Agents (4):**
+
 | Icon | Name | Role in Planning |
 |------|------|------------------|
 | 🐉 | Sun | Grand strategy, positioning |
@@ -257,6 +275,7 @@ Augustus ensures data is rigorous and defensible. Giuseppe structures the narrat
 Sun provides the strategic vision and positioning. Lee focuses on practical capability development. Burke ensures strategic continuity. Maximilien challenges the team to think bolder.
 
 **Key Questions:**
+
 - Where should we position ourselves?
 - What capabilities must we build?
 - What should we preserve vs change?
@@ -271,6 +290,7 @@ Sun provides the strategic vision and positioning. Lee focuses on practical capa
 **Best For:** Internal disputes, team conflicts, stakeholder disagreements, relationship repair
 
 **Agents (4):**
+
 | Icon | Name | Role in Resolution |
 |------|------|-------------------|
 | 🤝 | Geneva | Lead mediator, interest mapping, finding common ground |
@@ -282,6 +302,7 @@ Sun provides the strategic vision and positioning. Lee focuses on practical capa
 Geneva leads with interest-based mediation, separating positions from underlying needs. Jean-Luc ensures all parties are treated with dignity and decisions align with principles. Charles frames the path toward reconciliation and unity. Sophia monitors for fairness and values alignment.
 
 **Resolution Protocol:**
+
 1. **Understand:** What does each party actually need (not just want)?
 2. **Acknowledge:** What legitimate grievances exist on each side?
 3. **Find:** Where do interests actually align?
@@ -289,6 +310,7 @@ Geneva leads with interest-based mediation, separating positions from underlying
 5. **Commit:** What agreements can all parties own?
 
 **Key Questions:**
+
 - What are the underlying interests behind each position?
 - What would "winning" actually look like for each party?
 - What shared values or goals can unite the parties?
@@ -303,6 +325,7 @@ Geneva leads with interest-based mediation, separating positions from underlying
 **Best For:** Hostile takeovers, competitive survival, proxy fights, market battles, adversarial negotiations
 
 **Agents (5):**
+
 | Icon | Name | Role in War Council |
 |------|------|---------------------|
 | 🦊 | Niccolo | Ruthless realpolitik, exploit every weakness |
@@ -315,6 +338,7 @@ Geneva leads with interest-based mediation, separating positions from underlying
 This is the most aggressive preset - no diplomatic niceties, pure competitive strategy. Niccolo identifies vulnerabilities and leverage. Sun provides strategic architecture. Musashi advises on timing and decisive action. Magnus handles coalition politics. Giuseppe wages information warfare.
 
 **War Doctrine:**
+
 1. **Know your enemy:** What are their weaknesses, constraints, and pressure points?
 2. **Control terrain:** Where do we fight? What advantages can we create?
 3. **Timing:** When do we strike? When do we wait?
@@ -323,6 +347,7 @@ This is the most aggressive preset - no diplomatic niceties, pure competitive st
 6. **Victory conditions:** How do we know when we've won?
 
 **Rules of Engagement:**
+
 - Assume adversary is rational and capable
 - Map all stakeholders as allies, enemies, or swing votes
 - Identify and protect our vulnerabilities
@@ -340,6 +365,7 @@ This is the most aggressive preset - no diplomatic niceties, pure competitive st
 **Best For:** Promotion campaigns, budget battles, turf wars, reorganizations, succession planning
 
 **Agents (5):**
+
 | Icon | Name | Role in Political Strategy |
 |------|------|---------------------------|
 | ♟️ | Magnus | Primary strategist, coalition math, power mapping |
@@ -352,6 +378,7 @@ This is the most aggressive preset - no diplomatic niceties, pure competitive st
 Magnus leads strategic analysis of the political landscape - who has power, who wants what, and how to build a winning coalition. Niccolo provides unvarnished truth about motivations and hidden agendas. Cicero prepares persuasive arguments and handles objections. Geneva advises on relationship building and alliance maintenance. Giuseppe manages reputation and narrative positioning.
 
 **Political Playbook:**
+
 1. **Map the terrain:**
    - Who has formal power? (titles, budgets, decision rights)
    - Who has informal power? (relationships, information, expertise)
@@ -378,6 +405,7 @@ Magnus leads strategic analysis of the political landscape - who has power, who 
    - How do you maintain plausible deniability?
 
 **Political Survival Rules:**
+
 - Never make enemies unnecessarily
 - Accumulate chits before you need them
 - Let others take credit (when strategically valuable)
@@ -396,6 +424,7 @@ Magnus leads strategic analysis of the political landscape - who has power, who 
 **Best For:** Mergers, acquisitions, strategic investments, joint ventures
 
 **Agents (4):**
+
 | Icon | Name | Role in Due Diligence |
 |------|------|----------------------|
 | 🐉 | Sun | Strategic fit, competitive positioning |
@@ -407,6 +436,7 @@ Magnus leads strategic analysis of the political landscape - who has power, who 
 Sun evaluates strategic positioning and competitive advantage. Lee assesses operational capabilities and integration complexity. Augustus provides rigorous financial analysis. Burke identifies risks and warns of potential pitfalls.
 
 **Due Diligence Focus:**
+
 - Strategic fit and value creation thesis
 - Operational readiness and integration complexity
 - Financial health and synergy realization
@@ -421,6 +451,7 @@ Sun evaluates strategic positioning and competitive advantage. Lee assesses oper
 **Best For:** Succession planning, executive departures, organizational restructuring
 
 **Agents (4):**
+
 | Icon | Name | Role in Transition |
 |------|------|-------------------|
 | 🖖 | Jean-Luc | Leadership principles, legacy, dignity |
@@ -432,6 +463,7 @@ Sun evaluates strategic positioning and competitive advantage. Lee assesses oper
 Jean-Luc ensures the transition honors leadership principles and legacy. Burke focuses on preserving institutional knowledge. Geneva manages stakeholder relationships and cultural continuity. Giuseppe handles transition communications.
 
 **Transition Protocol:**
+
 - Knowledge transfer and preservation
 - Stakeholder relationship management
 - Communication sequencing
@@ -446,6 +478,7 @@ Jean-Luc ensures the transition honors leadership principles and legacy. Burke f
 **Best For:** Board engagement strategy, director relationships, governance improvement
 
 **Agents (4):**
+
 | Icon | Name | Role in Board Relations |
 |------|------|------------------------|
 | ♟️ | Magnus | Board politics, director dynamics |
@@ -457,6 +490,7 @@ Jean-Luc ensures the transition honors leadership principles and legacy. Burke f
 Magnus maps board political landscape and dynamics. Giuseppe plans communications and information presentation. Geneva focuses on relationship building and consensus. Niccolo provides insight into director motivations and power.
 
 **Board Strategy Focus:**
+
 - Director relationship mapping
 - Communication optimization
 - Engagement strategy
@@ -471,6 +505,7 @@ Magnus maps board political landscape and dynamics. Giuseppe plans communication
 **Best For:** Annual reviews, feedback calibration, difficult conversations
 
 **Agents (4):**
+
 | Icon | Name | Role in Review |
 |------|------|----------------|
 | ⚖️ | Sophia | Fairness, bias checking, ethics |
@@ -482,6 +517,7 @@ Magnus maps board political landscape and dynamics. Giuseppe plans communication
 Sophia ensures fair, unbiased assessment. Augustus provides evidence-based rigor. Geneva prepares for the conversation and relationship preservation. Charles brings growth mindset and developmental focus.
 
 **Review Focus:**
+
 - Bias identification and calibration
 - Evidence-based assessment
 - Difficult feedback delivery

@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 4: Communication Planning
 
-## STEP GOAL:
+## STEP GOAL
 
 Design comprehensive board communication approach including reporting cadence, information presentation, and between-meeting communications.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Board Relations Advisor with Giuseppe (Communications Director) providing communications expertise
 - Focus on clear, effective board communications
 - Balance transparency with information overload
 - Present information how directors want to receive it
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on communication effectiveness
 - FORBIDDEN to assume current communications are optimal
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Current Communication Assessment
 
@@ -55,6 +56,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | One-on-one prep | | | |
 
 **Board feedback on communications:**
+
 - What do directors say about current communications?
 - Information they want but don't get?
 - Information they get but don't want?
@@ -66,6 +68,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's optimize your board book approach:"
 
 **Board book structure:**
+
 | Section | Content | Length | Presenter |
 |---------|---------|--------|-----------|
 | Executive summary | | 1-2 pages | |
@@ -76,6 +79,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Governance matters | | | |
 
 **Format preferences:**
+
 - How much detail do directors want?
 - What visualizations work best?
 - What's the optimal length?
@@ -88,6 +92,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me bring in Cicero's presentation expertise..."
 
 **Presentation approach:**
+
 | Element | Current | Recommended |
 |---------|---------|-------------|
 | Length | | |
@@ -97,6 +102,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | How to handle Q&A | | |
 
 **Storytelling elements:**
+
 - How to frame issues
 - Connecting to strategy
 - Making data meaningful
@@ -116,6 +122,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Committee prep | | Pre-meeting | Committee | Email |
 
 **Cadence calendar:**
+
 - Map communications to annual calendar
 - Align with business rhythms
 - Avoid communication gaps
@@ -127,6 +134,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How do you communicate bad news to the board?"
 
 **Bad news framework:**
+
 - Early warning approach (no surprises)
 - How to frame challenges
 - When to call vs. email
@@ -134,6 +142,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - Support materials needed
 
 **Trigger thresholds:**
+
 - What requires immediate notification?
 - What can wait for regular update?
 - What requires board meeting?
@@ -190,19 +199,23 @@ Update frontmatter: Add `step-04-communication-planning` to stepsCompleted
 "Here's the communication plan summary:
 
 **Key Improvements:**
+
 1. [improvement]
 2. [improvement]
 3. [improvement]
 
 **Communication Cadence:**
+
 - Regular updates: [frequency]
 - Chair touchpoints: [frequency]
 - Urgent matters: [approach]
 
 **Board Book Changes:**
+
 - [key changes]
 
 **Bad News Protocol:**
+
 - [summary approach]
 
 **Giuseppe's View:**
@@ -212,21 +225,24 @@ Update frontmatter: Add `step-04-communication-planning` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [C] Continue to Issue Navigation"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-05-issue-navigation.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Current state assessed
 - Board book optimized
 - Presentation style improved
@@ -235,7 +251,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Quality standards set
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - No assessment of current state
 - Generic communication plans
 - Skipping bad news planning

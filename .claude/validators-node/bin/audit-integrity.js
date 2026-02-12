@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/observability/audit-integrity.js')
+import('../dist/src/observability/audit-integrity.js')
   .then((module) => {
     module.main();
   })

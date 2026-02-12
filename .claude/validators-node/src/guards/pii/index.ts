@@ -19,19 +19,19 @@
 
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
 } from '../../common/index.js';
-import type { WriteToolInput, EditToolInput } from '../../types/index.js';
+import type { EditToolInput, WriteToolInput } from '../../types/index.js';
 import { EXIT_CODES } from '../../types/index.js';
 import {
   ALL_PATTERNS,
-  SENSITIVE_CONTEXT_PATTERNS,
   FAKE_DATA_INDICATORS,
-  TEST_FILE_INDICATORS,
+  SENSITIVE_CONTEXT_PATTERNS,
   type Severity,
+  TEST_FILE_INDICATORS,
 } from './patterns.js';
 
 const VALIDATOR_NAME = 'pii_guard';
@@ -261,8 +261,8 @@ export function validatePiiGuard(content: string, filePath: string): number {
 
   printBlockMessage({
     title: 'PII DETECTED - DATA PROTECTION BLOCK',
-    message: `Found ${criticalPii.length + warningPii.length} sensitive PII pattern(s):\n${piiSummary}` +
-      (detections.length > 5 ? `\n  ... and ${detections.length - 5} more` : ''),
+    message: `Found ${criticalPii.length + warningPii.length} sensitive PII pattern(s):\n${piiSummary}${ 
+      detections.length > 5 ? `\n  ... and ${detections.length - 5} more` : ''}`,
     target: filePath,
     overrideVar: 'BMAD_ALLOW_PII',
     recommendations: [

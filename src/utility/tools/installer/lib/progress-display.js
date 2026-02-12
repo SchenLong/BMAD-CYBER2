@@ -94,10 +94,10 @@ export function createProgressBar(percentage, options = {}) {
 
   const filled = filledChar.repeat(filledCount);
   const empty = emptyChar.repeat(emptyCount);
-  const bar = '[' + filled + empty + ']';
+  const bar = `[${  filled  }${empty  }]`;
 
   if (showPercentage) {
-    return bar + ' ' + Math.round(clampedPercentage) + '%';
+    return `${bar  } ${  Math.round(clampedPercentage)  }%`;
   }
 
   return bar;
@@ -136,11 +136,11 @@ export function createColoredProgressBar(percentage, options = {}) {
     coloredFilled = chalk.red(filled);
   }
 
-  const bar = '[' + coloredFilled + chalk.dim(empty) + ']';
+  const bar = `[${  coloredFilled  }${chalk.dim(empty)  }]`;
 
   if (showPercentage) {
-    const percentText = Math.round(clampedPercentage) + '%';
-    return bar + ' ' + percentText;
+    const percentText = `${Math.round(clampedPercentage)  }%`;
+    return `${bar  } ${  percentText}`;
   }
 
   return bar;
@@ -158,12 +158,12 @@ export function displayPhaseStart(phaseId, phaseNum, total) {
   const phase = getPhaseById(phaseId);
 
   if (!phase) {
-    const message = 'Phase ' + phaseNum + '/' + total + ': Unknown phase (' + phaseId + ')';
+    const message = `Phase ${  phaseNum  }/${  total  }: Unknown phase (${  phaseId  })`;
     console.log(chalk.blue(message));
     return message;
   }
 
-  const message = 'Phase ' + phaseNum + '/' + total + ': ' + phase.icon + ' ' + phase.name;
+  const message = `Phase ${  phaseNum  }/${  total  }: ${  phase.icon  } ${  phase.name}`;
   console.log(chalk.blue.bold(message));
   return message;
 }
@@ -175,7 +175,7 @@ export function displayPhaseStart(phaseId, phaseNum, total) {
  * @returns {string} Formatted sub-step string
  */
 export function displaySubStep(message) {
-  const formatted = '  \u2192 ' + message;
+  const formatted = `  \u2192 ${  message}`;
   console.log(chalk.dim(formatted));
   return formatted;
 }
@@ -189,7 +189,7 @@ export function displaySubStep(message) {
 export function displayPhaseComplete(phaseId) {
   const phase = getPhaseById(phaseId);
   const name = phase ? phase.name : phaseId;
-  const message = '\u2713 ' + name + ' complete';
+  const message = `\u2713 ${  name  } complete`;
   console.log(chalk.green(message));
   return message;
 }
@@ -204,7 +204,7 @@ export function displayPhaseComplete(phaseId) {
 export function displayPhaseError(phaseId, error) {
   const phase = getPhaseById(phaseId);
   const name = phase ? phase.name : phaseId;
-  const message = '\u2717 ' + name + ' failed: ' + error;
+  const message = `\u2717 ${  name  } failed: ${  error}`;
   console.log(chalk.red(message));
   return message;
 }
@@ -229,7 +229,7 @@ export function displayOverallProgress(completedPhases, totalPhases, options = {
     ? createColoredProgressBar(percentage, { showPercentage: false })
     : createProgressBar(percentage, { showPercentage: false });
 
-  const message = bar + ' ' + percentage + '% | Phase ' + completedPhases + '/' + totalPhases;
+  const message = `${bar  } ${  percentage  }% | Phase ${  completedPhases  }/${  totalPhases}`;
   console.log(message);
   return message;
 }
@@ -248,17 +248,17 @@ export function startSpinner(text) {
   let isSpinning = false;
 
   const clearLine = () => {
-    process.stdout.write('\r' + ' '.repeat(80) + '\r');
+    process.stdout.write(`\r${  ' '.repeat(80)  }\r`);
   };
 
   const spinner = {
     start() {
       if (isSpinning) return this;
       isSpinning = true;
-      process.stdout.write(chalk.cyan(frames[0]) + ' ' + currentText);
+      process.stdout.write(`${chalk.cyan(frames[0])  } ${  currentText}`);
       intervalId = setInterval(() => {
         frameIndex = (frameIndex + 1) % frames.length;
-        process.stdout.write('\r' + chalk.cyan(frames[frameIndex]) + ' ' + currentText);
+        process.stdout.write(`\r${  chalk.cyan(frames[frameIndex])  } ${  currentText}`);
       }, 100);
       return this;
     },
@@ -280,19 +280,19 @@ export function startSpinner(text) {
 
     succeed(message) {
       this.stop();
-      console.log(chalk.green('\u2713') + ' ' + (message || currentText));
+      console.log(`${chalk.green('\u2713')  } ${  message || currentText}`);
       return this;
     },
 
     fail(message) {
       this.stop();
-      console.log(chalk.red('\u2717') + ' ' + (message || currentText));
+      console.log(`${chalk.red('\u2717')  } ${  message || currentText}`);
       return this;
     },
 
     warn(message) {
       this.stop();
-      console.log(chalk.yellow('!') + ' ' + (message || currentText));
+      console.log(`${chalk.yellow('!')  } ${  message || currentText}`);
       return this;
     },
 
@@ -328,10 +328,10 @@ export function stopSpinner(spinner, success, message) {
  * @returns {string} Formatted duration
  */
 export function formatDuration(ms) {
-  if (ms < 1000) return ms + 'ms';
-  if (ms < 60000) return (ms / 1000).toFixed(1) + 's';
-  if (ms < 3600000) return (ms / 60000).toFixed(1) + 'm';
-  return (ms / 3600000).toFixed(1) + 'h';
+  if (ms < 1000) return `${ms  }ms`;
+  if (ms < 60000) return `${(ms / 1000).toFixed(1)  }s`;
+  if (ms < 3600000) return `${(ms / 60000).toFixed(1)  }m`;
+  return `${(ms / 3600000).toFixed(1)  }h`;
 }
 
 /**
@@ -376,15 +376,15 @@ export function displaySummary(results, options = {}) {
 
   for (const result of results) {
     const phase = getPhaseById(result.id);
-    const name = phase ? phase.icon + ' ' + phase.name : result.id;
+    const name = phase ? `${phase.icon  } ${  phase.name}` : result.id;
 
     if (result.success) {
-      const duration = result.duration ? ' (' + formatDuration(result.duration) + ')' : '';
-      lines.push('  ' + chalk.green('\u2713') + ' ' + name + chalk.dim(duration));
+      const duration = result.duration ? ` (${  formatDuration(result.duration)  })` : '';
+      lines.push(`  ${  chalk.green('\u2713')  } ${  name  }${chalk.dim(duration)}`);
     } else {
-      lines.push('  ' + chalk.red('\u2717') + ' ' + name);
+      lines.push(`  ${  chalk.red('\u2717')  } ${  name}`);
       if (result.error) {
-        lines.push('      ' + chalk.red(result.error));
+        lines.push(`      ${  chalk.red(result.error)}`);
       }
     }
   }
@@ -396,14 +396,14 @@ export function displaySummary(results, options = {}) {
   const totalCount = results.length;
 
   if (failCount === 0) {
-    lines.push(chalk.green('\u2713 All ' + successCount + ' phases completed successfully'));
+    lines.push(chalk.green(`\u2713 All ${  successCount  } phases completed successfully`));
   } else {
-    lines.push(chalk.yellow('Completed: ' + successCount + '/' + totalCount + ' phases'));
-    lines.push(chalk.red('Failed: ' + failCount + ' phase' + (failCount > 1 ? 's' : '')));
+    lines.push(chalk.yellow(`Completed: ${  successCount  }/${  totalCount  } phases`));
+    lines.push(chalk.red(`Failed: ${  failCount  } phase${  failCount > 1 ? 's' : ''}`));
   }
 
   if (totalDuration) {
-    lines.push(chalk.dim('Total time: ' + formatDuration(totalDuration)));
+    lines.push(chalk.dim(`Total time: ${  formatDuration(totalDuration)}`));
   }
 
   lines.push(divider);
@@ -424,7 +424,7 @@ export function displayWelcomeBanner(title = 'BMAD Installation Wizard') {
   const lines = [
     '',
     chalk.cyan(divider),
-    chalk.cyan.bold('  ' + title),
+    chalk.cyan.bold(`  ${  title}`),
     chalk.cyan(divider),
     ''
   ];
@@ -441,7 +441,7 @@ export function displayWelcomeBanner(title = 'BMAD Installation Wizard') {
  * @returns {string} Formatted section header
  */
 export function displaySectionHeader(title) {
-  const message = chalk.blue.bold('\n' + title);
+  const message = chalk.blue.bold(`\n${  title}`);
   console.log(message);
   console.log(chalk.dim('\u2500'.repeat(title.length)));
   return title;
@@ -454,7 +454,7 @@ export function displaySectionHeader(title) {
  * @returns {string} Formatted message
  */
 export function displayInfo(message) {
-  const formatted = chalk.blue('i') + ' ' + message;
+  const formatted = `${chalk.blue('i')  } ${  message}`;
   console.log(formatted);
   return formatted;
 }
@@ -466,7 +466,7 @@ export function displayInfo(message) {
  * @returns {string} Formatted message
  */
 export function displayWarning(message) {
-  const formatted = chalk.yellow('!') + ' ' + message;
+  const formatted = `${chalk.yellow('!')  } ${  message}`;
   console.log(formatted);
   return formatted;
 }
@@ -478,7 +478,7 @@ export function displayWarning(message) {
  * @returns {string} Formatted message
  */
 export function displayError(message) {
-  const formatted = chalk.red('\u2717') + ' ' + message;
+  const formatted = `${chalk.red('\u2717')  } ${  message}`;
   console.log(formatted);
   return formatted;
 }
@@ -490,7 +490,7 @@ export function displayError(message) {
  * @returns {string} Formatted message
  */
 export function displaySuccess(message) {
-  const formatted = chalk.green('\u2713') + ' ' + message;
+  const formatted = `${chalk.green('\u2713')  } ${  message}`;
   console.log(formatted);
   return formatted;
 }
@@ -515,7 +515,7 @@ export function displayList(items, options = {}) {
   const { bullet = '\u2022', indent = 2 } = options;
   const padding = ' '.repeat(indent);
 
-  const lines = items.map(item => padding + bullet + ' ' + item);
+  const lines = items.map(item => `${padding + bullet  } ${  item}`);
   const output = lines.join('\n');
   console.log(output);
   return output;

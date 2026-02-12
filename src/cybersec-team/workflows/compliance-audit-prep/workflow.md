@@ -1,5 +1,5 @@
 ---
-name: Compliance Audit Preparation
+name: compliance-audit-prep
 description: Comprehensive compliance audit preparation across major frameworks (NIST, SOC2, PCI-DSS, HIPAA, GDPR) with gap assessments and remediation planning
 web_bundle: true
 ---
@@ -31,7 +31,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: Halt at menus for user selection
 4. **CHECK CONTINUATION**: Resume via step-01b-continue if needed
 5. **SAVE STATE**: Update stepsCompleted before next step
-6. **LOAD NEXT**: When directed, load and execute next step
+6. **LOAD NEXT**: When directed, load and follow next step
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -58,11 +58,11 @@ For specialized compliance consultations, consider engaging:
 
 ### 1. Configuration Loading
 
-Load and read full config from {project-root}/_bmad/cybersec-team/config.yaml and resolve:
+Load and read full config from {project-root}/src/cybersec-team/config.yaml and resolve:
 
 - `project_name`, `output_folder`, `user_name`, `communication_language`, `document_output_language`
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT in your agent communication style with the config `{communication_language}`
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{project-root}/_bmad/cybersec-team/workflows/compliance-audit-prep/steps/step-01-init.md` to begin the workflow.
+Load, read the full file and then follow `{project-root}/src/cybersec-team/workflows/compliance-audit-prep/steps/step-01-init.md` to begin the workflow.

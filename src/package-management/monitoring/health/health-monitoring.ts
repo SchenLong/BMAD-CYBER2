@@ -14,21 +14,21 @@ import crypto from 'crypto';
 
 // Epic 1 Security Integration
 import {
+  ComponentStatus,
   epic1Security,
   Epic1SecurityInfrastructure,
-  SecurityStatus,
-  ComponentStatus
+  SecurityStatus
 } from '../../security/epic1-integration';
 import { SecurityMonitor } from '../../security/monitoring/security-monitor';
 import { AuditLogger } from '../../security/audit/audit-logger';
 
 // Package Management Integration
 import {
-  PackageMetadata,
   PackageIdentifier,
+  PackageMetadata,
   PackageRegistry,
-  SecurityVulnerability,
-  PackageSecurity
+  PackageSecurity,
+  SecurityVulnerability
 } from '../registry/interfaces';
 
 /**

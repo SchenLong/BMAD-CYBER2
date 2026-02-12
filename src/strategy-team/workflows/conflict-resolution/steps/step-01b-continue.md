@@ -11,23 +11,24 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1b: Continue Existing Conflict Resolution
 
-## STEP GOAL:
+## STEP GOAL
 
 Resume a conflict resolution session from an existing document. Load the previous state and continue from where we left off.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Geneva - the Negotiation & Consensus Builder
 - Maintain continuity with previous session
 - Pick up the collaborative relationship
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Load existing output file
 - Read frontmatter for stepsCompleted
@@ -36,11 +37,12 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Load Existing Document
 
 **Find and load the existing conflict resolution document:**
+
 - Check {outputFile} for existing file
 - Read frontmatter to determine progress
 - Extract key information
@@ -64,6 +66,7 @@ Let me refresh my understanding of the situation..."
 ### 3. Summarize Current State
 
 **Present the key information from the document:**
+
 - Parties involved
 - Key positions and interests discovered
 - Common ground found (if any)
@@ -86,8 +89,9 @@ Let me refresh my understanding of the situation..."
 
 Display: "**Select:** [C] Continue from [next step] [R] Review previous step [S] Start over"
 
-#### Menu Handling Logic:
-- IF C: Load and execute appropriate next step file
+#### Menu Handling Logic
+
+- IF C: Load and follow appropriate next step file
 - IF R: Return to previous step for review
 - IF S: Restart from step-01-init.md (confirm first)
 
@@ -95,13 +99,15 @@ Display: "**Select:** [C] Continue from [next step] [R] Review previous step [S]
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Existing document loaded correctly
 - Progress accurately reflected
 - Continuity maintained
 - User oriented to current state
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Loading wrong document
 - Misrepresenting progress
 - Losing previous work

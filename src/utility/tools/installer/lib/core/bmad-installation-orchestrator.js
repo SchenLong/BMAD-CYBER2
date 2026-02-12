@@ -18,6 +18,7 @@ const BMADTemplateEngine = require('./bmad-template-engine');
 const BMADConfigurationManager = require('./bmad-configuration-manager');
 const BMADConfigurationValidator = require('../validators/bmad-configuration-validator');
 const BMADPostInstallVerifier = require('./bmad-post-install-verifier');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 const BMADDependencyManager = require('./bmad-dependency-manager');
 
 class BMADInstallationOrchestrator {
@@ -390,7 +391,7 @@ class BMADInstallationOrchestrator {
             }
 
             const yaml = require('yaml');
-            const config = yaml.parse(require('fs').readFileSync(configPath, 'utf8'));
+            const config = yaml.parse(normalizeLineEndings(require('fs').readFileSync(configPath, 'utf8')));
 
             // Validate configuration
             const validationResult = await this.configurationValidator.validateConfiguration(config, { teamCode });
@@ -567,11 +568,12 @@ class BMADInstallationOrchestrator {
                         extension = 'json';
                         break;
                     case 'yaml':
-                    default:
+                    default: {
                         const yaml = require('yaml');
                         content = yaml.stringify(result.configuration, null, 2);
                         extension = 'yaml';
                         break;
+                    }
                 }
 
                 const filePath = path.join(outputPath, `${teamCode}.${extension}`);

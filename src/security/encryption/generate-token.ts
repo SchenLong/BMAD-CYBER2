@@ -77,7 +77,7 @@ export class TokenGenerator {
     // Combine: iv + authTag + encrypted
     const combined = Buffer.concat([iv, authTag, encrypted]);
 
-    return 'bmad.v1.' + combined.toString('base64url');
+    return `bmad.v1.${  combined.toString('base64url')}`;
   }
 
   /**
@@ -159,9 +159,9 @@ async function interactiveGeneration(): Promise<void> {
     return new Promise(resolve => rl.question(prompt, resolve));
   };
 
-  console.log('\n' + '='.repeat(70));
+  console.log(`\n${  '='.repeat(70)}`);
   console.log('              BMAD Authentication Token Generator');
-  console.log('='.repeat(70) + '\n');
+  console.log(`${'='.repeat(70)  }\n`);
 
   // Gather user information
   const name = await question('Enter your name: ');
@@ -230,7 +230,7 @@ async function interactiveGeneration(): Promise<void> {
   let projectRoot = process.cwd();
 
   // If running from security directory, go up 3 levels
-  if (scriptDir.includes('_bmad/core/security')) {
+  if (scriptDir.includes('src/core/security')) {
     projectRoot = path.resolve(scriptDir, '../../..');
   }
 
@@ -264,7 +264,7 @@ async function interactiveGeneration(): Promise<void> {
   fs.writeFileSync(tokenPath, result.token);
   fs.chmodSync(tokenPath, 0o600);
 
-  console.log('\n' + '='.repeat(70));
+  console.log(`\n${  '='.repeat(70)}`);
   console.log('                   Token Generated Successfully');
   console.log('='.repeat(70));
   console.log(`\n  Name:    ${result.claims.name}`);

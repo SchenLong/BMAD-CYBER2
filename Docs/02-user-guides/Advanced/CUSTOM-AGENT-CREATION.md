@@ -53,11 +53,13 @@ Example path: `_bmad/cybersec-team/agents/my-custom-agent.md`
 ### Step 1: Choose a Unique Agent ID
 
 1. Check existing agents in the manifest:
+
    ```bash
    cat _bmad/_config/agent-manifest.csv
    ```
 
 2. Verify no conflicts:
+
    ```bash
    grep -r "name: \"your-agent-name\"" _bmad/*/agents/
    ```
@@ -203,7 +205,7 @@ The menu provides user interaction commands:
 | Attribute | Purpose | Example |
 |-----------|---------|---------|
 | `workflow` | Execute a workflow file | `workflow="_bmad/core/workflows/brainstorming/workflow.md"` |
-| `exec` | Load and execute file instructions | `exec="_bmad/intel-team/data/collection-checklist.md"` |
+| `exec` | Load and follow file instructions | `exec="_bmad/intel-team/data/collection-checklist.md"` |
 | `action` | Execute text as instruction | `action="Summarize the current situation"` |
 | `action="#id"` | Execute named prompt from `<prompts>` | `action="#deep-dive"` |
 | `data` | Pass additional parameters | `data="preset=crisis-response"` |

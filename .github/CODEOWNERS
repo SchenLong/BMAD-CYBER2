@@ -1,0 +1,24 @@
+# CODEOWNERS — BMAD-CYBERSEC Repository
+# Defines code ownership for pull request review requirements.
+# Requires branch protection with "Require review from Code Owners" enabled.
+#
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Security-critical: hook pipeline, RBAC, audit, validators
+.claude/settings.json @paultinp
+.claude/hooks/ @paultinp
+.claude/validators-node/ @paultinp
+
+# Security source files
+src/security/ @paultinp
+src/automation/audit/ @paultinp
+
+# RBAC configuration
+src/_config/rbac-config.yaml @paultinp
+
+# CI/CD pipeline definitions
+.github/workflows/ @paultinp
+
+# Package distribution
+package.json @paultinp
+.npmignore @paultinp

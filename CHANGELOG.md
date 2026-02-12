@@ -5,6 +5,59 @@ All notable changes to BMAD CYBERCOMMAND will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-02-09
+
+### Added
+
+#### AI-Powered Help System (Story 03)
+- `/bmad-help` interactive command for discovering modules, agents, workflows, and commands
+- Module-aware help generator reading CSV manifests (9 modules, 79 agents, 138 workflows)
+- Natural language search with 4-tier fuzzy matching (exact, substring, contains, Levenshtein)
+- 8 contextual help templates covering all installed modules
+- ADR-007 documenting help system architecture decisions
+- 42 new tests for help system (help-system.test.js)
+
+#### Direct Slash Command Invocation (Story 01)
+- Slash command router with RBAC enforcement and audit trail integration
+- Workflow alias registry (112 unique + 26 prefixed aliases, 13 conflict resolutions)
+- 138-workflow inventory with full alias mapping
+- Settings integrity validator (VULN-012 protection)
+- Slash command reference card documentation
+- 59 new tests for routing and settings integrity
+
+#### Bug Fixes Backport (Story 00)
+- Path sanitization with 6 bypass vector protections (VULN-001 through VULN-007)
+- Cross-file reference validator with CSV scanning support
+- YAML CRLF line ending normalization for dual library setup (js-yaml + yaml)
+- Cross-platform glob wrapper for consistent behavior
+- npm version checking with registry lookup
+
+### Changed
+
+#### Node.js 20 Upgrade (Story 02)
+- Minimum Node.js version updated to 20.0.0 (from 18.0.0)
+- Minimum npm version updated to 10.0.0 (from 9.0.0)
+- CI/CD pipelines updated to use Node.js 20 (continuous-testing, extraction-qa, quality-gate)
+- All crypto APIs verified compatible (AES-256-GCM, PBKDF2-SHA256, SHA-256 hash chains)
+- Source code version checks updated across cli.js, package-merger.js, dependency-manager.js, registry-manager.js
+- Config templates updated (team-package.json.template, package.json.template, dependencies.yaml)
+
+### Breaking Changes
+- **Node.js 18 no longer supported.** Minimum required version is now Node.js 20.0.0 (npm >= 10.0.0). Users on Node 18 must upgrade before installing v2.2.0.
+
+### Security
+- **VULN-012**: Settings.json SPOF protection via integrity validator (54 hooks, 12 matchers assertion)
+- **VULN-013**: Manifest content sanitization preventing prompt injection in help system (6 regex patterns, HTML stripping, code block stripping, length truncation)
+- Reserved command names protected from alias override (13 conflicts + blocklist)
+- All 139+ security validators verified functional across all 4 upgrade stages
+- RBAC integration verified for slash command router entry points
+- Audit trail captures all slash command operations via TamperEvidentAuditLogger
+
+### Tests
+- Total test count: 1387 passing (+101 new tests across all stories)
+- Zero regressions across all 4 upgrade stages
+- 2 pre-existing test failures unchanged (stage-13-validation process.exit, package-merger VAL-11-005)
+
 ## [2.0.0] - 2026-01-31
 
 ### Added

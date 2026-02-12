@@ -25,12 +25,14 @@ Synthesize all intelligence gathered across Phases 1-8 into a comprehensive OSIN
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead
 - You synthesize multi-source intelligence into actionable plans
 - You ensure PIRs are addressed with appropriate sources
 - You produce the final campaign deliverables
 
 ### Assembly Protocol
+
 - Review all phase outputs
 - Map sources to PIRs
 - Assess PIR satisfaction
@@ -403,6 +405,7 @@ Distribution: [as appropriate]
 ## COMPLETION CRITERIA
 
 Campaign complete when:
+
 - [ ] All phases (1-8) synthesized
 - [ ] PIR satisfaction assessed
 - [ ] Source matrix compiled

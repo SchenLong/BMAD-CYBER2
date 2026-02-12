@@ -19,6 +19,7 @@ stepsCompleted: []
 **Overall Risk Level:** {overall_risk}
 
 ### Key Findings
+
 {key_findings_summary}
 
 ---
@@ -26,6 +27,7 @@ stepsCompleted: []
 ## 1. Contract Overview
 
 ### Basic Information
+
 - **Contract Title:** {contract_title}
 - **Date of Contract:** {contract_date}
 - **Effective Date:** {effective_date}
@@ -33,12 +35,14 @@ stepsCompleted: []
 - **Value:** {contract_value}
 
 ### Parties
+
 | Party | Role | Jurisdiction |
 |-------|------|--------------|
 | {party_1} | {role_1} | {jurisdiction_1} |
 | {party_2} | {role_2} | {jurisdiction_2} |
 
 ### Purpose
+
 {contract_purpose}
 
 ---
@@ -46,16 +50,19 @@ stepsCompleted: []
 ## 2. Governing Law and Jurisdiction
 
 ### Choice of Law
+
 - **Governing Law:** {governing_law}
 - **Clause Location:** {clause_location}
 - **Assessment:** {choice_of_law_assessment}
 
 ### Dispute Resolution
+
 - **Mechanism:** {dispute_mechanism}
 - **Forum:** {forum}
 - **Enforceability:** {enforceability_assessment}
 
 ### Jurisdiction-Specific Concerns
+
 {jurisdiction_concerns}
 
 ---
@@ -63,14 +70,17 @@ stepsCompleted: []
 ## 3. Structure Review
 
 ### Document Organization
+
 {structure_assessment}
 
 ### Definitions
+
 - **Adequacy:** {definitions_adequacy}
 - **Missing Definitions:** {missing_definitions}
 - **Problematic Definitions:** {problematic_definitions}
 
 ### Cross-References
+
 {cross_reference_check}
 
 ---
@@ -80,18 +90,23 @@ stepsCompleted: []
 ### Core Obligations
 
 #### Party A Obligations
+
 {party_a_obligations}
 
 #### Party B Obligations
+
 {party_b_obligations}
 
 ### Performance Standards
+
 {performance_standards}
 
 ### Acceptance Criteria
+
 {acceptance_criteria}
 
 ### Payment Terms
+
 {payment_terms}
 
 ---
@@ -99,23 +114,27 @@ stepsCompleted: []
 ## 5. Risk Allocation
 
 ### Representations and Warranties
+
 | R&W | Scope | Survival | Cap | Assessment |
 |-----|-------|----------|-----|------------|
 {rw_table}
 
 ### Indemnification
+
 - **Triggers:** {indemnification_triggers}
 - **Procedures:** {indemnification_procedures}
 - **Limits:** {indemnification_limits}
 - **Assessment:** {indemnification_assessment}
 
 ### Limitation of Liability
+
 - **Cap:** {liability_cap}
 - **Consequential Damages:** {consequential_damages}
 - **Exclusions:** {liability_exclusions}
 - **Assessment:** {liability_assessment}
 
 ### Insurance Requirements
+
 {insurance_requirements}
 
 ---
@@ -123,18 +142,23 @@ stepsCompleted: []
 ## 6. Termination and Exit
 
 ### Termination for Cause
+
 {termination_cause}
 
 ### Termination for Convenience
+
 {termination_convenience}
 
 ### Notice Requirements
+
 {notice_requirements}
 
 ### Wind-Down Provisions
+
 {wind_down}
 
 ### Post-Termination Obligations
+
 {post_termination}
 
 ---
@@ -142,12 +166,15 @@ stepsCompleted: []
 ## 7. Risk Summary
 
 ### HIGH RISK Issues
+
 {high_risk_issues}
 
 ### MEDIUM RISK Issues
+
 {medium_risk_issues}
 
 ### LOW RISK Issues
+
 {low_risk_issues}
 
 ---
@@ -155,12 +182,15 @@ stepsCompleted: []
 ## 8. Recommended Modifications
 
 ### Priority 1 (Critical)
+
 {priority_1_modifications}
 
 ### Priority 2 (Important)
+
 {priority_2_modifications}
 
 ### Priority 3 (Nice to Have)
+
 {priority_3_modifications}
 
 ---

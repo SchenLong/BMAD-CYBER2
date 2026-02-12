@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/resource-management/resource-limits.js')
+import('../dist/src/resource-management/resource-limits.js')
   .then((module) => {
     module.main();
   })

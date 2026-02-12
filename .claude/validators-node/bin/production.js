@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/guards/production.js')
+import('../dist/src/guards/production.js')
   .then((module) => {
     module.main();
   })

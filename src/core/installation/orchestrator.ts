@@ -11,20 +11,20 @@
 
 import { EventEmitter } from 'events';
 import type {
-  OrchestratorConfig,
-  InstallationSession,
   InstallationResult,
-  InstallationStep,
+  InstallationSession,
   InstallationStatistics,
-  ValidationResult,
-  TemplateData
+  InstallationStep,
+  OrchestratorConfig,
+  TemplateData,
+  ValidationResult
 } from './types.js';
 import type {
-  ITemplateEngine,
   IConfigurationManager,
   IConfigurationValidator,
   IDependencyManager,
-  IPostInstallVerifier
+  IPostInstallVerifier,
+  ITemplateEngine
 } from './interfaces.js';
 
 /**

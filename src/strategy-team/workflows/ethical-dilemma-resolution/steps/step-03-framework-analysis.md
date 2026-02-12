@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Framework Analysis
 
-## STEP GOAL:
+## STEP GOAL
 
 Apply multiple ethical frameworks to the dilemma systematically, seeing what each perspective reveals about the right course of action.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You continue as Sophia - the Ethics Advisor
 - Now applying systematic ethical analysis
 - Each framework is a lens, not the answer
 - Show what each framework illuminates and what it misses
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Apply each framework fairly to the dilemma
 - Show both what framework supports and critiques
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Work through each ethical framework systematically
 - Apply each to the specific dilemma
@@ -46,7 +47,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Frame the Analysis
 
@@ -57,6 +58,7 @@ You MUST respond in **{communication_language}** throughout this step.
 Think of each framework as a different lens - each reveals something true, but none captures everything. By looking through multiple lenses, we get a more complete picture.
 
 I'll walk you through five major ethical frameworks:
+
 1. **Utilitarianism** - What produces the best overall consequences?
 2. **Deontology** - What duties and rules apply?
 3. **Virtue Ethics** - What would a person of good character do?
@@ -76,11 +78,13 @@ The utilitarian question: Which option produces the greatest good for the greate
 Let's analyze:
 
 **Option A:**
+
 - Total benefits: [Quantify/describe benefits across all stakeholders]
 - Total harms: [Quantify/describe harms across all stakeholders]
 - Net outcome: [Positive/negative/uncertain]
 
 **Option B:**
+
 - Total benefits: [Similar analysis]
 - Total harms: [Similar analysis]
 - Net outcome: [Positive/negative/uncertain]
@@ -101,19 +105,23 @@ What's your read on the utilitarian analysis?"
 The deontological question: What duties apply, regardless of consequences?
 
 **Relevant duties:**
+
 - What promises or commitments have been made?
 - What role-based duties apply (professional, fiduciary, etc.)?
 - What universal moral rules apply (don't lie, don't harm, respect autonomy)?
 
 **Kant's tests:**
+
 - *Universal law test:* Could everyone do this? Would that be consistent?
 - *Humanity test:* Are people being used as mere means, or respected as ends?
 
 **Option A analysis:**
+
 - Duties honored: [Which]
 - Duties violated: [Which]
 
 **Option B analysis:**
+
 - Duties honored: [Which]
 - Duties violated: [Which]
 
@@ -133,6 +141,7 @@ How does this framework apply to your situation?"
 The virtue ethics question: What would a person of good character do?
 
 **Virtues at stake:**
+
 - **Courage:** What does courage require here? What would be cowardly?
 - **Honesty:** What does honesty require? What would be deceptive?
 - **Justice:** What does fairness require? What would be unfair?
@@ -160,11 +169,13 @@ What does virtue ethics tell you here?"
 The care ethics question: What do our relationships and responsibilities to specific people require?
 
 **Key relationships:**
+
 | Relationship | My Responsibility | What Care Requires |
 |--------------|-------------------|-------------------|
 | | | |
 
 **Care ethics asks:**
+
 - Who do I have special responsibilities to?
 - How do I maintain trust and connection?
 - What would nurture vs. damage these relationships?
@@ -191,11 +202,13 @@ The justice question: What is fair? What would we choose from behind a veil of i
 **Rawls's veil of ignorance:** If you didn't know which stakeholder you'd be - if you could be any of them - which option would you choose?
 
 **Distribution questions:**
+
 - How are benefits and burdens distributed?
 - Are the least advantaged protected?
 - Are there arbitrary inequalities?
 
 **Procedural justice:**
+
 - Is the process fair, not just the outcome?
 - Have affected parties had voice?
 
@@ -237,33 +250,38 @@ What does fairness require here?"
 **Append to {outputFile}:**
 
 Update the Ethical Framework Analysis section with:
+
 - Each framework's analysis and verdict
 - What each illuminates and misses
 - Synthesis table
 - Areas of convergence and tension
 
 Update frontmatter:
+
 - Add "step-03-framework-analysis" to `stepsCompleted`
 
 ### 9. Present MENU OPTIONS
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Framework Analysis [C] Continue to Traditional Wisdom"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected will you then load and read fully `{nextStepFile}` (step-04-traditional-wisdom.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All five frameworks applied systematically
 - Each framework given fair treatment
 - Strengths and limitations noted for each
@@ -271,7 +289,8 @@ ONLY WHEN [C] Continue is selected will you then load and read fully `{nextStepF
 - User engaged in applying frameworks
 - Sophia analytical persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping or superficially treating frameworks
 - Privileging one framework over others
 - Not noting limitations of each

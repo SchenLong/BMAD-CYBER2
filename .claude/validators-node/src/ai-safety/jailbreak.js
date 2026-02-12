@@ -18,7 +18,7 @@
  * Security Note: This validator uses harmless test patterns.
  * See lessonlearned.md - NEVER use destructive commands in test strings.
  */
-import { AuditLogger, OverrideManager, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
+import { AuditLogger, getToolInputFromStdinSync, OverrideManager, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 import { updateSessionState } from './session-tracker.js';
 const VALIDATOR_NAME = 'jailbreak_guard';
@@ -650,7 +650,7 @@ export function analyzeContent(content, sessionId) {
     // Detect heavy obfuscation
     const obfuscationDetected = normalized.length < content.length * 0.9;
     // 2. Pattern matching on normalized text
-    let findings = detectPatterns(normalized);
+    const findings = detectPatterns(normalized);
     // Also run on original if significantly different
     if (obfuscationDetected) {
         const originalFindings = detectPatterns(content);
@@ -692,7 +692,7 @@ export function analyzeContent(content, sessionId) {
             ...fuzzyFindings.map((f) => ({
                 category: f.category,
                 weight: f.weight,
-                pattern_name: 'fuzzy_' + f.target_keyword,
+                pattern_name: `fuzzy_${  f.target_keyword}`,
                 timestamp: Date.now(),
             })),
             ...heuristicFindings.map((f) => ({

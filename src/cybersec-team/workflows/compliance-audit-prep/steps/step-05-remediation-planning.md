@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Remediation Planning
 
-## STEP GOAL:
+## STEP GOAL
 
 To create actionable remediation roadmap addressing all critical gaps before audit date.
 
-## REMEDIATION PLANNING PROCESS:
+## REMEDIATION PLANNING PROCESS
 
 ### 1. Load Gap Data
 
@@ -44,6 +44,7 @@ We'll create phased remediation plan."
 **Remediation Approach:**
 
 Describe how you will address this gap:
+
 - Specific actions required
 - Resources needed (people, tools, budget)
 - Dependencies
@@ -56,6 +57,7 @@ Collect remediation details.
 "**Ownership:**
 
 Who will own remediating this gap?
+
 - Primary owner (person/team)
 - Support required (if any)
 - Approval needed (if any)
@@ -65,6 +67,7 @@ Assign ownership:"
 "**Timeline:**
 
 When will this be completed?
+
 - Start date
 - Target completion date
 - Milestones (if applicable)
@@ -74,6 +77,7 @@ Provide timeline:"
 "**Effort Estimate:**
 
 Estimated effort:
+
 - S (Small): < 1 week
 - M (Medium): 1-2 weeks
 - L (Large): 3-4 weeks
@@ -84,6 +88,7 @@ Estimate effort:"
 ### 4. Create Remediation Roadmap
 
 Gantt-style roadmap showing:
+
 - All remediations on timeline
 - Dependencies and sequencing
 - Resource allocation
@@ -94,6 +99,7 @@ Gantt-style roadmap showing:
 "**Remediation Risks:**
 
 What could prevent completing remediation on time?
+
 - Resource constraints
 - Technical complexity
 - Dependencies on third parties
@@ -182,7 +188,8 @@ Display: **[P] Party Mode [C] Continue to Artifact Generation**
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
+
 - All gaps have remediation plans
 - Ownership assigned
 - Timeline realistic for audit date

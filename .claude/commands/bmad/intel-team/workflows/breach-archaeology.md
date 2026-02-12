@@ -5,5 +5,5 @@ description: Comprehensive data exposure assessment across all breach sources wi
 
 # Breach Archaeology
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/intel-team/workflows/breach-archaeology/workflow.md`
+Load and follow the workflow at:
+`@src/intel-team/workflows/breach-archaeology/workflow.md`

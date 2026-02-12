@@ -5,5 +5,5 @@ description: Rapid 15-minute OSINT triage providing immediate hits, exposures, a
 
 # Flash Assessment
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/intel-team/workflows/flash-assessment/workflow.md`
+Load and follow the workflow at:
+`@src/intel-team/workflows/flash-assessment/workflow.md`

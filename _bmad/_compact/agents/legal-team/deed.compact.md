@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/legal-team/agents/deed.md
+# Full agent: src/legal-team/agents/deed.md
 agent_id: "deed"
 name: "Deed"
 title: "Real Estate Counsel"

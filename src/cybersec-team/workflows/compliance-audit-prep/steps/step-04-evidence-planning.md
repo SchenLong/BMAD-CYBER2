@@ -10,11 +10,11 @@ outputFile: '{output_folder}/compliance/audit-prep-{framework}-{project_name}.md
 
 # Step 4: Evidence Collection Planning
 
-## STEP GOAL:
+## STEP GOAL
 
 To plan systematic evidence collection for all implemented controls and document evidence requirements for audit.
 
-## EVIDENCE PLANNING PROCESS:
+## EVIDENCE PLANNING PROCESS
 
 ### 1. Evidence Requirements by Control
 
@@ -49,11 +49,13 @@ Create comprehensive evidence matrix:
 For each evidence type:
 
 **Automated Collection:**
+
 - System logs: Export from SIEM/logging platform
 - Configs: Script to pull current configurations
 - Reports: Automated report generation
 
 **Manual Collection:**
+
 - Policy documents: Gather from document management
 - Training records: Export from LMS
 - Reviews: Schedule and conduct reviews
@@ -61,6 +63,7 @@ For each evidence type:
 ### 4. Evidence Gaps
 
 Identify controls where evidence is:
+
 - Not available
 - Incomplete
 - Outdated
@@ -90,6 +93,7 @@ Identify controls where evidence is:
 
 **Directory Structure:**
 ```
+
 /audit-evidence/{framework}/
 ├── policies/
 ├── procedures/
@@ -98,6 +102,7 @@ Identify controls where evidence is:
 ├── testing/
 ├── training/
 └── third-party/
+
 ```
 
 ---
@@ -120,7 +125,8 @@ Load {nextStepFile}
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
+
 - Evidence matrix complete for all controls
 - Collection procedures documented
 - Evidence gaps identified

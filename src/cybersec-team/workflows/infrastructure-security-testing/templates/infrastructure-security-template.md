@@ -59,6 +59,7 @@ version: '1.0'
 ## Methodology
 
 Assessment performed according to:
+
 - CIS Benchmarks
 - NIST Cybersecurity Framework
 - OWASP Guidelines
@@ -89,6 +90,7 @@ Assessment performed according to:
 [Detailed description]
 
 **Evidence:**
+
 ```
 [Commands/output/screenshots]
 ```
@@ -100,6 +102,7 @@ Assessment performed according to:
 [Fix recommendation with code example]
 
 **References:**
+
 - [CIS Benchmark X.X.X]
 - [Relevant documentation]
 

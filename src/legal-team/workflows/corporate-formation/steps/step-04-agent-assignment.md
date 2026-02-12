@@ -18,12 +18,15 @@ Route the formation matter to the appropriate jurisdiction specialist agent.
 Based on selectedJurisdiction, assign specialist:
 
 **USA Jurisdictions:**
+
 - Delaware, Wyoming, Nevada, any US state → **Liberty** (US Corporate Specialist)
 
 **Spain:**
+
 - SL, SA, SLNE, Branch → **Castile** (Spain Legal Specialist)
 
 **EU/Estonia:**
+
 - OÜ, AS, e-Residency, other EU → **Europa** (EU Legal Specialist)
 
 ### 2. Handoff Notification

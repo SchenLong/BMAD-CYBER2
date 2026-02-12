@@ -17,6 +17,7 @@ year: ""
 ## 1. Board Assessment
 
 ### Board Composition
+
 | Attribute | Details |
 |-----------|---------|
 | Total Directors | |
@@ -27,6 +28,7 @@ year: ""
 | Committees | |
 
 ### Committee Structure
+
 | Committee | Chair | Members | Meeting Frequency |
 |-----------|-------|---------|-------------------|
 | Audit | | | |
@@ -35,6 +37,7 @@ year: ""
 | [Other] | | | |
 
 ### Board Dynamics
+
 **Key Influencers:**
 -
 
@@ -45,6 +48,7 @@ year: ""
 [How influence works in board discussions]
 
 ### Relationship Health
+
 | Aspect | Rating (1-5) | Notes |
 |--------|--------------|-------|
 | Overall trust | | |
@@ -55,9 +59,11 @@ year: ""
 | **Overall** | | |
 
 ### Board Priorities
+
 [Top concerns on the board's mind]
 
 ### Current Engagement Practices
+
 **What's Working:**
 -
 
@@ -65,6 +71,7 @@ year: ""
 -
 
 ### Magnus's Political View
+
 "[Political strategist perspective]"
 
 ---
@@ -72,6 +79,7 @@ year: ""
 ## 2. Director Profiles
 
 ### Director Roster
+
 | Name | Role | Committees | Tenure | Background |
 |------|------|------------|--------|------------|
 | | | | | |
@@ -79,6 +87,7 @@ year: ""
 ### Individual Director Profiles
 
 #### [Director Name]
+
 | Dimension | Assessment |
 |-----------|------------|
 | Background | |
@@ -94,21 +103,25 @@ year: ""
 [Repeat for each key director]
 
 ### Motivation Analysis
+
 | Director | Stated Interests | Underlying Motivations |
 |----------|------------------|------------------------|
 | | | |
 
 ### Relationship Assessment
+
 | Director | Relationship (1-5) | Trust Level | Improvement Priority |
 |----------|-------------------|-------------|---------------------|
 | | | | H/M/L |
 
 ### Influence Map
+
 | Director | Formal Power | Informal Influence | Topics of Influence |
 |----------|--------------|-------------------|---------------------|
 | | H/M/L | H/M/L | |
 
 ### Priority Focus
+
 **Critical:**
 -
 
@@ -119,6 +132,7 @@ year: ""
 -
 
 ### Niccolo's Realist View
+
 "[Realist perspective on director motivations]"
 
 ---
@@ -126,6 +140,7 @@ year: ""
 ## 3. Engagement Strategy
 
 ### Board Meeting Approach
+
 | Element | Current | Improved Approach |
 |---------|---------|-------------------|
 | Pre-meeting prep | | |
@@ -137,6 +152,7 @@ year: ""
 ### Individual Director Strategies
 
 #### [Priority Director 1]
+
 | Engagement Type | Approach | Frequency |
 |-----------------|----------|-----------|
 | One-on-ones | | |
@@ -146,6 +162,7 @@ year: ""
 [Repeat for priority directors]
 
 ### Chair Relationship Strategy
+
 | Aspect | Strategy |
 |--------|----------|
 | Communication frequency | |
@@ -154,6 +171,7 @@ year: ""
 | Trust building | |
 
 ### Committee Engagement
+
 | Committee | Engagement Approach |
 |-----------|---------------------|
 | Audit | |
@@ -161,14 +179,17 @@ year: ""
 | [Other] | |
 
 ### Informal Engagement Opportunities
+
 | Opportunity | Directors | Approach |
 |-------------|-----------|----------|
 | | | |
 
 ### New Director Onboarding
+
 [Strategy for new director engagement]
 
 ### Geneva's Relationship View
+
 "[Stakeholder mediator perspective]"
 
 ---
@@ -176,6 +197,7 @@ year: ""
 ## 4. Communication Planning
 
 ### Current State Assessment
+
 | Communication Type | Effectiveness | Improvement Needed |
 |-------------------|---------------|-------------------|
 | Board book | H/M/L | |
@@ -184,6 +206,7 @@ year: ""
 | Urgent communications | | |
 
 ### Board Book Optimization
+
 | Section | Content | Length |
 |---------|---------|--------|
 | Executive summary | | |
@@ -192,6 +215,7 @@ year: ""
 | Risk update | | |
 
 ### Presentation Style
+
 | Element | Recommendation |
 |---------|----------------|
 | Length | |
@@ -200,14 +224,17 @@ year: ""
 | Discussion ratio | |
 
 ### Between-Meeting Communications
+
 | Communication | Purpose | Frequency | Channel |
 |---------------|---------|-----------|---------|
 | | | | |
 
 ### Bad News Protocol
+
 [Approach for communicating challenges]
 
 ### Quality Standards
+
 | Standard | Description |
 |----------|-------------|
 | Timeliness | |
@@ -216,9 +243,11 @@ year: ""
 | Clarity | |
 
 ### Giuseppe's Communications View
+
 "[Communications perspective]"
 
 ### Cicero's Presentation View
+
 "[Debate coach perspective]"
 
 ---
@@ -226,16 +255,19 @@ year: ""
 ## 5. Issue Navigation
 
 ### Contentious Issues Inventory
+
 | Issue | Why Contentious | Your Position | Board Position |
 |-------|-----------------|---------------|----------------|
 | | | | |
 
 ### Difficult Director Strategies
+
 | Director | Challenge | Strategy |
 |----------|-----------|----------|
 | | | |
 
 ### Conflict Scenarios
+
 | Scenario | Likelihood | Response Plan |
 |----------|------------|---------------|
 | Performance disagreement | | |
@@ -243,9 +275,11 @@ year: ""
 | Individual conflict | | |
 
 ### Disagreement Framework
+
 [Approach to handling disagreements with board]
 
 ### Coalition Building Strategy
+
 | Phase | Activities |
 |-------|------------|
 | Groundwork | |
@@ -254,9 +288,11 @@ year: ""
 | Decision | |
 
 ### Crisis Management Approach
+
 [How to maintain board relationships during crisis]
 
 ### Magnus's Political View
+
 "[Political strategist perspective]"
 
 ---
@@ -264,36 +300,43 @@ year: ""
 ## 6. Board Relations Action Plan
 
 ### Immediate Actions (30 Days)
+
 | Action | Owner | Deadline | Success Metric |
 |--------|-------|----------|----------------|
 | | | | |
 
 ### Short-Term Actions (90 Days)
+
 | Action | Owner | Deadline | Success Metric |
 |--------|-------|----------|----------------|
 | | | | |
 
 ### Ongoing Actions
+
 | Action | Frequency | Owner | Success Metric |
 |--------|-----------|-------|----------------|
 | | | | |
 
 ### Relationship Goals
+
 | Director | Current (1-5) | Target | By When | Key Actions |
 |----------|---------------|--------|---------|-------------|
 | | | | | |
 
 ### Communication Calendar
+
 | Month | Board Meeting | Key Communications | Special Events |
 |-------|---------------|-------------------|----------------|
 | | | | |
 
 ### Engagement Tracking
+
 **Weekly:** [what to track]
 **Monthly:** [what to review]
 **Quarterly:** [what to assess]
 
 ### Success Metrics
+
 | Metric | Baseline | Target | Measurement |
 |--------|----------|--------|-------------|
 | Board confidence | | | |
@@ -306,14 +349,17 @@ year: ""
 ## Appendix
 
 ### Document History
+
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | {date} | Board Relations Workflow | Initial draft |
 
 ### Review Schedule
+
 - Monthly: Action completion review
 - Quarterly: Relationship assessment
 - Annual: Full plan refresh
 
 ### Methodology
+
 This board relations plan was developed using the Board Relations Management workflow, incorporating perspectives from political strategy, communications, relationship building, and governance advisors through structured analysis.

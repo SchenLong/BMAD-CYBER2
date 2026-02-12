@@ -14,13 +14,13 @@ outputFile: '{output_folder}/compliance/audit-prep-{framework}-{project_name}.md
 
 # Step 1: Initialization & Framework Selection
 
-## STEP GOAL:
+## STEP GOAL
 
 To initialize the compliance audit preparation workflow, select target compliance framework(s), define audit scope, and create the initial audit preparation document.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -28,7 +28,7 @@ To initialize the compliance audit preparation workflow, select target complianc
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Compliance and Governance Expert (Sentinel persona)
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -36,14 +36,14 @@ To initialize the compliance audit preparation workflow, select target complianc
 - ✅ You bring compliance framework expertise, user brings organizational context
 - ✅ Maintain professional, systematic, compliance-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on framework selection and scope definition
 - 🚫 FORBIDDEN to perform gap assessment in this step
 - 💬 Handle initialization professionally and systematically
 - 🚪 DETECT existing workflow state and handle continuation
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Check for Existing Workflow
 
@@ -68,6 +68,7 @@ If document exists with `stepsCompleted`:
 If document exists AND `workflowComplete: true`:
 
 Ask: "I found a completed audit preparation from {date}. Would you like to:
+
 1. Create new audit preparation
 2. Update/modify existing audit preparation"
 
@@ -89,11 +90,13 @@ I'll guide you through preparing for compliance audits using industry-standard f
 **Supported Frameworks:**
 
 **Global Standards:**
+
 - **NIST 800-53** - Federal information security controls
 - **ISO 27001** - Information security management
 - **CIS Controls v8** - Center for Internet Security critical controls
 
 **US Regulations:**
+
 - **SOC 2 Type II** - Service organization controls (Trust Services Criteria)
 - **PCI-DSS** - Payment card industry data security standard
 - **HIPAA** - Healthcare information privacy and security
@@ -101,6 +104,7 @@ I'll guide you through preparing for compliance audits using industry-standard f
 - **CMMC** - Cybersecurity Maturity Model Certification (defense contractors)
 
 **EU Regulations:**
+
 - **GDPR** - General Data Protection Regulation
 - **NIS2 Directive** - Network and Information Security (critical infrastructure)
 - **CRA** - Cyber Resilience Act (product security)
@@ -109,11 +113,13 @@ I'll guide you through preparing for compliance audits using industry-standard f
 - **AI Act** - EU Artificial Intelligence Act (AI system compliance)
 
 **Industry-Specific:**
+
 - **TISAX** - Trusted Information Security Assessment Exchange (automotive)
 - **SWIFT CSP** - Customer Security Programme (financial messaging)
 - **NERC CIP** - Critical Infrastructure Protection (energy sector)
 
 **Cloud & SaaS:**
+
 - **CSA STAR** - Cloud Security Alliance Security Trust Assurance
 - **ISO 27017** - Cloud services information security
 - **ISO 27018** - Cloud privacy
@@ -125,6 +131,7 @@ Let's start by selecting your audit framework."
 You can select one or multiple frameworks (common for organizations to maintain multiple certifications).
 
 Examples:
+
 - Single: 'SOC 2 Type II'
 - Multiple: 'SOC 2 Type II, HIPAA'
 - Multiple: 'NIST 800-53, FedRAMP'
@@ -140,6 +147,7 @@ Collect: **Framework(s)**
 **1. Audit Type**
 
 Is this:
+
 - Initial certification audit (first time achieving certification)
 - Recertification audit (maintaining existing certification)
 - Surveillance audit (periodic compliance check)
@@ -180,6 +188,7 @@ Collect: **Auditor Info**
 Which systems, applications, or services are included in the audit scope?
 
 Examples:
+
 - 'Production web application, API, database infrastructure'
 - 'All AWS cloud infrastructure'
 - 'Customer data processing systems'
@@ -193,6 +202,7 @@ Collect: **Systems in Scope**
 What types of data are covered by this compliance requirement?
 
 Examples:
+
 - 'Customer PII, payment card data'
 - 'Protected health information (PHI)'
 - 'EU resident personal data'
@@ -206,6 +216,7 @@ Collect: **Data in Scope**
 What organizational units, teams, or locations are in scope?
 
 Examples:
+
 - 'Engineering, Security, IT Operations'
 - 'Headquarters and 2 regional offices'
 - 'All remote employees accessing customer data'
@@ -219,6 +230,7 @@ Collect: **Organizational Scope**
 Are there any explicit exclusions from the audit scope?
 
 Examples:
+
 - 'Development/test environments'
 - 'Legacy system being decommissioned'
 - 'Third-party managed services'
@@ -305,13 +317,13 @@ Proceeding to control inventory..."
 
 ### 5. Route to Next Step
 
-Immediately load, read entire file, then execute `{nextStepFile}` to begin control inventory.
+Immediately load, read entire file, then follow `{nextStepFile}` to begin control inventory.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Document created with audit overview (Section 1)
 - Framework(s) selected
@@ -321,7 +333,7 @@ Immediately load, read entire file, then execute `{nextStepFile}` to begin contr
 - Ready for control inventory (step 2)
 - OR existing workflow routed to step-01b-continue
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Proceeding without framework selection
 - Not checking for existing documents
@@ -333,4 +345,4 @@ Immediately load, read entire file, then execute `{nextStepFile}` to begin contr
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization is complete and document created (OR continuation routed) will you immediately load, read entire file, then execute `{nextStepFile}` to begin control inventory.
+ONLY WHEN initialization is complete and document created (OR continuation routed) will you immediately load, read entire file, then follow `{nextStepFile}` to begin control inventory.

@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/blue-team-lead.md
+# Full agent: src/cybersec-team/agents/blue-team-lead.md
 agent_id: "blue-team-lead"
 name: "Shield"
 title: "Defensive Security Operations Leader"

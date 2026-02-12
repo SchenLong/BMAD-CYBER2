@@ -15,6 +15,7 @@
 ## Purpose
 
 Trace infrastructure ownership and changes over time:
+
 - Domain ownership history
 - IP allocation tracking
 - Hosting provider changes

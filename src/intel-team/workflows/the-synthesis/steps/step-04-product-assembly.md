@@ -25,12 +25,14 @@ Assemble the final All-Source Intelligence Assessment including executive summar
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You produce formal intelligence products
 - You ensure clarity, accuracy, and actionability
 - You synthesize complex analysis into consumable assessments
 
 ### Assembly Protocol
+
 - Craft executive summary
 - Present key findings with confidence
 - Document supporting evidence
@@ -80,11 +82,13 @@ Major Caveats:
 
 Executive Summary Draft:
 ```
+
 [TARGET/TOPIC]: All-Source Intelligence Assessment
 
 BOTTOM LINE: [BLUF statement]
 
 KEY JUDGMENTS:
+
 1. [Finding 1] ([Confidence level])
 2. [Finding 2] ([Confidence])
 3. [Finding 3] ([Confidence])
@@ -95,6 +99,7 @@ CAVEATS: [Major limitations in 1-2 sentences]
 
 This assessment synthesizes [X] sources across [Y] intelligence
 disciplines covering the period [dates].
+
 ```
 
 □ BLUF drafted: [Y/N]
@@ -236,12 +241,14 @@ Red Lines (Definitively Rejected):
 
 Alternative Analysis Text:
 ```
+
 ALTERNATIVE ANALYSIS
 
 Some analysts have suggested [alternative view]. While
 [evidence for], we assess this is [less likely/unlikely]
 because [evidence against]. We would reconsider if
 [conditions that would change assessment].
+
 ```
 
 □ Alternatives documented: [count]
@@ -283,11 +290,13 @@ Monitoring Recommendations:
 
 Gap Impact Summary:
 ```
+
 COLLECTION GAPS
 
 This assessment is limited by gaps in [areas]. Priority
 collection should focus on [recommendations]. We recommend
 [specific workflow] to address [specific gap].
+
 ```
 
 □ Gaps documented: [count]
@@ -492,6 +501,7 @@ INT Disciplines: [count]
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Executive summary drafted
 - [ ] Key findings documented
 - [ ] Evidence matrix created
@@ -515,9 +525,9 @@ Workflow complete when:
 The Synthesis workflow complete.
 
 Recommended follow-on:
+
 - Distribute to appropriate consumers
 - Task collection per recommendations
 - Schedule update assessment
 - Consider **Tripwire** for monitoring
 - Archive for future reference
-

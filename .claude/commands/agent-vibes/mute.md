@@ -30,6 +30,7 @@ fi
 **Advanced Options:**
 
 To mute globally across ALL projects, use:
+
 ```bash
 touch "$HOME/.agentvibes-muted"
 ```

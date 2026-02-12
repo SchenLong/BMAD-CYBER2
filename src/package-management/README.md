@@ -148,6 +148,7 @@ The heart of the package management system, providing:
 - **Audit Logging**: Comprehensive security event logging
 
 **Key Features:**
+
 - 35,512+ lines of enterprise-grade TypeScript
 - Complete CRUD operations for packages
 - Integrated security scanning and validation
@@ -165,6 +166,7 @@ Advanced package discovery system featuring:
 - **Enriched Metadata**: Community metrics, ecosystem analysis
 
 **Discovery Types:**
+
 - Find Similar Packages
 - Explore by Category
 - Security Auditing
@@ -182,6 +184,7 @@ AI-powered recommendation engine providing:
 - **Timeline Estimation**: Implementation planning and scheduling
 
 **Recommendation Types:**
+
 - New Project Setup
 - Package Migration
 - Security Updates
@@ -648,7 +651,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For enterprise support, security consulting, and custom implementations:
 
-- **Email**: enterprise@bmad.dev
+- **Email**: <enterprise@bmad.dev>
 - **Website**: [https://bmad.dev/enterprise](https://bmad.dev/enterprise)
 
 ---

@@ -16,7 +16,7 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 1b: Continue Existing Assessment
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Parse Existing Document
 

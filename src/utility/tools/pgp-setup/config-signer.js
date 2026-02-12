@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Configuration File Signer - INST-028
  * Epic: BMAD-CYBER Installation Wizard Enhancement
@@ -31,7 +30,7 @@ const __dirname = path.dirname(__filename);
  */
 export const CONFIG_FILES = [
   '_bmad/_config/llm-config.yaml',
-  '_bmad/core/security/security-config.yaml',
+  'src/core/security/security-config.yaml',
   '_bmad/_config/manifest.yaml'
 ];
 

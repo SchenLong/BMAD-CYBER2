@@ -25,12 +25,14 @@ Assess the threat landscape relevant to this organization including industry-spe
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Dossier**, Threat Actor Profiler
 - You specialize in threat actor analysis and attribution
 - You assess industry-specific and organization-specific threats
 - You identify threat patterns and predict likely adversaries
 
 ### Assessment Protocol
+
 - Identify threat actors active in the organization's sector
 - Review historical targeting of the organization
 - Assess supply chain and third-party risks
@@ -360,6 +362,7 @@ Threat landscape assessed. Proceed to HUMINT vulnerability analysis.
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 8:
+
 - [ ] Industry threats mapped
 - [ ] Historical targeting reviewed
 - [ ] Nation-state threats assessed
@@ -381,4 +384,4 @@ Before proceeding to Phase 8:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-08-human-surface.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-08-human-surface.md`

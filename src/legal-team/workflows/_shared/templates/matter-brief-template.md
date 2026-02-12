@@ -19,6 +19,7 @@ stepsCompleted: []
 **Date:** {date}
 
 ### Brief Description
+
 {brief_description}
 
 ---
@@ -26,18 +27,21 @@ stepsCompleted: []
 ## 1. Parties Involved
 
 ### Client/User
+
 - **Name:** {client_name}
 - **Role:** {client_role}
 - **Location/Jurisdiction:** {client_location}
 - **Entity Type:** {client_entity_type}
 
 ### Counterparty (if applicable)
+
 - **Name:** {counterparty_name}
 - **Role:** {counterparty_role}
 - **Location/Jurisdiction:** {counterparty_location}
 - **Entity Type:** {counterparty_entity_type}
 
 ### Other Parties
+
 {other_parties}
 
 ---
@@ -45,17 +49,21 @@ stepsCompleted: []
 ## 2. Matter Details
 
 ### Nature of Matter
+
 {matter_nature}
 
 ### Key Facts
+
 {key_facts}
 
 ### Timeline
+
 - **Key Dates:** {key_dates}
 - **Deadlines:** {deadlines}
 - **Statute of Limitations:** {sol_status}
 
 ### Amount/Stakes
+
 {stakes}
 
 ---
@@ -63,12 +71,15 @@ stepsCompleted: []
 ## 3. Jurisdiction Analysis
 
 ### Primary Jurisdiction
+
 {primary_jurisdiction_analysis}
 
 ### Secondary/Related Jurisdictions
+
 {secondary_jurisdictions}
 
 ### Cross-Border Considerations
+
 {cross_border}
 
 ---
@@ -76,12 +87,15 @@ stepsCompleted: []
 ## 4. Documents and Evidence
 
 ### Documents Provided
+
 {documents_provided}
 
 ### Documents Needed
+
 {documents_needed}
 
 ### Evidence Assessment
+
 {evidence_assessment}
 
 ---
@@ -89,12 +103,15 @@ stepsCompleted: []
 ## 5. Initial Legal Assessment
 
 ### Applicable Law
+
 {applicable_law}
 
 ### Key Legal Issues
+
 {legal_issues}
 
 ### Preliminary Position
+
 {preliminary_position}
 
 ---
@@ -102,12 +119,15 @@ stepsCompleted: []
 ## 6. Routing and Recommendations
 
 ### Assigned Specialists
+
 {assigned_specialists}
 
 ### Recommended Workflow
+
 {recommended_workflow}
 
 ### Immediate Next Steps
+
 {next_steps}
 
 ---
@@ -115,9 +135,11 @@ stepsCompleted: []
 ## 7. Risk Assessment
 
 ### Key Risks Identified
+
 {risks}
 
 ### Mitigation Recommendations
+
 {mitigation}
 
 ---

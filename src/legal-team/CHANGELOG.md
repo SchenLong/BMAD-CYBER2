@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Agents (7)
+
 - **Counsel** - General Counsel and Legal Team Director for case intake, jurisdiction routing, and team coordination
 - **Liberty** - US Corporate & Civil Law Specialist covering federal and state jurisdictions
 - **Europa** - EU Law & Estonia Specialist with deep expertise in GDPR, cross-border commerce, and e-Residency
@@ -19,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tribute** - Tax Specialist for planning, compliance, and cross-border taxation
 
 #### Workflows (7)
+
 - **legal-matter-intake** (8 steps) - Entry point for all legal matters with jurisdiction analysis and routing
 - **contract-review** (9 steps) - Comprehensive contract analysis covering risks, obligations, and recommendations
 - **contract-drafting** (9 steps) - Create jurisdiction-appropriate contracts from requirements through final draft
@@ -28,24 +30,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **cross-border-matter** (10 steps) - Multi-jurisdictional legal matter coordination
 
 #### Shared Resources
+
 - Legal disclaimer templates (English and Spanish)
 - Jurisdiction checklist template
 - Matter brief template
 - Contract review report template
 
 #### Documentation
+
 - README.md with full module overview and usage guide
 - config.yaml with comprehensive module configuration
 - Agent descriptions and capabilities
 - Workflow documentation with step-by-step guides
 
 ### Jurisdictions Covered
+
 - **USA** - Federal and state corporate/civil law
 - **EU** - EU-wide regulations and directives
 - **Spain** - National and autonomous community law (deep coverage)
 - **Estonia** - e-Residency and corporate law (deep coverage)
 
 ### Scope
+
 - Corporate law (formation, governance, compliance)
 - Contract law (drafting, review, negotiation)
 - Civil litigation strategy
@@ -53,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cross-border transactions
 
 ### Excluded (by design)
+
 - Criminal law
 - Immigration law
 - Family law
@@ -65,12 +72,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Future Releases
 
 ### Planned for v1.1.0
+
 - Additional jurisdiction coverage (UK, Germany)
 - Enhanced multi-agent coordination
 - Template library expansion
 - Integration with document management systems
 
 ### Planned for v2.0.0
+
 - Real-time legal research integration
 - Automated document generation
 - Compliance monitoring workflows

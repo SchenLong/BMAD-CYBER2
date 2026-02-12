@@ -19,13 +19,13 @@ import { AuditLogger } from '../../../security/audit/audit-logger';
 
 // Import Package Management Types
 import {
-  PackageMetadata,
-  PackageIdentifier,
   DependencyGraph,
-  SecurityVulnerability,
-  UsageMetrics,
+  LicenseInformation,
+  PackageIdentifier,
+  PackageMetadata,
   QualityMetrics,
-  LicenseInformation
+  SecurityVulnerability,
+  UsageMetrics
 } from '../interfaces';
 
 /**

@@ -1,0 +1,34 @@
+# Markdownlint configuration for BMAD-CYBERSEC
+# Matches v6 upstream patterns with project-specific ignores
+#
+# Active rules enforce: blanks-around-headings, blanks-around-lists,
+# blanks-around-fences, blanks-around-tables, trailing-newline,
+# no-multiple-blanks, no-bare-urls, no-empty-links, no-blanks-blockquote,
+# reference-links, descriptive-link-text, ordered-list-prefix
+#
+# Disabled rules: false positives from Handlebars templates, structural
+# patterns in workflow/agent docs, or too strict for documentation
+config:
+  # --- Formatting preferences (too strict for docs) ---
+  MD013: false            # Line length
+  MD024: false            # Duplicate headings (common in multi-module docs)
+  MD025: false            # Multiple H1 headings (intentional in agent/workflow docs)
+  MD033: false            # Allow inline HTML
+  MD036: false            # Emphasis as heading (used in workflow/agent docs)
+  MD040: false            # Fenced code language (legacy blocks without language spec)
+  MD041: false            # First line heading (not required)
+  MD060: false            # Table column alignment style (cosmetic)
+  # --- Template/structural false positives ---
+  MD001: false            # Heading increment (intentional #### in workflow steps)
+  MD003: false            # Heading style (Handlebars --- lines parsed as setext)
+  MD046: false            # Code block style (indented blocks in templates/help docs)
+  MD051: false            # Link fragments (template variables + stale ToC links)
+  MD055: false            # Table pipe style (Handlebars placeholders in tables)
+  MD056: false            # Table column count (Handlebars placeholders in tables)
+  # --- Configured rules ---
+  MD029:
+    style: "ordered"      # Enforce 1. 2. 3. ordered list prefix
+ignores:
+  - "**/node_modules/**"
+  - "_bmad-output/**"
+  - "CHANGELOG.md"

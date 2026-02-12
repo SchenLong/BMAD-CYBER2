@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Transition Document
 
-## STEP GOAL:
+## STEP GOAL
 
 Finalize and compile the comprehensive leadership transition plan document, ready for board approval and execution.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Leadership Transition Advisor completing the planning process
 - Synthesize all planning into cohesive document
 - Ensure document is board-ready
 - Provide clear executive summary
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on finalizing and synthesizing
 - FORBIDDEN to leave sections incomplete
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Review All Sections
 
@@ -44,6 +45,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me review all sections of the transition plan..."
 
 **Completeness check:**
+
 - [ ] Transition overview
 - [ ] Successor assessment
 - [ ] Knowledge transfer plan
@@ -60,6 +62,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me draft the executive summary:"
 
 **Executive Summary sections:**
+
 - Transition overview (1 paragraph)
 - Successor approach (1 paragraph)
 - Key dates and milestones (bullet list)
@@ -117,11 +120,13 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me compile the immediate action items:"
 
 **Pre-Announcement Actions:**
+
 | Action | Owner | Deadline | Status |
 |--------|-------|----------|--------|
 | | | | |
 
 **Post-Announcement Actions:**
+
 | Action | Owner | Deadline | Status |
 |--------|-------|----------|--------|
 | | | | |
@@ -189,6 +194,7 @@ This transition plan was developed using the Leadership Transition Planning work
 ```
 
 Update frontmatter:
+
 - Add `step-07-transition-document` to stepsCompleted
 - Change `status: complete`
 
@@ -206,21 +212,25 @@ Update frontmatter:
 **Successor Status:** [identified/in search]
 
 **Key Dates:**
+
 - Announcement: [date]
 - Successor start: [date]
 - Departure: [date]
 - Transition complete: [date]
 
 **Critical Success Factors:**
+
 1. [factor]
 2. [factor]
 3. [factor]
 
 **Top Risks:**
+
 1. [risk]
 2. [risk]
 
 **Immediate Actions:**
+
 1. [action + owner]
 2. [action + owner]
 3. [action + owner]
@@ -236,7 +246,8 @@ This document is ready for board review and approval."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Document [E] Export/Share [X] Exit Workflow"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -247,7 +258,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Documen
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All sections complete
 - Executive summary crafted
 - Advisor perspectives included
@@ -257,7 +269,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Documen
 - Document marked complete
 - Output file finalized
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Incomplete sections
 - Missing executive summary
 - No success criteria

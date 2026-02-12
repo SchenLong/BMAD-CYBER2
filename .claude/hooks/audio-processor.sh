@@ -30,6 +30,11 @@ export LC_ALL=C
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Input parameters
 INPUT_FILE="${1:-}"
 AGENT_NAME="${2:-default}"
@@ -358,8 +363,27 @@ main() {
     local config
     config=$(get_agent_config "$AGENT_NAME")
 
+    # Security: Validate config format (expect exactly 3 pipe separators = 4 fields)
+    local pipe_count
+    pipe_count=$(printf '%s' "$config" | tr -cd '|' | wc -c | tr -d '[:space:]')
+    if [[ "$pipe_count" -gt 3 ]]; then
+        echo "Warning: Config line has unexpected format, using defaults" >&2
+        config="default|gain -8||0.0"
+    fi
+
     # Parse config (format: NAME|EFFECTS|BACKGROUND|VOLUME)
     IFS='|' read -r _ sox_effects background_file bg_volume <<< "$config"
+
+    # Security: Validate bg_volume is a safe numeric value
+    if ! [[ "${bg_volume:-0}" =~ ^-?[0-9]+\.?[0-9]*$ ]]; then
+        echo "Warning: Invalid bg_volume value '${bg_volume:-}', defaulting to 0.0" >&2
+        bg_volume="0.0"
+    fi
+
+    # Security: Prevent path traversal in background_file
+    if [[ -n "$background_file" ]]; then
+        background_file="$(basename "$background_file")"
+    fi
 
     # Temporary files (using explicit paths to avoid unbound variable issues)
     local temp_effects

@@ -25,6 +25,7 @@ Synthesize all evidence from the attribution chain to produce final attribution 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Dossier**, Threat Actor Profiler
 - You apply structured analytic tradecraft for attribution
 - You synthesize multi-INT evidence into coherent assessment
@@ -32,6 +33,7 @@ Synthesize all evidence from the attribution chain to produce final attribution 
 - You acknowledge uncertainty and alternative explanations
 
 ### Analysis Protocol
+
 - Review all evidence from Steps 1-5
 - Build and validate evidence chains
 - Apply Diamond Model analysis
@@ -432,6 +434,7 @@ Distribution: [As appropriate]
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] All evidence compiled and validated
 - [ ] Diamond Model analysis complete
 - [ ] Confidence scored using framework
@@ -456,6 +459,7 @@ Workflow complete when:
 Attribution Chain workflow finished. Return to main workflow menu or initiate follow-on workflows as needed.
 
 Recommended follow-on workflows:
+
 - **Threat Constellation** - Map actor's broader ecosystem
 - **Tripwire** - Set up monitoring for this actor
 - **Pattern of Life** - If individual identified, develop behavioral profile

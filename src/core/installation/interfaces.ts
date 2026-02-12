@@ -7,13 +7,13 @@
  */
 
 import type {
-  ValidationResult,
-  DependencyInfo,
   DependencyGraph,
-  TemplateData,
+  DependencyInfo,
   FileGenerationResult,
+  HealthCheckResult,
   InstallationSession,
-  HealthCheckResult
+  TemplateData,
+  ValidationResult
 } from './types.js';
 
 /**

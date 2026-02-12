@@ -8,8 +8,8 @@ import { CONFIG } from './lib/config.js';
 
 // Check Node.js version
 const nodeVersion = parseInt(process.version.slice(1).split('.')[0], 10);
-if (nodeVersion < 18) {
-  console.error(`Error: Node.js 18+ required. Current version: ${process.version}`);
+if (nodeVersion < 20) {
+  console.error(`Error: Node.js 20+ required. Current version: ${process.version}`);
   process.exit(1);
 }
 
@@ -35,6 +35,7 @@ program
   .option('--with-dev', 'Include development tools')
   .option('--force', 'Overwrite existing files')
   .option('--dry-run', 'Show what would be installed')
+  .option('--allow-scripts', 'Allow npm postinstall scripts (default: blocked for security)')
   .action((options) => {
     installCommand(options);
   });

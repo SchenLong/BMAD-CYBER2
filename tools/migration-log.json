@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "startedAt": "2026-02-11T09:38:44.779Z",
+  "completedAt": "2026-02-11T09:38:44.963Z",
+  "dryRun": false,
+  "phases": [
+    "E"
+  ],
+  "actions": [
+    {
+      "timestamp": "2026-02-11T09:38:44.781Z",
+      "level": "info",
+      "message": "Running pre-flight checks..."
+    },
+    {
+      "timestamp": "2026-02-11T09:38:44.962Z",
+      "level": "warn",
+      "message": "Working tree has 2248 uncommitted change(s)."
+    },
+    {
+      "timestamp": "2026-02-11T09:38:44.962Z",
+      "level": "warn",
+      "message": "Consider committing or stashing before migration."
+    },
+    {
+      "timestamp": "2026-02-11T09:38:44.962Z",
+      "level": "info",
+      "message": "Generating file mappings..."
+    },
+    {
+      "timestamp": "2026-02-11T09:38:44.963Z",
+      "level": "info",
+      "message": "Found 0 files to process"
+    },
+    {
+      "timestamp": "2026-02-11T09:38:44.963Z",
+      "level": "warn",
+      "message": "No files to migrate in this phase"
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "totalMoved": 0,
+    "totalRemoved": 0,
+    "totalOverwritten": 0,
+    "totalRefs": 0,
+    "totalErrors": 0,
+    "phaseResults": [
+      {
+        "phase": "E",
+        "success": true
+      }
+    ]
+  }
+}

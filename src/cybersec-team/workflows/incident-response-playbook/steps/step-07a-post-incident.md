@@ -18,13 +18,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7A: Post-Incident Activities
 
-## STEP GOAL:
+## STEP GOAL
 
 To define comprehensive post-incident activities including lessons learned session procedures, documentation requirements, communication plans, regulatory notification timelines, and process improvement actions for {incident-type} incidents.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -32,7 +32,7 @@ To define comprehensive post-incident activities including lessons learned sessi
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an IR Planning Consultant
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -41,28 +41,28 @@ To define comprehensive post-incident activities including lessons learned sessi
 - ✅ User brings organizational knowledge and requirements
 - ✅ Maintain collaborative, consultative tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on post-incident activities and lessons learned
 - 🚫 FORBIDDEN to start generating the final playbook (that's step 8a)
 - 💬 Guide through conversational exploration of post-incident needs
 - 🌐 Web-Browsing ENCOURAGED for regulatory requirements (GDPR, PCI-DSS, HIPAA)
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Leverage all previous sections (entire incident lifecycle documented)
 - 💾 Append to Section 6 (Post-Incident Activities) AND Section 7 (Communication Plan) in output file
 - 📖 Update frontmatter `stepsCompleted: [1, 2a, 3a, 4a, 5a, 6a, 7a]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Recovery complete in step 6a
 - Focus on learning, documentation, communication, and improvement
 - Don't generate the final playbook yet (that's step 8a)
 - Post-incident activities ensure organization learns and improves
 
-## POST-INCIDENT PROCEDURE SEQUENCE:
+## POST-INCIDENT PROCEDURE SEQUENCE
 
 ### 1. Review Context
 
@@ -73,12 +73,14 @@ Display:
 Systems are recovered and operations are normal (Section 5). Now we conduct post-incident activities to learn and improve.
 
 **NIST Post-Incident Phase Goals:**
+
 1. **Lessons Learned:** What worked? What didn't? How do we improve?
 2. **Documentation:** Complete timeline, final report, evidence preservation
 3. **Communication:** Internal stakeholders, external notifications (customers, regulators, media)
 4. **Improvement:** Action items to prevent recurrence and improve response
 
 **From Organizational Context (Section 1):**
+
 - Regulatory Requirements: {regulations-from-section-1}
 - Communication Channels: {channels-from-section-1}
 
@@ -95,17 +97,21 @@ The lessons learned session is the most valuable post-incident activity. Done we
 **Session Logistics:**
 
 **Timing:**
+
 - When: {timeframe-e.g.-within-2-weeks-of-return-to-normal}
 - Why not immediate: Allow time for emotions to settle and data to be compiled
 
 **Duration:**
+
 - Recommended: {duration-e.g.-2-4-hours}
 
 **Facilitator:**
+
 - Who: {role-ideally-someone-not-directly-involved}
 - Role: Keep discussion constructive, ensure all voices heard, maintain focus
 
 **Participants:**
+
 - Required:
   - IR Team members
   - SOC analysts involved
@@ -123,12 +129,14 @@ The lessons learned session is the most valuable post-incident activity. Done we
 I'll help you design the lessons learned session framework. We'll use a structured approach to ensure productive discussion.
 
 **1. Incident Timeline Review (30 minutes):**
+
 - Present complete timeline from detection through recovery
 - Ensure all participants understand what happened
 - Clarify any confusion or information gaps
 
 **2. What Worked Well (30 minutes):**
 Identify strengths to maintain and celebrate:
+
 - What processes worked effectively?
 - What tools proved valuable?
 - What decisions were correct?
@@ -137,6 +145,7 @@ Identify strengths to maintain and celebrate:
 
 **3. What Could Be Improved (60 minutes):**
 Identify gaps and opportunities (NO BLAME):
+
 - What processes slowed us down?
 - What tools failed or were missing?
 - What information was unavailable when needed?
@@ -146,12 +155,14 @@ Identify gaps and opportunities (NO BLAME):
 
 **4. Root Cause of Response Issues (30 minutes):**
 For each improvement area, ask:
+
 - **People:** Skill gap? Availability? Authority?
 - **Process:** Process didn't exist? Unclear? Not followed?
 - **Technology:** Tool didn't exist? Not configured? Failed?
 
 **5. Action Items (30 minutes):**
 For each improvement area, create action item:
+
 - What: Specific action to take
 - Who: Owner (by name)
 - When: Target completion date
@@ -162,31 +173,37 @@ For each improvement area, create action item:
 Let's brainstorm specific questions for your lessons learned session:
 
 **Detection:**
+
 - How long between compromise and detection? Why the delay?
 - What alerted us? (user report, automated detection, external notification)
 - Could we have detected sooner? What would enable earlier detection?
 
 **Analysis:**
+
 - Was initial severity assessment accurate?
 - Did we have the right information to triage effectively?
 - What forensic capabilities were missing?
 
 **Containment:**
+
 - Did containment actions work as planned?
 - Were any containment actions rolled back? Why?
 - Did we contain fast enough?
 
 **Eradication:**
+
 - Was eradication complete on first attempt?
 - Did we miss any persistence mechanisms initially?
 - Were the right tools available?
 
 **Recovery:**
+
 - Did systems restore as expected?
 - Were backups available and clean?
 - Were any recovery attempts unsuccessful?
 
 **Communication:**
+
 - Did the right people get notified at the right time?
 - Were communication channels effective?
 - Did users have the information they needed?
@@ -202,6 +219,7 @@ Complete documentation serves multiple purposes: legal protection, compliance, l
 **Required Documentation:**
 
 **1. Final Incident Report:**
+
 - **Audience:** Executive leadership, legal, compliance, insurance
 - **Content:**
   - Executive summary (1 page, non-technical)
@@ -215,6 +233,7 @@ Complete documentation serves multiple purposes: legal protection, compliance, l
 - **Owner:** {role-e.g.-IR-team-lead-or-CISO}
 
 **2. Technical Incident Report:**
+
 - **Audience:** Security team, IT operations, forensics team
 - **Content:**
   - Complete technical timeline
@@ -228,6 +247,7 @@ Complete documentation serves multiple purposes: legal protection, compliance, l
 - **Owner:** {role-e.g.-IR-analyst}
 
 **3. Lessons Learned Report:**
+
 - **Audience:** All IR stakeholders
 - **Content:**
   - Session summary
@@ -239,6 +259,7 @@ Complete documentation serves multiple purposes: legal protection, compliance, l
 - **Owner:** {session-facilitator}
 
 **4. Evidence Preservation:**
+
 - **What to Preserve:**
   - Memory dumps
   - Disk images
@@ -261,6 +282,7 @@ Complete documentation serves multiple purposes: legal protection, compliance, l
   - Format: {chain-of-custody-form}
 
 **5. Regulatory Documentation (if applicable):**
+
 - GDPR: Breach notification documentation (72 hours)
 - PCI-DSS: Incident response documentation, forensic report
 - HIPAA: Breach analysis, notification documentation
@@ -270,6 +292,7 @@ Complete documentation serves multiple purposes: legal protection, compliance, l
 Would you like me to use **Web-Browsing** to research specific regulatory documentation requirements for {regulations-from-section-1}?
 
 **Documentation Repository:**
+
 - Where: {location-e.g.-SharePoint-Confluence-case-management-system}
 - Access control: {who-has-access}
 - Retention policy: {duration}
@@ -284,6 +307,7 @@ Different audiences need different information at different times.
 **Internal Communication:**
 
 **1. Executive Leadership:**
+
 - **When:** {timeframe-e.g.-within-24-hours-of-return-to-normal}
 - **Method:** {method-e.g.-executive-summary-board-presentation}
 - **Content:**
@@ -297,6 +321,7 @@ Different audiences need different information at different times.
 - **Owner:** {CISO-or-CIO}
 
 **2. All Staff:**
+
 - **When:** {timeframe-e.g.-within-1-week-of-resolution}
 - **Method:** {method-e.g.-company-wide-email-town-hall}
 - **Content:**
@@ -308,6 +333,7 @@ Different audiences need different information at different times.
 - **Owner:** {CISO-or-communications}
 
 **3. Affected Users:**
+
 - **When:** {timeframe-e.g.-as-soon-as-systems-recovered}
 - **Method:** {method-e.g.-targeted-email-helpdesk-announcement}
 - **Content:**
@@ -320,6 +346,7 @@ Different audiences need different information at different times.
 **External Communication:**
 
 **4. Customers (if data exposure suspected):**
+
 - **When:** Based on regulatory requirements (e.g., GDPR 72 hours)
 - **Method:** {method-e.g.-email-portal-notification-letter}
 - **Content:**
@@ -333,6 +360,7 @@ Different audiences need different information at different times.
 - **Legal Review:** REQUIRED before sending
 
 **5. Regulators (if required):**
+
 - **When:**
   - GDPR: 72 hours of becoming aware
   - PCI-DSS: Immediately (acquirer/card brands)
@@ -343,6 +371,7 @@ Different audiences need different information at different times.
 - **Owner:** {legal-compliance}
 
 **6. Media (if public incident):**
+
 - **When:** {decision-based-on-PR-strategy}
 - **Method:** {press-release-media-briefing}
 - **Content:**
@@ -353,6 +382,7 @@ Different audiences need different information at different times.
 - **Spokesperson:** {designated-person-usually-CEO-or-CISO}
 
 **7. Partners/Vendors (if affected or involved):**
+
 - **When:** {timeframe-e.g.-within-48-hours-of-discovery}
 - **Method:** {method-e.g.-email-phone-call}
 - **Content:**
@@ -363,6 +393,7 @@ Different audiences need different information at different times.
 - **Owner:** {business-relationship-owner}
 
 **8. Cyber Insurance:**
+
 - **When:** {timeframe-e.g.-within-24-hours-per-policy}
 - **Method:** {method-per-policy-requirements}
 - **Content:**
@@ -376,6 +407,7 @@ Different audiences need different information at different times.
 Let's create a decision tree for external notifications:
 
 **Did incident involve:**
+
 - Personal data (PII/PHI)? → Likely customer + regulator notification
 - Payment card data? → PCI-DSS notification required
 - Protected health information? → HIPAA notification required
@@ -383,6 +415,7 @@ Let's create a decision tree for external notifications:
 - Financial data? → May require SEC notification
 
 **Was there data exfiltration?**
+
 - Confirmed exfiltration → Mandatory notifications
 - Suspected but not confirmed → {decision-criteria}
 - No exfiltration → {optional-notification-based-on}
@@ -396,30 +429,35 @@ For {incident-type}, what's your notification decision matrix?"
 Missing notification deadlines can result in fines.
 
 **GDPR (if processing EU resident data):**
+
 - **Notification to DPA:** 72 hours of becoming aware of breach
 - **Content:** Nature of breach, categories and numbers of individuals affected, contact point, likely consequences, measures taken
 - **Notification to Individuals:** Without undue delay if high risk
 - **Penalty for non-compliance:** Up to €20 million or 4% of global revenue
 
 **PCI-DSS (if processing payment cards):**
+
 - **Notification to Acquirer:** Immediately upon discovery
 - **Notification to Card Brands:** {varies-by-brand-typically-immediately}
 - **Notification to Affected Individuals:** Per state/federal law
 - **Forensic Investigation:** PFI-required (PCI Forensic Investigator)
 
 **HIPAA (if protected health information):**
+
 - **Notification to Individuals:** 60 days of discovery
 - **Notification to HHS:** 60 days if > 500 individuals; annually if < 500
 - **Notification to Media:** If > 500 residents of a state
 - **Penalty for non-compliance:** Up to $1.5 million per violation category per year
 
 **State Breach Notification Laws (US):**
+
 - **Varies by state:** Most require \"without unreasonable delay\"
 - **California:** Without unreasonable delay (court precedent ~2 weeks)
 - **New York:** Without unreasonable delay
 - **{other-states-applicable-to-your-organization}**
 
 **Other Regulations:**
+
 - **SOX (if public company):** Material cybersecurity incidents disclosed in SEC filings
 - **SEC (if public company):** 4 business days from determination of materiality
 - **Industry-specific:** {any-industry-regulations}
@@ -429,6 +467,7 @@ Would you like me to use **Web-Browsing** to research current notification requi
 **Notification Timeline Tracker (for during incident):**
 
 Create a tracking document:
+
 | Regulation | Notification Deadline | Calculated Date | Notification Status | Owner |
 |------------|----------------------|-----------------|---------------------|-------|
 | GDPR DPA | 72 hours from awareness | {calculated} | Not started / In progress / Complete | {name} |
@@ -447,6 +486,7 @@ Lessons learned are useless without action. Let's define how to track and implem
 For each improvement identified in lessons learned:
 
 **Action Item Template:**
+
 1. **Finding:** What issue or gap was identified?
 2. **Impact:** How did this affect the incident response?
 3. **Action:** What specific action will address this?
@@ -462,36 +502,42 @@ For each improvement identified in lessons learned:
 Let's think through common improvement areas for {incident-type}:
 
 **1. Detection Improvements:**
+
 - New SIEM rules or correlation?
 - Additional log sources?
 - Enhanced monitoring?
 - Threat intelligence integration?
 
 **2. Prevention Improvements:**
+
 - Patching process improvements?
 - Configuration hardening?
 - Network segmentation?
 - Security control additions?
 
 **3. Response Process Improvements:**
+
 - Playbook updates?
 - Role clarifications?
 - Decision authority changes?
 - Communication improvements?
 
 **4. Tool/Technology Improvements:**
+
 - New tools needed?
 - Existing tool enhancements?
 - Integration improvements?
 - Automation opportunities?
 
 **5. People/Training Improvements:**
+
 - Additional headcount?
 - Training needed (technical, process)?
 - Tabletop exercises?
 - Red team/purple team testing?
 
 **6. Documentation Improvements:**
+
 - Playbook gaps?
 - Runbook needs?
 - Decision trees?
@@ -500,6 +546,7 @@ Let's think through common improvement areas for {incident-type}:
 For {incident-type}, what are the most likely improvement categories?
 
 **Action Item Tracking:**
+
 - **Tool:** {tool-e.g.-Jira-ServiceNow-Excel}
 - **Review Frequency:** {frequency-e.g.-monthly}
 - **Review Forum:** {meeting-e.g.-security-leadership-meeting}
@@ -507,6 +554,7 @@ For {incident-type}, what are the most likely improvement categories?
 
 **Investment Justification:**
 Some action items require budget. How to build business case:
+
 - Quantify incident cost: {response-cost-plus-business-impact}
 - Estimate reduction in likelihood or impact with improvement
 - Calculate ROI
@@ -920,6 +968,7 @@ For each improvement identified:
 ```
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2a, 3a, 4a, 5a, 6a, 7a]
 lastUpdated: '{timestamp}'
@@ -929,14 +978,14 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [W] Web-Browsing [C] Continue
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then redisplay the menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with focus on "comprehensiveness of post-incident procedures and communication plans"
 - IF P: Execute {partyModeWorkflow} - User can select any expert for consultation
@@ -946,18 +995,18 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [W] Web-B
   - HIPAA breach notification requirements
   - State breach notification laws ({specific-states})
   - Post-incident best practices
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Sections 6 & 7 are complete will you load, read entire file, then execute `{nextStepFile}` to finalize the playbook with appendices and document control.
+ONLY WHEN C is selected and Sections 6 & 7 are complete will you load, read entire file, then follow `{nextStepFile}` to finalize the playbook with appendices and document control.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Lessons learned session structure comprehensive and actionable
 - Documentation requirements complete with retention and storage
@@ -968,7 +1017,7 @@ ONLY WHEN C is selected and Sections 6 & 7 are complete will you load, read enti
 - Frontmatter updated with stepsCompleted: [1, 2a, 3a, 4a, 5a, 6a, 7a]
 - Menu presented and user input handled correctly
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - No lessons learned session structure (missing critical learning opportunity)
 - Missing regulatory notification timelines (compliance risk)

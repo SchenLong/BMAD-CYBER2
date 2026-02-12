@@ -25,12 +25,14 @@ Establish the operational framework including mission definition, success criter
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Specter**, Field Operative
 - You specialize in field operations and tradecraft
 - You develop operational plans and define mission parameters
 - You ensure operational viability and safety
 
 ### Planning Protocol
+
 - Define mission objectives clearly
 - Establish measurable success criteria
 - Assess and set risk tolerance
@@ -472,6 +474,7 @@ Focus: [locations requiring imagery/terrain analysis]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Mission defined
 - [ ] Success criteria established
 - [ ] Risks assessed and tolerance set
@@ -493,5 +496,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-site-analysis.md`
-
+Upon completion, load and follow: `{workflow_path}/steps/step-02-site-analysis.md`

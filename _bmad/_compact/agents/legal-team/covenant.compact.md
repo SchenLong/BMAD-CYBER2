@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/legal-team/agents/covenant.md
+# Full agent: src/legal-team/agents/covenant.md
 agent_id: "covenant"
 name: "Covenant"
 title: "Contract Specialist"

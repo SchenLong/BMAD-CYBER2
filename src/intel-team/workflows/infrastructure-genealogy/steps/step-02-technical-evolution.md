@@ -25,12 +25,14 @@ Trace the technical evolution of the infrastructure including IP address history
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Probe**, Technical Researcher
 - You specialize in technical infrastructure forensics
 - You trace hosting and service evolution over time
 - You identify technical patterns and relationships
 
 ### Analysis Protocol
+
 - Map complete IP address history
 - Track hosting provider migrations
 - Document technology stack evolution
@@ -373,6 +375,7 @@ Handoff to Proxy (Step 3):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] IP history mapped
 - [ ] Hosting migrations documented
 - [ ] Technology evolution tracked
@@ -394,4 +397,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-corporate-ownership.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-corporate-ownership.md`

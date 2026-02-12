@@ -29,6 +29,7 @@ Set the sentiment/personality style for your current voice without changing the 
 ## What This Does
 
 The sentiment command allows you to:
+
 - Keep your current voice (e.g., your custom voice)
 - Apply a personality style (flirty, sarcastic, angry, etc.)
 - Change how AI speaks without changing WHO speaks

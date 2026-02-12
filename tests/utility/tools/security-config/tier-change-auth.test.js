@@ -10,20 +10,20 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  TIER_CHANGE_LOG_PATH,
+  authenticateTierChange,
   CHALLENGE_EXPIRATION_MS,
   generateChallenge,
-  verifyChallenge,
-  requiresAuthentication,
   logTierChangeAttempt,
   readTierChangeLog,
-  authenticateTierChange
+  requiresAuthentication,
+  TIER_CHANGE_LOG_PATH,
+  verifyChallenge
 } from './tier-change-auth.js';
 
 // ESM equivalent of __dirname
@@ -32,7 +32,7 @@ const __dirname = path.dirname(__filename);
 
 // Test fixtures
 const MOCK_PROJECT_ROOT = path.join(__dirname, '__test_fixtures_auth__');
-const MOCK_LOG_PATH = path.join(MOCK_PROJECT_ROOT, '_bmad/core/security');
+const MOCK_LOG_PATH = path.join(MOCK_PROJECT_ROOT, 'src/core/security');
 
 // Setup and teardown
 function setupTestFixtures() {
@@ -57,7 +57,7 @@ describe('Tier Change Authentication - SEC-CFG-001', () => {
 
   describe('Constants', () => {
     it('should have correct log path', () => {
-      expect(TIER_CHANGE_LOG_PATH).toBe('_bmad/core/security/tier-change-log.json');
+      expect(TIER_CHANGE_LOG_PATH).toBe('src/core/security/tier-change-log.json');
     });
 
     it('should have 5 minute challenge expiration', () => {

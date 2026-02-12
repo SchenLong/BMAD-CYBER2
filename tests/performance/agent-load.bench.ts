@@ -24,10 +24,10 @@ const AGENT_TEAMS = {
   strategy: '_bmad/strategy-team/agents',
   cybersec: '_bmad/cybersec-team/agents',
   core: '_bmad/core/agents',
-  bmm: '_bmad/bmm/agents',
-  bmb: '_bmad/bmb/agents',
-  bmgd: '_bmad/bmgd/agents',
-  cis: '_bmad/cis/agents',
+  bmm: 'src/bmm/agents',
+  bmb: 'src/bmb/agents',
+  bmgd: 'src/bmgd/agents',
+  cis: 'src/cis/agents',
 };
 
 // Agent file cache for tests

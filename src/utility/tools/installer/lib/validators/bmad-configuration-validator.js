@@ -13,6 +13,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('yaml');
 const crypto = require('crypto');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 class BMADConfigurationValidator {
     constructor(options = {}) {
@@ -869,7 +870,7 @@ class BMADConfigurationValidator {
     async loadValidationRules() {
         try {
             if (fs.existsSync(this.config.validationRulesPath)) {
-                const content = fs.readFileSync(this.config.validationRulesPath, 'utf8');
+                const content = normalizeLineEndings(fs.readFileSync(this.config.validationRulesPath, 'utf8'));
                 const rules = yaml.parse(content);
 
                 if (rules.validation_rules) {

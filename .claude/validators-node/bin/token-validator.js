@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/permissions/token-validator.js')
+import('../dist/src/permissions/token-validator.js')
   .then((module) => {
     module.main();
   })

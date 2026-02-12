@@ -18,17 +18,20 @@ Understand the opposing party's position, likely arguments, and strategic consid
 Build adversary profile:
 
 **Basic Information:**
+
 - Entity type (individual, company, government)
 - Financial capacity
 - Litigation history
 - Reputation/Business standing
 
 **Legal Representation:**
+
 - Known counsel?
 - Firm reputation and resources
 - Litigation style (aggressive, settlement-oriented)
 
 **Motivations:**
+
 - What do they want?
 - Business/personal drivers
 - Settlement disposition
@@ -39,16 +42,19 @@ Build adversary profile:
 Predict opposing position:
 
 **Their Version of Facts:**
+
 - How will they characterize events?
 - Key factual disputes
 - Likely evidence they possess
 
 **Their Legal Theories:**
+
 - Claims they may assert (counterclaims)
 - Defenses they will raise
 - Legal arguments expected
 
 **Weaknesses in Their Position:**
+
 - Factual vulnerabilities
 - Legal weaknesses
 - Evidence problems
@@ -59,18 +65,21 @@ Predict opposing position:
 Evaluate their likely strategy:
 
 **Litigation Approach:**
+
 - Aggressive motion practice?
 - Extensive discovery?
 - Early settlement overtures?
 - Delay tactics?
 
 **Pressure Points:**
+
 - What would hurt them most?
 - Business disruption concerns
 - Publicity sensitivity
 - Key relationship dependencies
 
 **Settlement Calculus:**
+
 - Their cost of litigation
 - Business value of resolution
 - Pride/principle factors

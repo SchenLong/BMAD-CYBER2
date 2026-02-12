@@ -18,12 +18,14 @@ Document the key facts and create a chronological timeline of events.
 Gather context:
 
 **Relationship History:**
+
 - How did the parties first connect?
 - Nature of the business/contractual relationship
 - Duration of relationship before dispute
 - Any prior disputes or issues?
 
 **Key Documents:**
+
 - Contracts or agreements involved
 - Communications (emails, letters)
 - Records and documentation
@@ -34,18 +36,21 @@ Gather context:
 Build timeline systematically:
 
 **Pre-Dispute Phase:**
+
 - Formation of relationship
 - Key agreements made
 - Performance milestones
 - Early warning signs (if any)
 
 **Dispute Emergence:**
+
 - First indication of problem
 - Initial communications about issue
 - Attempts at informal resolution
 - Escalation points
 
 **Current Phase:**
+
 - Recent developments
 - Formal notices or demands
 - Legal actions taken
@@ -65,16 +70,19 @@ Create structured timeline:
 Organize facts by type:
 
 **Undisputed Facts:**
+
 - Facts both parties acknowledge
 - Documented/verifiable facts
 - Public record facts
 
 **Disputed Facts:**
+
 - Facts in contention
 - Different interpretations
 - Unclear or incomplete information
 
 **Unknown/To Investigate:**
+
 - Information gaps
 - Facts requiring verification
 - Potential discovery targets

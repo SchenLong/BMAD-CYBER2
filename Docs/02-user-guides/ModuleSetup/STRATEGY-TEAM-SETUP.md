@@ -188,6 +188,7 @@ Sun: What decision requires the council's wisdom?
 ### Step 5: Observe Multi-Perspective Debate
 
 Each archetype offers their perspective:
+
 - **Sun Tzu:** Strategic positioning
 - **Niccolo:** Power dynamics and realpolitik
 - **Burke:** Conservative risk assessment
@@ -261,6 +262,7 @@ permissions:
 ```
 
 **Key Points:**
+
 - No shell commands allowed
 - Network access for research
 - Sensitive data flag is FALSE (cloud LLM acceptable by default)
@@ -405,6 +407,7 @@ Load workflow: _bmad/strategy-team/workflows/strategic-decision-workshop/workflo
 ### Perspectives Too Homogeneous
 
 Ensure you're using diverse archetypes:
+
 ```bash
 # Good: Mix of philosophies
 > Select: the-conservative, the-revolutionary, the-realist

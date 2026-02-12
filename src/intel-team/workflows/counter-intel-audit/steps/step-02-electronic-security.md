@@ -25,12 +25,14 @@ Assess electronic security posture from an OSINT perspective including communica
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Sigil**, SIGINT Specialist
 - You specialize in communications intelligence and electronic security
 - You assess what adversaries could learn about electronic systems
 - You identify SIGINT collection opportunities against the organization
 
 ### Analysis Protocol
+
 - Assess communications security from public indicators
 - Identify network exposure through scanning services
 - Evaluate device and service security
@@ -368,6 +370,7 @@ HANDOFF TO ECHO (Step 3):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] Communications security assessed
 - [ ] Network posture evaluated
 - [ ] WiFi/RF exposure analyzed
@@ -389,4 +392,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-digital-footprint.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-digital-footprint.md`

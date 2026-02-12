@@ -59,6 +59,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:incident-commander`
 
 **Phoenix's Crisis Management Capabilities:**
+
 - **Incident Command**: Coordinated incident response following NIST and SANS frameworks
 - **Breach Containment**: Rapid threat isolation and damage limitation strategies
 - **Crisis Communication**: Stakeholder communication, regulatory notification guidance
@@ -76,6 +77,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:security-architect`
 
 **Bastion's Architecture Expertise:**
+
 - **Zero Trust Design**: Identity-centric security architecture, micro-segmentation
 - **Defense-in-Depth**: Layered security controls, redundant protection mechanisms
 - **Threat Modeling**: STRIDE, PASTA, and attack tree methodologies
@@ -93,6 +95,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:compliance-guardian`
 
 **Sentinel's GRC Capabilities:**
+
 - **Framework Implementation**: SOC 2, PCI DSS, HIPAA, ISO 27001, NIST CSF alignment
 - **Audit Preparation**: Evidence collection, control documentation, gap analysis
 - **Risk Management**: Risk assessments, treatment plans, risk register maintenance
@@ -110,6 +113,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:forensic-investigator`
 
 **Trace's Forensic Expertise:**
+
 - **Evidence Collection**: Forensic imaging, volatile data capture, chain of custody
 - **Artifact Analysis**: File system analysis, registry analysis, memory forensics
 - **Timeline Reconstruction**: Event correlation, attack timeline creation
@@ -127,6 +131,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:threat-analyst`
 
 **Cipher's Intelligence Capabilities:**
+
 - **Threat Landscape Analysis**: Current threat actors, TTPs, and campaigns
 - **MITRE ATT&CK Mapping**: Technique identification, detection strategy development
 - **IOC Management**: Indicator collection, enrichment, and operationalization
@@ -144,6 +149,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:penetration-tester`
 
 **Spectre's Offensive Arsenal:**
+
 - **Penetration Testing**: Network, web application, and infrastructure testing
 - **Red Team Operations**: Adversary simulation, objective-based testing
 - **Vulnerability Assessment**: Systematic vulnerability identification and validation
@@ -161,6 +167,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:blue-team-lead`
 
 **Shield's Defensive Capabilities:**
+
 - **Detection Engineering**: SIEM rule development, detection logic optimization
 - **Purple Teaming**: Coordinated red-blue exercises, detection validation
 - **SOC Program Management**: SOC maturity assessment, process improvement
@@ -178,6 +185,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:soc-analyst`
 
 **Watchman's SOC Expertise:**
+
 - **Alert Triage**: Efficient alert investigation and prioritization
 - **Log Analysis**: SIEM queries, log correlation, anomaly detection
 - **Detection Tuning**: False positive reduction, detection rule optimization
@@ -195,6 +203,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:cloud-security-specialist`
 
 **Nimbus's Cloud Expertise:**
+
 - **Multi-Cloud Security**: AWS, Azure, GCP security controls and best practices
 - **IAM Design**: Identity federation, role-based access, least privilege implementation
 - **Cloud-Native Security**: Container security, serverless security, Kubernetes hardening
@@ -212,6 +221,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:blockchain-security-expert`
 
 **Ledger's Blockchain Expertise:**
+
 - **Smart Contract Auditing**: Solidity, Vyper, and other smart contract security review
 - **DeFi Security**: Protocol security analysis, flash loan attack prevention
 - **Blockchain Analysis**: On-chain investigation, transaction tracing
@@ -229,6 +239,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:web-app-security-expert`
 
 **Weaver's Web Security Capabilities:**
+
 - **OWASP Top 10 Expertise**: Comprehensive vulnerability identification and remediation
 - **Secure Code Review**: Manual and automated code security analysis
 - **SDLC Integration**: Security testing in CI/CD pipelines, shift-left security
@@ -246,6 +257,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:api-security-expert`
 
 **Gateway's API Expertise:**
+
 - **API Security Design**: Secure API architecture, rate limiting, input validation
 - **OAuth/OIDC Implementation**: Secure authentication flows, token management
 - **API Gateway Security**: Kong, AWS API Gateway, Apigee security configuration
@@ -263,6 +275,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:llm-ai-security-expert`
 
 **Oracle's AI Security Capabilities:**
+
 - **Prompt Injection Defense**: Detection and prevention of prompt manipulation attacks
 - **Model Security**: Model theft protection, adversarial input detection
 - **AI Governance**: Responsible AI frameworks, bias detection, explainability
@@ -280,6 +293,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:mobile-security-expert`
 
 **Phantom's Mobile Expertise:**
+
 - **iOS Security**: iOS app analysis, Keychain security, App Transport Security
 - **Android Security**: APK analysis, manifest review, secure storage
 - **OWASP Mobile Top 10**: Comprehensive mobile vulnerability assessment
@@ -297,6 +311,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 - **Command**: `/cybersec-team:social-engineer`
 
 **Ghost's Human-Factor Expertise:**
+
 - **Phishing Simulations**: Email phishing, spear phishing, and smishing campaigns
 - **Pretexting**: Social engineering scenario development and execution
 - **Vishing**: Voice-based social engineering assessments
@@ -310,12 +325,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Incident Response Workflows
 
 #### 1. Incident Response Playbook - Crisis Management Framework
+
 **Purpose**: Structured incident response following industry best practices
 **Duration**: Varies by incident severity (1-72+ hours)
 **Lead Agent**: Phoenix (Incident Commander)
 **Outcome**: Contained incident with documented timeline, root cause, and remediation
 
 **6-Phase Response Process:**
+
 1. **Preparation** - Incident response team activation, communication channels
 2. **Identification** - Threat identification, scope assessment, severity classification
 3. **Containment** - Short-term and long-term containment measures
@@ -324,6 +341,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 6. **Lessons Learned** - Post-incident review, documentation, process improvement
 
 **When to Use:**
+
 - Active security incidents
 - Suspected data breaches
 - Ransomware infections
@@ -336,12 +354,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Offensive Security Workflows
 
 #### 2. Infrastructure Security Testing - Penetration Testing Framework
+
 **Purpose**: Comprehensive infrastructure vulnerability assessment and exploitation
 **Duration**: 2-5 days depending on scope
 **Lead Agent**: Spectre (Penetration Tester)
 **Outcome**: Detailed findings report with risk ratings and remediation guidance
 
 **5-Phase Testing Process:**
+
 1. **Reconnaissance** - Target enumeration, service identification, vulnerability scanning
 2. **Vulnerability Analysis** - Vulnerability validation, exploit research
 3. **Exploitation** - Controlled exploitation, proof of concept development
@@ -353,12 +373,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ```
 
 #### 3. Web Application Security Testing - OWASP-Based Assessment
+
 **Purpose**: Comprehensive web application vulnerability assessment
 **Duration**: 2-4 days per application
 **Lead Agent**: Weaver (Web App Security Expert)
 **Outcome**: Application security report with OWASP Top 10 mapping
 
 **5-Phase Assessment:**
+
 1. **Reconnaissance** - Application mapping, technology fingerprinting
 2. **Authentication Testing** - Login security, session management, access controls
 3. **Input Validation Testing** - Injection flaws, XSS, CSRF, file upload security
@@ -370,12 +392,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ```
 
 #### 4. Mobile Security Testing - iOS/Android Assessment
+
 **Purpose**: Comprehensive mobile application security assessment
 **Duration**: 2-3 days per platform
 **Lead Agent**: Phantom (Mobile Security Expert)
 **Outcome**: Mobile security report with OWASP Mobile Top 10 mapping
 
 **4-Phase Assessment:**
+
 1. **Static Analysis** - Binary analysis, code review, hardcoded secrets detection
 2. **Dynamic Analysis** - Runtime testing, traffic interception, certificate pinning bypass
 3. **Data Storage Testing** - Local storage security, keychain/keystore analysis
@@ -388,12 +412,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Defensive Security Workflows
 
 #### 5. Network Assessment - Defense Validation
+
 **Purpose**: Comprehensive network security assessment and defense validation
 **Duration**: 2-4 days
 **Lead Agent**: Shield (Blue Team Lead)
 **Outcome**: Network security posture report with recommendations
 
 **5-Phase Assessment:**
+
 1. **Asset Discovery** - Network mapping, service enumeration
 2. **Vulnerability Assessment** - Automated scanning, manual validation
 3. **Configuration Review** - Firewall rules, network segmentation, access controls
@@ -405,12 +431,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ```
 
 #### 6. Threat Modeling - Systematic Threat Analysis
+
 **Purpose**: Identify and prioritize threats to systems and applications
 **Duration**: 1-2 days per system
 **Lead Agent**: Cipher (Threat Analyst) + Bastion (Security Architect)
 **Outcome**: Threat model document with attack scenarios and mitigations
 
 **4-Phase Modeling Process:**
+
 1. **System Decomposition** - Architecture analysis, data flow mapping, trust boundaries
 2. **Threat Identification** - STRIDE analysis, attack tree development
 3. **Risk Assessment** - Likelihood and impact scoring, risk prioritization
@@ -421,12 +449,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ```
 
 #### 7. Vulnerability Management - Continuous Security
+
 **Purpose**: Systematic vulnerability identification, prioritization, and remediation
 **Duration**: Ongoing (initial assessment 2-3 days)
 **Lead Agent**: Shield (Blue Team Lead)
 **Outcome**: Vulnerability management program with prioritized remediation queue
 
 **5-Phase Program:**
+
 1. **Asset Inventory** - Complete asset enumeration and classification
 2. **Scanning Strategy** - Scan scheduling, tool configuration, coverage validation
 3. **Vulnerability Analysis** - Risk-based prioritization, false positive management
@@ -440,12 +470,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Architecture & Design Workflows
 
 #### 8. Security Architecture Review - Defense-in-Depth Assessment
+
 **Purpose**: Comprehensive security architecture evaluation and recommendations
 **Duration**: 2-4 days
 **Lead Agent**: Bastion (Security Architect)
 **Outcome**: Architecture assessment report with security improvement roadmap
 
 **5-Phase Review:**
+
 1. **Architecture Analysis** - Current state documentation, technology inventory
 2. **Control Assessment** - Existing security controls evaluation
 3. **Gap Analysis** - Comparison against frameworks (NIST, CIS, Zero Trust)
@@ -457,12 +489,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ```
 
 #### 9. Cloud Security Assessment - Multi-Cloud Evaluation
+
 **Purpose**: Comprehensive cloud security posture assessment
 **Duration**: 2-5 days per cloud environment
 **Lead Agent**: Nimbus (Cloud Security Specialist)
 **Outcome**: Cloud security assessment with compliance mapping
 
 **6-Phase Assessment:**
+
 1. **IAM Review** - Identity, access management, privilege analysis
 2. **Network Security** - VPC configuration, security groups, network ACLs
 3. **Data Protection** - Encryption, key management, data classification
@@ -477,12 +511,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Compliance & Governance Workflows
 
 #### 10. Compliance Audit Prep - Audit Readiness Program
+
 **Purpose**: Prepare for security compliance audits (SOC 2, PCI, HIPAA, ISO 27001)
 **Duration**: 2-8 weeks depending on framework
 **Lead Agent**: Sentinel (Compliance Guardian)
 **Outcome**: Audit-ready documentation with evidence collection
 
 **6-Phase Preparation:**
+
 1. **Framework Selection** - Applicable framework identification, scope definition
 2. **Gap Assessment** - Current state vs. requirements analysis
 3. **Control Implementation** - Missing control development and deployment
@@ -497,12 +533,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Specialized Security Workflows
 
 #### 11. Blockchain Security Assessment - Web3 Security Review
+
 **Purpose**: Smart contract and blockchain application security assessment
 **Duration**: 1-3 days per contract/application
 **Lead Agent**: Ledger (Blockchain Security Expert)
 **Outcome**: Smart contract audit report with vulnerability findings
 
 **4-Phase Assessment:**
+
 1. **Contract Analysis** - Code review, dependency analysis, upgrade patterns
 2. **Vulnerability Testing** - Common vulnerabilities, reentrancy, overflow/underflow
 3. **Economic Analysis** - Flash loan risks, price oracle manipulation, MEV
@@ -513,12 +551,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ```
 
 #### 12. Security Awareness Training - Human Firewall Development
+
 **Purpose**: Comprehensive security awareness program development
 **Duration**: Ongoing (initial program design 1-2 weeks)
 **Lead Agent**: Ghost (Social Engineer)
 **Outcome**: Security awareness program with phishing simulations
 
 **5-Phase Program:**
+
 1. **Baseline Assessment** - Current awareness levels, phishing susceptibility
 2. **Curriculum Development** - Training content, delivery methods, scheduling
 3. **Phishing Simulation** - Controlled phishing campaigns, metrics tracking
@@ -530,12 +570,14 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ```
 
 #### 13. Virtual CISO Consulting - Strategic Security Leadership
+
 **Purpose**: Fractional CISO services for security program development
 **Duration**: Ongoing advisory (initial assessment 2-4 weeks)
 **Lead Agent**: Phoenix (Incident Commander) + Sentinel (Compliance Guardian)
 **Outcome**: Security strategy and roadmap with executive reporting
 
 **6-Phase Engagement:**
+
 1. **Security Assessment** - Current state evaluation, maturity assessment
 2. **Strategy Development** - Security vision, goals, and objectives
 3. **Roadmap Creation** - Prioritized initiatives, resource requirements
@@ -554,22 +596,27 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Step 1: Choose Your Entry Point (2 minutes)
 
 **For Security Incidents:**
+
 ```bash
 /cybersec-team:incident-commander
 ```
+
 **Say:** "We have a potential [incident type] - I need immediate assistance"
 
 **For Security Testing:**
+
 ```bash
 /cybersec-team:penetration-tester
 ```
 
 **For Compliance Questions:**
+
 ```bash
 /cybersec-team:compliance-guardian
 ```
 
 **For Security Architecture:**
+
 ```bash
 /cybersec-team:security-architect
 ```
@@ -577,6 +624,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 ### Step 2: Describe Your Security Challenge (3 minutes)
 
 **Be Specific About:**
+
 - Current security posture and known issues
 - Compliance requirements (SOC 2, PCI, HIPAA, etc.)
 - Technology stack and infrastructure
@@ -590,6 +638,7 @@ Cybersec Team is a **comprehensive cybersecurity operations module** providing 1
 
 **For Incident Response:**
 Phoenix will guide you through:
+
 - ✅ Initial incident classification and severity assessment
 - ✅ Immediate containment recommendations
 - ✅ Evidence preservation guidance
@@ -597,6 +646,7 @@ Phoenix will guide you through:
 
 **For Security Assessment:**
 The specialist will provide:
+
 - ✅ Assessment scope and approach
 - ✅ Required access and information
 - ✅ Timeline and deliverables
@@ -613,30 +663,39 @@ The specialist will provide:
 **Cybersec Team Response:**
 
 **Phase 1: Immediate Response (First 2 hours)**
+
 ```bash
 /cybersec-team:incident-commander
 ```
+
 **Phoenix Leadership:**
+
 - Activate incident response team and establish command
 - Assess scope: endpoints affected, data encrypted, backup status
 - Implement immediate containment: network isolation, credential rotation
 - Engage forensics: preserve evidence, identify attack vector
 
 **Phase 2: Investigation (2-24 hours)**
+
 ```bash
 /cybersec-team:forensic-investigator
 ```
+
 **Trace Analysis:**
+
 - Memory forensics: identify malware, extract IOCs
 - Log analysis: reconstruct attack timeline
 - Attribution assessment: threat actor identification
 - Evidence preservation: chain of custody documentation
 
 **Phase 3: Threat Intelligence (Parallel)**
+
 ```bash
 /cybersec-team:threat-analyst
 ```
+
 **Cipher Intelligence:**
+
 - Ransomware variant identification and TTP analysis
 - IOC enrichment: C2 infrastructure, related campaigns
 - Decryption possibility assessment
@@ -644,6 +703,7 @@ The specialist will provide:
 
 **Phase 4: Recovery (24-72+ hours)**
 **Coordinated Recovery:**
+
 - Backup validation and restoration planning
 - Clean system rebuilding procedures
 - Detection rule deployment for re-infection prevention
@@ -658,10 +718,13 @@ The specialist will provide:
 **Cybersec Team Response:**
 
 **Phase 1: Gap Assessment (Week 1-2)**
+
 ```bash
 /cybersec-team:workflows:compliance-audit-prep
 ```
+
 **Sentinel Leadership:**
+
 - Trust Services Criteria mapping
 - Current control inventory assessment
 - Gap identification and prioritization
@@ -669,6 +732,7 @@ The specialist will provide:
 
 **Phase 2: Control Implementation (Weeks 3-12)**
 **Multi-Agent Coordination:**
+
 - **Bastion** (Security Architecture): Technical control implementation
 - **Nimbus** (Cloud Security): AWS security configuration, CloudTrail, GuardDuty
 - **Shield** (Blue Team): Detection rules, monitoring, logging
@@ -676,6 +740,7 @@ The specialist will provide:
 
 **Phase 3: Evidence Collection (Weeks 8-16)**
 **Automated Compliance:**
+
 - Evidence collection automation setup
 - Control testing and validation
 - Exception management and remediation tracking
@@ -683,6 +748,7 @@ The specialist will provide:
 
 **Phase 4: Audit Readiness (Weeks 16-24)**
 **Final Preparation:**
+
 - Mock audit execution
 - Auditor communication preparation
 - Evidence package compilation
@@ -697,20 +763,26 @@ The specialist will provide:
 **Cybersec Team Response:**
 
 **Phase 1: Current State Assessment (Week 1)**
+
 ```bash
 /cybersec-team:workflows:security-architecture-review
 ```
+
 **Bastion Leadership:**
+
 - Existing security controls inventory
 - Data classification and sensitivity mapping
 - Compliance requirements identification
 - Risk assessment for migration
 
 **Phase 2: Cloud Security Architecture (Weeks 2-4)**
+
 ```bash
 /cybersec-team:cloud-security-specialist
 ```
+
 **Nimbus Design:**
+
 - Zero trust network architecture for multi-cloud
 - IAM strategy: federation, RBAC, least privilege
 - Data protection: encryption, key management, DLP
@@ -718,16 +790,20 @@ The specialist will provide:
 
 **Phase 3: Implementation Support (Weeks 4-12)**
 **Multi-Agent Implementation:**
+
 - **Nimbus**: Cloud-specific security controls configuration
 - **Gateway**: API security and integration patterns
 - **Shield**: Detection engineering for cloud workloads
 - **Cipher**: Cloud threat intelligence integration
 
 **Phase 4: Validation (Week 12-14)**
+
 ```bash
 /cybersec-team:workflows:cloud-security-assessment
 ```
+
 **Comprehensive Validation:**
+
 - CIS Benchmark compliance verification
 - Penetration testing of cloud environment
 - Detection coverage validation
@@ -743,16 +819,20 @@ The specialist will provide:
 
 **Phase 1: Current State Assessment (Week 1)**
 **Weaver Analysis:**
+
 - Development process review
 - Current security tools inventory
 - Vulnerability backlog assessment
 - Developer security skills evaluation
 
 **Phase 2: Secure SDLC Design (Weeks 2-3)**
+
 ```bash
 /cybersec-team:web-app-security-expert
 ```
+
 **Weaver + Gateway Design:**
+
 - Security requirements integration in user stories
 - Threat modeling process for new features
 - SAST/DAST tool selection and integration
@@ -760,16 +840,20 @@ The specialist will provide:
 
 **Phase 3: Tool Integration (Weeks 3-6)**
 **Pipeline Security:**
+
 - CI/CD security scanning integration
 - Container security scanning
 - Dependency vulnerability management
 - Security gate implementation
 
 **Phase 4: Training and Adoption (Weeks 4-8)**
+
 ```bash
 /cybersec-team:workflows:security-awareness-training
 ```
+
 **Developer Security Training:**
+
 - OWASP Top 10 training for developers
 - Secure coding guidelines
 - Security champion program launch
@@ -784,11 +868,13 @@ The specialist will provide:
 ### Cybersec Team + Intel Team Integration
 
 **Threat Intelligence Fusion**
+
 - Intel Team provides adversary intelligence and campaign analysis
 - Cybersec Team operationalizes intelligence in defensive controls
 - Combined capability: Intelligence-driven security operations
 
 **Example Integration Workflow:**
+
 1. **Threat Discovery** → Intel Team identifies emerging threat actor
 2. **TTP Analysis** → Cipher correlates with MITRE ATT&CK
 3. **Detection Development** → Shield creates detection rules
@@ -797,11 +883,13 @@ The specialist will provide:
 ### Cybersec Team + Legal Team Integration
 
 **Incident Response and Compliance**
+
 - Cybersec Team handles technical response and evidence collection
 - Legal Team provides regulatory notification guidance and legal strategy
 - Combined capability: Legally compliant incident response
 
 **Example Integration Workflow:**
+
 1. **Breach Detection** → Cybersec Team initiates response
 2. **Regulatory Assessment** → Legal Team identifies notification requirements
 3. **Evidence Preservation** → Trace ensures legally admissible evidence
@@ -810,11 +898,13 @@ The specialist will provide:
 ### Cybersec Team + Strategy Team Integration
 
 **Security Risk and Business Strategy**
+
 - Cybersec Team provides security risk assessment and technical capabilities
 - Strategy Team incorporates security considerations into business planning
 - Combined capability: Risk-informed strategic decisions
 
 **Example Integration Workflow:**
+
 1. **Strategic Initiative** → Strategy Team proposes new market entry
 2. **Security Assessment** → Cybersec Team evaluates security implications
 3. **Risk Communication** → Joint presentation to leadership
@@ -823,25 +913,31 @@ The specialist will provide:
 ### Cross-Module Party Mode Presets
 
 **Security Operations Council**
+
 ```bash
 /party-mode
 ```
+
 **Select Preset:** `security-operations-council`
 **Participants:** Phoenix (Cybersec) + Vector (Intel) + Counsel (Legal)
 **Use Case:** Major security incidents requiring multi-domain coordination
 
 **Compliance Implementation Team**
+
 ```bash
 /party-mode
 ```
+
 **Select Preset:** `compliance-implementation-team`
 **Participants:** Sentinel (Cybersec) + Tribute (Legal) + Policy Analyst (Strategy)
 **Use Case:** Regulatory compliance program development
 
 **Technical Security Review Board**
+
 ```bash
 /party-mode
 ```
+
 **Select Preset:** `technical-security-review`
 **Participants:** Bastion (Cybersec) + Resolver (Intel) + Baltic (Legal)
 **Use Case:** Technology security architecture decisions
@@ -869,6 +965,7 @@ The specialist will provide:
 **Cipher's ATT&CK Mapping Capabilities:**
 
 **Tactics Coverage:**
+
 - Initial Access: Phishing, external services, supply chain
 - Execution: Command line, scripting, exploitation
 - Persistence: Registry, scheduled tasks, account manipulation
@@ -883,6 +980,7 @@ The specialist will provide:
 - Impact: Data encryption, service stop, resource hijacking
 
 **Detection Validation:**
+
 - MITRE ATT&CK technique coverage assessment
 - Detection rule mapping to techniques
 - Gap analysis and detection engineering priorities
@@ -895,6 +993,7 @@ The specialist will provide:
 ### Offensive Security Tools
 
 **Spectre's Arsenal:**
+
 - **Network Scanning**: Nmap, Masscan, Shodan
 - **Vulnerability Scanning**: Nessus, OpenVAS, Qualys
 - **Web Application Testing**: Burp Suite, OWASP ZAP, Nikto
@@ -905,6 +1004,7 @@ The specialist will provide:
 ### Defensive Security Tools
 
 **Shield's Toolkit:**
+
 - **SIEM Platforms**: Splunk, Microsoft Sentinel, Elastic Security
 - **EDR Solutions**: CrowdStrike, SentinelOne, Microsoft Defender
 - **Network Detection**: Zeek, Suricata, Darktrace
@@ -915,6 +1015,7 @@ The specialist will provide:
 ### Forensics Tools
 
 **Trace's Investigation Kit:**
+
 - **Disk Forensics**: Autopsy, FTK, EnCase
 - **Memory Forensics**: Volatility, Rekall
 - **Network Forensics**: Wireshark, NetworkMiner
@@ -1005,6 +1106,7 @@ The specialist will provide:
 ### Building Cybersecurity Expertise
 
 **Foundational Knowledge Areas:**
+
 - **Security Fundamentals**: CIA triad, defense in depth, least privilege
 - **Network Security**: TCP/IP, firewalls, IDS/IPS, network segmentation
 - **Application Security**: OWASP Top 10, secure coding, SDLC
@@ -1026,6 +1128,7 @@ The specialist will provide:
 ### Continuous Learning Resources
 
 **Professional Organizations:**
+
 - SANS Institute
 - (ISC)2
 - ISACA
@@ -1033,6 +1136,7 @@ The specialist will provide:
 - Cloud Security Alliance
 
 **Recommended Training:**
+
 - SANS SEC courses (SEC401, SEC504, SEC560)
 - Offensive Security certifications
 - Cloud provider security training (AWS, Azure, GCP)
@@ -1045,21 +1149,27 @@ The specialist will provide:
 ### Getting Security Help
 
 **For Emergencies:**
+
 ```bash
 /cybersec-team:incident-commander
 ```
+
 **Say:** "URGENT: We have an active security incident requiring immediate response"
 
 **For General Security Questions:**
+
 ```bash
 /cybersec-team:security-architect
 ```
+
 **Say:** "I need guidance on [specific security topic]"
 
 **For Compliance Questions:**
+
 ```bash
 /cybersec-team:compliance-guardian
 ```
+
 **Say:** "Help me understand requirements for [compliance framework]"
 
 ### Professional Security Community

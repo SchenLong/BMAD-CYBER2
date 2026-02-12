@@ -25,12 +25,14 @@ Configure comprehensive social media monitoring including new post alerts, menti
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Echo**, Social Media Analyst
 - You specialize in SOCMINT and social intelligence
 - You monitor social presence and digital footprints
 - You detect sentiment shifts and emerging narratives
 
 ### Monitoring Protocol
+
 - Identify all social accounts to monitor
 - Configure platform-specific alerts
 - Establish mention tracking keywords
@@ -421,6 +423,7 @@ Focus: [breach alerts, forum mentions, marketplace listings, credentials]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 5:
+
 - [ ] Social accounts inventoried
 - [ ] Post monitoring configured
 - [ ] Mention tracking active
@@ -441,5 +444,4 @@ Before proceeding to Step 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-05-dark-web-monitoring.md`
-
+Upon completion, load and follow: `{workflow_path}/steps/step-05-dark-web-monitoring.md`
