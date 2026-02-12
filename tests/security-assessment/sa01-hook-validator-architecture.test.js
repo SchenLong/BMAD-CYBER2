@@ -8,9 +8,9 @@
  * validator functional tests.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { resolve } from 'path';
-import { readFileSync, existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 const PROJECT_ROOT = resolve(import.meta.dirname, '../..');
 const SETTINGS_PATH = resolve(PROJECT_ROOT, '.claude/settings.json');

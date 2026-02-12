@@ -4,7 +4,7 @@
  * Verifies that the backup restore test script exists and is executable.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 

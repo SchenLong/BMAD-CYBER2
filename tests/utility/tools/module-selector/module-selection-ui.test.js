@@ -10,17 +10,17 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
+  applyRecommendations,
   buildModuleChoices,
   calculateSelectionSummary,
-  validateSelection,
-  applyRecommendations,
-  getModuleDisplayName
+  getModuleDisplayName,
+  validateSelection
 } from './module-selection-ui.js';
 
 // ESM equivalent of __dirname

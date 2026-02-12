@@ -10,20 +10,20 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  TIER_CHANGE_LOG_PATH,
+  authenticateTierChange,
   CHALLENGE_EXPIRATION_MS,
   generateChallenge,
-  verifyChallenge,
-  requiresAuthentication,
   logTierChangeAttempt,
   readTierChangeLog,
-  authenticateTierChange
+  requiresAuthentication,
+  TIER_CHANGE_LOG_PATH,
+  verifyChallenge
 } from './tier-change-auth.js';
 
 // ESM equivalent of __dirname

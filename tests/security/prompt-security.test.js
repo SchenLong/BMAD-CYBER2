@@ -9,22 +9,22 @@
  * @see Docs/05-project-management/PHASE2-V6-UPGRADE-PLAN-REVIEW.md
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
 import {
+  CHALLENGE_EXPIRATION_MS,
   generateChallenge,
-  verifyChallenge,
   requiresAuthentication,
-  CHALLENGE_EXPIRATION_MS
+  verifyChallenge
 } from '../../src/utility/tools/security-config/tier-change-auth.js';
 
 import {
+  buildFeatureChoices,
   ESSENTIAL_FEATURES,
-  validateFeatureSelection,
-  buildFeatureChoices
+  validateFeatureSelection
 } from '../../src/utility/tools/security-config/advanced-override.js';
 
 // ============================================================================

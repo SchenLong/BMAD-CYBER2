@@ -1,6 +1,6 @@
 import { CONFIG } from '../lib/config.js';
 import { logger } from '../lib/logger.js';
-import { isBmadInstalled, getInstalledVersion } from '../lib/cli-utils.js';
+import { getInstalledVersion, isBmadInstalled } from '../lib/cli-utils.js';
 
 export function versionCommand() {
   console.log(`bmad-cyber CLI v${CONFIG.VERSION}`);

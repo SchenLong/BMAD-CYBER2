@@ -10,15 +10,15 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  VERSION,
+  runSecurityConfig,
   showCurrentConfiguration,
-  runSecurityConfig
+  VERSION
 } from './index.js';
 
 import {

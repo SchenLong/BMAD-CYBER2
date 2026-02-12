@@ -10,30 +10,30 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  STATUS_ICONS,
-  COLORS,
-  OVERALL_STATUS,
+  calculateExitCode,
+  calculateOverallStatus,
   colorize,
+  COLORS,
+  displaySummary,
+  formatAuthenticationSection,
+  formatCoreServicesSection,
+  formatJsonOutput,
+  formatLLMProviderSection,
+  formatOverallStatus,
+  formatRecommendationsSection,
+  formatSecuritySection,
+  generateBanner,
+  generateRecommendations,
   getStatusColor,
   getStatusIcon,
-  generateBanner,
-  formatCoreServicesSection,
-  formatAuthenticationSection,
-  formatLLMProviderSection,
-  formatSecuritySection,
-  generateRecommendations,
-  formatRecommendationsSection,
-  calculateOverallStatus,
-  formatOverallStatus,
-  calculateExitCode,
-  displaySummary,
-  formatJsonOutput
+  OVERALL_STATUS,
+  STATUS_ICONS
 } from './summary-display.js';
 
 const __filename = fileURLToPath(import.meta.url);

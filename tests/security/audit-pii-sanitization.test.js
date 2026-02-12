@@ -8,7 +8,7 @@
  * Remediation: REM-005
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import crypto from 'crypto';
 
 // PII patterns (must match audit-logger.ts PII_PATTERNS)
@@ -60,14 +60,14 @@ function deterministicStringify(obj) {
   if (typeof obj !== 'object') return JSON.stringify(obj);
   if (obj instanceof Date) return JSON.stringify(obj);
   if (Array.isArray(obj)) {
-    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+    return `[${  obj.map(item => deterministicStringify(item)).join(',')  }]`;
   }
   const sortedKeys = Object.keys(obj).sort();
   const pairs = sortedKeys.map(key => {
     const value = deterministicStringify(obj[key]);
-    return JSON.stringify(key) + ':' + value;
+    return `${JSON.stringify(key)  }:${  value}`;
   });
-  return '{' + pairs.join(',') + '}';
+  return `{${  pairs.join(',')  }}`;
 }
 
 describe('Audit Log PII Sanitization (SA-02)', () => {
@@ -230,7 +230,7 @@ describe('Audit Log PII Sanitization (SA-02)', () => {
         blockIndex: 0
       };
 
-      const dataToHash = deterministicStringify(entryData) + '';
+      const dataToHash = `${deterministicStringify(entryData)  }`;
       const hash = crypto.createHash('sha256').update(dataToHash).digest('hex');
       const signature = crypto.createHmac('sha256', TEST_KEY).update(dataToHash).digest('hex');
 

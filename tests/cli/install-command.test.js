@@ -6,7 +6,7 @@
  * Tests the command's interface, validation, and error handling.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { execFile } from 'child_process';

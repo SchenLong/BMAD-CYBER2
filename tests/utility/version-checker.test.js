@@ -9,7 +9,7 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -17,9 +17,9 @@ import { fileURLToPath } from 'url';
 
 // Import the module under test
 import {
+  _internals,
   checkVersion,
   displayUpdateNotice,
-  _internals,
 } from '../../src/utility/version-checker.js';
 
 const __filename = fileURLToPath(import.meta.url);

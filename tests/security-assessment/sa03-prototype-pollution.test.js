@@ -11,9 +11,9 @@
  * - Recursive sanitization verified at depth 5+
  */
 
-import { describe, it, expect, afterEach, vi } from 'vitest';
-import { readFileSync, mkdirSync, writeFileSync, rmSync } from 'fs';
-import { resolve, join } from 'path';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { join, resolve } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 
@@ -51,7 +51,7 @@ describe('SA-03-S4: Prototype Pollution & Deserialization', () => {
       expect(Object.getOwnPropertyNames(parsed.dependencies)).toContain('__proto__');
 
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = join(ROOT, '.tmp-pentest-s4-01-' + Date.now());
+      const tmpDir = join(ROOT, `.tmp-pentest-s4-01-${  Date.now()}`);
       mkdirSync(tmpDir, { recursive: true });
 
       try {
@@ -73,7 +73,7 @@ describe('SA-03-S4: Prototype Pollution & Deserialization', () => {
       });
 
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = join(ROOT, '.tmp-pentest-s4-02-' + Date.now());
+      const tmpDir = join(ROOT, `.tmp-pentest-s4-02-${  Date.now()}`);
       mkdirSync(tmpDir, { recursive: true });
 
       try {
@@ -94,7 +94,7 @@ describe('SA-03-S4: Prototype Pollution & Deserialization', () => {
       expect(Object.getOwnPropertyNames(parsed.config.a.b.c.d)).toContain('__proto__');
 
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = join(ROOT, '.tmp-pentest-s4-03-' + Date.now());
+      const tmpDir = join(ROOT, `.tmp-pentest-s4-03-${  Date.now()}`);
       mkdirSync(tmpDir, { recursive: true });
 
       try {
@@ -182,7 +182,7 @@ describe('SA-03-S4: Prototype Pollution & Deserialization', () => {
     });
 
     it('recursively sanitizes nested objects', () => {
-      expect(src).toContain('sanitizeObject(value)');
+      expect(src).toMatch(/sanitizeObject\(value[^)]*\)/);
     });
 
     it('sanitizes existing package.json on load', () => {

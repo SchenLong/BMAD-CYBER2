@@ -11,9 +11,9 @@
  * - Yolo mode confirmed independent of RBAC
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { resolve } from 'path';
-import { readFileSync, existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import {
   agentPathResolver,
   AuthorizationManager

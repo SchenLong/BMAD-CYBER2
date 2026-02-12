@@ -8,7 +8,7 @@
  * Remediation: REM-011
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { stripAnsi } from '../../src/utility/cli/prompts.js';
 
 describe('ANSI Escape Sanitization (SA-05)', () => {

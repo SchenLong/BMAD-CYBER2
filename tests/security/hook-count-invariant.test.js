@@ -7,9 +7,9 @@
  * @module tests/security/hook-count-invariant
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { beforeAll, describe, expect, it } from 'vitest';
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -135,7 +135,7 @@ describe('PreToolUse Matcher Coverage', () => {
   });
 
   for (const matcher of EXPECTED_MATCHERS) {
-    it('INV-13-010-' + matcher + ': matcher present for ' + matcher, () => {
+    it(`INV-13-010-${  matcher  }: matcher present for ${  matcher}`, () => {
       expect(matcherCounts).toHaveProperty(matcher);
       expect(matcherCounts[matcher]).toBeGreaterThanOrEqual(1);
     });
@@ -143,7 +143,7 @@ describe('PreToolUse Matcher Coverage', () => {
 
   it('INV-13-011: every discovered matcher has >= 1 hook', () => {
     for (const [m, c] of Object.entries(matcherCounts)) {
-      expect(c, 'Matcher ' + m + ' has 0 hooks').toBeGreaterThanOrEqual(1);
+      expect(c, `Matcher ${  m  } has 0 hooks`).toBeGreaterThanOrEqual(1);
     }
   });
 });

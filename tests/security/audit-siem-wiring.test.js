@@ -8,7 +8,7 @@
  * Closes: GAP-SOC2-01, GAP-ISO-02
  */
 
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import crypto from 'crypto';
 
 /**
@@ -19,14 +19,14 @@ function deterministicStringify(obj) {
   if (typeof obj !== 'object') return JSON.stringify(obj);
   if (obj instanceof Date) return JSON.stringify(obj);
   if (Array.isArray(obj)) {
-    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+    return `[${  obj.map(item => deterministicStringify(item)).join(',')  }]`;
   }
   const sortedKeys = Object.keys(obj).sort();
   const pairs = sortedKeys.map(key => {
     const value = deterministicStringify(obj[key]);
-    return JSON.stringify(key) + ':' + value;
+    return `${JSON.stringify(key)  }:${  value}`;
   });
-  return '{' + pairs.join(',') + '}';
+  return `{${  pairs.join(',')  }}`;
 }
 
 const TEST_KEY = 'test-hmac-secret-key-at-least-32-chars-long!!';
@@ -47,7 +47,7 @@ function createMockEntry(overrides = {}) {
     ...overrides,
   };
 
-  const dataToHash = deterministicStringify(entryData) + '';
+  const dataToHash = `${deterministicStringify(entryData)  }`;
   const hash = crypto.createHash('sha256').update(dataToHash).digest('hex');
   const signature = crypto.createHmac('sha256', TEST_KEY).update(dataToHash).digest('hex');
 

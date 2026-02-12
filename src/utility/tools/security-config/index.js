@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 /**
  * Security Configuration Entry Point - INST-011
  * Epic 2, Story 5 - Security Tier Configuration

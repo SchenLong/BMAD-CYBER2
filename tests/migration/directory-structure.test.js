@@ -12,8 +12,8 @@
  *  - Security infrastructure intact
  */
 
-import { describe, it, expect } from 'vitest';
-import { resolve, join } from 'node:path';
+import { describe, expect, it } from 'vitest';
+import { join, resolve } from 'node:path';
 import {
   existsSync,
   readdirSync,
@@ -354,7 +354,7 @@ describe('Directory Structure Migration', () => {
         if (match) {
           const id = match[1];
           if (id.startsWith('_bmad/')) {
-            const relPath = file.replace(PROJECT_ROOT + '/', '');
+            const relPath = file.replace(`${PROJECT_ROOT  }/`, '');
             staleIds.push(`${relPath}: id="${id}"`);
           }
         }
@@ -382,7 +382,7 @@ describe('Directory Structure Migration', () => {
         if (match) {
           const id = match[1];
           if (!v6Pattern.test(id)) {
-            const relPath = file.replace(PROJECT_ROOT + '/', '');
+            const relPath = file.replace(`${PROJECT_ROOT  }/`, '');
             invalidIds.push(`${relPath}: id="${id}"`);
           }
         }
@@ -550,7 +550,7 @@ describe('Directory Structure Migration', () => {
             !ref.startsWith('_bmad/_') &&
             !ref.startsWith('_bmad/framework')
           ) {
-            const relPath = file.replace(PROJECT_ROOT + '/', '');
+            const relPath = file.replace(`${PROJECT_ROOT  }/`, '');
             staleRefs.push(`${relPath}: ${ref}`);
           }
         }

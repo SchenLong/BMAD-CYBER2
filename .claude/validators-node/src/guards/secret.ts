@@ -91,6 +91,16 @@ const CRITICAL_PATTERNS: SecretPattern[] = [
   // Mailgun
   { pattern: /key-[A-Za-z0-9]{32}/g, secretType: 'Mailgun API Key', confidence: 'critical' },
 
+  // Azure (SA-02 LOW: Missing Azure token patterns)
+  { pattern: /SharedAccessSignature\s+sr=[^\s&]+&sig=[A-Za-z0-9%+/=]+&/g, secretType: 'Azure Shared Access Signature', confidence: 'critical' },
+
+  // GitLab (SA-02 LOW: Missing GitLab token patterns)
+  { pattern: /glpat-[A-Za-z0-9\-_]{20,}/g, secretType: 'GitLab Personal Access Token', confidence: 'critical' },
+  { pattern: /gldt-[A-Za-z0-9\-_]{20,}/g, secretType: 'GitLab Deploy Token', confidence: 'critical' },
+
+  // npm (SA-02 LOW: Missing npm token patterns)
+  { pattern: /npm_[A-Za-z0-9]{36}/g, secretType: 'npm Access Token', confidence: 'critical' },
+
   // Private Keys
   { pattern: /-----BEGIN\s+(?:RSA\s+|EC\s+|DSA\s+|OPENSSH\s+)?PRIVATE\s+KEY-----/g, secretType: 'Private Key', confidence: 'critical' },
   { pattern: /-----BEGIN\s+PGP\s+PRIVATE\s+KEY\s+BLOCK-----/g, secretType: 'PGP Private Key', confidence: 'critical' },

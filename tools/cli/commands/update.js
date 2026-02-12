@@ -1,8 +1,8 @@
 import { existsSync, promises as fs } from 'fs';
-import { join, dirname } from 'path';
+import { dirname, join } from 'path';
 import { promisify } from 'util';
 import { exec } from 'child_process';
-import { confirm, isCancel, createSpinner } from '../lib/prompts.js';
+import { confirm, createSpinner, isCancel } from '../lib/prompts.js';
 import pc from 'picocolors';
 import { downloadRelease } from '../lib/downloader.js';
 import { extractFramework } from '../lib/extractor.js';
@@ -327,7 +327,7 @@ async function showChangelog(fromVersion, release) {
   // Parse and display release notes
   if (release.body) {
     const lines = release.body.split('\n').slice(0, 15);
-    lines.forEach(line => console.log('  ' + line));
+    lines.forEach(line => console.log(`  ${  line}`));
     if (release.body.split('\n').length > 15) {
       console.log(pc.dim('  ... (see full changelog on GitHub)'));
     }

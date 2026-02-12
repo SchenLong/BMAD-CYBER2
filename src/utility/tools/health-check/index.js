@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * BMAD Health Check Entry Point - INST-024
  * Epic 4 - Post-Install Health Check

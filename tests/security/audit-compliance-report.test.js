@@ -6,7 +6,7 @@
  * and proper time range filtering.
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import crypto from 'crypto';
 import fs from 'fs/promises';
 import path from 'path';
@@ -23,14 +23,14 @@ function deterministicStringify(obj) {
   if (typeof obj !== 'object') return JSON.stringify(obj);
   if (obj instanceof Date) return JSON.stringify(obj);
   if (Array.isArray(obj)) {
-    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+    return `[${  obj.map(item => deterministicStringify(item)).join(',')  }]`;
   }
   const sortedKeys = Object.keys(obj).sort();
   const pairs = sortedKeys.map(key => {
     const value = deterministicStringify(obj[key]);
-    return JSON.stringify(key) + ':' + value;
+    return `${JSON.stringify(key)  }:${  value}`;
   });
-  return '{' + pairs.join(',') + '}';
+  return `{${  pairs.join(',')  }}`;
 }
 
 describe('Audit Compliance Report (QE-06-S3)', () => {
@@ -77,7 +77,7 @@ describe('Audit Compliance Report (QE-06-S3)', () => {
    * Helper: Write entries to log file
    */
   async function writeEntries(filePath, entries) {
-    const data = entries.map(e => JSON.stringify(e)).join('\n') + '\n';
+    const data = `${entries.map(e => JSON.stringify(e)).join('\n')  }\n`;
     await fs.writeFile(filePath, data);
   }
 
@@ -436,7 +436,7 @@ describe('Audit Compliance Report (QE-06-S3)', () => {
       ]);
 
       // Tamper the chain
-      entries[1].hash = 'tampered_hash_value_' + '0'.repeat(44);
+      entries[1].hash = `tampered_hash_value_${  '0'.repeat(44)}`;
 
       const report = generateReport(entries);
 

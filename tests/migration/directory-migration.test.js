@@ -14,26 +14,26 @@
  * and temporary fixtures (for merge/conflict scenarios).
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { resolve, join, relative } from 'node:path';
-import { mkdtempSync, writeFileSync, mkdirSync, rmSync, existsSync, readFileSync } from 'node:fs';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { join, relative, resolve } from 'node:path';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 
 import {
+  detectConflicts,
+  escapeRegExp,
+  EXCLUDED_BMAD_DIRS,
+  generateCoreMapping,
+  generateMergeMapping,
+  generateMoveMapping,
+  generatePhaseMapping,
+  hashFile,
+  listFilesRecursive,
   parseArgs,
   parsePhaseArg,
   PHASE_DEFINITIONS,
   PHASE_ORDER,
-  EXCLUDED_BMAD_DIRS,
   SRC_INFRASTRUCTURE_DIRS,
-  escapeRegExp,
-  listFilesRecursive,
-  hashFile,
-  generateMoveMapping,
-  generateMergeMapping,
-  generateCoreMapping,
-  generatePhaseMapping,
-  detectConflicts,
 } from '../../tools/migrate-directory-structure.js';
 
 const PROJECT_ROOT = resolve(import.meta.dirname, '../..');

@@ -19,13 +19,13 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import yaml from 'js-yaml';
+import { safeYamlLoad } from '../src/utility/safe-yaml.js';
 import {
-  moduleYamlSchema,
   configFieldSchema,
   moduleHelpEntrySchema,
-  VALID_MODULES,
+  moduleYamlSchema,
   REQUIRED_CONFIG_KEYS,
+  VALID_MODULES,
 } from './schema/module.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -151,7 +151,7 @@ export async function validateModules() {
     let parsed;
     try {
       const content = fs.readFileSync(mod.yamlPath, 'utf-8');
-      parsed = yaml.load(content);
+      parsed = safeYamlLoad(content);
     } catch (err) {
       moduleHasError = true;
       errors.push({

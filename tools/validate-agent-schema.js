@@ -18,8 +18,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import yaml from 'js-yaml';
-import { agentManifestEntrySchema, agentFrontmatterSchema } from './schema/agent.js';
+import { safeYamlLoad } from '../src/utility/safe-yaml.js';
+import { agentFrontmatterSchema, agentManifestEntrySchema } from './schema/agent.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -113,7 +113,7 @@ function extractFrontmatter(content) {
 
   const yamlBlock = lines.slice(1, endIndex).join('\n');
   try {
-    return yaml.load(yamlBlock) || {};
+    return safeYamlLoad(yamlBlock) || {};
   } catch {
     return null;
   }

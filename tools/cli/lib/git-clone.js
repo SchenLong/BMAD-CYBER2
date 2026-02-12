@@ -2,7 +2,7 @@ import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { mkdir, rm, cp, readdir, stat } from 'fs/promises';
+import { cp, mkdir, readdir, rm, stat } from 'fs/promises';
 import { createSpinner } from './prompts.js';
 import { CONFIG } from './config.js';
 import { logger } from './logger.js';
@@ -63,7 +63,7 @@ export async function cloneRepository(options = {}) {
     // 3. Validate branch name to prevent command injection
     // Branch names can contain alphanumeric, -, _, ., and /
     // See: https://git-scm.com/docs/git-check-ref-format
-    const SAFE_BRANCH_PATTERN = /^[a-zA-Z0-9][\w.\-\/]*$/;
+    const SAFE_BRANCH_PATTERN = /^[a-zA-Z0-9][\w.\-/]*$/;
     if (!SAFE_BRANCH_PATTERN.test(branch)) {
       throw new Error(
         `Invalid branch name: "${branch}". Branch names must start with alphanumeric ` +

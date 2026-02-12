@@ -5,7 +5,7 @@
  * handles size-based rotation, and preserves hash chain continuity.
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import crypto from 'crypto';
 import fs from 'fs/promises';
 import path from 'path';
@@ -33,14 +33,14 @@ function deterministicStringify(obj) {
   if (typeof obj !== 'object') return JSON.stringify(obj);
   if (obj instanceof Date) return JSON.stringify(obj);
   if (Array.isArray(obj)) {
-    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+    return `[${  obj.map(item => deterministicStringify(item)).join(',')  }]`;
   }
   const sortedKeys = Object.keys(obj).sort();
   const pairs = sortedKeys.map(key => {
     const value = deterministicStringify(obj[key]);
-    return JSON.stringify(key) + ':' + value;
+    return `${JSON.stringify(key)  }:${  value}`;
   });
-  return '{' + pairs.join(',') + '}';
+  return `{${  pairs.join(',')  }}`;
 }
 
 describe('Audit Log Rotation (QE-06-S2)', () => {
@@ -87,7 +87,7 @@ describe('Audit Log Rotation (QE-06-S2)', () => {
    * Helper: Write entries to a log file
    */
   async function writeEntriesToLog(filePath, entries) {
-    const data = entries.map(e => JSON.stringify(e)).join('\n') + '\n';
+    const data = `${entries.map(e => JSON.stringify(e)).join('\n')  }\n`;
     await fs.writeFile(filePath, data);
   }
 
@@ -479,7 +479,7 @@ describe('Audit Log Rotation (QE-06-S2)', () => {
       const archivePath = path.join(tmpDir, 'audit-2025-01-01T00-00-00-000Z.log');
       // Write some valid entries + a malformed line
       const entries = createChain(2);
-      const data = entries.map(e => JSON.stringify(e)).join('\n') + '\n{bad json}\n';
+      const data = `${entries.map(e => JSON.stringify(e)).join('\n')  }\n{bad json}\n`;
       await fs.writeFile(archivePath, data);
 
       // Reading should fail on the bad line — this is expected behavior

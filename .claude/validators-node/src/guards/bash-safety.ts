@@ -57,27 +57,55 @@ export function detectCommandSubstitution(cmd: string): CommandSubstitution[] {
     return detected;
 }
 /**
+ * Split a command string into individual pipeline/chain segments.
+ * SA-02 LOW: Commands like "echo foo | rm -rf /" need each segment analyzed independently.
+ */
+export function splitCommandSegments(cmd: string): string[] {
+    // Split on pipe and chain operators: |, &&, ||, ;
+    // This is a simplified split — doesn't handle quoted strings containing operators,
+    // but sufficient for the rm/dangerous pattern checks where quoting is unlikely.
+    return cmd.split(/\s*(?:\|\||&&|[|;])\s*/).map(s => s.trim()).filter(Boolean);
+}
+
+/**
+ * Shell operators that terminate an rm command's argument list.
+ * SA-02 LOW: Without this, operators like |, &&, ; were treated as rm targets.
+ */
+const SHELL_OPERATORS = new Set(['|', '||', '&&', ';', '>', '>>', '2>', '2>>', '&>', '<']);
+
+/**
  * Extract target paths from rm commands.
  */
 export function extractRmTargets(cmd: string): string[] {
-    const parts = cmd.split(/\s+/);
+    // SA-02 LOW: Split into segments first so pipe/chain operators aren't treated as targets
+    const segments = splitCommandSegments(cmd);
     const targets: string[] = [];
-    let skipNext = false;
-    for (const part of parts) {
-        if (skipNext) {
-            skipNext = false;
-            continue;
-        }
-        if (part === 'rm' || part === 'sudo') {
-            continue;
-        }
-        if (part.startsWith('-')) {
-            if (part === '-I' || part === '--interactive') {
-                skipNext = true;
+
+    for (const segment of segments) {
+        const parts = segment.split(/\s+/);
+        let foundRm = false;
+        let skipNext = false;
+
+        for (const part of parts) {
+            if (skipNext) {
+                skipNext = false;
+                continue;
             }
-            continue;
+            if (part === 'rm' || part === 'sudo') {
+                if (part === 'rm') foundRm = true;
+                continue;
+            }
+            if (!foundRm) continue;
+            // Stop at shell operators (defense-in-depth — splitCommandSegments handles most)
+            if (SHELL_OPERATORS.has(part)) break;
+            if (part.startsWith('-')) {
+                if (part === '-I' || part === '--interactive') {
+                    skipNext = true;
+                }
+                continue;
+            }
+            targets.push(part);
         }
-        targets.push(part);
     }
     return targets;
 }
@@ -197,14 +225,26 @@ export function checkDangerousPatterns(cmd: string): { isDangerous: boolean; mes
         [/:\(\)\s*{\s*:\|:\s*&\s*};\s*:/, 'Fork bomb detected'],
         [/chmod\s+(-[rR]+\s+)*777\s+\//, 'Dangerous chmod 777 on system path'],
         [/chown\s+(-[rR]+\s+)*root/, 'Changing ownership to root'],
-        // Additional patterns
+        // Additional patterns — these check the FULL command (need to see | for pipe-to-bash)
         [/curl\s+.*\|\s*(sudo\s+)?bash/, 'Pipe curl to bash (dangerous)'],
         [/wget\s+.*\|\s*(sudo\s+)?bash/, 'Pipe wget to bash (dangerous)'],
         [/eval\s+.*\$/, 'Eval with variable expansion'],
     ];
+    // SA-02 LOW: Check full command first (needed for pipe-spanning patterns like curl|bash)
     for (const [pattern, message] of dangerousPatterns) {
         if (pattern.test(cmd)) {
             return { isDangerous: true, message: `STRICT BLOCK: ${message}` };
+        }
+    }
+    // SA-02 LOW: Also check each chain segment independently (catches "safe && dd if=... of=/dev/sda")
+    const segments = splitCommandSegments(cmd);
+    if (segments.length > 1) {
+        for (const segment of segments) {
+            for (const [pattern, message] of dangerousPatterns) {
+                if (pattern.test(segment)) {
+                    return { isDangerous: true, message: `STRICT BLOCK: ${message} (in chained command)` };
+                }
+            }
         }
     }
     return { isDangerous: false, message: '' };

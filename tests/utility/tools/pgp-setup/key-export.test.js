@@ -10,36 +10,36 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import { fileURLToPath } from 'url';
 
 import {
-  KEYS_DIR,
-  PUBLIC_KEY_FILENAME,
-  PRIVATE_KEY_FILENAME,
-  PGP_CONFIG_PATH,
+  checkExistingKeys,
+  cleanFingerprint,
   CONFIG_VERSION,
-  isWindows,
   createKeysDirectory,
-  runGpgCommand,
+  displayExportSummary,
+  ensurePgpConfigDirectory,
+  exportKeys,
+  exportPrivateKey,
+  exportPublicKey,
+  getKeyInfo,
+  getKeysDirectory,
   isGpgAvailable,
   isValidFingerprint,
-  cleanFingerprint,
-  setSecurePermissions,
-  exportPublicKey,
-  exportPrivateKey,
-  getKeyInfo,
-  serializeYaml,
-  ensurePgpConfigDirectory,
+  isWindows,
+  KEYS_DIR,
+  PGP_CONFIG_PATH,
+  PRIVATE_KEY_FILENAME,
+  PUBLIC_KEY_FILENAME,
+  readPgpConfig,
+  runGpgCommand,
   savePgpConfig,
-  displayExportSummary,
-  exportKeys,
-  getKeysDirectory,
-  checkExistingKeys,
-  readPgpConfig
+  serializeYaml,
+  setSecurePermissions
 } from './key-export.js';
 
 // ESM equivalent of __dirname
@@ -157,7 +157,7 @@ describe('PGP Key Export - INST-027', () => {
     });
 
     it('should reject long fingerprint', () => {
-      expect(isValidFingerprint(VALID_FINGERPRINT + 'EXTRA')).toBe(false);
+      expect(isValidFingerprint(`${VALID_FINGERPRINT  }EXTRA`)).toBe(false);
     });
 
     it('should reject non-hex characters', () => {

@@ -11,13 +11,13 @@
  * natively. The CJS version (authorization.js) has identical logic.
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import {
-  AuthorizationManager,
   agentPathResolver,
+  AuthorizationManager,
 } from '../../src/core/security/authorization.ts';
 
 const __filename = fileURLToPath(import.meta.url);

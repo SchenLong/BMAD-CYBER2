@@ -11,7 +11,7 @@
  * - Subdomain bypass documented if still present
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -172,6 +172,7 @@ describe('SA-03-S3: SSRF & Network Attack Testing', () => {
     });
 
     it('PENTEST-S3-05d: rejects javascript: protocol', () => {
+      // eslint-disable-next-line no-script-url
       const result = validateDownloadUrl('javascript:alert(1)');
       expect(result.valid).toBe(false);
     });

@@ -1,8 +1,7 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { resolve } from 'path';
-import { writeFile, mkdtemp, rm } from 'fs/promises';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { join, resolve } from 'path';
+import { mkdtemp, rm, writeFile } from 'fs/promises';
 import { tmpdir } from 'os';
-import { join } from 'path';
 import { ExternalModuleManager } from '../../tools/cli/lib/external-module-manager.js';
 
 const REGISTRY_PATH = resolve(import.meta.dirname, '../../tools/cli/external-official-modules.yaml');

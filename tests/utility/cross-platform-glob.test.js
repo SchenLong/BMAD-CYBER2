@@ -8,7 +8,7 @@
  * @module utility/cross-platform-glob.test
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { glob, normalizePath } from '../../src/utility/cross-platform-glob.js';

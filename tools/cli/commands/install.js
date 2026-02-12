@@ -4,8 +4,8 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 import pc from 'picocolors';
 import { createSpinner } from '../lib/prompts.js';
-import { downloadRelease, cleanup as cleanupDownload } from '../lib/downloader.js';
-import { cloneRepository, copyRelevantFiles, cleanupClone } from '../lib/git-clone.js';
+import { cleanup as cleanupDownload, downloadRelease } from '../lib/downloader.js';
+import { cleanupClone, cloneRepository, copyRelevantFiles } from '../lib/git-clone.js';
 import { extractFramework } from '../lib/extractor.js';
 import { mergePackageJson } from '../lib/package-merger.js';
 import { logger } from '../lib/logger.js';
@@ -147,8 +147,8 @@ export async function installCommand(options) {
         logger.warn(`npm install error: ${error.message}`);
       }
     } else {
-      spinner.stop('Step 4/6: Skipped npm install' +
-        (options.dryRun ? ' (dry run)' : ''));
+      spinner.stop(`Step 4/6: Skipped npm install${ 
+        options.dryRun ? ' (dry run)' : ''}`);
     }
 
     // Step 5: Setup wizard
@@ -161,8 +161,8 @@ export async function installCommand(options) {
         securityTier: options.securityTier
       });
     } else {
-      spinner.stop('Step 5/6: Skipped setup wizard' +
-        (options.dryRun ? ' (dry run)' : ''));
+      spinner.stop(`Step 5/6: Skipped setup wizard${ 
+        options.dryRun ? ' (dry run)' : ''}`);
     }
 
     // Step 6: Health check

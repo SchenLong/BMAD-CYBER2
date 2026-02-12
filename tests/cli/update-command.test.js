@@ -6,7 +6,7 @@
  * Does NOT actually run update (would modify filesystem + hit network).
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { execFile } from 'child_process';

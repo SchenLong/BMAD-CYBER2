@@ -10,26 +10,26 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  SECURITY_CONFIG_PATH,
-  CONFIG_VERSION,
-  serializeYaml,
-  parseYaml,
-  getCurrentUserName,
-  createSecurityConfig,
-  readSecurityConfig,
-  ensureSecurityConfigDirectory,
-  writeSecurityConfigAtomic,
-  validateSecurityConfig,
   applySecurityTier,
-  getCurrentTier,
+  CONFIG_VERSION,
+  createSecurityConfig,
+  ensureSecurityConfigDirectory,
   getCurrentFeatures,
-  isSecurityConfigured
+  getCurrentTier,
+  getCurrentUserName,
+  isSecurityConfigured,
+  parseYaml,
+  readSecurityConfig,
+  SECURITY_CONFIG_PATH,
+  serializeYaml,
+  validateSecurityConfig,
+  writeSecurityConfigAtomic
 } from './security-writer.js';
 
 import { getTierFeatures, getValidatorPaths } from './tier-definitions.js';
@@ -393,7 +393,7 @@ describe('Security Configuration Writer - INST-009', () => {
       const content = 'test: content';
       writeSecurityConfigAtomic(content, MOCK_PROJECT_ROOT);
 
-      const tempPath = path.join(MOCK_PROJECT_ROOT, SECURITY_CONFIG_PATH + '.tmp');
+      const tempPath = path.join(MOCK_PROJECT_ROOT, `${SECURITY_CONFIG_PATH  }.tmp`);
       expect(fs.existsSync(tempPath)).toBe(false);
     });
   });

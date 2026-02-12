@@ -51,8 +51,16 @@ _log_validation_failure() {
 
     # Only log if directory exists and is writable
     if [[ -d "$log_dir" ]] && [[ -w "$log_dir" ]]; then
-        local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-        local entry="{\"timestamp\":\"$timestamp\",\"validator\":\"$validator\",\"action\":\"INPUT_VALIDATION_FAILED\",\"details\":{\"input_type\":\"$input_type\",\"reason\":\"$reason\"}}"
+        local timestamp
+        timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        # SAST-006: Sanitize values for JSON interpolation — escape backslashes,
+        # double quotes, and control characters to prevent JSON malformation.
+        # All callers currently use hardcoded strings, but this is defense-in-depth.
+        local safe_validator safe_input_type safe_reason
+        safe_validator=$(printf '%s' "$validator" | sed 's/[\\"]/\\&/g' | tr -d '\n\r')
+        safe_input_type=$(printf '%s' "$input_type" | sed 's/[\\"]/\\&/g' | tr -d '\n\r')
+        safe_reason=$(printf '%s' "$reason" | sed 's/[\\"]/\\&/g' | tr -d '\n\r')
+        local entry="{\"timestamp\":\"$timestamp\",\"validator\":\"$safe_validator\",\"action\":\"INPUT_VALIDATION_FAILED\",\"details\":{\"input_type\":\"$safe_input_type\",\"reason\":\"$safe_reason\"}}"
         echo "$entry" >> "$log_file" 2>/dev/null || true
     fi
 }

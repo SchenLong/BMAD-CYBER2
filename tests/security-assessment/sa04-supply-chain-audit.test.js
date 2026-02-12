@@ -18,8 +18,8 @@
  * 4.14 tar dependency >= 7.5.7
  */
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync, statSync } from 'fs';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readFileSync, statSync } from 'fs';
 import { join, resolve } from 'path';
 import { execSync } from 'child_process';
 
@@ -198,7 +198,7 @@ describe('SA-04: Supply Chain Audit', () => {
       const knownScopes = ['@bmad', '@clack', '@eslint', '@types', '@vitest', '@typescript-eslint'];
       const scopedDeps = depNames.filter(d => d.startsWith('@'));
       const unknownScoped = scopedDeps.filter(d =>
-        !knownScopes.some(s => d.startsWith(s + '/'))
+        !knownScopes.some(s => d.startsWith(`${s  }/`))
       );
       expect(unknownScoped).toEqual([]);
     });

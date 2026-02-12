@@ -10,7 +10,7 @@
  * Source: QA-EXECUTION-PLAN.md QE-09-S1
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { execFile } from 'child_process';

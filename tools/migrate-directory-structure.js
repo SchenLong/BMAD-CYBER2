@@ -32,8 +32,8 @@
  * @module tools/migrate-directory-structure
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, statSync, rmSync } from 'node:fs';
-import { resolve, dirname, basename, join, relative, extname } from 'node:path';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { basename, dirname, extname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -157,7 +157,7 @@ export function log(level, message, meta = {}) {
  */
 export function saveMigrationLog() {
   migrationLog.completedAt = new Date().toISOString();
-  writeFileSync(MIGRATION_LOG_PATH, JSON.stringify(migrationLog, null, 2) + '\n', 'utf-8');
+  writeFileSync(MIGRATION_LOG_PATH, `${JSON.stringify(migrationLog, null, 2)  }\n`, 'utf-8');
   console.log(`\nMigration log saved to: ${MIGRATION_LOG_PATH}`);
 }
 

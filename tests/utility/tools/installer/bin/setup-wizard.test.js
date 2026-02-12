@@ -10,20 +10,20 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  VERSION,
   CI_ENV_VARS,
+  getDetectedCI,
   HELP_TEXT,
   isCI,
-  getDetectedCI,
+  main,
   parseArgs,
   runWizard,
-  main
+  VERSION
 } from './setup-wizard.js';
 
 const __filename = fileURLToPath(import.meta.url);

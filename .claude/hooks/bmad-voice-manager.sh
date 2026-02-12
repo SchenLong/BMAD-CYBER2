@@ -884,7 +884,16 @@ set_agent_voice() {
     fi
 
     # Update the voice and personality in the table
-    sed -i.bak "s/^| $agent_id |.*| .* | .* |$/| $agent_id | $(grep "^| $agent_id " "$VOICE_CONFIG_FILE" | awk -F'|' '{print $3}') | $voice | $personality |/" "$VOICE_CONFIG_FILE"
+    # SAST-004: Escape sed metacharacters in user-validated variables to prevent
+    # sed pattern injection (defense-in-depth — variables already pass validation)
+    local safe_agent_id safe_voice safe_personality current_name
+    safe_agent_id=$(printf '%s' "$agent_id" | sed 's/[&/\]/\\&/g')
+    safe_voice=$(printf '%s' "$voice" | sed 's/[&/\]/\\&/g')
+    safe_personality=$(printf '%s' "$personality" | sed 's/[&/\]/\\&/g')
+    current_name=$(grep "^| $agent_id " "$VOICE_CONFIG_FILE" | awk -F'|' '{print $3}')
+    local safe_current_name
+    safe_current_name=$(printf '%s' "$current_name" | sed 's/[&/\]/\\&/g')
+    sed -i.bak "s/^| $safe_agent_id |.*| .* | .* |$/| $safe_agent_id |$safe_current_name| $safe_voice | $safe_personality |/" "$VOICE_CONFIG_FILE"
 
     echo "✅ Updated $agent_id → $voice [$personality]"
 }

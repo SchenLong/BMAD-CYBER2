@@ -5,14 +5,14 @@
  * Closes GAP-GDPR-01 (right to erasure) and GAP-GDPR-02 (right to portability).
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import {
+  createDSRHandler,
   DataSubjectRequestHandler,
-  DSRType,
   DSRStatus,
-  createDSRHandler
+  DSRType
 } from '../../src/security/gdpr-compliance.js';
 
 const TEST_DIR = path.join(process.cwd(), '.test-gdpr-erasure');
@@ -24,7 +24,7 @@ function createTestLogEntries(logFile, entries) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
-  const lines = entries.map(e => JSON.stringify(e)).join('\n') + '\n';
+  const lines = `${entries.map(e => JSON.stringify(e)).join('\n')  }\n`;
   fs.writeFileSync(logFile, lines);
 }
 
@@ -128,11 +128,11 @@ describe('GDPR Data Erasure + Export (SC-02)', () => {
 
     it('should handle non-JSON lines gracefully', () => {
       const logFile = path.join(LOG_DIR, 'mixed.log');
-      fs.writeFileSync(logFile, [
+      fs.writeFileSync(logFile, `${[
         JSON.stringify({ userId: 'user-001', action: 'test' }),
         'not json at all',
         JSON.stringify({ userId: 'user-002', action: 'test' }),
-      ].join('\n') + '\n');
+      ].join('\n')  }\n`);
 
       const result = handler.purgeUserData('user-001', { logDirs: [LOG_DIR] });
       expect(result.success).toBe(true);
@@ -246,11 +246,11 @@ describe('GDPR Data Erasure + Export (SC-02)', () => {
 
     it('should handle non-JSON lines gracefully', () => {
       const logFile = path.join(LOG_DIR, 'mixed.log');
-      fs.writeFileSync(logFile, [
+      fs.writeFileSync(logFile, `${[
         JSON.stringify({ userId: 'user-001', action: 'test' }),
         'not json',
         JSON.stringify({ userId: 'user-001', action: 'test2' }),
-      ].join('\n') + '\n');
+      ].join('\n')  }\n`);
 
       const result = handler.exportUserData('user-001', { logDirs: [LOG_DIR] });
       expect(result.success).toBe(true);

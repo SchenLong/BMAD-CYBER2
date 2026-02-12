@@ -11,7 +11,7 @@
  * are the primary defenses.
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -91,12 +91,12 @@ describe('Zip-Slip (Path Traversal) Prevention - P3-14', () => {
       if (normalizedEntry.includes('..') ||
           normalizedEntry.startsWith('/') ||
           normalizedEntry.includes('//')) {
-        return { safe: false, error: 'Path traversal detected: "' + entryPath + '"' };
+        return { safe: false, error: `Path traversal detected: "${  entryPath  }"` };
       }
       const resolvedPath = path.resolve(targetDir, normalizedEntry);
       const relativePath = path.relative(targetDir, resolvedPath);
       if (relativePath.startsWith('..') || path.resolve(targetDir, relativePath) !== resolvedPath) {
-        return { safe: false, error: 'Path escapes target: "' + entryPath + '"' };
+        return { safe: false, error: `Path escapes target: "${  entryPath  }"` };
       }
       return { safe: true, resolvedPath };
     }

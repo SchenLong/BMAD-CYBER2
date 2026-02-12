@@ -19,11 +19,11 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import yaml from 'js-yaml';
+import { safeYamlLoad } from '../src/utility/safe-yaml.js';
 import {
   workflowManifestEntrySchema,
-  workflowYamlSchema,
   workflowMdFrontmatterSchema,
+  workflowYamlSchema,
 } from './schema/workflow.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -118,7 +118,7 @@ function extractFrontmatter(content) {
 
   const yamlBlock = lines.slice(1, endIndex).join('\n');
   try {
-    return yaml.load(yamlBlock) || {};
+    return safeYamlLoad(yamlBlock) || {};
   } catch {
     return null;
   }
@@ -135,7 +135,7 @@ function extractFrontmatter(content) {
  */
 function parseYamlFile(content) {
   try {
-    return yaml.load(content) || {};
+    return safeYamlLoad(content) || {};
   } catch {
     return null;
   }

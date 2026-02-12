@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -15,17 +15,17 @@ import { fileURLToPath } from 'url';
 
 import {
   CONFIG_PATHS,
-  readYamlProvider,
-  readTxtProvider,
-  writeYamlProvider,
-  writeTxtProvider,
   detectDrift,
-  getEffectiveProvider,
-  syncToProvider,
   ensureSynced,
-  isValidProvider,
+  formatConfigStatus,
   getConfigStatus,
-  formatConfigStatus
+  getEffectiveProvider,
+  isValidProvider,
+  readTxtProvider,
+  readYamlProvider,
+  syncToProvider,
+  writeTxtProvider,
+  writeYamlProvider
 } from './config-sync.js';
 
 const __filename = fileURLToPath(import.meta.url);

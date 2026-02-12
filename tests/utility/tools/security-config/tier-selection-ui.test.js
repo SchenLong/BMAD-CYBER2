@@ -10,21 +10,21 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  formatTierChoice,
   buildTierChoices,
+  formatTierChoice,
   getDefaultTierIndex,
   showCurrentConfig,
   showSelectionSummary,
   showTierComparison
 } from './tier-selection-ui.js';
 
-import { SECURITY_TIERS, getTierById, getDefaultTier } from './tier-definitions.js';
+import { getDefaultTier, getTierById, SECURITY_TIERS } from './tier-definitions.js';
 
 // ESM equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);

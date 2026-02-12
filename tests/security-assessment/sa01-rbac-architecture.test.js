@@ -8,9 +8,9 @@
  * _bmad/ normalization, and yolo_mode isolation.
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { resolve } from 'path';
-import { readFileSync, existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import {
   agentPathResolver,
   AuthorizationManager,

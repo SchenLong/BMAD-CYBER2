@@ -10,20 +10,20 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  scanModuleDirectories,
-  parseModuleYaml,
+  calculateEstimatedSize,
   countAgents,
   countWorkflows,
-  calculateEstimatedSize,
-  loadAllModules,
+  findModuleByCode,
   getModuleSummary,
-  findModuleByCode
+  loadAllModules,
+  parseModuleYaml,
+  scanModuleDirectories
 } from './module-loader.js';
 
 // ESM equivalent of __dirname

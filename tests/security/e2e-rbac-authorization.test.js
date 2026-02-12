@@ -5,7 +5,7 @@
  *   agent request -> path normalization -> RBAC check -> allow/deny
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { resolve } from 'path';
 import { existsSync } from 'fs';
 import { agentPathResolver, AuthorizationManager } from '../../src/core/security/authorization.ts';

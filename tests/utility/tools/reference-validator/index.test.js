@@ -7,17 +7,17 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
   extractReferences,
-  isUrlOrAnchor,
-  isLocalFileRef,
   findFiles,
-  validateReferences,
+  isLocalFileRef,
+  isUrlOrAnchor,
   resolveReference,
+  validateReferences,
 } from './index.js';
 
 const __filename = fileURLToPath(import.meta.url);

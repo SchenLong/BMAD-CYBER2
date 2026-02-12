@@ -7,9 +7,9 @@
  * @module tests/smoke/agent-activation
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { beforeAll, describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -45,7 +45,7 @@ function getFirstAgent(moduleName) {
 }
 
 function extractXmlAttribute(content, attrName) {
-  const regex = new RegExp(attrName + '="([^"]*)"');
+  const regex = new RegExp(`${attrName  }="([^"]*)"`);
   const match = content.match(regex);
   return match ? match[1] : null;
 }
@@ -63,7 +63,7 @@ function countAllAgents() {
 
 describe('Agent Activation Smoke Tests (P9-37)', () => {
   for (const mod of MODULES) {
-    describe('Module: ' + mod, () => {
+    describe(`Module: ${  mod}`, () => {
       let agent;
       let content;
       let fileSize;
@@ -76,40 +76,40 @@ describe('Agent Activation Smoke Tests (P9-37)', () => {
         }
       });
 
-      it('SMOKE-' + mod + '-001: file exists and is readable', () => {
-        expect(agent, 'No agent found in ' + mod).not.toBeNull();
+      it(`SMOKE-${  mod  }-001: file exists and is readable`, () => {
+        expect(agent, `No agent found in ${  mod}`).not.toBeNull();
         expect(existsSync(agent.path)).toBe(true);
         expect(content).toBeTruthy();
       });
 
-      it('SMOKE-' + mod + '-002: has XML agent tag', () => {
+      it(`SMOKE-${  mod  }-002: has XML agent tag`, () => {
         expect(content).toContain('<agent');
         expect(content).toMatch(/<agent\s+id="/);
       });
 
-      it('SMOKE-' + mod + '-003: id in v6 format', () => {
+      it(`SMOKE-${  mod  }-003: id in v6 format`, () => {
         const agentId = extractXmlAttribute(content, 'id');
         expect(agentId).not.toBeNull();
-        expect(agentId.startsWith('src/' + mod + '/agents/')).toBe(true);
+        expect(agentId.startsWith(`src/${  mod  }/agents/`)).toBe(true);
       });
 
-      it('SMOKE-' + mod + '-004: has name attribute', () => {
+      it(`SMOKE-${  mod  }-004: has name attribute`, () => {
         const name = extractXmlAttribute(content, 'name');
         expect(name).not.toBeNull();
         expect(name.length).toBeGreaterThan(0);
       });
 
-      it('SMOKE-' + mod + '-005: has title attribute', () => {
+      it(`SMOKE-${  mod  }-005: has title attribute`, () => {
         const title = extractXmlAttribute(content, 'title');
         expect(title).not.toBeNull();
         expect(title.length).toBeGreaterThan(0);
       });
 
-      it('SMOKE-' + mod + '-006: has substantial content', () => {
+      it(`SMOKE-${  mod  }-006: has substantial content`, () => {
         expect(content.length).toBeGreaterThan(200);
       });
 
-      it('SMOKE-' + mod + '-007: file size reasonable (100B-500KB)', () => {
+      it(`SMOKE-${  mod  }-007: file size reasonable (100B-500KB)`, () => {
         expect(fileSize).toBeGreaterThan(100);
         expect(fileSize).toBeLessThan(500 * 1024);
       });
@@ -125,10 +125,10 @@ describe('Agent Manifest Registration', () => {
   });
 
   for (const mod of MODULES) {
-    it('SMOKE-MANIFEST-' + mod + ': first agent in manifest', () => {
+    it(`SMOKE-MANIFEST-${  mod  }: first agent in manifest`, () => {
       const agent = getFirstAgent(mod);
       expect(agent).not.toBeNull();
-      expect(manifestContent).toContain('src/' + mod + '/agents/' + agent.name);
+      expect(manifestContent).toContain(`src/${  mod  }/agents/${  agent.name}`);
     });
   }
 });
@@ -157,7 +157,7 @@ describe('Agent Count Validation', () => {
 
 describe('Agent YAML Frontmatter', () => {
   for (const mod of MODULES) {
-    it('SMOKE-FM-' + mod + ': valid YAML frontmatter', () => {
+    it(`SMOKE-FM-${  mod  }: valid YAML frontmatter`, () => {
       const agent = getFirstAgent(mod);
       expect(agent).not.toBeNull();
       const content = readFileSync(agent.path, 'utf-8');

@@ -10,23 +10,23 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  ESSENTIAL_FEATURES,
   buildFeatureChoices,
-  validateFeatureSelection,
+  determineEffectiveTier,
+  ESSENTIAL_FEATURES,
   getFeatureSummary,
-  determineEffectiveTier
+  validateFeatureSelection
 } from './advanced-override.js';
 
 import {
-  getTierFeatures,
   FEATURE_DETAILS,
-  getFeaturesByTier
+  getFeaturesByTier,
+  getTierFeatures
 } from './tier-definitions.js';
 
 // ESM equivalent of __dirname

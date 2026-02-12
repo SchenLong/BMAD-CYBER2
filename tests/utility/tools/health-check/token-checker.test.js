@@ -10,7 +10,7 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
@@ -18,22 +18,22 @@ import os from 'os';
 import { fileURLToPath } from 'url';
 
 import {
-  TOKEN_PATH,
-  KEY_PATH,
-  TOKEN_PREFIX,
-  EXPIRATION_WARNING_THRESHOLD_MS,
-  REQUIRED_TOKEN_FIELDS,
-  TOKEN_STATUS,
-  checkTokenFilesExist,
-  readKeyFile,
-  readTokenFile,
-  decryptToken,
-  validateTokenStructure,
   checkExpiration,
-  formatDuration,
+  checkToken,
+  checkTokenFilesExist,
+  decryptToken,
+  EXPIRATION_WARNING_THRESHOLD_MS,
   extractRole,
   extractUserId,
-  checkToken
+  formatDuration,
+  KEY_PATH,
+  readKeyFile,
+  readTokenFile,
+  REQUIRED_TOKEN_FIELDS,
+  TOKEN_PATH,
+  TOKEN_PREFIX,
+  TOKEN_STATUS,
+  validateTokenStructure
 } from './token-checker.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -435,7 +435,7 @@ describe('Token Checker - INST-020', () => {
     afterEach(() => {
       try {
         fs.rmSync(tempDir, { recursive: true });
-      } catch {}
+      } catch { /* best-effort cleanup */ }
     });
 
     it('should return missing when both files absent', () => {

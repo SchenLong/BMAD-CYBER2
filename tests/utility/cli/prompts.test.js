@@ -5,7 +5,7 @@
  * @clack/prompts and @clack/core modules to test our abstraction logic.
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock @clack/prompts before importing our module
 const mockClack = {

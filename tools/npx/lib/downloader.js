@@ -3,7 +3,7 @@ import { pipeline } from 'stream/promises';
 import { createHash } from 'crypto';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { mkdir, rm, readFile } from 'fs/promises';
+import { mkdir, readFile, rm } from 'fs/promises';
 import ora from 'ora';
 import { CONFIG } from './config.js';
 import { logger } from './logger.js';

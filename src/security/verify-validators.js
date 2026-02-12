@@ -117,6 +117,13 @@ function printResults(results) {
   }
 }
 
-const results = verifyIntegrity();
-printResults(results);
-process.exit(results.success ? 0 : 1);
+// Export for testing
+export { verifyIntegrity, printResults };
+
+// Only run main when executed directly (not imported by tests)
+const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (isDirectRun) {
+  const results = verifyIntegrity();
+  printResults(results);
+  process.exit(results.success ? 0 : 1);
+}

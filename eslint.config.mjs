@@ -18,11 +18,11 @@ export default tseslint.config(
       '**/*.d.ts',
       '_bmad-backup-*/',
       '_bmad-output/',
+      'tests/',
+      'tools/',
       'test-installation/',
       'Docs/',
       'examples/',
-      'tests/',
-      'tools/',
       'dev-tools/',
       'coverage/',
       // Separate workspaces — lint independently with their own config
@@ -204,6 +204,37 @@ export default tseslint.config(
     rules: {
       'max-lines-per-function': 'off',
       'max-lines': 'off'
+    }
+  },
+
+  // ── Override: Test files — vitest globals + relaxed rules ──────────
+  {
+    files: ['tests/**/*.{js,ts}', 'src/**/__tests__/**/*.{js,ts}'],
+    languageOptions: {
+      globals: {
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        test: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        vi: 'readonly',
+      }
+    },
+    rules: {
+      'max-nested-callbacks': ['error', 6],
+      'max-depth': ['error', 8],
+    }
+  },
+
+  // ── Override: Tools — CLI scripts with relaxed complexity ─────────
+  {
+    files: ['tools/**/*.{js,ts}'],
+    rules: {
+      'max-nested-callbacks': 'off',
+      'max-depth': 'off',
     }
   },
 

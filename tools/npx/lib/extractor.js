@@ -1,7 +1,7 @@
 import * as tar from 'tar';
 import { existsSync, promises as fs, realpathSync } from 'fs';
-import { join, dirname, basename, resolve, relative, normalize } from 'path';
-import { select, isCancel, createSpinner } from '../../../src/utility/cli/prompts.js';
+import { basename, dirname, join, normalize, relative, resolve } from 'path';
+import { createSpinner, isCancel, select } from '../../../src/utility/cli/prompts.js';
 import { logger } from './logger.js';
 
 /**
@@ -210,12 +210,7 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
       return true;
     },
     chmod: true,
-    onReadEntry: (entry) => {
-      // Preserve permissions from archive
-      if (entry.mode) {
-        entry.mode = entry.mode;
-      }
-    }
+    // Permissions are preserved from archive via chmod: true above
   });
 
   if (securityViolations.length > 0) {

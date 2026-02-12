@@ -7,9 +7,9 @@
  * - No unsafe schema usage
  * - Billion laughs (alias bomb) protection
  */
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve, join } from 'path';
+import { join, resolve } from 'path';
 import { execSync } from 'child_process';
 import yaml from 'js-yaml';
 

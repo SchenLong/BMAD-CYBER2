@@ -4,9 +4,9 @@
  * Scans security-critical paths for dangerous code-execution patterns.
  */
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync } from 'fs';
-import { resolve, join, extname } from 'path';
+import { describe, expect, it } from 'vitest';
+import { readdirSync, readFileSync } from 'fs';
+import { extname, join, resolve } from 'path';
 
 const PROJECT_ROOT = resolve(import.meta.dirname, '../..');
 
@@ -38,7 +38,7 @@ function scanForPatterns(filePath, patterns, descriptions) {
     if (trimmed.startsWith('//')||trimmed.startsWith('#')||trimmed.startsWith('*')||trimmed.startsWith('/*')) continue;
     for (let p = 0; p < patterns.length; p++) {
       if (patterns[p].test(line)) {
-        violations.push({ file: filePath.replace(PROJECT_ROOT+'/',''), line: i+1, text: trimmed.substring(0,120), pattern: descriptions[p] });
+        violations.push({ file: filePath.replace(`${PROJECT_ROOT}/`,''), line: i+1, text: trimmed.substring(0,120), pattern: descriptions[p] });
       }
     }
   }

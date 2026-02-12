@@ -3,7 +3,7 @@ import { pipeline } from 'stream/promises';
 import { createHash } from 'crypto';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { mkdir, rm, readFile } from 'fs/promises';
+import { mkdir, readFile, rm } from 'fs/promises';
 import { createSpinner } from './prompts.js';
 import { CONFIG } from './config.js';
 import { logger } from './logger.js';
@@ -27,6 +27,12 @@ const ALLOWED_HOSTS = [
  * @param {string} urlString - The URL to validate
  * @returns {{ valid: boolean, error?: string }}
  */
+/**
+ * Pattern to detect IP literal hostnames (IPv4 and IPv6) — FINDING-19
+ * IP literals can bypass domain-based allowlists via DNS rebinding or SSRF.
+ */
+const IP_LITERAL_PATTERN = /^(\d{1,3}\.){3}\d{1,3}$|^\[.*\]$/;
+
 function validateDownloadUrl(urlString) {
   try {
     const url = new URL(urlString);
@@ -39,8 +45,17 @@ function validateDownloadUrl(urlString) {
       };
     }
 
-    // Must be from allowed host (exact match only — no subdomain wildcards)
+    // Security: Reject IP literal hostnames (FINDING-19)
+    // IP addresses can bypass domain allowlists and enable SSRF via DNS rebinding
     const hostname = url.hostname.toLowerCase();
+    if (IP_LITERAL_PATTERN.test(hostname)) {
+      return {
+        valid: false,
+        error: `IP literal hostnames are not allowed: "${hostname}". Use domain names only.`
+      };
+    }
+
+    // Must be from allowed host (exact match only — no subdomain wildcards)
     const isAllowed = ALLOWED_HOSTS.some(allowed => hostname === allowed);
 
     if (!isAllowed) {
@@ -174,7 +189,18 @@ export async function downloadRelease(options = {}) {
   }
 }
 
+/**
+ * Validates version parameter format (FINDING-21)
+ * Only allows semver-like tags (v1.2.3, 1.2.3, v1.2.3-beta.1) or 'latest'
+ */
+const VERSION_PATTERN = /^(?:latest|v?\d+\.\d+\.\d+(?:-[\w.]+)?)$/;
+
 async function fetchReleaseInfo(version) {
+  // Security: Validate version format before URL interpolation (FINDING-21)
+  if (!VERSION_PATTERN.test(version)) {
+    throw new Error(`Invalid version format: "${version}". Expected semver (e.g., v1.2.3) or "latest".`);
+  }
+
   const endpoint = version === 'latest'
     ? `${GITHUB_API}/repos/${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}/releases/latest`
     : `${GITHUB_API}/repos/${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}/releases/tags/${version}`;

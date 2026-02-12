@@ -108,12 +108,23 @@ if [[ "$IS_MACOS" == true ]]; then
   mkdir -p "$INSTALL_DIR"
 
   # Download and extract
+  # SAST-005: Download to temp file first (not piped) to enable future checksum verification
   echo "📥 Downloading Piper from: $PIPER_URL"
   TEMP_DIR=$(mktemp -d)
-  cd "$TEMP_DIR"
+  TEMP_TARBALL="$TEMP_DIR/piper.tar.gz"
 
-  if curl -L "$PIPER_URL" | tar -xz; then
-    echo "✅ Downloaded and extracted successfully"
+  if curl -fSL --max-time 120 -o "$TEMP_TARBALL" "$PIPER_URL"; then
+    echo "✅ Downloaded successfully ($(du -h "$TEMP_TARBALL" | cut -f1))"
+    echo "⚠️  Note: No checksum verification available for Piper releases"
+
+    cd "$TEMP_DIR"
+    if tar -xzf "$TEMP_TARBALL"; then
+      echo "✅ Extracted successfully"
+    else
+      echo "❌ Extraction failed — archive may be corrupted"
+      rm -rf "$TEMP_DIR"
+      exit 1
+    fi
 
     # Copy binaries to ~/.local/bin
     if [[ -d "piper" ]]; then

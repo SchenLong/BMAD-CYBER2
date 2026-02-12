@@ -7,17 +7,17 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  validateEndpointUrl,
-  validateModelName,
   API_FORMATS,
   parseEndpointUrl,
-  suggestApiFormat
+  suggestApiFormat,
+  validateEndpointUrl,
+  validateModelName
 } from './custom-endpoint-ui.js';
 
 const __filename = fileURLToPath(import.meta.url);

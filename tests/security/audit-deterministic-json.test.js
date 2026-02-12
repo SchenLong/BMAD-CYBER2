@@ -9,7 +9,7 @@
  * Remediation: REM-008
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import crypto from 'crypto';
 
 /**
@@ -20,14 +20,14 @@ function deterministicStringify(obj) {
   if (typeof obj !== 'object') return JSON.stringify(obj);
   if (obj instanceof Date) return JSON.stringify(obj);
   if (Array.isArray(obj)) {
-    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+    return `[${  obj.map(item => deterministicStringify(item)).join(',')  }]`;
   }
   const sortedKeys = Object.keys(obj).sort();
   const pairs = sortedKeys.map(key => {
     const value = deterministicStringify(obj[key]);
-    return JSON.stringify(key) + ':' + value;
+    return `${JSON.stringify(key)  }:${  value}`;
   });
-  return '{' + pairs.join(',') + '}';
+  return `{${  pairs.join(',')  }}`;
 }
 
 /**

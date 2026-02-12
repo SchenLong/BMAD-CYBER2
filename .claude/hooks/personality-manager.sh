@@ -289,6 +289,12 @@ case "$1" in
       exit 1
     fi
 
+    # SAST-007: Validate personality name before use in sed and file paths
+    if ! validate_agent_name "$NAME"; then
+      echo "❌ Invalid personality name — only alphanumeric, hyphens, and underscores allowed" >&2
+      exit 1
+    fi
+
     FILE="$PERSONALITIES_DIR/${NAME}.md"
     if [[ -f "$FILE" ]]; then
       echo "❌ Personality '$NAME' already exists"
@@ -320,7 +326,9 @@ Describe how the AI should generate messages for this personality.
 EOF
 
     # Replace NAME with actual name
-    sed -i "s/NAME/$NAME/g" "$FILE"
+    # SAST-007: Escape sed metacharacters in $NAME (defense-in-depth — validated above)
+    safe_name=$(printf '%s' "$NAME" | sed 's/[&/\]/\\&/g')
+    sed -i "s/NAME/$safe_name/g" "$FILE"
 
     echo "✅ Created new personality: $NAME"
     echo "📝 Edit the file: $FILE"

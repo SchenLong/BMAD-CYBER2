@@ -10,7 +10,7 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import yaml from 'js-yaml';
 import { normalizeLineEndings } from '../../src/utility/normalize-line-endings.js';
 

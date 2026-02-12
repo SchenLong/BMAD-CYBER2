@@ -8,7 +8,7 @@
  * Source: LessonsLearned.md Lesson 3 (Duplicate Agent Name Detection)
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

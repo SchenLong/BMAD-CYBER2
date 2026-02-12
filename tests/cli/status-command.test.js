@@ -8,9 +8,9 @@
  * - Shows component health
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { existsSync } from 'fs';
-import { resolve, join } from 'path';
+import { join, resolve } from 'path';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 
@@ -103,7 +103,7 @@ describe('CLI Status Command', () => {
         { timeout: 15000, cwd: PROJECT_ROOT }
       );
       // Should contain a horizontal rule (─ characters)
-      expect(stdout).toMatch(/[─\-]{10,}/);
+      expect(stdout).toMatch(/[─-]{10,}/);
     });
 
     it('should show Framework Version when installed', async () => {

@@ -7,9 +7,9 @@
  * @module tests/smoke/workflow-execution
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { beforeAll, describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 
@@ -104,7 +104,7 @@ function hasDescription(parsed) {
 
 describe('Workflow Execution Smoke Tests (P9-38)', () => {
   for (const mod of MODULES) {
-    describe('Module: ' + mod, () => {
+    describe(`Module: ${  mod}`, () => {
       let workflowPath;
       let rawContent;
       let parsed;
@@ -118,37 +118,37 @@ describe('Workflow Execution Smoke Tests (P9-38)', () => {
         }
       });
 
-      it('WF-SMOKE-' + mod + '-001: has at least one workflow.yaml' + (yamlOptional ? ' or workflow.md' : ''), () => {
+      it(`WF-SMOKE-${  mod  }-001: has at least one workflow.yaml${  yamlOptional ? ' or workflow.md' : ''}`, () => {
         if (yamlOptional && !workflowPath) {
           // Module uses workflow.md instead of workflow.yaml
           const mdPath = getFirstWorkflowMd(mod);
-          expect(mdPath, 'No workflow.yaml or workflow.md in ' + mod).not.toBeNull();
+          expect(mdPath, `No workflow.yaml or workflow.md in ${  mod}`).not.toBeNull();
           return;
         }
-        expect(workflowPath, 'No workflow.yaml in ' + mod).not.toBeNull();
+        expect(workflowPath, `No workflow.yaml in ${  mod}`).not.toBeNull();
         expect(existsSync(workflowPath)).toBe(true);
       });
 
-      it('WF-SMOKE-' + mod + '-002: parses as valid YAML', () => {
+      it(`WF-SMOKE-${  mod  }-002: parses as valid YAML`, () => {
         if (yamlOptional && !workflowPath) return; // Skip - uses workflow.md
         expect(parsed).not.toBeNull();
         expect(parsed).not.toBeUndefined();
         expect(typeof parsed).toBe('object');
       });
 
-      it('WF-SMOKE-' + mod + '-003: has a name field', () => {
+      it(`WF-SMOKE-${  mod  }-003: has a name field`, () => {
         if (yamlOptional && !workflowPath) return; // Skip - uses workflow.md
         const name = getWorkflowName(parsed);
-        expect(name, 'No name in ' + mod + ' workflow').not.toBeNull();
+        expect(name, `No name in ${  mod  } workflow`).not.toBeNull();
         expect(name.length).toBeGreaterThan(0);
       });
 
-      it('WF-SMOKE-' + mod + '-004: has a description', () => {
+      it(`WF-SMOKE-${  mod  }-004: has a description`, () => {
         if (yamlOptional && !workflowPath) return; // Skip - uses workflow.md
-        expect(hasDescription(parsed), 'No description in ' + mod).toBe(true);
+        expect(hasDescription(parsed), `No description in ${  mod}`).toBe(true);
       });
 
-      it('WF-SMOKE-' + mod + '-005: companion files are non-empty if present', () => {
+      it(`WF-SMOKE-${  mod  }-005: companion files are non-empty if present`, () => {
         if (!workflowPath) return; // No workflow.yaml to check companions for
         const dir = dirname(workflowPath);
         const companionFiles = ['workflow.md', 'instructions.md', 'checklist.md'];
@@ -156,7 +156,7 @@ describe('Workflow Execution Smoke Tests (P9-38)', () => {
           const filePath = join(dir, file);
           if (existsSync(filePath)) {
             const fc = readFileSync(filePath, 'utf-8');
-            expect(fc.trim().length, file + ' in ' + mod + ' is empty').toBeGreaterThan(0);
+            expect(fc.trim().length, `${file  } in ${  mod  } is empty`).toBeGreaterThan(0);
           }
         }
       });
@@ -195,7 +195,7 @@ describe('Workflow Count Validation', () => {
       const workflowsDir = join(SRC_DIR, mod, 'workflows');
       const yamls = findFilesRecursive(workflowsDir, 'workflow.yaml');
       const mds = findFilesRecursive(workflowsDir, 'workflow.md');
-      expect(yamls.length + mds.length, mod + ' has 0 workflows').toBeGreaterThanOrEqual(1);
+      expect(yamls.length + mds.length, `${mod  } has 0 workflows`).toBeGreaterThanOrEqual(1);
     }
   });
 });
@@ -215,11 +215,11 @@ describe('Workflow YAML Parse Safety', () => {
           const content = readFileSync(yamlPath, 'utf-8');
           yaml.load(content);
         } catch (err) {
-          errors.push(yamlPath + ': ' + err.message);
+          errors.push(`${yamlPath  }: ${  err.message}`);
         }
       }
     }
-    expect(errors, 'YAML parse errors:\n' + errors.join('\n')).toHaveLength(0);
+    expect(errors, `YAML parse errors:\n${  errors.join('\n')}`).toHaveLength(0);
   });
 
   it('WF-PARSE-002: all parsed workflow.yaml are objects', () => {
@@ -229,8 +229,8 @@ describe('Workflow YAML Parse Safety', () => {
       for (const yamlPath of yamls) {
         const content = readFileSync(yamlPath, 'utf-8');
         const parsed = yaml.load(content);
-        expect(typeof parsed, yamlPath + ' not object').toBe('object');
-        expect(Array.isArray(parsed), yamlPath + ' is array').toBe(false);
+        expect(typeof parsed, `${yamlPath  } not object`).toBe('object');
+        expect(Array.isArray(parsed), `${yamlPath  } is array`).toBe(false);
       }
     }
   });
@@ -256,7 +256,7 @@ describe('Workflow MD Frontmatter', () => {
           if (lines[i].trim() === '---') { endIdx = i; break; }
         }
         if (endIdx === -1) {
-          errors.push(mdPath + ': unclosed frontmatter');
+          errors.push(`${mdPath  }: unclosed frontmatter`);
           continue;
         }
 
@@ -264,13 +264,13 @@ describe('Workflow MD Frontmatter', () => {
         try {
           const parsed = yaml.load(fmBlock);
           if (!parsed || typeof parsed !== 'object') {
-            errors.push(mdPath + ': frontmatter not an object');
+            errors.push(`${mdPath  }: frontmatter not an object`);
           }
         } catch (err) {
-          errors.push(mdPath + ': ' + err.message);
+          errors.push(`${mdPath  }: ${  err.message}`);
         }
       }
     }
-    expect(errors, 'Frontmatter errors:\n' + errors.join('\n')).toHaveLength(0);
+    expect(errors, `Frontmatter errors:\n${  errors.join('\n')}`).toHaveLength(0);
   });
 });

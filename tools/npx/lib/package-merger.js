@@ -250,7 +250,7 @@ export async function mergePackageJson(targetDir, options = {}) {
       return { dryRun: true, created: true };
     }
 
-    await fs.writeFile(targetPath, JSON.stringify(newPackage, null, 2) + '\n');
+    await fs.writeFile(targetPath, `${JSON.stringify(newPackage, null, 2)  }\n`);
     logger.success('Created package.json');
 
     return { success: true, created: true };
@@ -330,7 +330,7 @@ export async function mergePackageJson(targetDir, options = {}) {
   logger.info(`Backup created: ${backupPath}`);
 
   // Write merged package.json
-  await fs.writeFile(targetPath, JSON.stringify(merged, null, 2) + '\n');
+  await fs.writeFile(targetPath, `${JSON.stringify(merged, null, 2)  }\n`);
   logger.success('Package.json updated');
 
   return { success: true, diff, backupPath };

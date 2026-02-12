@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 /**
  * LLM Setup Entry Point - INST-018
  * Epic 3, Story 8 - LLM Provider Setup Wizard

@@ -14,7 +14,7 @@
  * Part of E0.3: Security Regression Suite
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';

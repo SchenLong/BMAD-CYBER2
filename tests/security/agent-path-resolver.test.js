@@ -10,7 +10,7 @@
  * as a subprocess hook outside of Vitest.
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 import { agentPathResolver, AuthorizationManager } from '../../src/core/security/authorization.ts';

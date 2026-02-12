@@ -1,7 +1,7 @@
 import * as tar from 'tar';
 import { existsSync, promises as fs, realpathSync } from 'fs';
-import { join, dirname, basename, resolve, relative, normalize } from 'path';
-import { select, isCancel, createSpinner } from './prompts.js';
+import { basename, dirname, join, normalize, relative, resolve } from 'path';
+import { createSpinner, isCancel, select } from './prompts.js';
 import { logger } from './logger.js';
 
 /**
@@ -191,18 +191,15 @@ export async function extractFramework(tarballPath, targetDir, options = {}) {
           return false;
         }
 
-        // Security: Validate symlinks don't point outside target directory
-        if (entry.type === 'SymbolicLink' && entry.linkpath) {
-          const symlinkValidation = validateSymlinkSafety(
-            absoluteTargetDir,
-            pathValidation.resolvedPath,
-            entry.linkpath
-          );
-          if (!symlinkValidation.safe) {
-            securityViolations.push(symlinkValidation.error);
-            logger.warn(`Security: Skipping unsafe symlink - ${symlinkValidation.error}`);
-            return false;
-          }
+        // Security: Reject ALL symlinks during extraction (FINDING-14)
+        // Symlinks have no legitimate use in framework files and create
+        // TOCTOU vulnerabilities where the link target can change between
+        // validation and use. Rejecting entirely eliminates the attack surface.
+        if (entry.type === 'SymbolicLink') {
+          const msg = `Symlink rejected: "${strippedPath}" → "${entry.linkpath}" (symlinks not allowed in framework archives)`;
+          securityViolations.push(msg);
+          logger.warn(`Security: ${msg}`);
+          return false;
         }
       }
 

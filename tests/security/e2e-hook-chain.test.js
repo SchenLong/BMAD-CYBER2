@@ -13,7 +13,7 @@
  * 5. Matcher coverage meets security baseline requirements
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
@@ -135,7 +135,7 @@ describe('E2E Hook Chain Integrity - P3-17', () => {
       for (const entry of allHookEntries) {
         if (entry.scriptAbsPath && !fs.existsSync(entry.scriptAbsPath)) {
           missing.push(
-            `${entry.event}${entry.matcher ? ':' + entry.matcher : ''} -> ${entry.scriptRelPath}`
+            `${entry.event}${entry.matcher ? `:${  entry.matcher}` : ''} -> ${entry.scriptRelPath}`
           );
         }
       }

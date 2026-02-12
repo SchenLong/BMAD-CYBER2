@@ -11,7 +11,7 @@
  * Source: LessonsLearned.md Lessons 16, 18 (Dual Workflow Format Awareness)
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

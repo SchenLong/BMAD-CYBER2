@@ -4,10 +4,10 @@
  * Validates that all 6 SAST tools produce clean results and
  * security rules are properly enforced.
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync, readdirSync } from 'fs';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import { execSync } from 'child_process';
-import { resolve, join } from 'path';
+import { join, resolve } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 

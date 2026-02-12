@@ -10,14 +10,14 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import {
-  ROLE_MODULE_MAP,
-  VALID_ROLES,
-  getRecommendedModules,
   applyRecommendations,
+  getRecommendedModules,
+  isValidRole,
+  ROLE_MODULE_MAP,
   sortModulesByRecommendation,
-  isValidRole
+  VALID_ROLES
 } from './role-recommendations.js';
 
 // ============================================================================

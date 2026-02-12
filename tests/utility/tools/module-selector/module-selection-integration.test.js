@@ -17,66 +17,66 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import all module-selector components
 import {
-  scanModuleDirectories,
-  parseModuleYaml,
-  loadAllModules,
+  findModuleByCode,
   getModuleSummary,
-  findModuleByCode
+  loadAllModules,
+  parseModuleYaml,
+  scanModuleDirectories
 } from './module-loader.js';
 
 import {
+  applyRecommendations,
   buildModuleChoices,
   calculateSelectionSummary,
-  validateSelection,
-  applyRecommendations
+  validateSelection
 } from './module-selection-ui.js';
 
 import {
-  getRecommendedModules,
   applyRecommendations as applyRoleRecommendations,
-  sortModulesByRecommendation,
+  getRecommendedModules,
   isValidRole,
   ROLE_MODULE_MAP,
+  sortModulesByRecommendation,
   VALID_ROLES
 } from './role-recommendations.js';
 
 import {
-  updateManifest,
-  readExistingManifest,
   createManifestStructure,
-  validateManifestStructure,
-  parseYaml,
-  serializeYaml,
   MANIFEST_PATH,
+  parseYaml,
+  readExistingManifest,
+  serializeYaml,
+  updateManifest,
+  validateManifestStructure,
   WIZARD_VERSION
 } from './manifest-writer.js';
 
 import {
-  extractInteractiveFields,
   expandPlaceholders,
+  extractInteractiveFields,
   getFieldType,
   validateFieldConfig
 } from './module-config-prompt.js';
 
 import {
   createOutputDirectory,
-  saveModuleConfig,
-  readModuleConfig,
   ensureModulesConfigDirectory,
-  MODULES_CONFIG_DIR
+  MODULES_CONFIG_DIR,
+  readModuleConfig,
+  saveModuleConfig
 } from './module-config-persistence.js';
 
 import {
-  hasInteractiveFields,
   createAllOutputDirectories,
-  getConfigurationStatus
+  getConfigurationStatus,
+  hasInteractiveFields
 } from './module-config-orchestrator.js';
 
 // ESM equivalent of __dirname

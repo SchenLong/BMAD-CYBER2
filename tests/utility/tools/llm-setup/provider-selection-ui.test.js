@@ -7,20 +7,20 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
+  buildProviderChoices,
   CLOUD_PROVIDERS,
-  LOCAL_PROVIDER_DEFS,
   CUSTOM_PROVIDER,
   enhanceLocalProviders,
-  buildProviderChoices,
   getProviderByCode,
-  requiresApiKey,
-  getProviderGroup
+  getProviderGroup,
+  LOCAL_PROVIDER_DEFS,
+  requiresApiKey
 } from './provider-selection-ui.js';
 
 const __filename = fileURLToPath(import.meta.url);

@@ -4,7 +4,7 @@ import { readFile } from 'fs/promises';
 import pc from 'picocolors';
 import { CONFIG } from '../lib/config.js';
 import { logger } from '../lib/logger.js';
-import { isBmadInstalled, getInstalledVersion } from '../lib/cli-utils.js';
+import { getInstalledModules, getInstalledVersion, isBmadInstalled } from '../lib/cli-utils.js';
 
 export async function statusCommand() {
   const targetDir = process.cwd();
@@ -46,16 +46,8 @@ export async function statusCommand() {
     console.log(`    ${status} ${dir.label}`);
   }
 
-  // Check for active modules
-  const moduleDir = join(targetDir, '_bmad');
-  const modules = [];
-  const moduleNames = ['bmm', 'bmb', 'bmgd', 'cis', 'cybersec-team', 'intel-team', 'legal-team', 'strategy-team'];
-
-  for (const mod of moduleNames) {
-    if (existsSync(join(moduleDir, mod))) {
-      modules.push(mod);
-    }
-  }
+  // Check for active modules (supports both src/ and _bmad/ layouts)
+  const modules = getInstalledModules(targetDir).filter(m => m !== 'core');
 
   console.log('');
   console.log(pc.bold('  Active Modules:'));

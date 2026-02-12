@@ -10,26 +10,26 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  VALIDATORS_PATH,
-  GUARDS_PATH,
-  SECURITY_CONFIG_PATH,
   AUDIT_LOG_PATH,
-  SecurityStatus,
-  readSecurityConfig,
-  listEnabledValidators,
-  testValidatorLoad,
-  checkValidator,
   checkAllValidators,
-  getSecurityTier,
   checkAuditLogging,
   checkSecurity,
-  formatSecurityResult
+  checkValidator,
+  formatSecurityResult,
+  getSecurityTier,
+  GUARDS_PATH,
+  listEnabledValidators,
+  readSecurityConfig,
+  SECURITY_CONFIG_PATH,
+  SecurityStatus,
+  testValidatorLoad,
+  VALIDATORS_PATH
 } from './security-checker.js';
 
 // ESM equivalent of __dirname

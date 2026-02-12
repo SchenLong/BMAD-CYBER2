@@ -11,7 +11,7 @@
  * Source: MASTER-BMAD-QA Section 3.2 — npm pack integrity gap
  */
 
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 import fs from 'fs';

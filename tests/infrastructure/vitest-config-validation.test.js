@@ -11,7 +11,7 @@
  * This prevents "silent zero-test" configs where a pattern matches nothing.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 import { globSync } from 'glob';
@@ -117,7 +117,7 @@ function getTestIncludePatterns(content) {
     }
 
     if (collectingInclude) {
-      includeContent += line + '\n';
+      includeContent += `${line  }\n`;
       for (const ch of line) {
         if (ch === '[') bracketDepth++;
         if (ch === ']') bracketDepth--;
@@ -138,7 +138,7 @@ function getTestIncludePatterns(content) {
       foundFirstInclude = true;
       collectingInclude = true;
       bracketDepth = 0;
-      includeContent = line + '\n';
+      includeContent = `${line  }\n`;
       for (const ch of line) {
         if (ch === '[') bracketDepth++;
         if (ch === ']') bracketDepth--;
@@ -195,7 +195,7 @@ function extractExcludePatterns(rawContent) {
     }
 
     if (collectingExclude) {
-      excludeArrayContent += line + '\n';
+      excludeArrayContent += `${line  }\n`;
       for (const ch of line) {
         if (ch === '[') bracketDepth++;
         if (ch === ']') bracketDepth--;
@@ -215,7 +215,7 @@ function extractExcludePatterns(rawContent) {
     if (inTestBlock && !inCoverageBlock && /^\s*exclude\s*:\s*\[/.test(line)) {
       collectingExclude = true;
       bracketDepth = 0;
-      excludeArrayContent = line + '\n';
+      excludeArrayContent = `${line  }\n`;
       for (const ch of line) {
         if (ch === '[') bracketDepth++;
         if (ch === ']') bracketDepth--;
@@ -274,7 +274,8 @@ function extractPoolSetting(content) {
  */
 function extractPoolOptions(content) {
   const options = {};
-  if (/singleFork\s*:\s*true/.test(content)) options.singleFork = true;
+  if (/singleFork\s*:\s*false/.test(content)) options.singleFork = false;
+  else if (/singleFork\s*:\s*true/.test(content)) options.singleFork = true;
   if (/singleThread\s*:\s*true/.test(content)) options.singleThread = true;
   const maxWorkersMatch = content.match(/maxWorkers\s*:\s*(\d+)/);
   if (maxWorkersMatch) options.maxWorkers = parseInt(maxWorkersMatch[1], 10);
@@ -440,12 +441,12 @@ describe('Vitest Config Validation', () => {
             ).toBe('forks');
           });
 
-          it('should use singleFork mode for deterministic execution', () => {
+          it('should disable singleFork to prevent OOM from memory accumulation', () => {
             expect(
               poolOptions.singleFork,
-              `Config ${configRelPath} sets pool: "forks" but does not enable singleFork — ` +
-              'this can lead to non-deterministic test ordering and memory accumulation'
-            ).toBe(true);
+              `Config ${configRelPath} uses singleFork: true — ` +
+              'this causes OOM because all test files share one heap. Use singleFork: false so each file gets a fresh process.'
+            ).toBe(false);
           });
 
           it('should set --max-old-space-size for memory limit', () => {
@@ -494,7 +495,7 @@ describe('Vitest Config Validation', () => {
             }
             allIncluded = [...new Set(allIncluded)];
 
-            let allExcluded = [];
+            const allExcluded = [];
             for (const pattern of excludePatterns) {
               const matched = globSync(pattern, {
                 cwd: effectiveRoot,

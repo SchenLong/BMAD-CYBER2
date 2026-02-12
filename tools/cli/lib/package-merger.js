@@ -20,14 +20,24 @@ const TYPOSQUATTING_PATTERNS = [
   /^(@.*\/)?express[^a-z-]/i, // express with unusual suffix
 ];
 
+// Security: Maximum recursion depth for sanitizeObject (FINDING-07)
+const MAX_SANITIZE_DEPTH = 20;
+
 /**
  * Sanitizes an object by removing dangerous prototype pollution keys
  * @param {Object} obj - Object to sanitize
+ * @param {number} [depth=0] - Current recursion depth (internal)
  * @returns {Object} Sanitized object without dangerous keys
  */
-function sanitizeObject(obj) {
+function sanitizeObject(obj, depth = 0) {
   if (!obj || typeof obj !== 'object' || Array.isArray(obj)) {
     return obj;
+  }
+
+  // Security: Prevent stack overflow from deeply nested malicious input (FINDING-07)
+  if (depth >= MAX_SANITIZE_DEPTH) {
+    logger.warn(`Recursion depth limit (${MAX_SANITIZE_DEPTH}) reached in sanitizeObject — returning empty object`);
+    return {};
   }
 
   const sanitized = {};
@@ -42,7 +52,7 @@ function sanitizeObject(obj) {
     // Recursively sanitize nested objects to catch deeply nested dangerous keys
     const value = obj[key];
     sanitized[key] = (value && typeof value === 'object' && !Array.isArray(value))
-      ? sanitizeObject(value)
+      ? sanitizeObject(value, depth + 1)
       : value;
   }
   return sanitized;
@@ -140,7 +150,10 @@ function detectSuspiciousScripts(scripts) {
         /^vitest(\s|$)/,  // Vitest
         /^jest(\s|$)/,  // Jest
         /^eslint(\s|$)/,  // ESLint
-        /&&/,  // Command chaining is common
+        // FINDING-09: Removed blanket /&&/ pattern — command chaining must be
+        // validated per-segment, not auto-approved. Only approve chains where
+        // each segment starts with a known safe command.
+        /^(?:npm\s+\w+|node\s+[\w./-]+|tsc|vitest|jest|eslint)(?:\s+&&\s+(?:npm\s+\w+|node\s+[\w./-]+|tsc|vitest|jest|eslint))+$/,
       ];
 
       // If it contains metacharacters but doesn't match safe patterns, flag it
@@ -250,7 +263,7 @@ export async function mergePackageJson(targetDir, options = {}) {
       return { dryRun: true, created: true };
     }
 
-    await fs.writeFile(targetPath, JSON.stringify(newPackage, null, 2) + '\n');
+    await fs.writeFile(targetPath, `${JSON.stringify(newPackage, null, 2)  }\n`);
     logger.success('Created package.json');
 
     return { success: true, created: true };
@@ -330,7 +343,7 @@ export async function mergePackageJson(targetDir, options = {}) {
   logger.info(`Backup created: ${backupPath}`);
 
   // Write merged package.json
-  await fs.writeFile(targetPath, JSON.stringify(merged, null, 2) + '\n');
+  await fs.writeFile(targetPath, `${JSON.stringify(merged, null, 2)  }\n`);
   logger.success('Package.json updated');
 
   return { success: true, diff, backupPath };

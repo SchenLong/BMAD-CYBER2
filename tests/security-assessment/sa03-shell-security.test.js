@@ -11,9 +11,9 @@
  * - 17 hooks lacking input-validation.sh documented
  */
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync, readdirSync } from 'fs';
-import { resolve, join } from 'path';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync } from 'fs';
+import { join, resolve } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 const HOOKS_DIR = resolve(ROOT, '.claude/hooks');
@@ -54,7 +54,7 @@ describe('SA-03-S7: Shell Script Security & Ghost Priority Targets', () => {
             // Check if it's in an assignment or test context (safe)
             if (!line.match(/^\s*\w+=/) && !line.match(/\[\[.*\$/) &&
                 !line.match(/\[.*\$/)) {
-              unquotedVars.push({ file: file.replace(ROOT + '/', ''), line: i + 1, content: line.trim() });
+              unquotedVars.push({ file: file.replace(`${ROOT  }/`, ''), line: i + 1, content: line.trim() });
             }
           }
         }
@@ -86,7 +86,7 @@ describe('SA-03-S7: Shell Script Security & Ghost Priority Targets', () => {
         // Or: [ -f FILE ] && <operation on FILE>
         const matches = content.match(/(?:test -[fedrw]\s+"?\$\w+"?\s*&&|if\s+\[\s+-[fedrw]\s+"?\$\w+"?\s*\])/g);
         if (matches) {
-          toctouPatterns.push({ file: file.replace(ROOT + '/', ''), count: matches.length });
+          toctouPatterns.push({ file: file.replace(`${ROOT  }/`, ''), count: matches.length });
         }
       }
 

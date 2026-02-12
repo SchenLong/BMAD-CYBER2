@@ -21,9 +21,9 @@
  * @module tests/security/l10-attack-vector-protocol
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { beforeAll, describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);

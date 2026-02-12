@@ -13,7 +13,7 @@
  * Source: LessonsLearned.md Lessons 15 and 17
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

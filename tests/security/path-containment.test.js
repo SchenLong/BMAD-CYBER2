@@ -6,7 +6,7 @@
  * Tests agentPathResolver, validatePathSafety, and validateDownloadUrl.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { resolve } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import { agentPathResolver } from '../../src/core/security/authorization.ts';

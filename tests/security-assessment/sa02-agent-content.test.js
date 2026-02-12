@@ -4,9 +4,9 @@
  * Validates all 80 agents have security rules, no secrets,
  * no injection vectors, and correct ID format.
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, existsSync } from 'fs';
-import { resolve, join, relative } from 'path';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync } from 'fs';
+import { join, relative, resolve } from 'path';
 import { execSync } from 'child_process';
 
 const ROOT = resolve(import.meta.dirname, '../..');

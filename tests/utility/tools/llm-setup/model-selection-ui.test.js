@@ -7,16 +7,16 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  COMMON_MODEL_DESCRIPTIONS,
-  getModelDescription,
   buildModelChoices,
-  categorizeModels
+  categorizeModels,
+  COMMON_MODEL_DESCRIPTIONS,
+  getModelDescription
 } from './model-selection-ui.js';
 
 const __filename = fileURLToPath(import.meta.url);

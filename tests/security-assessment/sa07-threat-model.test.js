@@ -11,8 +11,8 @@
  * and cross-references with prior SA phase findings.
  */
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'fs';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { parse as parseYaml } from 'yaml';
 

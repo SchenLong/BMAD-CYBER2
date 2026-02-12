@@ -42,6 +42,9 @@ function logRbacDecision(decision) {
 // YAML Parser (simple implementation for config files)
 // ============================================================================
 
+// Security: Keys that could enable prototype pollution attacks (FINDING-05)
+const DANGEROUS_YAML_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
 function parseYaml(content) {
   const lines = content.split('\n');
   const result = {};
@@ -119,6 +122,12 @@ function parseYaml(content) {
     if (colonIdx === -1) continue;
 
     const key = content_part.slice(0, colonIdx).trim();
+
+    // Security: Reject prototype pollution keys (FINDING-05)
+    if (DANGEROUS_YAML_KEYS.has(key)) {
+      continue;
+    }
+
     let value = content_part.slice(colonIdx + 1).trim();
 
     // Strip inline comments (but not inside quoted strings)
@@ -375,6 +384,17 @@ class AuthorizationManager {
     }
 
     const resolved = agentPathResolver(agentPath);
+
+    // Security: Reject invalid agent paths immediately (FINDING-06)
+    if (resolved.format === 'invalid') {
+      const result = {
+        allowed: false,
+        reason: `Invalid agent path: '${agentPath}' could not be resolved`
+      };
+      logRbacDecision({ type: 'agent', resource: agentPath, userRoles: user.roles, allowed: false, reason: result.reason });
+      return result;
+    }
+
     const moduleName = resolved.module;
 
     // Normalize to src/ format for consistent RBAC matching (post-migration)

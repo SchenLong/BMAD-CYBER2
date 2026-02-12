@@ -119,6 +119,9 @@ export class TamperEvidentAuditLogger {
   private readonly maxBufferSize = 100;
   private rotationSizeThreshold: number = DEFAULT_ROTATION_SIZE;
   private siemIntegration: { sendEvent(event: Record<string, unknown>): Promise<boolean> } | null = null;
+  // FINDING-7D: Store init promise to prevent race condition between
+  // async initialization and logEvent() calls
+  private initPromise: Promise<void>;
 
   /**
    * Deterministic JSON serialization with recursively sorted keys.
@@ -149,7 +152,8 @@ export class TamperEvidentAuditLogger {
     }
     this.logPath = logPath;
     this.privateKey = privateKey;
-    this.initializeLogger();
+    // FINDING-7D: Store init promise so logEvent() can await it
+    this.initPromise = this.initializeLogger();
   }
 
   /**
@@ -176,6 +180,8 @@ export class TamperEvidentAuditLogger {
   }
 
   public async logEvent(event: AuditEvent): Promise<void> {
+    // FINDING-7D: Ensure initialization is complete before logging
+    await this.initPromise;
     const logEntry = await this.createLogEntry(event);
     
     // Add to buffer
@@ -313,6 +319,7 @@ export class TamperEvidentAuditLogger {
   }
 
   public async verifyIntegrity(startDate?: Date, endDate?: Date): Promise<boolean> {
+    await this.initPromise;
     try {
       const logs = await this.getLogEntries(startDate, endDate);
       let previousHash = "";
@@ -597,6 +604,7 @@ export class TamperEvidentAuditLogger {
   }
 
   public async rotateLog(): Promise<RotationResult> {
+    await this.initPromise;
     // Flush any pending entries before rotation
     await this.flushBuffer();
 

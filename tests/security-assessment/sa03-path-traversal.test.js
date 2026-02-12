@@ -11,8 +11,8 @@
  * - Any bypass documented as CRITICAL finding
  */
 
-import { describe, it, expect } from 'vitest';
-import { resolve, relative, normalize, dirname } from 'path';
+import { describe, expect, it } from 'vitest';
+import { dirname, normalize, relative, resolve } from 'path';
 import { readFileSync } from 'fs';
 import { agentPathResolver } from '../../src/core/security/authorization.ts';
 

@@ -7,8 +7,8 @@
  * @module tests/schema/agent-schema
  */
 
-import { describe, it, expect } from 'vitest';
-import { agentFrontmatterSchema, agentManifestEntrySchema, agentCustomizeSchema } from '../../tools/schema/agent.js';
+import { describe, expect, it } from 'vitest';
+import { agentCustomizeSchema, agentFrontmatterSchema, agentManifestEntrySchema } from '../../tools/schema/agent.js';
 import { validateAgents } from '../../tools/validate-agent-schema.js';
 import fs from 'fs';
 import path from 'path';

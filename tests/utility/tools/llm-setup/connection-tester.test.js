@@ -7,21 +7,21 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
   DEFAULT_TEST_TIMEOUT,
-  TEST_ENDPOINTS,
-  PROVIDER_BASE_URLS,
   ERROR_CODES,
+  formatTestResults,
   HTTP_ERROR_MESSAGES,
   parseError,
+  PROVIDER_BASE_URLS,
+  TEST_ENDPOINTS,
   testConnection,
-  testMultipleConnections,
-  formatTestResults
+  testMultipleConnections
 } from './connection-tester.js';
 
 const __filename = fileURLToPath(import.meta.url);

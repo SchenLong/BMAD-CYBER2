@@ -38,8 +38,8 @@
  *   6.24 Compliance assessment document complete
  */
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
 import { join, resolve } from 'path';
 import { execSync } from 'child_process';
 import { load as yamlLoad } from 'js-yaml';

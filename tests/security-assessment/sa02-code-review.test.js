@@ -4,9 +4,9 @@
  * Validates that HIGH-severity findings from the manual code review
  * of 13 security-critical files have been remediated.
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'fs';
-import { resolve, join } from 'path';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readFileSync } from 'fs';
+import { join, resolve } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 

@@ -63,9 +63,26 @@ class SafeCLI extends EventEmitter {
   async initialize(options = {}) {
     console.log('🔐 Initializing Safe CLI Executor...');
 
-    // Load allowed commands
+    // Security: Validate additionalCommands before adding to allowlist (FINDING-6C)
     if (options.additionalCommands) {
-      this.config.allowedCommands.push(...options.additionalCommands);
+      if (!Array.isArray(options.additionalCommands)) {
+        throw new Error('additionalCommands must be an array');
+      }
+      for (const cmd of options.additionalCommands) {
+        if (typeof cmd !== 'string' || !cmd.trim()) {
+          throw new Error(`Invalid additional command: must be a non-empty string`);
+        }
+        // Reject commands with dangerous characters or path components
+        if (cmd.includes('/') || cmd.includes('\\') || cmd.includes('..')) {
+          throw new Error(`Invalid additional command "${cmd}": must be a bare command name without paths`);
+        }
+        for (const char of DANGEROUS_CHARS) {
+          if (cmd.includes(char)) {
+            throw new Error(`Invalid additional command "${cmd}": contains dangerous character '${char}'`);
+          }
+        }
+        this.config.allowedCommands.push(cmd);
+      }
     }
 
     this.isInitialized = true;
@@ -119,7 +136,9 @@ class SafeCLI extends EventEmitter {
       // 5. Resolve command path
       const commandPath = this._resolveCommandPath(command);
 
-      console.log(`🔧 Executing: ${command} ${sanitizedArgs.join(' ')}`);
+      // Security: Redact potentially sensitive args from console output (FINDING-6A)
+      const redactedArgs = sanitizedArgs.map(arg => this._redactSensitiveArg(arg));
+      console.log(`🔧 Executing: ${command} ${redactedArgs.join(' ')}`);
 
       // 6. Execute using execFile (NOT spawn with shell: true)
       const result = await this._executeSecure(
@@ -240,11 +259,13 @@ class SafeCLI extends EventEmitter {
       return { valid: false, reason: 'Command cannot be empty' };
     }
 
-    // Check for path traversal in command
-    if (command.includes('..') || command.includes('/')) {
-      // If it's a full path, extract just the command name
-      const cmdName = path.basename(command);
-      command = cmdName;
+    // Security: Reject commands with path components (FINDING-6D)
+    // Silent basename extraction masked potential attacks — now we reject explicitly
+    if (command.includes('..')) {
+      return { valid: false, reason: 'Path traversal in command name is not allowed' };
+    }
+    if (command.includes('/') || command.includes('\\')) {
+      return { valid: false, reason: 'Full paths in command names are not allowed. Use bare command names only.' };
     }
 
     // Check against whitelist
@@ -405,6 +426,22 @@ class SafeCLI extends EventEmitter {
     }
 
     return safeEnv;
+  }
+
+  /**
+   * Redact potentially sensitive argument values from log output (FINDING-6A)
+   * Tokens, keys, passwords, and auth headers are replaced with [REDACTED]
+   */
+  _redactSensitiveArg(arg) {
+    if (typeof arg !== 'string') return arg;
+    // Redact values that look like tokens/keys/passwords
+    if (/^(token|bearer|basic)\s+/i.test(arg)) return '[REDACTED-AUTH]';
+    if (/^[a-f0-9]{40,}$/i.test(arg)) return '[REDACTED-HASH]';
+    if (/^(ghp_|npm_|sk-|pk_|AKIA|xox[bpas]-)/i.test(arg)) return '[REDACTED-TOKEN]';
+    if (/^--.*(?:token|password|secret|key)=/i.test(arg)) {
+      return arg.replace(/=.*$/, '=[REDACTED]');
+    }
+    return arg;
   }
 
   _resolveCommandPath(command) {

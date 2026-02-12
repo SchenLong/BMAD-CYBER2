@@ -12,7 +12,7 @@
  * nesting depths.
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -59,7 +59,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
     });
 
     it('should recursively sanitize nested objects', () => {
-      expect(src).toContain('sanitizeObject(value)');
+      expect(src).toMatch(/sanitizeObject\(value[^)]*\)/);
     });
 
     it('should skip arrays (not recurse into array elements as objects)', () => {
@@ -94,7 +94,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
       expect(Object.getOwnPropertyNames(parsed)).toContain('__proto__');
 
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-proto-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-proto-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
 
       try {
@@ -115,7 +115,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
         dependencies: { '__proto__': { 'isAdmin': true }, 'express': '^4.18.0' }
       });
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-proto-deps-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-proto-deps-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);
@@ -132,7 +132,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
       const parsed = JSON.parse(maliciousJson);
       expect(Object.getOwnPropertyNames(parsed.scripts.nested)).toContain('__proto__');
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-nested-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-nested-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);
@@ -159,7 +159,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
         constructor: { prototype: { malicious: true } }
       });
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-ctor-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-ctor-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);
@@ -176,7 +176,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
         devDependencies: { prototype: { polluted: 'yes' } }
       });
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-proto-key-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-proto-key-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);
@@ -201,7 +201,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
         dependencies: { '../../../etc/passwd': '1.0.0' }
       });
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-trav-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-trav-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);
@@ -217,7 +217,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
         dependencies: { '/etc/passwd': '1.0.0' }
       });
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-abs-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-abs-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);
@@ -242,7 +242,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
         dependencies: null, devDependencies: 'not-an-object', scripts: 42
       });
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-null-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-null-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);
@@ -259,7 +259,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
         keywords: ['safe', 'test'], files: ['src/', 'lib/']
       });
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-arrays-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-arrays-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), json);
@@ -276,7 +276,7 @@ describe('Prototype Pollution Prevention - P3-13', () => {
       const { logger } = await import('../../tools/cli/lib/logger.js');
       const maliciousJson = '{"name":"test","version":"1.0.0","__proto__":{"p":1}}';
       const { mergePackageJson } = await import('../../tools/cli/lib/package-merger.js');
-      const tmpDir = path.join(__dirname, '../../.tmp-test-warn-' + Date.now());
+      const tmpDir = path.join(__dirname, `../../.tmp-test-warn-${  Date.now()}`);
       fs.mkdirSync(tmpDir, { recursive: true });
       try {
         fs.writeFileSync(path.join(tmpDir, 'package.json'), maliciousJson);

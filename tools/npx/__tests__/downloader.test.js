@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { tmpdir } from 'os';
 import { join } from 'path';
-import { rm, readdir, mkdir, writeFile } from 'fs/promises';
+import { mkdir, readdir, rm, writeFile } from 'fs/promises';
 
 // Mock modules before imports
 vi.mock('ora', () => ({
@@ -436,7 +436,7 @@ describe('downloader', () => {
 
       // Verify temp directory exists
       const tempDir = join(tmpdir(), 'bmad-cyber-install');
-      let files = await readdir(tempDir);
+      const files = await readdir(tempDir);
       expect(files.length).toBeGreaterThan(0);
 
       // Clean up
@@ -455,7 +455,7 @@ describe('downloader', () => {
       const { cleanup } = await import('../lib/downloader.js');
 
       // Verify file exists
-      let files = await readdir(tempDir);
+      const files = await readdir(tempDir);
       expect(files).toContain('test-file.txt');
 
       // Clean up

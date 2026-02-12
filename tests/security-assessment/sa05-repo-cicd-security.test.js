@@ -15,8 +15,8 @@
  * 5.11 Release workflow signs artifacts
  */
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync, readdirSync } from 'fs';
+import { describe, expect, it } from 'vitest';
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { execSync } from 'child_process';
 

@@ -162,7 +162,8 @@ const INSTRUCTION_INJECTION_PATTERNS: PatternDefinition[] = [
 const ENCODED_PAYLOAD_PATTERNS: PatternDefinition[] = [
   {
     name: 'base64_encoded_content',
-    pattern: /(?:eval|decode|execute|run)\s*\(\s*["']?[A-Za-z0-9+/=]{50,}["']?\s*\)/i,
+    // SA-02 LOW: Lowered min length from 50→30 to catch shorter encoded payloads
+    pattern: /(?:eval|decode|execute|run)\s*\(\s*["']?[A-Za-z0-9+/=]{30,}["']?\s*\)/i,
     severity: 'WARNING',
     description: 'Base64 encoded payload with execution',
   },

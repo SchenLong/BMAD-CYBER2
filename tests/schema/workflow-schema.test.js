@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
-  workflowYamlSchema,
-  workflowMdFrontmatterSchema,
-  workflowManifestEntrySchema,
   VALID_MODULES,
+  workflowManifestEntrySchema,
+  workflowMdFrontmatterSchema,
+  workflowYamlSchema,
 } from '../../tools/schema/workflow.js';
 import { validateWorkflows } from '../../tools/validate-workflow-schema.js';
 import fs from 'fs';

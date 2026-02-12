@@ -14,16 +14,16 @@
  * - VULN-011: Command injection prevention
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 
 import {
-  SlashCommandRouter,
   levenshteinDistance,
-  VALID_COMMAND_PATTERN,
-  VALID_BMAD_PATH_PATTERN,
   MAX_COMMAND_LENGTH,
-  MIN_COMMAND_LENGTH
+  MIN_COMMAND_LENGTH,
+  SlashCommandRouter,
+  VALID_BMAD_PATH_PATTERN,
+  VALID_COMMAND_PATTERN
 } from '../../../src/core/routing/slash-command-router.js';
 
 // ============================================================================

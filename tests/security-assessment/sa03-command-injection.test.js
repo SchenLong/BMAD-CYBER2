@@ -11,9 +11,9 @@
  * - Any bypass documented as CRITICAL finding
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve, join } from 'path';
+import { join, resolve } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '../..');
 
@@ -27,7 +27,7 @@ describe('SA-03-S1: Command Injection Testing', () => {
   // --------------------------------------------------------------------------
   describe('git-clone.js branch parameter injection', () => {
     // Read the branch regex directly from source to test against
-    const SAFE_BRANCH_PATTERN = /^[a-zA-Z0-9][\w.\-\/]*$/;
+    const SAFE_BRANCH_PATTERN = /^[a-zA-Z0-9][\w.\-/]*$/;
 
     it('PENTEST-S1-01: semicolon injection `main; echo INJECTED` blocked by regex', () => {
       const payload = 'main; echo INJECTED';

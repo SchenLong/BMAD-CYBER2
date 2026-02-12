@@ -7,17 +7,16 @@
  * signature verification, and retention enforcement.
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { resolve } from 'path';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs/promises';
 import { readFileSync } from 'fs';
 import crypto from 'crypto';
 import os from 'os';
-import path from 'path';
+import path, { resolve } from 'path';
 import {
-  TamperEvidentAuditLogger,
-  RETENTION_DAYS,
   DEFAULT_ROTATION_SIZE,
+  RETENTION_DAYS,
+  TamperEvidentAuditLogger,
 } from '../../src/security/audit/audit-logger.ts';
 
 const TEST_KEY = 'sa01-test-hmac-key-for-architecture-review-32ch';
@@ -39,7 +38,7 @@ async function readEntriesFromLog(logPath) {
 // Helper: write entries to NDJSON log file
 async function writeEntriesToLog(logPath, entries) {
   await fs.mkdir(path.dirname(logPath), { recursive: true });
-  const content = entries.map((e) => JSON.stringify(e)).join('\n') + '\n';
+  const content = `${entries.map((e) => JSON.stringify(e)).join('\n')  }\n`;
   await fs.writeFile(logPath, content);
 }
 
@@ -228,7 +227,7 @@ describe('SA-01-S3 Check 2: Tamper Detection', () => {
     const entry1 = JSON.parse(lines[1]);
     entry1.action = 'TAMPERED_ACTION';
     lines[1] = JSON.stringify(entry1);
-    await fs.writeFile(logPath, lines.join('\n') + '\n');
+    await fs.writeFile(logPath, `${lines.join('\n')  }\n`);
 
     // verifyIntegrity should detect the tamper
     const verifyLogger = new TamperEvidentAuditLogger(logPath, TEST_KEY);
@@ -445,7 +444,7 @@ describe('SA-01-S3 Check 5: Append-Only Log Enforcement', () => {
     const entry = JSON.parse(lines[1]);
     entry.action = 'DIRECTLY_MODIFIED';
     lines[1] = JSON.stringify(entry);
-    await fs.writeFile(logPath, lines.join('\n') + '\n');
+    await fs.writeFile(logPath, `${lines.join('\n')  }\n`);
 
     const verifier = new TamperEvidentAuditLogger(logPath, TEST_KEY);
     await new Promise((r) => setTimeout(r, 100));
@@ -538,7 +537,7 @@ describe('SA-01-S3 Check 6: verifySignature() Validates Real HMAC Signatures', (
     const entry = JSON.parse(lines[1]);
     entry.signature = crypto.createHmac('sha256', 'WRONG_KEY').update('wrong_data').digest('hex');
     lines[1] = JSON.stringify(entry);
-    await fs.writeFile(logPath, lines.join('\n') + '\n');
+    await fs.writeFile(logPath, `${lines.join('\n')  }\n`);
 
     const verifier = new TamperEvidentAuditLogger(logPath, TEST_KEY);
     await new Promise((r) => setTimeout(r, 100));

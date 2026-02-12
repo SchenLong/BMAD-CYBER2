@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "capturedAt": "2026-02-12T14:41:24.463Z",
+  "capturedAt": "2026-02-12T18:37:40.661Z",
   "fileCount": 19,
   "hashes": {
     ".claude/hooks/session-security-init.js": "51711998491af8aa3b2c67d72a5adb83f7df305fc8bfc8212b882d379966a6b7",
@@ -20,7 +20,7 @@
     ".claude/validators-node/bin/session-init.js": "54d03251853e48be060034fa913932be2f9ee79c8e858e30cea6d1e0372dd795",
     ".claude/validators-node/bin/supply-chain.js": "9506c4641b309bbaa2721bfc2946207d069d3652a5d455643f412e97c84f2e7a",
     ".claude/validators-node/bin/token-validator.js": "3831fadf4555ca732eceb05323dec66c115f3f5f0bc41c12fd35f42c8398482a",
-    "src/core/security/authorization.js": "23146dbed7bfc66c213f8ae1787bd25089d551723c61b2834ab69157f1e5d86a",
+    "src/core/security/authorization.js": "11410e6a442bb10aac1c4b18720cc4ca3fc1e7bc6ba7381bc1572453896b8423",
     "src/utility/tools/reference-validator/cli.js": "639024cd0420805a03d09bb0bbaf08d7be7ee64234ac3d447ffdc4ded0d2a374"
   }
 }

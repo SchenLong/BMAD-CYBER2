@@ -7,15 +7,15 @@
  * @module tests/schema/module-schema
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
-  moduleYamlSchema,
-  staticConfigFieldSchema,
-  interactiveConfigFieldSchema,
   configFieldSchema,
+  interactiveConfigFieldSchema,
   moduleHelpEntrySchema,
-  VALID_MODULES,
+  moduleYamlSchema,
   REQUIRED_CONFIG_KEYS,
+  staticConfigFieldSchema,
+  VALID_MODULES,
 } from '../../tools/schema/module.js';
 import { validateModules } from '../../tools/validate-module-schema.js';
 import fs from 'fs';
