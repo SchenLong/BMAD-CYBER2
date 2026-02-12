@@ -161,7 +161,7 @@ function releaseLock(fd: number): void {
  */
 function generateSessionId(): string {
   const timestamp = Date.now().toString(36);
-  const random = crypto.randomBytes(8).toString('hex');
+  const random = crypto.randomBytes(16).toString('hex');
   return `bmad-${timestamp}-${random}`;
 }
 

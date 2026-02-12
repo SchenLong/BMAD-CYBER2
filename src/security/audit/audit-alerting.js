@@ -226,7 +226,13 @@ export class AuditAlerter {
                 fs.mkdirSync(logDir, { recursive: true });
             }
 
-            const logLine = `[${alert.timestamp}] [${alert.severity}] ${alert.type}: ${JSON.stringify(alert.details)}\n`;
+            // Sanitize CRLF and Unicode line separators to prevent log injection (A03-011)
+            const sanitizeLogField = (v) => String(v).replace(/[\r\n\u2028\u2029]+/g, ' ');
+            const safeType = sanitizeLogField(alert.type);
+            const safeSeverity = sanitizeLogField(alert.severity);
+            const safeTimestamp = sanitizeLogField(alert.timestamp);
+            const safeDetails = sanitizeLogField(JSON.stringify(alert.details));
+            const logLine = `[${safeTimestamp}] [${safeSeverity}] ${safeType}: ${safeDetails}\n`;
             fs.appendFileSync(this.alertLogPath, logLine);
         } catch (err) {
             console.error(`Failed to log alert: ${err.message}`);
