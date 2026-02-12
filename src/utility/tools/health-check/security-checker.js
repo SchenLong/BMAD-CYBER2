@@ -12,6 +12,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import vm from 'vm';
 import { fileURLToPath } from 'url';
 
 // ESM equivalent of __dirname
@@ -34,7 +35,7 @@ export const GUARDS_PATH = '.claude/validators-node/src/guards/';
  * Path to security config file relative to project root
  * @type {string}
  */
-export const SECURITY_CONFIG_PATH = '_bmad/core/security/security-config.yaml';
+export const SECURITY_CONFIG_PATH = 'src/core/security/security-config.yaml';
 
 /**
  * Path to audit log directory relative to project root
@@ -265,9 +266,9 @@ export function testValidatorLoad(validatorPath, projectRoot = process.cwd()) {
     // Basic syntax check - look for common issues
     // Try to parse as a function to check syntax
     try {
-      // Use Function constructor for basic syntax validation
+      // Use vm.compileFunction for basic syntax validation
       // This catches most syntax errors without actually running the code
-      new Function(content);
+      vm.compileFunction(content);
     } catch (syntaxError) {
       // Check if it's an ES Module (has import/export)
       // ES Modules can't be validated with Function constructor
@@ -509,5 +510,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const result = checkSecurity();
   console.log(formatSecurityResult(result));
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
 }

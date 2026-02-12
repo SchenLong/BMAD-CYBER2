@@ -13,13 +13,14 @@ recommendedPreset: 'strategic-decision-validated'
 
 # Step 5b: Risk & Compliance Validation (Cross-Module)
 
-## STEP GOAL:
+## STEP GOAL
 
 Before proceeding to ethics check and final decision, validate the options through cross-module lenses: Security implications (Bastion), Legal compliance (Covenant), and External intelligence context (Vector).
 
-### When to Invoke:
+### When to Invoke
 
 This step should be offered after Step 5 (Debate & Synthesis) when ANY of:
+
 - Decision has security/data implications
 - Decision affects regulatory compliance
 - Decision requires external market/threat intelligence
@@ -28,7 +29,7 @@ This step should be offered after Step 5 (Debate & Synthesis) when ANY of:
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### 1. Introduction to Risk Validation
 
@@ -37,6 +38,7 @@ This step should be offered after Step 5 (Debate & Synthesis) when ANY of:
 "Before we move to ethics review, I'm recommending we validate these options through our cross-module risk lenses.
 
 Strategic decisions often have implications beyond the strategic domain:
+
 - **Security risks** that the Strategy team may not fully see
 - **Legal/compliance requirements** that could constrain or enable options
 - **External intelligence** that could change our assumptions
@@ -50,14 +52,17 @@ Let me bring in our cross-module experts for a quick validation pass."
 "Activating cross-module validation team:
 
 **Bastion** (Security Architect, cybersec-team)
+
 - Will assess security implications of each option
 - Identifies data risks, system vulnerabilities, security costs
 
 **Covenant** (Counsel, legal-team)
+
 - Will assess legal/regulatory compliance
 - Identifies contractual, liability, and regulatory risks
 
 **Vector** (OSINT Lead, intel-team)
+
 - Will provide external intelligence context
 - Validates market assumptions, identifies external threats
 
@@ -70,6 +75,7 @@ Each will review the options from Step 5 and provide their validation."
 "**Bastion here.** Reviewing from security architecture perspective:
 
 **Option A: [Name]**
+
 - Security implications: [assessment]
 - Data risks: [High/Medium/Low] - [explanation]
 - System requirements: [what would need to change]
@@ -77,6 +83,7 @@ Each will review the options from Step 5 and provide their validation."
 - Security recommendation: [Support/Caution/Oppose]
 
 **Option B: [Name]**
+
 - Security implications: [assessment]
 - Data risks: [High/Medium/Low] - [explanation]
 - System requirements: [what would need to change]
@@ -84,13 +91,16 @@ Each will review the options from Step 5 and provide their validation."
 - Security recommendation: [Support/Caution/Oppose]
 
 **Option C: [Name]** (if applicable)
+
 - [Same structure]
 
 **Security Red Flags:**
+
 - [ ] [Any critical security concerns]
 - [ ] [Any compliance requirements (SOC2, ISO27001, etc.)]
 
 **Security Questions for Decision Makers:**
+
 1. [Question that could change the security calculus]
 2. [Question about acceptable risk level]"
 
@@ -101,6 +111,7 @@ Each will review the options from Step 5 and provide their validation."
 "**Covenant here.** Reviewing from legal and compliance perspective:
 
 **Option A: [Name]**
+
 - Regulatory compliance: [assessment by jurisdiction]
 - Contractual implications: [existing contract impacts]
 - Liability exposure: [High/Medium/Low] - [explanation]
@@ -108,6 +119,7 @@ Each will review the options from Step 5 and provide their validation."
 - Legal recommendation: [Support/Caution/Oppose]
 
 **Option B: [Name]**
+
 - Regulatory compliance: [assessment]
 - Contractual implications: [assessment]
 - Liability exposure: [High/Medium/Low] - [explanation]
@@ -115,13 +127,16 @@ Each will review the options from Step 5 and provide their validation."
 - Legal recommendation: [Support/Caution/Oppose]
 
 **Option C: [Name]** (if applicable)
+
 - [Same structure]
 
 **Legal Red Flags:**
+
 - [ ] [Any regulatory blockers]
 - [ ] [Any mandatory requirements not yet addressed]
 
 **Legal Questions for Decision Makers:**
+
 1. [Question about risk tolerance]
 2. [Question about jurisdiction or contract specifics]
 
@@ -134,28 +149,34 @@ Each will review the options from Step 5 and provide their validation."
 "**Vector here.** Providing external intelligence context:
 
 **Market/Competitive Intelligence:**
+
 - Current landscape: [relevant external context]
 - Competitor moves: [if relevant to decision]
 - Market timing: [any time-sensitive factors]
 
 **Option A: [Name]**
+
 - External support: [what external evidence supports this]
 - External risks: [what external factors could undermine this]
 - Intelligence confidence: [High/Medium/Low] on key assumptions
 
 **Option B: [Name]**
+
 - External support: [what external evidence supports this]
 - External risks: [what external factors could undermine this]
 - Intelligence confidence: [High/Medium/Low] on key assumptions
 
 **Option C: [Name]** (if applicable)
+
 - [Same structure]
 
 **Intelligence Gaps:**
+
 - [ ] [Information we don't have that would be valuable]
 - [ ] [Assumptions we couldn't validate]
 
 **External Factors to Monitor:**
+
 1. [Factor that could change the calculus]
 2. [Factor with known timeline]"
 
@@ -176,16 +197,19 @@ Each will review the options from Step 5 and provide their validation."
 Legend: ✓ = Supports, ⚠ = Caution, ✗ = Opposes
 
 **Critical Issues Identified:**
+
 1. [Any blocking issues from any domain]
 2. [Any issues that must be resolved before decision]
 
 **Conditions for Success:**
 For each viable option, these conditions must be met:
+
 - Option A requires: [conditions]
 - Option B requires: [conditions]
 
 **Updated Risk Assessment:**
 Based on cross-module input, the risk profile has [changed/not changed]:
+
 - [Updated risk assessment]"
 
 ### 7. Decision Impact
@@ -195,11 +219,13 @@ Based on cross-module input, the risk profile has [changed/not changed]:
 "{user_name}, the cross-module validation has [confirmed/modified/challenged] our options:
 
 **Key Changes from Validation:**
+
 1. [Any options eliminated or elevated]
 2. [Any new conditions added]
 3. [Any assumptions invalidated]
 
 **Questions for you:**
+
 1. Does this validation change your thinking on any option?
 2. Are there any red flags you'd like to explore further?
 3. Are you comfortable proceeding to ethics review?
@@ -245,11 +271,11 @@ Update frontmatter: add `step-05b-risk-validation` to stepsCompleted
 
 ### 9. Proceed to Ethics Check
 
-When user selects [C], load and execute {nextStepFile} (step-06-ethics-check.md) with cross-module validation context incorporated.
+When user selects [C], load and follow {nextStepFile} (step-06-ethics-check.md) with cross-module validation context incorporated.
 
 ---
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - All three domains (Security, Legal, Intelligence) provided assessment
 - Each option validated against cross-module criteria
@@ -258,7 +284,7 @@ When user selects [C], load and execute {nextStepFile} (step-06-ethics-check.md)
 - User understands how validation affects options
 - Output file updated with validation content
 
-## FAILURE INDICATORS:
+## FAILURE INDICATORS
 
 - Proceeding without addressing critical issues
 - Dismissing cross-module input without consideration

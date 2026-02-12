@@ -3,53 +3,7 @@
 
 code: "intel-team"
 name: "Intelligence Operations Team"
-version: "2.1.0"
-type: "specialized-team"
-category: "bmad-cybercommand"
 default_selected: false
-
-# NPM Publishing Configuration
-npm:
-  scope: "@bmad-cybercommand"
-  package_name: "intel-team"
-  full_name: "@bmad-cybercommand/intel-team"
-
-repository:
-  type: "git"
-  url: "https://github.com/bmad-code-org/bmad-cybercommand.git"
-  directory: "src/intel-team"
-
-description: "Open source intelligence and threat analysis with 11 specialized agents"
-keywords:
-  - "bmad"
-  - "agent"
-  - "workflow"
-  - "intelligence"
-  - "osint"
-  - "threat-analysis"
-  - "reconnaissance"
-license: "MIT"
-
-capabilities:
-  agents:
-    count: 11
-    format: "agent.yaml"
-    path: "agents/"
-  workflows:
-    count: 19
-    format: "workflow.yaml"
-    path: "workflows/"
-
-dependencies:
-  core:
-    - module: "bmad:core"
-      version: ">=2.0.0"
-      required: true
-
-build:
-  validation: true
-  format: "bmad-builder"
-  target: "distribution"
 
 # Welcome message shown during installation
 prompt:
@@ -99,17 +53,17 @@ module_code:
   result: "intel-team"
 
 module_version:
-  result: "2.1.0"
+  result: "1.1.0"
 
 # STATIC: Module paths
 agents_path:
-  result: "{project-root}/_bmad/intel-team/agents"
+  result: "{project-root}/src/intel-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/intel-team/workflows"
+  result: "{project-root}/src/intel-team/workflows"
 
 data_path:
-  result: "{project-root}/_bmad/intel-team/data"
+  result: "{project-root}/src/intel-team/data"
 
 # STATIC: Automatic subdirectory configuration
 # These are derived from output_folder and created automatically by agents

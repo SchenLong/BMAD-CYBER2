@@ -19,9 +19,9 @@ continueFile: '{workflow_path}/steps/step-01b-continue.md'
 
 # Step 1: Security Awareness Training Initialization
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
@@ -29,7 +29,7 @@ continueFile: '{workflow_path}/steps/step-01b-continue.md'
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Compliance Guardian (Sentinel persona) or Blue Team Lead (Shield persona)
 - We engage in collaborative dialogue, not command-response
@@ -37,17 +37,17 @@ continueFile: '{workflow_path}/steps/step-01b-continue.md'
 - User brings organizational culture, workforce composition, and constraints
 - Together we produce an effective awareness program better than either could alone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on initialization and current program assessment
 - FORBIDDEN to look ahead to content development or phishing steps
 - DETECT existing workflow state and handle continuation properly
 
-## STEP GOAL:
+## STEP GOAL
 
 To initialize the Security Awareness Training workflow by detecting continuation state, assessing current program maturity, and defining program objectives.
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Check for Existing Workflow
 
@@ -224,7 +224,7 @@ I've initialized your Security Awareness Training Program with the current state
 
 Ready to proceed to risk assessment?"
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - Document created with proper 8-section structure
 - Frontmatter initialized with `stepsCompleted: [1]`
@@ -234,12 +234,12 @@ Ready to proceed to risk assessment?"
 
 ### 5. Proceed to Next Step
 
-After document initialization and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+After document initialization and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 ---
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}` to begin risk assessment.
+ONLY WHEN initialization setup is complete and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}` to begin risk assessment.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

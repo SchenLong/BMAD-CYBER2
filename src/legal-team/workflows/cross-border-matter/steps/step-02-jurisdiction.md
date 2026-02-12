@@ -18,11 +18,13 @@ Systematically identify and map all jurisdictions relevant to the matter.
 Map jurisdictions based on parties:
 
 **Place of Incorporation/Residence:**
+
 | Party | Incorporation | Residence | Principal Place of Business |
 |-------|--------------|-----------|---------------------------|
 | [Party] | [Country] | [Country] | [Country] |
 
 **Nationality Considerations:**
+
 - Beneficial ownership nationality
 - Control and management location
 - Tax residence
@@ -32,17 +34,20 @@ Map jurisdictions based on parties:
 Map jurisdictions based on activities:
 
 **Place of Performance:**
+
 - Where will obligations be performed?
 - Location of services delivery
 - Location of goods delivery
 - Place of payment
 
 **Place of Contracting:**
+
 - Where was/will contract be signed?
 - Where were negotiations conducted?
 - Location of offer and acceptance
 
 **Asset Locations:**
+
 - Real property
 - Intellectual property (registration countries)
 - Bank accounts
@@ -53,11 +58,13 @@ Map jurisdictions based on activities:
 For disputes:
 
 **Place of Harm:**
+
 - Where did breach occur?
 - Where was damage suffered?
 - Where did wrongful act take place?
 
 **Forum Selection:**
+
 - Contractual forum selection
 - Arbitration agreement location
 - Potential filing venues
@@ -67,11 +74,13 @@ For disputes:
 Map regulatory touchpoints:
 
 **Regulatory Requirements:**
+
 | Jurisdiction | Regulator | Requirement | Applicability |
 |--------------|-----------|-------------|---------------|
 | [Country] | [Authority] | [Requirement] | [Why applies] |
 
 **Key Regulations:**
+
 - Data protection (GDPR, CCPA, others)
 - Consumer protection
 - Employment law
@@ -119,7 +128,9 @@ Rank jurisdictions:
 
 ### Jurisdiction Map
 ```
+
 [Visual or textual representation of jurisdictional connections]
+
 ```
 ```
 

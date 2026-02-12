@@ -20,6 +20,7 @@ Draft key definitions section.
 ### 2. Core Obligations
 
 Draft each party's obligations:
+
 - Clear and specific
 - Measurable where possible
 - Realistic timelines
@@ -27,6 +28,7 @@ Draft each party's obligations:
 ### 3. Payment Terms
 
 Draft payment provisions:
+
 - Amounts and structure
 - Timing and milestones
 - Late payment consequences
@@ -35,6 +37,7 @@ Draft payment provisions:
 ### 4. Performance Standards
 
 Draft performance criteria:
+
 - Service levels (if applicable)
 - Acceptance criteria
 - Quality standards

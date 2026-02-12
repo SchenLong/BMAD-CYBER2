@@ -10,19 +10,20 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 # Step 7: Infrastructure as Code Review
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide IaC security review
 
-## IAC SECURITY REVIEW SEQUENCE:
+## IAC SECURITY REVIEW SEQUENCE
 
 ### 1. IaC Inventory
 
 "Let's inventory your Infrastructure as Code.
 
 **IaC Tools:**
+
 - Terraform?
 - CloudFormation / CDK?
 - Pulumi?
@@ -30,6 +31,7 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 - Kubernetes manifests / Helm?
 
 **Scope:**
+
 - Cloud infrastructure
 - Container orchestration
 - Configuration management
@@ -42,6 +44,7 @@ What IaC tools and repositories are in scope?"
 "Let's run static analysis on IaC code.
 
 **Scanning Tools:**
+
 - Checkov
 - tfsec / trivy config
 - Terrascan
@@ -49,6 +52,7 @@ What IaC tools and repositories are in scope?"
 - Snyk IaC
 
 **What to Scan:**
+
 - Terraform files
 - CloudFormation templates
 - Kubernetes manifests
@@ -56,6 +60,7 @@ What IaC tools and repositories are in scope?"
 - Ansible playbooks
 
 **Commands:**
+
 ```bash
 # Checkov scan
 checkov -d .
@@ -77,22 +82,26 @@ What static analysis results do you have?"
 "Reviewing Terraform security (if applicable).
 
 **State Security:**
+
 - Remote state with encryption?
 - State access controls?
 - State locking enabled?
 - No secrets in state?
 
 **Provider Configuration:**
+
 - Provider versions pinned?
 - Secure authentication?
 - No hardcoded credentials?
 
 **Module Security:**
+
 - Trusted module sources?
 - Module versions pinned?
 - No untrusted public modules?
 
 **Best Practices:**
+
 - Least privilege IAM?
 - Encryption enabled?
 - Logging configured?
@@ -105,18 +114,21 @@ What Terraform configurations can we review?"
 "Reviewing CloudFormation/CDK security (if applicable).
 
 **Template Security:**
+
 - Parameters secured (NoEcho)?
 - IAM policies least privilege?
 - Encryption resources?
 - Security group rules?
 
 **Stack Security:**
+
 - Stack policies?
 - Termination protection?
 - Change sets reviewed?
 - Drift detection?
 
 **CDK Specific:**
+
 - cdk-nag compliance?
 - Asset security?
 - Synth validation?
@@ -128,18 +140,21 @@ What CloudFormation configurations are available?"
 "Reviewing Kubernetes manifest security.
 
 **Manifest Analysis:**
+
 - Pod security contexts?
 - Resource limits?
 - Network policies?
 - Service account usage?
 
 **Helm Security:**
+
 - Chart sources trusted?
 - Values files reviewed?
 - No secrets in values?
 - Template security?
 
 **Tools:**
+
 ```bash
 # Kubesec scan
 kubesec scan deployment.yaml
@@ -158,6 +173,7 @@ What Kubernetes/Helm configurations can we review?"
 "Reviewing policy enforcement.
 
 **Policy Tools:**
+
 - OPA/Rego policies?
 - Sentinel policies?
 - AWS Config Rules?
@@ -165,6 +181,7 @@ What Kubernetes/Helm configurations can we review?"
 - GCP Organization Policy?
 
 **Enforcement:**
+
 - Pre-commit hooks?
 - CI pipeline gates?
 - Admission controllers?
@@ -177,12 +194,14 @@ What policy enforcement is in place?"
 "Assessing configuration drift.
 
 **Drift Detection:**
+
 - Terraform plan drift?
 - CloudFormation drift detection?
 - Kubernetes drift?
 - Configuration management drift?
 
 **Remediation:**
+
 - Automated remediation?
 - Alerting on drift?
 - Regular reconciliation?
@@ -253,6 +272,7 @@ Append to {outputFile} Section 7:
 "**IaC Security Review Complete**
 
 **Summary:**
+
 - IaC repositories reviewed: [count]
 - Critical misconfigurations: [count]
 - Policy violations: [count]
@@ -268,4 +288,4 @@ Display: [C] Continue to Findings & Remediation [R] Review/Add Findings [E] Inve
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`, then follow {nextStepFile}.

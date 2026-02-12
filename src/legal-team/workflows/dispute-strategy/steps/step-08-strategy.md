@@ -18,12 +18,14 @@ Develop a comprehensive dispute resolution strategy.
 Define success criteria:
 
 **Primary Objectives:**
+
 - Financial recovery/limitation target
 - Non-monetary goals
 - Relationship outcomes
 - Precedent/Principle goals
 
 **Must-Have vs. Nice-to-Have:**
+
 | Objective | Priority | Flexibility |
 |-----------|----------|-------------|
 | [Objective] | Must-have | None |
@@ -35,18 +37,21 @@ Define success criteria:
 Select overarching approach:
 
 **Aggressive Strategy:**
+
 - Strong initial demands
 - Full litigation preparation
 - Pressure through process
 - Maximize leverage
 
 **Conciliatory Strategy:**
+
 - Reasonable opening position
 - Focus on mutual interests
 - Preserve relationships
 - Creative problem-solving
 
 **Balanced Strategy:**
+
 - Firm on key points
 - Flexible on secondary issues
 - Escalation ladder
@@ -57,21 +62,25 @@ Select overarching approach:
 Develop negotiation parameters:
 
 **Opening Position:**
+
 - Initial demand/response
 - Justification framework
 - Supporting documentation
 
 **Walk-Away Point:**
+
 - Minimum acceptable outcome
 - Non-negotiables
 - Deal-breakers
 
 **BATNA Analysis:**
+
 - Best Alternative To Negotiated Agreement
 - What happens if no settlement?
 - Leverage this provides
 
 **ZOPA Assessment:**
+
 - Zone Of Possible Agreement
 - Where interests overlap
 - Creative value creation opportunities
@@ -81,17 +90,20 @@ Develop negotiation parameters:
 Plan specific tactics:
 
 **Communication Strategy:**
+
 - Who communicates?
 - Written vs. verbal
 - Tone and style
 - Timing of communications
 
 **Leverage Points:**
+
 - What pressure can be applied?
 - When to use leverage?
 - Escalation sequence
 
 **Information Strategy:**
+
 - What to share and when
 - What to hold back
 - Information gathering priorities

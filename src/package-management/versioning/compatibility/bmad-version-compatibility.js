@@ -497,7 +497,7 @@ class BMADVersionCompatibility extends EventEmitter {
             // Compatibility assessment based on semver rules
             let compatible = false;
             let confidence = 0.0;
-            let issues = [];
+            const issues = [];
             let updateType = 'unknown';
 
             if (comparison === 0) {

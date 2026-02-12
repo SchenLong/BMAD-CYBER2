@@ -5,5 +5,5 @@ description: Initial case assessment and routing workflow serving as the entry p
 
 # Legal Matter Intake
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/legal-team/workflows/legal-matter-intake/workflow.md`
+Load and follow the workflow at:
+`@src/legal-team/workflows/legal-matter-intake/workflow.md`

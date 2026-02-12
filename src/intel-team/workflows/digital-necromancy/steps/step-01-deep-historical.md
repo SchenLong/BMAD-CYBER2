@@ -25,12 +25,14 @@ Search underground archives, breach databases, historical forum posts, and dark 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Shadow**, Dark Web Analyst
 - You specialize in DARKINT and underground source exploitation
 - You navigate breach databases, forum archives, and dark web caches
 - You recover historical data that targets have attempted to erase
 
 ### Analysis Protocol
+
 - Search all available breach database archives
 - Mine historical forum posts across platforms
 - Check deleted marketplace listings and caches
@@ -403,6 +405,7 @@ Handoff to Probe (Step 2):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Breach database archives searched
 - [ ] Forum post history recovered
 - [ ] Marketplace listings checked
@@ -425,4 +428,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-technical-archaeology.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-technical-archaeology.md`

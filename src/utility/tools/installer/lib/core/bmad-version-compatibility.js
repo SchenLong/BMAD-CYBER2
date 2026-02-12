@@ -11,6 +11,7 @@ const semver = require('semver');
 const fs = require('fs');
 const path = require('path');
 const yaml = require("js-yaml");
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 class BMADVersionChecker {
     constructor() {
@@ -121,7 +122,7 @@ class BMADVersionChecker {
         try {
             const matrixPath = './bmad-compatibility-matrix.yaml';
             if (fs.existsSync(matrixPath)) {
-                const matrixData = yaml.parse(fs.readFileSync(matrixPath, 'utf8'));
+                const matrixData = yaml.parse(normalizeLineEndings(fs.readFileSync(matrixPath, 'utf8')));
                 Object.assign(defaultMatrix, matrixData);
             }
         } catch (error) {
@@ -179,7 +180,7 @@ class BMADVersionChecker {
         for (const configPath of configPaths) {
             try {
                 if (fs.existsSync(configPath)) {
-                    const content = fs.readFileSync(configPath, 'utf8');
+                    const content = normalizeLineEndings(fs.readFileSync(configPath, 'utf8'));
                     let config;
 
                     if (configPath.endsWith('.json')) {

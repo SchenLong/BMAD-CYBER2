@@ -47,7 +47,7 @@ const LOCK_TIMEOUT_MS = 5000;
  * Acquire a file-based lock for telemetry writes.
  */
 function acquireTelemetryLock(filepath, timeout = LOCK_TIMEOUT_MS) {
-    const lockFile = filepath + '.lock';
+    const lockFile = `${filepath  }.lock`;
     const startTime = Date.now();
     while (Date.now() - startTime < timeout) {
         try {
@@ -89,7 +89,7 @@ function acquireTelemetryLock(filepath, timeout = LOCK_TIMEOUT_MS) {
  */
 function releaseTelemetryLock(filepath) {
     try {
-        fs.unlinkSync(filepath + '.lock');
+        fs.unlinkSync(`${filepath  }.lock`);
     }
     catch {
         // Ignore
@@ -140,7 +140,7 @@ export class TelemetryCollector {
         if (!acquireTelemetryLock(filepath)) {
             // Non-blocking fallback - proceed without lock
             try {
-                fs.appendFileSync(filepath, JSON.stringify(entry) + '\n');
+                fs.appendFileSync(filepath, `${JSON.stringify(entry)  }\n`);
                 return true;
             }
             catch {
@@ -148,7 +148,7 @@ export class TelemetryCollector {
             }
         }
         try {
-            fs.appendFileSync(filepath, JSON.stringify(entry) + '\n');
+            fs.appendFileSync(filepath, `${JSON.stringify(entry)  }\n`);
             return true;
         }
         catch {

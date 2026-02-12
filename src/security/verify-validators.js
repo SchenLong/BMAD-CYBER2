@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Validator Integrity Verifier
  * Verifies SHA256 checksums of validator files against the baseline manifest.
@@ -7,7 +6,7 @@
  */
 import { createHash } from 'crypto';
 import { existsSync, readFileSync } from 'fs';
-import { resolve, join, dirname } from 'path';
+import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,7 +28,7 @@ function verifyIntegrity() {
   console.log('');
 
   if (!existsSync(MANIFEST_FILE)) {
-    console.error('ERROR: Manifest file not found: ' + MANIFEST_FILE);
+    console.error(`ERROR: Manifest file not found: ${  MANIFEST_FILE}`);
     console.error('Run generate-validator-checksums.js first to create baseline.');
     return { success: false, verified: 0, missing: [], modified: [] };
   }
@@ -38,13 +37,13 @@ function verifyIntegrity() {
   try {
     manifest = JSON.parse(readFileSync(MANIFEST_FILE, 'utf8'));
   } catch (e) {
-    console.error('ERROR: Failed to parse manifest file: ' + e.message);
+    console.error(`ERROR: Failed to parse manifest file: ${  e.message}`);
     return { success: false, verified: 0, missing: [], modified: [] };
   }
 
-  console.log('Manifest generated: ' + manifest.generated);
-  console.log('Algorithm: ' + manifest.algorithm);
-  console.log('Files in baseline: ' + manifest.fileCount);
+  console.log(`Manifest generated: ${  manifest.generated}`);
+  console.log(`Algorithm: ${  manifest.algorithm}`);
+  console.log(`Files in baseline: ${  manifest.fileCount}`);
   console.log('');
 
   const results = {
@@ -84,24 +83,24 @@ function verifyIntegrity() {
 
 function printResults(results) {
   if (results.verified > 0) {
-    console.log('VERIFIED: ' + results.verified + ' file(s) match baseline');
+    console.log(`VERIFIED: ${  results.verified  } file(s) match baseline`);
   }
 
   if (results.missing.length > 0) {
     console.log('');
-    console.log('MISSING FILES (' + results.missing.length + '):');
+    console.log(`MISSING FILES (${  results.missing.length  }):`);
     for (const file of results.missing) {
-      console.log('  - ' + file);
+      console.log(`  - ${  file}`);
     }
   }
 
   if (results.modified.length > 0) {
     console.log('');
-    console.log('MODIFIED FILES (' + results.modified.length + '):');
+    console.log(`MODIFIED FILES (${  results.modified.length  }):`);
     for (const mod of results.modified) {
-      console.log('  - ' + mod.file);
-      console.log('    Expected: ' + mod.expected);
-      console.log('    Actual:   ' + mod.actual);
+      console.log(`  - ${  mod.file}`);
+      console.log(`    Expected: ${  mod.expected}`);
+      console.log(`    Actual:   ${  mod.actual}`);
     }
   }
 
@@ -118,6 +117,13 @@ function printResults(results) {
   }
 }
 
-const results = verifyIntegrity();
-printResults(results);
-process.exit(results.success ? 0 : 1);
+// Export for testing
+export { verifyIntegrity, printResults };
+
+// Only run main when executed directly (not imported by tests)
+const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (isDirectRun) {
+  const results = verifyIntegrity();
+  printResults(results);
+  process.exit(results.success ? 0 : 1);
+}

@@ -67,11 +67,13 @@ status: draft
 **Question:** Which choice produces the greatest good for the greatest number?
 
 **Option A Analysis:**
+
 - Benefits:
 - Harms:
 - Net Assessment:
 
 **Option B Analysis:**
+
 - Benefits:
 - Harms:
 - Net Assessment:
@@ -86,6 +88,7 @@ status: draft
 
 **Relevant Duties:**
 -
+
 -
 
 **Universal Law Test:** If everyone did this, would it undermine the principle itself?
@@ -99,6 +102,7 @@ status: draft
 **Question:** What would a person of good character do? Which choice reflects who we want to be?
 
 **Virtues at Stake:**
+
 - Courage:
 - Honesty:
 - Justice:
@@ -115,6 +119,7 @@ status: draft
 **Question:** What do our relationships and responsibilities to specific people require?
 
 **Key Relationships:**
+
 | Relationship | Our Responsibility | What Care Requires |
 |--------------|-------------------|-------------------|
 | | | |

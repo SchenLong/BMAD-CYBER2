@@ -23,13 +23,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Security Control Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 To inventory and evaluate existing security controls against identified STRIDE threats, assess control effectiveness, and identify critical gaps where threats are not adequately mitigated.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -37,7 +37,7 @@ To inventory and evaluate existing security controls against identified STRIDE t
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona) specializing in security controls
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this role
@@ -47,28 +47,28 @@ To inventory and evaluate existing security controls against identified STRIDE t
 - ✅ Together we assess what's working and what needs improvement
 - ✅ Maintain collaborative, analytical, constructive tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on evaluating existing controls against threats
 - 🚫 FORBIDDEN to jump ahead to recommendations or new control proposals
 - 💬 Approach: Map controls to threats, assess effectiveness, identify gaps
 - 📋 Reference industry standards (NIST CSF, CIS Controls, OWASP ASVS) where applicable
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Map existing controls to STRIDE threats from Step 2
 - 💾 Document control assessment in Section 4 of output file
 - 📖 Update frontmatter `stepsCompleted` to include 3 before loading next step
 - 🚫 FORBIDDEN to recommend new controls in this step (that's Step 6)
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Architecture Overview (Section 2), complete STRIDE threat model (Section 3)
 - Focus: Evaluate what controls EXIST now, not what should exist
 - Limits: Don't assume controls exist without user confirmation
 - Dependencies: Requires completed threat model from Step 2
 
-## CONTROL ASSESSMENT SEQUENCE:
+## CONTROL ASSESSMENT SEQUENCE
 
 ### 1. Initialize Control Assessment
 
@@ -88,6 +88,7 @@ This assessment will reference industry frameworks like NIST CSF, CIS Controls, 
 Read {outputFile} Section 3 (Threat Model) to understand all identified threats.
 
 "Based on our threat model, we identified [X] threats across 6 STRIDE categories:
+
 - Spoofing: [count]
 - Tampering: [count]
 - Repudiation: [count]
@@ -110,6 +111,7 @@ These controls address Spoofing (S) and Elevation of Privilege (E) threats.
 **What authentication controls do you have in place?**
 
 Common controls:
+
 - Multi-factor authentication (MFA) - where implemented?
 - Password policies (complexity, rotation, history)
 - SSO/Identity federation
@@ -119,6 +121,7 @@ Common controls:
 - Account lockout policies
 
 For each control, describe:
+
 - Where it's implemented (which components)
 - Coverage (all users, admin only, specific services)
 - Maturity level (basic, intermediate, advanced)"
@@ -134,6 +137,7 @@ These controls address Elevation of Privilege (E) threats.
 **What authorization controls exist?**
 
 Common controls:
+
 - Role-based access control (RBAC)
 - Attribute-based access control (ABAC)
 - Principle of least privilege enforcement
@@ -143,6 +147,7 @@ Common controls:
 - Service-to-service authorization
 
 For each control, describe:
+
 - Implementation approach
 - Granularity (coarse vs fine-grained)
 - Enforcement points (UI only, API, database)"
@@ -158,6 +163,7 @@ These controls address Tampering (T) and Information Disclosure (I) threats.
 **What data protection controls are implemented?**
 
 Common controls:
+
 - Encryption in transit (TLS version, certificate management)
 - Encryption at rest (database, file storage, backups)
 - Data classification and handling
@@ -167,6 +173,7 @@ Common controls:
 - Data loss prevention (DLP)
 
 For each control:
+
 - What data is protected?
 - Encryption algorithms and key lengths
 - Key management approach"
@@ -182,6 +189,7 @@ These controls address Tampering (T) and Information Disclosure (I) threats.
 **What input validation and output encoding controls exist?**
 
 Common controls:
+
 - Input validation (allowlists, type checking, length limits)
 - SQL injection prevention (parameterized queries, ORMs)
 - XSS prevention (output encoding, CSP headers)
@@ -191,6 +199,7 @@ Common controls:
 - API request validation (schema validation)
 
 For each control:
+
 - Where implemented (centralized vs per-endpoint)
 - Coverage (all inputs, critical only)"
 
@@ -205,6 +214,7 @@ These controls address Repudiation (R) threats and enable detection of other att
 **What logging and monitoring controls are in place?**
 
 Common controls:
+
 - Authentication event logging (success, failures)
 - Authorization decision logging
 - Data access logging
@@ -216,6 +226,7 @@ Common controls:
 - Centralized logging
 
 For each control:
+
 - What events are logged?
 - Log retention duration
 - Monitoring/alerting capabilities"
@@ -231,6 +242,7 @@ These controls address multiple threat categories across network layers.
 **What network security controls exist?**
 
 Common controls:
+
 - Firewalls (network, web application)
 - Network segmentation/VLANs
 - DMZ architecture
@@ -241,6 +253,7 @@ Common controls:
 - DNS security (DNSSEC)
 
 For each control:
+
 - Placement in architecture
 - Rules/policies enforced"
 
@@ -255,6 +268,7 @@ These controls address Tampering (T), Information Disclosure (I), and Denial of 
 **What application-level security controls exist?**
 
 Common controls:
+
 - Rate limiting/throttling
 - CAPTCHA for automated abuse prevention
 - Content Security Policy (CSP) headers
@@ -265,6 +279,7 @@ Common controls:
 - Code signing
 
 For each control:
+
 - Implementation details
 - Coverage and exceptions"
 
@@ -279,6 +294,7 @@ These controls provide defense-in-depth across all threat categories.
 **What infrastructure security controls are implemented?**
 
 Common controls:
+
 - Patch management (OS, applications, dependencies)
 - Hardened base images/configurations
 - Secure defaults
@@ -289,6 +305,7 @@ Common controls:
 - Backup and recovery procedures
 
 For each control:
+
 - Automation level
 - Update frequency
 - Coverage"
@@ -300,6 +317,7 @@ For each control:
 "**Mapping Controls to Threats**
 
 Now let's map your existing controls to the threats we identified in Step 2. This will show us:
+
 - Which threats are well-protected
 - Which threats have weak or missing controls
 - Where multiple controls provide defense-in-depth
@@ -309,6 +327,7 @@ I'll create a mapping matrix..."
 For each threat from Section 3, work with user to identify which controls (if any) mitigate it:
 
 Example format:
+
 - **Threat: API authentication bypass (Spoofing)**
   - **Controls:** MFA on user logins, API key validation, OAuth 2.0 implementation
   - **Assessment:** Partial coverage (API keys not rotated, MFA not enforced for all users)
@@ -321,12 +340,14 @@ Example format:
 For each control, let's assess its effectiveness using these criteria:
 
 **Effectiveness Levels:**
+
 - **Effective**: Control fully mitigates the threat
 - **Partially Effective**: Control reduces risk but doesn't eliminate threat
 - **Ineffective**: Control exists but doesn't significantly reduce risk
 - **Not Implemented**: No control in place
 
 **Assessment Factors:**
+
 - Coverage: Is the control applied consistently?
 - Implementation: Is it correctly configured?
 - Testing: Is effectiveness validated?
@@ -341,6 +362,7 @@ Work through controls to assign effectiveness ratings.
 Based on our assessment, let's identify critical gaps:
 
 **Gap Categories:**
+
 1. **Missing Controls**: Threats with no mitigating controls
 2. **Weak Controls**: Controls that are ineffective or poorly implemented
 3. **Coverage Gaps**: Controls that exist but aren't applied everywhere needed
@@ -447,6 +469,7 @@ Update {outputFile} Section 4 (Security Control Assessment):
 ```
 
 Update frontmatter in {outputFile}:
+
 - Add 3 to `stepsCompleted` array: `stepsCompleted: [1, 2, 3]`
 - Set `lastStep: 'control-assessment'`
 - Add `controlsInventoried: [count]`
@@ -456,14 +479,14 @@ Update frontmatter in {outputFile}:
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Continue to Attack Surface Analysis
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with prompt: "Review our control assessment for completeness. Are there controls we missed? Are effectiveness ratings accurate? Are there hidden gaps we haven't identified?"
 - IF P: Execute {partyModeWorkflow} with prompt: "Invite Sentinel (compliance expert) to review our control assessment for compliance framework alignment, or Ghost (penetration tester) for bypass techniques perspective."
-- IF C: Verify control assessment complete, save to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify control assessment complete, save to {outputFile}, update frontmatter `stepsCompleted: [1, 2, 3]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -475,13 +498,13 @@ Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [C] Conti
 ONLY WHEN 'C' is selected AND control inventory is documented AND control-to-threat mapping is complete AND gaps are identified in Section 4 of {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2, 3]`, `lastStep: 'control-assessment'`
-2. Load, read entire file, then execute {nextStepFile} to begin optional attack surface analysis
+2. Load, read entire file, then follow {nextStepFile} to begin optional attack surface analysis
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Complete control inventory across all 8 categories
 - Controls mapped to STRIDE threats from Step 2
@@ -492,7 +515,7 @@ ONLY WHEN 'C' is selected AND control inventory is documented AND control-to-thr
 - User validated assessment completeness
 - Frontmatter updated with step 3 completion
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping control categories
 - Not mapping controls to specific threats

@@ -76,12 +76,14 @@ classification: "internal"
 ```
 
 **Use Cases:**
+
 - Reports and assessments
 - PRDs and architecture documents
 - Meeting notes and decisions
 - Analysis summaries
 
 **Benefits:**
+
 - Human-readable
 - Git-friendly (easy diffs)
 - Supports frontmatter metadata
@@ -113,12 +115,14 @@ threat_model:
 ```
 
 **Use Cases:**
+
 - Configuration exports
 - Structured findings
 - Decision frameworks
 - Data schemas
 
 **Benefits:**
+
 - Machine-parseable
 - Preserves structure
 - Easy to version control
@@ -148,6 +152,7 @@ threat_model:
 ```
 
 **Use Cases:**
+
 - API integrations
 - Tool imports (Jira, GitHub Issues)
 - Automated processing
@@ -165,6 +170,7 @@ VULN-003,medium,5.2,Missing Headers,open,devops
 ```
 
 **Use Cases:**
+
 - Manifest files (agents, workflows)
 - Findings exports
 - Spreadsheet imports

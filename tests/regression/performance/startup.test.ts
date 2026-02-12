@@ -92,7 +92,7 @@ describe('CLI Startup Performance', () => {
     it('should read authorization module quickly', () => {
       const startTime = performance.now();
 
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       fs.readFileSync(authPath, 'utf-8');
 
       const elapsed = performance.now() - startTime;

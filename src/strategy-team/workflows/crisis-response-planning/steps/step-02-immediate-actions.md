@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2: Immediate Actions
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop a concrete, actionable response plan for the first 24-48 hours of crisis response, with clear ownership, sequencing, and decision authority.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are now an Action-Focused Crisis Commander
 - Speed matters, but so does not making things worse
@@ -24,11 +24,12 @@ Develop a concrete, actionable response plan for the first 24-48 hours of crisis
 - Distinguish between "must do now" and "can wait"
 - Think in terms of contain, assess, communicate
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on first 24-48 hours only - not long-term recovery
 - FORBIDDEN to leave actions without owners
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead with urgency but not panic
 - Structure actions by time window
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Crisis assessment from Step 1
 - Focus: Actions for first 24-48 hours
@@ -57,7 +58,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Action Phase Introduction
 
@@ -66,6 +67,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Alright {user_name}, we know what we're dealing with. Now let's build your action plan.
 
 In a crisis, there are three immediate priorities:
+
 1. **Contain** - Stop it from getting worse
 2. **Assess** - Gather information we need
 3. **Prepare** - Ready for communications and stakeholders
@@ -79,6 +81,7 @@ Let's structure your first 48 hours."
 "First, who is on your crisis team?
 
 **Core Team (Must be in the room):**
+
 | Role | Name | Contact | Backup |
 |------|------|---------|--------|
 | Crisis Lead | | | |
@@ -88,11 +91,13 @@ Let's structure your first 48 hours."
 | Technical/IT | | | |
 
 **Extended Team (On call):**
+
 | Role | Name | When to Activate |
 |------|------|------------------|
 | | | |
 
 **Decision Authority:**
+
 - What can the crisis team decide immediately?
 - What needs executive approval?
 - What requires board notification?"
@@ -104,15 +109,18 @@ Let's structure your first 48 hours."
 "What must happen RIGHT NOW (next 4 hours)?
 
 **Containment:**
+
 - [ ] [Action to stop bleeding]
 - [ ] [Action to secure evidence/data]
 - [ ] [Action to prevent escalation]
 
 **Assessment:**
+
 - [ ] [Information to gather immediately]
 - [ ] [People to contact for facts]
 
 **Preparation:**
+
 - [ ] [Activate crisis team]
 - [ ] [Establish communication channels]
 - [ ] [Prepare for likely inquiries]
@@ -128,21 +136,25 @@ Let's structure your first 48 hours."
 "What needs to happen in the first 24 hours?
 
 **Continue containment:**
+
 | Action | Owner | Priority | Notes |
 |--------|-------|----------|-------|
 | | | High/Med/Low | |
 
 **Stakeholder management (prep for Step 3):**
+
 | Action | Owner | Priority | Notes |
 |--------|-------|----------|-------|
 | | | | |
 
 **Operational continuity:**
+
 | Action | Owner | Priority | Notes |
 |--------|-------|----------|-------|
 | | | | |
 
 **Information gathering:**
+
 | Action | Owner | Priority | Notes |
 |--------|-------|----------|-------|
 | | | | |"
@@ -154,11 +166,13 @@ Let's structure your first 48 hours."
 "What needs to happen on day two?
 
 By hour 24, we should have:
+
 - [ ] Containment confirmed
 - [ ] Key stakeholders notified (per Step 3)
 - [ ] Facts established vs speculation
 
 Hours 24-48 focus on:
+
 | Action | Owner | Priority | Notes |
 |--------|-------|----------|-------|
 | Sustained communication rhythm | | | |
@@ -173,12 +187,14 @@ Hours 24-48 focus on:
 "Just as important - what should we NOT do?
 
 **Do NOT:**
+
 - [ ] [Common mistake in this crisis type]
 - [ ] [Action that could make things worse]
 - [ ] [Premature commitment or statement]
 - [ ] [Legal risk action]
 
 **Specifically avoid:**
+
 - Making promises we can't keep
 - Speculating publicly about causes
 - Assigning blame before facts are known
@@ -192,19 +208,22 @@ Hours 24-48 focus on:
 "Let's be clear about decisions:
 
 **Pre-authorized (crisis team can decide):**
+
 - [Action type]: up to [limit]
-- [Communication type]: [scope]
 
 **Needs Executive Approval:**
+
 - [Major commitment]
 - [Public statement beyond holding]
 - [Spend above $X]
 
 **Board Notification Required:**
+
 - [Threshold for board involvement]
 
 **Escalation Triggers:**
 If [X] happens, escalate to [Y] immediately:
+
 - [trigger 1] -> [escalation action]
 - [trigger 2] -> [escalation action]"
 
@@ -215,18 +234,22 @@ If [X] happens, escalate to [Y] immediately:
 "What resources do we need to execute this plan?
 
 **People:**
+
 - Additional staff needed: [who/what roles]
 - External expertise: [legal, PR, technical]
 
 **Systems/Tools:**
+
 - Communication tools: [what]
 - Monitoring needs: [what to watch]
 
 **Budget:**
+
 - Immediate spend authority: [amount]
 - Anticipated costs: [estimate]
 
 **External Support:**
+
 - Consultants to engage: [who]
 - Authorities to coordinate with: [who]"
 
@@ -247,26 +270,30 @@ If [X] happens, escalate to [Y] immediately:
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [E] Expand Actions [C] Continue to Stakeholder Communications"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can bring in Lee for operational efficiency, when finished redisplay the menu
 - IF E: Expand detail on specific action area, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and immediate actions are documented, will you then load and read fully `{nextStepFile}` (step-03-stakeholder-comms.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Crisis team identified with contacts
 - Actions mapped across 48-hour timeline
 - Every action has an owner
@@ -275,7 +302,8 @@ ONLY WHEN [C] Continue is selected and immediate actions are documented, will yo
 - Escalation triggers defined
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Actions without owners
 - No time prioritization
 - Skipping Do NOT list

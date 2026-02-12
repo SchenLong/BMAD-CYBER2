@@ -17,13 +17,13 @@ outputFile: '{output_folder}/planning/architecture/security-review-{project_name
 
 # Step 7: Final Report Generation
 
-## STEP GOAL:
+## STEP GOAL
 
 To generate an executive summary synthesizing key findings and complete the Security Architecture Review report, making it stakeholder-ready for distribution to executives, boards, auditors, and technical teams.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -31,7 +31,7 @@ To generate an executive summary synthesizing key findings and complete the Secu
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona) finalizing the security assessment
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this role
@@ -41,34 +41,35 @@ To generate an executive summary synthesizing key findings and complete the Secu
 - ✅ Together we create a report that serves both technical and executive audiences
 - ✅ Maintain professional, clear, stakeholder-appropriate tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on executive summary and final report polish
 - 🚫 FORBIDDEN to modify technical sections (already completed)
 - 💬 Approach: Synthesize for executives, validate completeness, finalize
 - 📋 Report must be ready to share with executives, boards, auditors
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Generate executive summary (Section 1)
 - 💾 Finalize complete report with all 7 sections
 - 📖 Mark workflow complete: `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`
 - 🚫 FORBIDDEN to skip executive summary
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: All completed sections 2-7
 - Focus: Executive summary and final report validation
 - Limits: Don't modify technical analysis already completed
 - Dependencies: All previous steps must be complete
 
-## REPORT GENERATION SEQUENCE:
+## REPORT GENERATION SEQUENCE
 
 ### 1. Initialize Final Report Phase
 
 "**Final Report Generation**
 
 We've completed all analysis phases:
+
 - ✅ Architecture context gathered
 - ✅ STRIDE threat modeling ([X] threats identified)
 - ✅ Security control assessment ([Y] gaps found)
@@ -81,6 +82,7 @@ Now let's create the executive summary and finalize your Security Architecture R
 ### 2. Review Complete Report
 
 Read entire {outputFile} to understand:
+
 - Section 2: Architecture scope and context
 - Section 3: Threat model summary (total threats, categories)
 - Section 4: Control assessment (gaps, effectiveness)
@@ -96,6 +98,7 @@ Read entire {outputFile} to understand:
 "**Executive Summary Development**
 
 The executive summary must:
+
 - Communicate clearly to non-technical stakeholders
 - Highlight critical risks requiring immediate attention
 - Quantify findings (number of threats, gaps, recommendations)
@@ -155,6 +158,7 @@ Phased remediation over [timeline] with estimated [%] risk reduction.
 Let me verify the report is complete and stakeholder-ready:
 
 **✅ Structure Completeness:**
+
 - [✓] Section 1: Executive Summary
 - [✓] Section 2: Architecture Overview
 - [✓] Section 3: Threat Model (STRIDE)
@@ -165,6 +169,7 @@ Let me verify the report is complete and stakeholder-ready:
 - [✓] Section 7: Implementation Roadmap
 
 **✅ Quality Checks:**
+
 - All 6 STRIDE categories covered: [✓/✗]
 - Minimum 3 threats per major component: [✓/✗]
 - Recommendations are specific (not generic): [✓/✗]
@@ -174,6 +179,7 @@ Let me verify the report is complete and stakeholder-ready:
 - Standards references (NIST, CIS, OWASP): [✓/✗]
 
 **✅ Stakeholder Readiness:**
+
 - Executive summary clear for non-technical audience: [✓/✗]
 - Technical depth appropriate for security/dev teams: [✓/✗]
 - Actionable recommendations with owners: [✓/✗]
@@ -223,11 +229,13 @@ totalSessionTime: [if tracked]
 Also update the status line at top of {outputFile}:
 
 Change from:
+
 ```
 **Status:** In Progress
 ```
 
 To:
+
 ```
 **Status:** ✅ COMPLETE
 **Completed:** [Current date]
@@ -241,6 +249,7 @@ To:
 Your comprehensive Security Architecture Review for **{project_name}** is now complete and ready for stakeholder distribution.
 
 **Report Summary:**
+
 - **File:** {outputFile}
 - **Sections:** 7 (Executive Summary, Architecture, Threats, Controls, Zero-Trust, Risk Matrix, Recommendations, Roadmap)
 - **Threats Identified:** [X] across 6 STRIDE categories
@@ -260,6 +269,7 @@ Your comprehensive Security Architecture Review for **{project_name}** is now co
 `{outputFile}`
 
 Would you like me to:
+
 - Generate a condensed one-page summary for executives?
 - Create presentation slides from the findings?
 - Discuss any specific section in more detail?
@@ -268,6 +278,7 @@ Would you like me to:
 ### 8. Mark Workflow Complete
 
 Update frontmatter final status:
+
 - `stepsCompleted: [1, 2, 3, 4, 5, 6, 7]`
 - `lastStep: 'report-generation'`
 - `workflowStatus: 'COMPLETE'`
@@ -279,7 +290,7 @@ Update frontmatter final status:
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Executive summary generated and user-approved
 - Executive summary clear for non-technical stakeholders
@@ -290,7 +301,7 @@ Update frontmatter final status:
 - Final success message displayed with next steps
 - Report is stakeholder-ready
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Missing or generic executive summary
 - Incomplete report sections
@@ -308,6 +319,7 @@ Update frontmatter final status:
 **🎉 This is the final step. After completing this step, the Security Architecture Review workflow is finished.**
 
 The user now has a comprehensive, stakeholder-ready security assessment report with:
+
 - Executive summary for leadership
 - Technical threat analysis (STRIDE)
 - Control gap assessment

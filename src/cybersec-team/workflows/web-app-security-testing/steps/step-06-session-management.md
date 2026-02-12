@@ -10,25 +10,27 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 
 # Step 6: Session Management Testing
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
 - Guide session security testing comprehensively
 
-## SESSION MANAGEMENT TESTING SEQUENCE:
+## SESSION MANAGEMENT TESTING SEQUENCE
 
 ### 1. Session Token Analysis
 
 "Let's analyze session token security.
 
 **Token Properties:**
+
 - Token name and location (cookie, header, URL)?
 - Token length and character set?
 - Entropy analysis (is it random enough)?
 - Predictable patterns or sequences?
 
 **Entropy Testing:**
+
 - Collect multiple tokens
 - Analyze with Burp Sequencer
 - Check for timestamp encoding
@@ -41,6 +43,7 @@ What session tokens have you captured for analysis?"
 "Let's verify cookie security flags.
 
 **Required Attributes:**
+
 - **Secure**: Only transmitted over HTTPS
 - **HttpOnly**: Not accessible via JavaScript
 - **SameSite**: Cross-site request restrictions
@@ -49,6 +52,7 @@ What session tokens have you captured for analysis?"
 - **Expires/Max-Age**: Session vs persistent
 
 **Testing:**
+
 1. Capture Set-Cookie headers
 2. Verify all security flags
 3. Check for cookie-based tokens without flags
@@ -60,16 +64,19 @@ What are the cookie attributes in use?"
 "Testing session lifecycle security.
 
 **Session Creation:**
+
 - New session on login?
 - Session fixation possible?
 - Pre-authentication session converted?
 
 **Session Timeout:**
+
 - Idle timeout configured?
 - Absolute timeout enforced?
 - Timeout too long (> 30 min idle)?
 
 **Session Termination:**
+
 - Logout invalidates session server-side?
 - Token still works after logout?
 - All sessions terminated on password change?
@@ -81,12 +88,14 @@ What session lifecycle behavior have you observed?"
 "Testing for session fixation attacks.
 
 **Fixation Test Steps:**
+
 1. Obtain session token before login
 2. Login with valid credentials
 3. Check if same session token is used
 4. If yes: VULNERABLE
 
 **Fixation via:**
+
 - URL parameters (`?SESSIONID=abc`)
 - Hidden form fields
 - Cookie setting (cross-subdomain)
@@ -98,6 +107,7 @@ What session fixation testing results do you have?"
 "Testing concurrent session handling.
 
 **Multi-Session Security:**
+
 - Can same user have multiple sessions?
 - Max concurrent sessions enforced?
 - Session displayed in account settings?
@@ -105,6 +115,7 @@ What session fixation testing results do you have?"
 - Notification on new login?
 
 **Testing:**
+
 1. Login from Browser A
 2. Login from Browser B (same user)
 3. Check if both sessions valid
@@ -117,18 +128,21 @@ What concurrent session behavior have you found?"
 "Testing CSRF protection.
 
 **CSRF Token Analysis:**
+
 - CSRF tokens present in forms?
 - Token validated server-side?
 - Token unique per session/request?
 - Token in header vs form field?
 
 **Bypass Attempts:**
+
 - Remove token entirely
 - Use token from different session
 - Modify token value
 - Check non-form endpoints (APIs)
 
 **CSRF Vulnerable Actions:**
+
 - Password change
 - Email change
 - Account deletion
@@ -142,6 +156,7 @@ What CSRF testing have you performed?"
 "For JWT-based sessions:
 
 **JWT Security Checks:**
+
 - Algorithm confusion (`none` algorithm)?
 - Weak secret (brute-forceable)?
 - Signature actually validated?
@@ -150,6 +165,7 @@ What CSRF testing have you performed?"
 - Token revocation possible?
 
 **JWT Testing:**
+
 1. Decode token (jwt.io)
 2. Try `alg: none` bypass
 3. Brute force weak secrets
@@ -212,6 +228,7 @@ Append to {outputFile} Section 6:
 "**Session Management Testing Complete**
 
 **Findings:**
+
 - Cookie security issues: [Count]
 - Session lifecycle issues: [Count]
 - CSRF vulnerabilities: [Count]
@@ -229,4 +246,4 @@ Display: [C] Continue to Business Logic [R] Review/Add Session Findings [E] Expl
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then follow {nextStepFile}.

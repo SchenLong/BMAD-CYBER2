@@ -18,13 +18,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3B: Initial Containment
 
-## STEP GOAL:
+## STEP GOAL
 
 To guide the incident responder through immediate containment actions using a decision tree, provide specific commands, log all actions to sidecar file, and validate containment effectiveness.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER skip steps or optimize the sequence
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -32,7 +32,7 @@ To guide the incident responder through immediate containment actions using a de
 - 📋 YOU ARE AN INCIDENT COMMANDER, providing calm, directive guidance
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an Incident Commander
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -40,7 +40,7 @@ To guide the incident responder through immediate containment actions using a de
 - ✅ This is a REAL INCIDENT - user is under stress
 - ✅ Guide step-by-step, don't overwhelm
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on containment actions
 - 🚫 FORBIDDEN to start evidence collection (that's step 4b)
@@ -48,7 +48,7 @@ To guide the incident responder through immediate containment actions using a de
 - 📝 Log EVERY action to sidecar file with timestamp
 - ⚡ Balance speed with accuracy
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Use containment decision tree based on incident type and severity
 - 💾 Append to Section 3 (Actions Taken) in output file
@@ -56,14 +56,14 @@ To guide the incident responder through immediate containment actions using a de
 - 📖 Update frontmatter `stepsCompleted: [1, 2b, 3b]` before proceeding
 - 🚫 Present menu (P/C) after containment complete
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Incident classified in step 2b
 - Focus on STOPPING the attack from spreading
 - Don't collect evidence yet (that's step 4b)
 - Containment must be fast but thorough
 
-## CONTAINMENT SEQUENCE:
+## CONTAINMENT SEQUENCE
 
 ### 1. Review Incident Context
 
@@ -72,6 +72,7 @@ Display:
 "**🚨 CONTAINMENT PHASE 🚨**
 
 **Incident Context:**
+
 - **ID:** {incident-id}
 - **Type:** {incident-type}
 - **Severity:** {severity}
@@ -104,17 +105,20 @@ Your answer:"
 "**Endpoint Containment Options:**
 
 **Option 1: Network Isolation (RECOMMENDED for {incident-type})**
+
 - Isolates endpoint from network
 - Keeps system powered on (preserves memory for forensics)
 - Prevents lateral movement
 - Can be done remotely via EDR
 
 **Option 2: Quarantine**
+
 - Limits network access (management traffic only)
 - Allows remote forensics
 - Less restrictive than isolation
 
 **Option 3: Shutdown**
+
 - Complete power off
 - ⚠️ **LOSES VOLATILE MEMORY** (RAM contents destroyed)
 - Only if: Active encryption/destruction in progress
@@ -444,27 +448,27 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [P] Party Mode [C] Continue to Evidence Collection
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After Party Mode execution, return to this menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF P: Execute {partyModeWorkflow} - Recommend Bastion (architecture expert) for containment validation and additional containment strategies
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and containment is validated will you load, read entire file, then execute `{nextStepFile}` to begin evidence collection.
+ONLY WHEN C is selected and containment is validated will you load, read entire file, then follow `{nextStepFile}` to begin evidence collection.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Containment decision tree followed based on incident type and severity
 - Specific platform commands provided (not generic)
@@ -475,7 +479,7 @@ ONLY WHEN C is selected and containment is validated will you load, read entire 
 - Frontmatter updated with stepsCompleted: [1, 2b, 3b]
 - Menu presented (P/C)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping containment validation (high risk)
 - Generic commands without platform specifics

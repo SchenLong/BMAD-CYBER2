@@ -97,7 +97,7 @@ export async function probeEndpoint(url, timeout = DEFAULT_PROBE_TIMEOUT) {
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      return { success: false, error: 'HTTP ' + response.status + ': ' + response.statusText };
+      return { success: false, error: `HTTP ${  response.status  }: ${  response.statusText}` };
     }
 
     let data;
@@ -238,10 +238,10 @@ export function formatDetectedProviders(providers) {
     lines.push('  Running:');
     for (const p of running) {
       const modelCount = p.models.length;
-      const modelInfo = modelCount > 0 ? ' (' + modelCount + ' model' + (modelCount !== 1 ? 's' : '') + ')' : '';
-      lines.push('    [OK] ' + p.name + ' at ' + p.endpoint + modelInfo);
+      const modelInfo = modelCount > 0 ? ` (${  modelCount  } model${  modelCount !== 1 ? 's' : ''  })` : '';
+      lines.push(`    [OK] ${  p.name  } at ${  p.endpoint  }${modelInfo}`);
       if (p.models.length > 0 && p.models[0] !== 'default') {
-        lines.push('         Models: ' + p.models.slice(0, 3).join(', ') + (p.models.length > 3 ? '...' : ''));
+        lines.push(`         Models: ${  p.models.slice(0, 3).join(', ')  }${p.models.length > 3 ? '...' : ''}`);
       }
     }
   }
@@ -250,7 +250,7 @@ export function formatDetectedProviders(providers) {
     lines.push('');
     lines.push('  Not Running:');
     for (const p of stopped) {
-      lines.push('    [--] ' + p.name + ' at ' + p.endpoint);
+      lines.push(`    [--] ${  p.name  } at ${  p.endpoint}`);
     }
   }
 

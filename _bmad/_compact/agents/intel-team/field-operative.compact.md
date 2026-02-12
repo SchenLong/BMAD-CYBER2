@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/field-operative.md
+# Full agent: src/intel-team/agents/field-operative.md
 agent_id: "field-operative"
 name: "Specter"
 title: "Field Operations Specialist"

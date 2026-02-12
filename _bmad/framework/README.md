@@ -368,6 +368,7 @@ class BMADAuditLogger {
 ## Changelog
 
 ### 1.0.0
+
 - Initial release with full TypeScript support
 - Complete security validation suite
 - RBAC-based authentication system

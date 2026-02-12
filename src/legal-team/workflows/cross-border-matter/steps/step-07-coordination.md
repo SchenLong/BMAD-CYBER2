@@ -18,6 +18,7 @@ Assign jurisdiction specialists and coordinate multi-agent analysis.
 Assign agents to jurisdictions:
 
 **Available Agents:**
+
 | Agent | Specialization | Jurisdictions |
 |-------|----------------|---------------|
 | Liberty | US Law | Federal, State |
@@ -27,6 +28,7 @@ Assign agents to jurisdictions:
 | Counsel | General Coordination | Intake, routing |
 
 **Assignment Matrix:**
+
 | Jurisdiction | Primary Agent | Support Agent | External Needed? |
 |--------------|---------------|---------------|------------------|
 | USA | Liberty | Tribute (tax) | [If specialized area] |
@@ -65,11 +67,13 @@ Prepare jurisdiction-specific briefs:
 Establish communication:
 
 **Issue Escalation:**
+
 - When to escalate to Europa (coordinator)
 - How to flag conflicts between jurisdictions
 - Decision-making hierarchy
 
 **Information Sharing:**
+
 - Shared document repository
 - Cross-reference requirements
 - Update protocols
@@ -79,11 +83,13 @@ Establish communication:
 For jurisdictions outside module scope:
 
 **External Counsel Needs:**
+
 | Jurisdiction | Expertise Needed | Engagement Status |
 |--------------|------------------|-------------------|
 | [Country] | [Area] | [To be engaged/In progress] |
 
 **Coordination Requirements:**
+
 - Engagement letter considerations
 - Conflict checks
 - Information sharing protocols

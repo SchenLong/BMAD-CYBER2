@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmgd/agents/game-architect.md
+# Full agent: src/bmgd/agents/game-architect.md
 agent_id: "game-architect"
 name: "Cloud Dragonborn"
 title: "Game Architect"

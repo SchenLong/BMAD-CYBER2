@@ -213,7 +213,7 @@ class ProgressReporter extends EventEmitter {
         task.status = ProgressStatus.FAILED;
         task.endTime = Date.now();
         task.error = error instanceof Error ? error.message : error;
-        task.message = "Failed: " + task.error;
+        task.message = `Failed: ${  task.error}`;
 
         // Update global progress
         this.globalProgress.status = ProgressStatus.FAILED;
@@ -411,11 +411,11 @@ class ProgressReporter extends EventEmitter {
      * @private
      */
     _formatDuration(ms) {
-        if (ms < 1000) return ms + "ms";
-        if (ms < 60000) return (ms / 1000).toFixed(1) + "s";
+        if (ms < 1000) return `${ms  }ms`;
+        if (ms < 60000) return `${(ms / 1000).toFixed(1)  }s`;
         const minutes = Math.floor(ms / 60000);
         const seconds = Math.floor((ms % 60000) / 1000);
-        return minutes + "m " + seconds + "s";
+        return `${minutes  }m ${  seconds  }s`;
     }
 
     /**
@@ -530,11 +530,11 @@ class ProgressReporter extends EventEmitter {
 
             const percentage = this._calculatePercentage(task.current, task.total);
             const progressBar = this._createProgressBar(percentage);
-            const spinner = this.config.showSpinner ? this.spinnerFrames[this.spinnerIndex] + " " : "";
-            const percentStr = this.config.showPercentage ? " " + percentage + "%" : "";
-            const etaStr = this.config.showETA && task.estimatedCompletion ? " ETA: " + this._formatETA(task.estimatedCompletion) : "";
+            const spinner = this.config.showSpinner ? `${this.spinnerFrames[this.spinnerIndex]  } ` : "";
+            const percentStr = this.config.showPercentage ? ` ${  percentage  }%` : "";
+            const etaStr = this.config.showETA && task.estimatedCompletion ? ` ETA: ${  this._formatETA(task.estimatedCompletion)}` : "";
 
-            const line = indent + spinner + task.name + " " + progressBar + percentStr + etaStr;
+            const line = `${indent + spinner + task.name  } ${  progressBar  }${percentStr  }${etaStr}`;
             lines.push(this._colorize(line, task.status));
         }
 
@@ -556,7 +556,7 @@ class ProgressReporter extends EventEmitter {
         const filledChar = this.config.useColors ? "\x1b[42m \x1b[0m" : "=";
         const emptyChar = this.config.useColors ? "\x1b[47m \x1b[0m" : "-";
 
-        return "[" + filledChar.repeat(filled) + emptyChar.repeat(empty) + "]";
+        return `[${  filledChar.repeat(filled)  }${emptyChar.repeat(empty)  }]`;
     }
 
     /**
@@ -574,7 +574,7 @@ class ProgressReporter extends EventEmitter {
      */
     _renderMinimal() {
         const percentage = this._calculatePercentage(this.globalProgress.current, this.globalProgress.total);
-        console.log("Progress: " + percentage + "%");
+        console.log(`Progress: ${  percentage  }%`);
     }
 
     /**
@@ -585,7 +585,7 @@ class ProgressReporter extends EventEmitter {
         for (const task of this.tasks.values()) {
             const percentage = this._calculatePercentage(task.current, task.total);
             const duration = this._formatDuration(Date.now() - task.startTime);
-            console.log("[" + task.status.toUpperCase() + "] " + task.name + ": " + percentage + "% (" + duration + ")");
+            console.log(`[${  task.status.toUpperCase()  }] ${  task.name  }: ${  percentage  }% (${  duration  })`);
         }
     }
 
@@ -596,9 +596,9 @@ class ProgressReporter extends EventEmitter {
     _renderCI() {
         for (const task of this.tasks.values()) {
             if (task.status === ProgressStatus.COMPLETED) {
-                console.log("::notice::" + task.name + " completed");
+                console.log(`::notice::${  task.name  } completed`);
             } else if (task.status === ProgressStatus.FAILED) {
-                console.log("::error::" + task.name + " failed: " + task.error);
+                console.log(`::error::${  task.name  } failed: ${  task.error}`);
             }
         }
     }
@@ -610,7 +610,7 @@ class ProgressReporter extends EventEmitter {
     _renderMilestone(milestone) {
         const prefix = this.config.useColors ? "\x1b[36m" : "";
         const suffix = this.config.useColors ? "\x1b[0m" : "";
-        console.log(prefix + ">> Milestone: " + milestone.name + suffix);
+        console.log(`${prefix  }>> Milestone: ${  milestone.name  }${suffix}`);
     }
 
     /**
@@ -638,7 +638,7 @@ class ProgressReporter extends EventEmitter {
         };
 
         const color = colors[status] || "";
-        return color + text + "\x1b[0m";
+        return `${color + text  }\x1b[0m`;
     }
 
     /**
@@ -647,19 +647,19 @@ class ProgressReporter extends EventEmitter {
      */
     _generateTextReport(summary) {
         let report = "=== Progress Report ===\n\n";
-        report += "Overall Progress: " + summary.globalProgress.percentage + "%\n";
-        report += "Status: " + summary.globalProgress.status + "\n";
-        report += "Duration: " + summary.timing.formattedDuration + "\n\n";
+        report += `Overall Progress: ${  summary.globalProgress.percentage  }%\n`;
+        report += `Status: ${  summary.globalProgress.status  }\n`;
+        report += `Duration: ${  summary.timing.formattedDuration  }\n\n`;
         report += "Tasks:\n";
 
         for (const task of summary.taskDetails) {
-            report += "  - " + task.name + ": " + task.progress + "% [" + task.status + "]\n";
+            report += `  - ${  task.name  }: ${  task.progress  }% [${  task.status  }]\n`;
         }
 
         if (summary.milestones.length > 0) {
             report += "\nMilestones:\n";
             for (const milestone of summary.milestones) {
-                report += "  - " + milestone.name + "\n";
+                report += `  - ${  milestone.name  }\n`;
             }
         }
 
@@ -675,25 +675,25 @@ class ProgressReporter extends EventEmitter {
         report += "## Summary\n\n";
         report += "| Metric | Value |\n";
         report += "|--------|-------|\n";
-        report += "| Progress | " + summary.globalProgress.percentage + "% |\n";
-        report += "| Status | " + summary.globalProgress.status + " |\n";
-        report += "| Duration | " + summary.timing.formattedDuration + " |\n";
-        report += "| Tasks | " + summary.tasks.total + " |\n";
-        report += "| Completed | " + summary.tasks.completed + " |\n";
-        report += "| Failed | " + summary.tasks.failed + " |\n\n";
+        report += `| Progress | ${  summary.globalProgress.percentage  }% |\n`;
+        report += `| Status | ${  summary.globalProgress.status  } |\n`;
+        report += `| Duration | ${  summary.timing.formattedDuration  } |\n`;
+        report += `| Tasks | ${  summary.tasks.total  } |\n`;
+        report += `| Completed | ${  summary.tasks.completed  } |\n`;
+        report += `| Failed | ${  summary.tasks.failed  } |\n\n`;
 
         report += "## Task Details\n\n";
         report += "| Task | Progress | Status |\n";
         report += "|------|----------|--------|\n";
 
         for (const task of summary.taskDetails) {
-            report += "| " + task.name + " | " + task.progress + "% | " + task.status + " |\n";
+            report += `| ${  task.name  } | ${  task.progress  }% | ${  task.status  } |\n`;
         }
 
         if (summary.milestones.length > 0) {
             report += "\n## Milestones\n\n";
             for (const milestone of summary.milestones) {
-                report += "- **" + milestone.name + "**\n";
+                report += `- **${  milestone.name  }**\n`;
             }
         }
 
@@ -713,7 +713,7 @@ function createProgressBar(current, total, options = {}) {
     const filled = Math.round((percentage / 100) * width);
     const empty = width - filled;
 
-    return "[" + "=".repeat(filled) + "-".repeat(empty) + "] " + percentage + "%";
+    return `[${  "=".repeat(filled)  }${"-".repeat(empty)  }] ${  percentage  }%`;
 }
 
 module.exports = {

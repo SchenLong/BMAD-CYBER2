@@ -40,6 +40,11 @@ set -e  # Exit on error
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$(dirname "$SCRIPT_DIR")"
 
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'

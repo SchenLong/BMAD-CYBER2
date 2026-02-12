@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/the-conservative.md
+# Full agent: src/strategy-team/agents/the-conservative.md
 agent_id: "the-conservative"
 name: "Burke"
 title: "The Conservative - Guardian of Tradition"

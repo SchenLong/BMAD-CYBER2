@@ -1,6 +1,6 @@
 {
   "name": "@bmad-cybercommand/cybersec-team",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Comprehensive cybersecurity operations with 15 specialized security agents",
   "keywords": [
     "bmad",
@@ -28,7 +28,7 @@
     "README.md"
   ],
   "bmad": {
-    "version": "2.1.0",
+    "version": "2.2.0",
     "team": "cybersec-team",
     "format": "bmad-builder",
     "agents": 15,

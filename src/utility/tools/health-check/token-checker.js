@@ -90,7 +90,7 @@ export function decryptToken(token, key) {
     if (err.message && err.message.includes('auth tag')) {
       return { success: false, claims: null, error: 'Decryption failed: authentication tag mismatch (wrong key or corrupted token)' };
     }
-    return { success: false, claims: null, error: 'Decryption failed: ' + (err.message || 'unknown error') };
+    return { success: false, claims: null, error: `Decryption failed: ${  err.message || 'unknown error'}` };
   }
 }
 
@@ -139,13 +139,13 @@ export function formatDuration(ms) {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
   const parts = [];
-  if (days > 0) parts.push(days + ' day' + (days !== 1 ? 's' : ''));
+  if (days > 0) parts.push(`${days  } day${  days !== 1 ? 's' : ''}`);
   const remainingHours = hours % 24;
-  if (remainingHours > 0) parts.push(remainingHours + ' hour' + (remainingHours !== 1 ? 's' : ''));
+  if (remainingHours > 0) parts.push(`${remainingHours  } hour${  remainingHours !== 1 ? 's' : ''}`);
   const remainingMinutes = minutes % 60;
-  if (days === 0 && remainingMinutes > 0) parts.push(remainingMinutes + ' minute' + (remainingMinutes !== 1 ? 's' : ''));
+  if (days === 0 && remainingMinutes > 0) parts.push(`${remainingMinutes  } minute${  remainingMinutes !== 1 ? 's' : ''}`);
   const remainingSeconds = seconds % 60;
-  if (hours === 0 && remainingSeconds > 0) parts.push(remainingSeconds + ' second' + (remainingSeconds !== 1 ? 's' : ''));
+  if (hours === 0 && remainingSeconds > 0) parts.push(`${remainingSeconds  } second${  remainingSeconds !== 1 ? 's' : ''}`);
   return parts.length > 0 ? parts.join(' ') : '0 seconds';
 }
 
@@ -173,10 +173,10 @@ export function checkToken(options = {}) {
     return { status: TOKEN_STATUS.MISSING, role: null, userId: null, expiresIn: null, expiresAt: null, warnings: [], error: 'Both token and key files are missing' };
   }
   if (!fileCheck.tokenExists) {
-    return { status: TOKEN_STATUS.MISSING, role: null, userId: null, expiresIn: null, expiresAt: null, warnings: [], error: 'Token file missing: ' + TOKEN_PATH };
+    return { status: TOKEN_STATUS.MISSING, role: null, userId: null, expiresIn: null, expiresAt: null, warnings: [], error: `Token file missing: ${  TOKEN_PATH}` };
   }
   if (!fileCheck.keyExists) {
-    return { status: TOKEN_STATUS.MISSING, role: null, userId: null, expiresIn: null, expiresAt: null, warnings: [], error: 'Key file missing: ' + KEY_PATH };
+    return { status: TOKEN_STATUS.MISSING, role: null, userId: null, expiresIn: null, expiresAt: null, warnings: [], error: `Key file missing: ${  KEY_PATH}` };
   }
   const key = readKeyFile(fileCheck.keyPath);
   if (!key) {
@@ -193,14 +193,14 @@ export function checkToken(options = {}) {
   const claims = decryptResult.claims;
   const structureCheck = validateTokenStructure(claims);
   if (!structureCheck.valid) {
-    return { status: TOKEN_STATUS.INVALID, role: extractRole(claims), userId: extractUserId(claims), expiresIn: null, expiresAt: null, warnings: [], error: 'Token missing required fields: ' + structureCheck.missingFields.join(', ') };
+    return { status: TOKEN_STATUS.INVALID, role: extractRole(claims), userId: extractUserId(claims), expiresIn: null, expiresAt: null, warnings: [], error: `Token missing required fields: ${  structureCheck.missingFields.join(', ')}` };
   }
   const expirationCheck = checkExpiration(claims, now);
   if (expirationCheck.expired) {
     return { status: TOKEN_STATUS.EXPIRED, role: extractRole(claims), userId: extractUserId(claims), expiresIn: null, expiresAt: expirationCheck.expiresAt, warnings: ['Token has expired'], error: null };
   }
   if (expirationCheck.warningThresholdReached) {
-    warnings.push('Token expires within 24 hours (' + expirationCheck.expiresIn + ')');
+    warnings.push(`Token expires within 24 hours (${  expirationCheck.expiresIn  })`);
   }
   return { status: TOKEN_STATUS.VALID, role: extractRole(claims), userId: extractUserId(claims), expiresIn: expirationCheck.expiresIn, expiresAt: expirationCheck.expiresAt, warnings, error: null };
 }

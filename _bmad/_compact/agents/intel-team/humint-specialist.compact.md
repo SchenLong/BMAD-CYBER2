@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/humint-specialist.md
+# Full agent: src/intel-team/agents/humint-specialist.md
 agent_id: "humint-specialist"
 name: "Viper"
 title: "Human Intelligence Specialist"

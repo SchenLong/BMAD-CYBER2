@@ -9,7 +9,7 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import type { AuditLogEntry, Severity, Action } from '../types/index.js';
+import type { Action, AuditLogEntry, Severity } from '../types/index.js';
 import { getProjectDir } from './path-utils.js';
 import { processEntryForStorage } from '../observability/audit-encryption.js';
 
@@ -54,7 +54,7 @@ function rotateIfNeeded(): void {
       const stats = fs.statSync(logFile);
       if (stats.size > MAX_LOG_SIZE) {
         // Rotate: rename current to .old
-        const oldLog = logFile + '.old';
+        const oldLog = `${logFile  }.old`;
         if (fs.existsSync(oldLog)) {
           fs.unlinkSync(oldLog);
         }
@@ -181,7 +181,7 @@ export class AuditLogger {
 
     try {
       const logFile = getLogFile();
-      fs.appendFileSync(logFile, JSON.stringify(processedEntry) + '\n');
+      fs.appendFileSync(logFile, `${JSON.stringify(processedEntry)  }\n`);
     } catch (e) {
       // Log to stderr if file logging fails
       console.error(`AUDIT LOG (file write failed): ${JSON.stringify(processedEntry)}`);
@@ -262,7 +262,7 @@ export class AuditLogger {
 
     try {
       const logFile = getLogFile();
-      fs.appendFileSync(logFile, JSON.stringify(processedEntry) + '\n');
+      fs.appendFileSync(logFile, `${JSON.stringify(processedEntry)  }\n`);
     } catch {
       // Log to stderr if file logging fails
       console.error(`AUDIT LOG (file write failed): ${JSON.stringify(processedEntry)}`);

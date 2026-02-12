@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/geospatial-analyst.md
+# Full agent: src/intel-team/agents/geospatial-analyst.md
 agent_id: "geospatial-analyst"
 name: "Atlas"
 title: "Geospatial Intelligence Analyst"

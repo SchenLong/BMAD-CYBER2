@@ -37,11 +37,17 @@ const VALIDATOR_NAME = 'plugin_permissions';
 /** Get project directory from environment or cwd */
 const PROJECT_DIR = getProjectDir();
 
-/** Directory containing BMAD modules */
-const BMAD_DIR = path.join(PROJECT_DIR, '_bmad');
+/** Directory containing BMAD modules (post-migration: src/) */
+const BMAD_DIR = path.join(PROJECT_DIR, 'src');
 
 /** Core manifest directory - reserved for future manifest generation */
-export const MANIFESTS_DIR = path.join(PROJECT_DIR, '_bmad', 'core', 'manifests');
+export const MANIFESTS_DIR = path.join(PROJECT_DIR, 'src', 'core', 'manifests');
+
+/** Known module names for directory scanning */
+const KNOWN_MODULES = new Set(Object.keys({
+  'intel-team': 1, 'legal-team': 1, 'strategy-team': 1,
+  'cybersec-team': 1, 'bmm': 1, 'bmb': 1, 'bmgd': 1, 'cis': 1, 'core': 1,
+}));
 
 // ============================================================================
 // Type Definitions
@@ -163,8 +169,8 @@ const CAPABILITIES: Record<string, CapabilityDefinition> = {
  */
 const DEFAULT_PERMISSIONS: PluginPermissions = {
   filesystem: {
-    read: ['_bmad/${plugin}/**', 'docs/**'],
-    write: ['_bmad/${plugin}/output/**'],
+    read: ['src/${plugin}/**', 'docs/**'],
+    write: ['src/${plugin}/output/**'],
   },
   network: false,
   shell: {
@@ -185,13 +191,13 @@ const RBAC_PERMISSIONS: Record<string, RBACPermissions> = {
     sensitive_data: true,
   },
   developer: {
-    filesystem: { read: ['**'], write: ['_bmad/**', 'docs/**', 'dev-tools/**'] },
+    filesystem: { read: ['**'], write: ['src/**', 'docs/**', 'dev-tools/**'] },
     network: true,
     shell: { allowed_commands: ['git', 'npm', 'python', 'pytest'] },
     sensitive_data: false,
   },
   analyst: {
-    filesystem: { read: ['_bmad/**', 'docs/**'], write: ['_bmad/*/output/**'] },
+    filesystem: { read: ['src/**', 'docs/**'], write: ['src/*/output/**'] },
     network: true,
     shell: { allowed_commands: ['curl', 'wget', 'whois', 'dig', 'nslookup'] },
     sensitive_data: false,
@@ -396,11 +402,11 @@ class PluginPermissionChecker {
       for (const pluginName of entries) {
         const pluginPath = path.join(BMAD_DIR, pluginName);
 
-        // Skip non-directories and config directories
+        // Skip non-directories, config directories, and non-module directories
         if (!fs.statSync(pluginPath).isDirectory()) {
           continue;
         }
-        if (pluginName.startsWith('_')) {
+        if (pluginName.startsWith('_') || !KNOWN_MODULES.has(pluginName)) {
           continue;
         }
 
@@ -478,7 +484,7 @@ class PluginPermissionChecker {
    */
   private fnmatch(name: string, pattern: string): boolean {
     // Convert glob pattern to regex
-    let regex = pattern
+    const regex = pattern
       .replace(/[.+^${}()|[\]\\]/g, '\\$&') // Escape special chars
       .replace(/\*\*/g, '{{GLOBSTAR}}')      // Temp replace **
       .replace(/\*/g, '[^/]*')               // * matches anything except /
@@ -523,7 +529,7 @@ class PluginPermissionChecker {
     }
 
     // Normalize target path
-    let targetNormalized = target.replace(PROJECT_DIR + '/', '');
+    let targetNormalized = target.replace(`${PROJECT_DIR  }/`, '');
     targetNormalized = targetNormalized.replace(/^\.\//, '');
 
     if (this.matchPathPattern(targetNormalized, allowedPatterns)) {
@@ -676,7 +682,7 @@ class PluginPermissionChecker {
         }
       }
     } else if (capability === 'network' || capability === 'sensitive_data') {
-      const capPerm = rbacPerms[capability as 'network' | 'sensitive_data'];
+      const capPerm = rbacPerms[capability];
       if (capPerm) {
         return [true, `RBAC override (${this.currentRole})`];
       }
@@ -789,7 +795,7 @@ class PluginPermissionChecker {
       allowed,
       reason,
       manifest_found: this.manifests.has(plugin),
-    }, severity as 'INFO' | 'BLOCKED');
+    }, severity);
 
     return result;
   }
@@ -812,7 +818,7 @@ class PluginPermissionChecker {
         const entries = fs.readdirSync(BMAD_DIR);
         for (const name of entries) {
           const pluginPath = path.join(BMAD_DIR, name);
-          if (fs.statSync(pluginPath).isDirectory() && !name.startsWith('_')) {
+          if (fs.statSync(pluginPath).isDirectory() && KNOWN_MODULES.has(name)) {
             const manifest = this.manifests.get(name);
             plugins.push({
               name,
@@ -847,8 +853,8 @@ interface TypePermissionTemplate {
 const TYPE_PERMISSIONS: Record<string, TypePermissionTemplate> = {
   intel: {
     filesystem: {
-      read: ['_bmad/${plugin}/**', 'docs/**', '_bmad/core/**'],
-      write: ['_bmad/${plugin}/output/**'],
+      read: ['src/${plugin}/**', 'docs/**', 'src/core/**'],
+      write: ['src/${plugin}/output/**'],
     },
     network: true,
     shell: {
@@ -859,8 +865,8 @@ const TYPE_PERMISSIONS: Record<string, TypePermissionTemplate> = {
   },
   legal: {
     filesystem: {
-      read: ['_bmad/${plugin}/**', 'docs/**', '_bmad/core/**'],
-      write: ['_bmad/${plugin}/output/**', 'docs/legal/**'],
+      read: ['src/${plugin}/**', 'docs/**', 'src/core/**'],
+      write: ['src/${plugin}/output/**', 'docs/legal/**'],
     },
     network: true,
     shell: {
@@ -871,8 +877,8 @@ const TYPE_PERMISSIONS: Record<string, TypePermissionTemplate> = {
   },
   strategy: {
     filesystem: {
-      read: ['_bmad/${plugin}/**', 'docs/**', '_bmad/core/**'],
-      write: ['_bmad/${plugin}/output/**'],
+      read: ['src/${plugin}/**', 'docs/**', 'src/core/**'],
+      write: ['src/${plugin}/output/**'],
     },
     network: true,
     shell: {
@@ -895,8 +901,8 @@ const TYPE_PERMISSIONS: Record<string, TypePermissionTemplate> = {
   },
   general: {
     filesystem: {
-      read: ['_bmad/${plugin}/**', 'docs/**'],
-      write: ['_bmad/${plugin}/output/**'],
+      read: ['src/${plugin}/**', 'docs/**'],
+      write: ['src/${plugin}/output/**'],
     },
     network: false,
     shell: {
@@ -976,7 +982,7 @@ export function generateAllManifests(outputDir: string | null = null): Record<st
       const entries = fs.readdirSync(BMAD_DIR);
       for (const name of entries) {
         const pluginPath = path.join(BMAD_DIR, name);
-        if (fs.statSync(pluginPath).isDirectory() && !name.startsWith('_')) {
+        if (fs.statSync(pluginPath).isDirectory() && KNOWN_MODULES.has(name)) {
           const pluginType = PLUGIN_TYPES[name] || 'general';
           const manifestContent = generateManifestTemplate(name, pluginType);
           manifests[name] = manifestContent;
@@ -1042,6 +1048,16 @@ export function checkPluginPermission(
 export function detectPluginFromPath(filePath: string): string | null {
   const normalized = filePath.replace(PROJECT_DIR, '').replace(/^[/\\]/, '');
 
+  // Check src/ prefix (post-migration v6 format)
+  if (normalized.startsWith('src/') || normalized.startsWith('src\\')) {
+    const parts = normalized.split(/[/\\]/);
+    const pluginName = parts[1];
+    if (parts.length >= 2 && pluginName !== undefined && KNOWN_MODULES.has(pluginName)) {
+      return pluginName;
+    }
+  }
+
+  // Legacy: check _bmad/ prefix (pre-migration format)
   if (normalized.startsWith('_bmad/') || normalized.startsWith('_bmad\\')) {
     const parts = normalized.split(/[/\\]/);
     const pluginName = parts[1];

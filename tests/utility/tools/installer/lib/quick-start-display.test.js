@@ -10,27 +10,27 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  MODULE_COMMANDS,
-  DOCUMENTATION_LINKS,
   ATTRIBUTION,
-  padString,
-  stripAnsi,
   centerText,
   createSeparator,
-  formatFeatureName,
-  displayModuleSummary,
-  displaySecuritySummary,
-  displayQuickStartCommands,
-  displayDocumentationLinks,
   displayAttribution,
+  displayDocumentationLinks,
   displayInstallationBanner,
-  displayQuickStart
+  displayModuleSummary,
+  displayQuickStart,
+  displayQuickStartCommands,
+  displaySecuritySummary,
+  DOCUMENTATION_LINKS,
+  formatFeatureName,
+  MODULE_COMMANDS,
+  padString,
+  stripAnsi
 } from './quick-start-display.js';
 
 const __filename = fileURLToPath(import.meta.url);

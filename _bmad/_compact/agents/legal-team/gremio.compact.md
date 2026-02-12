@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/legal-team/agents/gremio.md
+# Full agent: src/legal-team/agents/gremio.md
 agent_id: "gremio"
 name: "Gremio"
 title: "Spain Labor Law Counsel"

@@ -156,14 +156,14 @@ if ! check_termux_connection "$SSH_HOST"; then
   exit 1
 fi
 
-# Escape single quotes in text for safe shell transmission
-# Replace ' with '\'' (end quote, escaped quote, start quote)
-SAFE_TEXT="${TEXT//\'/\'\\\'\'}"
+# Escape text for safe shell transmission using printf %q
+# This handles ALL shell metacharacters: $(), backticks, semicolons, etc.
+SAFE_TEXT="$(printf '%q' "$TEXT")"
 
 # Send TTS command to Android device via SSH
 # Use termux-tts-speak for native Android TTS
 # Run in background to avoid blocking
-ssh -o ConnectTimeout=5 "$SSH_HOST" "termux-tts-speak '$SAFE_TEXT'" &
+ssh -o ConnectTimeout=5 "$SSH_HOST" "termux-tts-speak $SAFE_TEXT" &
 
 # Get the background process PID
 SSH_PID=$!

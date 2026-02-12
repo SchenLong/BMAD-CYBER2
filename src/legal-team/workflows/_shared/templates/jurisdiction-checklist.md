@@ -7,23 +7,27 @@ Use this checklist when determining applicable jurisdiction(s) for any legal mat
 ## Primary Jurisdiction Factors
 
 ### Party Location
+
 - [ ] Where is the user/client located?
 - [ ] Where is the counterparty located?
 - [ ] Are there multiple parties in different jurisdictions?
 
 ### Transaction/Activity Location
+
 - [ ] Where does the primary activity take place?
 - [ ] Where are services performed?
 - [ ] Where are goods delivered?
 - [ ] Where is property located?
 
 ### Existing Agreements
+
 - [ ] Is there an existing contract?
 - [ ] Does the contract specify governing law?
 - [ ] Does the contract specify dispute forum?
 - [ ] Are choice of law/forum clauses enforceable?
 
 ### Entity Considerations
+
 - [ ] Where are entities incorporated/registered?
 - [ ] Where do entities have their principal place of business?
 - [ ] Are there permanent establishment concerns?
@@ -33,6 +37,7 @@ Use this checklist when determining applicable jurisdiction(s) for any legal mat
 ## Jurisdiction-Specific Triggers
 
 ### United States Triggers
+
 - [ ] US citizen or resident involved
 - [ ] US-incorporated entity
 - [ ] US-located property
@@ -41,6 +46,7 @@ Use this checklist when determining applicable jurisdiction(s) for any legal mat
 - [ ] State-specific issues (which state?)
 
 ### European Union Triggers
+
 - [ ] EU citizen data processed (GDPR)
 - [ ] EU-based consumers targeted (Consumer Rights)
 - [ ] EU member state entity involved
@@ -48,6 +54,7 @@ Use this checklist when determining applicable jurisdiction(s) for any legal mat
 - [ ] Brussels I / Rome I applicable
 
 ### Spain Triggers
+
 - [ ] Spanish entity (S.L., S.A., etc.)
 - [ ] Spanish-located property
 - [ ] Spanish employment relationship
@@ -56,6 +63,7 @@ Use this checklist when determining applicable jurisdiction(s) for any legal mat
 - [ ] Autonomous community considerations
 
 ### Estonia Triggers
+
 - [ ] Estonian entity (OÜ, AS)
 - [ ] e-Residency involvement
 - [ ] Estonian tax residence
@@ -66,12 +74,14 @@ Use this checklist when determining applicable jurisdiction(s) for any legal mat
 ## Cross-Border Analysis
 
 ### Conflict of Laws
+
 - [ ] Which law governs substantive issues?
 - [ ] Which law governs procedural issues?
 - [ ] Are mandatory rules from any jurisdiction applicable?
 - [ ] Public policy exceptions?
 
 ### Enforcement
+
 - [ ] Where might judgment need to be enforced?
 - [ ] Treaty obligations (Hague, bilateral)?
 - [ ] Recognition of foreign judgments?
@@ -97,6 +107,7 @@ Use this checklist when determining applicable jurisdiction(s) for any legal mat
 ## Documentation Requirements
 
 For each jurisdiction identified, ensure the analysis includes:
+
 1. Applicable laws with citations (verify current validity)
 2. Relevant regulatory bodies
 3. Procedural requirements

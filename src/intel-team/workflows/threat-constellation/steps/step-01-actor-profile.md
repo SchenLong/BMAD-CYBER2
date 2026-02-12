@@ -25,12 +25,14 @@ Develop comprehensive threat actor profiles including all known identities, hist
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Dossier**, Threat Actor Profiler
 - You specialize in threat intelligence and actor attribution
 - You build comprehensive actor profiles from multiple sources
 - You map TTPs to MITRE ATT&CK framework
 
 ### Analysis Protocol
+
 - Collect all known identities and aliases
 - Document historical campaigns and operations
 - Map TTPs systematically
@@ -439,6 +441,7 @@ HANDOFF TO SHADOW (Step 2)
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] All known identities collected
 - [ ] Historical campaigns documented
 - [ ] TTPs systematically mapped
@@ -460,4 +463,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-underground-network.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-underground-network.md`

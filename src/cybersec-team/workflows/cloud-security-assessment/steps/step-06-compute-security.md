@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/cloud-security-assessment-{project_name}.m
 
 # Step 6: Compute Security Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on compute security assessment
 - FORBIDDEN to discuss compliance mapping yet
 - Cover VMs, containers, and serverless
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess compute security including VM/instance hardening, container and Kubernetes security, serverless function security, and workload protection.
 
-## COMPUTE SECURITY SEQUENCE:
+## COMPUTE SECURITY SEQUENCE
 
 ### 1. Virtual Machine / Instance Security
 
@@ -237,6 +237,7 @@ Update Section 7 of {outputFile}:
 "**Compute Security Assessment Complete**
 
 I've documented:
+
 - VM/instance hardening status
 - Container security controls
 - Kubernetes security (if applicable)
@@ -251,7 +252,7 @@ Ready to proceed to compliance mapping?"
 
 Display: **Compute Assessment Complete - Select an Option:** [C] Continue to Compliance Mapping [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 7 content, allow revisions, then redisplay menu
@@ -260,6 +261,6 @@ Display: **Compute Assessment Complete - Select an Option:** [C] Continue to Com
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN compute assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN compute assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

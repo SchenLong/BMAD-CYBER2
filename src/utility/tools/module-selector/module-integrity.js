@@ -158,7 +158,7 @@ export function verifyModuleIntegrity(modulePath, manifest, moduleCode) {
   const currentHashes = computeModuleHashes(modulePath);
 
   // Find hashes for this module (prefixed with moduleCode/)
-  const modulePrefix = moduleCode + '/';
+  const modulePrefix = `${moduleCode  }/`;
   const expectedHashes = {};
 
   for (const [filePath, hash] of Object.entries(manifest.hashes)) {

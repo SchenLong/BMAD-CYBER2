@@ -26,16 +26,19 @@ Let's start by understanding your business goals."
 Collect key information:
 
 **Business Nature:**
+
 - What type of business activity? (services, products, holding, investment)
 - Industry sector
 - Target markets/customers
 
 **Ownership Structure:**
+
 - Number of owners/shareholders
 - Owner nationalities and residencies
 - Existing corporate structure (if any)
 
 **Operational Scope:**
+
 - Where will operations be conducted?
 - Where will employees be located?
 - Revenue sources by geography
@@ -43,6 +46,7 @@ Collect key information:
 ### 3. Goals Assessment
 
 Understand primary objectives:
+
 - Asset protection priorities
 - Tax optimization goals
 - Liability limitation needs
@@ -53,6 +57,7 @@ Understand primary objectives:
 ### 4. Timeline & Budget
 
 Establish practical parameters:
+
 - Desired formation timeline
 - Budget considerations
 - Urgency factors

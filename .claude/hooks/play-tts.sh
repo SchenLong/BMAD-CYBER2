@@ -48,6 +48,11 @@ export LC_ALL=C
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Check if muted (persists across sessions)
 # Project settings always override global settings:
 # - .claude/agentvibes-unmuted = project explicitly unmuted (overrides global mute)
@@ -84,10 +89,12 @@ if [[ -z "$TEXT" ]]; then
   exit 1
 fi
 
-# Security: Validate voice override doesn't contain dangerous characters
-if [[ -n "$VOICE_OVERRIDE" ]] && [[ "$VOICE_OVERRIDE" =~ [';|&$`<>(){}'] ]]; then
-  echo "Error: Invalid characters in voice parameter" >&2
-  exit 1
+# Security: Validate voice override using input-validation library
+if [[ -n "$VOICE_OVERRIDE" ]]; then
+  if type validate_voice_name &>/dev/null && ! validate_voice_name "$VOICE_OVERRIDE"; then
+    echo "Error: Invalid characters in voice parameter" >&2
+    exit 1
+  fi
 fi
 
 # Remove backslash escaping that Claude might add for special chars
@@ -98,6 +105,12 @@ TEXT="${TEXT//\\?/?}"        # Remove \?
 TEXT="${TEXT//\\,/,}"        # Remove \,
 TEXT="${TEXT//\\./.}"        # Remove \. (keep the period)
 TEXT="${TEXT//\\\\/\\}"      # Remove \\ (escaped backslash)
+
+# Security: Validate text content using input-validation library
+if type validate_dialogue &>/dev/null && ! validate_dialogue "$TEXT"; then
+  echo "Error: Text contains invalid content" >&2
+  exit 1
+fi
 
 # Source provider manager to get active provider
 source "$SCRIPT_DIR/provider-manager.sh"
@@ -192,6 +205,11 @@ handle_learning_mode() {
   local translated
   translated=$(python3 "$SCRIPT_DIR/translator.py" "$TEXT" "$target_lang" 2>/dev/null) || translated="$TEXT"
 
+  # Security: Validate translator output
+  if type validate_dialogue &>/dev/null && ! validate_dialogue "$translated"; then
+    translated="$TEXT"
+  fi
+
   # Small pause between languages
   sleep 0.5
 
@@ -226,6 +244,11 @@ handle_translation_mode() {
   # Translate text
   local translated
   translated=$(python3 "$SCRIPT_DIR/translator.py" "$TEXT" "$translate_to" 2>/dev/null) || translated="$TEXT"
+
+  # Security: Validate translator output
+  if type validate_dialogue &>/dev/null && ! validate_dialogue "$translated"; then
+    translated="$TEXT"
+  fi
 
   # Get voice for target language if no override specified
   local voice_to_use="$VOICE_OVERRIDE"

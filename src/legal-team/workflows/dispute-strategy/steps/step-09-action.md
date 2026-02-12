@@ -18,16 +18,19 @@ Define specific, actionable next steps with timelines and responsibilities.
 Identify urgent priorities:
 
 **Document Preservation:**
+
 - [ ] Implement litigation hold
 - [ ] Collect and secure documents
 - [ ] Preserve electronic evidence
 
 **Legal Preparation:**
+
 - [ ] Engage litigation counsel (if not done)
 - [ ] Prepare initial legal assessment
 - [ ] Review applicable deadlines
 
 **Strategic Moves:**
+
 - [ ] Draft initial communication
 - [ ] Assess injunctive relief needs
 - [ ] Evaluate filing requirements
@@ -37,18 +40,21 @@ Identify urgent priorities:
 Plan near-term activities:
 
 **If Pursuing Negotiation/Mediation:**
+
 - [ ] Draft demand/response letter
 - [ ] Compile supporting documentation
 - [ ] Identify mediator candidates
 - [ ] Schedule initial meeting/mediation
 
 **If Preparing for Litigation:**
+
 - [ ] Complete factual investigation
 - [ ] Finalize legal research
 - [ ] Draft pleadings
 - [ ] Prepare for filing
 
 **Both Tracks:**
+
 - [ ] Continue evidence gathering
 - [ ] Identify and interview witnesses
 - [ ] Assess expert witness needs
@@ -58,11 +64,13 @@ Plan near-term activities:
 Outline extended timeline:
 
 **Negotiation Track:**
+
 - Negotiation rounds timeline
 - Escalation decision points
 - Settlement documentation preparation
 
 **Litigation Track:**
+
 - Discovery plan
 - Motion practice timeline
 - Expert engagement
@@ -73,16 +81,19 @@ Outline extended timeline:
 Prepare for scenarios:
 
 **If Negotiation Fails:**
+
 - Trigger points for escalation
 - Litigation preparation status
 - Timeline for filing
 
 **If Litigation Required:**
+
 - Court selection strategy
 - Service planning
 - Initial disclosures preparation
 
 **If Settlement Opportunity Arises:**
+
 - Settlement authority
 - Documentation requirements
 - Closing procedures

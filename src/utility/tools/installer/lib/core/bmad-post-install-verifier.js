@@ -704,7 +704,7 @@ class BMADPostInstallVerifier {
             ].filter(Boolean);
 
             let existingPaths = 0;
-            let totalPaths = requiredPaths.length;
+            const totalPaths = requiredPaths.length;
 
             for (const relativePath of requiredPaths) {
                 const fullPath = path.join(basePath, relativePath);

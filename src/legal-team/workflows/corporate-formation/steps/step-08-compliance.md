@@ -16,6 +16,7 @@ Outline all ongoing compliance obligations for the newly formed entity.
 ### 1. Annual Compliance Calendar
 
 **USA LLC (Delaware Example):**
+
 | Obligation | Deadline | Agency | Cost |
 |------------|----------|--------|------|
 | Annual Franchise Tax | June 1 | Delaware SOS | $300 |
@@ -24,6 +25,7 @@ Outline all ongoing compliance obligations for the newly formed entity.
 | State Tax Filings | Varies | State Tax | Varies |
 
 **USA Corporation (Delaware Example):**
+
 | Obligation | Deadline | Agency | Cost |
 |------------|----------|--------|------|
 | Annual Franchise Tax | March 1 | Delaware SOS | Min $225 |
@@ -32,6 +34,7 @@ Outline all ongoing compliance obligations for the newly formed entity.
 | BOI Report Updates | 30 days of change | FinCEN | Free |
 
 **Spain SL:**
+
 | Obligation | Deadline | Agency | Cost |
 |------------|----------|--------|------|
 | Cuentas Anuales | 6 months after year-end | Registro Mercantil | ~€100-200 |
@@ -41,6 +44,7 @@ Outline all ongoing compliance obligations for the newly formed entity.
 | Legalización Libros | April 30 | Registro Mercantil | ~€30 |
 
 **Estonia OÜ:**
+
 | Obligation | Deadline | Agency | Cost |
 |------------|----------|--------|------|
 | Annual Report | 6 months after year-end | Commercial Register | €25 |
@@ -51,12 +55,14 @@ Outline all ongoing compliance obligations for the newly formed entity.
 ### 2. Corporate Formalities
 
 **Minimum Required:**
+
 - Annual shareholder/member meeting
 - Annual board meeting (if applicable)
 - Minutes of significant decisions
 - Updated registers and records
 
 **Best Practices:**
+
 - Quarterly board meetings
 - Document all major decisions
 - Maintain separation from personal affairs
@@ -65,6 +71,7 @@ Outline all ongoing compliance obligations for the newly formed entity.
 ### 3. Record Keeping Requirements
 
 **Required Records:**
+
 - Formation documents
 - Governing documents (operating agreement, bylaws, statutes)
 - Meeting minutes
@@ -73,6 +80,7 @@ Outline all ongoing compliance obligations for the newly formed entity.
 - Tax filings
 
 **Retention Periods:**
+
 - Formation documents: Permanent
 - Tax records: 7 years (varies)
 - Meeting minutes: Permanent

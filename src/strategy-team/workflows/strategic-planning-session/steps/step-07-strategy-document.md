@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Strategy Document
 
-## STEP GOAL:
+## STEP GOAL
 
 Compile all the work from previous steps into a comprehensive, board-ready strategic plan with executive summary, strategic priorities, implementation roadmap, and governance framework.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are the Strategic Planning Facilitator concluding the session
 - This is the culmination - make it polished and actionable
@@ -23,11 +23,12 @@ Compile all the work from previous steps into a comprehensive, board-ready strat
 - Preserve diverse perspectives - don't whitewash disagreement
 - Make strategic priorities clear while respecting user's final authority
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on synthesis and polish, not new analysis
 - FORBIDDEN to hide tensions or unresolved trade-offs
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Review all sections from steps 1-6
 - Synthesize executive summary
@@ -48,13 +49,14 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Session Conclusion
 
 **The facilitator summarizes:**
 
 "We've completed the Strategic Planning Session, {user_name}. We've:
+
 - Set the strategic context and objectives
 - Mapped the landscape with Sun
 - Analyzed timing with Musashi
@@ -79,11 +81,13 @@ Now let's compile this into a board-ready strategic plan."
 **Strategic Context:** [2-3 sentences on why this plan, why now]
 
 **Strategic Priorities:**
+
 1. [Priority 1] - [one line description]
 2. [Priority 2] - [one line description]
 3. [Priority 3] - [one line description]
 
 **Key Strategic Moves:**
+
 - [Landscape] Position ourselves in [terrain]
 - [Timing] Act [when] on [what]
 - [Capabilities] Build [key capability]
@@ -107,9 +111,11 @@ Does this executive summary capture the essence? It should work as a standalone 
 "Based on our full analysis, here are the strategic priorities:
 
 ### Priority 1: [Name]
+
 **Strategic Objective:** [Clear outcome statement]
 **Why Now:** [Timing rationale from Musashi]
 **Key Initiatives:**
+
 - [Initiative 1]
 - [Initiative 2]
 **Success Metrics:** [From Lee's framework]
@@ -117,9 +123,11 @@ Does this executive summary capture the essence? It should work as a standalone 
 **Timeline:** [X]
 
 ### Priority 2: [Name]
+
 **Strategic Objective:** [Clear outcome statement]
 **Why Now:** [Timing rationale]
 **Key Initiatives:**
+
 - [Initiative 1]
 - [Initiative 2]
 **Success Metrics:** [Measurable outcomes]
@@ -127,9 +135,11 @@ Does this executive summary capture the essence? It should work as a standalone 
 **Timeline:** [X]
 
 ### Priority 3: [Name]
+
 **Strategic Objective:** [Clear outcome statement]
 **Why Now:** [Timing rationale]
 **Key Initiatives:**
+
 - [Initiative 1]
 - [Initiative 2]
 **Success Metrics:** [Measurable outcomes]
@@ -145,27 +155,34 @@ Does this executive summary capture the essence? It should work as a standalone 
 "## Strategic Options Considered
 
 ### Option A: Conservative Path
+
 **Aligned with Burke's counsel**
+
 - Description: [approach]
 - Risk level: Low
 - Timeline: Gradual
 - Trade-off: [what we give up]
 
 ### Option B: Moderate Path
+
 **Balanced across perspectives**
+
 - Description: [approach]
 - Risk level: Medium
 - Timeline: Measured
 - Trade-off: [what we give up]
 
 ### Option C: Aggressive Path
+
 **Aligned with Lee's efficiency focus**
+
 - Description: [approach]
 - Risk level: High
 - Timeline: Accelerated
 - Trade-off: [what we give up]
 
 ### Recommended Path
+
 **Selected:** [Option or hybrid]
 **Rationale:** [Why this path reflects the integrated analysis]"
 
@@ -176,33 +193,40 @@ Does this executive summary capture the essence? It should work as a standalone 
 "## Implementation Roadmap
 
 ### Phase 1: Foundation (Q1-Q2)
+
 | Initiative | Milestone | Owner | Resources | Dependencies |
 |------------|-----------|-------|-----------|--------------|
 | | | | | |
 
 **Phase 1 Success Criteria:**
+
 - [ ] [Criterion 1]
 - [ ] [Criterion 2]
 
 ### Phase 2: Build (Q3-Q4)
+
 | Initiative | Milestone | Owner | Resources | Dependencies |
 |------------|-----------|-------|-----------|--------------|
 | | | | | |
 
 **Phase 2 Success Criteria:**
+
 - [ ] [Criterion 1]
 - [ ] [Criterion 2]
 
 ### Phase 3: Scale (Year 2+)
+
 | Initiative | Milestone | Owner | Resources | Dependencies |
 |------------|-----------|-------|-----------|--------------|
 | | | | | |
 
 **Phase 3 Success Criteria:**
+
 - [ ] [Criterion 1]
 - [ ] [Criterion 2]
 
 ### Dependencies Map
+
 ```
 [Phase 1 Foundation] ─── [Phase 2 Build] ─── [Phase 3 Scale]
         │                      │

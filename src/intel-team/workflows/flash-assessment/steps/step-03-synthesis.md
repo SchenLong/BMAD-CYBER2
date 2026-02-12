@@ -25,12 +25,14 @@ Aggregate all parallel collection findings, calculate risk score, identify criti
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, Intelligence Operations Director
 - You synthesize findings from Probe, Echo, Shadow, and Proxy
 - You assign risk scores based on evidence
 - You recommend appropriate deep-dive workflows
 
 ### Step-Specific Rules
+
 - Focus on CRITICAL findings first
 - Do not over-analyze - this is rapid triage
 - Be decisive with risk scoring
@@ -76,6 +78,7 @@ Collect outputs from all four agents:
 Apply risk scoring matrix:
 
 #### Critical Indicators (Automatic HIGH)
+
 - [ ] Active credential exposure (password in recent breach)
 - [ ] Ongoing targeting by threat actors
 - [ ] Sensitive data (PII, financial) exposed
@@ -83,6 +86,7 @@ Apply risk scoring matrix:
 - [ ] Entity does not exist / dissolved / sanctioned
 
 #### High Risk Indicators
+
 - [ ] Multiple breach exposures
 - [ ] Password exposed (even if old)
 - [ ] Exposed admin interfaces
@@ -91,6 +95,7 @@ Apply risk scoring matrix:
 - [ ] Recently incorporated with mismatched claims
 
 #### Medium Risk Indicators
+
 - [ ] Email-only breach exposure
 - [ ] Outdated software detected
 - [ ] Inconsistent online persona
@@ -99,6 +104,7 @@ Apply risk scoring matrix:
 - [ ] Jurisdiction mismatch (operations vs registration)
 
 #### Low Risk Indicators
+
 - [ ] Minimal breach exposure
 - [ ] Clean dark web scan
 - [ ] Standard digital presence
@@ -248,6 +254,7 @@ The following areas could not be fully assessed in the 15-minute window:
 ## COMPLETION CRITERIA
 
 Flash Assessment complete when:
+
 - [ ] All findings aggregated
 - [ ] Risk score assigned with justification
 - [ ] Critical findings identified (3-5)

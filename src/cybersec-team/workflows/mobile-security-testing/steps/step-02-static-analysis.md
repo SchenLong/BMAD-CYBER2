@@ -17,22 +17,24 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 2: Static Analysis
 
-## STEP GOAL:
+## STEP GOAL
 
 To perform static analysis on the mobile app binary including decompilation, code review, and binary protection assessment.
 
-## STATIC ANALYSIS SEQUENCE:
+## STATIC ANALYSIS SEQUENCE
 
 ### 1. Binary Extraction
 
 "Let's extract and analyze the app binary:
 
 **iOS (IPA):**
+
 - Extract from App Store (clutch/frida-ios-dump) or use provided IPA
 - Unzip and examine app bundle
 - Check for PIE, ARC, stack canaries
 
 **Android (APK):**
+
 - Download from Play Store (apkpull) or use provided APK
 - Unzip and examine contents
 - Analyze AndroidManifest.xml
@@ -44,6 +46,7 @@ What binary do you have for analysis?"
 "Let's decompile the application:
 
 **Android:**
+
 ```bash
 # Decompile APK
 apktool d app.apk
@@ -51,6 +54,7 @@ jadx -d output app.apk
 ```
 
 **iOS:**
+
 ```bash
 # Class dump
 class-dump -H app.app
@@ -58,6 +62,7 @@ class-dump -H app.app
 ```
 
 **Review Areas:**
+
 - Source code structure
 - Hardcoded secrets
 - API endpoints
@@ -81,6 +86,7 @@ What did decompilation reveal?"
 | URLs | `http://`, internal domains | ? |
 
 **Tools:**
+
 - grep/ripgrep for patterns
 - truffleHog, gitleaks
 - MobSF automated scan
@@ -102,6 +108,7 @@ Any hardcoded secrets discovered?"
 | Bitcode | ? | N/A |
 
 **Command:**
+
 ```bash
 otool -hv app
 otool -Iv app | grep stack
@@ -124,6 +131,7 @@ What protections are present?"
 | Native libs protected | ? | Native code attacks |
 
 **Manifest Flags:**
+
 ```xml
 android:debuggable="false"
 android:allowBackup="false"
@@ -142,6 +150,7 @@ What protections are present?"
 | [Library] | [Ver] | [CVE count] | [License] |
 
 **Tools:**
+
 - `gradle dependencies` (Android)
 - CocoaPods/SPM analysis (iOS)
 - OWASP Dependency-Check
@@ -211,6 +220,7 @@ Update Section 2 of {outputFile}:
 "**Static Analysis Complete**
 
 I've analyzed:
+
 - Binary extraction and structure
 - Decompiled code for secrets
 - Binary protection mechanisms
@@ -228,4 +238,4 @@ Display: **Static Analysis Complete - Select an Option:** [C] Continue to Dynami
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN static analysis is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN static analysis is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2]`, then immediately load, read entire file, then follow `{nextStepFile}`.

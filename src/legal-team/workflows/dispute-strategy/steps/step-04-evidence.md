@@ -18,6 +18,7 @@ Evaluate available evidence and identify evidentiary strengths and gaps.
 Catalog all available evidence:
 
 **Documentary Evidence:**
+
 - Contracts and agreements
 - Correspondence (emails, letters, texts)
 - Financial records
@@ -26,17 +27,20 @@ Catalog all available evidence:
 - Photos/Videos
 
 **Testimonial Evidence:**
+
 - Client testimony
 - Witness availability
 - Expert witness needs
 - Opposing party admissions
 
 **Physical Evidence:**
+
 - Products or goods
 - Property
 - Physical items in dispute
 
 **Electronic Evidence:**
+
 - Digital communications
 - Database records
 - Metadata
@@ -55,11 +59,13 @@ For each key piece of evidence:
 Identify missing evidence:
 
 **Critical Gaps:**
+
 - Evidence needed to prove essential elements
 - Missing documentation
 - Unavailable witnesses
 
 **Discovery Opportunities:**
+
 - Documents to request from opposing party
 - Interrogatories to serve
 - Depositions to take
@@ -70,12 +76,14 @@ Identify missing evidence:
 Address preservation concerns:
 
 **Preservation Steps:**
+
 - Litigation hold requirements
 - Document collection
 - Electronic data preservation
 - Witness statements
 
 **Spoliation Risks:**
+
 - Evidence at risk of destruction
 - Third-party controlled evidence
 - Time-sensitive preservation needs

@@ -30,13 +30,13 @@ step08bFile: '{workflow_path}/steps/step-08b-report.md'
 
 # Step 1B: Workflow Continuation
 
-## STEP GOAL:
+## STEP GOAL
 
 To resume the incident response workflow from where it was left off, detecting the mode (Playbook Creation or Guided Execution) and routing to the appropriate next step without loss of context or progress.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -44,7 +44,7 @@ To resume the incident response workflow from where it was left off, detecting t
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an expert Incident Response specialist
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -52,14 +52,14 @@ To resume the incident response workflow from where it was left off, detecting t
 - ✅ You adapt your role based on mode: IR Planning Consultant (Mode A) or Incident Commander (Mode B)
 - ✅ Maintain appropriate tone: Collaborative (Mode A) or Calm/Directive (Mode B)
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on analyzing and resuming workflow state
 - 🚫 FORBIDDEN to modify content completed in previous steps
 - 💬 Maintain continuity with previous sessions
 - 🚪 DETECT mode and exact continuation point from frontmatter
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Show analysis of current state before taking action
 - 💾 Keep existing frontmatter `stepsCompleted` values intact
@@ -67,14 +67,14 @@ To resume the incident response workflow from where it was left off, detecting t
 - 🚫 FORBIDDEN to modify completed work
 - 📝 Update frontmatter with continuation timestamp when resuming
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Output document is already loaded
 - Previous context = complete document + existing frontmatter + sidecar file (if Mode B)
 - Last completed step = last value in `stepsCompleted` array
 - Mode determines which step files to reference
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Detect Workflow Mode
 
@@ -98,6 +98,7 @@ Display:
 **Steps Completed:** {stepsCompleted}
 
 **Progress:**
+
 - [✓] Step 1: Initialization
 - [✓/○] Step 2a: Incident Type Selection
 - [✓/○] Step 3a: Detection & Analysis Procedures
@@ -126,6 +127,7 @@ Display:
 **Steps Completed:** {stepsCompleted}
 
 **Progress:**
+
 - [✓] Step 1: Initialization
 - [✓/○] Step 2b: Incident Triage & Classification
 - [✓/○] Step 3b: Initial Containment
@@ -169,6 +171,7 @@ Display:
 Determine next step based on `stepsCompleted` array:
 
 **Mode A Logic:**
+
 - If stepsCompleted ends with 1: Load {step02aFile}
 - If stepsCompleted ends with 2a: Load {step03aFile}
 - If stepsCompleted ends with 3a: Load {step04aFile}
@@ -178,6 +181,7 @@ Determine next step based on `stepsCompleted` array:
 - If stepsCompleted ends with 7a: Load {step08aFile}
 
 **Mode B Logic:**
+
 - If stepsCompleted ends with 1: Load {step02bFile}
 - If stepsCompleted ends with 2b: Load {step03bFile}
 - If stepsCompleted ends with 3b: Load {step04bFile}
@@ -187,12 +191,13 @@ Determine next step based on `stepsCompleted` array:
 - If stepsCompleted ends with 7b: Load {step08bFile}
 
 Update frontmatter with continuation timestamp:
+
 ```yaml
 lastUpdated: '{current timestamp}'
 continuedAt: '{current timestamp}'
 ```
 
-**Immediately load, read entire file, then execute the next step file.**
+**Immediately load and follow the next step file.**
 
 **If Option 2 (Review):**
 
@@ -240,6 +245,7 @@ This playbook was completed on {completion date}.
 **Location:** {file path}
 
 **Options:**
+
 1. Review the completed playbook
 2. Create a new playbook (different incident type)
 3. Export/print playbook
@@ -260,10 +266,12 @@ This incident was formally closed on {completion date}.
 **Final Status:** {status}
 
 **Deliverables:**
+
 - Incident Report: {file path}
 - Timeline Log: {sidecar path}
 
 **Options:**
+
 1. Review the incident report
 2. Respond to a new incident
 3. Export report for stakeholders
@@ -273,7 +281,7 @@ What would you like to do?"
 
 Handle user selection appropriately.
 
-## ✅ SUCCESS METRICS:
+## ✅ SUCCESS METRICS
 
 - Mode correctly detected from frontmatter
 - Current state accurately displayed
@@ -284,7 +292,7 @@ Handle user selection appropriately.
 - Continuation timestamp updated
 - No loss of context or progress
 
-## ❌ FAILURE MODES TO AVOID:
+## ❌ FAILURE MODES TO AVOID
 
 - Not detecting mode correctly
 - Routing to wrong step file
@@ -297,4 +305,4 @@ Handle user selection appropriately.
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN user selects to continue (Option 1 or after review/modify), will you then load, read entire file, then execute the mode-appropriate next step file based on the stepsCompleted array.
+ONLY WHEN user selects to continue (Option 1 or after review/modify), will you then load and follow the mode-appropriate next step file based on the stepsCompleted array.

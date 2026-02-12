@@ -24,6 +24,11 @@ export LC_ALL=C
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 BG_DIR="$SCRIPT_DIR/../audio/tracks"
 CONFIG_FILE="$SCRIPT_DIR/../config/audio-effects.cfg"
 
@@ -251,7 +256,7 @@ if [[ -f "$CONFIG_FILE" ]]; then
         fi
 
         # Create timestamped backup
-        local config_backup="$BACKUP_DIR/audio-effects.cfg.backup"
+        config_backup="$BACKUP_DIR/audio-effects.cfg.backup"
         cp -p "$CONFIG_FILE" "$config_backup"
 
         # Verify backup

@@ -17,11 +17,11 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 5: Network Security
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess network communication security including TLS configuration, API security, and data transmission protection.
 
-## NETWORK SECURITY SEQUENCE:
+## NETWORK SECURITY SEQUENCE
 
 ### 1. TLS Configuration
 
@@ -37,10 +37,12 @@ To assess network communication security including TLS configuration, API securi
 | Hostname verification | ? | MITM |
 
 **iOS ATS (App Transport Security):**
+
 - ATS enabled?
 - Exceptions defined?
 
 **Android Network Security Config:**
+
 - Custom config present?
 - Clear-text allowed?
 
@@ -60,6 +62,7 @@ What's the TLS configuration?"
 | Expiration handling | ? | ? |
 
 **Implementation Quality:**
+
 - Single or multiple pins?
 - Fallback mechanism?
 - Pin update process?
@@ -126,6 +129,7 @@ What traffic issues were identified?"
 | Rate limiting | ? | DoS |
 
 **Push Notifications:**
+
 - Token security?
 - Payload encryption?
 
@@ -215,6 +219,7 @@ Update Section 5 of {outputFile}:
 "**Network Security Analysis Complete**
 
 I've analyzed:
+
 - TLS configuration
 - Certificate pinning implementation
 - API endpoint security
@@ -234,4 +239,4 @@ Display: **Network Security Complete - Select an Option:** [C] Continue to Authe
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN network security is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN network security is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then follow `{nextStepFile}`.

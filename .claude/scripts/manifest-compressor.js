@@ -1,4 +1,3 @@
-#!/usr/bin/env npx ts-node
 /**
  * Micro-Manifest Generator
  *
@@ -208,7 +207,7 @@ function generateCSV(headers, rows) {
     for (const row of rows) {
         lines.push(row.map(escapeCSVField).join(','));
     }
-    return lines.join('\n') + '\n';
+    return `${lines.join('\n')  }\n`;
 }
 // =============================================================================
 // COMPRESSION LOGIC
@@ -254,10 +253,10 @@ function generateAgentTags(agent) {
     // 1. Domain tag from module (always first)
     tags.push(getDomainTag(agent.module));
     // 2. Function tags from role
-    const functionTags = extractFunctionTags(agent.role + ' ' + agent.title);
+    const functionTags = extractFunctionTags(`${agent.role  } ${  agent.title}`);
     tags.push(...functionTags.slice(0, 2)); // Max 2 function tags
     // 3. Specialty tags from identity
-    const specialtyTags = extractSpecialtyTags(agent.identity + ' ' + agent.role);
+    const specialtyTags = extractSpecialtyTags(`${agent.identity  } ${  agent.role}`);
     for (const tag of specialtyTags) {
         if (tags.length >= CONFIG.maxTags)
             break;
@@ -326,19 +325,19 @@ function generateAgentSummary(agent) {
         const identity = agent.identity.toLowerCase();
         // Find a good action verb for this agent
         if (identity.includes('architect') || identity.includes('design')) {
-            summary = 'Designs ' + summary.toLowerCase().replace(/^(senior |lead |master |expert |principal )/i, '');
+            summary = `Designs ${  summary.toLowerCase().replace(/^(senior |lead |master |expert |principal )/i, '')}`;
         }
         else if (identity.includes('analyst') || identity.includes('analysis')) {
-            summary = 'Analyzes ' + summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '');
+            summary = `Analyzes ${  summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '')}`;
         }
         else if (identity.includes('developer') || identity.includes('implement')) {
-            summary = 'Implements ' + summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '');
+            summary = `Implements ${  summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '')}`;
         }
         else if (identity.includes('manager') || identity.includes('coordinator')) {
-            summary = 'Manages ' + summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '');
+            summary = `Manages ${  summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '')}`;
         }
         else if (identity.includes('specialist') || identity.includes('expert')) {
-            summary = 'Provides ' + summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '') + ' expertise';
+            summary = `Provides ${  summary.toLowerCase().replace(/^(senior |lead |master |expert )/i, '')  } expertise`;
         }
     }
     // Truncate to word limit
@@ -348,7 +347,7 @@ function generateAgentSummary(agent) {
     }
     // Truncate to char limit
     if (summary.length > CONFIG.maxSummaryChars) {
-        summary = summary.slice(0, CONFIG.maxSummaryChars - 3) + '...';
+        summary = `${summary.slice(0, CONFIG.maxSummaryChars - 3)  }...`;
     }
     return summary;
 }
@@ -374,31 +373,31 @@ function generateWorkflowSummary(workflow) {
         // Prepend appropriate verb based on description content
         const desc = summary.toLowerCase();
         if (desc.includes('creation') || desc.includes('creates')) {
-            summary = 'Creates ' + summary.toLowerCase();
+            summary = `Creates ${  summary.toLowerCase()}`;
         }
         else if (desc.includes('analysis') || desc.includes('analyze')) {
-            summary = 'Analyzes ' + summary.toLowerCase();
+            summary = `Analyzes ${  summary.toLowerCase()}`;
         }
         else if (desc.includes('validation') || desc.includes('validate')) {
-            summary = 'Validates ' + summary.toLowerCase();
+            summary = `Validates ${  summary.toLowerCase()}`;
         }
         else if (desc.includes('preparation') || desc.includes('prepare')) {
-            summary = 'Prepares ' + summary.toLowerCase();
+            summary = `Prepares ${  summary.toLowerCase()}`;
         }
         else if (desc.includes('review')) {
-            summary = 'Reviews ' + summary.toLowerCase();
+            summary = `Reviews ${  summary.toLowerCase()}`;
         }
         else if (desc.includes('guide') || desc.includes('facilitat')) {
-            summary = 'Guides ' + summary.toLowerCase();
+            summary = `Guides ${  summary.toLowerCase()}`;
         }
         else if (desc.includes('coordinate')) {
-            summary = 'Coordinates ' + summary.toLowerCase();
+            summary = `Coordinates ${  summary.toLowerCase()}`;
         }
         else if (desc.includes('comprehensive') || desc.includes('complete')) {
             // Remove redundant words and add verb
-            summary = 'Provides ' + summary.toLowerCase()
+            summary = `Provides ${  summary.toLowerCase()
                 .replace(/comprehensive\s+/gi, '')
-                .replace(/complete\s+/gi, '');
+                .replace(/complete\s+/gi, '')}`;
         }
     }
     // Remove common redundant phrases
@@ -415,7 +414,7 @@ function generateWorkflowSummary(workflow) {
     }
     // Truncate to char limit
     if (summary.length > CONFIG.maxSummaryChars) {
-        summary = summary.slice(0, CONFIG.maxSummaryChars - 3) + '...';
+        summary = `${summary.slice(0, CONFIG.maxSummaryChars - 3)  }...`;
     }
     // Capitalize first letter
     summary = summary.charAt(0).toUpperCase() + summary.slice(1);

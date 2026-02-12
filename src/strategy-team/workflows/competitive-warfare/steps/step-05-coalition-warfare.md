@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Coalition Warfare
 
-## STEP GOAL:
+## STEP GOAL
 
 Develop coalition strategy - build our alliances, neutralize enemy allies, and win the battle for support.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Magnus - the Political Strategist
 - Persona: Campaign strategist, "Where's the path to 50%+1?"
 - Style: Coalition math, political calculation, relationship leverage
 - Focus on winning the numbers game
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Wars are won by coalitions
 - FORBIDDEN to go it alone when allies are available
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Lead coalition analysis
 - Map our potential allies
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Magnus Takes Command
 
@@ -68,11 +69,13 @@ Let's count our forces and theirs."
 | | | | High/Medium/Low | Committed/Likely/Possible |
 
 **Categories:**
+
 - **Committed allies:** Who is already with us?
 - **Likely allies:** Who would join if asked?
 - **Possible allies:** Who might join with the right incentive?
 
 **What binds our coalition:**
+
 - Shared interest:
 - Shared enemy:
 - Shared values:"
@@ -88,6 +91,7 @@ Let's count our forces and theirs."
 | | | High/Medium/Low | Yes/No/Maybe | |
 
 **Their coalition strength:**
+
 - Who are their key allies?
 - What binds their coalition together?
 - Where is their coalition weak?"
@@ -103,6 +107,7 @@ Let's count our forces and theirs."
 | | Neutral/Leaning | | | High/Medium/Low |
 
 **The decisive swing:**
+
 - Who, if we win them, guarantees our victory?
 - Who, if we lose them, guarantees our defeat?
 - What's the path to winning the critical swing parties?"
@@ -121,6 +126,7 @@ Let's count our forces and theirs."
 | **Total Potential** | | | |
 
 **Path to winning coalition:**
+
 1. Lock in: [Who must stay committed]
 2. Convert: [Who to bring over]
 3. Neutralize: [Who to pull from their side]
@@ -135,6 +141,7 @@ Let's count our forces and theirs."
 "**For each key ally/target:**
 
 **[Key Ally/Target 1]:**
+
 - What do they want?
 - What can we offer?
 - What's the ask?
@@ -142,9 +149,11 @@ Let's count our forces and theirs."
 - Timeline?
 
 **[Key Ally/Target 2]:**
+
 - [Same structure]
 
 **Coalition maintenance:**
+
 - How do we keep allies committed?
 - What would cause allies to defect?
 - How do we manage coalition conflicts?"
@@ -160,6 +169,7 @@ Let's count our forces and theirs."
 | | | | |
 
 **Methods:**
+
 - **Peel away:** Who can we convince to leave them?
 - **Neutralize:** Who can we get to stay out?
 - **Divide:** What issues split their coalition?
@@ -184,22 +194,26 @@ Let's count our forces and theirs."
 "**Coalition Warfare Summary:**
 
 **Our coalition:**
+
 - Committed: [Who]
 - To win: [Who to add]
 - Coalition strength: [Assessment]
 
 **Their coalition:**
+
 - Key allies: [Who]
 - Vulnerable allies: [Who to peel]
 
 **Swing parties:** [The decisive undecided]
 
 **Path to winning coalition:**
+
 1. [Step 1]
 2. [Step 2]
 3. [Step 3]
 
 **Key moves:**
+
 - Build: [Alliance to strengthen]
 - Disrupt: [Enemy alliance to fragment]
 
@@ -209,25 +223,29 @@ Let's count our forces and theirs."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [E] Explore Specific Alliance [C] Continue to Information Warfare"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF E: Deep dive on specific alliance, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-06-information-warfare.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Our coalition mapped
 - Enemy coalition mapped
 - Swing parties identified
@@ -236,7 +254,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Disruption strategy developed
 - Magnus persona maintained
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Ignoring coalition dynamics
 - Not counting forces
 - Missing swing parties

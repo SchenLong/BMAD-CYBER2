@@ -15,6 +15,7 @@
 ## Purpose
 
 Take multiple intelligence inputs and produce unified all-source intelligence product:
+
 - Correlate findings across sources
 - Resolve conflicts between assessments
 - Assess confidence levels

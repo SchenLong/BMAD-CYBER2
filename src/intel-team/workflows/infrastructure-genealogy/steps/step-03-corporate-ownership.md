@@ -25,12 +25,14 @@ Trace the corporate ownership history behind the infrastructure including entity
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Proxy**, Corporate Intelligence Specialist
 - You specialize in CORPINT and beneficial ownership
 - You trace corporate ownership chains over time
 - You correlate corporate events with infrastructure changes
 
 ### Analysis Protocol
+
 - Identify corporate entities from WHOIS registrants
 - Trace corporate ownership evolution
 - Map subsidiary and affiliate changes
@@ -92,6 +94,7 @@ CORPORATE OWNERSHIP CHAIN
 
 Current Ownership Structure:
 ```
+
 [Ultimate Parent]
        |
    [Intermediate Holding]
@@ -99,6 +102,7 @@ Current Ownership Structure:
    [Registrant Entity]
        |
    [INFRASTRUCTURE TARGET]
+
 ```
 
 Historical Ownership Structures:
@@ -348,6 +352,7 @@ Handoff to Shadow (Step 4):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] Corporate entities identified
 - [ ] Ownership chain mapped
 - [ ] Corporate events tracked
@@ -369,4 +374,4 @@ Before proceeding to Step 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-underground-connections.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-underground-connections.md`

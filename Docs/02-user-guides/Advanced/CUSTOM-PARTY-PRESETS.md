@@ -28,6 +28,7 @@ Before creating custom presets:
 ### File Location
 
 Party mode presets are defined in:
+
 ```
 _bmad/core/workflows/party-mode/presets/cross-module-groups.yaml
 ```
@@ -114,6 +115,7 @@ agents:
 ```
 
 **Role Guidelines:**
+
 - Be specific to this preset's context
 - Explain what unique perspective this agent brings
 - Use active verbs (reviews, evaluates, challenges, proposes)

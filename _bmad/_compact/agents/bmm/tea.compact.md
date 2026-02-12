@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmm/agents/tea.md
+# Full agent: src/bmm/agents/tea.md
 agent_id: "tea"
 name: "Murat"
 title: "Master Test Architect"

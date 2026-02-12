@@ -3,6 +3,7 @@
 ## Authentication Examples
 
 ### Basic Token Authentication
+
 ```typescript
 import { TokenGenerator } from "../../generate-token";
 
@@ -20,9 +21,10 @@ res.json({ token, expiresAt: new Date(Date.now() + 2 * 60 * 60 * 1000) });
 ```
 
 ### Session Management
+
 ```typescript
 // SessionManager is now in the canonical _bmad/core/security location
-import { SessionManager } from "../../../../_bmad/core/security/session-manager";
+import { SessionManager } from "../../../../src/core/security/session-manager";
 
 const sessionMgr = new SessionManager();
 
@@ -48,6 +50,7 @@ async function requireAuth(req, res, next) {
 ```
 
 ## Role-Based Access Control
+
 ```typescript
 import { RBACManager } from "../../rbac/rbac-manager";
 
@@ -69,6 +72,7 @@ if (await rbac.hasPermission(userId, "users:delete")) {
 ```
 
 ## Security Monitoring
+
 ```typescript
 import { SecurityMonitor } from "../../monitoring/security-monitor";
 

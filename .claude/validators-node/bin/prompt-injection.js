@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/ai-safety/prompt-injection.js')
+import('../dist/src/ai-safety/prompt-injection.js')
   .then((module) => {
     module.main();
   })

@@ -283,7 +283,7 @@ class OfflineSupport {
 
     try {
       // Install from tarball using npm
-      await execAsync(`npm install "${tarballPath}" --save`, {
+      await execAsync(`npm install "${tarballPath}"`, {
         cwd: targetDir
       });
 

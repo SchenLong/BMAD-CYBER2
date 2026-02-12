@@ -7,25 +7,25 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  DEFAULT_TIMEOUT,
+  checkLlmConnectivity,
   DEFAULT_CONFIG_PATH,
-  PROVIDER_ENDPOINTS,
-  PROVIDER_BASE_URLS,
+  DEFAULT_TIMEOUT,
+  formatCheckResult,
+  getApiKey,
+  getLocalModels,
   LOCAL_PROVIDERS,
   parseSimpleYaml,
+  PROVIDER_BASE_URLS,
+  PROVIDER_ENDPOINTS,
   readLlmConfig,
-  getApiKey,
-  testProvider,
   testFallbackChain,
-  getLocalModels,
-  checkLlmConnectivity,
-  formatCheckResult
+  testProvider
 } from './llm-checker.js';
 
 const __filename = fileURLToPath(import.meta.url);

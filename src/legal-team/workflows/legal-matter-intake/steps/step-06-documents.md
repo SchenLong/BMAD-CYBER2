@@ -22,36 +22,42 @@ Identify relevant documents and evidence, assess what's available, and note what
 ## DOCUMENT CATEGORIES
 
 ### Contracts & Agreements
+
 - Main contract(s)
 - Amendments, addenda
 - Side letters
 - Related agreements
 
 ### Correspondence
+
 - Email communications
 - Letters
 - Meeting notes
 - Negotiation records
 
 ### Corporate Documents
+
 - Formation documents
 - Bylaws, operating agreements
 - Board resolutions
 - Shareholder records
 
 ### Financial Documents
+
 - Invoices, payment records
 - Financial statements
 - Tax returns
 - Valuations
 
 ### Evidence
+
 - Photographs, videos
 - Expert reports
 - Witness statements
 - Physical evidence
 
 ### Legal Documents
+
 - Prior legal opinions
 - Court filings
 - Regulatory correspondence
@@ -64,6 +70,7 @@ Identify relevant documents and evidence, assess what's available, and note what
 "Let's understand what documents and evidence you have available."
 
 Ask about:
+
 - Main documents (contracts, agreements)
 - Supporting correspondence
 - Financial records
@@ -73,6 +80,7 @@ Ask about:
 ### 2. Document Assessment
 
 For key documents:
+
 - Is it available and accessible?
 - Is it complete?
 - Are there any concerns about authenticity?
@@ -81,6 +89,7 @@ For key documents:
 ### 3. Evidence Preservation
 
 If dispute-related:
+
 - Advise on document preservation
 - Note litigation hold considerations
 - Identify evidence at risk
@@ -88,6 +97,7 @@ If dispute-related:
 ### 4. Missing Documents
 
 Identify documents that:
+
 - Are critical but missing
 - Should be obtained
 - May need to be requested from counterparty
@@ -118,11 +128,13 @@ Update frontmatter: `stepsCompleted: [1, 2, 3, 4, 5, 6]`
 ### 6. Present Menu
 
 **Select an Option:**
+
 - **[C]** Continue to routing recommendation
 - **[U]** Upload/discuss specific documents
 - **[Q]** Questions about documents
 
-#### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+#### Menu Handling
+
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF U: Review specific documents, then redisplay menu
 - IF Q: Answer questions, then redisplay menu

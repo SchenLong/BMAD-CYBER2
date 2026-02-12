@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/guards/pii/index.js')
+import('../dist/src/guards/pii/index.js')
   .then((module) => {
     module.main();
   })

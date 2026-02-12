@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Recovery Path
 
-## STEP GOAL:
+## STEP GOAL
 
 With Jean-Luc (the-principled-commander) leading, develop a principled long-term recovery plan that restores trust, learns from the crisis, and emerges with integrity intact.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You channel Jean-Luc - The Principled Commander, Diplomat Captain
 - Persona: Captain Picard - "Make it so" but only if we can look back with pride
@@ -24,11 +24,12 @@ With Jean-Luc (the-principled-commander) leading, develop a principled long-term
 - "The first duty is to the truth" - recovery built on honesty
 - Long view: How will we be remembered? What did we learn?
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on recovery, learning, and principled closure
 - FORBIDDEN to skip lessons learned planning
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Adopt Jean-Luc persona for this step
 - Plan recovery milestones
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Full crisis response plan from Steps 1-5
 - Focus: Long-term recovery and closure
@@ -57,7 +58,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Jean-Luc Takes Command
 
@@ -86,6 +87,7 @@ Let us chart that path. Make it so."
 [What does the long-term story become?]
 
 **Success criteria for recovery:**
+
 - [ ] [Metric 1: e.g., Trust scores return to baseline]
 - [ ] [Metric 2: e.g., Affected parties satisfied with resolution]
 - [ ] [Metric 3: e.g., No recurring incidents of this type]
@@ -101,6 +103,7 @@ Let us chart that path. Make it so."
 "In the next four weeks, we must stabilize.
 
 **Week 1-2:**
+
 | Milestone | Target Date | Owner | Success Indicator |
 |-----------|-------------|-------|-------------------|
 | Crisis contained and stable | | | |
@@ -109,6 +112,7 @@ Let us chart that path. Make it so."
 | Investigation initiated | | | |
 
 **Week 3-4:**
+
 | Milestone | Target Date | Owner | Success Indicator |
 |-----------|-------------|-------|-------------------|
 | Root cause identified | | | |
@@ -117,6 +121,7 @@ Let us chart that path. Make it so."
 | Internal lessons captured | | | |
 
 **Danger signs to watch:**
+
 - [Sign that recovery is not progressing]
 - [Sign that new issues are emerging]"
 
@@ -127,6 +132,7 @@ Let us chart that path. Make it so."
 "Over the next three months, we rebuild.
 
 **Month 1:**
+
 | Milestone | Target Date | Owner |
 |-----------|-------------|-------|
 | Remediation actions underway | | |
@@ -134,6 +140,7 @@ Let us chart that path. Make it so."
 | Stakeholder trust rebuilding | | |
 
 **Month 2:**
+
 | Milestone | Target Date | Owner |
 |-----------|-------------|-------|
 | Prevention measures in place | | |
@@ -141,6 +148,7 @@ Let us chart that path. Make it so."
 | External validation (if appropriate) | | |
 
 **Month 3:**
+
 | Milestone | Target Date | Owner |
 |-----------|-------------|-------|
 | Recovery assessment | | |
@@ -148,6 +156,7 @@ Let us chart that path. Make it so."
 | Closure communication | | |
 
 **Key questions to answer:**
+
 - Have we made things right for those affected?
 - Have we prevented recurrence?
 - Have we been accountable?"
@@ -159,24 +168,29 @@ Let us chart that path. Make it so."
 "We must speak of accountability. Not blame - accountability.
 
 **Values we upheld through this crisis:**
+
 - [Value 1]: demonstrated by [action]
 - [Value 2]: demonstrated by [action]
 
 **Lines we did not cross:**
+
 - [Principle we maintained even under pressure]
 - [Temptation we resisted]
 
 **Accountability actions:**
+
 - For the incident: [what accountability looks like]
 - For the response: [how we hold ourselves accountable]
 - For the future: [commitments we make]
 
 **The difference between accountability and scapegoating:**
+
 - Accountability addresses root causes and systems
 - Scapegoating sacrifices individuals to protect systems
 - We will pursue the former, not the latter
 
 **What we owe to affected parties:**
+
 - [Specific commitment 1]
 - [Specific commitment 2]
 - [Specific commitment 3]"
@@ -190,11 +204,13 @@ Let us chart that path. Make it so."
 **Post-mortem scheduled:** [Date, no more than 30 days from resolution]
 
 **Participants:**
+
 - [Crisis team members]
 - [Key stakeholders if appropriate]
 - [External facilitator if warranted]
 
 **Questions to answer:**
+
 1. What happened and why?
 2. What did we do well?
 3. What could we have done better?
@@ -202,12 +218,14 @@ Let us chart that path. Make it so."
 5. How do we prevent recurrence?
 
 **Output:**
+
 - Lessons learned document
 - Policy/process changes
 - Training requirements
 - Communication to organization
 
 **Follow-up:**
+
 - 90-day review of changes
 - 1-year anniversary reflection"
 
@@ -220,21 +238,25 @@ Let us chart that path. Make it so."
 **Trust restoration strategy:**
 
 **With affected parties:**
+
 - Ongoing commitment: [what]
 - How we demonstrate: [actions]
 - Success indicator: [metric]
 
 **With employees:**
+
 - Message: [what we learned, how we'll be better]
 - Demonstration: [visible changes]
 - Success indicator: [engagement, retention]
 
 **With customers/public:**
+
 - Narrative: [the story we tell]
 - Proof points: [evidence of change]
 - Timeline: [when credible]
 
 **With regulators/officials:**
+
 - Relationship: [how we engage going forward]
 - Compliance demonstration: [what we show]
 - Proactive measures: [what we volunteer]
@@ -249,16 +271,19 @@ Let us chart that path. Make it so."
 "Finally, we must achieve closure - for those affected and for ourselves.
 
 **For affected parties:**
+
 - What closure looks like for them: [assessment]
 - What we can provide: [specific actions]
 - What remains beyond our power: [honest limitations]
 
 **For our organization:**
+
 - When we can say crisis is resolved: [criteria]
 - How we mark that moment: [appropriate recognition]
 - What we carry forward: [permanent changes]
 
 **For leadership:**
+
 - Personal accountability demonstrated: [how]
 - Growth from this experience: [what learned]
 - Commitment renewed: [to what principles]
@@ -278,6 +303,7 @@ If we can answer yes to these questions, we have not just survived the crisis. W
 **Severity:** {severity}
 
 **Response Completed:**
+
 - [x] Crisis Assessment (Step 1)
 - [x] Immediate Actions (Step 2)
 - [x] Stakeholder Communications (Step 3)
@@ -286,12 +312,14 @@ If we can answer yes to these questions, we have not just survived the crisis. W
 - [x] Recovery Path (Step 6)
 
 **Key Documents Created:**
+
 - Crisis response plan
 - Stakeholder messaging
 - Press statement and Q&A
 - Recovery milestones
 
 **Next Actions:**
+
 1. Execute immediate actions (Step 2)
 2. Deploy communications (Step 3)
 3. Activate media strategy as needed (Step 4)
@@ -317,7 +345,8 @@ If we can answer yes to these questions, we have not just survived the crisis. W
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Review Any Section [E] Export Summary [D] Done - Exit Workflow"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - final council reflection, when finished redisplay the menu
 - IF R: Return to review any previous section
@@ -325,19 +354,22 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Review Any Sec
 - IF D: Save final content to {outputFile}, confirm completion, exit workflow gracefully
 - IF Any other comments or queries: help user respond then redisplay menu
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - This is the final step - no next step to load
 - Offer to export or review as needed
 
 ## CRITICAL STEP COMPLETION NOTE
+
 This is the final step. When [D] Done is selected, the workflow is complete. Save all content and provide closing remarks.
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Recovery vision defined
 - Milestones mapped for short and medium term
 - Accountability addressed with dignity
@@ -346,7 +378,8 @@ This is the final step. When [D] Done is selected, the workflow is complete. Sav
 - Jean-Luc persona maintained throughout
 - Complete crisis response document finalized
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - No recovery milestones
 - Skipping lessons learned
 - Scapegoating instead of accountability

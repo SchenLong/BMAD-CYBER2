@@ -711,7 +711,7 @@ class VersionMigrationPlanner extends EventEmitter {
             scheduling: {
                 recommendedWindow: executionWindow,
                 maintenanceWindowRequired: analysis.requirements.downtime,
-                minimumWindow: Math.ceil(totalDuration / 60) + ' hours',
+                minimumWindow: `${Math.ceil(totalDuration / 60)  } hours`,
                 bufferTime: '30 minutes'
             },
 
@@ -1070,12 +1070,12 @@ class VersionMigrationPlanner extends EventEmitter {
     }
 
     /**
-     * Generate rollback plan (stub implementation)
+     * Generate simple rollback plan (stub implementation)
      * @param {Object} sourcePackage - Source package
      * @param {Object} targetPackage - Target package
      * @returns {Promise<Object>} Rollback plan
      */
-    async generateRollbackPlan(sourcePackage, targetPackage) {
+    async generateSimpleRollbackPlan(sourcePackage, targetPackage) {
         return {
             feasible: true,
             steps: [

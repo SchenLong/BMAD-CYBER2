@@ -48,8 +48,10 @@ export const US_PATTERNS: PiiPattern[] = [
     contextRequired: true,
   },
   {
+    // SA-02 LOW: Tightened regex — old pattern /[A-Z]?\d{8,9}/ matched any 8-9 digit number.
+    // US passports: letter prefix + exactly 8 digits (since 1981). Card passports: C + 8 digits.
     name: 'US_Passport',
-    regex: /\b[A-Z]?\d{8,9}\b/g,
+    regex: /\b[A-Z]\d{8}\b/g,
     severity: 'critical',
     contextRequired: true,
   },

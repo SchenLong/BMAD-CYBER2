@@ -1,0 +1,69 @@
+# BMAD Module Registry
+# Lists all official modules with their metadata for module resolution.
+# Resolution order: built-in → external (future)
+# All modules are currently built-in (embedded in the package).
+
+modules:
+  core:
+    code: core
+    name: "BMAD Core Infrastructure"
+    description: "System orchestration, brainstorming, project management"
+    type: built-in
+    defaultSelected: true
+    required: true
+
+  bmm:
+    code: bmm
+    name: "BMAD Method - Business & Product Development"
+    description: "AI-driven agile development framework"
+    type: built-in
+    defaultSelected: true
+
+  bmb:
+    code: bmb
+    name: "BMAD Builder - Module & Workflow Creation"
+    description: "BMAD framework builder tools"
+    type: built-in
+    defaultSelected: false
+
+  bmgd:
+    code: bmgd
+    name: "BMAD Game Development"
+    description: "Game development lifecycle"
+    type: built-in
+    defaultSelected: false
+
+  cis:
+    code: cis
+    name: "Creative Innovation Studio"
+    description: "Creative innovation and storytelling"
+    type: built-in
+    defaultSelected: false
+
+  cybersec-team:
+    code: cybersec-team
+    name: "Cybersecurity Team"
+    description: "Security testing, compliance, incident response"
+    type: built-in
+    defaultSelected: false
+
+  intel-team:
+    code: intel-team
+    name: "Intelligence Operations Team"
+    description: "OSINT, HUMINT, SIGINT, threat intelligence"
+    type: built-in
+    defaultSelected: false
+
+  legal-team:
+    code: legal-team
+    name: "Legal Team - Multi-Jurisdictional Legal Advisory"
+    description: "Contracts, corporate formation, tax, disputes"
+    type: built-in
+    defaultSelected: false
+
+  strategy-team:
+    code: strategy-team
+    name: "Strategic Advisory Team"
+    description: "Executive strategy, crisis, M&A, leadership"
+    type: built-in
+    defaultSelected: false

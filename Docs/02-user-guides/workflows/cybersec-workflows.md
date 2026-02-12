@@ -28,6 +28,7 @@ Comprehensive security operations workflows for vulnerability assessment, incide
 | **Incident Response Playbook** | `/incident-response-playbook` | 7-19 | IR Playbook or live response guidance |
 
 **Incident Response Playbook** is a dual-mode workflow:
+
 - **Mode A (Playbook Creation)**: Design comprehensive IR playbooks for your organization
 - **Mode B (Guided Execution)**: Step-by-step guidance during active security incidents
 
@@ -35,6 +36,7 @@ Comprehensive security operations workflows for vulnerability assessment, incide
 **Compliance Support**: GDPR, PCI-DSS, HIPAA, SOC 2, ISO 27001
 
 **When to use**:
+
 - Building organizational IR capabilities from scratch
 - Responding to an active security incident
 - Meeting compliance requirements for incident response
@@ -54,6 +56,7 @@ Comprehensive security operations workflows for vulnerability assessment, incide
 | **Blockchain Security Assessment** | `/blockchain-security-assessment` | 9 | Smart contract audit report |
 
 **Web Application Security Testing**
+
 - OWASP Top 10 vulnerability assessment
 - Authentication and authorization testing
 - Session management analysis
@@ -64,6 +67,7 @@ Comprehensive security operations workflows for vulnerability assessment, incide
 **Frameworks**: OWASP Testing Guide, OWASP Top 10, ASVS, WSTG
 
 **Mobile Security Testing**
+
 - Static analysis (SAST) and dynamic analysis (DAST)
 - Binary protection analysis
 - Local data storage security
@@ -73,6 +77,7 @@ Comprehensive security operations workflows for vulnerability assessment, incide
 **Frameworks**: OWASP MSTG, MASVS
 
 **Network Assessment**
+
 - External and internal network testing
 - Active Directory security assessment
 - Network segmentation analysis
@@ -82,6 +87,7 @@ Comprehensive security operations workflows for vulnerability assessment, incide
 **Frameworks**: PTES, NIST SP 800-115, OSSTMM
 
 **Cloud Security Assessment**
+
 - IAM and identity governance review
 - Network security configuration
 - Data protection and encryption assessment
@@ -101,6 +107,7 @@ Comprehensive security operations workflows for vulnerability assessment, incide
 
 **Threat Modeling (STRIDE)**
 Systematic identification of security threats using STRIDE methodology:
+
 - **S**poofing - Identity authentication threats
 - **T**ampering - Data integrity threats
 - **R**epudiation - Non-repudiation threats
@@ -109,12 +116,14 @@ Systematic identification of security threats using STRIDE methodology:
 - **E**levation of Privilege - Authorization threats
 
 **When to use**:
+
 - Early in system design phase
 - Before major architecture changes
 - Security requirements generation
 - Risk-based security planning
 
 **Security Architecture Review**
+
 - Zero-trust validation
 - Attack surface analysis
 - Cloud security review (AWS/Azure/GCP)
@@ -135,12 +144,14 @@ Systematic identification of security threats using STRIDE methodology:
 
 **Compliance Audit Preparation**
 Supports 20+ compliance frameworks:
+
 - **US**: NIST 800-53, SOC 2, PCI-DSS, HIPAA, FedRAMP, CMMC
 - **EU**: GDPR, NIS2, Cyber Resilience Act, DORA, AI Act
 - **Global**: ISO 27001/27017/27018, CIS Controls, CSA STAR
 - **Industry**: SWIFT CSP, NERC CIP, TISAX
 
 **Deliverables**:
+
 - Gap assessment with remediation priorities
 - Evidence inventory and collection plan
 - Control mapping to framework requirements
@@ -148,6 +159,7 @@ Supports 20+ compliance frameworks:
 
 **Virtual CISO Consulting**
 Comprehensive vCISO engagement including:
+
 - Strategic security planning and roadmaps
 - Budget optimization with ROI framework
 - Security maturity assessment
@@ -164,6 +176,7 @@ Comprehensive vCISO engagement including:
 | **Security Awareness Training** | `/security-awareness-training` | 7 | Awareness program design |
 
 Design and implement security awareness programs:
+
 - Risk assessment and threat analysis
 - Training content development
 - Phishing simulation design
@@ -204,12 +217,14 @@ The cybersec-team module includes 15 specialized agents:
 ### Starting a Workflow
 
 1. **Via Agent Menu**: Invoke the relevant agent and select from the workflow menu
+
    ```bash
    /cybersec-team:incident-commander
    # Then select from the menu options
    ```
 
 2. **Direct Workflow**: Start a workflow directly
+
    ```bash
    /cybersec-team:workflows:threat-modeling
    ```
@@ -217,6 +232,7 @@ The cybersec-team module includes 15 specialized agents:
 ### Workflow Architecture
 
 All cybersec-team workflows use **step-file architecture**:
+
 - Sequential execution of discrete steps
 - State tracking in output file frontmatter
 - Menu-driven navigation with user input checkpoints
@@ -225,6 +241,7 @@ All cybersec-team workflows use **step-file architecture**:
 ### Output Artifacts
 
 Workflows generate professional deliverables saved to your configured output folder:
+
 - Security assessment reports
 - Compliance documentation packages
 - Incident response playbooks
@@ -235,21 +252,25 @@ Workflows generate professional deliverables saved to your configured output fol
 ## Common Use Cases
 
 ### Pre-Deployment Security Review
+
 1. Run **Threat Modeling** during design phase
 2. Execute **Security Architecture Review** before deployment
 3. Conduct **Web Application Security Testing** or relevant assessment
 
 ### Compliance Preparation
+
 1. Start with **Compliance Audit Preparation** for gap assessment
 2. Use **Vulnerability Management** to establish ongoing VM program
 3. Engage **Virtual CISO Consulting** for strategic planning
 
 ### Incident Response Capability Building
+
 1. Create playbooks with **Incident Response Playbook** (Mode A)
 2. Train team on procedures
 3. Use **Incident Response Playbook** (Mode B) during actual incidents
 
 ### Security Program Development
+
 1. **Virtual CISO Consulting** for strategic roadmap
 2. **Security Awareness Training** for human layer
 3. Assessment workflows for technical validation

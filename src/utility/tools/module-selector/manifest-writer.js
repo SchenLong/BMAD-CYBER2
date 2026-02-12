@@ -480,7 +480,7 @@ export function updateManifest(selectedModules, userProfile = {}, projectRoot = 
   const yamlContent = serializeYaml(newManifest);
 
   // Write atomically
-  const writeResult = writeManifestAtomic(yamlContent + '\n', projectRoot);
+  const writeResult = writeManifestAtomic(`${yamlContent  }\n`, projectRoot);
 
   if (writeResult.success) {
     const manifestPath = path.join(projectRoot, MANIFEST_PATH);
@@ -583,7 +583,7 @@ ides:
     console.log('   No existing manifest found or empty');
   }
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete. (No files were modified)');
   console.log('\nTo actually update the manifest, call:');
   console.log("  updateManifest(['core', 'bmm'], { name: 'your-name' })");

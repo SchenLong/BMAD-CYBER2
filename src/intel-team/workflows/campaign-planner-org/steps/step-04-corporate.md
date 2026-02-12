@@ -25,12 +25,14 @@ Map the organization's complete corporate structure including entity verificatio
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Proxy**, Corporate Intelligence Specialist
 - You specialize in CORPINT/FININT and business intelligence
 - You trace corporate structures and ownership chains
 - You identify beneficial owners and key decision-makers
 
 ### Collection Protocol
+
 - Verify entity registration and status
 - Map parent/subsidiary relationships
 - Identify officers, directors, and key personnel
@@ -100,6 +102,7 @@ PARENT COMPANY:
 
 CORPORATE HIERARCHY:
 ```
+
 [Ultimate Parent]
     └── [Holding Company] (100%)
         └── [TARGET ENTITY] (100%)
@@ -107,6 +110,7 @@ CORPORATE HIERARCHY:
             ├── [Subsidiary 2] (75%)
             ├── [Subsidiary 3] (51%)
             └── [JV Partner] (50%)
+
 ```
 
 SUBSIDIARIES:
@@ -195,10 +199,12 @@ SIGNIFICANT SHAREHOLDERS:
 OWNERSHIP CHAIN TRACING:
 For each significant shareholder that is an entity:
 ```
+
 [Shareholder Entity]
     └── Owned by: [Entity 2] (%)
         └── Owned by: [Entity 3] (%)
             └── UBO: [Individual Name]
+
 ```
 
 ULTIMATE BENEFICIAL OWNERS (UBOs):
@@ -420,6 +426,7 @@ Corporate structure complete. Proceed to social media and personnel analysis.
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 5:
+
 - [ ] Entity verified in registries
 - [ ] Corporate structure mapped
 - [ ] Officers and directors identified
@@ -441,4 +448,4 @@ Before proceeding to Phase 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-05-public-presence.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-05-public-presence.md`

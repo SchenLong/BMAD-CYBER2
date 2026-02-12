@@ -10,7 +10,7 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 
 # Step 6: Wireless Security Testing
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
@@ -23,19 +23,21 @@ outputFile: '{output_folder}/security/network-assessment-{project_name}.md'
 If NO: Select [S] to skip to segmentation testing.
 If YES: Continue with wireless testing below."
 
-## WIRELESS TESTING SEQUENCE:
+## WIRELESS TESTING SEQUENCE
 
 ### 1. Wireless Reconnaissance
 
 "Let's discover wireless networks.
 
 **Discovery Methods:**
+
 - Passive scanning (monitor mode)
 - Active probing
 - Beacon analysis
 - Hidden SSID detection
 
 **Tools:**
+
 ```bash
 # Airmon-ng for monitor mode
 airmon-ng start wlan0
@@ -48,6 +50,7 @@ kismet
 ```
 
 **Key Information:**
+
 - SSID names
 - BSSID (MAC addresses)
 - Channel usage
@@ -61,6 +64,7 @@ What wireless networks have you discovered?"
 "Let's analyze wireless encryption.
 
 **Encryption Types:**
+
 - **Open**: No encryption (critical)
 - **WEP**: Deprecated, easily cracked
 - **WPA Personal**: PSK-based, crackable
@@ -68,6 +72,7 @@ What wireless networks have you discovered?"
 - **WPA2/WPA3 Enterprise**: 802.1X, certificate-based
 
 **Weaknesses to Test:**
+
 - WEP still in use?
 - Weak WPA/WPA2 passphrases?
 - WPS enabled?
@@ -80,6 +85,7 @@ What encryption methods are in use?"
 "For WPA/WPA2 networks:
 
 **Handshake Capture:**
+
 ```bash
 # Capture handshake
 airodump-ng -c <channel> --bssid <bssid> -w capture wlan0mon
@@ -89,12 +95,14 @@ aireplay-ng -0 5 -a <bssid> wlan0mon
 ```
 
 **PMKID Attack:**
+
 ```bash
 # Capture PMKID (no client needed)
 hcxdumptool -i wlan0mon -o pmkid.pcapng --enable_status=1
 ```
 
 **Password Cracking:**
+
 ```bash
 # Hashcat for cracking
 hashcat -m 22000 capture.hc22000 wordlist.txt
@@ -110,11 +118,13 @@ What handshake captures or cracking attempts have you made?"
 "Testing Wi-Fi Protected Setup.
 
 **WPS Vulnerabilities:**
+
 - PIN brute force (Reaver)
 - Pixie Dust attack
 - WPS lockout bypass
 
 **Commands:**
+
 ```bash
 # Check for WPS
 wash -i wlan0mon
@@ -133,12 +143,14 @@ Is WPS enabled on any networks?"
 "Let's check for rogue APs.
 
 **Detection Methods:**
+
 - Unauthorized SSIDs
 - MAC address analysis
 - Signal strength mapping
 - Corporate policy comparison
 
 **Evil Twin Detection:**
+
 - Duplicate SSIDs
 - Different BSSIDs
 - Unexpected channels
@@ -150,17 +162,20 @@ Have you identified any rogue access points?"
 "For enterprise wireless environments:
 
 **EAP Methods to Test:**
+
 - EAP-TLS (certificate-based)
 - PEAP/MSCHAPv2 (password-based)
 - EAP-TTLS
 
 **Attacks:**
+
 - Evil twin with captive portal
 - Credential harvesting
 - Certificate impersonation
 - RADIUS server testing
 
 **Tools:**
+
 - hostapd-wpe
 - eaphammer
 - WiFi-Pumpkin
@@ -172,12 +187,14 @@ What enterprise wireless testing have you performed?"
 "Testing wireless client security.
 
 **Client Vulnerabilities:**
+
 - Probe request analysis
 - KARMA attacks
 - Client isolation bypass
 - Captive portal bypass
 
 **Tools:**
+
 ```bash
 # Probe request capture
 airodump-ng wlan0mon
@@ -234,6 +251,7 @@ Append to {outputFile} Section 6:
 "**Wireless Security Testing Complete**
 
 **Summary:**
+
 - Networks discovered: [count]
 - Encryption weaknesses: [count]
 - Credentials obtained: [count]
@@ -249,4 +267,4 @@ Display: [C] Continue to Segmentation Testing [R] Review/Add Findings [S] Skip (
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5, 6]`, then follow {nextStepFile}.

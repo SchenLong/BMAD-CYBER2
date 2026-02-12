@@ -17,7 +17,7 @@
  * - Documentation file bypass
  * - Single-use override tokens with 5-minute timeout
  */
-import { AuditLogger, OverrideManager, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
+import { AuditLogger, getToolInputFromStdinSync, OverrideManager, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 const VALIDATOR_NAME = 'production_guard';
 /** Production keyword patterns */
@@ -199,8 +199,8 @@ export function validateProductionGuard(content, filePath) {
     });
     printBlockMessage({
         title: 'PRODUCTION TARGETING BLOCKED',
-        message: `Detected ${indicators.length} production indicator(s):\n` +
-            indicators.slice(0, 3).map(i => `  - ${i.pattern}: "${i.match}"`).join('\n'),
+        message: `Detected ${indicators.length} production indicator(s):\n${ 
+            indicators.slice(0, 3).map(i => `  - ${i.pattern}: "${i.match}"`).join('\n')}`,
         target: content.slice(0, 200),
         overrideVar: 'BMAD_ALLOW_PRODUCTION',
         recommendations: [

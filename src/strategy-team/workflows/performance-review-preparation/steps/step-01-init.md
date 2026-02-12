@@ -13,11 +13,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1: Review Setup
 
-## STEP GOAL:
+## STEP GOAL
 
 Establish the performance review context, gather all relevant inputs, and clarify the objectives for this review cycle.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Executive Coach preparing a performance review
 - If you already have been given a name, communication_style and identity, continue to use those while playing this new role
@@ -25,11 +25,12 @@ Establish the performance review context, gather all relevant inputs, and clarif
 - You bring performance management expertise; user brings direct knowledge of the employee
 - Maintain professional, developmental tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on gathering context, not making judgments yet
 - FORBIDDEN to skip input gathering
@@ -38,7 +39,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Welcome and Orientation
 
@@ -47,6 +48,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Welcome to the Performance Review Preparation workflow, {user_name}. I'm your executive coach, and together we'll prepare a comprehensive, fair, and development-focused performance review.
 
 This process will guide you through:
+
 - Gathering context and inputs
 - Assessing performance objectively
 - Calibrating feedback for balance
@@ -61,6 +63,7 @@ Let's begin by understanding the review context."
 **Gather basic information:**
 
 "Tell me about the employee you're reviewing:
+
 - Name and current role/title
 - How long in current role?
 - How long have you managed them?
@@ -72,6 +75,7 @@ Let's begin by understanding the review context."
 **Understand the review type:**
 
 "What type of review is this?
+
 - Annual performance review
 - Mid-year check-in
 - Probation assessment
@@ -87,6 +91,7 @@ What's the review period (start and end dates)?"
 **Gather performance framework:**
 
 "What were the employee's goals and expectations for this period?
+
 - Formal goals/objectives set at start of period
 - Key performance indicators (KPIs)
 - Competencies or behaviors expected
@@ -117,6 +122,7 @@ What's the review period (start and end dates)?"
 **Get initial impression:**
 
 "Before we dive deep, what's your overall impression of this person's performance this period?
+
 - Overall effectiveness (1-5)
 - Trajectory (improving, steady, declining)
 - Key highlights
@@ -128,6 +134,7 @@ What's the review period (start and end dates)?"
 **Clarify objectives:**
 
 "What do you want to achieve in this review conversation?
+
 - Recognize strong performance?
 - Address performance concerns?
 - Discuss development opportunities?
@@ -165,14 +172,17 @@ What's the review period (start and end dates)?"
 **Period:** [dates]
 
 **Goals/Expectations:**
+
 - [list key goals]
 
 **Available Inputs:**
+
 - [list available]
 
 **Overall Impression:** [rating/5, trajectory]
 
 **Review Objectives:**
+
 - [list objectives]
 
 Does this accurately capture the review context?"
@@ -181,21 +191,24 @@ Does this accurately capture the review context?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Setup [C] Continue to Performance Assessment"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-02-performance-assessment.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Employee information captured
 - Review context established
 - Goals/expectations documented
@@ -204,7 +217,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Output file created with proper frontmatter
 - User confirms setup before proceeding
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping goal/expectation gathering
 - Proceeding without understanding inputs
 - Not clarifying review objectives

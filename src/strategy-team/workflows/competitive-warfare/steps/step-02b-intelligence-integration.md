@@ -13,13 +13,14 @@ recommendedPreset: 'strategic-intelligence-council'
 
 # Step 2b: Cross-Module Intelligence Integration
 
-## STEP GOAL:
+## STEP GOAL
 
 Enhance enemy analysis with professional intelligence capabilities. The Intel team provides OSINT, corporate intelligence, and profiling expertise that transforms strategic assumptions into verified intelligence.
 
-### When to Invoke:
+### When to Invoke
 
 This step should be offered after Step 2 (Enemy Analysis) when ANY of:
+
 - Competitor is a major player requiring deep analysis
 - Stakes are high enough to warrant intelligence investment
 - Current competitor knowledge has significant gaps
@@ -29,7 +30,7 @@ This step should be offered after Step 2 (Enemy Analysis) when ANY of:
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### 1. Introduction to Intelligence Integration
 
@@ -46,6 +47,7 @@ Our initial enemy analysis provides a framework. But frameworks built on assumpt
 "{user_name}, shall we integrate professional intelligence capabilities?
 
 The Intel team can provide:
+
 - **OSINT analysis** - Systematic open source intelligence
 - **Corporate intelligence** - Leadership profiling, financial analysis, organizational mapping
 - **Pattern analysis** - Behavioral patterns, historical decisions, strategic tendencies
@@ -67,21 +69,25 @@ This transforms assumptions into verified intelligence.
 "Activating intelligence integration team:
 
 **Vector** (Intelligence Director, intel-team)
+
 - Will coordinate overall intelligence picture
 - Synthesize multi-source intelligence
 - Provide confidence assessments
 
 **Dossier** (Threat Actor Profiler, intel-team)
+
 - Will profile key competitor leadership
 - Analyze behavioral patterns
 - Predict decision-making tendencies
 
 **Proxy** (Corporate Intelligence Specialist, intel-team)
+
 - Will analyze corporate structure
 - Map financial intelligence
 - Identify ownership and control
 
 **Echo** (Social Media Analyst, intel-team)
+
 - Will analyze public communications
 - Track sentiment and positioning
 - Identify messaging patterns"
@@ -95,6 +101,7 @@ This transforms assumptions into verified intelligence.
 **Open Source Intelligence Assessment:**
 
 **Competitor Overview:**
+
 | Dimension | Intelligence | Confidence | Source Quality |
 |-----------|-------------|------------|----------------|
 | Corporate structure | [findings] | [H/M/L] | [sources] |
@@ -104,6 +111,7 @@ This transforms assumptions into verified intelligence.
 | Regulatory standing | [findings] | [H/M/L] | [sources] |
 
 **Recent Activity Analysis:**
+
 - Press releases (past 12 months): [patterns observed]
 - Job postings: [strategic signals]
 - Patent filings: [technology direction]
@@ -111,11 +119,13 @@ This transforms assumptions into verified intelligence.
 - Executive speeches: [strategic messaging]
 
 **Intelligence Gaps:**
+
 - What we don't know and can't easily find: [list]
 - What would change our assessment if known: [list]
 
 **Intelligence Collection Priorities:**
 If deeper collection warranted:
+
 1. [Priority intelligence need]
 2. [Priority intelligence need]"
 
@@ -128,6 +138,7 @@ If deeper collection warranted:
 **Leadership Intelligence:**
 
 **[Key Leader 1 - CEO/Decision-maker]:**
+
 | Attribute | Assessment | Evidence | Confidence |
 |-----------|------------|----------|------------|
 | Background | [career path, education] | [sources] | [H/M/L] |
@@ -141,17 +152,20 @@ If deeper collection warranted:
 [Similar profiling]
 
 **Leadership Dynamics:**
+
 - Decision-making authority: [centralized/distributed]
 - Internal factions: [if identifiable]
 - Advisor influences: [key advisors/board members]
 
 **Behavioral Predictions:**
 Based on profiling, under pressure they are likely to:
+
 1. [Predicted behavior with confidence level]
 2. [Predicted behavior with confidence level]
 
 **Warning Indicators:**
 Watch for these signals that indicate strategic shift:
+
 1. [Indicator and what it means]
 2. [Indicator and what it means]"
 
@@ -164,12 +178,14 @@ Watch for these signals that indicate strategic shift:
 **Corporate Structure Intelligence:**
 
 **Ownership & Control:**
+
 - Ultimate beneficial owners: [if identifiable]
 - Investor composition: [categories]
 - Board composition and influence: [assessment]
 - Institutional pressure: [expectations/constraints]
 
 **Financial Intelligence:**
+
 | Metric | Current | Trend | Strategic Implication |
 |--------|---------|-------|----------------------|
 | Revenue | [figure] | [up/down/flat] | [what it means] |
@@ -179,6 +195,7 @@ Watch for these signals that indicate strategic shift:
 | Marketing spend | [figure] | [up/down/flat] | [competitive intensity] |
 
 **Corporate Vulnerability Analysis:**
+
 - Financial pressure points: [where they're stretched]
 - Stakeholder conflicts: [divergent interests]
 - Regulatory exposure: [compliance risks]
@@ -186,6 +203,7 @@ Watch for these signals that indicate strategic shift:
 
 **Competitive War Chest Assessment:**
 How long can they sustain aggressive competitive action?
+
 - Estimated runway: [timeframe]
 - Constraints that might force accommodation: [factors]"
 
@@ -198,29 +216,34 @@ How long can they sustain aggressive competitive action?
 **Public Communications Analysis:**
 
 **Messaging Themes (Past 12 Months):**
+
 | Theme | Frequency | Audience | Strategic Intent |
 |-------|-----------|----------|------------------|
 | [Theme 1] | [high/med/low] | [target] | [what they're trying to achieve] |
 | [Theme 2] | [high/med/low] | [target] | [what they're trying to achieve] |
 
 **Sentiment Tracking:**
+
 - Employee sentiment (Glassdoor, etc.): [assessment]
 - Customer sentiment: [assessment]
 - Investor sentiment: [assessment]
 - Media sentiment: [assessment]
 
 **Messaging Vulnerabilities:**
+
 - Inconsistencies in messaging: [identified]
 - Claims that can be challenged: [list]
 - Reputation weaknesses: [areas]
 
 **Competitive Narrative Analysis:**
 How are they positioning against us specifically?
+
 - Their narrative about us: [assessment]
 - Their claimed differentiators: [list]
 - Vulnerabilities in their narrative: [where they're weak]
 
 **Social Signals:**
+
 - Executive social media activity: [patterns]
 - Corporate social strategy: [assessment]
 - Crisis response patterns: [historical analysis]"
@@ -236,6 +259,7 @@ How are they positioning against us specifically?
 **Overall Confidence Level:** [High/Medium/Low]
 
 **Verified vs. Assumed:**
+
 | Sun's Initial Assessment | Intelligence Status | Confidence |
 |--------------------------|---------------------|------------|
 | [Assessment 1] | [Verified/Partially Verified/Unverified] | [H/M/L] |
@@ -243,6 +267,7 @@ How are they positioning against us specifically?
 | [Assessment 3] | [Verified/Partially Verified/Unverified] | [H/M/L] |
 
 **Key Intelligence Findings:**
+
 1. **[Finding 1]** - [Confidence: H/M/L] - [Strategic implication]
 2. **[Finding 2]** - [Confidence: H/M/L] - [Strategic implication]
 3. **[Finding 3]** - [Confidence: H/M/L] - [Strategic implication]
@@ -257,12 +282,14 @@ How are they positioning against us specifically?
 | Red lines | [initial] | [adjusted] | [significant/minor/none] |
 
 **Strategic Recommendations Based on Intelligence:**
+
 1. [Recommendation with intelligence basis]
 2. [Recommendation with intelligence basis]
 3. [Recommendation with intelligence basis]
 
 **Ongoing Intelligence Requirements:**
 To maintain situational awareness:
+
 1. [Monitor this for changes]
 2. [Monitor this for signals]
 
@@ -353,11 +380,11 @@ Update frontmatter: add `step-02b-intelligence-integration` to stepsCompleted
 
 ### 12. Continue to Self-Assessment
 
-When user selects [C], load and execute {nextStepFile} (step-03-self-assessment.md) with intelligence-enhanced competitor understanding.
+When user selects [C], load and follow {nextStepFile} (step-03-self-assessment.md) with intelligence-enhanced competitor understanding.
 
 ---
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - OSINT collection conducted systematically
 - Leadership profiles developed with confidence levels
@@ -367,7 +394,7 @@ When user selects [C], load and execute {nextStepFile} (step-03-self-assessment.
 - Intelligence gaps documented
 - Ongoing monitoring needs identified
 
-## FAILURE INDICATORS:
+## FAILURE INDICATORS
 
 - Accepting initial assumptions without verification
 - Not providing confidence levels on assessments

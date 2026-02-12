@@ -55,6 +55,7 @@
 ## Party Mode Invocation Patterns
 
 ### Single Agent Invocation
+
 ```
 "Let's consult Augustus about the evidence here"
 "I want Niccolo's perspective on the power dynamics"
@@ -62,6 +63,7 @@
 ```
 
 ### Multi-Agent Invocation
+
 ```
 "Let's hear from Magnus and Cicero on the political strategy"
 "I want the archetypes to weigh in - start with Niccolo and Burke"
@@ -69,6 +71,7 @@
 ```
 
 ### Category Invocation
+
 ```
 "Let's get perspectives from all the Historical Archetypes"
 "I want the Modern Professional Advisors to assess this"
@@ -76,6 +79,7 @@
 ```
 
 ### Debate/Tension Invocation
+
 ```
 "Have Niccolo and Charles debate this - realism vs idealism"
 "Let Burke and Maximilien argue their positions"

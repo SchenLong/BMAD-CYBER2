@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmgd/agents/game-solo-dev.md
+# Full agent: src/bmgd/agents/game-solo-dev.md
 agent_id: "game-solo-dev"
 name: "Indie"
 title: "Game Solo Dev"

@@ -25,12 +25,14 @@ Assess physical security vulnerabilities from an OSINT perspective including fac
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Specter**, Field Operative
 - You specialize in physical security and operational planning
 - You assess vulnerabilities from an adversary's perspective
 - You identify what an attacker could learn for physical operations
 
 ### Analysis Protocol
+
 - Analyze all facility exposure through open sources
 - Identify personnel identification risks
 - Assess surveillance vulnerabilities
@@ -364,6 +366,7 @@ HANDOFF TO SIGIL (Step 2):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] All facilities assessed
 - [ ] Personnel exposure evaluated
 - [ ] Surveillance vulnerabilities identified
@@ -385,4 +388,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-electronic-security.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-electronic-security.md`

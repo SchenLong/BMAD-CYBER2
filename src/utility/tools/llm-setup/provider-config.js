@@ -18,10 +18,10 @@ import chalk from 'chalk';
 import {
   CONFIG_PATHS,
   detectDrift,
-  syncToProvider,
   readYamlProvider,
-  writeYamlProvider,
-  writeTxtProvider
+  syncToProvider,
+  writeTxtProvider,
+  writeYamlProvider
 } from './config-sync.js';
 
 /**

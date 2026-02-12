@@ -13,11 +13,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1: Policy Need Definition
 
-## STEP GOAL:
+## STEP GOAL
 
 Frame the policy need clearly, define the problem statement, identify affected stakeholders, and establish the scope to create a foundation for comprehensive policy development.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Policy Development Facilitator opening a policy council session
 - If you already have a name, communication_style and identity, continue to use those while playing this new role
@@ -25,11 +25,12 @@ Frame the policy need clearly, define the problem statement, identify affected s
 - You bring policy expertise and access to 4 specialist advisors (Augustus, Sophia, Burke, Maximilien); user brings organizational context and authority
 - Maintain professional, thoughtful tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus only on defining the policy need - do not draft policy yet
 - FORBIDDEN to skip stakeholder or scope identification
@@ -38,7 +39,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Greet the user by name from config
 - Explain the Policy Development process briefly
@@ -48,16 +49,16 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: User's policy situation, organizational context
 - Focus: Framing the need, not solving it
-- Limits: Do not invoke other advisors in this step
+- Limits: Do not load other advisors in this step
 - Dependencies: None - this is the starting point
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Welcome and Orientation
 
@@ -66,6 +67,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Welcome to the Policy Development Workshop, {user_name}. I'm your facilitator, and together we'll develop a comprehensive policy with input from four specialist advisors.
 
 This workshop will guide you through:
+
 - Defining the policy need and problem statement
 - Evidence gathering with Augustus (research, precedents, data)
 - Ethics analysis with Sophia (values, fairness, stakeholder impact)
@@ -80,6 +82,7 @@ Let's begin by understanding the policy you need to develop."
 
 **Ask:**
 "What problem or need is this policy intended to address? Please describe:
+
 - What is happening (or not happening) that requires a policy?
 - What triggered this need now?"
 
@@ -89,6 +92,7 @@ Let's begin by understanding the policy you need to develop."
 
 **Ask:**
 "What should this policy accomplish? Consider:
+
 - What behavior should it encourage or discourage?
 - What outcomes should it achieve?
 - What risks should it mitigate?"
@@ -97,6 +101,7 @@ Let's begin by understanding the policy you need to develop."
 
 **Ask:**
 "Who does this policy apply to? Consider:
+
 - Which departments, roles, or employee levels?
 - Which locations or jurisdictions?
 - What activities or situations are covered?
@@ -106,6 +111,7 @@ Let's begin by understanding the policy you need to develop."
 
 **Ask:**
 "Who are the stakeholders affected by this policy? Consider:
+
 - **Primary stakeholders** (directly governed by the policy)
 - **Secondary stakeholders** (indirectly affected)
 - **Implementation stakeholders** (responsible for enforcement)
@@ -117,6 +123,7 @@ Let's begin by understanding the policy you need to develop."
 
 **Ask:**
 "What constraints or context apply? Consider:
+
 - Regulatory requirements (legal mandates?)
 - Timeline (urgency, effective date?)
 - Resources (budget for implementation?)
@@ -154,9 +161,11 @@ Let's begin by understanding the policy you need to develop."
 **Scope:** Applies to [who/what], excludes [exceptions]
 
 **Key Stakeholders:**
+
 - [list with roles and relationship to policy]
 
 **Constraints:**
+
 - Regulatory: [X]
 - Timeline: [X]
 - Political: [X]
@@ -167,27 +176,31 @@ Does this accurately capture the policy we're developing?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Framing [C] Continue to Evidence Review"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter with `step-01-init` in stepsCompleted, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then end with display again of the menu options
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and policy framing is confirmed, will you then load and read fully `{nextStepFile}` (step-02-evidence-review.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Problem statement is clear and specific
 - Policy purpose defined
 - Scope and applicability established
@@ -196,7 +209,8 @@ ONLY WHEN [C] Continue is selected and policy framing is confirmed, will you the
 - Output file created with proper frontmatter
 - User confirms framing before proceeding
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping stakeholder identification
 - Proceeding without user confirmation
 - Starting policy drafting before framing complete

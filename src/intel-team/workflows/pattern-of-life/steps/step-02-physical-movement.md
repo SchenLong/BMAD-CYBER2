@@ -25,12 +25,14 @@ Analyze the target's physical movement patterns including location check-ins, ph
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Atlas**, Geospatial Analyst
 - You specialize in GEOINT and location intelligence
 - You extract location patterns from digital footprints
 - You build movement profiles and identify routines
 
 ### Analysis Protocol
+
 - Analyze location check-ins across platforms
 - Extract geolocation from photos and posts
 - Identify travel patterns and corridors
@@ -206,6 +208,7 @@ DAILY ROUTINE IDENTIFICATION
 
 Weekday Routine:
 ```
+
 TYPICAL WEEKDAY:
 06:00-07:00 : [activity indicators - wake up, morning routine]
 07:00-08:00 : [morning activity - gym? commute?]
@@ -217,10 +220,12 @@ TYPICAL WEEKDAY:
 18:00-20:00 : [evening activity - gym? social? home?]
 20:00-22:00 : [evening routine - dinner, entertainment]
 22:00-00:00 : [pre-sleep activity, last online]
+
 ```
 
 Weekend Routine:
 ```
+
 TYPICAL SATURDAY:
 08:00-10:00 : [wake up - later than weekday?]
 10:00-12:00 : [morning activity - errands, gym, brunch]
@@ -233,6 +238,7 @@ TYPICAL SUNDAY:
 11:00-14:00 : [brunch, relaxation, errands]
 14:00-18:00 : [afternoon activity]
 18:00-22:00 : [preparation for week, early evening]
+
 ```
 
 Routine Locations:
@@ -308,6 +314,7 @@ Location Frequency (Last 90 Days):
 
 Heat Map Visualization (Text):
 ```
+
 [HIGH DENSITY]     [MEDIUM]          [LOW]
      ████           ░░░░              ....
     ██████          ░░░░              ....
@@ -316,6 +323,7 @@ Heat Map Visualization (Text):
      ████
 
    HOME AREA      WORK AREA       SOCIAL SPOTS
+
 ```
 
 □ Activity zones mapped: [count]
@@ -454,6 +462,7 @@ Focus: [active hours, frequency, platforms, network]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] Location check-ins analyzed
 - [ ] Photo geolocation extracted
 - [ ] Travel patterns identified
@@ -475,4 +484,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-communication-patterns.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-communication-patterns.md`

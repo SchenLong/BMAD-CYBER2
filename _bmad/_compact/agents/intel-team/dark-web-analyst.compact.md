@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/dark-web-analyst.md
+# Full agent: src/intel-team/agents/dark-web-analyst.md
 agent_id: "dark-web-analyst"
 name: "Shadow"
 title: "Dark Web Intelligence Analyst"

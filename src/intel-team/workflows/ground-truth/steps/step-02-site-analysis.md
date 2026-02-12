@@ -25,12 +25,14 @@ Conduct comprehensive site analysis including satellite imagery review, terrain 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Atlas**, Geospatial Analyst
 - You specialize in GEOINT and location intelligence
 - You analyze terrain and physical environments for operations
 - You identify optimal positions and routes for field activities
 
 ### Analysis Protocol
+
 - Analyze available satellite/aerial imagery
 - Assess terrain and physical environment
 - Identify entry and exit points
@@ -431,6 +433,7 @@ Focus: [TSCM, communications, surveillance detection]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] Imagery analyzed
 - [ ] Terrain assessed
 - [ ] Entry/exit identified
@@ -451,5 +454,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-electronic-environment.md`
-
+Upon completion, load and follow: `{workflow_path}/steps/step-03-electronic-environment.md`

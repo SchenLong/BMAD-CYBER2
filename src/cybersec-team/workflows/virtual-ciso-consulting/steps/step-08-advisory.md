@@ -10,22 +10,24 @@ advancedElicitationTask: '{project-root}/_bmad/core/workflows/advanced-elicitati
 
 # Step 8: Ongoing Advisory & Review
 
-## STEP GOAL:
+## STEP GOAL
 
 To define the ongoing vCISO advisory structure, quarterly business review format, continuous improvement process, success metrics, and finalize the complete engagement document.
 
-## ADVISORY PLANNING PROCESS:
+## ADVISORY PLANNING PROCESS
 
 ### 1. vCISO Service Delivery Model
 
 Define ongoing engagement model:
 
 **Service Hours per Month:**
+
 - Strategic advisory hours: ___ hours/month
 - Tactical support hours: ___ hours/month (if hybrid model)
 - On-call availability: Yes/No
 
 **Primary Activities:**
+
 - Weekly/bi-weekly check-ins
 - Monthly security operations review
 - Quarterly business reviews
@@ -37,33 +39,37 @@ Define ongoing engagement model:
 Define regular meeting schedule:
 
 **Weekly Touch-Base (30 min):**
+
 - Format: Virtual meeting
 - Attendees: vCISO + primary stakeholder
 - Topics: Current issues, quick decisions, blockers
 - No formal agenda
 
 **Monthly Operations Review (1-2 hours):**
+
 - Format: Virtual or in-person
 - Attendees: vCISO + security team + IT leadership
 - Agenda:
-  * KPI review
-  * Initiative progress updates
-  * Risk register review
-  * Upcoming priorities
-  * Issues and decisions
+  - KPI review
+  - Initiative progress updates
+  - Risk register review
+  - Upcoming priorities
+  - Issues and decisions
 
 **Quarterly Business Review (2-3 hours):**
+
 - Format: In-person preferred
 - Attendees: vCISO + executive leadership
 - Agenda:
-  * Strategic progress review
-  * Maturity assessment update
-  * Risk posture review
-  * Budget vs actual review
-  * Board report preparation
-  * Next quarter priorities
+  - Strategic progress review
+  - Maturity assessment update
+  - Risk posture review
+  - Budget vs actual review
+  - Board report preparation
+  - Next quarter priorities
 
 **Board Presentation (Quarterly, 15-20 min):**
+
 - Format: Board meeting presentation
 - Attendees: vCISO presenting to board
 - Topics: Per board report template (Step 6)
@@ -114,6 +120,7 @@ Design detailed QBR format:
    - Next quarter focus areas
 
 **QBR Deliverable:**
+
 - Pre-read deck sent 3 days prior
 - Live presentation with discussion
 - Action item tracker post-meeting
@@ -123,18 +130,21 @@ Design detailed QBR format:
 Define improvement cycle:
 
 **Quarterly Retrospective:**
+
 - What worked well?
 - What could be improved?
 - Lessons learned
 - Process adjustments
 
 **Annual Program Assessment:**
+
 - Full maturity reassessment
 - Roadmap review and adjustment
 - Budget planning for next year
 - Strategic alignment check
 
 **Metrics-Driven Improvement:**
+
 - Review KPI trends monthly
 - Identify underperforming areas
 - Root cause analysis
@@ -145,6 +155,7 @@ Define improvement cycle:
 Define engagement success criteria:
 
 **Quantitative Metrics:**
+
 - Security maturity improvement: Target +X points per year
 - Risk reduction: Target Y% reduction in critical/high risks
 - Compliance achievement: Target certifications achieved
@@ -152,6 +163,7 @@ Define engagement success criteria:
 - Budget efficiency: Target ROI achieved
 
 **Qualitative Metrics:**
+
 - Executive confidence in security posture
 - Board satisfaction with reporting quality
 - Security team capability growth
@@ -159,6 +171,7 @@ Define engagement success criteria:
 - Business enablement (deals enabled by security posture)
 
 **Engagement Satisfaction:**
+
 - Quarterly stakeholder satisfaction survey
 - Annual comprehensive engagement review
 - Net Promoter Score (NPS) for vCISO services
@@ -168,16 +181,19 @@ Define engagement success criteria:
 Define escalation for urgent matters:
 
 **Incident Response Support:**
+
 - vCISO availability during incidents
 - Escalation to vCISO: Severity High or above
 - Response time SLA: X hours for critical
 
 **Ad-hoc Advisory Requests:**
+
 - How to request urgent guidance
 - Response time expectations
 - Meeting scheduling process
 
 **Emergency Contact:**
+
 - vCISO emergency contact methods
 - Backup contact if vCISO unavailable
 
@@ -186,16 +202,19 @@ Define escalation for urgent matters:
 Plan for program maturity:
 
 **Year 1 (Foundation):**
+
 - Heavy vCISO involvement (high touch)
 - Building fundamentals
 - Frequent guidance needed
 
 **Year 2 (Transition):**
+
 - Reduced vCISO hours (medium touch)
 - Team gaining independence
 - More strategic focus
 
 **Year 3 (Optimization):**
+
 - Light vCISO involvement (strategic only)
 - Team self-sufficient
 - Innovation and optimization focus
@@ -205,6 +224,7 @@ Plan for program maturity:
 Create comprehensive executive summary for document start:
 
 **Executive Summary Content:**
+
 - Client overview (1 paragraph)
 - Engagement scope and duration (1 paragraph)
 - Current security posture assessment (1-2 paragraphs)
@@ -232,6 +252,7 @@ Update {outputFile} with:
 **Mark workflow complete:**
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8]
 lastStep: 'advisory'
@@ -240,6 +261,7 @@ completedDate: '{current-date}'
 ```
 
 **Add document footer:**
+
 ```markdown
 
 ---
@@ -295,6 +317,7 @@ Display: **[A] Advanced Elicitation [E] Export Options [D] Done**
 ✅ Ongoing advisory schedule defined
 
 **Next Steps:**
+
 1. Review and approve the engagement document
 2. Present to executive leadership and board
 3. Begin executing strategic roadmap (Q1 initiatives)
@@ -302,6 +325,7 @@ Display: **[A] Advanced Elicitation [E] Export Options [D] Done**
 5. Prepare for first quarterly business review
 
 **Document Export Options:**
+
 - Markdown: Already saved at {output-file-path}
 - PDF: Use markdown-to-PDF converter (Pandoc, Marked 2, etc.)
 - DOCX: Use Pandoc or copy to Word with formatting
@@ -313,7 +337,7 @@ Thank you for using the vCISO Consulting workflow. Your comprehensive engagement
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
 
 - Ongoing advisory model defined
 - Meeting cadence established

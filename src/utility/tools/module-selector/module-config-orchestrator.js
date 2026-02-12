@@ -14,16 +14,16 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 import {
+  expandPlaceholders,
   extractInteractiveFields,
-  promptForModuleConfig,
-  expandPlaceholders
+  promptForModuleConfig
 } from './module-config-prompt.js';
 import {
   createOutputDirectory,
-  saveModuleConfig,
-  ensureModulesConfigDirectory
+  ensureModulesConfigDirectory,
+  saveModuleConfig
 } from './module-config-persistence.js';
-import { loadAllModules, findModuleByCode } from './module-loader.js';
+import { findModuleByCode, loadAllModules } from './module-loader.js';
 
 /**
  * @typedef {Object} ConfigurationSummary

@@ -18,6 +18,7 @@ Synthesize jurisdiction-specific analyses into a unified cross-border strategy.
 Integrate all inputs:
 
 **Key Findings by Jurisdiction:**
+
 | Jurisdiction | Key Finding | Strategic Implication |
 |--------------|-------------|----------------------|
 | USA | [Finding] | [Implication] |
@@ -25,6 +26,7 @@ Integrate all inputs:
 | EU | [Finding] | [Implication] |
 
 **Conflict Resolution:**
+
 | Conflict | Resolution Approach | Rationale |
 |----------|---------------------|-----------|
 | [Conflict between jurisdictions] | [How resolved] | [Why] |
@@ -34,12 +36,14 @@ Integrate all inputs:
 Create harmonized approach:
 
 **Core Strategy Elements:**
+
 1. **Primary Objective:** [What we're trying to achieve]
 2. **Governing Framework:** [Which law controls main issues]
 3. **Forum Strategy:** [Where disputes resolved]
 4. **Compliance Baseline:** [Highest standard approach]
 
 **Jurisdiction-Specific Adaptations:**
+
 - USA: [Specific considerations]
 - Spain: [Specific considerations]
 - EU/Other: [Specific considerations]
@@ -49,16 +53,19 @@ Create harmonized approach:
 Plan coordinated actions:
 
 **Simultaneous Actions:**
+
 | Action | USA | Spain | EU | Timing |
 |--------|-----|-------|----|----|
 | [Action 1] | [Yes/No] | [Yes/No] | [Yes/No] | [When] |
 
 **Sequential Actions:**
+
 1. [First action - jurisdiction]
 2. [Second action - jurisdiction]
 3. [Third action - jurisdiction]
 
 **Dependencies:**
+
 - [Action A] must complete before [Action B]
 - [Filing X] triggers [Obligation Y]
 
@@ -67,16 +74,19 @@ Plan coordinated actions:
 Coordinate messaging:
 
 **Internal Communications:**
+
 - Team coordination protocols
 - Decision escalation
 - Progress reporting
 
 **External Communications:**
+
 - Counterparty communications
 - Regulatory communications
 - Public statements (if applicable)
 
 **Language Considerations:**
+
 - Official languages by jurisdiction
 - Translation requirements
 - Authoritative version designation
@@ -86,6 +96,7 @@ Coordinate messaging:
 Plan resource deployment:
 
 **Legal Fees by Jurisdiction:**
+
 | Jurisdiction | Firm/Agent | Estimated Fees | Scope |
 |--------------|------------|----------------|-------|
 | USA | Liberty + [Local] | $[Amount] | [Scope] |
@@ -93,6 +104,7 @@ Plan resource deployment:
 | EU | Europa | €[Amount] | [Scope] |
 
 **Other Costs:**
+
 - Translation costs
 - Filing fees
 - Expert fees

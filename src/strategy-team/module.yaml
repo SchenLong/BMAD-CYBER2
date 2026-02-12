@@ -3,57 +3,7 @@
 
 code: "strategy-team"
 name: "Strategic Advisory Team"
-version: "2.1.0"
-type: "specialized-team"
-category: "bmad-cybercommand"
 default_selected: false
-
-# NPM Publishing Configuration
-npm:
-  scope: '@bmad-cybercommand'
-  package_name: strategy-team
-  full_name: '@bmad-cybercommand/strategy-team'
-
-repository:
-  type: git
-  url: https://github.com/bmad-code-org/bmad-cybercommand.git
-  directory: src/strategy-team
-
-description: "Strategic planning and business operations with 14 specialized agents"
-keywords:
-  - bmad
-  - agent
-  - workflow
-  - strategy
-  - planning
-  - business
-  - leadership
-
-license: MIT
-
-# Module Capabilities
-capabilities:
-  agents:
-    count: 14
-    format: agent.yaml
-    path: agents/
-  workflows:
-    count: 15
-    format: workflow.yaml
-    path: workflows/
-
-# Dependencies
-dependencies:
-  core:
-    - module: bmad:core
-      version: '>=2.0.0'
-      required: true
-
-# Build Configuration
-build:
-  validation: true
-  format: bmad-builder
-  target: distribution
 
 # Welcome message shown during installation
 prompt:
@@ -107,7 +57,7 @@ module_code:
   result: "strategy-team"
 
 module_version:
-  result: "2.1.0"
+  result: "1.0.0"
 
 # STATIC: Module paths
 agents_path:
@@ -128,9 +78,3 @@ policies:
 
 warfare:
   result: "{output_folder}/warfare"
-
-# Generated metadata
-generated:
-  date: '2026-01-23T16:44:40.177Z'
-  by: bmad-module-packager
-  version: 1.0.0

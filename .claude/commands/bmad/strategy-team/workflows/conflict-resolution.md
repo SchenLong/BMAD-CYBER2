@@ -5,5 +5,5 @@ description: Navigate workplace conflicts with structured mediation and resoluti
 
 # Conflict Resolution
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/strategy-team/workflows/conflict-resolution/workflow.md`
+Load and follow the workflow at:
+`@src/strategy-team/workflows/conflict-resolution/workflow.md`

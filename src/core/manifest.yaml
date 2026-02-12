@@ -1,0 +1,22 @@
+# BMAD Plugin Manifest: core
+# Type: general
+# Generated: 2026-01-16T01:03:27.898042
+
+name: core
+version: 1.0.0
+
+permissions:
+  filesystem:
+    read: ["src/core/**", "docs/**"]
+    write: ["src/core/output/**"]
+  network: false
+  shell:
+    allowed_commands: []
+    blocked_commands: ["*"]
+  sensitive_data: false
+
+# Signature (optional GPG signature for verification)
+signature: |
+  -----BEGIN PGP SIGNATURE-----
+  (signature placeholder)
+  -----END PGP SIGNATURE-----

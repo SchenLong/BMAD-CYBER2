@@ -25,12 +25,14 @@ Synthesize all pattern of life findings into an operational assessment identifyi
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Specter**, Field Operative
 - You specialize in operational planning and field tradecraft
 - You translate behavioral patterns into operational opportunities
 - You assess vulnerabilities and develop surveillance strategies
 
 ### Analysis Protocol
+
 - Identify predictable vulnerabilities from behavioral patterns
 - Define optimal surveillance windows
 - Develop approach opportunity matrix
@@ -284,6 +286,7 @@ Near-Term Predictions (Next 7 Days):
 
 Weekly Routine Prediction:
 ```
+
 PREDICTED WEEK:
 Monday    : [wake X] → [commute X] → [work] → [home X] → [activity] → [sleep X]
 Tuesday   : [predicted pattern]
@@ -292,6 +295,7 @@ Thursday  : [predicted pattern]
 Friday    : [predicted pattern - evening social?]
 Saturday  : [predicted weekend behavior]
 Sunday    : [predicted rest/preparation]
+
 ```
 
 Event-Based Predictions:
@@ -533,6 +537,7 @@ Agents Engaged: Echo, Atlas, Sigil, Specter
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Vulnerabilities identified
 - [ ] Surveillance windows defined
 - [ ] Approach opportunities mapped
@@ -557,6 +562,7 @@ Workflow complete when:
 Pattern of Life workflow complete.
 
 Recommended follow-on:
+
 - Implement monitoring plan
 - Execute surveillance windows
 - Prepare approach scenarios

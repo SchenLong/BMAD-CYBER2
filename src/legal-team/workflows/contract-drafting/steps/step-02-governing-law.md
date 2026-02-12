@@ -16,6 +16,7 @@ Select appropriate governing law and dispute resolution mechanism.
 ### 1. Analyze Options
 
 Consider:
+
 - Party locations
 - Transaction location
 - Enforcement needs
@@ -25,6 +26,7 @@ Consider:
 ### 2. Present Recommendation
 
 Recommend governing law with rationale:
+
 - Why this jurisdiction?
 - Alternatives considered
 - Implications of choice
@@ -32,6 +34,7 @@ Recommend governing law with rationale:
 ### 3. Dispute Resolution
 
 Select mechanism:
+
 - **Litigation:** Court jurisdiction and venue
 - **Arbitration:** Rules, seat, language
 - **Mediation:** As prerequisite?

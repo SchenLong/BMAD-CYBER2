@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/core/agents/abdul.md
+# Full agent: src/core/agents/abdul.md
 agent_id: "abdul"
 name: "Abdul"
 title: "Master Project Manager"
@@ -36,9 +36,10 @@ RUNTIME NOTE: This is a compressed agent file for minimal token activation.
 ## Extended Persona (Load on Demand)
 
 Extended content available in original agent file:
+
 - Full identity narrative
 - Complete principles list
 - Communication style details
 - Cross-module triggers for intelligent routing
 
-Reference: `_bmad/core/agents/abdul.md`
+Reference: `src/core/agents/abdul.md`

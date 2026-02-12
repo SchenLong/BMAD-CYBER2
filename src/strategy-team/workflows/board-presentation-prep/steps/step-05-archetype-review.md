@@ -12,11 +12,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Archetype Stress Test (Optional)
 
-## STEP GOAL:
+## STEP GOAL
 
 Optionally stress-test the presentation by having key Historical Archetypes challenge it from their distinct worldviews. This surfaces blind spots and strengthens the pitch.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are the Facilitator managing a brief panel review
 - You channel select archetypes (not all 8) to provide focused challenges
@@ -24,11 +24,12 @@ Optionally stress-test the presentation by having key Historical Archetypes chal
 - Focus on stress-testing, not consensus-building
 - This step can be skipped if user prefers to move directly to deck outline
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on challenging the presentation - finding weaknesses
 - FORBIDDEN to only give positive feedback
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Offer option to skip this step
 - If proceeding, select 3-4 relevant archetypes
@@ -48,7 +49,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Full presentation prep from Steps 1-4
 - Focus: Challenge and stress-test the pitch
@@ -57,7 +58,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Offer the Stress Test
 
@@ -180,6 +181,7 @@ Let me have them review your pitch."
 | [Fourth] | [summary] | [summary] | Yes/Partial/No |
 
 **Recommendations:**
+
 1. [Adjustment to make based on stress test]
 2. [Adjustment to make based on stress test]
 3. [Question to add to Q&A prep]
@@ -199,26 +201,30 @@ Should we update your Q&A prep with any of these challenges?"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [H] Hear from Another Archetype [C] Continue to Deck Outline"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} - can have archetypes debate or provide additional perspectives, when finished redisplay the menu
 - IF H: Bring in another archetype for additional challenge, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-06-deck-outline.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Option to skip clearly offered
 - If proceeding: 3-4 archetypes provided distinct challenges
 - Each spoke briefly in character
@@ -226,7 +232,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - User had chance to respond
 - Output file updated (even if skipped)
 
-### FAILURE:
+### FAILURE
+
 - Only positive feedback (no real stress test)
 - Too many archetypes (overwhelming)
 - Generic challenges not in character

@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "capturedAt": "2026-02-12T22:56:52.698Z",
+  "fileCount": 19,
+  "hashes": {
+    ".claude/hooks/session-security-init.js": "51711998491af8aa3b2c67d72a5adb83f7df305fc8bfc8212b882d379966a6b7",
+    ".claude/hooks/session-start-tts.sh": "ceec47fdd8fa3efd3185e5d5caaa9e21fa1f1f102b3020e9a24cc1e591441bc9",
+    ".claude/validators-node/bin/bash-safety.js": "8b21c369c123efc3bc27987f586020aebf4a9acb5e6f2c6b551a12c8fbc846cd",
+    ".claude/validators-node/bin/env-protection.js": "f5233738b62640fbe6e0f25ee51d80a9cfd202269bc228e7f0a36c6e90b10fe3",
+    ".claude/validators-node/bin/jailbreak.js": "8d5956a1e4ce81a84bd676ac08e33beb7ede8c64d26357590e66cf6454ac5816",
+    ".claude/validators-node/bin/outside-repo.js": "1c21a1347266d9ec7538bbc2309e40460e75226e747b91e9ed50f1f826eda9b7",
+    ".claude/validators-node/bin/pii.js": "8f71857d06ff4c2b84d191c9b214664568c4dbcf0cf52fc08b4ea6977953ce99",
+    ".claude/validators-node/bin/plugin-permissions.js": "11f9b7214355d5f5cd5f8f86b50ec7fc71ee4f45fe142523f2effd156d26111e",
+    ".claude/validators-node/bin/production.js": "18aae7382a056f9d7f5a3858ee7ae58905b8e5d4ec6b20ed1778c2989c22f003",
+    ".claude/validators-node/bin/prompt-injection.js": "371e3201e8085ebd068030f61add2ab3e92c52a0ff8efe5a5f589e4a18784a12",
+    ".claude/validators-node/bin/rate-limiter.js": "72fadbeb1bbe95c0ddf43ba41c0e7155f3aade768ed41d6514f13337bc48d239",
+    ".claude/validators-node/bin/recursion-guard.js": "39e1babe862e3428a289f1d190e4c8af97c19b934d6bb6b4d6e4b3c50c56fb79",
+    ".claude/validators-node/bin/resource-limits.js": "34a35751af343552a248bf14500f4c76d6c71fe603e4dfa1bf00df6018b3e71a",
+    ".claude/validators-node/bin/secret.js": "b773854f89309d7914f48d73aca9b1150d7843543840dc957e2cb2aa4c3fc997",
+    ".claude/validators-node/bin/session-init.js": "54d03251853e48be060034fa913932be2f9ee79c8e858e30cea6d1e0372dd795",
+    ".claude/validators-node/bin/supply-chain.js": "9506c4641b309bbaa2721bfc2946207d069d3652a5d455643f412e97c84f2e7a",
+    ".claude/validators-node/bin/token-validator.js": "3831fadf4555ca732eceb05323dec66c115f3f5f0bc41c12fd35f42c8398482a",
+    "src/core/security/authorization.js": "11410e6a442bb10aac1c4b18720cc4ca3fc1e7bc6ba7381bc1572453896b8423",
+    "src/utility/tools/reference-validator/cli.js": "639024cd0420805a03d09bb0bbaf08d7be7ee64234ac3d447ffdc4ded0d2a374"
+  }
+}

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import * as fs from 'fs';
 import * as path from 'path';
 const PROJECT_DIR = process.env.CLAUDE_PROJECT_DIR || process.cwd();
@@ -83,7 +82,7 @@ function logSessionStart(status, issues) {
         }
     };
     try {
-        fs.appendFileSync(logFile, JSON.stringify(logEntry) + '\n');
+        fs.appendFileSync(logFile, `${JSON.stringify(logEntry)  }\n`);
     }
     catch {
         // Don't fail session start due to logging issues
@@ -132,7 +131,7 @@ function main() {
             console.error(`  [!!] Authentication FAILED: ${authResult.error}`);
             console.error(`\n${'='.repeat(60)}`);
             console.error(`  To authenticate, generate a token:`);
-            console.error(`    node _bmad/core/security/quick-token.cjs "Name" "role" 168`);
+            console.error(`    node src/core/security/quick-token.cjs "Name" "role" 168`);
             console.error(`\n  Or disable token requirement (NOT RECOMMENDED):`);
             console.error(`    export BMAD_TOKEN_REQUIRED=false`);
             console.error(`${'='.repeat(60)}\n`);

@@ -405,7 +405,7 @@ class DeploymentInstaller extends EventEmitter {
     return {
       ...this.metrics,
       successRate: this.metrics.totalDeployments > 0
-        ? ((this.metrics.successfulDeployments / this.metrics.totalDeployments) * 100).toFixed(2) + '%'
+        ? `${((this.metrics.successfulDeployments / this.metrics.totalDeployments) * 100).toFixed(2)  }%`
         : 'N/A',
       activeSlot: this.activeSlot
     };

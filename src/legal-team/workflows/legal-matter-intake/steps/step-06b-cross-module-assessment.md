@@ -13,13 +13,14 @@ recommendedPreset: 'legal-intake-party'
 
 # Step 6b: Cross-Module Assessment (Multi-Domain Routing)
 
-## STEP GOAL:
+## STEP GOAL
 
 For complex legal matters, assess whether cross-module expertise is needed for proper handling. This ensures matters with technical, strategic, or intelligence dimensions are routed appropriately from the start.
 
-### When to Invoke:
+### When to Invoke
 
 This step should be invoked when ANY of:
+
 - Matter involves cybersecurity incident or data breach
 - Matter has significant business/strategic implications
 - Due diligence on counterparty is critical
@@ -29,7 +30,7 @@ This step should be invoked when ANY of:
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 ### 1. Introduction
 
@@ -38,6 +39,7 @@ This step should be invoked when ANY of:
 "Before we finalize routing, I want to assess whether this matter requires cross-module coordination from the start.
 
 Some legal matters have dimensions that benefit from early involvement of:
+
 - **Strategy team** - for stakeholder and relationship implications
 - **Cybersecurity team** - for technical security dimensions
 - **Intelligence team** - for counterparty research and due diligence
@@ -51,6 +53,7 @@ Let me evaluate the cross-module dimensions of this matter."
 "**Matter Cross-Module Assessment:**
 
 **Strategic Dimension:**
+
 | Indicator | Present | Implication |
 |-----------|---------|-------------|
 | Significant business relationship at stake | [Y/N] | Stakeholder mediation may help |
@@ -59,6 +62,7 @@ Let me evaluate the cross-module dimensions of this matter."
 | Executive/board visibility | [Y/N] | Strategic framing needed |
 
 **Cybersecurity Dimension:**
+
 | Indicator | Present | Implication |
 |-----------|---------|-------------|
 | Data breach or incident involved | [Y/N] | Technical assessment + timeline pressure |
@@ -67,6 +71,7 @@ Let me evaluate the cross-module dimensions of this matter."
 | Compliance framework implications | [Y/N] | Compliance validation |
 
 **Intelligence Dimension:**
+
 | Indicator | Present | Implication |
 |-----------|---------|-------------|
 | Unknown counterparty | [Y/N] | Background research valuable |
@@ -81,18 +86,22 @@ Let me evaluate the cross-module dimensions of this matter."
 "**Cross-Module Assessment Summary:**
 
 **Strategic Involvement:** [Recommended/Optional/Not Needed]
+
 - Rationale: [explanation]
 - Suggested agent: Geneva (Stakeholder Mediator) or Niccolo (Political Strategist)
 
 **Cybersecurity Involvement:** [Recommended/Optional/Not Needed]
+
 - Rationale: [explanation]
 - Suggested agent: Phoenix (Incident Commander) or Sentinel (Compliance Guardian)
 
 **Intelligence Involvement:** [Recommended/Optional/Not Needed]
+
 - Rationale: [explanation]
 - Suggested agent: Vector (OSINT Lead)
 
 **Overall Cross-Module Assessment:**
+
 - [ ] Single-domain (Legal only)
 - [ ] Multi-domain recommended
 - [ ] Multi-domain critical"
@@ -104,6 +113,7 @@ Let me evaluate the cross-module dimensions of this matter."
 "Based on my assessment, I recommend activating cross-module support using the `legal-intake-party` preset:
 
 **Participants:**
+
 | Agent | Module | Role in This Matter |
 |-------|--------|---------------------|
 | Counsel (me) | Legal | Legal assessment and classification |
@@ -154,11 +164,13 @@ Let me evaluate the cross-module dimensions of this matter."
 "**Integrated Matter Assessment:**
 
 **Complexity Level:** [High/Medium/Low]
+
 - Legal complexity: [assessment]
 - Strategic complexity: [assessment]
 - Technical complexity: [assessment]
 
 **Recommended Handling Approach:**
+
 - **Primary Lead:** [Legal agent] with [workflow]
 - **Cross-Module Coordination:** [Yes/No] - [with whom]
 - **Due Diligence Status:** [Complete/In Progress/Not Started]
@@ -167,6 +179,7 @@ Let me evaluate the cross-module dimensions of this matter."
 **Risk-Adjusted Priority:** [Critical/High/Medium/Low]
 
 **Special Handling Notes:**
+
 1. [Any special considerations from cross-module input]
 2. [Any early actions recommended]"
 
@@ -208,27 +221,30 @@ Update frontmatter: add `step-06b-cross-module-assessment` to stepsCompleted
 
 ### 8. Continue to Routing
 
-Load and execute {nextStepFile} (step-07-routing.md) with cross-module assessment context.
+Load and follow {nextStepFile} (step-07-routing.md) with cross-module assessment context.
 
 ---
 
-## BIDIRECTIONAL LINKS:
+## BIDIRECTIONAL LINKS
 
 **To Cybersecurity (if incident involved):**
+
 - Can trigger `incident-response-playbook` (Mode B) if active incident
 - Coordinates legal timeline with technical response
 
 **To Strategy (if relationship at stake):**
-- Can invoke stakeholder-negotiation-prep for complex disputes
-- Can invoke crisis-response-planning if reputational risk
+
+- Can load stakeholder-negotiation-prep for complex disputes
+- Can load crisis-response-planning if reputational risk
 
 **To Intelligence (for due diligence):**
+
 - Can request targeted intelligence gathering
 - Feeds into litigation preparation if dispute proceeds
 
 ---
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - Cross-module dimensions properly assessed
 - Appropriate expertise engaged early
@@ -237,7 +253,7 @@ Load and execute {nextStepFile} (step-07-routing.md) with cross-module assessmen
 - Timeline pressures identified and tracked
 - Matter brief updated with cross-module context
 
-## FAILURE INDICATORS:
+## FAILURE INDICATORS
 
 - Missing obvious cross-module dimensions
 - Not engaging needed expertise

@@ -9,7 +9,7 @@
  */
 
 import { AESEncryption } from './encryption/aes-encryption';
-import { generateSecureRandom, CRYPTO_CONFIG } from './encryption/crypto-utils';
+import { CRYPTO_CONFIG, generateSecureRandom } from './encryption/crypto-utils';
 import { HashChain } from './encryption/hash-chains';
 import { TokenGenerator } from './encryption/generate-token';
 
@@ -20,7 +20,7 @@ import { AuditAnalyticsDashboard } from './audit/analytics-dashboard';
 
 // Import SessionManager from canonical location in _bmad/core/security
 // Note: The duplicate in src/security has been removed (VAL-05-004-004)
-import { SessionManager } from '../../_bmad/core/security/session-manager';
+import { SessionManager } from '../../src/core/security/session-manager';
 
 // Stub types for modules that may not exist yet
 type RBACConfig = Record<string, unknown>;

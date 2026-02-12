@@ -19,13 +19,13 @@
 
 import {
   AuditLogger,
-  OverrideManager,
   getToolInputFromStdinSync,
+  OverrideManager,
   printBlockMessage,
   printOverrideConsumed,
   printWarning,
 } from '../common/index.js';
-import type { WriteToolInput, EditToolInput, ReadToolInput } from '../types/index.js';
+import type { EditToolInput, ReadToolInput, WriteToolInput } from '../types/index.js';
 import { EXIT_CODES, type Severity } from '../types/index.js';
 
 const VALIDATOR_NAME = 'prompt_injection_guard';
@@ -162,7 +162,8 @@ const INSTRUCTION_INJECTION_PATTERNS: PatternDefinition[] = [
 const ENCODED_PAYLOAD_PATTERNS: PatternDefinition[] = [
   {
     name: 'base64_encoded_content',
-    pattern: /(?:eval|decode|execute|run)\s*\(\s*["']?[A-Za-z0-9+/=]{50,}["']?\s*\)/i,
+    // SA-02 LOW: Lowered min length from 50→30 to catch shorter encoded payloads
+    pattern: /(?:eval|decode|execute|run)\s*\(\s*["']?[A-Za-z0-9+/=]{30,}["']?\s*\)/i,
     severity: 'WARNING',
     description: 'Base64 encoded payload with execution',
   },
@@ -632,7 +633,7 @@ export function detectBase64Payloads(text: string): Base64Finding[] {
       findings.push({
         category: 'base64_payload',
         severity: containsInjection ? 'CRITICAL' : 'WARNING',
-        match_preview: potentialBase64.slice(0, 30) + '...',
+        match_preview: `${potentialBase64.slice(0, 30)  }...`,
         decoded_preview: decoded.slice(0, 50) + (decoded.length > 50 ? '...' : ''),
         description: containsInjection
           ? 'Base64 encoded content contains injection patterns'

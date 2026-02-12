@@ -18,11 +18,13 @@ Determine the optimal forum for dispute resolution and enforcement strategy.
 Map available forums:
 
 **Court Litigation:**
+
 | Forum | Jurisdiction Basis | Advantages | Disadvantages |
 |-------|-------------------|------------|---------------|
 | [Court] | [Domicile/Contract/Subject] | [Pros] | [Cons] |
 
 **Arbitration:**
+
 | Seat | Institution | Advantages | Disadvantages |
 |------|-------------|------------|---------------|
 | [City] | [ICC/LCIA/AAA/SIAC] | [Pros] | [Cons] |
@@ -32,11 +34,13 @@ Map available forums:
 Evaluate existing clauses:
 
 **Contractual Forum Selection:**
+
 - Exclusive or non-exclusive?
 - Which courts?
 - Validity requirements met?
 
 **Arbitration Agreement:**
+
 - Valid arbitration clause?
 - Seat specified?
 - Institutional or ad hoc?
@@ -48,6 +52,7 @@ Evaluate existing clauses:
 Critical for cross-border:
 
 **Judgment Enforcement:**
+
 | Enforcement Country | Treaty Basis | Recognition Process |
 |---------------------|--------------|---------------------|
 | USA | Limited treaties | State-by-state comity |
@@ -55,6 +60,7 @@ Critical for cross-border:
 | Spain | Brussels I / Bilateral | Treaty-dependent |
 
 **Arbitral Award Enforcement:**
+
 | Country | NY Convention | Notes |
 |---------|---------------|-------|
 | USA | Yes | FAA applies |
@@ -62,6 +68,7 @@ Critical for cross-border:
 | Estonia | Yes | Pro-enforcement |
 
 **Recommendation Impact:**
+
 - Where are assets located?
 - Where will enforcement be needed?
 - Which forum's decisions are most portable?
@@ -71,11 +78,13 @@ Critical for cross-border:
 If drafting/negotiating:
 
 **Litigation Forum Recommendation:**
+
 ```
 JURISDICTION. The parties submit to the exclusive jurisdiction of the courts of [City/Country] for the resolution of any disputes arising out of or in connection with this Agreement.
 ```
 
 **Arbitration Clause Recommendation:**
+
 ```
 ARBITRATION. Any dispute arising out of or in connection with this Agreement shall be finally settled under the Rules of [Institution] by [one/three] arbitrator(s) appointed in accordance with said Rules. The seat of arbitration shall be [City]. The language of arbitration shall be [Language]. The governing law of this Agreement shall be [Law].
 ```
@@ -85,15 +94,18 @@ ARBITRATION. Any dispute arising out of or in connection with this Agreement sha
 Address multi-forum risks:
 
 **Anti-Suit Injunctions:**
+
 - Availability in relevant jurisdictions
 - Enforcement mechanisms
 
 **Lis Pendens:**
+
 - First-in-time rules
 - EU lis pendens (Brussels I)
 - Strategic filing considerations
 
 **Related Actions:**
+
 - Consolidation options
 - Stay mechanisms
 

@@ -18,12 +18,14 @@ Determine the applicable governing law and recommend optimal choice of law strat
 Analyze current situation:
 
 **Contractual Choice:**
+
 - Express choice of law clause?
 - Validity of the choice
 - Scope of the choice (entire agreement vs. specific issues)
 - Exclusions/Carve-outs
 
 **If No Express Choice:**
+
 - Implied choice indicators
 - Default rules application
 - Characteristic performance analysis
@@ -33,6 +35,7 @@ Analyze current situation:
 Assess freedom to choose:
 
 **Valid Choice Requirements:**
+
 | Jurisdiction | Requirements | Limits |
 |--------------|--------------|--------|
 | USA | Reasonable relationship or bona fide intent | UCC 1-301 limits |
@@ -40,6 +43,7 @@ Assess freedom to choose:
 | Spain | Follows Rome I | Mandatory rules apply |
 
 **Mandatory Rule Limitations:**
+
 - Consumer contracts (consumer's habitual residence)
 - Employment contracts (place of work)
 - Insurance contracts (policyholder location)
@@ -50,12 +54,14 @@ Assess freedom to choose:
 If drafting/negotiating, recommend optimal choice:
 
 **Evaluation Matrix:**
+
 | Jurisdiction Law | Substantive Favorability | Enforceability | Predictability | Recommendation |
 |------------------|-------------------------|----------------|----------------|----------------|
 | [Law 1] | [1-5] | [1-5] | [1-5] | [Score] |
 | [Law 2] | [1-5] | [1-5] | [1-5] | [Score] |
 
 **Key Considerations:**
+
 - Substantive rules favorability
 - Sophistication and predictability of law
 - Availability of legal expertise
@@ -67,6 +73,7 @@ If drafting/negotiating, recommend optimal choice:
 Consider splitting governing law:
 
 **Candidates for Different Laws:**
+
 | Issue | Recommended Law | Rationale |
 |-------|-----------------|-----------|
 | Contract formation | [Law] | [Why] |

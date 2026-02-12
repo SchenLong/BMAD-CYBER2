@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/security-architect.md
+# Full agent: src/cybersec-team/agents/security-architect.md
 agent_id: "security-architect"
 name: "Bastion"
 title: "Defense & Infrastructure Design"

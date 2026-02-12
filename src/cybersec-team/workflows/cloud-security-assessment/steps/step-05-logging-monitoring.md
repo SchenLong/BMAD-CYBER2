@@ -17,25 +17,25 @@ outputFile: '{output_folder}/security/cloud-security-assessment-{project_name}.m
 
 # Step 5: Logging & Monitoring Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on logging and monitoring assessment
 - FORBIDDEN to discuss compute security yet
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess logging and monitoring capabilities including cloud-native audit logs, SIEM integration, security alerting, and incident detection.
 
-## LOGGING & MONITORING SEQUENCE:
+## LOGGING & MONITORING SEQUENCE
 
 ### 1. Cloud Audit Logging
 
@@ -80,6 +80,7 @@ Is audit logging comprehensively configured?"
 | S3/Storage | Access logs | ? |
 
 **Questions:**
+
 - Which service logs are enabled?
 - Where are logs stored?
 - What's the retention period?
@@ -235,6 +236,7 @@ Update Section 6 of {outputFile}:
 "**Logging & Monitoring Assessment Complete**
 
 I've documented:
+
 - Cloud audit logging configuration
 - Service-level logging coverage
 - SIEM integration status
@@ -249,7 +251,7 @@ Ready to proceed to compute security?"
 
 Display: **Logging Assessment Complete - Select an Option:** [C] Continue to Compute Security [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3, 4, 5]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 6 content, allow revisions, then redisplay menu
@@ -258,6 +260,6 @@ Display: **Logging Assessment Complete - Select an Option:** [C] Continue to Com
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN logging assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN logging assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3, 4, 5]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

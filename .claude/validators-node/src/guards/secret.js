@@ -14,7 +14,7 @@
  * - Single-use override tokens with 5-minute timeout
  */
 import * as path from 'node:path';
-import { AuditLogger, OverrideManager, getToolInputFromStdinSync, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
+import { AuditLogger, getToolInputFromStdinSync, OverrideManager, printBlockMessage, printOverrideConsumed, } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 const VALIDATOR_NAME = 'secret_guard';
 // ============================================================================
@@ -311,8 +311,8 @@ export function validateSecretGuard(content, filePath) {
     });
     printBlockMessage({
         title: 'HARDCODED SECRETS DETECTED',
-        message: `Found ${detections.length} potential secret(s):\n${secretSummary}` +
-            (detections.length > 3 ? `\n  ... and ${detections.length - 3} more` : ''),
+        message: `Found ${detections.length} potential secret(s):\n${secretSummary}${ 
+            detections.length > 3 ? `\n  ... and ${detections.length - 3} more` : ''}`,
         target: filePath,
         overrideVar: 'BMAD_ALLOW_SECRETS',
         recommendations: [

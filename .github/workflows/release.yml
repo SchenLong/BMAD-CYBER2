@@ -23,12 +23,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0  # Full history for changelog
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '20'
 
@@ -125,8 +125,7 @@ jobs:
           echo "SBOM generated: bmad-cyber-${VERSION}.sbom.json"
 
       - name: Sign artifacts with Sigstore (VAL-09-008-001)
-        uses: sigstore/gh-action-sigstore-python@v3.0.0
-        continue-on-error: true
+        uses: sigstore/gh-action-sigstore-python@a5caf349bc536fbef3668a10ed7f5cd309a4b53d # v3.2.0
         with:
           inputs: |
             bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz
@@ -162,7 +161,7 @@ jobs:
           fi
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
         with:
           files: |
             bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz

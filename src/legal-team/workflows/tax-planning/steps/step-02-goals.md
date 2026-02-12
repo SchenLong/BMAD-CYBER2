@@ -18,18 +18,21 @@ Define the client's tax planning objectives and constraints.
 Identify main goals:
 
 **Tax Reduction Goals:**
+
 - Minimize current year tax liability
 - Reduce overall effective rate
 - Defer taxation to future periods
 - Optimize character of income
 
 **Structural Goals:**
+
 - Simplify existing structure
 - Prepare for transaction/exit
 - Enable international expansion
 - Facilitate succession planning
 
 **Compliance Goals:**
+
 - Streamline reporting
 - Reduce compliance burden
 - Regularize past positions
@@ -40,16 +43,19 @@ Identify main goals:
 Define timeframe:
 
 **Short-Term (0-1 year):**
+
 - Immediate tax savings needed?
 - Year-end planning opportunities?
 - Upcoming transactions?
 
 **Medium-Term (1-5 years):**
+
 - Business growth plans?
 - Expansion to new jurisdictions?
 - Changes in ownership?
 
 **Long-Term (5+ years):**
+
 - Exit strategy?
 - Succession planning?
 - Retirement timeline?
@@ -60,17 +66,20 @@ Define timeframe:
 Identify limitations:
 
 **Risk Tolerance:**
+
 - Conservative (no gray areas)
 - Moderate (established positions)
 - Aggressive (maximizing savings)
 
 **Operational Constraints:**
+
 - Substance requirements
 - Management bandwidth
 - Capital availability
 - Employee considerations
 
 **Ethical/Reputational Boundaries:**
+
 - Public company considerations
 - Industry standards
 - Personal values

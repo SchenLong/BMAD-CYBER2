@@ -797,7 +797,7 @@ class ProgressTracker extends EventEmitter {
 
         // Check for basic alphanumeric + common token characters
         // This is a basic check - production should use proper JWT/token validation
-        const validTokenPattern = /^[A-Za-z0-9\-_\.]+$/;
+        const validTokenPattern = /^[A-Za-z0-9\-_.]+$/;
         return validTokenPattern.test(token);
     }
 
@@ -811,7 +811,7 @@ class ProgressTracker extends EventEmitter {
         const now = Date.now();
 
         // Get or create tracking entry
-        let tracking = this.connectionAttempts.get(clientId);
+        const tracking = this.connectionAttempts.get(clientId);
 
         if (!tracking) {
             return { allowed: true, currentCount: 0 };

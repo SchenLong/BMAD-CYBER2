@@ -18,18 +18,18 @@ step08File: '{workflow_path}/steps/step-08-advisory.md'
 
 # Step 1b: Continuation Handler
 
-## STEP GOAL:
+## STEP GOAL
 
 To resume an existing vCISO engagement workflow from its last saved state by reading the frontmatter and routing to the appropriate next step.
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - 📖 Read the output document's frontmatter to determine state
 - 🎯 Route to the correct next step based on `stepsCompleted` array
 - 🚫 DO NOT re-execute completed steps
 - ✅ Speak in your Agent communication style with `{communication_language}`
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Load Existing Document
 
@@ -42,6 +42,7 @@ Read: {outputFile}
 ### 2. Parse Frontmatter
 
 Extract from frontmatter:
+
 - `stepsCompleted`: Array of completed step numbers
 - `lastStep`: Name of last completed step
 - `clientName`: Client organization name
@@ -68,6 +69,7 @@ All 8 sections have been finalized:
 ✅ Advisory Schedule
 
 **Options:**
+
 1. Review/export the final document
 2. Modify a specific section (will reopen that step)
 3. Start a new engagement
@@ -141,7 +143,7 @@ Continuing from where you left off..."
 
 ### 6. Load Next Step
 
-Immediately load, read entire file, then execute the determined next step file.
+Immediately load and follow the determined next step file.
 
 ---
 

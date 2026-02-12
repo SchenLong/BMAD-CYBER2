@@ -19,9 +19,11 @@ The Legal Team provides multi-jurisdictional legal advisory capabilities. All wo
 ## Example 1: Legal Matter Intake
 
 ### Scenario
+
 A new legal matter arises and you need to determine the appropriate specialist and workflow.
 
 ### Invocation
+
 ```
 /bmad:legal-team:workflows:legal-matter-intake
 ```
@@ -29,6 +31,7 @@ A new legal matter arises and you need to determine the appropriate specialist a
 ### Workflow Steps
 
 **Step 1: Welcome & Classification**
+
 ```
 Counsel (General Counsel) initiates:
 
@@ -52,6 +55,7 @@ User selects: 1 (Contract)
 ```
 
 **Step 2: Jurisdiction Determination**
+
 ```
 Counsel asks:
 
@@ -68,6 +72,7 @@ User selects: 5 (Multiple - US and EU)
 ```
 
 **Step 3: Urgency Assessment**
+
 ```
 Counsel evaluates:
 
@@ -82,6 +87,7 @@ User selects: 2 (Urgent)
 ```
 
 **Step 4: Party Identification**
+
 ```
 Counsel gathers:
 
@@ -93,6 +99,7 @@ Your role: [Buyer/Seller/Licensor/Licensee/etc.]"
 ```
 
 **Step 5: Document Collection**
+
 ```
 Counsel requests:
 
@@ -104,6 +111,7 @@ Counsel requests:
 ```
 
 **Step 6: Specialist Routing**
+
 ```
 Counsel determines:
 
@@ -174,9 +182,11 @@ Shall I route to this team? [Y/N]
 ## Example 2: Contract Review
 
 ### Scenario
+
 Review a software licensing agreement with a EU counterparty, identifying risks and recommending modifications.
 
 ### Invocation
+
 ```
 /bmad:legal-team:workflows:contract-review
 ```
@@ -184,6 +194,7 @@ Review a software licensing agreement with a EU counterparty, identifying risks 
 ### Workflow Steps
 
 **Step 1: Document Analysis**
+
 ```
 Covenant (Contract Specialist) reviews structure:
 
@@ -199,6 +210,7 @@ Document: Software License Agreement
 ```
 
 **Step 2: Risk Identification**
+
 ```
 Covenant identifies issues by severity:
 
@@ -238,6 +250,7 @@ Covenant identifies issues by severity:
 ```
 
 **Step 3: Jurisdictional Analysis**
+
 ```
 Europa (EU Counsel) reviews:
 
@@ -255,6 +268,7 @@ Recommendation: DPA requires significant enhancement for GDPR compliance.
 ```
 
 **Step 4: Commercial Terms Analysis**
+
 ```
 Covenant assesses business impact:
 
@@ -397,9 +411,11 @@ is incomplete and requires DPA enhancement.
 ## Example 3: Corporate Formation (Multi-Jurisdictional)
 
 ### Scenario
+
 Establishing a corporate structure for a SaaS business serving US and EU customers.
 
 ### Invocation
+
 ```
 /bmad:legal-team:workflows:corporate-formation
 ```
@@ -407,6 +423,7 @@ Establishing a corporate structure for a SaaS business serving US and EU custome
 ### Workflow Steps
 
 **Step 1: Business Profile**
+
 ```
 Counsel gathers requirements:
 
@@ -420,6 +437,7 @@ Special Considerations: VC-friendly structure needed
 ```
 
 **Step 2: Jurisdictional Analysis**
+
 ```
 Team provides options:
 
@@ -437,6 +455,7 @@ Digital-native infrastructure."
 ```
 
 **Step 3: Structure Recommendation**
+
 ```
 Counsel synthesizes:
 
@@ -462,6 +481,7 @@ Recommended Structure:
 ```
 
 **Step 4: Formation Steps**
+
 ```
 Counsel provides roadmap:
 
@@ -611,9 +631,11 @@ Phase 3: Operational Setup (Week 5-6)
 ## Example 4: Contract Drafting
 
 ### Scenario
+
 Draft a SaaS subscription agreement for a B2B software product.
 
 ### Invocation
+
 ```
 /bmad:legal-team:workflows:contract-drafting
 ```
@@ -621,6 +643,7 @@ Draft a SaaS subscription agreement for a B2B software product.
 ### Workflow Steps
 
 **Step 1: Requirements Gathering**
+
 ```
 Covenant collects:
 
@@ -636,6 +659,7 @@ Special Terms:
 ```
 
 **Step 2: Template Selection**
+
 ```
 Covenant recommends:
 
@@ -647,6 +671,7 @@ Template: Standard SaaS Subscription Agreement
 ```
 
 **Step 3: Drafting**
+
 ```
 Covenant produces sections:
 
@@ -781,9 +806,11 @@ PRECEDING THE CLAIM.
 ## Example 5: Tax Planning
 
 ### Scenario
+
 Optimizing tax structure for international expansion.
 
 ### Invocation
+
 ```
 /bmad:legal-team:workflows:tax-planning
 ```
@@ -791,6 +818,7 @@ Optimizing tax structure for international expansion.
 ### Workflow Overview
 
 **Step 1: Current Structure Analysis**
+
 ```
 Tribute (Tax Specialist) reviews:
 
@@ -809,6 +837,7 @@ Tax Burden (Current):
 ```
 
 **Step 2: Optimization Recommendations**
+
 ```
 Tribute proposes:
 
@@ -889,6 +918,7 @@ VC funding in next 12-18 months.
 ## Workflow Combinations
 
 ### Contract Lifecycle
+
 ```
 1. legal-matter-intake (route to contracts)
 2. contract-drafting (create agreement)
@@ -898,6 +928,7 @@ VC funding in next 12-18 months.
 ```
 
 ### Corporate Expansion
+
 ```
 1. corporate-formation (establish entities)
 2. tax-planning (optimize structure)
@@ -905,6 +936,7 @@ VC funding in next 12-18 months.
 ```
 
 ### Dispute Preparation
+
 ```
 1. legal-matter-intake (classify dispute)
 2. dispute-strategy (develop approach)

@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/guards/bash-safety.js')
+import('../dist/src/guards/bash-safety.js')
   .then((module) => {
     module.main();
   })

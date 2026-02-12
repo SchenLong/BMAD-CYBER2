@@ -10,33 +10,33 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  SECURITY_TIERS,
-  FEATURE_TO_VALIDATOR,
-  FEATURE_DETAILS,
-  getTierById,
-  getDefaultTier,
-  getTierFeatures,
-  getAllFeaturesUpToTier,
-  getValidatorPaths,
-  getTierValidatorPaths,
   compareTiers,
-  tierIncludesFeature,
-  getMinimumTierForFeature,
-  getFeatureDetails,
-  getFeaturesByTier,
-  getFeaturesByCategory,
-  isValidTierId,
+  FEATURE_DETAILS,
+  FEATURE_TO_VALIDATOR,
+  getAllFeaturesUpToTier,
   getAllTierIds,
-  getTierDisplayInfo,
-  isSecurityDowngrade,
+  getDefaultTier,
   getDowngradeWarning,
-  getMostRestrictiveTier
+  getFeatureDetails,
+  getFeaturesByCategory,
+  getFeaturesByTier,
+  getMinimumTierForFeature,
+  getMostRestrictiveTier,
+  getTierById,
+  getTierDisplayInfo,
+  getTierFeatures,
+  getTierValidatorPaths,
+  getValidatorPaths,
+  isSecurityDowngrade,
+  isValidTierId,
+  SECURITY_TIERS,
+  tierIncludesFeature
 } from './tier-definitions.js';
 
 // ESM equivalent of __dirname
@@ -285,7 +285,7 @@ describe('Security Tier Definitions - INST-007', () => {
       const paths = getValidatorPaths('auth');
       expect(Array.isArray(paths)).toBe(true);
       expect(paths).toHaveLength(1);
-      expect(paths[0]).toBe('_bmad/core/security/authorization.js');
+      expect(paths[0]).toBe('src/core/security/authorization.js');
     });
 
     it('should return array for multi-path feature', () => {

@@ -25,12 +25,14 @@ Synthesize all findings from Phases 1-7 into a comprehensive AI Entity Campaign 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You synthesize multi-source findings into actionable intelligence
 - You produce comprehensive campaign plans and assessments
 - You identify gaps and develop monitoring strategies
 
 ### Analysis Protocol
+
 - Integrate all findings from Phases 1-7
 - Produce comprehensive AI entity profile
 - Develop technical capability assessment
@@ -246,6 +248,7 @@ ORGANIZATIONAL MAP
 
 Corporate Structure:
 ```
+
 [Ultimate Parent]
 ├── [Parent Company]
 │   ├── [TARGET ENTITY]
@@ -259,10 +262,12 @@ Corporate Structure:
 │   │       └── [Subsidiary 3]
 │   └── [Sister Companies]
 └── [Other Holdings]
+
 ```
 
 Leadership Hierarchy:
 ```
+
 [CEO]
 ├── [CTO]
 │   ├── [VP Research]
@@ -275,6 +280,7 @@ Leadership Hierarchy:
 │   └── [Finance Teams]
 └── [Chief Scientist / Head of Safety]
     └── [Safety Team]
+
 ```
 
 Key Personnel Network:
@@ -614,6 +620,7 @@ Agents Engaged: Vector, Probe, Resolver, Proxy, Echo, Shadow, Dossier
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] All phase findings integrated
 - [ ] Entity profile produced
 - [ ] Technical assessment complete
@@ -639,6 +646,7 @@ Workflow complete when:
 Campaign Planner: AI Entity workflow complete.
 
 Recommended follow-on:
+
 - Implement monitoring plan
 - Schedule quarterly reassessment
 - Consider **Threat Constellation** if threats identified

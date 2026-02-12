@@ -15,6 +15,7 @@
 ## Purpose
 
 Structured intelligence collection campaign against an individual:
+
 - Person of interest investigations
 - Background investigations
 - Threat actor attribution

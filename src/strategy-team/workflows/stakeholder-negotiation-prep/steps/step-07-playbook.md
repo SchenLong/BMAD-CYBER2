@@ -10,22 +10,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Playbook Compilation
 
-## STEP GOAL:
+## STEP GOAL
 
 Compile the complete negotiation playbook, assign team roles, create the pre-negotiation checklist, and deliver a ready-to-use document for the upcoming negotiation.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You return to the Senior Negotiation Facilitator role
 - Synthesize all advisor input into actionable guidance
 - Focus on practical readiness
 - The playbook must be usable at the table
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on compilation and practical preparation
 - FORBIDDEN to introduce new analysis - synthesize what exists
@@ -34,7 +35,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Review all previous sections
 - Assign team roles
@@ -45,7 +46,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: All analysis from Steps 1-6
 - Focus: Synthesis and practical preparation
@@ -54,13 +55,14 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Facilitator Returns
 
 **Resume facilitator role:**
 
 "We've completed our preparation journey, {user_name}. You've received insights from:
+
 - Geneva on interests and finding common ground
 - Magnus on power dynamics and leverage
 - Cicero on arguments and rebuttals
@@ -99,12 +101,14 @@ This summary should fit on one page and orient anyone who needs a quick brief."
 
 **Signals system:**
 How will the team communicate during negotiation?
+
 - Need a break: [signal - e.g., 'Let me think about that']
 - Agree to this: [signal]
 - Don't agree: [signal]
 - Need to caucus: [signal - e.g., 'Can we take 5 minutes?']
 
 **Pre-negotiation huddle:**
+
 - Time: [when to meet before]
 - Review: [key points to cover]"
 
@@ -115,6 +119,7 @@ How will the team communicate during negotiation?
 "Complete this checklist before entering the negotiation:
 
 **Preparation:**
+
 - [ ] BATNA clearly defined and validated
 - [ ] Walk-away point agreed by decision makers
 - [ ] Key interests identified (ours and theirs)
@@ -126,17 +131,20 @@ How will the team communicate during negotiation?
 - [ ] Key messages memorized (rule of three)
 
 **Team:**
+
 - [ ] Team roles assigned and understood
 - [ ] Signals system confirmed
 - [ ] Pre-negotiation huddle scheduled
 
 **Logistics:**
+
 - [ ] Venue confirmed and appropriate
 - [ ] Materials prepared (documents, data, presentations)
 - [ ] Timing confirmed (start time, expected duration, hard stops)
 - [ ] Technology tested (if virtual)
 
 **Mindset:**
+
 - [ ] Reviewed their perspective and interests
 - [ ] Prepared for hardball tactics
 - [ ] De-escalation phrases reviewed
@@ -149,24 +157,29 @@ How will the team communicate during negotiation?
 "For use during the negotiation - fit on one page:
 
 **Our Three Key Messages:**
+
 1. [message 1]
 2. [message 2]
 3. [message 3]
 
 **Their Likely Concerns:**
+
 - [concern 1] → [our response]
 - [concern 2] → [our response]
 
 **Walk-Away Point:** [clear trigger]
 
 **Concessions We Can Offer:**
+
 - [item 1] - in exchange for [item]
 - [item 2] - in exchange for [item]
 
 **If Deadlocked:**
+
 - [deadlock breaker option]
 
 **Emergency Phrases:**
+
 - To buy time: [phrase]
 - To de-escalate: [phrase]
 - To call break: [phrase]"
@@ -178,18 +191,21 @@ How will the team communicate during negotiation?
 "Plan for what happens after the negotiation:
 
 **If we reach agreement:**
+
 - Documentation: [what to capture immediately]
 - Follow-up: [next steps within 24-48 hours]
 - Implementation: [how to ensure agreement sticks]
 - Relationship: [how to maintain positive relationship]
 
 **If no agreement:**
+
 - Debrief: [what to discuss internally]
 - Communication: [what to say to them]
 - BATNA execution: [next steps on alternative]
 - Door open?: [whether and how to leave room for future]
 
 **Either way:**
+
 - Lessons learned: [schedule debrief]
 - Relationship maintenance: [follow-up regardless of outcome]"
 
@@ -200,6 +216,7 @@ How will the team communicate during negotiation?
 "Let me confirm the playbook is complete:
 
 **Section Checklist:**
+
 - [ ] Executive Summary
 - [ ] Negotiation Context (parties, stakes, history, timeline)
 - [ ] BATNA Analysis (ours and theirs)
@@ -241,6 +258,7 @@ How will the team communicate during negotiation?
 **File location:** {outputFile}
 
 **You are now prepared with:**
+
 - Clear understanding of interests (yours and theirs)
 - Honest assessment of power dynamics
 - Strong arguments with rebuttals ready
@@ -250,6 +268,7 @@ How will the team communicate during negotiation?
 - Checklist to ensure readiness
 
 **Final advice from the advisory council:**
+
 - Geneva: 'Seek to understand before seeking to be understood'
 - Magnus: 'Know your leverage but use it wisely'
 - Cicero: 'Let your evidence speak louder than your emotion'
@@ -263,7 +282,8 @@ Good luck in your negotiation. Preparation is the foundation of success."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Section [E] Export/Print View [X] Complete Session"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow} for any final advisor input, when finished redisplay the menu
 - IF R: Revise a specific section of the playbook, then redisplay menu
@@ -271,7 +291,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Section
 - IF X: Confirm completion, save final file, and close session gracefully
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - This is the final step - no next step to load
 - User may iterate on revisions as needed
@@ -281,7 +302,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Section
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All playbook sections complete and populated
 - Executive summary captures the essence
 - Team roles assigned
@@ -290,7 +312,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Section
 - Post-negotiation planning included
 - Playbook is practically usable
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Sections left incomplete or vague
 - No team roles assigned
 - Checklist missing

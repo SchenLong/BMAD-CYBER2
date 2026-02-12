@@ -1,0 +1,23 @@
+code: "core-test"
+name: "Core Test Module"
+default_selected: true
+required: true
+
+prompt:
+  - "Core Test Module"
+  - "This module is always required."
+
+module_code:
+  result: "core-test"
+
+module_version:
+  result: "6.0.0"
+
+agents_path:
+  result: "{project-root}/_bmad/core-test/agents"
+
+workflows_path:
+  result: "{project-root}/_bmad/core-test/workflows"
+
+schemas_path:
+  result: "{project-root}/_bmad/core-test/schemas"

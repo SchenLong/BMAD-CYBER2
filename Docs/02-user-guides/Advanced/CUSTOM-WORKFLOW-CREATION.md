@@ -30,12 +30,14 @@ Before creating a custom workflow:
 Workflows can be simple (single file) or complex (directory with multiple files):
 
 **Simple Workflow:**
+
 ```
 _bmad/{module}/workflows/{workflow-name}/
 └── workflow.md          # Combined config and instructions
 ```
 
 **Complex Workflow:**
+
 ```
 _bmad/{module}/workflows/{workflow-name}/
 ├── workflow.yaml        # Configuration
@@ -354,6 +356,7 @@ variables:
 ```
 
 **Resumption Logic:**
+
 - On workflow start, check `stepsCompleted`
 - If not empty, offer to resume from last step
 - Allow user to restart or continue
@@ -363,6 +366,7 @@ variables:
 For complex workflows, split steps into individual files:
 
 **steps/step-01-scope.md:**
+
 ```markdown
 <step n="1" goal="Define scope and targets">
 <!-- Step content here -->
@@ -370,6 +374,7 @@ For complex workflows, split steps into individual files:
 ```
 
 **instructions.md (references micro-steps):**
+
 ```markdown
 <workflow>
 <include file="steps/step-01-scope.md" />

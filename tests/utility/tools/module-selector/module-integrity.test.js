@@ -11,22 +11,22 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 import {
+  checkModuleAllowlist,
   computeFileHash,
   computeModuleHashes,
+  createSecurityContext,
+  generateIntegrityManifest,
   loadIntegrityManifest,
   saveIntegrityManifest,
-  verifyModuleIntegrity,
   validatePathSecurity,
-  checkModuleAllowlist,
-  createSecurityContext,
-  generateIntegrityManifest
+  verifyModuleIntegrity
 } from './module-integrity.js';
 
 // ESM equivalent of __dirname

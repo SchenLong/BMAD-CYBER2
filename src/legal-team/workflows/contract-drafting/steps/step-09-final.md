@@ -15,6 +15,7 @@ Generate the complete contract document with explanatory commentary.
 ### 1. Compile Contract
 
 Assemble all sections into final contract:
+
 - Proper formatting
 - Complete structure
 - All provisions included
@@ -22,6 +23,7 @@ Assemble all sections into final contract:
 ### 2. Add Commentary
 
 Create separate commentary document explaining:
+
 - Key provisions and their purpose
 - Negotiation points
 - Alternative language options
@@ -32,6 +34,7 @@ Create separate commentary document explaining:
 Create two documents:
 
 **Contract Document:**
+
 ```markdown
 # [CONTRACT TITLE]
 
@@ -52,6 +55,7 @@ Create two documents:
 ```
 
 **Commentary Document:**
+
 ```markdown
 # Contract Commentary: [Type]
 
@@ -72,6 +76,7 @@ Create two documents:
 ```
 
 Update frontmatter:
+
 - `stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9]`
 - `status: "completed"`
 
@@ -80,6 +85,7 @@ Update frontmatter:
 "Your contract draft is complete!"
 
 Present:
+
 - Contract summary
 - Key features
 - Recommended next steps

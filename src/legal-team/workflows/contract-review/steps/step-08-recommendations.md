@@ -16,6 +16,7 @@ Compile all findings into prioritized recommendations for contract modification.
 ### 1. Consolidate Findings
 
 Gather all issues identified:
+
 - Structure issues (Step 3)
 - Substantive concerns (Step 4)
 - Risk allocation issues (Step 5)
@@ -27,18 +28,21 @@ Gather all issues identified:
 Categorize by priority:
 
 **HIGH (Critical):**
+
 - Legal compliance issues
 - Significant liability exposure
 - Unenforceable provisions
 - Missing essential terms
 
 **MEDIUM (Important):**
+
 - Risk allocation imbalances
 - Ambiguous terms
 - Missing standard protections
 - Negotiation leverage points
 
 **LOW (Nice to Have):**
+
 - Style/drafting improvements
 - Minor clarifications
 - Optional protections
@@ -47,6 +51,7 @@ Categorize by priority:
 ### 3. Negotiation Strategy
 
 For each recommendation:
+
 - Suggested language
 - Negotiation rationale
 - Fall-back positions

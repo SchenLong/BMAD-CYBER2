@@ -56,9 +56,11 @@ npx bmad-cybersec install [target-dir] [options]
 ```
 
 **Arguments:**
+
 - `target-dir` - Target directory (defaults to current directory)
 
 **Options:**
+
 | Option | Description |
 |--------|-------------|
 | `-v, --version <tag>` | Install specific version (e.g., `v2.0.0`) |
@@ -104,16 +106,19 @@ npx bmad-cybersec install --help
 ## What Gets Installed
 
 ### Core Files (Always)
+
 - `_bmad/` - BMAD agent configurations and workflows
 - `.claude/` - Claude Code MCP configuration
 - `src/utility/tools/` - Framework utility scripts
 - `CLAUDE.md` - Project instructions for Claude
 
 ### Optional Files
+
 - `Docs/` - Documentation (with `--with-docs`)
 - `dev-tools/` - Development utilities (with `--with-dev`)
 
 ### Excluded Files (Never Installed)
+
 - `.git/` - Git repository data
 - `node_modules/` - Dependencies
 - `*.test.js`, `*.spec.js` - Test files
@@ -121,9 +126,11 @@ npx bmad-cybersec install --help
 - `.github/` - GitHub workflows
 
 ### Package.json Updates
+
 The installer automatically merges BMAD dependencies into your `package.json`:
 
 **Scripts added:**
+
 ```json
 {
   "scripts": {
@@ -137,6 +144,7 @@ The installer automatically merges BMAD dependencies into your `package.json`:
 ```
 
 **Dependencies added:**
+
 - `chalk` - Terminal styling
 - `inquirer` - Interactive prompts
 - `zod` - Schema validation
@@ -156,7 +164,8 @@ Error: Release v99.99.99 not found
 **Cause:** The specified version doesn't exist.
 
 **Solution:**
-1. Check available releases: https://github.com/SchenLong/BMAD-CYBERSEC/releases
+
+1. Check available releases: <https://github.com/SchenLong/BMAD-CYBERSEC/releases>
 2. Use `latest` or omit version flag for latest release
 3. Verify the version tag format (e.g., `v2.0.0` not `2.0.0`)
 
@@ -169,13 +178,17 @@ Error: GitHub API rate limit exceeded. Set GITHUB_TOKEN or try again later.
 **Cause:** Too many requests to GitHub API without authentication.
 
 **Solutions:**
+
 1. Wait 1 hour for rate limit reset
 2. Set a GitHub token:
+
    ```bash
    export GITHUB_TOKEN=your_personal_access_token
    npx bmad-cybersec install
    ```
+
 3. Use Git clone method instead:
+
    ```bash
    npx bmad-cybersec install --from-git
    ```
@@ -189,16 +202,22 @@ Error: Checksum verification failed. File may be corrupted.
 **Cause:** Downloaded file doesn't match expected checksum.
 
 **Solutions:**
+
 1. Retry the installation (network issue):
+
    ```bash
    npx bmad-cybersec install
    ```
+
 2. Clear npm cache and retry:
+
    ```bash
    npm cache clean --force
    npx bmad-cybersec install
    ```
+
 3. Use Git clone as fallback:
+
    ```bash
    npx bmad-cybersec install --from-git
    ```
@@ -212,8 +231,10 @@ Error: Git is not installed or not in PATH.
 **Cause:** Using `--from-git` without Git installed.
 
 **Solutions:**
-1. Install Git: https://git-scm.com/downloads
+
+1. Install Git: <https://git-scm.com/downloads>
 2. Use release download method (without `--from-git`):
+
    ```bash
    npx bmad-cybersec install
    ```
@@ -227,9 +248,11 @@ Error: Download failed: 500
 **Cause:** GitHub server error.
 
 **Solutions:**
+
 1. Wait a few minutes and retry
-2. Check GitHub status: https://www.githubstatus.com/
+2. Check GitHub status: <https://www.githubstatus.com/>
 3. Use Git clone as fallback:
+
    ```bash
    npx bmad-cybersec install --from-git
    ```
@@ -246,11 +269,13 @@ Found 5 existing files that would be overwritten:
 ```
 
 **Options:**
+
 1. **Overwrite all** - Replace all existing files
 2. **Skip existing** - Only install new files
 3. **Cancel** - Abort installation
 
 **To avoid prompt:**
+
 ```bash
 # Skip existing files automatically
 npx bmad-cybersec install --yes
@@ -267,6 +292,7 @@ If you see a backup file like `package.json.backup.1706547200000`:
 
 1. Your original `package.json` is safe in the backup
 2. To restore:
+
    ```bash
    cp package.json.backup.* package.json
    ```
@@ -311,7 +337,8 @@ Error: BMAD-CYBER requires Node.js >= 18.0.0
 ```
 
 **Solution:** Upgrade Node.js to version 18 or later:
-- https://nodejs.org/
+
+- <https://nodejs.org/>
 - Using nvm: `nvm install 18 && nvm use 18`
 
 #### Permission Denied
@@ -321,9 +348,11 @@ Error: EACCES: permission denied
 ```
 
 **Solutions:**
+
 1. Don't use `sudo` with npm/npx
-2. Fix npm permissions: https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+2. Fix npm permissions: <https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally>
 3. Install to a directory you own:
+
    ```bash
    npx bmad-cybersec install ~/my-project
    ```
@@ -337,6 +366,7 @@ npx bmad-cybersec install --verbose
 ```
 
 This shows:
+
 - Detailed progress information
 - File-by-file extraction
 - Network request details
@@ -348,6 +378,7 @@ npx bmad-cybersec install --dry-run
 ```
 
 This shows:
+
 - All files that would be extracted
 - Changes to package.json
 - No actual modifications made
@@ -361,7 +392,8 @@ This shows:
 **Two-Factor Authentication (2FA) is REQUIRED** for publishing to npm.
 
 Before publishing any release:
-1. Enable 2FA on your npm account: https://docs.npmjs.com/configuring-two-factor-authentication
+
+1. Enable 2FA on your npm account: <https://docs.npmjs.com/configuring-two-factor-authentication>
 2. Use an authentication app (not SMS) for security
 3. The npm account must have **publish** 2FA level enabled
 
@@ -383,6 +415,7 @@ npm profile get
 #### Release Signing
 
 All releases include:
+
 - SHA256 checksums for tarball verification
 - Provenance attestation via `--provenance` flag
 - Git tags for version tracking
@@ -392,6 +425,7 @@ All releases include:
 #### Download Verification
 
 The installer automatically verifies downloads:
+
 - **Mandatory checksum verification** - all downloads are validated against SHA256 checksums
 - **HTTPS only** - all network requests use secure connections
 - **Trusted hosts only** - downloads restricted to github.com domains
@@ -412,6 +446,7 @@ npx bmad-cybersec install --dry-run
 #### Reporting Security Issues
 
 For security vulnerabilities, please:
+
 1. **DO NOT** create a public GitHub issue
 2. Email security concerns to the maintainers directly
 3. Include reproduction steps and impact assessment
@@ -469,8 +504,9 @@ tools/npx/
 ## Support
 
 For issues with the NPX installer:
+
 1. Check this troubleshooting guide
-2. Search existing issues: https://github.com/SchenLong/BMAD-CYBERSEC/issues
+2. Search existing issues: <https://github.com/SchenLong/BMAD-CYBERSEC/issues>
 3. Create a new issue with:
    - Node.js version (`node --version`)
    - npm version (`npm --version`)

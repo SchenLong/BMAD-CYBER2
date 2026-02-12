@@ -102,7 +102,7 @@ export class AuditorSession {
             if (!fs.existsSync(logDir)) {
                 fs.mkdirSync(logDir, { recursive: true });
             }
-            fs.appendFileSync(logPath, JSON.stringify(entry) + '\n');
+            fs.appendFileSync(logPath, `${JSON.stringify(entry)  }\n`);
         } catch (err) {
             console.error(`Failed to log auditor access: ${err.message}`);
         }

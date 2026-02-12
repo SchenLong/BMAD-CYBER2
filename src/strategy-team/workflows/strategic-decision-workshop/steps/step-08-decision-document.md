@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 8: Decision Document
 
-## STEP GOAL:
+## STEP GOAL
 
 Compile all the work from previous steps into a comprehensive, board-ready decision brief with executive summary, full analysis, and clear recommendation.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are the Senior Strategic Facilitator concluding the workshop
 - ✅ This is the culmination - make it polished and actionable
@@ -23,11 +23,12 @@ Compile all the work from previous steps into a comprehensive, board-ready decis
 - ✅ Preserve dissenting views - don't whitewash disagreement
 - ✅ Make the recommendation clear while respecting user's final authority
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus on synthesis and polish, not new analysis
 - 🚫 FORBIDDEN to hide dissenting views or unresolved tensions
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Review all sections from steps 1-7
 - Synthesize executive summary
@@ -48,13 +49,14 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Workshop Conclusion
 
 **The facilitator summarizes:**
 
 "We've completed the Strategic Decision Workshop, {user_name}. We've:
+
 - Framed the decision and mapped stakeholders ✓
 - Gathered and assessed evidence ✓
 - Analyzed stakeholder interests and power ✓
@@ -82,6 +84,7 @@ Now let's compile this into a board-ready decision brief."
 **Recommendation:** [Clear, actionable recommendation]
 
 **Key Considerations:**
+
 - [Consideration 1]
 - [Consideration 2]
 - [Consideration 3]
@@ -106,12 +109,14 @@ Does this executive summary capture the essence? It should work as a standalone 
 [Clear statement of recommended course of action]
 
 **Rationale:**
+
 1. [Key reason 1 - evidence-based]
 2. [Key reason 2 - stakeholder consideration]
 3. [Key reason 3 - ethical alignment]
 
 **Key Assumptions:**
 This recommendation assumes:
+
 - [Assumption 1]
 - [Assumption 2]
 
@@ -150,19 +155,21 @@ It's important to document where perspectives diverged:
 
 **Areas of Agreement:**
 All advisors agreed that:
+
 - [Agreement 1]
 - [Agreement 2]
 
 **Unresolved Tensions:**
 Despite synthesis efforts, genuine disagreement remains on:
+
 - [Tension 1]: [Archetype A] argued [position] while [Archetype B] maintained [position]
-- [Tension 2]: [Description]
 
 **Minority Position:**
 [Archetype] would dissent from the recommendation because [reason]. This view should be considered if [condition].
 
 **What Could Change the Calculus:**
 The recommendation should be revisited if:
+
 - [Trigger 1]
 - [Trigger 2]
 
@@ -177,24 +184,28 @@ These dissents are recorded not as weakness but as intellectual honesty. A decis
 "## Next Steps
 
 ### Immediate Actions (Next 48 hours)
+
 | Action | Owner | Deadline |
 |--------|-------|----------|
 | [Action 1] | [TBD] | [Date] |
 | [Action 2] | [TBD] | [Date] |
 
 ### Short-term Actions (Next 2 weeks)
+
 | Action | Owner | Deadline |
 |--------|-------|----------|
 | [Action 1] | [TBD] | [Date] |
 | [Action 2] | [TBD] | [Date] |
 
 ### Communication Milestones
+
 | Milestone | Date | Owner |
 |-----------|------|-------|
 | [Announcement] | [Date] | [TBD] |
 | [Follow-up] | [Date] | [TBD] |
 
 ### Decision Points
+
 | Decision | Needed By | Escalation Path |
 |----------|-----------|-----------------|
 | [Decision 1] | [Date] | [Path] |"
@@ -206,6 +217,7 @@ These dissents are recorded not as weakness but as intellectual honesty. A decis
 "Let me now compile the full document. I'll ensure:
 
 **Completeness Check:**
+
 - [ ] Executive Summary - clear and standalone
 - [ ] Decision Context - background and framing
 - [ ] Evidence & Analysis - data and findings
@@ -220,6 +232,7 @@ These dissents are recorded not as weakness but as intellectual honesty. A decis
 - [ ] Next Steps - actionable
 
 **Quality Check:**
+
 - [ ] Can stand alone (no context needed)
 - [ ] Board-ready formatting
 - [ ] Clear, actionable language
@@ -252,6 +265,7 @@ The full document is available at: `{outputFile}`"
 `{outputFile}`
 
 **What we accomplished:**
+
 - Comprehensive decision framing
 - Evidence-based analysis
 - 14-advisor perspective review
@@ -262,6 +276,7 @@ The full document is available at: `{outputFile}`"
 **The decision remains yours.** The council has advised; the choice is yours to make.
 
 **Final wisdom from the council:**
+
 - *Niccolo:* 'Fortune favors the prepared - and you are now prepared.'
 - *Jean-Luc:* 'Make it so - but make it something you'll be proud of.'
 
@@ -271,13 +286,15 @@ Good luck, {user_name}."
 
 Display: "**Select:** [R] Revise a Section [E] Export/Share Options [N] Start New Workshop [X] Exit Workshop"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF R: Ask which section to revise, make revisions, save to file
 - IF E: Offer export options (the file is already saved; could discuss sharing)
 - IF N: Clear context, return to step-01-init.md
 - IF X: Confirm exit, save final state
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - Workshop is complete - these are wrap-up options
 - Document is already saved to {outputFile}
 - Celebrate the completion!
@@ -286,7 +303,8 @@ Display: "**Select:** [R] Revise a Section [E] Export/Share Options [N] Start Ne
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - All sections compiled into coherent document
 - Executive summary is standalone and clear
 - Recommendation is explicit
@@ -296,7 +314,8 @@ Display: "**Select:** [R] Revise a Section [E] Export/Share Options [N] Start Ne
 - Document is board-ready
 - Status set to complete
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
+
 - Missing sections
 - Whitewashing disagreement
 - Vague recommendation

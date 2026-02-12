@@ -18,6 +18,7 @@ Document all tax compliance obligations and establish compliance calendar.
 Map primary tax obligations:
 
 **USA Federal:**
+
 | Form | Description | Due Date | Frequency |
 |------|-------------|----------|-----------|
 | Form 1040 | Individual return | April 15 | Annual |
@@ -28,6 +29,7 @@ Map primary tax obligations:
 | Form 720 | Excise taxes | End of month after quarter | Quarterly |
 
 **Spain (Agencia Tributaria):**
+
 | Modelo | Description | Due Date | Frequency |
 |--------|-------------|----------|-----------|
 | Modelo 200 | Corporate tax return | July 25 | Annual |
@@ -38,6 +40,7 @@ Map primary tax obligations:
 | Modelo 190 | Withholding summary | January 31 | Annual |
 
 **Estonia:**
+
 | Obligation | Description | Due Date | Frequency |
 |------------|-------------|----------|-----------|
 | Annual Report | Financial statements | 6 months after year-end | Annual |
@@ -50,6 +53,7 @@ Map primary tax obligations:
 Map cross-border obligations:
 
 **USA International Forms:**
+
 | Form | Description | Triggers | Penalty |
 |------|-------------|----------|---------|
 | Form 5471 | CFC reporting | >10% US shareholder | $10,000+ per form |
@@ -59,6 +63,7 @@ Map cross-border obligations:
 | Form 8858 | Foreign disregarded entity | Owner of foreign DE | $10,000 |
 
 **Spain International:**
+
 | Modelo | Description | Triggers |
 |--------|-------------|----------|
 | Modelo 720 | Foreign asset disclosure | €50,000 threshold per category |
@@ -69,16 +74,19 @@ Map cross-border obligations:
 Map local obligations:
 
 **State Income Tax:**
+
 - Filing requirements per state with nexus
 - Withholding for remote employees
 - Apportionment calculations
 
 **Local Taxes:**
+
 - Property taxes
 - Business license taxes
 - Local sales taxes
 
 **Autonomous Community (Spain):**
+
 - Regional variations
 - IRPF rates by region
 - Regional incentives

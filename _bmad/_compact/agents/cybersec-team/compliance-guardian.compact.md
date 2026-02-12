@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/compliance-guardian.md
+# Full agent: src/cybersec-team/agents/compliance-guardian.md
 agent_id: "compliance-guardian"
 name: "Sentinel"
 title: "Risk & Regulatory Compliance Expert"

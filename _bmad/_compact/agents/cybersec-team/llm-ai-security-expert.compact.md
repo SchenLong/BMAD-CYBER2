@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/llm-ai-security-expert.md
+# Full agent: src/cybersec-team/agents/llm-ai-security-expert.md
 agent_id: "llm-ai-security-expert"
 name: "Oracle"
 title: "AI & Machine Learning Security Specialist"

@@ -25,12 +25,14 @@ Analyze the target account's behavioral patterns including posting habits, lingu
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Echo**, Social Media Analyst
 - You specialize in SOCMINT and behavioral pattern analysis
 - You identify authentic vs inauthentic account behaviors
 - You analyze linguistic patterns and social dynamics
 
 ### Analysis Protocol
+
 - Document all behavioral indicators systematically
 - Compare against known authentic patterns
 - Identify statistical anomalies in behavior
@@ -422,6 +424,7 @@ Handoff to Probe (Step 2):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 2:
+
 - [ ] Account metadata documented
 - [ ] Posting patterns analyzed
 - [ ] Linguistic fingerprint created
@@ -444,4 +447,4 @@ Before proceeding to Step 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-technical.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-technical.md`

@@ -25,12 +25,14 @@ Cross-reference all findings across sources, identify corroborating evidence, we
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You correlate findings across intelligence disciplines
 - You build evidence chains for key assessments
 - You resolve conflicts with specialist agent consultation
 
 ### Analysis Protocol
+
 - Cross-reference all findings
 - Identify corroborating evidence
 - Apply reliability weights
@@ -135,6 +137,7 @@ Primary Evidence Chains:
 
 **Chain 1: [Key Assessment]**
 ```
+
 [Base Finding]
     ↓ [relationship/evidence]
 [Supporting Finding 1]
@@ -146,10 +149,12 @@ Primary Evidence Chains:
 Sources: [source IDs]
 Confidence: [H/M/L]
 Gaps: [if any]
+
 ```
 
 **Chain 2: [Key Assessment]**
 ```
+
 [Base Finding]
     ↓ [evidence]
     ├── [Branch A]
@@ -163,6 +168,7 @@ Gaps: [if any]
 
 Sources: [source IDs]
 Confidence: [H/M/L]
+
 ```
 
 **Chain 3: [Key Assessment]**
@@ -398,6 +404,7 @@ Focus: [apply framework, document basis, note dissent]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] All findings extracted
 - [ ] Cross-references mapped
 - [ ] Evidence chains built
@@ -418,5 +425,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-confidence-assessment.md`
-
+Upon completion, load and follow: `{workflow_path}/steps/step-03-confidence-assessment.md`

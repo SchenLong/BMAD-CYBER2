@@ -41,6 +41,12 @@ set -euo pipefail
 # @related voice-manager.sh, play-tts-piper.sh, 16Speakers.onnx.json (speaker_id_map)
 #
 
+# Source input validation library
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 # Bash 3.2 compatible lowercase function (macOS ships with bash 3.2)
 # ${var,,} syntax requires bash 4.0+
 _to_lower() {

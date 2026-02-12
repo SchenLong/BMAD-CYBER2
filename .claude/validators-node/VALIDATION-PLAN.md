@@ -19,12 +19,14 @@
 **Consolidated Report:** `_bmad-output/workflow-qa/CONSOLIDATED-VALIDATION-REPORT.md`
 
 ### Key Findings
+
 - ✅ All 558 unit tests passing
 - ✅ OWASP LLM Top 10: 7/10 applicable risks mitigated
 - ✅ No critical security vulnerabilities found
 - ✅ All 55 workflows fully compliant (cybersec-team fixed)
 
 ### Validation Artifacts
+
 - `workstream-a-report.md` - Workflow compliance validation
 - `workstream-b-security-report.md` - Security testing
 - `workstream-c-qa-report.md` - Manual QA + integration
@@ -83,6 +85,7 @@
 #### 1.1.1 AuditLogger (`src/common/audit-logger.ts`)
 
 **Functional Tests:**
+
 - [ ] `logSync()` writes to correct log file
 - [ ] `logAsync()` returns promise and writes correctly
 - [ ] Log entries contain required fields: timestamp, validator, action, severity
@@ -92,12 +95,14 @@
 - [ ] Sensitive data redaction works (passwords, tokens)
 
 **Security Tests:**
+
 - [ ] Log injection attacks are prevented (newline injection)
 - [ ] Path traversal in log paths is blocked
 - [ ] Log files have correct permissions (600 or 640)
 - [ ] No sensitive data leaks in log messages
 
 **Edge Cases:**
+
 - [ ] Disk full scenario handling
 - [ ] Invalid JSON input handling
 - [ ] Extremely long log messages (>1MB)
@@ -107,6 +112,7 @@
 #### 1.1.2 OverrideManager (`src/common/override-manager.ts`)
 
 **Functional Tests:**
+
 - [ ] `createOverride()` generates unique tokens
 - [ ] `validateOverride()` returns true for valid tokens
 - [ ] `validateOverride()` returns false for expired tokens
@@ -115,6 +121,7 @@
 - [ ] State persists across process restarts
 
 **Security Tests:**
+
 - [ ] TOCTOU (Time-of-check to time-of-use) protection works
 - [ ] Token entropy is sufficient (>128 bits)
 - [ ] Tokens cannot be guessed or brute-forced
@@ -122,6 +129,7 @@
 - [ ] Race condition in token validation is prevented
 
 **Edge Cases:**
+
 - [ ] Expired state cleanup works
 - [ ] Corrupted state file handling
 - [ ] Missing state file (fresh start)
@@ -130,6 +138,7 @@
 #### 1.1.3 PathUtils (`src/common/path-utils.ts`)
 
 **Functional Tests:**
+
 - [ ] `resolvePath()` correctly resolves relative paths
 - [ ] `resolvePath()` handles absolute paths
 - [ ] `isPathInRepo()` returns true for paths inside PROJECT_DIR
@@ -138,12 +147,14 @@
 - [ ] Symlink resolution works correctly
 
 **Security Tests:**
+
 - [ ] Path traversal attacks are detected (`../../../etc/passwd`)
 - [ ] Null byte injection is blocked
 - [ ] Unicode normalization attacks are handled
 - [ ] Symlink escape attacks are detected
 
 **Edge Cases:**
+
 - [ ] Windows-style paths (backslashes)
 - [ ] Paths with spaces and special characters
 - [ ] Very long paths (>4096 chars)
@@ -153,17 +164,20 @@
 #### 1.1.4 StdinParser (`src/common/stdin-parser.ts`)
 
 **Functional Tests:**
+
 - [ ] `getToolInputFromStdin()` parses valid JSON
 - [ ] Returns correct tool_name and tool_input
 - [ ] Handles empty stdin gracefully
 - [ ] Handles missing fields with defaults
 
 **Security Tests:**
+
 - [ ] JSON parsing is safe (no prototype pollution)
 - [ ] Large payloads are handled (DoS prevention)
 - [ ] Malformed JSON doesn't crash
 
 **Edge Cases:**
+
 - [ ] Binary data in stdin
 - [ ] Partial JSON (incomplete)
 - [ ] Multiple JSON objects
@@ -176,6 +190,7 @@
 ### 2.1 Bash Safety (`src/guards/bash-safety.ts`)
 
 **Functional Tests:**
+
 - [ ] `detectCommandSubstitution()` detects `$(...)` patterns
 - [ ] `detectCommandSubstitution()` detects backtick patterns
 - [ ] `detectCommandSubstitution()` detects `${...}` expansion
@@ -194,6 +209,7 @@
 - [ ] Safe commands (ls, git, npm) are allowed
 
 **Security Tests:**
+
 - [ ] Command injection via arguments is blocked
 - [ ] Encoded commands (base64, hex) are detected
 - [ ] Unicode obfuscation is handled
@@ -204,11 +220,13 @@
 - [ ] Background execution (&) of dangerous commands is blocked
 
 **Parity Tests:**
+
 - [ ] Compare output with Python `bash_safety.py` for 100 test cases
 
 ### 2.2 Environment Protection (`src/guards/env-protection.ts`)
 
 **Functional Tests:**
+
 - [ ] Blocks write to `.env` files
 - [ ] Blocks write to `.env.local`, `.env.production`, etc.
 - [ ] Blocks write to `credentials.json`
@@ -220,18 +238,21 @@
 - [ ] Pattern matching works for all 80+ protected patterns
 
 **Security Tests:**
+
 - [ ] Case sensitivity handling (`.ENV` vs `.env`)
 - [ ] Path normalization attacks
 - [ ] Symlink to protected file detection
 - [ ] Hidden file detection
 
 **Parity Tests:**
+
 - [ ] Compare protected file list with Python version
 - [ ] Test all 80+ patterns match identically
 
 ### 2.3 Outside Repo Guard (`src/guards/outside-repo.ts`)
 
 **Functional Tests:**
+
 - [ ] Blocks read/write outside PROJECT_DIR
 - [ ] Allows operations inside PROJECT_DIR
 - [ ] Handles relative paths correctly
@@ -240,17 +261,20 @@
 - [ ] Handles multiple paths in single command
 
 **Security Tests:**
+
 - [ ] Path traversal via `../`
 - [ ] Symlink escape detection
 - [ ] Null byte injection
 - [ ] Unicode normalization attacks
 
 **Parity Tests:**
+
 - [ ] Match Python `outside_repo_guard.py` behavior exactly
 
 ### 2.4 Production Guard (`src/guards/production.ts`)
 
 **Functional Tests:**
+
 - [ ] Detects `production` keyword in commands
 - [ ] Detects `prod` abbreviation
 - [ ] Detects production URLs/hostnames
@@ -258,15 +282,18 @@
 - [ ] Environment variable detection (NODE_ENV=production)
 
 **Security Tests:**
+
 - [ ] Case insensitivity testing
 - [ ] Obfuscation attempts (pr0duction, prоduction with Cyrillic)
 
 **Parity Tests:**
+
 - [ ] Compare with Python `production_guard.py`
 
 ### 2.5 Secret Guard (`src/guards/secret.ts`)
 
 **Functional Tests:**
+
 - [ ] Detects AWS Access Key IDs (AKIA...)
 - [ ] Detects AWS Secret Access Keys
 - [ ] Detects GitHub tokens (ghp_...)
@@ -280,6 +307,7 @@
 - [ ] Allows test credentials in test files
 
 **Security Tests:**
+
 - [ ] Entropy calculation accuracy
 - [ ] False positive rate < 1%
 - [ ] False negative rate < 0.1% for known patterns
@@ -287,6 +315,7 @@
 - [ ] Split secrets across lines
 
 **Parity Tests:**
+
 - [ ] All API key patterns match Python version
 - [ ] Entropy threshold matches Python
 
@@ -295,6 +324,7 @@
 **Functional Tests:**
 
 *US Patterns:*
+
 - [ ] Social Security Numbers (XXX-XX-XXXX)
 - [ ] US Phone numbers (various formats)
 - [ ] Driver's License numbers (state-specific)
@@ -304,6 +334,7 @@
 - [ ] ABA Routing numbers
 
 *EU Patterns:*
+
 - [ ] IBAN numbers (all countries)
 - [ ] BIC/SWIFT codes
 - [ ] UK National Insurance (NINO)
@@ -321,6 +352,7 @@
 - [ ] Finnish HETU
 
 *Common Patterns:*
+
 - [ ] Credit Card numbers (Luhn validation)
 - [ ] Email addresses
 - [ ] IP addresses (v4 and v6)
@@ -329,6 +361,7 @@
 - [ ] GPS coordinates
 
 **Validator Tests:**
+
 - [ ] Luhn algorithm correctness
 - [ ] IBAN MOD 97-10 validation
 - [ ] ABA routing checksum
@@ -336,11 +369,13 @@
 - [ ] Context-aware detection (reduces false positives)
 
 **Security Tests:**
+
 - [ ] Obfuscated PII detection (spaced digits)
 - [ ] Mixed format detection
 - [ ] Test data exclusion works
 
 **Parity Tests:**
+
 - [ ] All 30+ PII patterns match Python
 - [ ] Validation algorithms produce identical results
 
@@ -353,6 +388,7 @@
 **Functional Tests:**
 
 *Injection Patterns (20+ categories):*
+
 - [ ] System prompt override attempts
 - [ ] Role reassignment ("You are now...")
 - [ ] Instruction injection ("Ignore previous...")
@@ -375,12 +411,14 @@
 - [ ] Comment-based injection
 
 **Security Tests:**
+
 - [ ] All OWASP LLM01 vectors blocked
 - [ ] Multi-language injection attempts
 - [ ] Combined/layered attacks
 - [ ] Novel obfuscation techniques
 
 **Parity Tests:**
+
 - [ ] All patterns match Python `prompt_injection_guard.py`
 
 ### 3.2 Jailbreak Guard (`src/ai-safety/jailbreak.ts`)
@@ -388,6 +426,7 @@
 **Functional Tests:**
 
 *Jailbreak Patterns (40+ categories):*
+
 - [ ] DAN (Do Anything Now) variants
 - [ ] Developer mode prompts
 - [ ] Roleplay jailbreaks
@@ -410,12 +449,14 @@
 - [ ] Personality override
 
 **Security Tests:**
+
 - [ ] Text normalization handles Unicode evasion
 - [ ] Fuzzy matching catches variants
 - [ ] Session risk tracking works
 - [ ] Cumulative risk scoring
 
 **Parity Tests:**
+
 - [ ] All 40+ patterns match Python
 - [ ] Levenshtein/fuzzy matching identical
 
@@ -426,6 +467,7 @@
 ### 4.1 Rate Limiter (`src/resource-management/rate-limiter.ts`)
 
 **Functional Tests:**
+
 - [ ] Sliding window algorithm correctness
 - [ ] Per-operation limits enforced (Bash: 60, Write: 100, etc.)
 - [ ] Global rate limit enforced
@@ -436,22 +478,26 @@
 - [ ] Window cleanup removes old entries
 
 **Security Tests:**
+
 - [ ] Rate limit cannot be bypassed
 - [ ] State file tampering detection
 - [ ] Clock manipulation resistance
 
 **Performance Tests:**
+
 - [ ] Validator latency < 10ms
 - [ ] Memory usage < 10MB
 - [ ] State file size stays bounded
 
 **Parity Tests:**
+
 - [ ] Limits match Python `rate_limiter.py`
 - [ ] Window algorithm identical
 
 ### 4.2 Resource Limits (`src/resource-management/resource-limits.ts`)
 
 **Functional Tests:**
+
 - [ ] Memory limit detection (4GB default)
 - [ ] CPU usage tracking
 - [ ] Child process limit (10 default)
@@ -461,16 +507,19 @@
 - [ ] Force kill after timeout
 
 **Security Tests:**
+
 - [ ] Resource exhaustion prevention
 - [ ] Zombie process cleanup
 - [ ] Memory leak detection
 
 **Parity Tests:**
+
 - [ ] Limits match Python `resource_limits.py`
 
 ### 4.3 Recursion Guard (`src/resource-management/recursion-guard.ts`)
 
 **Functional Tests:**
+
 - [ ] Call stack depth tracking
 - [ ] Directory traversal depth limits
 - [ ] Symlink follow limits
@@ -479,16 +528,19 @@
 - [ ] State persistence
 
 **Security Tests:**
+
 - [ ] Stack overflow prevention
 - [ ] Infinite loop detection
 - [ ] Circular symlink handling
 
 **Parity Tests:**
+
 - [ ] Depth limits match Python
 
 ### 4.4 Context Manager (`src/resource-management/context-manager.ts`)
 
 **Functional Tests:**
+
 - [ ] Token estimation accuracy (±10%)
 - [ ] Warning threshold at 80%
 - [ ] Block threshold at 95%
@@ -497,6 +549,7 @@
 - [ ] Suggestions generation
 
 **Parity Tests:**
+
 - [ ] Token estimation matches Python
 
 ---
@@ -506,6 +559,7 @@
 ### 5.1 Confidence Tracker (`src/observability/confidence-tracker.ts`)
 
 **Functional Tests:**
+
 - [ ] Uncertainty marker detection
 - [ ] Confidence scoring algorithm
 - [ ] Threshold-based warnings
@@ -514,6 +568,7 @@
 ### 5.2 Anomaly Detector (`src/observability/anomaly-detector.ts`)
 
 **Functional Tests:**
+
 - [ ] Rolling 24-hour baseline calculation
 - [ ] Standard deviation calculation
 - [ ] Anomaly threshold detection
@@ -523,6 +578,7 @@
 ### 5.3 Audit Integrity (`src/observability/audit-integrity.ts`)
 
 **Functional Tests:**
+
 - [ ] SHA256 hash chain creation
 - [ ] Chain field addition to logs
 - [ ] Tamper detection
@@ -530,6 +586,7 @@
 - [ ] Chain verification
 
 **Security Tests:**
+
 - [ ] Hash collision resistance
 - [ ] Tamper-evident logging
 - [ ] State file integrity
@@ -537,6 +594,7 @@
 ### 5.4 Telemetry (`src/observability/telemetry.ts`)
 
 **Functional Tests:**
+
 - [ ] JSONL format output
 - [ ] File rotation
 - [ ] Event recording
@@ -551,6 +609,7 @@
 ### 6.1 Plugin Permissions (`src/permissions/plugin-permissions.ts`)
 
 **Functional Tests:**
+
 - [ ] Capability model enforcement (filesystem, network, shell, sensitive_data)
 - [ ] Permission manifest parsing
 - [ ] Path pattern matching
@@ -559,6 +618,7 @@
 - [ ] Dangerous command blocking
 
 **Security Tests:**
+
 - [ ] Capability escalation prevention
 - [ ] Manifest tampering detection
 - [ ] Cross-plugin isolation
@@ -566,6 +626,7 @@
 ### 6.2 Supply Chain Verifier (`src/permissions/supply-chain.ts`)
 
 **Functional Tests:**
+
 - [ ] SHA256 checksum verification
 - [ ] Manifest loading and parsing
 - [ ] File verification against manifest
@@ -574,6 +635,7 @@
 - [ ] GPG signature verification (if available)
 
 **Security Tests:**
+
 - [ ] Hash collision resistance
 - [ ] Manifest integrity verification
 - [ ] Signature validation
@@ -581,6 +643,7 @@
 ### 6.3 Token Validator (`src/permissions/token-validator.ts`)
 
 **Functional Tests:**
+
 - [ ] Session token validation
 - [ ] RBAC role checking
 - [ ] Claims parsing
@@ -588,6 +651,7 @@
 - [ ] Error message extraction
 
 **Security Tests:**
+
 - [ ] Token forgery prevention
 - [ ] Replay attack prevention
 - [ ] Session hijacking prevention
@@ -599,6 +663,7 @@
 ### 7.1 Hook Configuration Testing
 
 **Functional Tests:**
+
 - [ ] SessionStart hooks execute in order
 - [ ] UserPromptSubmit hooks execute for all prompts
 - [ ] PreToolUse hooks execute before each tool
@@ -607,6 +672,7 @@
 - [ ] Stderr messages display to user
 
 **Configuration Tests:**
+
 - [ ] `settings.json` is valid JSON
 - [ ] All validator paths resolve correctly
 - [ ] No duplicate hooks
@@ -615,6 +681,7 @@
 ### 7.2 End-to-End Testing
 
 **Scenarios:**
+
 - [ ] Normal operation flow (read, write, edit, bash)
 - [ ] Blocked operation (dangerous command)
 - [ ] Rate limited operation
@@ -843,17 +910,20 @@ hyperfine --warmup 3 'echo "{\"tool_input\":{\"command\":\"ls\"}}" | node bash-s
 ### 13.1 Rollback Procedure
 
 1. **Immediate Rollback**
+
    ```bash
    # Restore Python settings.json
    git checkout HEAD~1 -- .claude/settings.json
    ```
 
 2. **Validate Python Validators Still Work**
+
    ```bash
    echo '{"tool_input":{"command":"ls"}}' | python3 .claude/validators/bash_safety.py
    ```
 
 3. **Clear Node.js State Files**
+
    ```bash
    rm -f .claude/validators-node/state/*.json
    ```

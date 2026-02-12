@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Gap Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 To identify missing or insufficient controls, assess gap severity, and prioritize remediation based on risk and audit impact.
 
-## GAP ASSESSMENT PROCESS:
+## GAP ASSESSMENT PROCESS
 
 ### 1. Initialize Gap Analysis
 
@@ -32,15 +32,18 @@ We'll now analyze gaps between your current controls and {framework} requirement
 From Section 2 (Control Inventory), identify:
 
 **Missing Controls:**
+
 - Framework requirements with "Not Implemented" status
 - Critical controls completely absent
 
 **Insufficient Controls:**
+
 - Controls marked "Partially Effective"
 - Controls with incomplete evidence
 - Controls not meeting framework specifications
 
 **Outdated Controls:**
+
 - Controls not updated per framework requirements
 - Policies/procedures not reviewed within required timeframe
 
@@ -55,6 +58,7 @@ For each gap:
 {current-implementation-or-none}
 
 **Gap Type:**
+
 - Missing (not implemented)
 - Insufficient (partially effective)
 - Outdated (needs update)
@@ -75,6 +79,7 @@ For each gap:
 **Risk Impact:**
 
 If this control remains missing/insufficient during audit:
+
 - High: Likely audit failure, critical compliance risk
 - Medium: Potential audit findings, remediation required
 - Low: Observations, best practice recommendations
@@ -86,6 +91,7 @@ Collect risk rating.
 "**Audit Impact:**
 
 How likely is auditor to test this control?
+
 - High: Core requirement, always tested
 - Medium: Commonly tested, depends on auditor
 - Low: May not be tested in detail
@@ -97,6 +103,7 @@ Collect audit impact.
 "**Remediation Complexity:**
 
 How difficult/time-consuming to remediate?
+
 - High: Major project, significant resources (weeks/months)
 - Medium: Moderate effort, some resources (days/weeks)
 - Low: Quick fix, minimal resources (hours/days)
@@ -124,6 +131,7 @@ Collect complexity rating.
 ### 5. Prioritize Gaps
 
 Sort gaps by:
+
 1. Priority (P0 → P4)
 2. Remediation complexity (Low → High)
 3. Audit date proximity
@@ -137,6 +145,7 @@ Display:
 **Total Gaps Identified:** {count}
 
 **By Priority:**
+
 - P0 (Critical): {count} gaps - **Must fix before audit**
 - P1 (High): {count} gaps - **Should fix before audit**
 - P2 (Medium): {count} gaps - **Nice to fix**
@@ -144,6 +153,7 @@ Display:
 - P4 (Deferred): {count} gaps - **Future consideration**
 
 **By Type:**
+
 - Missing Controls: {count}
 - Insufficient Controls: {count}
 - Outdated Controls: {count}
@@ -219,14 +229,16 @@ Display: **[P] Party Mode [C] Continue to Evidence Planning**
 
 ## 🚨 SUCCESS METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
+
 - All gaps identified and documented
 - Severity and priority assigned
 - Gaps prioritized by risk and audit impact
 - Critical gaps (P0/P1) clearly highlighted
 - Section 3 appended
 
-### ❌ FAILURE:
+### ❌ FAILURE
+
 - Missing gaps
 - No priority assignment
 - Unclear remediation needs

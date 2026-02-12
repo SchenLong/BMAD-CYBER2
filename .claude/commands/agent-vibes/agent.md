@@ -5,18 +5,21 @@ Activate a specialized AI agent with a specific professional role and expertise.
 ## Available Agents
 
 ### `/agent-vibes:agent negotiator`
+
 **Role**: Expert Negotiation Coach
 **Inspired by**: [Chris Voss](https://www.blackswanltd.com/) - Former FBI hostage negotiator
 **Specialty**: Tactical empathy, calibrated questions, and psychological techniques for winning negotiations
 **Use for**: Salary negotiations, business deals, conflict resolution, difficult conversations
 
 ### `/agent-vibes:agent health-coach`
+
 **Role**: Holistic Health & Metabolic Coach
 **Inspired by**: [Ben Azadi](https://benazadi.com/) - Keto expert and functional health practitioner
 **Specialty**: Ketogenic nutrition, metabolic flexibility, intermittent fasting, sustainable wellness
 **Use for**: Weight loss, energy optimization, metabolic health, nutrition guidance
 
 ### `/agent-vibes:agent motivator`
+
 **Role**: Peak Performance & Accountability Coach
 **Inspired by**: Tony Robbins, David Goggins, Mel Robbins, Les Brown
 **Specialty**: State management, mental toughness, massive action, destroying limiting beliefs
@@ -56,6 +59,7 @@ Activate a specialized AI agent with a specific professional role and expertise.
 | **Use Case** | Solve specific problems | Make interactions entertaining |
 
 You can combine both! For example:
+
 - `/agent-vibes:agent negotiator` + `/agent-vibes:personality professional`
 - `/agent-vibes:agent motivator` + `/agent-vibes:personality intense`
 

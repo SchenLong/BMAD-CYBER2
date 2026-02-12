@@ -45,12 +45,14 @@ A comprehensive vCISO engagement document containing:
 ## Workflow Steps
 
 ### Step 1: Initialization & Engagement Setup
+
 - Gather client context (company size, industry, regulatory requirements)
 - Define engagement parameters (duration, service level, focus areas)
 - Map stakeholders and establish RACI
 - Create engagement document with Section 1
 
 ### Step 2: Budget & Resource Planning
+
 - Assess current security spend
 - Plan budget across 5 categories (People, Technology, Services, Compliance, Operations)
 - Build ROI framework with quantified business value
@@ -58,6 +60,7 @@ A comprehensive vCISO engagement document containing:
 - **Tools:** Brainstorming for budget optimization
 
 ### Step 3: Current State Assessment
+
 - Assess security maturity across 10 domains (0-5 scale)
 - Conduct gap analysis against best practices
 - Build prioritized risk register
@@ -65,6 +68,7 @@ A comprehensive vCISO engagement document containing:
 - **Tools:** Party Mode for collaborative assessment validation
 
 ### Step 4: Strategic Planning & Roadmap
+
 - Define 3-year security vision and strategic objectives
 - Identify and prioritize strategic initiatives
 - Create quarterly roadmap with milestones
@@ -73,6 +77,7 @@ A comprehensive vCISO engagement document containing:
 - **Tools:** Party Mode for prioritization, Advanced Elicitation for critical review
 
 ### Step 5: Governance Framework Design
+
 - Design policy hierarchy (strategic, operational, technical)
 - Establish security committees with charters
 - Create decision frameworks and escalation paths
@@ -81,6 +86,7 @@ A comprehensive vCISO engagement document containing:
 - **Tools:** Party Mode for framework design, Brainstorming for governance models
 
 ### Step 6: Board/Executive Reporting
+
 - Create board report template (quarterly)
 - Design KPI dashboard with executive metrics
 - Establish communication cadence (board, executives, all-hands)
@@ -88,6 +94,7 @@ A comprehensive vCISO engagement document containing:
 - **Tools:** Brainstorming for KPI ideation, Advanced Elicitation for quality review
 
 ### Step 7: Vendor/Third-Party Risk Program
+
 - Inventory current vendors
 - Design 4-tier vendor classification system
 - Create risk assessment framework
@@ -96,6 +103,7 @@ A comprehensive vCISO engagement document containing:
 - Establish ongoing monitoring process
 
 ### Step 8: Ongoing Advisory & Review
+
 - Define vCISO service delivery model
 - Establish meeting cadence (weekly, monthly, quarterly)
 - Design Quarterly Business Review (QBR) structure
@@ -108,17 +116,20 @@ A comprehensive vCISO engagement document containing:
 ## Integration Points
 
 ### Core BMAD Tools
+
 - **Party Mode:** Steps 3, 4, 5 - Collaborative assessment, strategy, governance design
 - **Advanced Elicitation:** Steps 4, 6, 8 - Critical review of recommendations and metrics
 - **Brainstorming:** Steps 2, 5, 6 - Budget optimization, governance models, KPI ideation
 
 ### LLM Capabilities
+
 - **Web-Browsing:** Research security benchmarks, vendor information, compliance updates
 - **File I/O:** Create/manage engagement document, generate exportable templates
 
 ## Prerequisites
 
 ### Consultant Skills
+
 - Strategic security leadership experience
 - Understanding of security frameworks (NIST, ISO 27001, CIS Controls)
 - Budget planning and ROI articulation
@@ -126,6 +137,7 @@ A comprehensive vCISO engagement document containing:
 - Risk management and governance expertise
 
 ### Client Information Needed
+
 - Company profile (size, industry, regulatory requirements)
 - Current security posture and team structure
 - Budget constraints and approval processes
@@ -145,6 +157,7 @@ A comprehensive vCISO engagement document containing:
 **State Tracking:** Frontmatter tracks completion progress for multi-session support
 
 **Export Options:**
+
 - **PDF:** Use Pandoc or Marked 2 for professional PDF export
 - **DOCX:** Use Pandoc for Microsoft Word format
 - **Presentation:** Extract board report section for slides
@@ -193,6 +206,7 @@ A successful vCISO engagement document includes:
 ## Support & Feedback
 
 For issues, enhancements, or questions about this workflow:
+
 - **Module:** cybersec-team
 - **Workflow:** virtual-ciso-consulting
 - **Version:** 1.0.0

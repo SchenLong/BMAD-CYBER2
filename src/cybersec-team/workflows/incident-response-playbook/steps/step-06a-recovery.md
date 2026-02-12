@@ -19,13 +19,13 @@ brainstormingWorkflow: '{project-root}/_bmad/core/workflows/brainstorming/workfl
 
 # Step 6A: Recovery Procedures
 
-## STEP GOAL:
+## STEP GOAL
 
 To define comprehensive system restoration procedures including prioritization, restoration methods, validation testing, enhanced monitoring, and return-to-normal-operations criteria for {incident-type} incidents.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -33,7 +33,7 @@ To define comprehensive system restoration procedures including prioritization, 
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an IR Planning Consultant
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -42,7 +42,7 @@ To define comprehensive system restoration procedures including prioritization, 
 - ✅ User brings organizational knowledge and requirements
 - ✅ Maintain collaborative, consultative tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on recovery and restoration procedures
 - 🚫 FORBIDDEN to start defining post-incident activities (that's step 7a)
@@ -50,21 +50,21 @@ To define comprehensive system restoration procedures including prioritization, 
 - 🎨 Brainstorming ENCOURAGED for creative recovery approaches
 - 👥 Party Mode (Bastion) AVAILABLE for architecture validation expertise
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Leverage all previous sections (eradication must be complete and validated)
 - 💾 Append to Section 5 (Recovery Procedures) in output file
 - 📖 Update frontmatter `stepsCompleted: [1, 2a, 3a, 4a, 5a, 6a]` before loading next step
 - 🚫 FORBIDDEN to load next step until user selects 'C'
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Eradication validated complete in step 5a
 - Focus on HOW to safely restore systems and services
 - Don't define HOW to conduct post-incident review yet (that's step 7a)
 - Recovery must be methodical - rushing causes reinfection or data loss
 
-## RECOVERY PROCEDURE SEQUENCE:
+## RECOVERY PROCEDURE SEQUENCE
 
 ### 1. Review Context
 
@@ -75,18 +75,21 @@ Display:
 Eradication is complete and validated (Section 4). Now we can safely restore systems and return to normal operations.
 
 **NIST Recovery Phase Goals:**
+
 1. **Restore Systems:** Bring systems back online in priority order
 2. **Validate Function:** Ensure systems operate correctly
 3. **Monitor Enhanced:** Watch for signs of reinfection
 4. **Return to Normal:** Gradually reduce enhanced monitoring
 
 **Critical Recovery Principles:**
+
 - **Methodical, not rushed:** Each system validated before next
 - **Test before production:** Verify functionality before business use
 - **Monitor intensely:** Enhanced monitoring for reinfection signs
 - **Document everything:** Recovery actions, timestamps, validators
 
 **From Previous Sections:**
+
 - Incident Type: {incident-type}
 - Affected Systems: {summary}
 - Eradication Complete: {sign-off-from-section-4}
@@ -102,6 +105,7 @@ Engage in conversation:
 Not all systems can be recovered simultaneously. Let's prioritize based on business criticality.
 
 **NIST recommends priority-based recovery:**
+
 - **P1 (Critical):** Business cannot operate without these (restore first)
 - **P2 (High):** Significant business impact (restore second)
 - **P3 (Standard):** Limited business impact (restore last)
@@ -109,28 +113,33 @@ Not all systems can be recovered simultaneously. Let's prioritize based on busin
 **For {incident-type} affecting {affected-systems-profile}, let's categorize:**
 
 **What systems are P1 (Critical)?**
+
 - Examples: Payment processing, authentication servers, database servers, etc.
 - Business Impact if offline: {impact}
 - Maximum acceptable downtime: {timeframe}
 
 **What systems are P2 (High)?**
+
 - Examples: Email, file servers, internal applications
 - Business Impact: {impact}
 - Maximum acceptable downtime: {timeframe}
 
 **What systems are P3 (Standard)?**
+
 - Examples: Dev/test systems, workstations, non-critical apps
 - Business Impact: {minimal}
 - Acceptable downtime: {timeframe}
 
 **Dependencies:**
 Do any P2/P3 systems depend on P1 systems? Let's map dependencies:
+
 - System A depends on: {list}
 - System B depends on: {list}
 
 Let's work together to create your prioritized restoration order."
 
 Document:
+
 - P1 systems list with business justification
 - P2 systems list
 - P3 systems list
@@ -146,6 +155,7 @@ For each affected system, how will you restore it to a clean, operational state?
 **Restoration Options:**
 
 **Option 1: Restore from Known-Good Backup**
+
 - **When to use:** Clean backup exists from before compromise
 - **Requirements:**
   - Backup validation: Backup pre-dates compromise
@@ -163,6 +173,7 @@ For each affected system, how will you restore it to a clean, operational state?
 - **Restore time:** {estimated-duration-per-system}
 
 **Option 2: Rebuild from Scratch (Gold Image)**
+
 - **When to use:** No clean backup OR uncertainty about backup integrity
 - **Requirements:**
   - Gold image/template available
@@ -181,6 +192,7 @@ For each affected system, how will you restore it to a clean, operational state?
 - **Rebuild time:** {estimated-duration-per-system}
 
 **Option 3: Patch and Harden (In-Place Recovery)**
+
 - **When to use:** System cleanly remediated, just needs patching
 - **Requirements:**
   - Eradication validation passed (Section 4.5)
@@ -197,6 +209,7 @@ For each affected system, how will you restore it to a clean, operational state?
 **For your environment, which restoration method is preferred for each system type?**
 
 Let's document the restoration method for each category:
+
 - Domain Controllers: {method}
 - Application Servers: {method}
 - Database Servers: {method}
@@ -241,6 +254,7 @@ Let's work through restoration procedures for your critical systems.
 **Example: Domain Controller Restoration**
 
 Would you like me to help create detailed procedures for:
+
 - Domain Controllers
 - Database Servers
 - Web/Application Servers
@@ -336,6 +350,7 @@ After restoration, implement enhanced monitoring to detect any signs of reinfect
 **Enhanced Monitoring Requirements:**
 
 **Duration:**
+
 - How long to maintain enhanced monitoring?
   - NIST recommendation: 30-90 days minimum
   - Your organization: {duration-based-on-incident-severity}
@@ -369,27 +384,32 @@ After restoration, implement enhanced monitoring to detect any signs of reinfect
 **Monitoring Configuration:**
 
 **SIEM ({siem-platform}):**
+
 - [ ] Enhanced correlation rules: {new-rules}
 - [ ] Lower alert thresholds: {thresholds}
 - [ ] Additional log sources: {sources}
 - [ ] Alert routing: {escalation-for-post-recovery-alerts}
 
 **EDR ({edr-platform}):**
+
 - [ ] Enhanced detection policies: {policies}
 - [ ] Behavioral analytics: {rules}
 - [ ] Elevated telemetry collection: {scope}
 
 **Network Monitoring:**
+
 - [ ] IDS/IPS sensitivity: Elevated
 - [ ] NetFlow analysis: Enhanced
 - [ ] DNS monitoring: {enhanced-rules}
 
 **Who monitors during enhanced period?**
+
 - 24/7 SOC: {yes/no}
 - Dedicated IR watchstander: {yes/no}
 - On-call rotation: {schedule}
 
 **Alert Response During Enhanced Monitoring:**
+
 - Any IOC detection → {immediate-response-procedure}
 - Suspicious behavior → {investigation-procedure}
 - False positives → {tuning-procedure}"
@@ -403,6 +423,7 @@ When can you declare the incident fully resolved and return to standard monitori
 **Return-to-Normal Checklist:**
 
 **Systems:**
+
 - [ ] All affected systems restored
 - [ ] All systems validated (functional, secure, performant)
 - [ ] All P1 systems operational: {list}
@@ -410,6 +431,7 @@ When can you declare the incident fully resolved and return to standard monitori
 - [ ] All P3 systems operational: {list}
 
 **Security:**
+
 - [ ] No IOC detections for {duration-e.g.-30-days}
 - [ ] No anomalous behavior detected
 - [ ] Threat hunting shows no compromise (Section 4.5)
@@ -417,23 +439,27 @@ When can you declare the incident fully resolved and return to standard monitori
 - [ ] All credentials reset (Section 4.3)
 
 **Monitoring:**
+
 - [ ] Enhanced monitoring duration complete: {duration}
 - [ ] Ready to return to standard monitoring
 - [ ] Monitoring tools tuned (false positives resolved)
 
 **Business:**
+
 - [ ] Business operations normal
 - [ ] User complaints resolved
 - [ ] Performance metrics normal
 - [ ] SLAs met
 
 **Documentation:**
+
 - [ ] All recovery actions documented
 - [ ] Timeline complete
 - [ ] Lessons learned captured (Section 7)
 - [ ] Incident report finalized (Section 7)
 
 **Sign-Off for Return to Normal:**
+
 - [ ] IR Team Lead: _________________ Date: _______
 - [ ] IT Operations Lead: _________________ Date: _______
 - [ ] Business Owner: _________________ Date: _______
@@ -441,6 +467,7 @@ When can you declare the incident fully resolved and return to standard monitori
 
 **Gradual Transition:**
 Rather than abruptly returning to normal, consider gradual transition:
+
 - Week 1-2: Full enhanced monitoring
 - Week 3-4: Reduced enhanced monitoring (50% thresholds)
 - Week 5-6: Standard monitoring with periodic threat hunting
@@ -453,6 +480,7 @@ Rather than abruptly returning to normal, consider gradual transition:
 Recovery requires orchestration across multiple teams.
 
 **Recovery Team Roles:**
+
 - **Recovery Manager:** {role-typically-IR-team-lead}
   - Oversees entire recovery effort
   - Approves progression to next system
@@ -474,6 +502,7 @@ Recovery requires orchestration across multiple teams.
   - Approve return to normal operations
 
 **Communication Plan:**
+
 - **Status Updates:** {frequency-e.g.-every-4-hours}
   - To: {stakeholders}
   - Content: Systems recovered, in progress, pending
@@ -779,6 +808,7 @@ Append to Section 5 (Recovery Procedures) in output file:
 ```
 
 Update frontmatter:
+
 ```yaml
 stepsCompleted: [1, 2a, 3a, 4a, 5a, 6a]
 lastUpdated: '{timestamp}'
@@ -788,30 +818,30 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [A] Advanced Elicitation [P] Party Mode [B] Brainstorming [C] Continue
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 - User can chat or ask questions - always respond and then redisplay the menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with focus on "completeness and safety of recovery procedures"
 - IF P: Execute {partyModeWorkflow} - Recommend Bastion (architecture expert) for recovery validation and monitoring strategies
 - IF B: Execute {brainstormingWorkflow} with focus on "innovative recovery strategies that minimize downtime and risk"
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#10-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and Section 5 is complete will you load, read entire file, then execute `{nextStepFile}` to begin defining post-incident activities.
+ONLY WHEN C is selected and Section 5 is complete will you load, read entire file, then follow `{nextStepFile}` to begin defining post-incident activities.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - System restoration priorities clearly defined (P1/P2/P3)
 - Restoration methods documented per system type
@@ -823,7 +853,7 @@ ONLY WHEN C is selected and Section 5 is complete will you load, read entire fil
 - Frontmatter updated with stepsCompleted: [1, 2a, 3a, 4a, 5a, 6a]
 - Menu presented and user input handled correctly
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - No system prioritization (all systems treated equally - unrealistic)
 - Missing validation procedures (high risk of failed recovery)

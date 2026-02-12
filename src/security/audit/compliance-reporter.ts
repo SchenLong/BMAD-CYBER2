@@ -8,7 +8,7 @@
  * @version 1.0.0
  */
 
-import { TamperEvidentAuditLogger, SecurityLevel } from "./audit-logger";
+import { SecurityLevel, TamperEvidentAuditLogger } from "./audit-logger";
 import { SiemIntegration } from "./siem-integration";
 
 // Type alias for compatibility
@@ -520,7 +520,7 @@ export class ComplianceReporter {
    */
   private async testSystemMonitoring(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
-    let compliant = true;
+    const compliant = true;
 
     // Check log coverage
     // Check monitoring alerts
@@ -535,7 +535,7 @@ export class ComplianceReporter {
    */
   private async testNetworkAccess(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
-    let compliant = true;
+    const compliant = true;
 
     // Check firewall rules
     // Check network segmentation
@@ -550,7 +550,7 @@ export class ComplianceReporter {
    */
   private async testAccountManagement(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
-    let compliant = true;
+    const compliant = true;
 
     // Check account provisioning
     // Check account deprovisioning
@@ -565,7 +565,7 @@ export class ComplianceReporter {
    */
   private async testAuditEvents(_control: ComplianceControl): Promise<{ compliant: boolean; findings?: ComplianceFinding[] | undefined }> {
     const findings: ComplianceFinding[] = [];
-    let compliant = true;
+    const compliant = true;
 
     // Check audit log configuration
     // Check log retention

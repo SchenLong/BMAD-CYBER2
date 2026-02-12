@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { mkdtempSync, rmSync, writeFileSync, readFileSync, existsSync } from 'fs';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { mergePackageJson } from '../lib/package-merger.js';
@@ -91,11 +91,11 @@ describe('package-merger', () => {
         expect(created.type).toBe('module');
       });
 
-      it('should set minimum node engine to 18', async () => {
+      it('should set minimum node engine to 20', async () => {
         await mergePackageJson(tempDir, { yes: true });
 
         const created = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
-        expect(created.engines.node).toBe('>=18.0.0');
+        expect(created.engines.node).toBe('>=20.0.0');
       });
 
       it('should derive name from directory name', async () => {
@@ -258,7 +258,7 @@ describe('package-merger', () => {
         await mergePackageJson(tempDir, { yes: true });
 
         const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
-        expect(merged.engines.node).toBe('>=18.0.0');
+        expect(merged.engines.node).toBe('>=20.0.0');
       });
 
       it('should preserve node engine if already meets minimum', async () => {
@@ -412,7 +412,7 @@ describe('package-merger', () => {
         // Just verify the result was successful and engines were updated
         expect(result.success).toBe(true);
         const merged = JSON.parse(readFileSync(join(tempDir, 'package.json'), 'utf-8'));
-        expect(merged.engines.node).toBe('>=18.0.0');
+        expect(merged.engines.node).toBe('>=20.0.0');
       });
 
       it('should return noChanges when nothing needs to be added', async () => {
@@ -438,7 +438,7 @@ describe('package-merger', () => {
             '@types/node': '^20.0.0',
             vitest: '^1.0.0'
           },
-          engines: { node: '>=18.0.0' }
+          engines: { node: '>=20.0.0' }
         };
         writeFileSync(join(tempDir, 'package.json'), JSON.stringify(existingPkg, null, 2));
 
@@ -865,19 +865,19 @@ describe('package-merger', () => {
       });
 
       it('should not be fooled by encoded path traversal', async () => {
-        // Even if someone tries URL-encoded patterns in the name
+        // URL-encoded path traversal: ..%2F..%2Fetc%2Fpasswd contains literal '..'
+        // which PATH_TRAVERSAL_PATTERN correctly catches (the dots are NOT encoded)
         const maliciousPkg = {
           name: 'my-project',
           dependencies: {
-            '..%2F..%2Fetc%2Fpasswd': '^1.0.0'  // This is actually a valid (weird) npm name
+            '..%2F..%2Fetc%2Fpasswd': '^1.0.0'
           }
         };
         writeFileSync(join(tempDir, 'package.json'), JSON.stringify(maliciousPkg, null, 2));
 
-        // URL-encoded dots don't trigger path traversal, but the package is still weird
-        // The test verifies our pattern doesn't have false positives
-        const result = await mergePackageJson(tempDir, { yes: true });
-        expect(result.success).toBe(true);
+        // Should reject: the literal '..' at start IS a path traversal indicator
+        await expect(mergePackageJson(tempDir, { yes: true }))
+          .rejects.toThrow(/path traversal/i);
       });
     });
   });

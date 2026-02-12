@@ -112,11 +112,11 @@ cloud-security-assessment/
 ### Starting a New Assessment
 
 ```bash
-# Invoke the workflow via agent menu or directly
+# Load the workflow via agent menu or directly
 /cloud-security-assessment
 ```
 
-Or invoke through the Nimbus (Cloud Security Specialist) agent:
+Or load through the Nimbus (Cloud Security Specialist) agent:
 
 ```bash
 # Start Nimbus agent

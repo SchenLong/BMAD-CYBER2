@@ -5,5 +5,5 @@ description: Navigate complex ethical dilemmas with structured multi-perspective
 
 # Ethical Dilemma Resolution
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/strategy-team/workflows/ethical-dilemma-resolution/workflow.md`
+Load and follow the workflow at:
+`@src/strategy-team/workflows/ethical-dilemma-resolution/workflow.md`

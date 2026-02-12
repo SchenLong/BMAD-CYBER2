@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cis/agents/presentation-master.md
+# Full agent: src/cis/agents/presentation-master.md
 agent_id: "presentation-master"
 name: "Caravaggio"
 title: "Visual Communication + Presentation Expert"

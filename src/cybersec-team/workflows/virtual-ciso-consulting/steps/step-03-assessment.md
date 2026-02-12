@@ -11,15 +11,16 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 3: Current State Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 To conduct a comprehensive security maturity assessment, identify gaps against best practices, and create a prioritized risk register.
 
-## ASSESSMENT PROCESS:
+## ASSESSMENT PROCESS
 
 ### 1. Security Domains Assessment
 
 Assess maturity across 10 security domains using 0-5 scale:
+
 - 0 = Non-existent
 - 1 = Initial/Ad-hoc
 - 2 = Developing
@@ -28,6 +29,7 @@ Assess maturity across 10 security domains using 0-5 scale:
 - 5 = Optimized
 
 **Domains:**
+
 1. Governance & Risk Management
 2. Asset Management & Data Classification
 3. Identity & Access Management
@@ -40,6 +42,7 @@ Assess maturity across 10 security domains using 0-5 scale:
 10. Vendor/Third-Party Risk
 
 For each domain, collect:
+
 - Current maturity score (0-5)
 - Evidence/justification
 - Key gaps identified
@@ -54,6 +57,7 @@ Create gap analysis:
 | Governance | X | Y | Z | P0/P1/P2/P3 | Critical/High/Medium/Low |
 
 Priority:
+
 - P0 = Critical (must address immediately)
 - P1 = High (address within 90 days)
 - P2 = Medium (address within 6 months)
@@ -62,6 +66,7 @@ Priority:
 ### 3. Risk Register
 
 For each identified risk:
+
 - Risk description
 - Likelihood (Low/Medium/High)
 - Impact (Low/Medium/High)
@@ -73,6 +78,7 @@ For each identified risk:
 ### 4. Control Effectiveness Assessment
 
 Review existing security controls:
+
 - List current controls
 - Assess effectiveness (Effective/Partially Effective/Ineffective)
 - Identify control gaps
@@ -81,6 +87,7 @@ Review existing security controls:
 ### 5. Append Section 3
 
 Update {outputFile} with comprehensive assessment results including:
+
 - Maturity scores by domain
 - Gap analysis matrix
 - Prioritized risk register (sorted by risk score)
@@ -103,7 +110,7 @@ Display: **[P] Party Mode [C] Continue to Strategic Planning**
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
 
 - All 10 domains assessed with maturity scores
 - Gap analysis complete with priorities

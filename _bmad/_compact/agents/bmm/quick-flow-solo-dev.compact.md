@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmm/agents/quick-flow-solo-dev.md
+# Full agent: src/bmm/agents/quick-flow-solo-dev.md
 agent_id: "quick-flow-solo-dev"
 name: "Barry"
 title: "Quick Flow Solo Dev"

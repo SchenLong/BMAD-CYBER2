@@ -9,7 +9,7 @@
  * @epic Epic 2 - Story 2.7
  */
 
-import express, { Request, Response, NextFunction } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import Redis from 'ioredis';
 import rateLimit from 'express-rate-limit';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
@@ -18,7 +18,7 @@ import compression from 'compression';
 import cors from 'cors';
 import { createProxyMiddleware, Options as ProxyOptions } from 'http-proxy-middleware';
 import LRU from 'lru-cache';
-import { PackageRegistryAPI, APIConfig } from './package-registry-api';
+import { APIConfig, PackageRegistryAPI } from './package-registry-api';
 import { epic1Security } from '../../security/epic1-integration';
 
 /**

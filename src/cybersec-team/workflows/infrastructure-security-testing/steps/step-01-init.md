@@ -11,7 +11,7 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 # Step 1: Infrastructure Security Testing Initialization
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
@@ -19,16 +19,17 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 ## CONTINUATION CHECK
 
-IF {outputFile} exists: Load and execute {continueStepFile}
+IF {outputFile} exists: Load and follow {continueStepFile}
 IF NOT: Continue with fresh initialization below
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Assessment Welcome
 
 "Welcome to the Infrastructure Security Testing workflow. I'm Bastion, your infrastructure security specialist.
 
 This comprehensive assessment covers:
+
 - Server hardening (Linux/Windows)
 - Container security (Docker)
 - Kubernetes security
@@ -44,6 +45,7 @@ Let's define your assessment scope."
 "Please provide infrastructure details:
 
 **Infrastructure Components:**
+
 - Operating systems (Linux distros, Windows versions)
 - Container platforms (Docker, Podman, containerd)
 - Orchestration (Kubernetes, ECS, Nomad)
@@ -51,11 +53,13 @@ Let's define your assessment scope."
 - IaC tools (Terraform, Ansible, CloudFormation)
 
 **Environment:**
+
 - Production / Staging / Development
 - On-premises / Cloud / Hybrid
 - Cloud provider(s) if applicable
 
 **Access:**
+
 - SSH/RDP access to systems?
 - kubectl access?
 - CI/CD admin access?
@@ -68,6 +72,7 @@ What infrastructure is in scope?"
 "What should we focus on?
 
 **Testing Areas:**
+
 - [ ] Server hardening (CIS benchmarks)
 - [ ] Container image security
 - [ ] Container runtime security
@@ -78,6 +83,7 @@ What infrastructure is in scope?"
 - [ ] Supply chain security
 
 **Compliance Requirements:**
+
 - CIS Benchmarks?
 - SOC 2?
 - PCI DSS?
@@ -90,16 +96,19 @@ What's in scope?"
 "Let's verify access levels:
 
 **System Access:**
+
 - Root/Administrator access available?
 - Service account credentials?
 - API tokens/keys?
 
 **Repository Access:**
+
 - Source code access?
 - IaC repository access?
 - CI/CD configuration access?
 
 **Cloud Access:**
+
 - Cloud console access?
 - CLI tools configured?
 - IAM permissions level?
@@ -173,4 +182,4 @@ Display: [C] Continue to Server Hardening [R] Review/Revise Scope
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1]`, then follow {nextStepFile}.

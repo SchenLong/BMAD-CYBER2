@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/resource-management/context-manager.js')
+import('../dist/src/resource-management/context-manager.js')
   .then((module) => {
     module.main();
   })

@@ -1,7 +1,7 @@
 import { existsSync, promises as fs } from 'fs';
 import { join } from 'path';
-import inquirer from 'inquirer';
-import chalk from 'chalk';
+import { confirm, isCancel, log } from '../../../src/utility/cli/prompts.js';
+import pc from 'picocolors';
 import { logger } from './logger.js';
 
 // Security: Keys that could enable prototype pollution attacks
@@ -39,7 +39,11 @@ function sanitizeObject(obj) {
       logger.warn(`Blocked dangerous key "${key}" in package.json (prototype pollution prevention)`);
       continue;
     }
-    sanitized[key] = obj[key];
+    // Recursively sanitize nested objects to catch deeply nested dangerous keys
+    const value = obj[key];
+    sanitized[key] = (value && typeof value === 'object' && !Array.isArray(value))
+      ? sanitizeObject(value)
+      : value;
   }
   return sanitized;
 }
@@ -246,7 +250,7 @@ export async function mergePackageJson(targetDir, options = {}) {
       return { dryRun: true, created: true };
     }
 
-    await fs.writeFile(targetPath, JSON.stringify(newPackage, null, 2) + '\n');
+    await fs.writeFile(targetPath, `${JSON.stringify(newPackage, null, 2)  }\n`);
     logger.success('Created package.json');
 
     return { success: true, created: true };
@@ -304,16 +308,13 @@ export async function mergePackageJson(targetDir, options = {}) {
   if (!yes) {
     showDiff(diff);
 
-    const { proceed } = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'proceed',
-        message: 'Apply these changes?',
-        default: true
-      }
-    ]);
+    const proceed = await confirm({
+      message: 'Apply these changes?',
+      initialValue: true
+    });
 
-    if (!proceed) {
+    // Handle cancellation (Ctrl+C)
+    if (isCancel(proceed) || !proceed) {
       return { cancelled: true };
     }
   }
@@ -329,7 +330,7 @@ export async function mergePackageJson(targetDir, options = {}) {
   logger.info(`Backup created: ${backupPath}`);
 
   // Write merged package.json
-  await fs.writeFile(targetPath, JSON.stringify(merged, null, 2) + '\n');
+  await fs.writeFile(targetPath, `${JSON.stringify(merged, null, 2)  }\n`);
   logger.success('Package.json updated');
 
   return { success: true, diff, backupPath };
@@ -355,7 +356,7 @@ function createNewPackageJson(targetDir) {
       ...BMAD_DEV_DEPENDENCIES
     },
     engines: {
-      node: '>=18.0.0'
+      node: '>=20.0.0'
     }
   };
 }
@@ -393,8 +394,8 @@ function mergePackages(existing) {
   if (!merged.engines) {
     merged.engines = {};
   }
-  if (!merged.engines.node || !meetsMinVersion(merged.engines.node, '18.0.0')) {
-    merged.engines.node = '>=18.0.0';
+  if (!merged.engines.node || !meetsMinVersion(merged.engines.node, '20.0.0')) {
+    merged.engines.node = '>=20.0.0';
   }
 
   // Ensure type is module if not set
@@ -461,18 +462,18 @@ function showDiff(diff) {
   console.log('');
 
   if (Object.keys(diff.added).length > 0) {
-    console.log(chalk.green('+ Added:'));
+    console.log(pc.green('+ Added:'));
     for (const [key, value] of Object.entries(diff.added)) {
-      console.log(chalk.green(`  + ${key}: ${JSON.stringify(value)}`));
+      console.log(pc.green(`  + ${key}: ${JSON.stringify(value)}`));
     }
   }
 
   if (Object.keys(diff.modified).length > 0) {
-    console.log(chalk.yellow('~ Modified:'));
+    console.log(pc.yellow('~ Modified:'));
     for (const [key, change] of Object.entries(diff.modified)) {
-      console.log(chalk.yellow(`  ~ ${key}:`));
-      console.log(chalk.red(`    - ${change.from}`));
-      console.log(chalk.green(`    + ${change.to}`));
+      console.log(pc.yellow(`  ~ ${key}:`));
+      console.log(pc.red(`    - ${change.from}`));
+      console.log(pc.green(`    + ${change.to}`));
     }
   }
 

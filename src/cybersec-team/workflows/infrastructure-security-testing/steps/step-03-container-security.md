@@ -10,7 +10,7 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 
 # Step 3: Container Security Assessment
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
@@ -23,23 +23,26 @@ outputFile: '{output_folder}/security/infrastructure-security-testing-{project_n
 If NO: Select [S] to skip to Kubernetes or CI/CD.
 If YES: Continue with container security testing below."
 
-## CONTAINER SECURITY SEQUENCE:
+## CONTAINER SECURITY SEQUENCE
 
 ### 1. Container Environment Overview
 
 "Let's understand your container environment.
 
 **Container Runtime:**
+
 - Docker / containerd / CRI-O / Podman?
 - Runtime version?
 - Configuration location?
 
 **Image Sources:**
+
 - Public registries (Docker Hub, GHCR)?
 - Private registry?
 - Image signing in use?
 
 **Deployment:**
+
 - Standalone containers?
 - Docker Compose?
 - Kubernetes (covered in Step 4)?
@@ -51,6 +54,7 @@ What is your container setup?"
 "Let's scan container images for vulnerabilities.
 
 **Scanning Tools:**
+
 - Trivy
 - Grype
 - Clair
@@ -58,11 +62,13 @@ What is your container setup?"
 - Docker Scout
 
 **What to Scan:**
+
 - Base images
 - Application images
 - Third-party images
 
 **Commands:**
+
 ```bash
 # Trivy scan
 trivy image <image-name>
@@ -81,6 +87,7 @@ What image scanning results do you have?"
 "Reviewing Dockerfile and build practices.
 
 **Dockerfile Best Practices:**
+
 - Using official/trusted base images?
 - Pinned versions (not :latest)?
 - Multi-stage builds?
@@ -89,12 +96,14 @@ What image scanning results do you have?"
 - No secrets in image?
 
 **Build Process:**
+
 - Build arguments secure?
 - Build cache considered?
 - Image signing implemented?
 - SBOM generated?
 
 **Sample Dockerfile Review:**
+
 ```dockerfile
 # Check for issues like:
 # - Running as root
@@ -110,18 +119,21 @@ What Dockerfiles can we review?"
 "Testing container runtime configuration.
 
 **Docker Daemon Security:**
+
 - TLS enabled for remote API?
 - User namespace remapping?
 - Live restore enabled?
 - Content trust enabled?
 
 **Container Defaults:**
+
 - Default capabilities dropped?
 - Seccomp profile applied?
 - AppArmor/SELinux enabled?
 - Read-only root filesystem?
 
 **Commands:**
+
 ```bash
 # Check Docker info
 docker info
@@ -140,22 +152,26 @@ What runtime configuration have you reviewed?"
 "Testing container isolation controls.
 
 **Namespace Isolation:**
+
 - PID namespace isolated?
 - Network namespace isolated?
 - User namespace enabled?
 - IPC namespace isolated?
 
 **Resource Controls:**
+
 - Memory limits set?
 - CPU limits set?
 - PIDs limit configured?
 
 **Filesystem Security:**
+
 - Sensitive host paths mounted?
 - Read-only mounts where possible?
 - No Docker socket mounted?
 
 **Commands:**
+
 ```bash
 # Check container processes
 docker top <container>
@@ -174,6 +190,7 @@ What isolation controls are in place?"
 "Let's run Docker Bench for Security.
 
 **Docker Bench Checks:**
+
 - Host configuration
 - Docker daemon configuration
 - Container images and build
@@ -181,6 +198,7 @@ What isolation controls are in place?"
 - Docker security operations
 
 **Command:**
+
 ```bash
 # Run Docker Bench
 docker run --rm --net host --pid host --userns host \
@@ -198,17 +216,20 @@ What Docker Bench results do you have?"
 "Reviewing container networking.
 
 **Network Configuration:**
+
 - Bridge network isolated?
 - Host networking in use?
 - Inter-container communication controlled?
 - Network policies defined?
 
 **Exposed Ports:**
+
 - Only required ports exposed?
 - Ports bound to specific interfaces?
 - No unnecessary host port mappings?
 
 **Commands:**
+
 ```bash
 # List networks
 docker network ls
@@ -281,6 +302,7 @@ Append to {outputFile} Section 3:
 "**Container Security Assessment Complete**
 
 **Summary:**
+
 - Images scanned: [count]
 - Critical vulnerabilities: [count]
 - Configuration issues: [count]
@@ -296,4 +318,4 @@ Display: [C] Continue to Kubernetes [R] Review/Add Findings [S] Skip to CI/CD
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1, 2, 3]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1, 2, 3]`, then follow {nextStepFile}.

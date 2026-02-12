@@ -55,15 +55,15 @@ function forceGC(): void {
 // Helper to get agent files
 function getAgentFiles(): string[] {
   const agentDirs = [
-    '_bmad/intel-team/agents',
-    '_bmad/legal-team/agents',
-    '_bmad/strategy-team/agents',
-    '_bmad/cybersec-team/agents',
-    '_bmad/core/agents',
-    '_bmad/bmm/agents',
-    '_bmad/bmb/agents',
-    '_bmad/bmgd/agents',
-    '_bmad/cis/agents',
+    'src/intel-team/agents',
+    'src/legal-team/agents',
+    'src/strategy-team/agents',
+    'src/cybersec-team/agents',
+    'src/core/agents',
+    'src/bmm/agents',
+    'src/bmb/agents',
+    'src/bmgd/agents',
+    'src/cis/agents',
   ];
 
   const agentFiles: string[] = [];

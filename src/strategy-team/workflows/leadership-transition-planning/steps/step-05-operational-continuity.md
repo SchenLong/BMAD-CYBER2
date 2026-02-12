@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 5: Operational Continuity
 
-## STEP GOAL:
+## STEP GOAL
 
 Ensure business operations continue smoothly during the leadership transition, identify risks to continuity, and establish contingency plans.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Leadership Transition Advisor with Lee (Technocrat) providing operational expertise
 - Focus on maintaining operational stability
 - Identify and mitigate disruption risks
 - Ensure critical processes continue
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on operational stability during transition
 - FORBIDDEN to assume operations will continue automatically
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Critical Operations Inventory
 
@@ -78,6 +79,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | | | | | |
 
 **Categories:**
+
 - Complete before departure
 - Transition to successor
 - Transition to interim
@@ -91,6 +93,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "How will the function be governed during transition?"
 
 **Interim leadership options:**
+
 - Acting appointment
 - Distributed responsibilities
 - Enhanced oversight
@@ -99,11 +102,13 @@ You MUST respond in **{communication_language}** throughout this step.
 **Recommended approach:** [option]
 
 **Interim decision rights:**
+
 | Decision Type | Interim Authority | Limitations |
 |---------------|-------------------|-------------|
 | | | |
 
 **Reporting changes:**
+
 - Who reports to whom during transition
 - Temporary reporting lines
 - Oversight mechanisms
@@ -130,6 +135,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "What if transition doesn't go as planned?"
 
 **Scenarios:**
+
 - Successor rejects offer / fails
 - Departing leader leaves early
 - Extended vacancy
@@ -137,6 +143,7 @@ You MUST respond in **{communication_language}** throughout this step.
 - Performance issues
 
 **For each scenario, define:**
+
 - Trigger/warning signs
 - Response plan
 - Decision maker
@@ -185,6 +192,7 @@ Update frontmatter: Add `step-05-operational-continuity` to stepsCompleted
 **Critical Operations:** [count] requiring attention
 
 **Pending Matters:**
+
 - Complete before departure: [count]
 - Transition to successor: [count]
 - Defer: [count]
@@ -192,6 +200,7 @@ Update frontmatter: Add `step-05-operational-continuity` to stepsCompleted
 **Interim Governance:** [approach]
 
 **Top Operational Risks:**
+
 1. [risk]
 2. [risk]
 3. [risk]
@@ -203,21 +212,24 @@ Update frontmatter: Add `step-05-operational-continuity` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Plan [C] Continue to Transition Timeline"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-06-transition-timeline.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Critical operations identified
 - Decision authority mapped
 - Pending matters dispositioned
@@ -226,7 +238,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Contingencies planned
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Missing critical operations
 - No interim governance plan
 - Skipping risk assessment

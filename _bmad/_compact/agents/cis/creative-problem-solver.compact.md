@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cis/agents/creative-problem-solver.md
+# Full agent: src/cis/agents/creative-problem-solver.md
 agent_id: "creative-problem-solver"
 name: "Dr. Quinn"
 title: "Master Problem Solver"

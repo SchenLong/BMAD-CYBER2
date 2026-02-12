@@ -3,6 +3,7 @@
 ## Installation & Setup
 
 ### 1. Environment Configuration
+
 ```bash
 # Set required environment variables
 export BMAD_SECRET_KEY="your-secret-key-here"
@@ -11,11 +12,12 @@ export SESSION_TIMEOUT="3600"
 ```
 
 ### 2. Initialize Security Components
+
 ```typescript
 import { SecurityManager } from "../security-manager";
 import { TokenGenerator } from "../encryption/generate-token";
 // SessionManager is now in the canonical _bmad/core/security location
-import { SessionManager } from "../../../../_bmad/core/security/session-manager";
+import { SessionManager } from "../../../../src/core/security/session-manager";
 
 // Initialize security
 const security = new SecurityManager();
@@ -23,6 +25,7 @@ await security.initialize();
 ```
 
 ### 3. Generate API Token
+
 ```typescript
 const tokenGen = new TokenGenerator();
 const token = await tokenGen.generateSecureToken({
@@ -33,12 +36,14 @@ const token = await tokenGen.generateSecureToken({
 ```
 
 ### 4. Secure Session Management  
+
 ```typescript
 const sessionMgr = new SessionManager();
 const session = await sessionMgr.createSession(userId, permissions);
 ```
 
 ## Next Steps
+
 - Review [API Documentation](../api/README.md)
 - Explore [Security Examples](../examples/README.md)
 - Run [Security Tests](../tests/README.md)

@@ -5,5 +5,5 @@ description: Develop internal policies with evidence and ethics review
 
 # Policy Development
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/strategy-team/workflows/policy-development/workflow.md`
+Load and follow the workflow at:
+`@src/strategy-team/workflows/policy-development/workflow.md`

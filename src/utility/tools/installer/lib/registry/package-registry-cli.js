@@ -9,16 +9,16 @@
  * @version 1.0.0
  */
 
-const { Command } = require('commander');
-const chalk = require('chalk');
-const inquirer = require('inquirer');
-const { table } = require('table');
-const fs = require('fs').promises;
-const path = require('path');
-const yaml = require('yaml');
+import { Command } from 'commander';
+import chalk from 'chalk';
+import { confirm, select } from '../../../../cli/prompts.js';
+import { table } from 'table';
+import fs from 'fs/promises';
+import path from 'path';
+import yaml from 'yaml';
 
 // Import the registry manager (would be properly compiled from TypeScript)
-const { PackageRegistryManager } = require('./package-registry-manager');
+import { PackageRegistryManager } from './package-registry-manager.js';
 
 class PackageRegistryCLI {
   constructor() {
@@ -466,14 +466,10 @@ class PackageRegistryCLI {
         return;
       }
 
-      const { confirmed } = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'confirmed',
-          message: 'Are you sure you want to uninstall this package?',
-          default: false
-        }
-      ]);
+      const confirmed = await confirm({
+        message: 'Are you sure you want to uninstall this package?',
+        initialValue: false
+      });
 
       if (!confirmed) {
         console.log('Uninstall cancelled');
@@ -533,21 +529,17 @@ class PackageRegistryCLI {
       console.log(chalk.blue('🎯 Welcome to Interactive Registry Management\n'));
 
       while (true) {
-        const { action } = await inquirer.prompt([
-          {
-            type: 'list',
-            name: 'action',
-            message: 'What would you like to do?',
-            choices: [
-              'List packages',
-              'Show package details',
-              'Run health check',
-              'Check for updates',
-              'View statistics',
-              'Exit'
-            ]
-          }
-        ]);
+        const action = await select({
+          message: 'What would you like to do?',
+          choices: [
+            'List packages',
+            'Show package details',
+            'Run health check',
+            'Check for updates',
+            'View statistics',
+            'Exit'
+          ]
+        });
 
         switch (action) {
           case 'List packages':
@@ -570,7 +562,7 @@ class PackageRegistryCLI {
             return;
         }
 
-        console.log('\n' + '─'.repeat(50) + '\n');
+        console.log(`\n${  '─'.repeat(50)  }\n`);
       }
 
     } catch (error) {
@@ -587,17 +579,13 @@ class PackageRegistryCLI {
       return;
     }
 
-    const { packageId } = await inquirer.prompt([
-      {
-        type: 'list',
-        name: 'packageId',
-        message: 'Select a package:',
-        choices: packages.map(pkg => ({
-          name: `${pkg.name} v${pkg.version} (${pkg.type})`,
-          value: pkg.id
-        }))
-      }
-    ]);
+    const packageId = await select({
+      message: 'Select a package:',
+      choices: packages.map(pkg => ({
+        name: `${pkg.name} v${pkg.version} (${pkg.type})`,
+        value: pkg.id
+      }))
+    });
 
     await this.handleShow(packageId);
   }
@@ -664,12 +652,13 @@ class PackageRegistryCLI {
 }
 
 // Make CLI available as standalone script
-if (require.main === module) {
+import { fileURLToPath } from 'url';
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const cli = new PackageRegistryCLI();
   cli.run().catch(error => {
-    console.error(chalk.red('❌ CLI Error:'), error.message);
+    console.error(chalk.red('CLI Error:'), error.message);
     process.exit(1);
   });
 }
 
-module.exports = PackageRegistryCLI;
+export default PackageRegistryCLI;

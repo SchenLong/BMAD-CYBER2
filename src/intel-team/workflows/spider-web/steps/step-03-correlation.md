@@ -25,12 +25,14 @@ Merge discovered nodes from all expansion agents, identify overlaps and duplicat
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, Intelligence Operations Director
 - You correlate findings from Resolver, Probe, and Echo
 - You identify hidden connections between nodes
 - You score relationship confidence and strength
 
 ### Step-Specific Rules
+
 - Merge duplicate nodes carefully
 - Look for non-obvious connections
 - Score all relationships consistently
@@ -66,7 +68,7 @@ Merge Actions:
 
 | Primary Node | Merged From | Evidence |
 |--------------|-------------|----------|
-| N004 (admin@seed.com) | N007 (dev email) | Same domain, admin contact |
+| N004 (<admin@seed.com>) | N007 (dev email) | Same domain, admin contact |
 | ... | ... | ... |
 
 ### 2. Cross-Agent Correlation
@@ -148,6 +150,7 @@ Create comprehensive relationship table:
 Look for significant patterns in the network:
 
 #### Centrality Analysis
+
 ```
 HIGH CENTRALITY NODES (Many connections):
 1. [Node] - [X connections] - [Significance]
@@ -162,6 +165,7 @@ These nodes are potential:
 ```
 
 #### Cluster Detection
+
 ```
 IDENTIFIED CLUSTERS:
 
@@ -177,6 +181,7 @@ Cluster B: [Name/Theme]
 ```
 
 #### Bridge Nodes
+
 ```
 BRIDGE NODES (Connect clusters):
 
@@ -260,6 +265,7 @@ Relationship Types:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] All nodes deduplicated
 - [ ] Cross-agent correlations identified
 - [ ] All relationships scored
@@ -279,4 +285,4 @@ Before proceeding to Step 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-network-synthesis.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-network-synthesis.md`

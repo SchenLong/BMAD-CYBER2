@@ -18,13 +18,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6B: Eradication
 
-## STEP GOAL:
+## STEP GOAL
 
 To guide complete threat removal from all affected systems, reset compromised credentials, remediate vulnerabilities, and validate clean systems with documented sign-off.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER skip validation - unremoved threats will re-compromise systems
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -32,7 +32,7 @@ To guide complete threat removal from all affected systems, reset compromised cr
 - 📋 YOU ARE AN INCIDENT COMMANDER guiding complete threat eradication
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an Incident Commander
 - ✅ Tone: Calm, directive, methodical, thorough
@@ -40,7 +40,7 @@ To guide complete threat removal from all affected systems, reset compromised cr
 - ✅ Credentials MUST be reset for security
 - ✅ Validation is mandatory - no assumptions
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on complete threat removal
 - 🚫 FORBIDDEN to start recovery (that's step 7b)
@@ -48,7 +48,7 @@ To guide complete threat removal from all affected systems, reset compromised cr
 - 📝 Document all eradication actions meticulously
 - ✅ Require validation AND sign-off before proceeding
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Remove malware, persistence, backdoors; reset credentials; patch vulnerabilities
 - 💾 Append to Section 3 (Actions Taken) - continuation in output file
@@ -56,7 +56,7 @@ To guide complete threat removal from all affected systems, reset compromised cr
 - 📖 Update frontmatter `stepsCompleted: [1, 2b, 3b, 4b, 5b, 6b]` before proceeding
 - 🚫 Present menu (P/C) after eradication validated and signed off
 
-## ERADICATION SEQUENCE:
+## ERADICATION SEQUENCE
 
 ### 1. Eradication Overview
 
@@ -69,6 +69,7 @@ Display:
 **Eradication Goal:** Complete removal of threat actor presence from all systems.
 
 **Critical Requirements:**
+
 - ⚠️ **Simultaneous removal** across all affected systems (prevent re-infection)
 - ⚠️ **Credential reset** for all compromised accounts
 - ⚠️ **Vulnerability remediation** to prevent re-exploitation
@@ -101,6 +102,7 @@ We'll remove the threat actor from all affected systems simultaneously.
 **MALWARE REMOVAL**
 
 **Malware identified (from step 4b/5b):**
+
 - **Malware hashes:** {malware-hashes-from-evidence}
 - **Malware filenames:** {malware-filenames}
 - **Malware paths:** {malware-paths}
@@ -138,6 +140,7 @@ New-FalconScan -ScanType full -HostIds @({host-ids})
 **For each affected system:**
 
 **System:** {hostname-1}
+
 - **Malware removed:** {list-malware-files}
 - **Processes terminated:** {list-processes}
 - **Scan result:** {clean/threats-found}
@@ -168,6 +171,7 @@ Get-MpThreatDetection
 **For each affected system:**
 
 **System:** {hostname}
+
 - **Malware removed:** {list}
 - **Scan result:** {status}
 - **Removal timestamp:** {timestamp}
@@ -306,6 +310,7 @@ crontab -u {username} -e
 **For each system, document removed persistence:**
 
 **System:** {hostname}
+
 - **Scheduled tasks removed:** {list}
 - **Services removed:** {list}
 - **Registry keys removed:** {list}
@@ -333,6 +338,7 @@ crontab -u {username} -e
 **Compromised user accounts (from step 5b):** {compromised-usernames-list}
 
 **What directory service?**
+
 1. Active Directory (on-premises)
 2. Azure AD / Entra ID
 3. Local accounts
@@ -367,6 +373,7 @@ foreach ($user in $compromisedUsers) {
 ```
 
 **Compromised users reset:**
+
 | Username | Password Reset | Session Revoked | Timestamp | Performed By |
 |----------|---------------|-----------------|-----------|--------------|
 | {user1} | ✅ | ✅ | {timestamp} | {your-name} |
@@ -397,6 +404,7 @@ Revoke-AzureADUserAllRefreshToken -ObjectId "{user@domain.com}"
 "**ADMIN ACCOUNT CREDENTIALS**
 
 **Privileged accounts affected:**
+
 - Domain Admins
 - Enterprise Admins
 - Local Administrators
@@ -413,6 +421,7 @@ Set-ADUser -Identity "{domain-admin-username}" -ChangePasswordAtLogon $false
 ```
 
 **Admin accounts reset:**
+
 | Account | Type | Password Reset | New Password Stored in Vault | Timestamp |
 |---------|------|---------------|------------------------------|-----------|
 | {account1} | Domain Admin | ✅ | ✅ | {timestamp} |
@@ -432,6 +441,7 @@ Service accounts require coordination with application teams.
 **For each service account:**
 
 **Service Account:** {service-account-name}
+
 - **Used by application/service:** {application-name}
 - **Application owner notified:** {Y/N}
 - **Downtime window scheduled:** {timestamp-or-N/A}
@@ -457,6 +467,7 @@ Set-ADUser -Identity "{service-account}" -ChangePasswordAtLogon $false
 "**CLOUD ACCOUNT CREDENTIALS**
 
 **Cloud platforms affected:**
+
 - [ ] AWS
 - [ ] Azure
 - [ ] Google Cloud
@@ -503,6 +514,7 @@ gcloud iam service-accounts keys delete {old-key-id} --iam-account={service-acco
 For each API key/token:
 
 **API Key:** {key-name-or-id}
+
 - **Service:** {service-name}
 - **Key revoked:** {Y/N}
 - **New key generated:** {Y/N}
@@ -565,6 +577,7 @@ sudo yum update -y {package-name}
 **For each system:**
 
 **System:** {hostname}
+
 - **Patch applied:** {patch-version}
 - **Application timestamp:** {timestamp}
 - **Reboot required:** {Y/N}
@@ -587,6 +600,7 @@ Based on root cause analysis, implement hardening measures:
 What hardening is required based on the vulnerability?
 
 Examples:
+
 - Disable SMBv1
 - Enable Windows Firewall
 - Restrict PowerShell execution policy
@@ -600,6 +614,7 @@ Examples:
 **For each hardening action:**
 
 **Action:** {description}
+
 - **Systems affected:** {list}
 - **Configuration change:** {details}
 - **Validation:** {how-verified}
@@ -616,6 +631,7 @@ Examples:
 Based on lessons learned, what security controls need enhancement?
 
 Examples:
+
 - Deploy EDR to uncovered systems
 - Enable MFA for all admin accounts
 - Implement email security (anti-phishing)
@@ -648,6 +664,7 @@ For each affected system, verify:
 **System:** {hostname}
 
 **1. EDR/AV Scan Clean:**
+
 - [ ] Full system scan completed
 - [ ] No threats detected
 - [ ] EDR agent reporting healthy
@@ -663,6 +680,7 @@ Get-MpThreatDetection
 **Scan result:** {clean/threats-found}
 
 **2. No Persistence Mechanisms:**
+
 - [ ] Scheduled tasks reviewed - none malicious
 - [ ] Services reviewed - none malicious
 - [ ] Registry Run keys clean
@@ -675,6 +693,7 @@ Get-MpThreatDetection
 **Persistence check:** {clean/suspicious-items-found}
 
 **3. All IOCs Removed:**
+
 - [ ] No malicious files present (hash verification)
 - [ ] No malicious IPs in firewall/EDR logs
 - [ ] No malicious domains in DNS logs
@@ -683,6 +702,7 @@ Get-MpThreatDetection
 **IOC check:** {all-removed/still-present}
 
 **4. Credentials Rotated:**
+
 - [ ] User passwords reset
 - [ ] Admin passwords reset
 - [ ] Service account passwords reset (and apps updated)
@@ -692,6 +712,7 @@ Get-MpThreatDetection
 **Credential check:** {all-rotated/pending}
 
 **5. Vulnerabilities Patched:**
+
 - [ ] CVE patch applied
 - [ ] Configuration hardened
 - [ ] Security controls enhanced
@@ -735,6 +756,7 @@ Eradication phase requires formal approval before proceeding to recovery.
 **Eradication Date:** {current-date}
 **Systems Eradicated:** {count} systems
 **Threat Removal:**
+
 - Malware removed: {count} files
 - Persistence removed: {count} mechanisms
 - Credentials reset: {count} accounts
@@ -744,6 +766,7 @@ Eradication phase requires formal approval before proceeding to recovery.
 **Sign-Off:**
 
 **IR Team Lead:**
+
 - Name: {prompt-for-name}
 - Title: {prompt-for-title}
 - Signature: {prompt-for-digital-signature-or-approval}
@@ -751,6 +774,7 @@ Eradication phase requires formal approval before proceeding to recovery.
 - Approval: I confirm all threat actor presence has been removed and systems are clean.
 
 **Security Team Lead:**
+
 - Name: {prompt-for-name}
 - Title: {prompt-for-title}
 - Signature: {prompt-for-approval}
@@ -935,27 +959,27 @@ lastUpdated: '{timestamp}'
 
 Display: **Select an Option:** [P] Party Mode [C] Continue to Recovery
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After Party Mode execution, return to this menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF P: Execute {partyModeWorkflow} - Recommend Trace (forensic validation expert) for final validation review
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#8-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN C is selected and all eradication is validated and signed off will you load, read entire file, then execute `{nextStepFile}` to begin recovery.
+ONLY WHEN C is selected and all eradication is validated and signed off will you load, read entire file, then follow `{nextStepFile}` to begin recovery.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All malware removed from all systems
 - All persistence mechanisms removed
@@ -969,7 +993,7 @@ ONLY WHEN C is selected and all eradication is validated and signed off will you
 - Frontmatter updated with stepsCompleted: [1, 2b, 3b, 4b, 5b, 6b]
 - Menu presented (P/C)
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping validation (unremoved threats will re-compromise systems)
 - Not resetting compromised credentials (threat actor can re-enter)

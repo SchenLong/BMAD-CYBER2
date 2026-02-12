@@ -15,6 +15,7 @@
 ## Purpose
 
 Build comprehensive behavioral profile through multi-source pattern analysis for prediction and operational planning:
+
 - Digital behavior patterns
 - Physical movement patterns
 - Communication patterns

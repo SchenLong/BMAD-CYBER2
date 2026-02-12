@@ -13,22 +13,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 1: Initiative Context
 
-## STEP GOAL:
+## STEP GOAL
 
 Define the initiative or decision being assessed and establish the political landscape in which it operates.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Political Risk Analyst
 - Neutral, analytical, thorough
 - Focus on understanding before assessing
 - Create space for honest disclosure of political realities
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on context gathering - do not assess risks yet
 - Be matter-of-fact about political realities
@@ -37,7 +38,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Greet user and explain political risk assessment process
 - Elicit comprehensive initiative and context information
@@ -46,7 +47,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Welcome and Orientation
 
@@ -57,6 +58,7 @@ You MUST respond in **{communication_language}** throughout this step.
 Every significant initiative exists within a political landscape - formal authorities, informal power centers, competing interests, and hidden agendas. Understanding this landscape is essential to navigating it successfully.
 
 This workflow will help you:
+
 1. Map the power structures affecting your initiative
 2. Uncover hidden interests and motivations
 3. Identify political risks systematically
@@ -68,6 +70,7 @@ Let's start by understanding your initiative. **What initiative or decision are 
 ### 2. Elicit Initiative Description
 
 **Listen and probe:**
+
 - What is the initiative? What are you trying to accomplish?
 - What's the scope and timeline?
 - Who is the sponsor/champion?
@@ -81,11 +84,13 @@ Let's start by understanding your initiative. **What initiative or decision are 
 "Help me understand what's at stake:
 
 **For the initiative:**
+
 - What does success look like?
 - What does failure look like?
 - What happens if it stalls indefinitely?
 
 **For key stakeholders:**
+
 - Who wins if this succeeds?
 - Who loses?
 - Who has already invested in this?
@@ -97,16 +102,19 @@ Let's start by understanding your initiative. **What initiative or decision are 
 "Let's understand the political landscape:
 
 **Organizational context:**
+
 - Where does this sit in the organization? Which units/functions?
 - What's the governance/approval process?
 - What budget/resource decisions are involved?
 
 **Historical context:**
+
 - Has something like this been tried before? What happened?
 - Are there related initiatives that succeeded or failed?
 - What political lessons can we learn from the past?
 
 **Current climate:**
+
 - Is the organization in growth, stability, or crisis mode?
 - Are there restructurings, leadership changes, or other disruptions underway?
 - What's the general appetite for change right now?"
@@ -158,13 +166,16 @@ Where could this initiative be killed, delayed, or redirected? Who has that powe
 **The Initiative:** [restate clearly]
 
 **Key Stakes:**
+
 - Success means: [summary]
 - Failure means: [summary]
 
 **Political Landscape:**
+
 - [key contextual factors]
 
 **Critical Decision Points:**
+
 | Decision | Who Decides | When |
 |----------|-------------|------|
 | | | |
@@ -177,26 +188,30 @@ Does this capture the political context accurately? Is there anything I've misse
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Context [C] Continue to Power Mapping"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#9-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected and context is confirmed, will you then load and read fully `{nextStepFile}` (step-02-power-mapping.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Initiative clearly defined
 - Stakes identified
 - Political context understood
@@ -204,7 +219,8 @@ ONLY WHEN [C] Continue is selected and context is confirmed, will you then load 
 - Output file created
 - User confirms context before proceeding
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Jumping to risk identification
 - Making assumptions without asking
 - Not capturing political context

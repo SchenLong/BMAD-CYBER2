@@ -858,7 +858,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For enterprise support, security consulting, and custom implementations:
 
-- **Email**: enterprise@bmad.dev
+- **Email**: <enterprise@bmad.dev>
 - **Website**: [https://bmad.dev/enterprise](https://bmad.dev/enterprise)
 
 ---

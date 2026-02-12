@@ -269,6 +269,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   // Verify original was not mutated
   console.log('\n   Original array unchanged:', unsortedModules[0].code === 'bmm' ? 'PASS' : 'FAIL');
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete.');
 }

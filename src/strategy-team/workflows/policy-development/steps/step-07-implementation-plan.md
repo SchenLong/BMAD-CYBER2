@@ -11,11 +11,11 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 7: Implementation Plan
 
-## STEP GOAL:
+## STEP GOAL
 
 Create a comprehensive implementation plan covering rollout phases, resource requirements, training, communication, monitoring, and success metrics to ensure the policy is effectively deployed.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You continue as Senior Policy Development Facilitator
 - Focus on practical implementation, not further policy refinement
@@ -23,11 +23,12 @@ Create a comprehensive implementation plan covering rollout phases, resource req
 - Ensure the plan enables successful adoption
 - Maintain professional, project-management-oriented tone
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on implementation, not policy content revision
 - FORBIDDEN to skip key implementation elements
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Maintain Facilitator persona
 - Create phased implementation plan
@@ -47,7 +48,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Complete policy document from Steps 1-6
 - Focus: Implementation execution
@@ -56,7 +57,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Implementation Introduction
 
@@ -65,6 +66,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Excellent, {user_name}. We have a comprehensive policy document. Now let's ensure it's actually implemented successfully. A policy is only as good as its implementation.
 
 Let me help you create a detailed implementation plan covering:
+
 - Phased rollout approach
 - Resource requirements
 - Training and enablement
@@ -122,6 +124,7 @@ Does this phasing make sense for your organization?"
 "Let me capture the resource requirements:
 
 **Human Resources:**
+
 | Resource Need | Quantity | Duration | Source |
 |---------------|----------|----------|--------|
 | Implementation Lead | 1 | [weeks] | [internal/external] |
@@ -130,6 +133,7 @@ Does this phasing make sense for your organization?"
 | Technical support (if applicable) | [X] | [weeks] | [internal/external] |
 
 **Financial Resources:**
+
 | Item | Estimated Cost | Budget Source | Approved? |
 |------|----------------|---------------|-----------|
 | Training development | [amount] | [source] | [Y/N/Pending] |
@@ -138,6 +142,7 @@ Does this phasing make sense for your organization?"
 | External support | [amount] | [source] | [Y/N/Pending] |
 
 **Technical Resources:**
+
 | Requirement | Current State | Gap | Resolution |
 |-------------|---------------|-----|------------|
 | [System/tool 1] | [available/needed] | [gap if any] | [plan] |
@@ -168,12 +173,14 @@ What resources do you anticipate needing?"
 | [Audience 2] | [method] | [time] | [when] |
 
 **Training Content:**
+
 - Module 1: Policy overview and rationale
 - Module 2: Specific requirements and procedures
 - Module 3: Scenarios and examples
 - Module 4: Q&A and support resources
 
 **Training Materials Needed:**
+
 - [ ] Presentation/slides
 - [ ] Quick reference guide
 - [ ] FAQ document
@@ -181,6 +188,7 @@ What resources do you anticipate needing?"
 - [ ] Assessment/quiz (if required)
 
 **Training Success Metrics:**
+
 - Completion rate target: [X%]
 - Assessment pass rate (if applicable): [X%]
 - Post-training confidence survey"
@@ -216,6 +224,7 @@ What resources do you anticipate needing?"
 | [Review date] | All | [channel] | Policy review results |
 
 **Key Messages (refine from Step 6):**
+
 1. [Primary message - why this matters]
 2. [What's changing]
 3. [What to do / where to get help]"
@@ -249,6 +258,7 @@ Burke reminded us to watch for unintended effects:
 | [Consequence 2] | [indicator] | [when to act] |
 
 **Feedback Channels:**
+
 - Primary channel: [e.g., policy inbox, form, manager escalation]
 - Response SLA: [timeframe for responses]
 - Escalation path: [how issues are escalated]
@@ -278,6 +288,7 @@ Burke reminded us to watch for unintended effects:
 | [Compliance rate] | [current] | [target] | [target] |
 
 **Review Schedule:**
+
 - 30-day check-in: [Date] - Is implementation on track?
 - 90-day review: [Date] - Are we seeing intended outcomes?
 - Annual review: [Date] - Full effectiveness assessment"
@@ -297,6 +308,7 @@ Burke reminded us to watch for unintended effects:
 | Inconsistent enforcement | Med | High | Manager training, audit process | [owner] |
 
 **Contingency Plans:**
+
 - If [scenario]: [response]
 - If [scenario]: [response]"
 
@@ -322,11 +334,13 @@ Burke reminded us to watch for unintended effects:
 "Congratulations, {user_name}. You now have a complete policy package:
 
 **Policy Document:**
+
 - Title: {policyTitle}
 - Location: {outputFile}
 - Status: Ready for approval
 
 **What's Included:**
+
 1. Policy Statement - Clear, actionable requirements
 2. Background & Rationale - Evidence-based justification
 3. Evidence Base - Augustus's research and benchmarking
@@ -341,6 +355,7 @@ Burke reminded us to watch for unintended effects:
 12. Approval Section - Ready for signatures
 
 **Next Steps:**
+
 1. Review the complete document
 2. Route for required approvals
 3. Execute implementation plan
@@ -352,7 +367,8 @@ Thank you for your thoughtful engagement in this policy development process."
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Any Section [E] Export/Finalize [X] Complete Workflow"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, when finished redisplay the menu
 - IF R: Return to revise any section across the document, then redisplay menu
@@ -360,19 +376,22 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Any Sec
 - IF X: Save final content to {outputFile}, confirm completion, workflow ends
 - IF Any other comments or queries: help user respond then redisplay menu
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
+
 - ALWAYS halt and wait for user input after presenting menu
 - Workflow completes when user selects 'X' or 'E'
 - After other menu items execution, return to this menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 This is the final step. When [X] Complete Workflow is selected, ensure the output file is fully saved with status: complete before ending.
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Complete phased implementation plan created
 - All tasks have owners and deadlines
 - Training plan comprehensive
@@ -382,7 +401,8 @@ This is the final step. When [X] Complete Workflow is selected, ensure the outpu
 - Risks identified with mitigations
 - Output file complete and saved
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Tasks without owners or deadlines
 - Missing training plan
 - No monitoring framework

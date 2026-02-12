@@ -18,11 +18,13 @@ Analyze tax risks associated with current position and proposed planning strateg
 Evaluate current positions:
 
 **Uncertain Tax Positions:**
+
 | Position | Amount | Risk Level | Authority Support |
 |----------|--------|------------|-------------------|
 | [Position] | $[Amount] | [High/Med/Low] | [Strong/Moderate/Weak] |
 
 **Reserve Analysis:**
+
 - FIN 48/ASC 740 considerations (if applicable)
 - Tax contingencies
 - Potential adjustments
@@ -32,18 +34,21 @@ Evaluate current positions:
 Assess risks of proposed strategies:
 
 **Economic Substance Risks:**
+
 - Substance requirements by jurisdiction
 - Business purpose documentation
 - Step transaction concerns
 - Sham transaction risk
 
 **Anti-Avoidance Risks:**
+
 - GAAR (General Anti-Avoidance Rules)
 - Specific anti-avoidance provisions
 - Treaty shopping concerns
 - Principal purpose test
 
 **Documentation Risks:**
+
 - Transfer pricing documentation
 - Valuation support
 - Contemporaneous documentation
@@ -54,6 +59,7 @@ Assess risks of proposed strategies:
 Evaluate examination likelihood:
 
 **Audit Triggers:**
+
 - Size and complexity
 - Industry targets
 - Loss history
@@ -62,6 +68,7 @@ Evaluate examination likelihood:
 - Prior examination history
 
 **Risk by Jurisdiction:**
+
 | Jurisdiction | Audit Risk | Focus Areas | Statute of Limitations |
 |--------------|------------|-------------|----------------------|
 | USA | [Level] | [Areas] | 3 years (6 for substantial) |
@@ -73,17 +80,20 @@ Evaluate examination likelihood:
 Assess penalty risks:
 
 **Accuracy-Related Penalties:**
+
 - Substantial understatement (20%)
 - Negligence penalties
 - Reasonable cause defenses
 
 **International Penalties:**
+
 - Form 5471: $10,000+ per form
 - FBAR: Up to 50% of account value
 - Form 8938: $10,000-$50,000
 - Form 8865: $10,000+ per form
 
 **Spain Penalties:**
+
 - Tax fraud: 50%-150% of tax owed
 - Model 720: €5,000 per unreported item
 - Late filing penalties
@@ -93,17 +103,20 @@ Assess penalty risks:
 Develop risk mitigation:
 
 **Documentation:**
+
 - Prepare contemporaneous documentation
 - Business purpose memoranda
 - Economic analysis support
 
 **Professional Support:**
+
 - Tax opinion letters
 - Advance pricing agreements
 - Private letter rulings
 - Voluntary disclosure programs
 
 **Insurance:**
+
 - Tax insurance availability
 - Representations & warranties insurance
 - Cost-benefit analysis

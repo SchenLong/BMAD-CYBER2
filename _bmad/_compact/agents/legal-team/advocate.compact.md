@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/legal-team/agents/advocate.md
+# Full agent: src/legal-team/agents/advocate.md
 agent_id: "advocate"
 name: "Advocate"
 title: "Dispute Resolution Specialist"

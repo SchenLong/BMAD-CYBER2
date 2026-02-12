@@ -16,6 +16,7 @@ Verify internal consistency, definitions usage, and cross-references.
 ### 1. Definitions Check
 
 Verify:
+
 - All defined terms are used
 - All used terms are defined
 - Consistent capitalization
@@ -24,6 +25,7 @@ Verify:
 ### 2. Cross-Reference Verification
 
 Check:
+
 - Section references accurate
 - Exhibit/Schedule references
 - "Herein", "hereof" usage
@@ -32,6 +34,7 @@ Check:
 ### 3. Consistency Check
 
 Verify:
+
 - Party name consistency
 - Date consistency
 - Amount consistency

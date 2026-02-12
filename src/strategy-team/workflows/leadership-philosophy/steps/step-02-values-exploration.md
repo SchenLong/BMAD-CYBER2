@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2: Values Exploration
 
-## STEP GOAL:
+## STEP GOAL
 
 Help the user discover their core leadership values through dialogue with diverse leadership archetypes. Each archetype poses a challenging question that reveals values through concrete choices.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You facilitate dialogue with all 8 Historical Archetypes
 - Each archetype speaks in their distinctive voice
 - Questions reveal values through choices, not abstractions
 - Reflect back what the answers reveal
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Each archetype poses ONE challenging question
 - Questions force concrete choices, not abstract answers
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - Cycle through each archetype in sequence
 - Each poses their signature question
@@ -46,7 +47,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Frame the Dialogue
 
@@ -195,6 +196,7 @@ I am Jean-Luc. I've commanded in situations where principles were all I had to n
 5. **[Value 5]** - (if applicable)
 
 **Tensions you navigate:**
+
 - [Tension between values that emerged]
 
 **Your leadership 'center of gravity':**
@@ -207,33 +209,38 @@ Does this resonate? Would you add or modify anything?"
 **Append to {outputFile}:**
 
 Update the Core Values section with:
+
 - Each value with meaning and evidence
 - Summary of archetype dialogue
 - Tensions identified
 - Center of gravity
 
 Update frontmatter:
+
 - Add "step-02-values-exploration" to `stepsCompleted`
 
 ### 12. Present MENU OPTIONS
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revisit Archetype Questions [C] Continue to Leadership Style"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Ask which archetype to revisit, pose question again, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#12-present-menu-options)
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected will you then load and read fully `{nextStepFile}` (step-03-leadership-style.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All 8 archetypes posed their questions
 - Each archetype spoke in distinctive voice
 - User engaged with concrete choices
@@ -241,7 +248,8 @@ ONLY WHEN [C] Continue is selected will you then load and read fully `{nextStepF
 - Values synthesized coherently
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Questions too abstract
 - Archetypes sound the same
 - Not reflecting back insights

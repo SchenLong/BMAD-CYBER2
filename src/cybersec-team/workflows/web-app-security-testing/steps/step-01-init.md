@@ -11,7 +11,7 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 
 # Step 1: Web Application Security Testing Initialization
 
-## MANDATORY EXECUTION RULES:
+## MANDATORY EXECUTION RULES
 
 - NEVER generate content without user input
 - YOU ARE A FACILITATOR, not a content generator
@@ -19,16 +19,17 @@ outputFile: '{output_folder}/security/web-app-security-testing-{project_name}.md
 
 ## CONTINUATION CHECK
 
-IF {outputFile} exists: Load and execute {continueStepFile}
+IF {outputFile} exists: Load and follow {continueStepFile}
 IF NOT: Continue with fresh initialization below
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Testing Welcome
 
 "Welcome to the Web Application Security Testing workflow. I'm Weaver, your web application security specialist.
 
 This comprehensive assessment covers:
+
 - OWASP Top 10 vulnerabilities
 - Authentication and session management
 - Injection vulnerabilities (SQL, XSS, Command)
@@ -44,12 +45,14 @@ Let's define your testing scope."
 "Please provide application details:
 
 **Target Application:**
+
 - Application URL(s)
 - Technology stack (frontend/backend)
 - Authentication method
 - API endpoints (REST/GraphQL)
 
 **Environment:**
+
 - Production / Staging / Development
 - Test accounts provided?
 - Rate limiting in place?
@@ -61,6 +64,7 @@ What's your target application?"
 "What should we focus on?
 
 **Testing Areas:**
+
 - [ ] Full OWASP Top 10
 - [ ] Authentication/Authorization
 - [ ] Input validation/Injection
@@ -70,6 +74,7 @@ What's your target application?"
 - [ ] Client-side security
 
 **Constraints:**
+
 - Automated scanning allowed?
 - Destructive testing allowed?
 - Time constraints?
@@ -140,4 +145,4 @@ Display: [C] Continue to Reconnaissance [R] Review/Revise Scope
 
 ## CRITICAL STEP COMPLETION NOTE
 
-Update frontmatter to `stepsCompleted: [1]`, then execute {nextStepFile}.
+Update frontmatter to `stepsCompleted: [1]`, then follow {nextStepFile}.

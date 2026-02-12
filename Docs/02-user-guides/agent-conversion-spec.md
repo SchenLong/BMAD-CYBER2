@@ -1,4 +1,5 @@
 # BMAD Agent Conversion Specification
+
 ## From Markdown (.md) to YAML (.agent.yaml) Format
 
 ### Overview
@@ -325,6 +326,7 @@ class AgentConverter {
 ### Validation Rules
 
 #### Required Fields Validation
+
 - `metadata.id` must be present and unique within module
 - `metadata.name` must be present
 - `metadata.title` must be present
@@ -332,12 +334,14 @@ class AgentConverter {
 - `handlers.exec` must be present
 
 #### Content Validation
+
 - Menu items must not exceed 20 items
 - Security rules must include prompt injection protection
 - All file paths must be relative to module root
 - Agent ID must match filename (without extension)
 
 #### Cross-Reference Validation
+
 - All referenced workflow files must exist
 - All referenced data files must exist
 - Config variables must be defined in module.yaml
@@ -346,24 +350,28 @@ class AgentConverter {
 ### Team-Specific Conversion Notes
 
 #### Cybersec-Team
+
 - Additional security rules for operational security
 - Network access permissions required
 - Shell command restrictions
 - Sensitive data access enabled
 
 #### Intel-Team
+
 - Network access for OSINT operations
 - Specialized shell commands (whois, dig, nslookup)
 - Sensitive data handling required
 - External content security critical
 
 #### Legal-Team
+
 - Disclaimer requirements in all outputs
 - Jurisdiction-specific configuration
 - Document generation workflows
 - Compliance rule integration
 
 #### Strategy-Team
+
 - Board-level presentation formatting
 - Strategic analysis workflows
 - Decision documentation requirements
@@ -375,6 +383,7 @@ Input: `{agent-name}.md`
 Output: `{agent-name}.agent.yaml`
 
 Example:
+
 - Input: `osint-lead.md`
 - Output: `osint-lead.agent.yaml`
 

@@ -197,7 +197,7 @@ export class AnomalyDetector {
                 updated_at: new Date().toISOString(),
             };
             fs.mkdirSync(path.dirname(BASELINE_FILE), { recursive: true });
-            const tempFile = BASELINE_FILE + '.tmp';
+            const tempFile = `${BASELINE_FILE  }.tmp`;
             fs.writeFileSync(tempFile, JSON.stringify(data, null, 2));
             fs.renameSync(tempFile, BASELINE_FILE);
         }

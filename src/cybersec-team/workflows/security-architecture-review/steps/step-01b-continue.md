@@ -25,13 +25,13 @@ step07File: '{workflow_path}/steps/step-07-report-generation.md'
 
 # Step 1B: Security Architecture Review Continuation
 
-## STEP GOAL:
+## STEP GOAL
 
 To resume the Security Architecture Review workflow from where it was left off, ensuring smooth continuation without loss of context or security analysis progress.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -39,7 +39,7 @@ To resume the Security Architecture Review workflow from where it was left off, 
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona)
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this role
@@ -48,14 +48,14 @@ To resume the Security Architecture Review workflow from where it was left off, 
 - ✅ User brings architecture knowledge, technical context, and implementation constraints
 - ✅ Maintain collaborative, professional, technically precise tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on analyzing and resuming workflow state
 - 🚫 FORBIDDEN to modify content completed in previous steps
 - 💬 Maintain continuity with previous security analysis sessions
 - 🚪 DETECT exact continuation point from frontmatter of incomplete file {outputFile}
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Show your analysis of current security review state before taking action
 - 💾 Keep existing frontmatter `stepsCompleted` values intact
@@ -63,14 +63,14 @@ To resume the Security Architecture Review workflow from where it was left off, 
 - 🚫 FORBIDDEN to modify threat model, control assessments, or other content completed in previous steps
 - 📝 Update frontmatter with continuation timestamp when resuming
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Current security-review document is already loaded
 - Previous context = complete report + existing frontmatter + all completed analyses
 - Architecture context, threat models, and assessments already gathered in previous sessions
 - Last completed step = last value in `stepsCompleted` array from frontmatter
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Analyze Current State
 
@@ -86,6 +86,7 @@ Review the frontmatter of {outputFile} to understand:
 Example: If `stepsCompleted: [1, 2, 3, 4]`, then step 4 (Attack Surface Analysis) was the last completed step.
 
 **Step Mapping:**
+
 - Step 1: Initialization & Architecture Context
 - Step 2: STRIDE Threat Modeling
 - Step 3: Security Control Assessment
@@ -138,6 +139,7 @@ Present a warm, context-aware welcome:
 I see we've completed [X] steps of the security analysis.
 
 **Progress Summary:**
+
 - ✅ Architecture Context Gathered
 [If step 2 complete:] - ✅ STRIDE Threat Model Complete
 [If step 3 complete:] - ✅ Security Control Assessment Complete
@@ -154,6 +156,7 @@ Are you ready to continue where we left off?"
 Ask confirmation questions if needed:
 
 "Before we continue:
+
 - Has the architecture changed since our last session?
 - Do you need to review any of the completed analysis?
 - Are there new threats or controls to consider?"
@@ -162,7 +165,7 @@ Ask confirmation questions if needed:
 
 Display: **Resuming Security Architecture Review - Select an Option:** [C] Continue to [Next Step Name] [R] Review Previous Analysis
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -170,11 +173,11 @@ Display: **Resuming Security Architecture Review - Select an Option:** [C] Conti
 - User can chat or ask questions - always respond and then end with display again of the menu options
 - Update frontmatter with continuation timestamp when 'C' is selected
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C:
   1. Update frontmatter in {outputFile}: add `lastContinued: [current date YYYY-MM-DD HH:MM]`
-  2. Load, read entire file, then execute the appropriate next step file (determined in section 4)
+  2. Load and follow the appropriate next step file (determined in section 4)
 - IF R: Display summary of completed analysis sections from {outputFile}, then redisplay menu
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
@@ -183,7 +186,7 @@ Display: **Resuming Security Architecture Review - Select an Option:** [C] Conti
 ONLY WHEN C is selected and continuation analysis is complete, will you then:
 
 1. Update frontmatter in {outputFile} with `lastContinued: [current timestamp]`
-2. Load, read entire file, then execute the next step file determined from the analysis
+2. Load and follow the next step file determined from the analysis
 
 Do NOT modify any security analysis content in the output document during this continuation step.
 
@@ -191,7 +194,7 @@ Do NOT modify any security analysis content in the output document during this c
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Correctly identified last completed step from `stepsCompleted` array
 - Read and understood previous security analysis context
@@ -201,7 +204,7 @@ Do NOT modify any security analysis content in the output document during this c
 - Workflow resumed at appropriate next step
 - No modification of existing threat models or assessments
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping analysis of existing security review state
 - Modifying threat models, control assessments, or other content from previous steps

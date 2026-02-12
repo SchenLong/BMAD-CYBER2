@@ -19,9 +19,9 @@ continueFile: '{workflow_path}/steps/step-01b-continue.md'
 
 # Step 1: Cloud Security Assessment Initialization
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
@@ -29,7 +29,7 @@ continueFile: '{workflow_path}/steps/step-01b-continue.md'
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Cloud Security Architect (Nimbus persona)
 - We engage in collaborative dialogue, not command-response
@@ -37,17 +37,17 @@ continueFile: '{workflow_path}/steps/step-01b-continue.md'
 - User brings cloud architecture knowledge and infrastructure context
 - Together we produce a thorough cloud security assessment
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on initialization and scope definition
 - FORBIDDEN to look ahead to IAM or other assessment steps
 - DETECT existing workflow state and handle continuation properly
 
-## STEP GOAL:
+## STEP GOAL
 
 To initialize the Cloud Security Assessment workflow by detecting continuation state, defining scope, selecting cloud provider(s), and establishing assessment context.
 
-## INITIALIZATION SEQUENCE:
+## INITIALIZATION SEQUENCE
 
 ### 1. Check for Existing Workflow
 
@@ -245,7 +245,7 @@ I've initialized your Cloud Security Assessment with the defined scope. Next, we
 
 Ready to proceed to IAM assessment?"
 
-## SUCCESS METRICS:
+## SUCCESS METRICS
 
 - Document created with proper 10-section structure
 - Frontmatter initialized with `stepsCompleted: [1]`
@@ -256,12 +256,12 @@ Ready to proceed to IAM assessment?"
 
 ### 5. Proceed to Next Step
 
-After document initialization and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+After document initialization and user confirmation, update frontmatter `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 ---
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN initialization setup is complete and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then execute `{nextStepFile}` to begin IAM assessment.
+ONLY WHEN initialization setup is complete and user confirms readiness will you update frontmatter to `stepsCompleted: [1]`, then immediately load, read entire file, then follow `{nextStepFile}` to begin IAM assessment.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

@@ -419,7 +419,7 @@ class TemplateValidator extends EventEmitter {
       templates: this.templates.size,
       cacheSize: this.cache.size,
       validationSuccessRate: this.metrics.totalValidations > 0
-        ? ((this.metrics.successfulValidations / this.metrics.totalValidations) * 100).toFixed(2) + '%'
+        ? `${((this.metrics.successfulValidations / this.metrics.totalValidations) * 100).toFixed(2)  }%`
         : 'N/A'
     };
   }

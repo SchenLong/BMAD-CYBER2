@@ -184,6 +184,7 @@ permissions:
 ```
 
 **Key Points:**
+
 - Network access enabled for reconnaissance
 - Limited shell commands for DNS/network queries
 - Destructive commands blocked

@@ -251,7 +251,7 @@ class BuildIsolation extends EventEmitter {
         if (allowed.startsWith('*.')) {
           return hostname.endsWith(allowed.slice(1));
         }
-        return hostname === allowed || hostname.endsWith('.' + allowed);
+        return hostname === allowed || hostname.endsWith(`.${  allowed}`);
       });
     }
 

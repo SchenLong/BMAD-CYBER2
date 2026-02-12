@@ -296,7 +296,7 @@ conflict_resolution:
 
   workflow_id_conflicts:
     prevention: "namespace_prefix_enforcement"
-    format: "{module_code}:{workflow_name}"
+    format: "{module_code}:{workflow-name}"
     validation: "install_time_check"
 
     conflict_handling:

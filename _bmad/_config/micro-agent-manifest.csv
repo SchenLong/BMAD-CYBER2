@@ -1,80 +1,80 @@
 name,summary,tags,module,path
-bmad-master,Provides task executor + bmad expert + guiding facilitator orchestrator exper...,software designer specialist,core,_bmad/core/agents/bmad-master.md
-agent-builder,Designs agent architecture specialist + bmad compliance expert,software architect designer ai-ml compliance,bmb,_bmad/bmb/agents/agent-builder.md
-module-builder,Designs module architecture specialist + full-stack systems designer,software architect designer,bmb,_bmad/bmb/agents/module-builder.md
-workflow-builder,Designs workflow architecture specialist + process design expert,software architect designer,bmb,_bmad/bmb/agents/workflow-builder.md
-game-architect,Designs game systems architect + technical director,gamedev architect manager,bmgd,_bmad/bmgd/agents/game-architect.md
-game-designer,Designs game designer + creative vision architect,gamedev architect designer,bmgd,_bmad/bmgd/agents/game-designer.md
-game-dev,Provides game developer + technical implementation specialist expertise,gamedev developer specialist mobile,bmgd,_bmad/bmgd/agents/game-dev.md
-game-qa,Designs game qa architect + test automation specialist,gamedev architect tester mobile,bmgd,_bmad/bmgd/agents/game-qa.md
-game-scrum-master,Provides game development scrum master + sprint orchestrator expertise,gamedev manager,bmgd,_bmad/bmgd/agents/game-scrum-master.md
-game-solo-dev,Implements elite indie game developer + quick flow specialist,gamedev developer designer mobile,bmgd,_bmad/bmgd/agents/game-solo-dev.md
-analyst,Analyzes strategic business analyst + requirements expert,software analyst designer,bmm,_bmad/bmm/agents/analyst.md
-architect,Designs system architect + technical design leader,software architect manager web cloud,bmm,_bmad/bmm/agents/architect.md
-dev,Senior Software Engineer,software developer,bmm,_bmad/bmm/agents/dev.md
-pm,Analyzes product manager specializing in collaborative prd creation through u...,software designer manager,bmm,_bmad/bmm/agents/pm.md
-quick-flow-solo-dev,Implements elite full-stack developer + quick flow specialist,software developer designer,bmm,_bmad/bmm/agents/quick-flow-solo-dev.md
-sm,Provides technical scrum master + story preparation specialist expertise,software manager specialist,bmm,_bmad/bmm/agents/sm.md
-tea,Designs test architect,software architect tester,bmm,_bmad/bmm/agents/tea.md
-tech-writer,Provides technical documentation specialist + knowledge curator expertise,software writer specialist web,bmm,_bmad/bmm/agents/tech-writer.md
-ux-designer,Designs user experience designer + ui specialist,software architect designer mobile ai-ml,bmm,_bmad/bmm/agents/ux-designer.md
-brainstorming-coach,Provides brainstorming facilitator + innovation catalyst expertise,creative specialist ai-ml,cis,_bmad/cis/agents/brainstorming-coach.md
-creative-problem-solver,Provides systematic problem-solving expert + solutions architect expertise,creative architect specialist ai-ml,cis,_bmad/cis/agents/creative-problem-solver.md
-design-thinking-coach,Designs human-centered design expert + empathy architect,creative architect specialist,cis,_bmad/cis/agents/design-thinking-coach.md
-innovation-strategist,Designs business model innovator + strategic disruption expert,creative specialist,cis,_bmad/cis/agents/innovation-strategist.md
-presentation-master,Designs visual communication expert + presentation designer + educator,creative architect designer ai-ml,cis,_bmad/cis/agents/presentation-master.md
-storyteller,Provides storytelling guide + narrative strategist expertise,creative designer specialist,cis,_bmad/cis/agents/storyteller/storyteller.md
-security-architect,Designs security architect + defense strategist,security architect cloud,cybersec-team,_bmad/cybersec-team/agents/security-architect.md
-threat-analyst,Analyzes threat intelligence specialist + adversary behavior analyst,security analyst specialist ai-ml threat,cybersec-team,_bmad/cybersec-team/agents/threat-analyst.md
-penetration-tester,Provides offensive security expert + red team operator expertise,security specialist web cloud ai-ml,cybersec-team,_bmad/cybersec-team/agents/penetration-tester.md
-incident-commander,Provides incident response lead + crisis manager expertise,security manager forensics,cybersec-team,_bmad/cybersec-team/agents/incident-commander.md
-compliance-guardian,Provides risk & regulatory compliance expert + auditor expertise,security specialist ai-ml compliance,cybersec-team,_bmad/cybersec-team/agents/compliance-guardian.md
-forensic-investigator,Analyzes digital forensics investigator + evidence analyst,security analyst mobile cloud forensics,cybersec-team,_bmad/cybersec-team/agents/forensic-investigator.md
-api-security-expert,Designs api security specialist + oauth/identity expert,security specialist web,cybersec-team,_bmad/cybersec-team/agents/api-security-expert.md
-blockchain-security-expert,Provides blockchain security expert + defi protocol analyst expertise,security analyst specialist blockchain ai-ml,cybersec-team,_bmad/cybersec-team/agents/blockchain-security-expert.md
-blue-team-lead,Designs blue team lead + detection engineering manager,security developer manager threat,cybersec-team,_bmad/cybersec-team/agents/blue-team-lead.md
-cloud-security-specialist,Designs cloud security architect + multi-cloud security expert,security architect specialist cloud,cybersec-team,_bmad/cybersec-team/agents/cloud-security-specialist.md
-llm-ai-security-expert,Provides llm security expert + ai governance advisor expertise,security specialist web ai-ml pentest,cybersec-team,_bmad/cybersec-team/agents/llm-ai-security-expert.md
-mobile-security-expert,Analyzes mobile application security specialist + ios/android security expert,security specialist mobile threat,cybersec-team,_bmad/cybersec-team/agents/mobile-security-expert.md
-soc-analyst,Analyzes soc analyst + detection engineering specialist,security analyst developer,cybersec-team,_bmad/cybersec-team/agents/soc-analyst.md
-social-engineer,Provides social engineering specialist + human factor security expert expertise,security developer specialist,cybersec-team,_bmad/cybersec-team/agents/social-engineer.md
-web-app-security-expert,Implements web application security specialist + owasp expert,security specialist web threat,cybersec-team,_bmad/cybersec-team/agents/web-app-security-expert.md
-policy-analyst,Analyzes policy analyst + evidence-based decision expert,strategy analyst specialist forensics,strategy-team,_bmad/strategy-team/agents/policy-analyst.md
-political-strategist,Provides veteran political strategist + coalition architect expertise,strategy architect ai-ml,strategy-team,_bmad/strategy-team/agents/political-strategist.md
-debate-coach,World-Class Debate Coach + Argumentation Theorist,strategy ai-ml,strategy-team,_bmad/strategy-team/agents/debate-coach.md
-stakeholder-mediator,Provides negotiator + multi-party facilitator expertise,strategy designer,strategy-team,_bmad/strategy-team/agents/stakeholder-mediator.md
-ethics-advisor,Provides political philosopher + applied ethics expert expertise,strategy specialist,strategy-team,_bmad/strategy-team/agents/ethics-advisor.md
-communications-director,Provides communications strategist + crisis communications specialist expertise,strategy specialist,strategy-team,_bmad/strategy-team/agents/communications-director.md
-the-realist,Master of Realpolitik + Power Analyst,strategy analyst,strategy-team,_bmad/strategy-team/agents/the-realist.md
-the-liberator,Moral Transformer + Crisis Leader,strategy manager,strategy-team,_bmad/strategy-team/agents/the-liberator.md
-the-revolutionary,Agent of Radical Change + Systemic Challenger,strategy architect ai-ml,strategy-team,_bmad/strategy-team/agents/the-revolutionary.md
-the-conservative,Designs guardian of tradition + prudent reformer,strategy,strategy-team,_bmad/strategy-team/agents/the-conservative.md
-the-technocrat,Builder of Systems + Pragmatic Governor,strategy architect designer,strategy-team,_bmad/strategy-team/agents/the-technocrat.md
-the-strategist-warrior,Master of Timing + Warrior-Philosopher,strategy,strategy-team,_bmad/strategy-team/agents/the-strategist-warrior.md
-the-master-strategist,Supreme Strategist + Master of Comprehensive Strategy,strategy,strategy-team,_bmad/strategy-team/agents/the-master-strategist.md
-the-principled-commander,Principled Commander + Diplomat Leader,strategy manager ai-ml threat,strategy-team,_bmad/strategy-team/agents/the-principled-commander.md
-counsel,"Analyzes general counsel and legal team director - case intake, jurisdiction ...",legal manager,legal-team,_bmad/legal-team/agents/counsel.md
-liberty,"Provides usa corporate law, civil litigation, federal/state regulatory compli...",legal specialist compliance corporate,legal-team,_bmad/legal-team/agents/liberty.md
-europa,"Provides eu law, cross-border commerce, estonia e-residency, gdpr compliance ...",legal specialist compliance corporate,legal-team,_bmad/legal-team/agents/europa.md
-castile,"Provides spanish corporate law, civil code, autonomous community regulations ...",legal developer specialist corporate,legal-team,_bmad/legal-team/agents/castile.md
-covenant,"Provides contract drafting, review, negotiation across all supported jurisdic...",legal specialist contracts,legal-team,_bmad/legal-team/agents/covenant.md
-advocate,"Provides litigation strategy, arbitration, mediation, dispute resolution expe...",legal specialist,legal-team,_bmad/legal-team/agents/advocate.md
-tribute,"Provides tax planning, compliance, cross-border taxation, entity structuring ...",legal specialist ai-ml compliance corporate,legal-team,_bmad/legal-team/agents/tribute.md
-iberia,"Provides spanish civil law specialist - family law, property rights, inherita...",legal specialist,legal-team,_bmad/legal-team/agents/iberia.md
-gremio,Provides spanish labor and employment law specialist - estatuto de los trabaj...,legal specialist mobile ai-ml contracts,legal-team,_bmad/legal-team/agents/gremio.md
-baltic,"Provides estonian e-residency and digital business specialist - ou formation,...",legal specialist compliance corporate,legal-team,_bmad/legal-team/agents/baltic.md
-charter,"Provides corporate governance specialist - board structure, director duties, ...",legal manager specialist compliance corporate,legal-team,_bmad/legal-team/agents/charter.md
-insignia,"Provides intellectual property specialist - trademarks, patents, copyrights, ...",legal specialist,legal-team,_bmad/legal-team/agents/insignia.md
-deed,"Provides real estate and property law specialist - transactions, leasing, lan...",legal specialist,legal-team,_bmad/legal-team/agents/deed.md
-corporate-intel-specialist,Analyzes corporate intelligence (corpint) specialist + financial intelligence...,intel analyst specialist compliance corporate,intel-team,_bmad/intel-team/agents/corporate-intel-specialist.md
-dark-web-analyst,Provides dark web intelligence (darkint) analyst + underground operations spe...,intel analyst specialist,intel-team,_bmad/intel-team/agents/dark-web-analyst.md
-domain-intel-specialist,Analyzes network & domain intelligence specialist + infrastructure reconnaiss...,intel specialist ai-ml,intel-team,_bmad/intel-team/agents/domain-intel-specialist.md
-field-operative,Provides field operations specialist + surveillance/counter-surveillance expe...,intel specialist,intel-team,_bmad/intel-team/agents/field-operative.md
-geospatial-analyst,Analyzes geospatial intelligence (geoint) analyst + imagery intelligence spec...,intel analyst specialist,intel-team,_bmad/intel-team/agents/geospatial-analyst.md
-humint-specialist,Provides human intelligence (humint) specialist + elicitation expert expertise,intel specialist,intel-team,_bmad/intel-team/agents/humint-specialist.md
-osint-lead,Analyzes intelligence operations director + all-source fusion specialist,intel manager specialist,intel-team,_bmad/intel-team/agents/osint-lead.md
-sigint-specialist,Analyzes signals intelligence (sigint) specialist + communications analysis e...,intel analyst specialist,intel-team,_bmad/intel-team/agents/sigint-specialist.md
-social-media-analyst,Analyzes social media intelligence (socmint) analyst + digital footprint spec...,intel analyst specialist,intel-team,_bmad/intel-team/agents/social-media-analyst.md
-technical-researcher,Technical Intelligence (TECHINT) Researcher + Digital Reconnaissance Specialist,intel analyst specialist ai-ml,intel-team,_bmad/intel-team/agents/technical-researcher.md
-threat-actor-profiler,Analyzes threat actor profiler + adversary intelligence specialist,intel specialist threat,intel-team,_bmad/intel-team/agents/threat-actor-profiler.md
-abdul,Manages project manager + cross-module orchestrator,software manager,core,_bmad/core/agents/abdul.md
+bmad-master,Provides task executor + bmad expert + guiding facilitator orchestrator exper...,software designer specialist,core,src/core/agents/bmad-master.md
+agent-builder,Designs agent architecture specialist + bmad compliance expert,software architect designer ai-ml compliance,bmb,src/bmb/agents/agent-builder.md
+module-builder,Designs module architecture specialist + full-stack systems designer,software architect designer,bmb,src/bmb/agents/module-builder.md
+workflow-builder,Designs workflow architecture specialist + process design expert,software architect designer,bmb,src/bmb/agents/workflow-builder.md
+game-architect,Designs game systems architect + technical director,gamedev architect manager,bmgd,src/bmgd/agents/game-architect.md
+game-designer,Designs game designer + creative vision architect,gamedev architect designer,bmgd,src/bmgd/agents/game-designer.md
+game-dev,Provides game developer + technical implementation specialist expertise,gamedev developer specialist mobile,bmgd,src/bmgd/agents/game-dev.md
+game-qa,Designs game qa architect + test automation specialist,gamedev architect tester mobile,bmgd,src/bmgd/agents/game-qa.md
+game-scrum-master,Provides game development scrum master + sprint orchestrator expertise,gamedev manager,bmgd,src/bmgd/agents/game-scrum-master.md
+game-solo-dev,Implements elite indie game developer + quick flow specialist,gamedev developer designer mobile,bmgd,src/bmgd/agents/game-solo-dev.md
+analyst,Analyzes strategic business analyst + requirements expert,software analyst designer,bmm,src/bmm/agents/analyst.md
+architect,Designs system architect + technical design leader,software architect manager web cloud,bmm,src/bmm/agents/architect.md
+dev,Senior Software Engineer,software developer,bmm,src/bmm/agents/dev.md
+pm,Analyzes product manager specializing in collaborative prd creation through u...,software designer manager,bmm,src/bmm/agents/pm.md
+quick-flow-solo-dev,Implements elite full-stack developer + quick flow specialist,software developer designer,bmm,src/bmm/agents/quick-flow-solo-dev.md
+sm,Provides technical scrum master + story preparation specialist expertise,software manager specialist,bmm,src/bmm/agents/sm.md
+tea,Designs test architect,software architect tester,bmm,src/bmm/agents/tea.md
+tech-writer,Provides technical documentation specialist + knowledge curator expertise,software writer specialist web,bmm,src/bmm/agents/tech-writer.md
+ux-designer,Designs user experience designer + ui specialist,software architect designer mobile ai-ml,bmm,src/bmm/agents/ux-designer.md
+brainstorming-coach,Provides brainstorming facilitator + innovation catalyst expertise,creative specialist ai-ml,cis,src/cis/agents/brainstorming-coach.md
+creative-problem-solver,Provides systematic problem-solving expert + solutions architect expertise,creative architect specialist ai-ml,cis,src/cis/agents/creative-problem-solver.md
+design-thinking-coach,Designs human-centered design expert + empathy architect,creative architect specialist,cis,src/cis/agents/design-thinking-coach.md
+innovation-strategist,Designs business model innovator + strategic disruption expert,creative specialist,cis,src/cis/agents/innovation-strategist.md
+presentation-master,Designs visual communication expert + presentation designer + educator,creative architect designer ai-ml,cis,src/cis/agents/presentation-master.md
+storyteller,Provides storytelling guide + narrative strategist expertise,creative designer specialist,cis,src/cis/agents/storyteller/storyteller.md
+security-architect,Designs security architect + defense strategist,security architect cloud,cybersec-team,src/cybersec-team/agents/security-architect.md
+threat-analyst,Analyzes threat intelligence specialist + adversary behavior analyst,security analyst specialist ai-ml threat,cybersec-team,src/cybersec-team/agents/threat-analyst.md
+penetration-tester,Provides offensive security expert + red team operator expertise,security specialist web cloud ai-ml,cybersec-team,src/cybersec-team/agents/penetration-tester.md
+incident-commander,Provides incident response lead + crisis manager expertise,security manager forensics,cybersec-team,src/cybersec-team/agents/incident-commander.md
+compliance-guardian,Provides risk & regulatory compliance expert + auditor expertise,security specialist ai-ml compliance,cybersec-team,src/cybersec-team/agents/compliance-guardian.md
+forensic-investigator,Analyzes digital forensics investigator + evidence analyst,security analyst mobile cloud forensics,cybersec-team,src/cybersec-team/agents/forensic-investigator.md
+api-security-expert,Designs api security specialist + oauth/identity expert,security specialist web,cybersec-team,src/cybersec-team/agents/api-security-expert.md
+blockchain-security-expert,Provides blockchain security expert + defi protocol analyst expertise,security analyst specialist blockchain ai-ml,cybersec-team,src/cybersec-team/agents/blockchain-security-expert.md
+blue-team-lead,Designs blue team lead + detection engineering manager,security developer manager threat,cybersec-team,src/cybersec-team/agents/blue-team-lead.md
+cloud-security-specialist,Designs cloud security architect + multi-cloud security expert,security architect specialist cloud,cybersec-team,src/cybersec-team/agents/cloud-security-specialist.md
+llm-ai-security-expert,Provides llm security expert + ai governance advisor expertise,security specialist web ai-ml pentest,cybersec-team,src/cybersec-team/agents/llm-ai-security-expert.md
+mobile-security-expert,Analyzes mobile application security specialist + ios/android security expert,security specialist mobile threat,cybersec-team,src/cybersec-team/agents/mobile-security-expert.md
+soc-analyst,Analyzes soc analyst + detection engineering specialist,security analyst developer,cybersec-team,src/cybersec-team/agents/soc-analyst.md
+social-engineer,Provides social engineering specialist + human factor security expert expertise,security developer specialist,cybersec-team,src/cybersec-team/agents/social-engineer.md
+web-app-security-expert,Implements web application security specialist + owasp expert,security specialist web threat,cybersec-team,src/cybersec-team/agents/web-app-security-expert.md
+policy-analyst,Analyzes policy analyst + evidence-based decision expert,strategy analyst specialist forensics,strategy-team,src/strategy-team/agents/policy-analyst.md
+political-strategist,Provides veteran political strategist + coalition architect expertise,strategy architect ai-ml,strategy-team,src/strategy-team/agents/political-strategist.md
+debate-coach,World-Class Debate Coach + Argumentation Theorist,strategy ai-ml,strategy-team,src/strategy-team/agents/debate-coach.md
+stakeholder-mediator,Provides negotiator + multi-party facilitator expertise,strategy designer,strategy-team,src/strategy-team/agents/stakeholder-mediator.md
+ethics-advisor,Provides political philosopher + applied ethics expert expertise,strategy specialist,strategy-team,src/strategy-team/agents/ethics-advisor.md
+communications-director,Provides communications strategist + crisis communications specialist expertise,strategy specialist,strategy-team,src/strategy-team/agents/communications-director.md
+the-realist,Master of Realpolitik + Power Analyst,strategy analyst,strategy-team,src/strategy-team/agents/the-realist.md
+the-liberator,Moral Transformer + Crisis Leader,strategy manager,strategy-team,src/strategy-team/agents/the-liberator.md
+the-revolutionary,Agent of Radical Change + Systemic Challenger,strategy architect ai-ml,strategy-team,src/strategy-team/agents/the-revolutionary.md
+the-conservative,Designs guardian of tradition + prudent reformer,strategy,strategy-team,src/strategy-team/agents/the-conservative.md
+the-technocrat,Builder of Systems + Pragmatic Governor,strategy architect designer,strategy-team,src/strategy-team/agents/the-technocrat.md
+the-strategist-warrior,Master of Timing + Warrior-Philosopher,strategy,strategy-team,src/strategy-team/agents/the-strategist-warrior.md
+the-master-strategist,Supreme Strategist + Master of Comprehensive Strategy,strategy,strategy-team,src/strategy-team/agents/the-master-strategist.md
+the-principled-commander,Principled Commander + Diplomat Leader,strategy manager ai-ml threat,strategy-team,src/strategy-team/agents/the-principled-commander.md
+counsel,"Analyzes general counsel and legal team director - case intake, jurisdiction ...",legal manager,legal-team,src/legal-team/agents/counsel.md
+liberty,"Provides usa corporate law, civil litigation, federal/state regulatory compli...",legal specialist compliance corporate,legal-team,src/legal-team/agents/liberty.md
+europa,"Provides eu law, cross-border commerce, estonia e-residency, gdpr compliance ...",legal specialist compliance corporate,legal-team,src/legal-team/agents/europa.md
+castile,"Provides spanish corporate law, civil code, autonomous community regulations ...",legal developer specialist corporate,legal-team,src/legal-team/agents/castile.md
+covenant,"Provides contract drafting, review, negotiation across all supported jurisdic...",legal specialist contracts,legal-team,src/legal-team/agents/covenant.md
+advocate,"Provides litigation strategy, arbitration, mediation, dispute resolution expe...",legal specialist,legal-team,src/legal-team/agents/advocate.md
+tribute,"Provides tax planning, compliance, cross-border taxation, entity structuring ...",legal specialist ai-ml compliance corporate,legal-team,src/legal-team/agents/tribute.md
+iberia,"Provides spanish civil law specialist - family law, property rights, inherita...",legal specialist,legal-team,src/legal-team/agents/iberia.md
+gremio,Provides spanish labor and employment law specialist - estatuto de los trabaj...,legal specialist mobile ai-ml contracts,legal-team,src/legal-team/agents/gremio.md
+baltic,"Provides estonian e-residency and digital business specialist - ou formation,...",legal specialist compliance corporate,legal-team,src/legal-team/agents/baltic.md
+charter,"Provides corporate governance specialist - board structure, director duties, ...",legal manager specialist compliance corporate,legal-team,src/legal-team/agents/charter.md
+insignia,"Provides intellectual property specialist - trademarks, patents, copyrights, ...",legal specialist,legal-team,src/legal-team/agents/insignia.md
+deed,"Provides real estate and property law specialist - transactions, leasing, lan...",legal specialist,legal-team,src/legal-team/agents/deed.md
+corporate-intel-specialist,Analyzes corporate intelligence (corpint) specialist + financial intelligence...,intel analyst specialist compliance corporate,intel-team,src/intel-team/agents/corporate-intel-specialist.md
+dark-web-analyst,Provides dark web intelligence (darkint) analyst + underground operations spe...,intel analyst specialist,intel-team,src/intel-team/agents/dark-web-analyst.md
+domain-intel-specialist,Analyzes network & domain intelligence specialist + infrastructure reconnaiss...,intel specialist ai-ml,intel-team,src/intel-team/agents/domain-intel-specialist.md
+field-operative,Provides field operations specialist + surveillance/counter-surveillance expe...,intel specialist,intel-team,src/intel-team/agents/field-operative.md
+geospatial-analyst,Analyzes geospatial intelligence (geoint) analyst + imagery intelligence spec...,intel analyst specialist,intel-team,src/intel-team/agents/geospatial-analyst.md
+humint-specialist,Provides human intelligence (humint) specialist + elicitation expert expertise,intel specialist,intel-team,src/intel-team/agents/humint-specialist.md
+osint-lead,Analyzes intelligence operations director + all-source fusion specialist,intel manager specialist,intel-team,src/intel-team/agents/osint-lead.md
+sigint-specialist,Analyzes signals intelligence (sigint) specialist + communications analysis e...,intel analyst specialist,intel-team,src/intel-team/agents/sigint-specialist.md
+social-media-analyst,Analyzes social media intelligence (socmint) analyst + digital footprint spec...,intel analyst specialist,intel-team,src/intel-team/agents/social-media-analyst.md
+technical-researcher,Technical Intelligence (TECHINT) Researcher + Digital Reconnaissance Specialist,intel analyst specialist ai-ml,intel-team,src/intel-team/agents/technical-researcher.md
+threat-actor-profiler,Analyzes threat actor profiler + adversary intelligence specialist,intel specialist threat,intel-team,src/intel-team/agents/threat-actor-profiler.md
+abdul,Manages project manager + cross-module orchestrator,software manager,core,src/core/agents/abdul.md

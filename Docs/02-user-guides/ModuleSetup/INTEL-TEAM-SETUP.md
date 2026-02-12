@@ -196,6 +196,7 @@ Vector: What is the target identifier?
 ### Step 4: Receive Rapid Analysis
 
 Within 15 minutes, Vector delivers:
+
 - Immediate hits and exposures
 - Risk assessment score
 - Recommended follow-up workflows
@@ -204,6 +205,7 @@ Within 15 minutes, Vector delivers:
 ### Step 5: Decide Next Steps
 
 Based on findings, Vector recommends:
+
 - Full Campaign Planner for deep investigation
 - Specific INT workflows for focused collection
 - Threat Constellation for actor mapping
@@ -264,6 +266,7 @@ permissions:
 ```
 
 **Key Points:**
+
 - Network access enabled for OSINT collection
 - DNS/WHOIS commands for domain intelligence
 - Sensitive data flag enabled (triggers local LLM routing)
@@ -396,6 +399,7 @@ Load workflow: _bmad/intel-team/workflows/operation-mosaic/workflow.md
 ### OPSEC Warning
 
 If you see OPSEC warnings:
+
 1. Verify local LLM is configured
 2. Check classification settings
 3. Review output sanitization

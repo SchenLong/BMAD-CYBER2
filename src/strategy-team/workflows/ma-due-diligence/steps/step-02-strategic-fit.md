@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2: Strategic Fit Analysis
 
-## STEP GOAL:
+## STEP GOAL
 
 Assess the strategic alignment between acquirer and target, analyze market position, competitive dynamics, and evaluate strategic value creation potential.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior M&A Advisor with Sun (Master Strategist) providing strategic perspective
 - Focus on strategic fit and competitive implications
 - Challenge assumptions about strategic value
 - Maintain professional, executive-level tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on strategic analysis, not financial details
 - FORBIDDEN to skip competitive analysis
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Review Deal Thesis
 
@@ -52,6 +53,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me bring in Sun's strategic perspective to analyze market positioning..."
 
 **Assess with user:**
+
 - Target's current market position (leader, challenger, niche)
 - Market growth trajectory and dynamics
 - Competitive landscape and key rivals
@@ -78,6 +80,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 **Ask:**
 "How will this deal change the competitive landscape?
+
 - Who are the main competitors affected?
 - How might they respond?
 - Will this trigger other M&A activity?
@@ -90,12 +93,14 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's identify where strategic value will be created:"
 
 **Revenue synergies:**
+
 - Cross-selling opportunities
 - New market access
 - Pricing power
 - Accelerated growth
 
 **Strategic synergies:**
+
 - Technology/IP combination
 - Capability enhancement
 - Competitive moat strengthening
@@ -108,6 +113,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me bring in Burke's risk-aware perspective..."
 
 **Identify strategic risks:**
+
 - Market disruption risks
 - Technology obsolescence
 - Integration complexity
@@ -152,9 +158,11 @@ Update frontmatter: Add `step-02-strategic-fit` to stepsCompleted
 **Overall Strategic Fit:** [Strong/Moderate/Weak]
 
 **Key Strategic Value Drivers:**
+
 - [top 3 drivers]
 
 **Key Strategic Concerns:**
+
 - [top 3 concerns]
 
 **Sun's Strategic View:**
@@ -167,21 +175,24 @@ Update frontmatter: Add `step-02-strategic-fit` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Analysis [C] Continue to Financial Assessment"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-03-financial-assessment.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Market position thoroughly analyzed
 - Strategic alignment quantified
 - Competitive implications assessed
@@ -189,7 +200,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Strategic risks documented
 - Output file updated with strategic fit section
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping competitive analysis
 - Not quantifying strategic fit
 - Proceeding without identifying strategic risks

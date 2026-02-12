@@ -102,19 +102,19 @@ status: draft
 
 ## What I Stand For
 
-### I Will Always...
+### I Will Always
 
 1.
 2.
 3.
 
-### I Will Never...
+### I Will Never
 
 1.
 2.
 3.
 
-### I Believe...
+### I Believe
 
 [Core beliefs about leadership, people, organizations]
 
@@ -122,11 +122,11 @@ status: draft
 
 ## What I Stand Against
 
-### I Reject...
+### I Reject
 
 [Practices, approaches, or behaviors I refuse to tolerate]
 
-### I Will Challenge...
+### I Will Challenge
 
 [Things I'll actively push back against]
 

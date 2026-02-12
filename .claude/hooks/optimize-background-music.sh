@@ -16,6 +16,12 @@ set -euo pipefail
 export LC_ALL=C
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source input validation library
+if [[ -f "$SCRIPT_DIR/lib/input-validation.sh" ]]; then
+  source "$SCRIPT_DIR/lib/input-validation.sh"
+fi
+
 BACKGROUNDS_DIR="$SCRIPT_DIR/../audio/tracks"
 OPTIMIZED_DIR="$BACKGROUNDS_DIR/optimized"
 

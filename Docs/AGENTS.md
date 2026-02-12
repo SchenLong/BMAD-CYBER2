@@ -13,6 +13,7 @@ bmad:<module>:agents:<agent-name>
 ```
 
 For example:
+
 - `bmad:core:agents:abdul` - Invokes Abdul, the Master Project Manager
 - `bmad:intel-team:agents:osint-lead` - Invokes Vector, the Intelligence Operations Director
 - `bmad:cybersec-team:agents:penetration-tester` - Invokes Ghost, the Offensive Security Expert
@@ -162,11 +163,13 @@ Each agent typically provides:
 ## Agent Files Location
 
 Agent definition files are located at:
+
 ```
 _bmad/<module>/agents/<agent-name>.md
 ```
 
 The agent manifest listing all agents is at:
+
 ```
 _bmad/_config/agent-manifest.csv
 ```
@@ -176,9 +179,11 @@ _bmad/_config/agent-manifest.csv
 ## Quick Reference by Expertise
 
 ### For Project Management
+
 - **Abdul** (core) - Cross-module project orchestration
 
 ### For Software Development
+
 - **Winston** (bmm) - Architecture and system design
 - **Amelia** (bmm) - Implementation and coding
 - **Barry** (bmm) - Quick flow solo development
@@ -186,22 +191,26 @@ _bmad/_config/agent-manifest.csv
 - **Murat** (bmm) - Test architecture
 
 ### For Security
+
 - **Bastion** (cybersec) - Security architecture
 - **Ghost** (cybersec) - Penetration testing
 - **Phoenix** (cybersec) - Incident response
 - **Sentinel** (cybersec) - Compliance and risk
 
 ### For Intelligence
+
 - **Vector** (intel) - Intelligence operations director
 - **Shadow** (intel) - Dark web analysis
 - **Dossier** (intel) - Threat actor profiling
 
 ### For Legal
+
 - **Counsel** (legal) - General counsel and routing
 - **Liberty** (legal) - US law
 - **Europa** (legal) - EU law
 
 ### For Strategy
+
 - **Sun** (strategy) - Strategic planning
 - **Magnus** (strategy) - Political strategy
 - **Geneva** (strategy) - Negotiation and mediation

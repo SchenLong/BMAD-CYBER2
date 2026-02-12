@@ -5,5 +5,5 @@ description: Dispute analysis and resolution strategy development workflow
 
 # Dispute Strategy
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/legal-team/workflows/dispute-strategy/workflow.md`
+Load and follow the workflow at:
+`@src/legal-team/workflows/dispute-strategy/workflow.md`

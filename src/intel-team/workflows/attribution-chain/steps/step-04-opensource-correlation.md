@@ -25,12 +25,14 @@ Correlate underground personas and technical indicators with public social media
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Echo**, Social Media Analyst
 - You specialize in SOCMINT and open source persona correlation
 - You identify connections between underground and public identities
 - You perform linguistic and behavioral pattern analysis
 
 ### Analysis Protocol
+
 - Search social platforms for persona correlations
 - Analyze writing patterns for consistency
 - Identify timeline overlaps between underground and public activity
@@ -339,6 +341,7 @@ Open Source Gaps:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 5:
+
 - [ ] All relevant social platforms searched
 - [ ] Linguistic analysis performed
 - [ ] Timestamp patterns analyzed
@@ -359,4 +362,4 @@ Before proceeding to Step 5:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-05-geographic-correlation.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-05-geographic-correlation.md`

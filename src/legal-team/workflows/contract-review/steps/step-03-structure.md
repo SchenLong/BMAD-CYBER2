@@ -16,6 +16,7 @@ Analyze the contract's organization, recitals, and definitions.
 ### 1. Structure Analysis
 
 Review:
+
 - Overall organization and flow
 - Recitals/Background accuracy
 - Logical progression of terms
@@ -24,6 +25,7 @@ Review:
 ### 2. Definitions Review
 
 Assess:
+
 - Are key terms defined?
 - Are definitions clear and unambiguous?
 - Are definitions used consistently?
@@ -33,6 +35,7 @@ Assess:
 ### 3. Cross-Reference Check
 
 Verify:
+
 - Internal references are accurate
 - Exhibit/Schedule references correct
 - No orphaned references

@@ -142,6 +142,7 @@ incidentCommander: "{commander_name}"
 ### 3.2 Key Decisions Made
 
 **Decision 1:**
+
 - **Decision:** {decision_1}
 - **Rationale:** {rationale_1}
 - **Decided By:** {decider_1}
@@ -149,6 +150,7 @@ incidentCommander: "{commander_name}"
 - **Alternatives Considered:** {alternatives_1}
 
 **Decision 2:**
+
 - **Decision:** {decision_2}
 - **Rationale:** {rationale_2}
 - **Decided By:** {decider_2}
@@ -180,6 +182,7 @@ incidentCommander: "{commander_name}"
 ### 4.1 Digital Evidence
 
 **Evidence Item 1:**
+
 - **Type:** {evidence_type_1}
 - **Source:** {evidence_source_1}
 - **Collected By:** {collector_1}
@@ -188,6 +191,7 @@ incidentCommander: "{commander_name}"
 - **Storage Location:** {storage_1}
 
 **Evidence Item 2:**
+
 - **Type:** {evidence_type_2}
 - **Source:** {evidence_source_2}
 - **Collected By:** {collector_2}
@@ -262,46 +266,57 @@ incidentCommander: "{commander_name}"
 ### 5.2 Attack Vectors and Techniques
 
 **Initial Access:**
+
 - **Vector:** {initial_access_vector}
 - **MITRE Technique:** {initial_access_technique}
 
 **Execution:**
+
 - **Methods:** {execution_methods}
 - **MITRE Technique:** {execution_technique}
 
 **Persistence:**
+
 - **Mechanisms:** {persistence_mechanisms}
 - **MITRE Technique:** {persistence_technique}
 
 **Privilege Escalation:**
+
 - **Methods:** {privilege_escalation}
 - **MITRE Technique:** {privilege_escalation_technique}
 
 **Defense Evasion:**
+
 - **Tactics:** {defense_evasion}
 - **MITRE Technique:** {defense_evasion_technique}
 
 **Credential Access:**
+
 - **Methods:** {credential_access}
 - **MITRE Technique:** {credential_access_technique}
 
 **Discovery:**
+
 - **Activities:** {discovery}
 - **MITRE Technique:** {discovery_technique}
 
 **Lateral Movement:**
+
 - **Methods:** {lateral_movement}
 - **MITRE Technique:** {lateral_movement_technique}
 
 **Collection:**
+
 - **Data Targeted:** {collection}
 - **MITRE Technique:** {collection_technique}
 
 **Exfiltration:**
+
 - **Methods:** {exfiltration}
 - **MITRE Technique:** {exfiltration_technique}
 
 **Impact:**
+
 - **Effects:** {impact}
 - **MITRE Technique:** {impact_technique}
 
@@ -325,12 +340,14 @@ incidentCommander: "{commander_name}"
 ### 5.4 Vulnerabilities Exploited
 
 **Vulnerability 1:**
+
 - **CVE:** {cve_1}
 - **Description:** {vulnerability_description_1}
 - **Exploited System:** {exploited_system_1}
 - **Patch Status:** {patch_status_1}
 
 **Vulnerability 2:**
+
 - **CVE:** {cve_2}
 - **Description:** {vulnerability_description_2}
 - **Exploited System:** {exploited_system_2}
@@ -457,6 +474,7 @@ incidentCommander: "{commander_name}"
 {notification_timeline}
 
 **Notifications Sent:**
+
 | Regulator | Sent Date | Method | Confirmation |
 |-----------|-----------|--------|--------------|
 | {regulator_1} | {sent_date_1} | {method_1} | {confirmation_1} |
@@ -475,6 +493,7 @@ incidentCommander: "{commander_name}"
 ### 8.3 Internal Reporting
 
 **Reports Submitted To:**
+
 - Management: {management_report_date}
 - Legal: {legal_report_date}
 - Compliance: {compliance_report_date}

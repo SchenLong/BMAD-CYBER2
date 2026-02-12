@@ -18,6 +18,7 @@ Generate the complete formation documentation package with all required document
 Based on entity type and jurisdiction, generate:
 
 **USA LLC:**
+
 - Certificate of Formation (template)
 - Operating Agreement (comprehensive)
 - Initial Member Resolutions
@@ -26,6 +27,7 @@ Based on entity type and jurisdiction, generate:
 - BOI Report Instructions
 
 **USA Corporation:**
+
 - Certificate of Incorporation (template)
 - Bylaws
 - Organizational Consent/Resolutions
@@ -34,6 +36,7 @@ Based on entity type and jurisdiction, generate:
 - EIN Application Guide
 
 **Spain SL:**
+
 - Estatutos Sociales (borrador)
 - Acta de Constitución (guía)
 - Certificación Denominación (instrucciones)
@@ -41,6 +44,7 @@ Based on entity type and jurisdiction, generate:
 - Checklist Notarial
 
 **Estonia OÜ:**
+
 - Articles of Association
 - Founder Resolution
 - Board Member Consent

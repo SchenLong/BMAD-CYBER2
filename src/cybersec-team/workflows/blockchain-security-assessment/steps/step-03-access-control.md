@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/blockchain-security-assessment-{project_na
 
 # Step 3: Access Control Analysis
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on access control and privilege analysis
 - FORBIDDEN to discuss economic attacks yet
 - Assess centralization risks thoroughly
 
-## STEP GOAL:
+## STEP GOAL
 
 To analyze access control mechanisms, privileged roles, and centralization risks in the protocol.
 
-## ACCESS CONTROL SEQUENCE:
+## ACCESS CONTROL SEQUENCE
 
 ### 1. Role Inventory
 
@@ -54,6 +54,7 @@ To analyze access control mechanisms, privileged roles, and centralization risks
 | Upgrader | ? | Contract upgrades | ? |
 
 **Questions:**
+
 - What roles exist in the protocol?
 - Are role addresses EOAs or multisigs?
 - Is there a timelocked governance?
@@ -76,6 +77,7 @@ What privileged roles exist in your protocol?"
 | Add/remove roles | grantRole() | High |
 
 **Critical Questions:**
+
 - Can owner drain user funds?
 - Can owner pause withdrawals indefinitely?
 - Can owner upgrade to malicious code?
@@ -117,6 +119,7 @@ Are critical roles protected by multisigs?"
 | Role changes | ? hours | ? | ? |
 
 **Recommended Delays:**
+
 - Minor parameters: 24-48 hours
 - Major changes: 48-72 hours
 - Upgrades: 72+ hours
@@ -162,6 +165,7 @@ What are the main centralization concerns?"
 | Custom | [Yes/No] | [Details] |
 
 **Security Checks:**
+
 - [ ] Role separation (no God mode)
 - [ ] Principle of least privilege
 - [ ] Role renunciation possible
@@ -242,6 +246,7 @@ Update Section 3 of {outputFile}:
 "**Access Control Analysis Complete**
 
 I've analyzed:
+
 - All privileged roles and capabilities
 - Multisig configurations
 - Timelock mechanisms
@@ -256,7 +261,7 @@ Ready to proceed to economic security assessment?"
 
 Display: **Access Control Analysis Complete - Select an Option:** [C] Continue to Economic Security [R] Review/Revise Analysis
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 3 content, allow revisions, then redisplay menu
@@ -265,6 +270,6 @@ Display: **Access Control Analysis Complete - Select an Option:** [C] Continue t
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN access control is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN access control is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

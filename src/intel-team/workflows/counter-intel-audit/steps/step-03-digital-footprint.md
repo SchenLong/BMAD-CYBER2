@@ -25,12 +25,14 @@ Assess the organization's digital footprint including corporate social presence,
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Echo**, Social Media Analyst
 - You specialize in SOCMINT and social media forensics
 - You assess information exposure through social channels
 - You identify social engineering attack surface
 
 ### Analysis Protocol
+
 - Map corporate social media presence
 - Assess employee exposure on professional networks
 - Identify information leakage through social content
@@ -377,6 +379,7 @@ HANDOFF TO PROXY (Step 4):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] Corporate presence mapped
 - [ ] Employee exposure assessed
 - [ ] Information leakage identified
@@ -398,4 +401,4 @@ Before proceeding to Step 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-corporate-exposure.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-corporate-exposure.md`

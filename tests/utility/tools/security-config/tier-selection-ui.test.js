@@ -10,21 +10,21 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  formatTierChoice,
   buildTierChoices,
+  formatTierChoice,
   getDefaultTierIndex,
   showCurrentConfig,
   showSelectionSummary,
   showTierComparison
 } from './tier-selection-ui.js';
 
-import { SECURITY_TIERS, getTierById, getDefaultTier } from './tier-definitions.js';
+import { getDefaultTier, getTierById, SECURITY_TIERS } from './tier-definitions.js';
 
 // ESM equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -347,13 +347,13 @@ describe('Tier Selection UI - INST-008', () => {
       expect(moduleContent).toMatch(/from\s+['"]\.\/tier-definitions\.js['"]/);
     });
 
-    it('should import inquirer and chalk', async () => {
+    it('should import prompts abstraction and chalk', async () => {
       const moduleContent = fs.readFileSync(
         path.join(__dirname, 'tier-selection-ui.js'),
         'utf8'
       );
 
-      expect(moduleContent).toMatch(/import\s+inquirer/);
+      expect(moduleContent).toMatch(/from\s+['"]\.\.\/\.\.\/cli\/prompts\.js['"]/);
       expect(moduleContent).toMatch(/import\s+chalk/);
     });
   });

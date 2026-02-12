@@ -26,6 +26,7 @@ reviewPeriod: ""
 ## 1. Review Setup
 
 ### Employee Information
+
 | Attribute | Details |
 |-----------|---------|
 | Name | |
@@ -36,15 +37,18 @@ reviewPeriod: ""
 | Department | |
 
 ### Review Context
+
 **Review Type:** [Annual / Mid-Year / Probation / PIP / Promotion]
 **Period:** [Start] to [End]
 
 ### Goals & Expectations
+
 | Goal | Weight | Measure |
 |------|--------|---------|
 | | | |
 
 ### Available Inputs
+
 | Input Type | Available | Key Points |
 |------------|-----------|------------|
 | Self-assessment | Y/N | |
@@ -54,6 +58,7 @@ reviewPeriod: ""
 | Previous reviews | Y/N | |
 
 ### Review Objectives
+
 [What this review aims to accomplish]
 
 ---
@@ -61,6 +66,7 @@ reviewPeriod: ""
 ## 2. Performance Assessment
 
 ### Results Assessment
+
 | Goal | Result | Rating (1-5) | Evidence |
 |------|--------|--------------|----------|
 | | Met/Exceeded/Below | | |
@@ -68,6 +74,7 @@ reviewPeriod: ""
 **Overall Results Rating:** [X/5]
 
 ### Behavior Assessment
+
 | Competency | Rating (1-5) | Evidence |
 |------------|--------------|----------|
 | Leadership | | |
@@ -79,15 +86,18 @@ reviewPeriod: ""
 **Overall Behaviors Rating:** [X/5]
 
 ### Key Strengths
+
 1. [Strength + evidence]
 2. [Strength + evidence]
 3. [Strength + evidence]
 
 ### Development Areas
+
 1. [Area + evidence]
 2. [Area + evidence]
 
 ### Impact Assessment
+
 | Impact Area | Assessment | Examples |
 |-------------|------------|----------|
 | Team performance | Positive/Neutral/Negative | |
@@ -96,9 +106,11 @@ reviewPeriod: ""
 | Culture contribution | | |
 
 ### Trajectory
+
 **Trend:** [Improving / Steady / Declining]
 
 ### 360 Input Synthesis
+
 **Common Strengths:**
 -
 
@@ -109,6 +121,7 @@ reviewPeriod: ""
 [Where self-view aligns/differs from others]
 
 ### Overall Assessment
+
 | Dimension | Rating |
 |-----------|--------|
 | Results | /5 |
@@ -119,6 +132,7 @@ reviewPeriod: ""
 **Summary:** [2-3 sentence overall assessment]
 
 ### Augustus's Evidence-Based View
+
 "[Policy analyst perspective]"
 
 ---
@@ -126,6 +140,7 @@ reviewPeriod: ""
 ## 3. Feedback Calibration
 
 ### Bias Check
+
 | Bias Type | Risk | Mitigation |
 |-----------|------|------------|
 | Recency | H/M/L | |
@@ -137,16 +152,19 @@ reviewPeriod: ""
 **Mitigations Applied:** [list]
 
 ### Evidence Quality
+
 | Claim | Evidence | Quality |
 |-------|----------|---------|
 | | | Strong/Moderate/Weak |
 
 ### Peer Calibration
+
 | Dimension | This Person | Peer Average | Adjusted? |
 |-----------|-------------|--------------|-----------|
 | Overall | | | |
 
 ### Standards Alignment
+
 | Standard | Aligned? |
 |----------|----------|
 | Company values | |
@@ -154,15 +172,18 @@ reviewPeriod: ""
 | Level expectations | |
 
 ### Balance Check
+
 **Positive:Constructive Ratio:** [X:Y]
 **Adjustments Made:** [list]
 
 ### External Factors
+
 | Factor | Impact | Factored In? |
 |--------|--------|--------------|
 | | | |
 
 ### Calibrated Assessment
+
 | Dimension | Initial | Final | Change Reason |
 |-----------|---------|-------|---------------|
 | Results | | | |
@@ -170,6 +191,7 @@ reviewPeriod: ""
 | Overall | | | |
 
 ### Sophia's Fairness View
+
 "[Ethics advisor perspective]"
 
 ---
@@ -177,11 +199,13 @@ reviewPeriod: ""
 ## 4. Development Planning
 
 ### Priority Development Areas
+
 | Area | Performance Impact | Career Impact | Priority |
 |------|-------------------|----------------|----------|
 | | H/M/L | H/M/L | 1/2/3 |
 
 ### Career Aspirations
+
 **Short-term (1-2 years):**
 -
 
@@ -191,7 +215,9 @@ reviewPeriod: ""
 **Alignment with Development:** [assessment]
 
 ### Development Actions
+
 **Priority Area 1: [Name]**
+
 | Action Type | Specific Action | Timeline | Success Measure |
 |-------------|-----------------|----------|-----------------|
 | Training | | | |
@@ -199,26 +225,31 @@ reviewPeriod: ""
 | Coaching | | | |
 
 **Priority Area 2: [Name]**
+
 | Action Type | Specific Action | Timeline | Success Measure |
 |-------------|-----------------|----------|-----------------|
 | | | | |
 
 ### Stretch Opportunities
+
 | Opportunity | Skills Developed | Timeline |
 |-------------|------------------|----------|
 | | | |
 
 ### Support Plan
+
 | Support Type | Description | Provider |
 |--------------|-------------|----------|
 | | | |
 
 ### Development Goals
+
 | Goal | Success Measure | Timeline |
 |------|-----------------|----------|
 | | | |
 
 ### Charles's Growth View
+
 "[Liberator perspective]"
 
 ---
@@ -226,6 +257,7 @@ reviewPeriod: ""
 ## 5. Conversation Preparation
 
 ### Conversation Structure
+
 | Phase | Duration | Focus |
 |-------|----------|-------|
 | Opening | 5 min | |
@@ -236,14 +268,17 @@ reviewPeriod: ""
 | Close | 5 min | |
 
 ### Opening Script
+
 "[Draft opening remarks]"
 
 ### Difficult Feedback Delivery
+
 | Message | SBI Framework | Anticipated Response |
 |---------|---------------|---------------------|
 | | S: B: I: | |
 
 ### Anticipated Reactions
+
 | Reaction | Signs | Response Strategy |
 |----------|-------|-------------------|
 | Defensiveness | | |
@@ -252,14 +287,17 @@ reviewPeriod: ""
 | Silence | | |
 
 ### Questions to Ask
+
 1. [Question]
 2. [Question]
 3. [Question]
 
 ### Disagreement Protocol
+
 [How to handle if employee disagrees]
 
 ### Logistics
+
 | Element | Plan |
 |---------|------|
 | Location | |
@@ -268,6 +306,7 @@ reviewPeriod: ""
 | Materials | |
 
 ### Geneva's Conversation View
+
 "[Stakeholder mediator perspective]"
 
 ---
@@ -281,6 +320,7 @@ reviewPeriod: ""
 **Overall Rating:** [X/5]
 
 ### Results Assessment
+
 **Rating:** [X/5]
 
 | Goal | Result | Rating |
@@ -288,6 +328,7 @@ reviewPeriod: ""
 | | | |
 
 ### Behavior Assessment
+
 **Rating:** [X/5]
 
 **Strengths:**
@@ -300,19 +341,23 @@ reviewPeriod: ""
 2.
 
 ### Development Plan
+
 | Area | Actions | Timeline |
 |------|---------|----------|
 | | | |
 
 ### Goals for Next Period
+
 1.
 2.
 3.
 
 ### Manager Comments
+
 [Additional comments]
 
 ### Employee Comments
+
 [To be completed after discussion]
 
 ---
@@ -326,6 +371,7 @@ Employee: _________________ Date: _______
 ---
 
 ## Post-Conversation Actions
+
 | Action | Timeline | Owner |
 |--------|----------|-------|
 | Share written review | 24 hours | Manager |
@@ -339,12 +385,15 @@ Employee: _________________ Date: _______
 ## Appendix
 
 ### Document History
+
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | {date} | Performance Review Workflow | Initial draft |
 
 ### Inputs Used
+
 -
 
 ### Methodology
+
 This performance review was prepared using the Performance Review Preparation workflow, incorporating perspectives from evidence-based assessment, ethics and fairness, conversation design, and development planning advisors through structured multi-dimensional analysis.

@@ -5,5 +5,5 @@ description: Develop personal leadership philosophy through dialogue with histor
 
 # Leadership Philosophy Development
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/strategy-team/workflows/leadership-philosophy/workflow.md`
+Load and follow the workflow at:
+`@src/strategy-team/workflows/leadership-philosophy/workflow.md`

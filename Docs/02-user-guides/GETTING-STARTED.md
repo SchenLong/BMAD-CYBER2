@@ -51,6 +51,7 @@ gpg --import _bmad/core/security/bmad-public-key.asc
 ```
 
 If verification passes, you'll see:
+
 ```
 ╔════════════════════════════════════════════════════════════════╗
 ║            ALL INTEGRITY CHECKS PASSED                         ║
@@ -94,6 +95,7 @@ node _bmad/core/security/check-authorization.js
 #### OWASP Compliance (Score: 93/100)
 
 BMAD provides protection against:
+
 - **LLM01**: Prompt Injection (jailbreak detection)
 - **LLM04**: DoS (rate limiting, resource limits)
 - **LLM05**: Supply Chain (plugin verification)
@@ -165,12 +167,14 @@ BMAD includes a tiered context loading system that reduces token consumption by 
 ### 2. Run a Workflow
 
 **From an agent:**
+
 ```
 > Select workflow from agent menu
 > Or type workflow command (e.g., "SR" for Security Review)
 ```
 
 **Direct workflow loading:**
+
 ```
 Load workflow: _bmad/cybersec-team/workflows/virtual-ciso-consulting/workflow.md
 ```
@@ -387,54 +391,63 @@ preferences:
 ### Party Mode Scenarios
 
 **Scenario 1: Architecture Security Review**
+
 ```
 Agents: Bastion + Ghost + Nimbus
 Purpose: Defensive design + offensive validation + cloud security
 ```
 
 **Scenario 2: Incident Response**
+
 ```
 Agents: Phoenix + Trace + Cipher + Watchman
 Purpose: Command + forensics + threat intel + SOC operations
 ```
 
 **Scenario 3: Compliance Assessment**
+
 ```
 Agents: Sentinel + Bastion + Nimbus
 Purpose: Compliance + architecture + cloud compliance
 ```
 
 **Scenario 4: Web3/Blockchain Audit**
+
 ```
 Agents: Ledger + Weaver + Gateway
 Purpose: Smart contracts + web app + API security
 ```
 
 **Scenario 5: Full-Stack Application Security**
+
 ```
 Agents: Weaver + Gateway + Oracle + Phantom
 Purpose: Web + API + AI + mobile security
 ```
 
 **Scenario 6: Purple Team Exercise**
+
 ```
 Agents: Shield + Ghost + Watchman + Cipher
 Purpose: Blue team + red team + SOC + threat intel
 ```
 
 **Scenario 7: Multi-INT Intelligence Fusion**
+
 ```
 Agents: Vector + Resolver + Echo + Shadow + Atlas + Probe
 Purpose: All-source intelligence coordination
 ```
 
 **Scenario 8: Cross-Module with Legal Support**
+
 ```
 Agents: Bastion + Sentinel + Counsel + Covenant
 Purpose: Security architecture with compliance and legal review
 ```
 
 **Scenario 9: Executive Decision with Legal**
+
 ```
 Agents: Sun + Augustus + Counsel + Europa
 Purpose: Strategic planning with legal and regulatory input
@@ -449,6 +462,7 @@ Purpose: Strategic planning with legal and regulatory input
 ### Common Issues
 
 **Agent not loading:**
+
 ```bash
 # Check agent path
 ls _bmad/cybersec-team/agents/
@@ -458,6 +472,7 @@ ls .claude/commands/bmad/cybersec-team/agents/
 ```
 
 **Workflow not found:**
+
 ```bash
 # Check workflow path
 ls _bmad/cybersec-team/workflows/
@@ -467,6 +482,7 @@ Load workflow: _bmad/cybersec-team/workflows/[workflow-name]/workflow.md
 ```
 
 **Party Mode issues:**
+
 ```bash
 # Ensure agents are loaded first
 /security-architect

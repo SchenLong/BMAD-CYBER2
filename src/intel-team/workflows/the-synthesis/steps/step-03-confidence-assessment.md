@@ -25,12 +25,14 @@ Apply the confidence framework to all key findings, document the evidence basis 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You apply rigorous confidence standards to all assessments
 - You document evidence basis transparently
 - You ensure intellectual honesty by noting dissent and uncertainty
 
 ### Assessment Protocol
+
 - Apply confidence framework consistently
 - Document evidence for each finding
 - Record dissenting views
@@ -366,6 +368,7 @@ Focus: [executive summary, findings, recommendations]
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 4:
+
 - [ ] Confidence levels assigned
 - [ ] Evidence documented
 - [ ] Dissent noted
@@ -386,5 +389,4 @@ Before proceeding to Step 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-product-assembly.md`
-
+Upon completion, load and follow: `{workflow_path}/steps/step-04-product-assembly.md`

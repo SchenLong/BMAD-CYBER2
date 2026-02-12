@@ -9,22 +9,22 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import { fileURLToPath } from 'url';
 
 import {
-  VERSION,
   HELP_TEXT,
-  runModuleCheck,
-  runTokenCheck,
-  runLLMCheck,
-  runSecurityCheck,
-  runAllChecks,
+  main,
   parseArgs,
-  main
+  runAllChecks,
+  runLLMCheck,
+  runModuleCheck,
+  runSecurityCheck,
+  runTokenCheck,
+  VERSION
 } from './index.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -49,7 +49,7 @@ function createTempDir() {
 function cleanupTempDir(dir) {
   try {
     fs.rmSync(dir, { recursive: true });
-  } catch {}
+  } catch { /* best-effort cleanup */ }
 }
 
 // ============================================================================

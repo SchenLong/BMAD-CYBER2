@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/social-media-analyst.md
+# Full agent: src/intel-team/agents/social-media-analyst.md
 agent_id: "social-media-analyst"
 name: "Echo"
 title: "Social Media Intelligence Analyst"

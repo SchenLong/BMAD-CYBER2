@@ -8,6 +8,7 @@
 ## Related Files
 
 ### Phase 4.1 - Core OWASP Validators
+
 - `.claude/validators-node/bin/rate-limiter.js` - DoS protection (LLM04)
 - `.claude/validators-node/bin/plugin-permissions.js` - Capability-based security (LLM07)
 - `.claude/validators-node/bin/supply-chain.js` - Integrity verification (LLM05)
@@ -17,6 +18,7 @@
 - `.claude/validators-node/bin/confidence-tracker.js` - Overreliance mitigation (LLM09)
 
 ### Phase 4.2 - Long-Term Security Controls (NEW)
+
 - `.claude/validators-node/bin/audit-integrity.js` - Cryptographic hash chain for audit logs
 - `.claude/validators-node/bin/telemetry-collector.js` - Security event telemetry & SIEM integration
 - `.claude/validators-node/bin/anomaly-detector.js` - Statistical anomaly detection
@@ -66,6 +68,7 @@ P4 addresses OWASP Top 10 for LLM Applications with **10 new validators** bringi
 ### LLM04: Model Denial of Service
 
 **Mitigations Implemented:**
+
 - Rate limiting with sliding window algorithm
 - Context window protection
 - Recursion depth limiting
@@ -74,6 +77,7 @@ P4 addresses OWASP Top 10 for LLM Applications with **10 new validators** bringi
 ### LLM05: Supply Chain Vulnerabilities
 
 **Mitigations Implemented:**
+
 - Plugin/skill hash verification
 - Manifest integrity checking
 - GPG signature validation
@@ -82,6 +86,7 @@ P4 addresses OWASP Top 10 for LLM Applications with **10 new validators** bringi
 ### LLM07: Insecure Plugin Design
 
 **Mitigations Implemented:**
+
 - Capability-based permission model
 - Plugin isolation boundaries
 - Permission elevation controls
@@ -90,6 +95,7 @@ P4 addresses OWASP Top 10 for LLM Applications with **10 new validators** bringi
 ### LLM09: Overreliance
 
 **Mitigations Implemented:**
+
 - Confidence scoring system
 - Uncertainty flagging
 - Human-in-the-loop triggers
@@ -104,12 +110,14 @@ P4 addresses OWASP Top 10 for LLM Applications with **10 new validators** bringi
 Sliding window rate limiting to prevent DoS attacks.
 
 **Features:**
+
 - Per-tool rate limits
 - User-based tracking
 - Configurable windows (1min, 5min, 1hr)
 - Burst protection
 
 **Configuration:**
+
 ```yaml
 rate_limits:
   Bash:
@@ -128,12 +136,14 @@ rate_limits:
 Capability-based security model for plugins.
 
 **Features:**
+
 - Permission manifest per plugin
 - Capability inheritance
 - Elevation requests with audit
 - Cross-module boundaries
 
 **Permission Types:**
+
 | Permission | Description |
 |------------|-------------|
 | `file:read` | Read file contents |
@@ -148,12 +158,14 @@ Capability-based security model for plugins.
 Integrity verification for skills and plugins.
 
 **Features:**
+
 - SHA-256 hash verification
 - GPG signature validation
 - Manifest integrity checking
 - Tamper detection
 
 **Verification Flow:**
+
 ```
 Plugin Load Request
        │
@@ -180,12 +192,14 @@ Plugin Load Request
 Context window protection to prevent resource exhaustion.
 
 **Features:**
+
 - Token count estimation
 - Window size enforcement
 - Context pruning recommendations
 - Memory usage tracking
 
 **Limits:**
+
 | Model | Max Context | Warning Threshold |
 |-------|-------------|-------------------|
 | Claude | 200K tokens | 150K tokens |
@@ -196,12 +210,14 @@ Context window protection to prevent resource exhaustion.
 Prevents infinite loops and recursive patterns.
 
 **Features:**
+
 - Call depth tracking
 - Pattern detection
 - Automatic circuit breaker
 - Graceful degradation
 
 **Limits:**
+
 - Max recursion depth: 10
 - Max repeated patterns: 5
 - Cooldown period: 60 seconds
@@ -211,12 +227,14 @@ Prevents infinite loops and recursive patterns.
 System resource protection.
 
 **Features:**
+
 - Memory usage limits
 - Process count limits
 - File size limits
 - Execution time limits
 
 **Configuration:**
+
 ```yaml
 resource_limits:
   max_memory_mb: 2048
@@ -230,12 +248,14 @@ resource_limits:
 Reduces overreliance on AI outputs.
 
 **Features:**
+
 - Confidence scoring (0-100)
 - Uncertainty detection
 - Human review triggers
 - Output verification
 
 **Score Thresholds:**
+
 | Score | Action |
 |-------|--------|
 | 90-100 | High confidence, proceed |
@@ -254,6 +274,7 @@ Phase 4.2 adds three critical long-term security controls for audit accountabili
 Cryptographic hash chain implementation for tamper-evident audit logs.
 
 **Features:**
+
 - SHA-256 hash chain linking all log entries
 - Genesis block with deterministic initial hash
 - Tamper detection via chain verification
@@ -261,6 +282,7 @@ Cryptographic hash chain implementation for tamper-evident audit logs.
 - CLI verification command
 
 **Hash Chain Structure:**
+
 ```
 Entry N:
   content_hash: SHA256(entry_data)
@@ -269,6 +291,7 @@ Entry N:
 ```
 
 **CLI Commands:**
+
 ```bash
 # Verify chain integrity
 node .claude/validators-node/bin/audit-integrity.js verify
@@ -281,6 +304,7 @@ node .claude/validators-node/bin/audit-integrity.js sign
 ```
 
 **Configuration:**
+
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `BMAD_AUDIT_SIGNING` | `true` | Enable hash chain |
@@ -292,6 +316,7 @@ node .claude/validators-node/bin/audit-integrity.js sign
 Security event telemetry for SIEM integration and security observability.
 
 **Features:**
+
 - Real-time event collection
 - JSONL format for log aggregators
 - Automatic file rotation (50MB default)
@@ -299,6 +324,7 @@ Security event telemetry for SIEM integration and security observability.
 - Statistics and aggregation
 
 **Output Files:**
+
 | File | Description |
 |------|-------------|
 | `security_events.jsonl` | Blocks, overrides, violations |
@@ -310,6 +336,7 @@ Security event telemetry for SIEM integration and security observability.
 | `anomaly_signals.jsonl` | Anomaly detections |
 
 **CLI Commands:**
+
 ```bash
 # View telemetry status
 node .claude/validators-node/bin/telemetry-collector.js status
@@ -322,6 +349,7 @@ node .claude/validators-node/bin/telemetry-collector.js test
 ```
 
 **Configuration:**
+
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `BMAD_TELEMETRY_ENABLED` | `true` | Enable telemetry |
@@ -333,6 +361,7 @@ node .claude/validators-node/bin/telemetry-collector.js test
 Statistical anomaly detection for threat identification.
 
 **Features:**
+
 - Rolling window baseline computation
 - Volume spike/drop detection
 - Unusual operation type flagging
@@ -341,6 +370,7 @@ Statistical anomaly detection for threat identification.
 - Severity-based alerting (INFO/WARNING/CRITICAL)
 
 **Detection Types:**
+
 | Type | Description |
 |------|-------------|
 | `volume_spike` | Unusually high operation count |
@@ -350,12 +380,14 @@ Statistical anomaly detection for threat identification.
 | `time_anomaly` | Activity at unusual hours |
 
 **Algorithm:**
+
 - Uses z-score calculation (standard deviations from mean)
 - Threshold: 3.0 standard deviations (configurable)
 - Minimum 10 samples before baseline is ready
 - Rolling window of 100 samples per metric
 
 **CLI Commands:**
+
 ```bash
 # Check baseline status
 node .claude/validators-node/bin/anomaly-detector.js status
@@ -371,6 +403,7 @@ node .claude/validators-node/bin/anomaly-detector.js simulate
 ```
 
 **Configuration:**
+
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `BMAD_ANOMALY_DETECTION` | `true` | Enable detection |
@@ -385,6 +418,7 @@ node .claude/validators-node/bin/anomaly-detector.js simulate
 ### Files Added
 
 #### Phase 4.1 - Core OWASP Validators
+
 | File | Purpose | OWASP |
 |------|---------|-------|
 | `rate-limiter.js` | DoS protection | LLM04 |
@@ -396,6 +430,7 @@ node .claude/validators-node/bin/anomaly-detector.js simulate
 | `confidence-tracker.js` | Overreliance mitigation | LLM09 |
 
 #### Phase 4.2 - Long-Term Security Controls
+
 | File | Purpose | Category |
 |------|---------|----------|
 | `audit-integrity.js` | Hash chain signing | Audit & Accountability |
@@ -441,6 +476,7 @@ All new validators integrate via PreToolUse hooks:
 ### OWASP Remediation Test Summary
 
 #### Phase 4.1 - Core Validators
+
 | Validator | Tests | Pass | Fail | Coverage |
 |-----------|-------|------|------|----------|
 | rate-limiter.js | 27 | 27 | 0 | 100% |
@@ -453,6 +489,7 @@ All new validators integrate via PreToolUse hooks:
 | **Subtotal** | **222** | **222** | **0** | **100%** |
 
 #### Phase 4.2 - Long-Term Controls
+
 | Validator | Tests | Pass | Fail | Coverage |
 |-----------|-------|------|------|----------|
 | audit-integrity.js | 17 | 17 | 0 | 100% |
@@ -461,6 +498,7 @@ All new validators integrate via PreToolUse hooks:
 | **Subtotal** | **46** | **46** | **0** | **100%** |
 
 #### Grand Total
+
 | Phase | Tests | Pass | Fail | Status |
 |-------|-------|------|------|--------|
 | 4.1 Core | 222 | 222 | 0 | ✅ PASS |
@@ -470,6 +508,7 @@ All new validators integrate via PreToolUse hooks:
 ### Performance Benchmarks
 
 #### Phase 4.1
+
 | Validator | P95 Latency | Target | Status |
 |-----------|-------------|--------|--------|
 | rate-limiter.js | 0.5ms | <5ms | PASS |
@@ -481,6 +520,7 @@ All new validators integrate via PreToolUse hooks:
 | confidence-tracker.js | 0.9ms | <5ms | PASS |
 
 #### Phase 4.2
+
 | Validator | P95 Latency | Target | Status |
 |-----------|-------------|--------|--------|
 | audit-integrity.js | 2.0ms | <5ms | PASS |

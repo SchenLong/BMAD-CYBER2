@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/the-strategist-warrior.md
+# Full agent: src/strategy-team/agents/the-strategist-warrior.md
 agent_id: "the-strategist-warrior"
 name: "Musashi"
 title: "The Strategist-Warrior - Master of Timing"

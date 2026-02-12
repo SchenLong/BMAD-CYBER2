@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/intel-team/agents/osint-lead.md
+# Full agent: src/intel-team/agents/osint-lead.md
 agent_id: "osint-lead"
 name: "Vector"
 title: "Intelligence Operations Director"

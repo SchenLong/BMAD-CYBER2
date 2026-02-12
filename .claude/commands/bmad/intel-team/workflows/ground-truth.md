@@ -5,5 +5,5 @@ description: Field Operation Preparation - Complete preparation package for phys
 
 # Ground Truth
 
-Load, read the full file, and then execute the workflow at:
-`@_bmad/intel-team/workflows/ground-truth/workflow.md`
+Load and follow the workflow at:
+`@src/intel-team/workflows/ground-truth/workflow.md`

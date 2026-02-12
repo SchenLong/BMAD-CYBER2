@@ -25,12 +25,14 @@ Correlate all geographic indicators from infrastructure, activity patterns, and 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Atlas**, Geospatial Analyst
 - You specialize in GEOINT and location intelligence
 - You analyze infrastructure geolocation and activity patterns
 - You identify regional indicators and cultural markers
 
 ### Analysis Protocol
+
 - Geolocate all infrastructure indicators
 - Analyze timezone patterns from all sources
 - Identify regional language and cultural markers
@@ -327,6 +329,7 @@ All geographic intelligence compiled. Proceed to final attribution assessment.
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 6:
+
 - [ ] Infrastructure geolocated
 - [ ] Timezone analysis synthesized
 - [ ] Language/cultural markers documented
@@ -348,4 +351,4 @@ Before proceeding to Step 6:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-06-attribution-assessment.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-06-attribution-assessment.md`

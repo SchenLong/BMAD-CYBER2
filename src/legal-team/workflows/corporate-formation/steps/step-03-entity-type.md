@@ -18,6 +18,7 @@ Recommend and select the appropriate legal entity type for the chosen jurisdicti
 Based on selectedJurisdiction, present relevant options:
 
 **IF USA:**
+
 | Entity | Liability | Taxation | Best For |
 |--------|-----------|----------|----------|
 | LLC | Limited | Pass-through or elect | Flexibility, simplicity |
@@ -26,6 +27,7 @@ Based on selectedJurisdiction, present relevant options:
 | LP | Limited (LP), Unlimited (GP) | Pass-through | Investment vehicles |
 
 **IF Spain:**
+
 | Entity | Min Capital | Shares | Best For |
 |--------|-------------|--------|----------|
 | SL (Sociedad Limitada) | €3,000 | Participaciones | SMEs, most businesses |
@@ -33,6 +35,7 @@ Based on selectedJurisdiction, present relevant options:
 | SLNE | €3,000-€120,000 | Participaciones | Quick formation, limited scope |
 
 **IF Estonia:**
+
 | Entity | Min Capital | Features | Best For |
 |--------|-------------|----------|----------|
 | OÜ | €2,500 | Flexible, 0% retained | Most businesses |
@@ -43,6 +46,7 @@ Based on selectedJurisdiction, present relevant options:
 Analyze based on client needs:
 
 **Key Factors:**
+
 - Number of owners → ownership flexibility needs
 - Funding plans → investor requirements
 - Liability concerns → protection level

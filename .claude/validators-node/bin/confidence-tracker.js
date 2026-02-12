@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/observability/confidence-tracker.js')
+import('../dist/src/observability/confidence-tracker.js')
   .then((module) => {
     module.main();
   })

@@ -16,6 +16,7 @@ Analyze representations, warranties, indemnification, and limitation of liabilit
 ### 1. Representations & Warranties
 
 For each R&W:
+
 - Who makes it?
 - Scope and breadth
 - Survival period
@@ -24,6 +25,7 @@ For each R&W:
 ### 2. Indemnification
 
 Review:
+
 - Indemnification triggers
 - Scope of indemnity
 - Procedural requirements
@@ -33,6 +35,7 @@ Review:
 ### 3. Limitation of Liability
 
 Assess:
+
 - Liability cap amount/formula
 - Consequential damages exclusion
 - Exclusions from cap
@@ -41,6 +44,7 @@ Assess:
 ### 4. Insurance
 
 Review:
+
 - Insurance requirements
 - Coverage types and amounts
 - Certificate requirements

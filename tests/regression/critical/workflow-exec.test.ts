@@ -16,21 +16,21 @@ const PROJECT_ROOT = path.resolve(__dirname, '../../..');
 describe('Workflow Execution', () => {
   describe('Workflow Authorization', () => {
     it('should have canExecuteWorkflow method in AuthorizationManager', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('canExecuteWorkflow');
     });
 
     it('should define WorkflowRestriction interface', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('export interface WorkflowRestriction');
     });
 
     it('should support workflow approval requirements', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('require_approval');
@@ -38,7 +38,7 @@ describe('Workflow Execution', () => {
     });
 
     it('should support audit levels for workflows', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('audit_level');
@@ -77,21 +77,21 @@ describe('Workflow Execution', () => {
 
   describe('Permission Actions', () => {
     it('should support execute action permission', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain("'execute'");
     });
 
     it('should have canPerformAction method', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('canPerformAction');
     });
 
     it('should check for execute permission in workflow execution', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       // Verify execute permission check in canExecuteWorkflow
@@ -102,7 +102,7 @@ describe('Workflow Execution', () => {
 
   describe('Role Permission Structure', () => {
     it('should define Permission interface with actions field', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('export interface Permission');
@@ -110,7 +110,7 @@ describe('Workflow Execution', () => {
     });
 
     it('should define Role interface with permissions', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('export interface Role');
@@ -118,7 +118,7 @@ describe('Workflow Execution', () => {
     });
 
     it('should support role inheritance', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('inherits');
@@ -128,7 +128,7 @@ describe('Workflow Execution', () => {
 
   describe('Workflow Restrictions Config', () => {
     it('should define workflow_restrictions in RBACConfig', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('workflow_restrictions');
@@ -136,14 +136,14 @@ describe('Workflow Execution', () => {
     });
 
     it('should support warning messages for workflows', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('warning_message');
     });
 
     it('should format denial messages properly', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('formatDenialMessage');
@@ -151,7 +151,7 @@ describe('Workflow Execution', () => {
     });
 
     it('should format approval required messages', async () => {
-      const authPath = path.join(PROJECT_ROOT, '_bmad/core/security/authorization.ts');
+      const authPath = path.join(PROJECT_ROOT, 'src/core/security/authorization.ts');
       const content = fs.readFileSync(authPath, 'utf-8');
 
       expect(content).toContain('formatApprovalMessage');

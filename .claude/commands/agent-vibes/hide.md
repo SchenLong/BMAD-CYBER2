@@ -5,6 +5,7 @@ description: Hide all AgentVibes slash commands from the command list (MCP users
 You are about to hide all AgentVibes slash commands from the Claude Code interface.
 
 **What this does:**
+
 - Moves all AgentVibes commands from `.claude/commands/agent-vibes/` to `.claude/.agentvibes-backup/`
 - Keeps only the `show.md` and `hide.md` commands visible
 - Creates a flag file to track hidden state
@@ -18,11 +19,13 @@ You are about to hide all AgentVibes slash commands from the Claude Code interfa
    - Stop execution
 
 2. **Create backup directory:**
+
    ```bash
    mkdir -p .claude/.agentvibes-backup
    ```
 
 3. **Move all command files EXCEPT hide.md and show.md:**
+
    ```bash
    cd .claude/commands/agent-vibes
 
@@ -35,11 +38,13 @@ You are about to hide all AgentVibes slash commands from the Claude Code interfa
    ```
 
 4. **Create the hidden state flag:**
+
    ```bash
    touch .claude/.agentvibes-hidden.flag
    ```
 
 5. **Display success message:**
+
    ```
    ✅ AgentVibes commands hidden successfully!
 
@@ -54,6 +59,7 @@ You are about to hide all AgentVibes slash commands from the Claude Code interfa
    ```
 
 **Files that will be hidden:**
+
 - add.md
 - agent-vibes.md
 - agent.md
@@ -85,6 +91,7 @@ You are about to hide all AgentVibes slash commands from the Claude Code interfa
 - commands.json
 
 **Files that will remain visible:**
+
 - hide.md (this command)
 - show.md (to restore commands)
 

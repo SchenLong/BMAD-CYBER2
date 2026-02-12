@@ -63,7 +63,7 @@ This uses **step-file architecture** for disciplined execution:
 3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
 4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
 5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
-6. **LOAD NEXT**: When directed, load, read entire file, then execute the next step file
+6. **LOAD NEXT**: When directed, load and follow the next step file
 
 ### Critical Rules (NO EXCEPTIONS)
 
@@ -82,6 +82,7 @@ This uses **step-file architecture** for disciplined execution:
 ## Scope
 
 **Covered Cross-Border Matters:**
+
 - International contracts and transactions
 - Multi-jurisdictional dispute resolution
 - Cross-border corporate structures
@@ -91,6 +92,7 @@ This uses **step-file architecture** for disciplined execution:
 - Multi-jurisdictional regulatory compliance
 
 **NOT Covered:**
+
 - Immigration law (visa, residency)
 - Criminal matters in any jurisdiction
 - Sanctions/Export controls (specialized area)
@@ -105,12 +107,14 @@ This uses **step-file architecture** for disciplined execution:
 ## Key Cross-Border Considerations
 
 ### Choice of Law
+
 - Party autonomy limits
 - Mandatory rules
 - Public policy exceptions
 - Characterization issues
 
 ### Jurisdiction & Enforcement
+
 - Forum selection validity
 - Arbitration agreements
 - Judgment recognition
@@ -118,6 +122,7 @@ This uses **step-file architecture** for disciplined execution:
 - Hague Conventions
 
 ### Regulatory Overlap
+
 - Data protection (GDPR, CCPA)
 - Consumer protection
 - Employment law
@@ -155,4 +160,4 @@ Load and read full config from `{project-root}/_bmad/legal-team/config.yaml` and
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `{workflow_path}/steps/step-01-intake.md` to begin the workflow.
+Load, read the full file and then follow `{workflow_path}/steps/step-01-intake.md` to begin the workflow.

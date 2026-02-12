@@ -18,6 +18,7 @@ Map regulatory requirements across all relevant jurisdictions and identify compl
 Multi-jurisdictional data requirements:
 
 **GDPR (EU/EEA):**
+
 - Lawful basis for processing
 - Data subject rights
 - Cross-border transfers
@@ -25,12 +26,14 @@ Multi-jurisdictional data requirements:
 - Breach notification (72 hours)
 
 **USA:**
+
 - CCPA/CPRA (California)
 - State-specific laws
 - Sector regulations (HIPAA, GLBA, FERPA)
 - FTC enforcement
 
 **Cross-Border Transfer Mechanisms:**
+
 | From | To | Mechanism Required |
 |------|----|--------------------|
 | EU | USA | SCCs, Data Privacy Framework |
@@ -42,17 +45,20 @@ Multi-jurisdictional data requirements:
 If B2C elements:
 
 **EU Consumer Rights:**
+
 - Cooling-off periods
 - Mandatory information requirements
 - Unfair terms directive
 - Consumer ADR directive
 
 **USA Consumer Protection:**
+
 - FTC Act
 - State UDAP statutes
 - Specific industry regulations
 
 **Jurisdictional Application:**
+
 - Where consumer is located
 - Directed activity test
 - Mandatory consumer law
@@ -62,6 +68,7 @@ If B2C elements:
 If employees involved:
 
 **Employment Jurisdiction:**
+
 | Issue | Governing Law | Mandatory Rules |
 |-------|---------------|-----------------|
 | Contract terms | [Law] | [Cannot contract out] |
@@ -69,6 +76,7 @@ If employees involved:
 | Benefits | [Law] | [Statutory minimums] |
 
 **Cross-Border Workers:**
+
 - Posted workers directive (EU)
 - Tax and social security
 - Immigration requirements (not covered)
@@ -78,6 +86,7 @@ If employees involved:
 Compliance obligations:
 
 **Anti-Corruption:**
+
 | Law | Jurisdiction | Extraterritorial Reach |
 |-----|--------------|----------------------|
 | FCPA | USA | US nexus |
@@ -85,6 +94,7 @@ Compliance obligations:
 | Spanish Criminal Code | Spain | Spanish entities |
 
 **Sanctions Screening:**
+
 - OFAC (US)
 - EU sanctions
 - UN sanctions
@@ -95,16 +105,19 @@ Compliance obligations:
 Map sector requirements:
 
 **Financial Services:**
+
 - Banking licenses by jurisdiction
 - Investment services (MiFID II, US securities)
 - AML/KYC requirements
 
 **Technology:**
+
 - AI regulation (EU AI Act)
 - Content moderation
 - Platform liability
 
 **Other Sectors:**
+
 - Healthcare
 - Energy
 - Telecommunications

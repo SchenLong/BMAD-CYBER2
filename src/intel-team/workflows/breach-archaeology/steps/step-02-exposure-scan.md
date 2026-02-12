@@ -48,12 +48,15 @@ Execute comprehensive scanning across all breach databases, dark web sources, an
 ## SHADOW: Breach Database Scanning
 
 ### Agent: dark-web-analyst
+
 ### Codename: Shadow
+
 ### Focus: Breach databases, dark web sources, paste sites
 
 ### Scan Categories
 
 #### 1. Major Breach Databases
+
 ```
 Query each selector against:
 
@@ -86,6 +89,7 @@ For each hit, document:
 ```
 
 #### 2. Paste Site Analysis
+
 ```
 Search paste sites for selectors:
 
@@ -104,6 +108,7 @@ Document:
 ```
 
 #### 3. Dark Web Forum Search
+
 ```
 Check for mentions in:
 
@@ -121,6 +126,7 @@ Document:
 ```
 
 #### 4. Underground Marketplaces
+
 ```
 Search for:
 
@@ -138,6 +144,7 @@ Document:
 ```
 
 #### 5. Telegram/Discord Channels
+
 ```
 Search data trading channels for:
 
@@ -190,12 +197,15 @@ Document:
 ## PROBE: Technical Exposure Scanning
 
 ### Agent: technical-researcher
+
 ### Codename: Probe
+
 ### Focus: Code repositories, technical leaks, API exposure
 
 ### Scan Categories
 
 #### 1. Code Repository Search
+
 ```
 Search for selectors in:
 
@@ -214,6 +224,7 @@ Look for:
 ```
 
 #### 2. Cloud Storage Exposure
+
 ```
 Check for exposed:
 
@@ -225,6 +236,7 @@ Check for exposed:
 ```
 
 #### 3. Technical Documentation Leaks
+
 ```
 Search for:
 
@@ -235,6 +247,7 @@ Search for:
 ```
 
 #### 4. Certificate Transparency
+
 ```
 Search CT logs for:
 
@@ -273,12 +286,15 @@ Search CT logs for:
 ## RESOLVER: Infrastructure Exposure
 
 ### Agent: domain-intel-specialist
+
 ### Codename: Resolver
+
 ### Focus: Domain breaches, email infrastructure, DNS exposure
 
 ### Scan Categories
 
 #### 1. Domain Breach Correlation
+
 ```
 For each domain selector:
 
@@ -288,6 +304,7 @@ For each domain selector:
 ```
 
 #### 2. Email Infrastructure Exposure
+
 ```
 Check for:
 
@@ -298,6 +315,7 @@ Check for:
 ```
 
 #### 3. DNS History Analysis
+
 ```
 Look for:
 
@@ -308,6 +326,7 @@ Look for:
 ```
 
 #### 4. Certificate Issues
+
 ```
 Check for:
 
@@ -388,6 +407,7 @@ After all agents complete scanning, aggregate:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] All breach databases queried
 - [ ] Paste sites searched
 - [ ] Dark web sources checked
@@ -408,4 +428,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-threat-correlation.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-threat-correlation.md`

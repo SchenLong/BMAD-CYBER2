@@ -17,7 +17,7 @@ This will show the current provider (Piper TTS or Piper) and current voice.
 
 ## Step 2: Display Voice List Based on Provider
 
-### If Provider is Piper TTS:
+### If Provider is Piper TTS
 
 Show this list:
 
@@ -38,7 +38,7 @@ Show this list:
 13. **Northern Terry** - Eccentric British
 14. **Ralf Eisend** - International speaker
 
-### If Provider is Piper:
+### If Provider is Piper
 
 Run this command to list Piper voices:
 
@@ -62,6 +62,7 @@ If user provides a voice name or number:
    - Execute: !bash .claude/hooks/voice-manager.sh switch $ARGUMENTS
 
 If no arguments provided:
+
 - Show the voice list based on active provider (as described in Step 2)
 - Inform user: "To switch voices, use `/agent-vibes:switch <number>` or `/agent-vibes:switch <name>`"
 

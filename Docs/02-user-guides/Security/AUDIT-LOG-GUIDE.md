@@ -11,6 +11,7 @@
 BMAD-CYBER2 implements tamper-evident audit logging with SHA-256 hash chains. This guide covers log interpretation, monitoring setup, and alerting configuration.
 
 **Key Features:**
+
 - **JSON Format** - Structured logs for easy parsing
 - **Hash Chain** - Tamper-evident integrity verification
 - **90-Day Retention** - Configurable retention policy
@@ -447,6 +448,7 @@ WantedBy=multi-user.target
 ```
 
 Enable:
+
 ```bash
 sudo systemctl enable bmad-audit-monitor
 sudo systemctl start bmad-audit-monitor

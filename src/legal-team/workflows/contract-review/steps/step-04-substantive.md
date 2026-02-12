@@ -16,6 +16,7 @@ Review the core obligations, performance standards, and commercial terms.
 ### 1. Party Obligations
 
 For each party, identify:
+
 - Core obligations
 - Performance standards
 - Deliverables
@@ -24,6 +25,7 @@ For each party, identify:
 ### 2. Payment Terms
 
 Review:
+
 - Payment amounts and structure
 - Payment timing
 - Late payment consequences
@@ -32,6 +34,7 @@ Review:
 ### 3. Performance Standards
 
 Assess:
+
 - Are obligations clearly defined?
 - Are performance metrics measurable?
 - Acceptance criteria present?
@@ -40,6 +43,7 @@ Assess:
 ### 4. Term and Renewal
 
 Review:
+
 - Contract duration
 - Renewal provisions
 - Auto-renewal concerns

@@ -16,6 +16,7 @@ Draft standard provisions customized for the governing law jurisdiction.
 ### 1. Term & Termination
 
 Draft:
+
 - Contract duration
 - Renewal provisions
 - Termination for cause
@@ -25,6 +26,7 @@ Draft:
 ### 2. Confidentiality
 
 Draft confidentiality provisions:
+
 - Definition of confidential information
 - Obligations
 - Exclusions
@@ -33,6 +35,7 @@ Draft confidentiality provisions:
 ### 3. General Provisions
 
 Draft jurisdiction-appropriate:
+
 - Entire agreement
 - Amendment procedures
 - Assignment

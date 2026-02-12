@@ -12,22 +12,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 2: Successor Assessment
 
-## STEP GOAL:
+## STEP GOAL
 
 Evaluate potential successors (internal and external), develop selection criteria, assess readiness, and determine development needs to ensure the right leader is selected.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Leadership Transition Advisor with Jean-Luc (Principled Commander) providing leadership perspective
 - Focus on finding the right leader for the role and organization
 - Balance capability assessment with development potential
 - Maintain professional, executive-level tone throughout
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on successor evaluation, not transition logistics
 - FORBIDDEN to skip criteria development
@@ -36,7 +37,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Review Transition Context
 
@@ -52,6 +53,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me bring in Jean-Luc's leadership perspective to define what this role truly requires..."
 
 **Define the ideal successor profile:**
+
 - Critical capabilities needed
 - Leadership style required
 - Key relationships to manage
@@ -85,22 +87,26 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's assess internal candidates:"
 
 **For each candidate:**
+
 | Criterion | Candidate A | Candidate B | Candidate C |
 |-----------|-------------|-------------|-------------|
 | [criteria] | Score 1-5 | Score 1-5 | Score 1-5 |
 | Weighted Total | | | |
 
 **Strengths:**
+
 - Candidate A:
 - Candidate B:
 - Candidate C:
 
 **Development needs:**
+
 - Candidate A:
 - Candidate B:
 - Candidate C:
 
 **Readiness assessment:**
+
 - Ready now
 - Ready in 6-12 months
 - Ready in 1-2 years
@@ -113,12 +119,14 @@ You MUST respond in **{communication_language}** throughout this step.
 "Should we consider external candidates?"
 
 **Reasons to go external:**
+
 - Capability gaps internally
 - Need for fresh perspective
 - Transformation agenda
 - Competitive dynamics
 
 **Reasons to stay internal:**
+
 - Cultural continuity
 - Institutional knowledge
 - Faster transition
@@ -133,6 +141,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let's design the selection process:"
 
 **Selection timeline:**
+
 | Phase | Activities | Duration | Decision Makers |
 |-------|------------|----------|-----------------|
 | Initial screening | | | |
@@ -143,6 +152,7 @@ You MUST respond in **{communication_language}** throughout this step.
 | Announcement | | | |
 
 **Assessment methods:**
+
 - [ ] Interview panel
 - [ ] Psychometric assessment
 - [ ] 360-degree feedback
@@ -158,11 +168,13 @@ You MUST respond in **{communication_language}** throughout this step.
 "If internal candidates need development, what's the plan?"
 
 **Development priorities:**
+
 | Candidate | Gap | Development Action | Timeline |
 |-----------|-----|-------------------|----------|
 | | | | |
 
 **Interim arrangements:**
+
 - If no candidate is ready, what's the interim plan?
 - Who could serve as acting/interim leader?
 
@@ -204,13 +216,16 @@ Update frontmatter: Add `step-02-successor-assessment` to stepsCompleted
 "Here's the successor assessment summary:
 
 **Role Requirements:**
+
 - Top 3 criteria: [list]
 
 **Candidate Overview:**
+
 - Internal candidates: [count, top candidate]
 - External search: [recommended/not recommended]
 
 **Readiness:**
+
 - Ready now: [names]
 - With development: [names]
 
@@ -223,21 +238,24 @@ Update frontmatter: Add `step-02-successor-assessment` to stepsCompleted
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Assessment [C] Continue to Knowledge Transfer"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
-- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then execute {nextStepFile}
+- IF C: Save content to {outputFile}, update frontmatter, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then redisplay menu
 
 ## CRITICAL STEP COMPLETION NOTE
+
 ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStepFile}` (step-03-knowledge-transfer.md).
 
 ---
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - Role requirements clearly defined
 - Selection criteria weighted
 - Candidates objectively assessed
@@ -245,7 +263,8 @@ ONLY WHEN [C] Continue is selected, will you then load and read fully `{nextStep
 - Development needs identified
 - Output file updated
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Skipping criteria development
 - Not assessing development needs
 - Failing to consider external option

@@ -45,6 +45,7 @@ version: '1.0'
 **Overall Risk Level:** [Critical/High/Medium/Low]
 
 **Key Risks Identified:**
+
 1. [Risk 1]
 2. [Risk 2]
 3. [Risk 3]
@@ -68,6 +69,7 @@ version: '1.0'
 [What could happen if exploited]
 
 **Proof of Concept:**
+
 ```solidity
 // Attack code or steps
 ```
@@ -149,12 +151,14 @@ version: '1.0'
 ### A. Methodology
 
 **Review Process:**
+
 1. Manual code review
 2. Automated analysis
 3. Attack vector modeling
 4. Documentation review
 
 **Tools Used:**
+
 - Slither
 - Mythril
 - Custom scripts

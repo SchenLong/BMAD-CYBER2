@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/strategy-team/agents/the-master-strategist.md
+# Full agent: src/strategy-team/agents/the-master-strategist.md
 agent_id: "the-master-strategist"
 name: "Sun"
 title: "The Master Strategist - Supreme Strategist"

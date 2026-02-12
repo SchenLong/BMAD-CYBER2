@@ -10,15 +10,16 @@ outputFile: '{output_folder}/vciso/{client_name}/vciso-engagement-{client_name}.
 
 # Step 7: Vendor/Third-Party Risk Program
 
-## STEP GOAL:
+## STEP GOAL
 
 To design a comprehensive vendor risk management program including assessment framework, tier classification, questionnaires, and ongoing monitoring processes.
 
-## VENDOR RISK PROGRAM PROCESS:
+## VENDOR RISK PROGRAM PROCESS
 
 ### 1. Vendor Inventory
 
 Create current vendor inventory:
+
 - Vendor name
 - Service provided
 - Data access level (none/limited/moderate/extensive)
@@ -31,24 +32,28 @@ Create current vendor inventory:
 Design 4-tier classification system:
 
 **Tier 1 (Critical):**
+
 - Extensive access to sensitive data
 - Critical business function dependency
 - Assessment: Comprehensive (annual)
 - Requirements: SOC 2 Type II + penetration testing
 
 **Tier 2 (High):**
+
 - Moderate data access
 - Important business function
 - Assessment: Standard (annual)
 - Requirements: SOC 2 or ISO 27001
 
 **Tier 3 (Medium):**
+
 - Limited data access
 - Non-critical function
 - Assessment: Questionnaire (biennial)
 - Requirements: Basic security controls
 
 **Tier 4 (Low):**
+
 - No data access
 - Low business impact
 - Assessment: Self-attestation
@@ -61,18 +66,21 @@ Classify all current vendors.
 Design assessment process:
 
 **Pre-Contract Assessment:**
+
 - Security questionnaire
 - Compliance validation
 - Reference checks
 - Contract security terms
 
 **Ongoing Assessment:**
+
 - Annual security reviews
 - SOC 2 report review
 - Incident notification monitoring
 - Compliance attestation updates
 
 **Assessment Criteria:**
+
 - Data protection practices
 - Access controls
 - Encryption standards
@@ -84,6 +92,7 @@ Design assessment process:
 ### 4. Assessment Templates
 
 Create vendor assessment templates:
+
 - Tier 1 comprehensive questionnaire (100+ questions)
 - Tier 2 standard questionnaire (50-75 questions)
 - Tier 3 basic questionnaire (25-30 questions)
@@ -92,6 +101,7 @@ Create vendor assessment templates:
 ### 5. Contract Security Requirements
 
 Define security clauses for vendor contracts:
+
 - Data protection obligations
 - Audit rights
 - Incident notification (within 24 hours)
@@ -103,6 +113,7 @@ Define security clauses for vendor contracts:
 ### 6. Ongoing Monitoring
 
 Design monitoring process:
+
 - Quarterly risk reviews for Tier 1
 - Annual reviews for Tier 2-3
 - Incident tracking (all vendors)
@@ -112,6 +123,7 @@ Design monitoring process:
 ### 7. Append Section 7
 
 Update {outputFile} with:
+
 - Current vendor inventory with tier assignments
 - Vendor tier classification framework
 - Risk assessment process and criteria
@@ -137,7 +149,7 @@ Load {nextStepFile}
 
 ---
 
-## ✅ SUCCESS:
+## ✅ SUCCESS
 
 - Vendor inventory complete with classifications
 - 4-tier framework designed

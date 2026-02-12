@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * BMAD-CYBER2 Security Patch: Direct Prompt Injection Protection
  * Addresses: VULN-001 (HIGH - CVSS 8.5)
@@ -336,7 +335,7 @@ class PromptInjectionProtection {
         };
 
         const logFile = '/Users/paultinp/BMAD-CYBER2/security-testing/alerts/prompt-injection-alerts.log';
-        fs.appendFileSync(logFile, JSON.stringify(securityEvent) + '\n');
+        fs.appendFileSync(logFile, `${JSON.stringify(securityEvent)  }\n`);
 
         if (analysis.action === 'BLOCK') {
             console.error(`🚨 PROMPT INJECTION BLOCKED: Risk Score ${analysis.riskScore}`);
@@ -356,7 +355,7 @@ class PromptInjectionProtection {
             quarantinedInputs,
             sanitizedInputs,
             allowedInputs: totalInputs - blockedInputs - quarantinedInputs - sanitizedInputs,
-            protectionRate: totalInputs > 0 ? ((blockedInputs + quarantinedInputs) / totalInputs * 100).toFixed(2) + '%' : '0%'
+            protectionRate: totalInputs > 0 ? `${((blockedInputs + quarantinedInputs) / totalInputs * 100).toFixed(2)  }%` : '0%'
         };
     }
 

@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/security-awareness-program-{project_name}.
 
 # Step 3: Training Content Development
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on content design and curriculum planning
 - FORBIDDEN to discuss phishing simulations yet
 - Help user design engaging, targeted content
 
-## STEP GOAL:
+## STEP GOAL
 
 To design a comprehensive training curriculum with modules addressing identified risks, role-based content for high-risk populations, and compliance-specific materials.
 
-## CONTENT DEVELOPMENT SEQUENCE:
+## CONTENT DEVELOPMENT SEQUENCE
 
 ### 1. Core Curriculum Design
 
@@ -83,30 +83,35 @@ Any topics you'd add or remove?"
 "Let's create specialized content for high-risk groups:
 
 **Executive Track:**
+
 - BEC/CEO fraud scenarios
 - Secure travel practices
 - High-profile target awareness
 - Decision-making under social pressure
 
 **Finance Track:**
+
 - Wire fraud detection
 - Payment verification procedures
 - Vendor impersonation
 - Invoice manipulation
 
 **HR Track:**
+
 - W-2/tax scam awareness
 - Candidate impersonation
 - Employee data protection
 - Social engineering red flags
 
 **IT Track:**
+
 - Privileged access responsibility
 - Supply chain attacks
 - Credential management
 - Technical social engineering
 
 **New Hire Track:**
+
 - Onboarding security basics
 - Company-specific policies
 - Reporting culture introduction
@@ -202,6 +207,7 @@ Update Section 4 of {outputFile}:
 "**Training Content Design Complete**
 
 I've documented:
+
 - Core curriculum with [X] modules
 - [X] role-based training tracks
 - Content formats selected
@@ -215,7 +221,7 @@ Ready to proceed to phishing simulation planning?"
 
 Display: **Content Design Complete - Select an Option:** [C] Continue to Phishing Simulation [R] Review/Revise Content Plan
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2, 3]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 4 content, allow revisions, then redisplay menu
@@ -224,6 +230,6 @@ Display: **Content Design Complete - Select an Option:** [C] Continue to Phishin
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN content development is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN content development is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2, 3]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

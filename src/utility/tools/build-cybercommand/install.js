@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 /**
  * BMAD CYBERCOMMAND Multi-Module Installer
@@ -10,6 +9,7 @@ import path from 'path';
 import yaml from 'js-yaml';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
+import { normalizeLineEndings } from '../../normalize-line-endings.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +23,7 @@ class MultiModuleInstaller {
 
   loadConfig() {
     const configPath = path.join(this.packageRoot, 'bmad-multi-module.yaml');
-    return yaml.load(fs.readFileSync(configPath, 'utf8'), { schema: yaml.CORE_SCHEMA });
+    return yaml.load(normalizeLineEndings(fs.readFileSync(configPath, 'utf8')), { schema: yaml.CORE_SCHEMA });
   }
 
   async install() {

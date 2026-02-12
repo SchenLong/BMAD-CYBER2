@@ -30,7 +30,7 @@
  */
 import { spawnSync } from 'child_process';
 import { createHash } from 'crypto';
-import { existsSync, readFileSync, writeFileSync, readdirSync, mkdirSync, } from 'fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync, } from 'fs';
 import * as path from 'node:path';
 import { AuditLogger, getProjectDir, getToolInputFromStdinSync, printBlockMessage, printWarning, } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
@@ -600,7 +600,7 @@ export function generateManifest(outputPath, sign = false, keyId) {
     }, 'INFO');
     // Sign if requested
     if (sign) {
-        const sigPath = targetPath + '.asc';
+        const sigPath = `${targetPath  }.asc`;
         try {
             // Use spawnSync with argument array to prevent injection attacks
             const result = spawnSync('gpg', [

@@ -9,7 +9,7 @@
  */
 
 import { EventEmitter } from "events";
-import { TamperEvidentAuditLogger, AuditEvent, SecurityLevel } from "./audit-logger";
+import { AuditEvent, SecurityLevel, TamperEvidentAuditLogger } from "./audit-logger";
 
 // Type alias for compatibility
 type AuditLogger = TamperEvidentAuditLogger;
@@ -625,10 +625,10 @@ export class SiemIntegration extends EventEmitter {
         })).join("\n");
 
       case SiemProvider.ELASTIC:
-        return events.map(event =>
-          JSON.stringify({ index: { _index: this.config.indexName } }) + "\n" +
-          JSON.stringify(event)
-        ).join("\n") + "\n";
+        return `${events.map(event =>
+          `${JSON.stringify({ index: { _index: this.config.indexName } })  }\n${ 
+          JSON.stringify(event)}`
+        ).join("\n")  }\n`;
       
       default:
         return JSON.stringify({ events });

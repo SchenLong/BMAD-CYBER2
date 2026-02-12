@@ -16,10 +16,10 @@ import os from 'os';
 import { fileURLToPath } from 'url';
 
 import {
+  getFeatureDetails,
   getTierById,
   getTierFeatures,
   getValidatorPaths,
-  getFeatureDetails,
   isValidTierId
 } from './tier-definitions.js';
 
@@ -31,7 +31,7 @@ const __dirname = path.dirname(__filename);
  * Path to the security config file relative to project root
  * @type {string}
  */
-export const SECURITY_CONFIG_PATH = '_bmad/core/security/security-config.yaml';
+export const SECURITY_CONFIG_PATH = 'src/core/security/security-config.yaml';
 
 /**
  * Current security config version
@@ -451,7 +451,7 @@ export function applySecurityTier(tierId, options = {}) {
   const yamlContent = serializeYaml(config);
 
   // Write atomically
-  const writeResult = writeSecurityConfigAtomic(header + yamlContent + '\n', projectRoot);
+  const writeResult = writeSecurityConfigAtomic(`${header + yamlContent  }\n`, projectRoot);
 
   if (writeResult.success) {
     const configPath = path.join(projectRoot, SECURITY_CONFIG_PATH);
@@ -499,32 +499,32 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   // Test 1: Create config
   console.log('\n1. createSecurityConfig("standard"):');
   const config = createSecurityConfig('standard');
-  console.log('   Tier: ' + config.tier);
-  console.log('   Features: ' + config.features.length);
-  console.log('   Validators: ' + Object.keys(config.validators).length);
+  console.log(`   Tier: ${  config.tier}`);
+  console.log(`   Features: ${  config.features.length}`);
+  console.log(`   Validators: ${  Object.keys(config.validators).length}`);
 
   // Test 2: Serialize
   console.log('\n2. serializeYaml():');
   const yaml = serializeYaml(config);
-  console.log('   Lines: ' + yaml.split('\n').length);
+  console.log(`   Lines: ${  yaml.split('\n').length}`);
 
   // Test 3: Parse
   console.log('\n3. parseYaml() round-trip:');
   const parsed = parseYaml(yaml);
-  console.log('   Tier matches: ' + (parsed.tier === config.tier));
-  console.log('   Features match: ' + (parsed.features?.length === config.features.length));
+  console.log(`   Tier matches: ${  parsed.tier === config.tier}`);
+  console.log(`   Features match: ${  parsed.features?.length === config.features.length}`);
 
   // Test 4: Validate
   console.log('\n4. validateSecurityConfig():');
   const validation = validateSecurityConfig(config);
-  console.log('   Valid: ' + validation.valid);
-  console.log('   Errors: ' + validation.errors.length);
+  console.log(`   Valid: ${  validation.valid}`);
+  console.log(`   Errors: ${  validation.errors.length}`);
 
   // Test 5: Check current config
   console.log('\n5. getCurrentTier():');
   const currentTier = getCurrentTier();
-  console.log('   Current: ' + (currentTier || 'Not configured'));
+  console.log(`   Current: ${  currentTier || 'Not configured'}`);
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete. (No files were modified)');
 }

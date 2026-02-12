@@ -33,6 +33,8 @@ const DEFAULT_BMAD_PATH = '_bmad';
 // Security context cache with associated bmadPath
 let securityContext = null;
 let securityContextBmadPath = null;
+// Additional valid base paths for module discovery (e.g., src/ after migration)
+let securityContextValidBasePaths = [];
 
 /**
  * @typedef {Object} SecurityOptions
@@ -67,6 +69,7 @@ export function getSecurityContext() {
 export function resetSecurityContext() {
   securityContext = null;
   securityContextBmadPath = null;
+  securityContextValidBasePaths = [];
 }
 
 /**
@@ -120,31 +123,55 @@ export function scanModuleDirectories(projectRoot = process.cwd()) {
     initializeSecurity(bmadPath, { logger: null }); // Silent logger for default init
   }
 
-  try {
-    const entries = fs.readdirSync(bmadPath, { withFileTypes: true });
+  // Scan both _bmad/ and src/ directories for modules
+  // Post-migration, modules live in src/; _bmad/ is kept for backward compatibility
+  const srcPath = path.join(projectRoot, 'src');
+  const scanDirs = [bmadPath, srcPath];
 
-    for (const entry of entries) {
-      // Skip non-directories and special directories (starting with _)
-      if (!entry.isDirectory() || entry.name.startsWith('_')) {
-        continue;
+  // Register src/ as a valid base path for security validation
+  const resolvedSrcPath = path.resolve(srcPath);
+  if (!securityContextValidBasePaths.includes(resolvedSrcPath)) {
+    securityContextValidBasePaths.push(resolvedSrcPath);
+  }
+  const seenModules = new Set();
+
+  for (const scanDir of scanDirs) {
+    if (!fs.existsSync(scanDir)) continue;
+
+    try {
+      const entries = fs.readdirSync(scanDir, { withFileTypes: true });
+
+      for (const entry of entries) {
+        // Skip non-directories and special directories (starting with _)
+        if (!entry.isDirectory() || entry.name.startsWith('_')) {
+          continue;
+        }
+
+        // Skip modules already found in a higher-priority directory
+        if (seenModules.has(entry.name)) {
+          continue;
+        }
+
+        // MOD-002: Validate path to prevent traversal attacks
+        if (scanDir === bmadPath) {
+          const pathValidation = validatePathSecurity(entry.name, bmadPath);
+          if (!pathValidation.valid) {
+            console.warn(`[SECURITY] Skipping directory with invalid path: ${entry.name} - ${pathValidation.error}`);
+            continue;
+          }
+        }
+
+        const moduleYamlPath = path.join(scanDir, entry.name, 'module.yaml');
+
+        // Check if module.yaml exists in this directory
+        if (fs.existsSync(moduleYamlPath)) {
+          moduleDirectories.push(path.join(scanDir, entry.name));
+          seenModules.add(entry.name);
+        }
       }
-
-      // MOD-002: Validate path to prevent traversal attacks
-      const pathValidation = validatePathSecurity(entry.name, bmadPath);
-      if (!pathValidation.valid) {
-        console.warn(`[SECURITY] Skipping directory with invalid path: ${entry.name} - ${pathValidation.error}`);
-        continue;
-      }
-
-      const moduleYamlPath = path.join(bmadPath, entry.name, 'module.yaml');
-
-      // Check if module.yaml exists in this directory
-      if (fs.existsSync(moduleYamlPath)) {
-        moduleDirectories.push(path.join(bmadPath, entry.name));
-      }
+    } catch (error) {
+      console.error(`Error scanning module directories in ${scanDir}: ${error.message}`);
     }
-  } catch (error) {
-    console.error(`Error scanning module directories: ${error.message}`);
   }
 
   return moduleDirectories;
@@ -198,7 +225,7 @@ function parseSimpleYaml(yamlContent) {
     if (keyValueMatch) {
       const indent = keyValueMatch[1].length;
       const key = keyValueMatch[2];
-      let value = keyValueMatch[3].trim();
+      const value = keyValueMatch[3].trim();
 
       // Top-level key (no indent)
       if (indent === 0) {
@@ -300,8 +327,14 @@ export function parseModuleYaml(modulePath, options = {}) {
 
     // MOD-002, MOD-003: Apply security checks if context exists and not skipped
     if (!skipSecurityChecks && securityContext) {
-      // Validate module path
-      if (!securityContext.validatePath(modulePath)) {
+      // Validate module path — check both _bmad/ (via securityContext) and
+      // additional valid base paths (e.g., src/ after directory migration)
+      const pathValidByContext = securityContext.validatePath(modulePath);
+      const pathValidByAdditionalBase = securityContextValidBasePaths.some(basePath => {
+        const result = validatePathSecurity(modulePath, basePath);
+        return result.valid;
+      });
+      if (!pathValidByContext && !pathValidByAdditionalBase) {
         console.error(`[SECURITY] Module path validation failed for: ${modulePath}`);
         return null;
       }

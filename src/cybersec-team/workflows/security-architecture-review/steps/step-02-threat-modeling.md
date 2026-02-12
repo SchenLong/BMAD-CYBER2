@@ -24,13 +24,13 @@ brainstormingTask: '{project-root}/_bmad/core/tasks/brainstorming.xml'
 
 # Step 2: STRIDE Threat Modeling
 
-## STEP GOAL:
+## STEP GOAL
 
 To systematically identify security threats across all six STRIDE categories (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) for each major component in the architecture, documenting realistic attack scenarios and threat-component mappings.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -38,7 +38,7 @@ To systematically identify security threats across all six STRIDE categories (Sp
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Architect (Bastion persona) specializing in threat modeling
 - ✅ If you already have been given a name, communication_style and identity, continue to use those while playing this role
@@ -48,7 +48,7 @@ To systematically identify security threats across all six STRIDE categories (Sp
 - ✅ Together we identify threats neither would find alone
 - ✅ Maintain collaborative, inquisitive, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on threat identification across all 6 STRIDE categories
 - 🚫 FORBIDDEN to jump ahead to controls or recommendations
@@ -56,21 +56,21 @@ To systematically identify security threats across all six STRIDE categories (Sp
 - 📋 Ensure minimum 3 threats per major architecture component
 - 🔍 All 6 STRIDE categories MUST be analyzed - no skipping
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Guide user through each STRIDE category systematically
 - 💾 Document threats in Section 3 of output file with clear categorization
 - 📖 Update frontmatter `stepsCompleted` to include 2 before loading next step
 - 🚫 FORBIDDEN to proceed to control assessment until all STRIDE categories covered
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Available context: Architecture Overview from Section 2 (components, boundaries, data flows, tech stack)
 - Focus: Threat identification only - not mitigation or control assessment
 - Limits: Don't assume threats without user validation; avoid generic threats
 - Dependencies: Requires completed architecture context from Step 1
 
-## STRIDE THREAT MODELING SEQUENCE:
+## STRIDE THREAT MODELING SEQUENCE
 
 ### 1. Initialize Threat Modeling Session
 
@@ -401,6 +401,7 @@ Methodology: Microsoft STRIDE framework applied to all architecture components a
 ```
 
 Update frontmatter in {outputFile}:
+
 - Add 2 to `stepsCompleted` array: `stepsCompleted: [1, 2]`
 - Set `lastStep: 'threat-modeling'`
 - Add `threatCount: [total threat count]`
@@ -422,15 +423,15 @@ Does this threat model accurately reflect the security risks in your architectur
 
 Display: **Select an Option:** [A] Advanced Elicitation [B] Brainstorming [P] Party Mode [C] Continue to Control Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with prompt: "Review the STRIDE threat model and identify any missed threats, attack scenarios we haven't considered, or gaps in our analysis. Challenge assumptions and explore edge cases."
 - IF B: Execute {brainstormingTask} with prompt: "Generate creative attack scenarios we might not have considered. Think like an attacker: what unconventional or sophisticated threats could target this architecture?"
 - IF P: Execute {partyModeWorkflow} with prompt: "Invite Ghost (penetration tester) and Cipher (threat intelligence) to review our threat model for missing threats or alternative attack perspectives."
-- IF C: Verify all 6 STRIDE categories covered, save complete threat model to {outputFile}, update frontmatter `stepsCompleted: [1, 2]`, then load, read entire file, then execute {nextStepFile}
+- IF C: Verify all 6 STRIDE categories covered, save complete threat model to {outputFile}, update frontmatter `stepsCompleted: [1, 2]`, then load, read entire file, then follow {nextStepFile}
 - IF Any other comments or queries: help user respond then [Redisplay Menu Options](#7-present-menu-options)
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY proceed to next step when user selects 'C'
@@ -442,13 +443,13 @@ Display: **Select an Option:** [A] Advanced Elicitation [B] Brainstorming [P] Pa
 ONLY WHEN 'C' is selected AND all 6 STRIDE categories have been analyzed AND threats are documented in Section 3 of {outputFile}, will you then:
 
 1. Update frontmatter in {outputFile}: `stepsCompleted: [1, 2]`, `lastStep: 'threat-modeling'`, `threatCount: [count]`
-2. Load, read entire file, then execute {nextStepFile} to begin security control assessment
+2. Load, read entire file, then follow {nextStepFile} to begin security control assessment
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - All 6 STRIDE categories systematically analyzed
 - Minimum 3 threats identified per major architecture component
@@ -459,7 +460,7 @@ ONLY WHEN 'C' is selected AND all 6 STRIDE categories have been analyzed AND thr
 - Frontmatter updated with step 2 completion
 - Output file Section 3 populated with complete threat model
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Skipping any STRIDE category
 - Generic or vague threat descriptions

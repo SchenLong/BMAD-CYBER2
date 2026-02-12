@@ -87,7 +87,7 @@ naming_conflicts:
 
   workflow_id_conflicts:
     detection_scope: "global"
-    naming_convention: "{module_code}:{workflow_name}"
+    naming_convention: "{module_code}:{workflow-name}"
     enforcement: "namespace_prefix_required"
 
     conflict_types:
@@ -98,7 +98,7 @@ naming_conflicts:
 
         prevention_strategy:
           method: "mandatory_namespace_prefix"
-          format: "{module_code}:{workflow_name}"
+          format: "{module_code}:{workflow-name}"
           validation: "pre_install_check"
 
       cross_reference_conflicts:

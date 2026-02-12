@@ -59,6 +59,7 @@ The Core module provides project management and cross-module orchestration capab
 - **Phase Gates**: Validation checkpoints for project progression
 
 **Invoke:**
+
 ```
 /bmad:core:agents:abdul
 /bmad:core:agents:bmad-master
@@ -78,6 +79,7 @@ Enterprise security capabilities through 15 specialized agents covering the comp
 | **Extended Security (9)** | Watchman (SOC), Nimbus (Cloud), Ledger (Blockchain), Weaver (Web), Gateway (API), Oracle (AI/LLM), Shield (Blue Team), Phantom (Mobile), Specter (Social Engineering) |
 
 **Workflows (13):**
+
 1. Incident Response Playbook (19 steps)
 2. Security Architecture Review (8 steps)
 3. STRIDE Threat Modeling (11 steps)
@@ -97,6 +99,7 @@ Enterprise security capabilities through 15 specialized agents covering the comp
 **Built for:** Security Consultants, CISOs, Compliance Officers, IR Teams, Penetration Testers, Red/Blue Teams
 
 **Invoke:**
+
 ```
 /security-architect           # Bastion
 /threat-analyst              # Cipher
@@ -136,6 +139,7 @@ Comprehensive intelligence collection, analysis, and reporting through 11 specia
 **Built for:** Intelligence Professionals, Investigators, Security Researchers, Threat Intelligence Analysts
 
 **Invoke:**
+
 ```
 /intel-team:osint-lead              # Vector
 /intel-team:domain-intel-specialist # Resolver
@@ -170,6 +174,7 @@ Strategic counsel through 14 advisors including 6 modern professionals and 8 his
 **Built for:** C-Suite Executives, Board Members, Strategic Planners, Policy Makers, Crisis Managers
 
 **Invoke:**
+
 ```
 /strategy-team:the-master-strategist      # Sun Tzu
 /strategy-team:political-strategist       # Magnus
@@ -191,6 +196,7 @@ Strategic counsel through 14 advisors including 6 modern professionals and 8 his
 | **Extended Legal Team (6)** | Iberia (Spain Civil), Gremio (Spain Labor), Baltic (Estonia Corporate), Charter (Governance), Insignia (IP), Deed (Real Estate) |
 
 **Workflows (8):**
+
 1. Legal Matter Intake (8 steps)
 2. Contract Review (9 steps)
 3. Contract Drafting (9 steps)
@@ -202,11 +208,13 @@ Strategic counsel through 14 advisors including 6 modern professionals and 8 his
 **Jurisdictions Covered:** USA, European Union, Spain, Estonia, Cross-Border Matters
 
 **Primary Use Case:** Providing legal perspective in Party Mode when other modules require legal input:
+
 - **Cybersec-Team:** Compliance considerations during security assessments
 - **Intel-Team:** Contractual implications in corporate intelligence
 - **Strategy-Team:** Regulatory concerns in executive strategy sessions
 
 **Invoke (Party Mode only):**
+
 ```
 /legal-team:counsel    # General Counsel
 /legal-team:europa     # EU/GDPR Specialist
@@ -249,6 +257,7 @@ The core BMAD Method module covering the complete product development lifecycle.
 **Built for:** Product Managers, Developers, Architects, Scrum Masters, Tech Writers
 
 **Invoke:**
+
 ```
 /bmad:bmm:agents:pm         # John
 /bmad:bmm:agents:architect  # Winston
@@ -285,6 +294,7 @@ Specialized game development workflows supporting Unity, Unreal Engine, and Godo
 **Built for:** Game Designers, Game Developers, QA Engineers, Indie Developers
 
 **Invoke:**
+
 ```
 /bmad:bmgd:agents:game-designer  # Samus Shepard
 /bmad:bmgd:agents:game-architect # Winston
@@ -306,6 +316,7 @@ Meta-module for extending the BMAD ecosystem.
 | Agent Builder, Workflow Builder, Module Builder |
 
 **Workflows (8):**
+
 1. Create Agent
 2. Create Workflow
 3. Edit Workflow
@@ -316,6 +327,7 @@ Meta-module for extending the BMAD ecosystem.
 **Built for:** BMAD Developers, Framework Contributors
 
 **Invoke:**
+
 ```
 /bmad:bmb:agents:agent-builder
 /bmad:bmb:agents:workflow-builder
@@ -338,6 +350,7 @@ Brainstorming, design thinking, and innovation methodology.
 | **Communication** | Sophia (Storyteller), Caravaggio (Presentation Master) |
 
 **Workflows (4):**
+
 1. Design Thinking
 2. Innovation Strategy
 3. Problem Solving
@@ -346,6 +359,7 @@ Brainstorming, design thinking, and innovation methodology.
 **Built for:** Innovation Teams, Product Designers, Marketing, Leadership
 
 **Invoke:**
+
 ```
 /bmad:cis:agents:brainstorming-coach  # Carson
 /bmad:cis:agents:innovation-strategist # Victor
@@ -378,7 +392,7 @@ See [RBAC-ROLES-GUIDE.md](RBAC-ROLES-GUIDE.md) for complete access control detai
 
 Modules can work together through **Party Mode**, which enables multi-agent collaboration across modules.
 
-### Common Cross-Module Scenarios:
+### Common Cross-Module Scenarios
 
 | Scenario | Modules Involved | Preset |
 |----------|------------------|--------|
@@ -407,6 +421,7 @@ _bmad/
 ```
 
 Global configuration:
+
 - `_bmad/_config/llm-config.yaml` - LLM provider routing per module
 - `_bmad/core/security/rbac-config.yaml` - Access control per module
 

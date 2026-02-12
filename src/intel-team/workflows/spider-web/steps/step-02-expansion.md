@@ -51,12 +51,15 @@ Execute systematic expansion from seed node across all identified vectors. Each 
 ## RESOLVER (Domain Intelligence) Expansion
 
 ### Agent: domain-intel-specialist
+
 ### Codename: Resolver
+
 ### Focus: Domain, DNS, Infrastructure relationships
 
 ### Expansion Tasks
 
 #### 1. WHOIS Intelligence
+
 ```
 For each domain in scope:
 □ Current WHOIS record
@@ -78,6 +81,7 @@ For each domain in scope:
 ```
 
 #### 2. DNS Expansion
+
 ```
 □ A/AAAA Records
   - IP addresses → add as nodes
@@ -105,6 +109,7 @@ For each domain in scope:
 ```
 
 #### 3. Certificate Intelligence
+
 ```
 □ SSL/TLS Certificates
   - Subject Alternative Names (SANs) → related domains
@@ -139,12 +144,15 @@ For each domain in scope:
 ## PROBE (Technical) Expansion
 
 ### Agent: technical-researcher
+
 ### Codename: Probe
+
 ### Focus: Infrastructure, services, code relationships
 
 ### Expansion Tasks
 
 #### 1. IP/Infrastructure Analysis
+
 ```
 For each IP discovered:
 □ Reverse DNS
@@ -163,6 +171,7 @@ For each IP discovered:
 ```
 
 #### 2. Technology Fingerprinting
+
 ```
 □ Web Technologies
   - CMS/Framework
@@ -182,6 +191,7 @@ For each IP discovered:
 ```
 
 #### 3. Code Repository Analysis
+
 ```
 □ GitHub/GitLab Search
   - Organization repositories
@@ -225,12 +235,15 @@ For each IP discovered:
 ## ECHO (Social) Expansion
 
 ### Agent: social-media-analyst
+
 ### Codename: Echo
+
 ### Focus: Social presence, human network, online activity
 
 ### Expansion Tasks
 
 #### 1. Platform Enumeration
+
 ```
 □ Major Platforms
   - LinkedIn (company + employees)
@@ -252,6 +265,7 @@ For each IP discovered:
 ```
 
 #### 2. Account Discovery
+
 ```
 For usernames/emails found:
 □ Username enumeration across platforms
@@ -267,6 +281,7 @@ For usernames/emails found:
 ```
 
 #### 3. Network Mapping
+
 ```
 □ Connection Analysis
   - Followers/following
@@ -282,6 +297,7 @@ For usernames/emails found:
 ```
 
 #### 4. Activity Analysis
+
 ```
 □ Content Patterns
   - Posting frequency
@@ -317,12 +333,15 @@ For usernames/emails found:
 ## PROXY (Corporate Intelligence) Expansion
 
 ### Agent: corporate-intel-specialist
+
 ### Codename: Proxy
+
 ### Focus: Corporate structure, ownership, affiliations, registrations
 
 ### Expansion Tasks
 
 #### 1. Entity Verification & Structure
+
 ```
 For organization nodes:
 □ Business registry lookup
@@ -345,6 +364,7 @@ For organization nodes:
 ```
 
 #### 2. Officer/Director Network
+
 ```
 □ Director Discovery
   - Named officers/directors
@@ -364,6 +384,7 @@ For organization nodes:
 ```
 
 #### 3. Corporate Relationships
+
 ```
 □ Affiliate Network
   - Suppliers/vendors (if public)
@@ -382,6 +403,7 @@ For organization nodes:
 ```
 
 #### 4. Financial Intelligence
+
 ```
 □ Public Financial Data
   - Annual reports (if public)
@@ -455,11 +477,13 @@ SCOPE CHECK:
 After first expansion pass:
 
 **Continue to Depth 2?**
+
 - [ ] High-value nodes discovered that warrant expansion
 - [ ] Within scope limits
 - [ ] Time budget allows
 
 **Stop expansion if:**
+
 - Node limit reached
 - Time budget exhausted
 - Diminishing returns (few new nodes)
@@ -470,6 +494,7 @@ After first expansion pass:
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 3:
+
 - [ ] All HIGH priority vectors expanded
 - [ ] MEDIUM priority vectors expanded (if time allows)
 - [ ] All new nodes documented
@@ -489,4 +514,4 @@ Before proceeding to Step 3:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-03-correlation.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-03-correlation.md`

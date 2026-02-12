@@ -260,7 +260,9 @@ class AtomicOperations extends EventEmitter {
         // Clean up temp file on error
         try {
           await fs.remove(tempPath);
-        } catch {}
+        } catch {
+          // intentionally empty — best-effort cleanup
+        }
 
         throw error;
       }
@@ -315,7 +317,9 @@ class AtomicOperations extends EventEmitter {
       } catch (error) {
         try {
           await fs.remove(tempPath);
-        } catch {}
+        } catch {
+          // intentionally empty — best-effort cleanup
+        }
         throw error;
       }
     });

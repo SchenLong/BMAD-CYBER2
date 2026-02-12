@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * BMAD-CYBER2 Security Patch: Enhanced Encoded Payload Detection
  * Addresses: VULN-005 (HIGH - CVSS 7.3)
@@ -238,14 +237,14 @@ class EncodedPayloadDetection {
 
     calculateEntropy(str) {
         const charCounts = {};
-        for (let char of str) {
+        for (const char of str) {
             charCounts[char] = (charCounts[char] || 0) + 1;
         }
 
         let entropy = 0;
         const length = str.length;
 
-        for (let count of Object.values(charCounts)) {
+        for (const count of Object.values(charCounts)) {
             const p = count / length;
             entropy -= p * Math.log2(p);
         }
@@ -351,8 +350,8 @@ class EncodedPayloadDetection {
             blockedPayloads,
             quarantinedPayloads,
             warnedPayloads,
-            blockRate: totalDetections > 0 ? (blockedPayloads / totalDetections * 100).toFixed(2) + '%' : '0%',
-            detectionEffectiveness: totalDetections > 0 ? ((blockedPayloads + quarantinedPayloads) / totalDetections * 100).toFixed(2) + '%' : '0%'
+            blockRate: totalDetections > 0 ? `${(blockedPayloads / totalDetections * 100).toFixed(2)  }%` : '0%',
+            detectionEffectiveness: totalDetections > 0 ? `${((blockedPayloads + quarantinedPayloads) / totalDetections * 100).toFixed(2)  }%` : '0%'
         };
     }
 }

@@ -32,14 +32,17 @@ Let's start by understanding what brings you here today."
 Guide the user through these areas conversationally:
 
 **Situation Overview:**
+
 - What is the general nature of your matter? (contract, business, dispute, property, tax, etc.)
 - Can you briefly describe the situation?
 
 **Your Role:**
+
 - Are you a business owner, individual, or in-house counsel?
 - What is your relationship to this matter?
 
 **Initial Concerns:**
+
 - What is your primary concern or goal?
 - Is there anything time-sensitive I should know about?
 
@@ -70,9 +73,11 @@ date_created: "{date}"
 ### 4. Present Menu
 
 **Select an Option:**
+
 - **[C]** Continue to matter classification
 - **[Q]** I have questions before proceeding
 
-#### Menu Handling:
-- IF C: Update frontmatter, load and execute `{nextStepFile}`
+#### Menu Handling
+
+- IF C: Update frontmatter, load and follow `{nextStepFile}`
 - IF Q: Answer questions, then redisplay menu

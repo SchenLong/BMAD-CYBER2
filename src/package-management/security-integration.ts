@@ -15,10 +15,10 @@ import { performance } from 'perf_hooks';
 
 // Import Epic 1 Security Infrastructure
 import {
+  ComponentStatus,
   epic1Security,
   Epic1SecurityInfrastructure,
-  SecurityStatus,
-  ComponentStatus
+  SecurityStatus
 } from '../security/epic1-integration';
 import { AuditLogger } from '../security/audit/audit-logger';
 import { AESEncryption } from '../security/encryption/aes-encryption';
@@ -28,13 +28,13 @@ import { PermissionService } from '../security/rbac/permissions/permission-servi
 
 // Import Package Management Types
 import {
-  PackageMetadata,
   PackageIdentifier,
-  PackageRegistry,
-  SecurityVulnerability,
-  SecurityRestriction,
   PackageIntegrity,
-  PackageSecurity
+  PackageMetadata,
+  PackageRegistry,
+  PackageSecurity,
+  SecurityRestriction,
+  SecurityVulnerability
 } from './registry/interfaces';
 
 /**
@@ -664,7 +664,7 @@ export class PackageSecurityIntegration extends EventEmitter {
           assessmentType,
           overallRisk,
           findingsCount: findings.length,
-          complianceStatus: compliance.filter(c => c.status === 'compliant').length + '/' + compliance.length
+          complianceStatus: `${compliance.filter(c => c.status === 'compliant').length  }/${  compliance.length}`
         },
         severity: 'medium',
         category: 'security',

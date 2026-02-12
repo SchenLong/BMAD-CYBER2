@@ -17,13 +17,13 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 8A: Generate Final Playbook
 
-## STEP GOAL:
+## STEP GOAL
 
 To finalize the incident response playbook by adding appendices, document control information, conducting a final quality review, and marking the workflow as complete.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -31,7 +31,7 @@ To finalize the incident response playbook by adding appendices, document contro
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are Phoenix, an IR Planning Consultant
 - ✅ If you already have been given a name, communication_style, and persona, continue to use those while playing this new role
@@ -40,28 +40,28 @@ To finalize the incident response playbook by adding appendices, document contro
 - ✅ User brings organizational knowledge and requirements
 - ✅ Maintain collaborative, consultative tone
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on finalizing the playbook with appendices and document control
 - 🚫 This is the LAST step - no next step file to load
 - 💬 Conduct thorough quality review with user
 - ✅ Mark workflowComplete: true when done
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 All 7 main sections complete (Sections 1-7 from previous steps)
 - 💾 Append Section 8 (Appendices) to output file
 - 📖 Update frontmatter with final metadata and workflowComplete: true
 - 🎉 This step completes the playbook creation workflow
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - All procedural sections complete (detection, containment, eradication, recovery, post-incident)
 - Focus on appendices, references, and document control
 - Final quality review before declaring complete
 - This playbook will be used during real incidents
 
-## PLAYBOOK FINALIZATION SEQUENCE:
+## PLAYBOOK FINALIZATION SEQUENCE
 
 ### 1. Review Playbook Status
 
@@ -70,6 +70,7 @@ Display:
 "**Finalizing {incident-type} Incident Response Playbook**
 
 Congratulations! We've completed all 7 procedural sections of your playbook:
+
 - ✅ Section 1: Incident Overview and Organizational Context
 - ✅ Section 2: Detection & Analysis Procedures
 - ✅ Section 3: Containment Procedures
@@ -79,6 +80,7 @@ Congratulations! We've completed all 7 procedural sections of your playbook:
 - ✅ Section 7: Communication Plan
 
 Now we'll finalize the playbook with:
+
 - Section 8: Appendices (commands, contacts, checklists, compliance)
 - Document Control (version history, review schedule, approval)
 - Final quality review
@@ -98,6 +100,7 @@ Appendices provide quick reference material for responders during an incident.
 This should be a comprehensive command cheat sheet for your tools.
 
 From the previous sections, we documented commands for:
+
 - {edr-platform} (Sections 3, 4, 5)
 - {siem-platform} (Sections 2, 3)
 - {firewall-platform} (Section 3)
@@ -111,6 +114,7 @@ I'll compile all commands from the playbook into Appendix A for quick reference.
 Who needs to be contacted during a {incident-type} incident?
 
 **Internal Contacts:**
+
 - IR Team Lead: {name, phone, email}
 - SOC Manager: {contact-info}
 - CISO: {contact-info}
@@ -123,6 +127,7 @@ Who needs to be contacted during a {incident-type} incident?
 - Executive Leadership: {contact-info}
 
 **External Contacts:**
+
 - Forensics Firm: {company, contact, phone, email}
 - Legal Counsel (external): {firm, contact-info}
 - Cyber Insurance: {company, policy-number, contact}
@@ -131,6 +136,7 @@ Who needs to be contacted during a {incident-type} incident?
 - ISAC/Information Sharing: {organization-contact}
 
 **Vendor Contacts:**
+
 - {edr-vendor}: Support phone, account manager
 - {siem-vendor}: Support phone, account manager
 - {forensics-tool-vendor}: Support contact
@@ -138,6 +144,7 @@ Who needs to be contacted during a {incident-type} incident?
 - {other-critical-vendors}
 
 **Regulatory Contacts:**
+
 - GDPR DPA: {contact-if-applicable}
 - PCI-DSS Acquirer: {contact-if-applicable}
 - State Attorney General: {contacts-for-breach-notification}
@@ -165,12 +172,14 @@ I'll extract the recovery validation checklist.
 For {incident-type}, here are the regulatory obligations:
 
 **Notification Timelines:**
+
 - GDPR: 72 hours to DPA
 - PCI-DSS: Immediate to acquirer
 - HIPAA: 60 days to individuals
 - State laws: {varies-by-state}
 
 **Required Documentation:**
+
 - Breach analysis
 - Timeline of events
 - Affected individuals/data
@@ -178,6 +187,7 @@ For {incident-type}, here are the regulatory obligations:
 - Preventive measures
 
 **Contact Information:**
+
 - {regulatory-contacts-from-appendix-b}
 
 **Appendix E: IOC Reference (from Section 2)**
@@ -193,6 +203,7 @@ I'll reference the MITRE ATT&CK data and create a quick reference table.
 **Appendix G: Glossary**
 
 Define key terms used in the playbook:
+
 - IOC: Indicator of Compromise
 - C2: Command and Control
 - EDR: Endpoint Detection and Response
@@ -405,6 +416,7 @@ This playbook is a living document that needs regular review and updates.
 **Version History:**
 
 Let's document the creation of this playbook:
+
 - Version 1.0
 - Created: {date}
 - Created by: {organization-name} and Phoenix (BMAD IR Planning Consultant)
@@ -413,6 +425,7 @@ Let's document the creation of this playbook:
 **Review and Update Schedule:**
 
 How often should this playbook be reviewed?
+
 - Recommended: Annually at minimum
 - After each incident: Update based on lessons learned
 - When tools change: Update commands and procedures
@@ -423,6 +436,7 @@ How often should this playbook be reviewed?
 Who must approve this playbook before it's official?
 
 Typical approval workflow:
+
 - Created by: IR Team
 - Reviewed by: Security Team, IT Operations, Legal
 - Approved by: CISO
@@ -484,29 +498,34 @@ Before we declare this playbook complete, let's conduct a final quality review.
 I'll ask you a series of questions to ensure the playbook is comprehensive and actionable.
 
 **Section 1: Incident Overview**
+
 - [ ] Incident type clearly defined?
 - [ ] Organizational context comprehensive (tools, team, regulations)?
 - [ ] Severity criteria defined?
 
 **Section 2: Detection & Analysis**
+
 - [ ] IOCs specific to {incident-type}?
 - [ ] Alert sources documented?
 - [ ] Triage decision tree clear?
 - [ ] Initial assessment checklist complete?
 
 **Section 3: Containment**
+
 - [ ] Short-term and long-term containment strategies?
 - [ ] Tool-specific commands provided?
 - [ ] Decision matrix based on severity?
 - [ ] Rollback procedures documented?
 
 **Section 4: Eradication**
+
 - [ ] Root cause identification procedures?
 - [ ] Complete threat removal procedures (malware, persistence, credentials)?
 - [ ] Vulnerability remediation procedures?
 - [ ] Validation procedures with sign-off?
 
 **Section 5: Recovery**
+
 - [ ] System prioritization (P1/P2/P3)?
 - [ ] Restoration methods per system type?
 - [ ] Validation testing procedures?
@@ -514,6 +533,7 @@ I'll ask you a series of questions to ensure the playbook is comprehensive and a
 - [ ] Return-to-normal criteria?
 
 **Section 6 & 7: Post-Incident**
+
 - [ ] Lessons learned session structure?
 - [ ] Documentation requirements?
 - [ ] Communication plan (internal and external)?
@@ -521,6 +541,7 @@ I'll ask you a series of questions to ensure the playbook is comprehensive and a
 - [ ] Process improvement framework?
 
 **Section 8: Appendices**
+
 - [ ] Command reference complete?
 - [ ] Contact information (or placeholders)?
 - [ ] Checklists extracted?
@@ -528,11 +549,13 @@ I'll ask you a series of questions to ensure the playbook is comprehensive and a
 - [ ] Glossary?
 
 **Document Control:**
+
 - [ ] Version history?
 - [ ] Review schedule?
 - [ ] Approval section?
 
 **Overall:**
+
 - [ ] Procedures specific to {incident-type}?
 - [ ] Procedures tailored to organizational tools and context?
 - [ ] Actionable (responder can follow during incident)?
@@ -553,6 +576,7 @@ Once quality review is satisfactory:
 Congratulations! You now have a comprehensive **{incident-type} Incident Response Playbook** for {organization-name}.
 
 **Playbook Summary:**
+
 - **Incident Type:** {incident-type}
 - **Sections Completed:** 8 (Incident Overview, Detection, Containment, Eradication, Recovery, Post-Incident, Communication, Appendices)
 - **Created:** {date}
@@ -587,6 +611,7 @@ Congratulations! You now have a comprehensive **{incident-type} Incident Respons
 **Additional Playbooks:**
 
 This is your **first** incident response playbook. Consider creating playbooks for other incident types:
+
 - Ransomware (if not already covered)
 - Data Breach / Exfiltration
 - DDoS Attack
@@ -596,6 +621,7 @@ This is your **first** incident response playbook. Consider creating playbooks f
 - {other-incident-types-relevant-to-your-organization}
 
 **Would you like to:**
+
 - Export the playbook to PDF?
 - Create another playbook for a different incident type?
 - Conduct a tabletop exercise to test this playbook?
@@ -617,13 +643,13 @@ playbookStatus: 'Draft - Pending Approval'
 
 Display: **Select an Option:** [A] Advanced Elicitation (Final Quality Review) [P] Party Mode [C] Complete
 
-#### EXECUTION RULES:
+#### EXECUTION RULES
 
 - ALWAYS halt and wait for user input after presenting menu
 - ONLY mark workflow complete when user selects 'C'
 - After Advanced Elicitation or Party Mode, return to this menu
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF A: Execute {advancedElicitationTask} with focus on "comprehensive final quality review of entire playbook"
 - IF P: Execute {partyModeWorkflow} - User can select any expert for final consultation
@@ -638,7 +664,7 @@ ONLY WHEN C is selected will you mark `workflowComplete: true` and complete the 
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Section 8 (Appendices) complete with all subsections
 - Document control added (version history, review schedule, approval)
@@ -649,7 +675,7 @@ ONLY WHEN C is selected will you mark `workflowComplete: true` and complete the 
 - Completion message displayed
 - Next steps provided to user
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Missing appendices (critical quick-reference material)
 - No document control (playbook won't be maintained)

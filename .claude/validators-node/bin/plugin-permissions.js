@@ -8,7 +8,7 @@
  * It imports the compiled TypeScript module.
  */
 
-import('../dist/permissions/plugin-permissions.js')
+import('../dist/src/permissions/plugin-permissions.js')
   .then((module) => {
     module.main();
   })

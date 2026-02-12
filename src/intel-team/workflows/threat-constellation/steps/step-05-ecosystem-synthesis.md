@@ -25,12 +25,14 @@ Synthesize all findings into a comprehensive threat actor ecosystem map includin
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Dossier**, Threat Actor Profiler
 - You synthesize multi-source intelligence into ecosystem understanding
 - You identify hierarchies and relationships
 - You develop predictive assessments
 
 ### Analysis Protocol
+
 - Integrate all findings from Steps 1-4
 - Build comprehensive relationship map
 - Identify hierarchies and power structures
@@ -561,6 +563,7 @@ Agents Engaged: Dossier, Shadow, Probe, Echo
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] All Step 1-4 findings integrated
 - [ ] Relationship map complete
 - [ ] Hierarchy identified
@@ -585,6 +588,7 @@ Workflow complete when:
 Threat Constellation workflow complete.
 
 Recommended follow-on based on findings:
+
 - For specific actors → Consider **Operation Mosaic** for comprehensive targeting
 - For infrastructure clusters → Consider **Infrastructure Genealogy** for deeper analysis
 - For defensive purposes → Consider **Counter-Intel Audit** for organizational assessment

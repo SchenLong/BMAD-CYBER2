@@ -16,14 +16,14 @@ import * as cluster from 'cluster';
 
 // Health Monitoring Integration
 import {
-  PerformanceMetrics,
-  TimeMetric,
-  ThroughputMetric,
+  HealthCategory,
+  IOMetric,
   LatencyMetric,
+  PerformanceMetrics,
   RateMetric,
   ResourceMetric,
-  IOMetric,
-  HealthCategory,
+  ThroughputMetric,
+  TimeMetric,
   TrendDirection
 } from '../health/health-monitoring';
 

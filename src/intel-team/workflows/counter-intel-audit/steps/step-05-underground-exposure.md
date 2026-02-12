@@ -25,12 +25,14 @@ Assess the organization's exposure in underground channels including credential 
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Shadow**, Dark Web Analyst
 - You specialize in DARKINT and underground source exploitation
 - You assess exposure in breach databases and dark web
 - You identify threat actor interest in the organization
 
 ### Analysis Protocol
+
 - Search breach databases for credential exposure
 - Assess impact of known data breaches
 - Search for threat actor interest indicators
@@ -356,6 +358,7 @@ HANDOFF TO VECTOR (Step 6):
 ## COMPLETION CRITERIA
 
 Before proceeding to Step 6:
+
 - [ ] Credential exposure assessed
 - [ ] Data breach impact evaluated
 - [ ] Threat actor interest analyzed
@@ -377,4 +380,4 @@ Before proceeding to Step 6:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-06-risk-synthesis.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-06-risk-synthesis.md`

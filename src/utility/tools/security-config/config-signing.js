@@ -226,7 +226,7 @@ export function signConfigFile(configPath, key = null) {
     const signedContent = serializeSignedConfig(signedConfig, content);
 
     // Atomic write
-    const tempPath = configPath + '.tmp';
+    const tempPath = `${configPath  }.tmp`;
     fs.writeFileSync(tempPath, signedContent, 'utf8');
     fs.renameSync(tempPath, configPath);
 
@@ -353,8 +353,8 @@ function serializeSignedConfig(signedConfig, originalContent) {
   const lines = originalContent.split('\n');
   const filteredLines = lines.filter(line => {
     const trimmed = line.trim();
-    return !trimmed.startsWith(SIGNATURE_FIELD + ':') &&
-           !trimmed.startsWith(SIGNED_AT_FIELD + ':');
+    return !trimmed.startsWith(`${SIGNATURE_FIELD  }:`) &&
+           !trimmed.startsWith(`${SIGNED_AT_FIELD  }:`);
   });
 
   // Ensure file ends with newline
@@ -450,6 +450,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   console.log(`   Correct key verification: ${customVerifyCorrect.valid ? 'PASSED' : 'FAILED'}`);
   console.log(`   Wrong key verification: ${customVerifyWrong.valid ? 'PASSED (BAD!)' : 'FAILED (expected)'}`);
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('Self-test complete.');
 }

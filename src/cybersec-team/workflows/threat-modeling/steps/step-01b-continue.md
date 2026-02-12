@@ -21,13 +21,13 @@ step08File: '{workflow_path}/steps/step-08-summary.md'
 
 # Step 1b: Workflow Continuation
 
-## STEP GOAL:
+## STEP GOAL
 
 To analyze existing threat model progress from frontmatter, present current state to user, and route to the appropriate next step for continuation.
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - 🛑 NEVER generate content without user input
 - 📖 CRITICAL: Read the complete step file before taking any action
@@ -35,7 +35,7 @@ To analyze existing threat model progress from frontmatter, present current stat
 - 📋 YOU ARE A FACILITATOR, not a content generator
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - ✅ You are a Security Threat Modeling Expert
 - ✅ If you already have been given communication or persona patterns, continue to use those while playing this new role
@@ -43,34 +43,35 @@ To analyze existing threat model progress from frontmatter, present current stat
 - ✅ You bring STRIDE methodology and security expertise, user brings system knowledge
 - ✅ Maintain professional, systematic, security-focused tone throughout
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - 🎯 Focus ONLY on continuation analysis and routing
 - 🚫 FORBIDDEN to proceed with threat analysis in this step
 - 💬 Present clear progress summary from document frontmatter
 - 🚪 Route to correct next step based on stepsCompleted
 
-## EXECUTION PROTOCOLS:
+## EXECUTION PROTOCOLS
 
 - 🎯 Read and analyze frontmatter from {outputFile}
 - 💾 Display progress summary to user
 - 📖 Route to appropriate next step based on last completed step
 - 🚫 FORBIDDEN to skip steps or optimize the sequence
 
-## CONTEXT BOUNDARIES:
+## CONTEXT BOUNDARIES
 
 - Output document exists with frontmatter tracking
 - stepsCompleted array indicates progress
 - Components and analysis state stored in frontmatter
 - Must preserve all existing work
 
-## CONTINUATION SEQUENCE:
+## CONTINUATION SEQUENCE
 
 ### 1. Load Existing Threat Model
 
 Read the complete {outputFile} including frontmatter.
 
 Extract from frontmatter:
+
 - `stepsCompleted` - Array of completed step numbers
 - `lastStep` - Name of last completed step
 - `systemName` - System being analyzed
@@ -86,6 +87,7 @@ Extract from frontmatter:
 Determine last completed step from `stepsCompleted` array:
 
 **Step Mapping:**
+
 - `1` = System Overview (init)
 - `2` = Component Decomposition
 - `3` = Component Selection
@@ -96,6 +98,7 @@ Determine last completed step from `stepsCompleted` array:
 - `8` = Summary and Recommendations
 
 **Identify Current State:**
+
 - What is the last completed step?
 - Are we in the middle of analyzing a component?
 - How many components identified vs analyzed?
@@ -117,6 +120,7 @@ Display:
 {list-all-completed-steps-with-checkmarks}
 
 **Component Analysis Progress:**
+
 - Total Components Identified: {components.length}
 - Components Fully Analyzed: {componentsAnalyzed.length}
 - Current Component: {currentComponent || 'None'}
@@ -129,55 +133,67 @@ Display:
 
 Based on last completed step number, route as follows:
 
-#### IF stepsCompleted includes 8:
+#### IF stepsCompleted includes 8
+
 "**Workflow Complete!**
 
 Your threat model was completed on {date}. The complete threat model document is available at:
 `{outputFile}`
 
 Would you like to:
+
 1. Review the threat model
 2. Update/modify the threat model
 3. Export to another format"
 
 **STOP** - Do not proceed, wait for user input.
 
-#### IF last step is 1 (System Overview):
+#### IF last step is 1 (System Overview)
+
 "Resuming at **Component Decomposition**. We'll identify and document all major system components next."
 
-Load, read entire file, then execute {step02File}
+Load, read entire file, then follow {step02File}
 
-#### IF last step is 2 (Component Decomposition):
+#### IF last step is 2 (Component Decomposition)
+
 Check components array:
+
 - If `components.length === 0`: "No components were identified yet. Let's return to component decomposition."
   - Load {step02File}
 - Else: "Components identified. Proceeding to component selection for threat analysis."
   - Load {step03File}
 
-#### IF last step is 3 (Component Selection):
+#### IF last step is 3 (Component Selection)
+
 Check currentComponent:
+
 - If `currentComponent` exists and not in `componentsAnalyzed`: "Resuming STRIDE analysis for component: {currentComponent}"
   - Load {step04File}
 - Else: "Component selection was last step. Proceeding to STRIDE analysis."
   - Load {step04File}
 
-#### IF last step is 4 (STRIDE Analysis):
+#### IF last step is 4 (STRIDE Analysis)
+
 "STRIDE analysis completed for {currentComponent}. Proceeding to risk assessment."
 
 Load {step05File}
 
-#### IF last step is 5 (Risk Assessment):
+#### IF last step is 5 (Risk Assessment)
+
 "Risk assessment completed for {currentComponent}. Proceeding to mitigation strategies."
 
 Load {step06File}
 
-#### IF last step is 6 (Mitigation Strategies):
+#### IF last step is 6 (Mitigation Strategies)
+
 "Mitigation strategies completed for {currentComponent}. Checking if more components need analysis."
 
 Load {step07File}
 
-#### IF last step is 7 (Loop Decision):
+#### IF last step is 7 (Loop Decision)
+
 Check component status:
+
 - If `componentsAnalyzed.length < components.length`: "More components to analyze. Returning to component selection."
   - Load {step03File}
 - Else: "All components analyzed. Proceeding to summary."
@@ -185,13 +201,13 @@ Check component status:
 
 ### 5. Execute Routing
 
-After determining next step, immediately load, read entire file, then execute the appropriate step file.
+After determining next step, immediately load and follow the appropriate step file.
 
 ---
 
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
-### ✅ SUCCESS:
+### ✅ SUCCESS
 
 - Frontmatter loaded and analyzed correctly
 - Progress summary displayed accurately
@@ -199,7 +215,7 @@ After determining next step, immediately load, read entire file, then execute th
 - Routed to correct next step based on stepsCompleted
 - No steps skipped or duplicated
 
-### ❌ SYSTEM FAILURE:
+### ❌ SYSTEM FAILURE
 
 - Not reading frontmatter from output document
 - Incorrect routing logic
@@ -211,4 +227,4 @@ After determining next step, immediately load, read entire file, then execute th
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN the routing decision is made based on stepsCompleted analysis will you immediately load, read entire file, then execute the appropriate next step file.
+ONLY WHEN the routing decision is made based on stepsCompleted analysis will you immediately load and follow the appropriate next step file.

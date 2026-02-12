@@ -3,6 +3,7 @@
  * ==========================================
  * Standardized block message formatting for security validators.
  */
+import { sanitizeErrorMessage, sanitizePath } from './path-utils.js';
 /**
  * Print a standardized block message to stderr.
  *
@@ -14,13 +15,13 @@ export function printBlockMessage(options) {
     console.error(`\n${separator}`);
     console.error(`BMAD GUARDRAIL: ${title}`);
     console.error(separator);
-    console.error(`\n${message}`);
-    console.error(`\nTarget: ${target.slice(0, 200)}`);
+    console.error(`\n${sanitizeErrorMessage(message)}`);
+    console.error(`\nTarget: ${sanitizePath(target).slice(0, 200)}`);
     if (recommendations && recommendations.length > 0) {
         console.error(`\n${separator}`);
         console.error('RECOMMENDATIONS:');
         for (const rec of recommendations) {
-            console.error(`  - ${rec}`);
+            console.error(`  - ${sanitizeErrorMessage(rec)}`);
         }
     }
     if (isAbsolute) {
@@ -40,9 +41,9 @@ export function printBlockMessage(options) {
  * @param target - Optional target (command, file, etc.)
  */
 export function printWarning(message, target) {
-    console.error(`WARNING: ${message}`);
+    console.error(`WARNING: ${sanitizeErrorMessage(message)}`);
     if (target) {
-        console.error(`  Target: ${target.slice(0, 200)}`);
+        console.error(`  Target: ${sanitizePath(target).slice(0, 200)}`);
     }
 }
 /**
@@ -52,7 +53,7 @@ export function printWarning(message, target) {
  * @param overrideVar - The override environment variable that was consumed
  */
 export function printOverrideConsumed(message, overrideVar) {
-    console.error(`WARNING: ${message} - ALLOWED via single-use override`);
+    console.error(`WARNING: ${sanitizeErrorMessage(message)} - ALLOWED via single-use override`);
     console.error(`  Override consumed. Set ${overrideVar}=true again for next operation.`);
 }
 //# sourceMappingURL=block-message.js.map

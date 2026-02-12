@@ -16,11 +16,11 @@ outputFile: '{output_folder}/security/mobile-security-testing-{project_name}.md'
 
 # Step 8: Findings Summary & Remediation
 
-## STEP GOAL:
+## STEP GOAL
 
 To compile all findings, prioritize by severity, and create actionable remediation guidance.
 
-## FINDINGS SEQUENCE:
+## FINDINGS SEQUENCE
 
 ### 1. Severity Classification
 
@@ -57,6 +57,7 @@ These require immediate attention before release."
 "Let's calculate risk score:
 
 **Scoring:**
+
 - Critical: 25 points
 - High: 10 points
 - Medium: 3 points
@@ -88,6 +89,7 @@ How should we prioritize?"
 **Common Fixes:**
 
 **Secure Storage (iOS):**
+
 ```swift
 let query: [String: Any] = [
     kSecClass as String: kSecClassGenericPassword,
@@ -99,6 +101,7 @@ SecItemAdd(query as CFDictionary, nil)
 ```
 
 **Secure Storage (Android):**
+
 ```kotlin
 val masterKey = MasterKey.Builder(context)
     .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
@@ -204,14 +207,18 @@ Update Section 8 of {outputFile}:
 ### 8.9 Appendix
 
 **Tools Used:**
+
 - [List of tools]
 
 **Test Devices:**
+
 - [List of devices]
 
 **Methodology:**
+
 - OWASP Mobile Security Testing Guide (MSTG)
 - OWASP Mobile Top 10
+
 ```
 
 ### 7. Workflow Complete

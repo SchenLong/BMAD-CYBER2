@@ -145,7 +145,7 @@ function saveChainState(state) {
     state.updated_at = new Date().toISOString();
     fs.mkdirSync(path.dirname(CHAIN_STATE_FILE), { recursive: true });
     // Atomic write via temp file
-    const tempFile = CHAIN_STATE_FILE + '.tmp';
+    const tempFile = `${CHAIN_STATE_FILE  }.tmp`;
     fs.writeFileSync(tempFile, JSON.stringify(state, null, 2));
     fs.renameSync(tempFile, CHAIN_STATE_FILE);
 }
@@ -171,12 +171,12 @@ ${separator}
     // Also write to separate alert log
     const alertLog = path.join(LOG_DIR, 'tampering_alerts.log');
     try {
-        fs.appendFileSync(alertLog, JSON.stringify({
+        fs.appendFileSync(alertLog, `${JSON.stringify({
             timestamp: new Date().toISOString(),
             log_file: logFile,
             entry_index: entryIndex,
             alert_type: alertType,
-        }) + '\n');
+        })  }\n`);
     }
     catch {
         // Non-critical
@@ -333,7 +333,7 @@ export class HashChainManager {
             log_file: this.logFile,
             entry_count: state.entry_count,
             last_timestamp: state.last_timestamp,
-            last_hash: state.last_hash.slice(0, 16) + '...',
+            last_hash: `${state.last_hash.slice(0, 16)  }...`,
             signing_enabled: SIGNING_ENABLED,
             chain_valid: verification.valid,
             entries_verified: verification.entriesChecked,

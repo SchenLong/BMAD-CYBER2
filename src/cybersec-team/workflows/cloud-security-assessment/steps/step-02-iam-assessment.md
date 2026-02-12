@@ -17,26 +17,26 @@ outputFile: '{output_folder}/security/cloud-security-assessment-{project_name}.m
 
 # Step 2: IAM Security Assessment
 
-## MANDATORY EXECUTION RULES (READ FIRST):
+## MANDATORY EXECUTION RULES (READ FIRST)
 
-### Universal Rules:
+### Universal Rules
 
 - NEVER generate content without user input
 - CRITICAL: Read the complete step file before taking any action
 - YOU ARE A FACILITATOR, not a content generator
 - YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus ONLY on IAM/identity security assessment
 - FORBIDDEN to discuss network security yet
 - Adapt questions based on cloud provider(s) in scope
 
-## STEP GOAL:
+## STEP GOAL
 
 To assess identity and access management security including IAM policies, roles, service accounts, privilege escalation risks, and least privilege implementation.
 
-## IAM ASSESSMENT SEQUENCE:
+## IAM ASSESSMENT SEQUENCE
 
 ### 1. Root/Admin Account Security
 
@@ -58,12 +58,14 @@ How are your root/global admin accounts secured?"
 "Let's review identity management:
 
 **User Account Hygiene:**
+
 - How many human users have cloud access?
 - Are identities federated from IdP (Okta, Azure AD, Google)?
 - How often are access reviews conducted?
 - What's your offboarding process?
 
 **Group-Based Access:**
+
 - Are permissions assigned to groups vs individuals?
 - How are group memberships managed?
 - Are there nested groups creating hidden permissions?
@@ -83,6 +85,7 @@ What's your current identity management approach?"
 | GCP | Service Accounts, Workload Identity | Key file usage? Impersonation? |
 
 **Assessment Areas:**
+
 - How many service accounts exist?
 - Are there unused/orphaned service accounts?
 - Are service account keys rotated?
@@ -104,16 +107,19 @@ Tell me about your service account landscape."
 | Inline policies | Per-user custom policies | Console/CLI review |
 
 **AWS Specific:**
+
 - Any policies with `"Effect": "Allow", "Action": "*", "Resource": "*"`?
 - S3 bucket policies allowing public access?
 - Cross-account trust policies?
 
 **Azure Specific:**
+
 - Users with Owner/Contributor at subscription level?
 - Custom RBAC roles?
 - Privileged Identity Management (PIM) usage?
 
 **GCP Specific:**
+
 - Primitive roles (Owner, Editor) still in use?
 - Custom roles defined?
 - IAM conditions used?
@@ -134,6 +140,7 @@ What permission patterns concern you most?"
 | GCP | setIamPolicy | Granting self more permissions |
 
 **Questions:**
+
 - Can regular users create IAM policies/roles?
 - Can users attach policies to themselves?
 - Are there paths from low-privilege to high-privilege?
@@ -209,6 +216,7 @@ Update Section 3 of {outputFile}:
 "**IAM Assessment Complete**
 
 I've documented the IAM security assessment including:
+
 - Root/admin account security
 - Identity management practices
 - Service account analysis
@@ -223,7 +231,7 @@ Ready to proceed to network security?"
 
 Display: **IAM Assessment Complete - Select an Option:** [C] Continue to Network Security [R] Review/Revise Assessment
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
 
 - IF C: Update frontmatter `stepsCompleted: [1, 2]`, then load, read entire file, execute {nextStepFile}
 - IF R: Display current Section 3 content, allow revisions, then redisplay menu
@@ -232,6 +240,6 @@ Display: **IAM Assessment Complete - Select an Option:** [C] Continue to Network
 
 ## CRITICAL STEP COMPLETION NOTE
 
-ONLY WHEN IAM assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2]`, then immediately load, read entire file, then execute `{nextStepFile}`.
+ONLY WHEN IAM assessment is documented and user confirms readiness will you update frontmatter to `stepsCompleted: [1, 2]`, then immediately load, read entire file, then follow `{nextStepFile}`.
 
 **Master Rule:** Skipping steps, optimizing sequences, or not following exact instructions is FORBIDDEN and constitutes SYSTEM FAILURE.

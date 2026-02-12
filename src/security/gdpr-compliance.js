@@ -205,15 +205,16 @@ export class PIIScanner {
      */
     _redactMatch(match, type) {
         switch (type) {
-            case 'email':
+            case 'email': {
                 const [local, domain] = match.split('@');
                 return `${local.charAt(0)}***@${domain}`;
+            }
             case 'phone':
                 return match.replace(/\d(?=\d{4})/g, '*');
             case 'ssn':
-                return '***-**-' + match.slice(-4);
+                return `***-**-${  match.slice(-4)}`;
             case 'creditCard':
-                return '**** **** **** ' + match.slice(-4);
+                return `**** **** **** ${  match.slice(-4)}`;
             case 'ipv4':
             case 'ipv6':
                 return match.split('.').map((o, i) => i < 2 ? '***' : o).join('.');
@@ -256,7 +257,16 @@ export class DataSubjectRequestHandler {
     constructor(storagePath = DSR_STORE_PATH) {
         this.storagePath = storagePath;
         this.requests = new Map();
+        this.logDirs = [];
         this._load();
+    }
+
+    /**
+     * Set log directories for erasure/export operations
+     * @param {string[]} dirs - Array of log directory paths
+     */
+    setLogDirs(dirs) {
+        this.logDirs = dirs;
     }
 
     /**
@@ -308,7 +318,7 @@ export class DataSubjectRequestHandler {
         };
 
         const logPath = path.join(this.storagePath, 'activity-log.jsonl');
-        fs.appendFileSync(logPath, JSON.stringify(activity) + '\n');
+        fs.appendFileSync(logPath, `${JSON.stringify(activity)  }\n`);
 
         return activity;
     }
@@ -397,6 +407,131 @@ export class DataSubjectRequestHandler {
         this._logActivity(request.requestId, 'CREATED', { type: DSRType.PORTABILITY });
 
         return request;
+    }
+
+    /**
+     * Purge all data for a given subject from log files and DSR store
+     * @param {string} subjectId - Subject identifier to purge
+     * @param {Object} options - Purge options
+     * @returns {Object} Purge result
+     */
+    purgeUserData(subjectId, options = {}) {
+        const { logDirs = this.logDirs, purgeDsrRecords = false } = options;
+        let entriesPurged = 0;
+        let filesProcessed = 0;
+        let dsrRecordsPurged = 0;
+
+        for (const logDir of logDirs) {
+            if (!fs.existsSync(logDir)) continue;
+
+            const files = fs.readdirSync(logDir).filter(f => f.endsWith('.log'));
+            for (const file of files) {
+                const filePath = path.join(logDir, file);
+                const content = fs.readFileSync(filePath, 'utf-8').trim();
+                if (!content) continue;
+
+                const lines = content.split('\n');
+                const kept = [];
+                let purgedFromFile = 0;
+
+                for (const line of lines) {
+                    if (!line.trim()) continue;
+                    try {
+                        const entry = JSON.parse(line);
+                        if (entry.userId === subjectId || entry.sessionId === subjectId) {
+                            purgedFromFile++;
+                        } else {
+                            kept.push(line);
+                        }
+                    } catch {
+                        // Preserve non-JSON lines
+                        kept.push(line);
+                    }
+                }
+
+                if (purgedFromFile > 0) {
+                    fs.writeFileSync(filePath, kept.join('\n') + (kept.length > 0 ? '\n' : ''));
+                    entriesPurged += purgedFromFile;
+                }
+                filesProcessed++;
+            }
+        }
+
+        if (purgeDsrRecords) {
+            const toDelete = [];
+            for (const [id, request] of this.requests) {
+                if (request.subjectId === subjectId) {
+                    toDelete.push(id);
+                }
+            }
+            for (const id of toDelete) {
+                this.requests.delete(id);
+                dsrRecordsPurged++;
+            }
+            if (dsrRecordsPurged > 0) {
+                this._save();
+            }
+        }
+
+        return {
+            success: true,
+            subjectId,
+            entriesPurged,
+            filesProcessed,
+            dsrRecordsPurged,
+            purgedAt: new Date().toISOString()
+        };
+    }
+
+    /**
+     * Export all data for a given subject from log files and DSR store
+     * @param {string} subjectId - Subject identifier to export
+     * @param {Object} options - Export options
+     * @returns {Object} Export result with structured data
+     */
+    exportUserData(subjectId, options = {}) {
+        const { logDirs = this.logDirs, format = 'JSON' } = options;
+        const auditEntries = [];
+
+        for (const logDir of logDirs) {
+            if (!fs.existsSync(logDir)) continue;
+
+            const files = fs.readdirSync(logDir).filter(f => f.endsWith('.log'));
+            for (const file of files) {
+                const filePath = path.join(logDir, file);
+                const content = fs.readFileSync(filePath, 'utf-8').trim();
+                if (!content) continue;
+
+                for (const line of content.split('\n')) {
+                    if (!line.trim()) continue;
+                    try {
+                        const entry = JSON.parse(line);
+                        if (entry.userId === subjectId || entry.sessionId === subjectId) {
+                            auditEntries.push(entry);
+                        }
+                    } catch {
+                        // Skip non-JSON lines
+                    }
+                }
+            }
+        }
+
+        const dsrRequests = Array.from(this.requests.values())
+            .filter(r => r.subjectId === subjectId);
+
+        const data = {
+            subjectId,
+            exportedAt: new Date().toISOString(),
+            format,
+            auditEntries,
+            dsrRequests
+        };
+
+        return {
+            success: true,
+            entriesExported: auditEntries.length,
+            data
+        };
     }
 
     /**
@@ -493,12 +628,18 @@ export class DataSubjectRequestHandler {
             };
         }
 
-        // Perform erasure (placeholder - integrate with data stores)
+        // Perform erasure using purgeUserData
+        const purgeResult = this.purgeUserData(request.subjectId, {
+            logDirs: this.logDirs,
+            purgeDsrRecords: false // Don't purge DSR records during erasure — needed for compliance audit trail
+        });
+
         request.erasureComplete = true;
         return {
             success: true,
             erasedCategories: request.scope === 'ALL' ? ['all'] : [request.scope],
-            erasedAt: new Date().toISOString()
+            erasedAt: new Date().toISOString(),
+            entriesPurged: purgeResult.entriesPurged
         };
     }
 
@@ -507,13 +648,11 @@ export class DataSubjectRequestHandler {
      * @private
      */
     async _processPortabilityRequest(request) {
-        // Generate export (placeholder - integrate with data stores)
-        const exportData = {
-            subjectId: request.subjectId,
-            exportedAt: new Date().toISOString(),
-            format: request.format,
-            data: {}
-        };
+        // Collect user data using exportUserData
+        const exportResult = this.exportUserData(request.subjectId, {
+            logDirs: this.logDirs,
+            format: request.format
+        });
 
         const exportPath = path.join(
             this.storagePath,
@@ -526,14 +665,15 @@ export class DataSubjectRequestHandler {
             fs.mkdirSync(exportDir, { recursive: true });
         }
 
-        fs.writeFileSync(exportPath, JSON.stringify(exportData, null, 2));
+        fs.writeFileSync(exportPath, JSON.stringify(exportResult.data, null, 2));
         request.exportGenerated = true;
         request.exportPath = exportPath;
 
         return {
             success: true,
             format: request.format,
-            exportPath
+            exportPath,
+            entriesExported: exportResult.entriesExported
         };
     }
 

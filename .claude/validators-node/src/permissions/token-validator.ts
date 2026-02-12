@@ -22,15 +22,15 @@
 
 import { spawnSync } from 'child_process';
 import {
-  existsSync,
-  readFileSync,
-  writeFileSync,
-  statSync,
-  mkdirSync,
   chmodSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  statSync,
   utimesSync,
+  writeFileSync,
 } from 'fs';
-import { join, dirname } from 'path';
+import { dirname, join } from 'path';
 import { AuditLogger, getProjectDir, printBlockMessage } from '../common/index.js';
 import { EXIT_CODES } from '../types/index.js';
 
@@ -46,7 +46,7 @@ function getPaths() {
   return {
     TOKEN_FILE: join(projectDir, '.bmad-token'),
     KEY_FILE: join(projectDir, '.bmad-key'),
-    VALIDATION_SCRIPT: join(projectDir, '_bmad/core/security/validate-token.js'),
+    VALIDATION_SCRIPT: join(projectDir, 'src/core/security/validate-token.js'),
     SESSION_VALIDATED_FILE: join(projectDir, '.claude', '.session_validated'),
     SESSION_CLAIMS_FILE: join(projectDir, '.claude', '.session_claims.json'),
   };
@@ -530,9 +530,9 @@ export function printAuthFailure(error: string): void {
     target: 'Session authentication',
     isAbsolute: true,
     recommendations: [
-      'Generate a token: node _bmad/core/security/quick-token.cjs "YourName" "role" 168',
+      'Generate a token: node src/core/security/quick-token.cjs "YourName" "role" 168',
       'Or set environment variable: export BMAD_AUTH_TOKEN=<your-token>',
-      'Validate your token: node _bmad/core/security/validate-token.js',
+      'Validate your token: node src/core/security/validate-token.js',
       'To disable enforcement (NOT RECOMMENDED): export BMAD_TOKEN_REQUIRED=false',
     ],
   });

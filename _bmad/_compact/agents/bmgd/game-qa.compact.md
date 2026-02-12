@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/bmgd/agents/game-qa.md
+# Full agent: src/bmgd/agents/game-qa.md
 agent_id: "game-qa"
 name: "GLaDOS"
 title: "Game QA Architect"

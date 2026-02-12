@@ -1,6 +1,6 @@
 {
   "name": "bmad-cyber2-framework",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
   "main": "./_bmad/framework/dist/index.js",
@@ -32,6 +32,10 @@
     "_bmad/framework",
     ".claude/validators-node"
   ],
+  "bin": {
+    "bmad-cybersec": "tools/cli/bmad-cli.js",
+    "bmad": "tools/cli/bmad-cli.js"
+  },
   "scripts": {
     "build": "npm run build:framework && npm run build:validators",
     "build:framework": "cd _bmad/framework && npm run build",
@@ -49,8 +53,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "lint": "eslint . --ext .ts,.js --max-warnings 0",
-    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit && cd _bmad/framework && tsc --noEmit && cd ../../.claude/validators-node && tsc --noEmit",
@@ -70,12 +74,16 @@
     "ci:quality": "npm run quality:check && npm run security:scan && npm run build",
     "modules": "node src/utility/tools/module-selector/index.js",
     "modules:offline": "node src/utility/tools/module-selector/index.js --offline",
-    "install:offline": "npm install --offline --prefer-offline",
+    "install:offline": "npm install --offline",
     "cache:prepare": "npm pack && npm cache add *.tgz",
     "security:config": "node src/utility/tools/security-config/index.js",
     "llm:setup": "node src/utility/tools/llm-setup/index.js",
     "health": "node src/utility/tools/health-check/index.js",
-    "pgp:setup": "node src/utility/tools/pgp-setup/index.js"
+    "pgp:setup": "node src/utility/tools/pgp-setup/index.js",
+    "validate:refs": "node src/utility/tools/reference-validator/cli.js",
+    "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
+    "test:schemas": "node tools/validate-agent-schema.js && node tools/validate-workflow-schema.js && node tools/validate-module-schema.js",
+    "qa": "npm run test:schemas && npm run lint && npm run lint:md && npm test && bash scripts/security-regression.sh"
   },
   "keywords": [
     "bmad",
@@ -93,39 +101,49 @@
   "author": "Amelia (Dev) - BMAD Framework Team",
   "license": "MIT",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
   "overrides": {
-    "fast-xml-parser": "5.3.4"
+    "fast-xml-parser": "5.3.4",
+    "esbuild": ">=0.25.0"
   },
   "dependencies": {
     "@bmad/validators": "file:.claude/validators-node",
+    "@clack/core": "^1.0.0",
+    "@clack/prompts": "^1.0.0",
     "chalk": "^5.6.2",
     "commander": "^11.0.0",
     "fs-extra": "^11.3.3",
-    "inquirer": "^13.2.1",
+    "glob": "^10.5.0",
+    "picocolors": "^1.1.1",
+    "semver": "^7.7.4",
+    "tar": "^7.5.7",
     "zod": "^3.22.0"
   },
   "bundledDependencies": [
-    "chalk",
+    "@clack/core",
+    "@clack/prompts",
     "commander",
-    "inquirer",
-    "zod"
+    "picocolors"
   ],
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@types/node": "^20.10.0",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
+    "@types/semver": "^7.7.1",
     "@vitest/coverage-v8": "^1.1.0",
     "@vitest/ui": "^1.1.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-n": "^17.23.2",
+    "eslint-plugin-unicorn": "^62.0.0",
+    "eslint-plugin-yml": "^3.1.2",
+    "markdownlint-cli2": "^0.20.0",
     "prettier": "^3.1.0",
     "tsx": "^4.6.0",
     "typedoc": "^0.25.0",
     "typescript": "^5.3.0",
+    "typescript-eslint": "^8.55.0",
     "vitest": "^1.1.0"
   },
   "peerDependencies": {
@@ -134,10 +152,12 @@
   "files": [
     "_bmad/framework/dist/**/*",
     ".claude/validators-node/dist/**/*",
+    "!**/__tests__/**",
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
-    "_bmad/framework/README.md"
+    "_bmad/framework/README.md",
+    "tools/cli/**/*"
   ],
   "repository": {
     "type": "git",
@@ -150,11 +170,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "bundleDependencies": [
-    "chalk",
-    "commander",
-    "inquirer",
-    "zod"
-  ]
+  }
 }

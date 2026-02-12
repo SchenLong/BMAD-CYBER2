@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * BMAD Module Packaging Workflow Engine
  * Epic 4, Story 4.1 - Module Packaging Workflow Engine
@@ -15,6 +14,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { execSync } = require('child_process');
 const yaml = require('js-yaml');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 /**
  * Main Module Packaging Engine
@@ -219,7 +219,7 @@ class BMAdModulePackager {
     const moduleYamlPath = path.join(teamPath, 'module.yaml');
 
     try {
-      const moduleContent = await fs.readFile(moduleYamlPath, 'utf8');
+      const moduleContent = normalizeLineEndings(await fs.readFile(moduleYamlPath, 'utf8'));
       const moduleConfig = yaml.load(moduleContent, { schema: yaml.CORE_SCHEMA });
 
       // Check required fields
@@ -464,7 +464,7 @@ class BMAdModulePackager {
         i++;
       }
       try {
-        frontmatter = yaml.load(frontmatterLines.join('\n'), { schema: yaml.CORE_SCHEMA }) || {};
+        frontmatter = yaml.load(normalizeLineEndings(frontmatterLines.join('\n')), { schema: yaml.CORE_SCHEMA }) || {};
       } catch (e) {
         console.warn(`Warning: Failed to parse frontmatter in agent: ${e.message}`);
       }
@@ -523,7 +523,7 @@ class BMAdModulePackager {
 
         extraction: {
           source_format: 'markdown',
-          source_file: path.basename(frontmatter.name || 'unknown') + '.md',
+          source_file: `${path.basename(frontmatter.name || 'unknown')  }.md`,
           conversion_date: new Date().toISOString(),
           bmad_builder_compatible: true
         },
@@ -1325,7 +1325,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
     - name: Install dependencies
       run: npm install
     - name: Validate modules
@@ -1342,7 +1342,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
         registry-url: 'https://registry.npmjs.org'
     - name: Install dependencies
       run: npm install

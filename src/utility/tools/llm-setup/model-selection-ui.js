@@ -11,7 +11,7 @@
  */
 
 import { fileURLToPath } from 'url';
-import inquirer from 'inquirer';
+import { confirm, select, text } from '../../cli/prompts.js';
 import chalk from 'chalk';
 
 /**
@@ -129,12 +129,12 @@ function formatModelChoice(modelName, isCustom = false) {
 }
 
 /**
- * Creates separator for inquirer
- * @param {string} text - Separator text
- * @returns {Object} Inquirer separator
+ * Creates separator for select choices
+ * @param {string} label - Separator text
+ * @returns {Object} Separator object
  */
-function createSeparator(text) {
-  return new inquirer.Separator(text);
+function createSeparator(label) {
+  return { type: 'separator', separator: label, name: label };
 }
 
 /**
@@ -182,25 +182,21 @@ export function buildModelChoices(models, options = {}) {
 export async function promptCustomModel(options = {}) {
   const { defaultValue } = options;
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'model',
-      message: 'Enter model name:',
-      default: defaultValue,
-      validate: (input) => {
-        if (!input || !input.trim()) {
-          return 'Model name is required';
-        }
-        if (!/^[\w\-.:\/]+$/.test(input.trim())) {
-          return 'Invalid model name format';
-        }
-        return true;
+  const model = await text({
+    message: 'Enter model name:',
+    default: defaultValue,
+    validate: (input) => {
+      if (!input || !input.trim()) {
+        return 'Model name is required';
       }
+      if (!/^[\w\-.:/]+$/.test(input.trim())) {
+        return 'Invalid model name format';
+      }
+      return undefined;
     }
-  ]);
+  });
 
-  return answer.model.trim();
+  return model.trim();
 }
 
 /**
@@ -232,16 +228,12 @@ export async function showModelSelector(options) {
 
   // If only default model, show simplified prompt
   if (models.length === 1 && models[0] === 'default') {
-    const useDefault = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'useDefault',
-        message: `Use the default model loaded in ${providerName}?`,
-        default: true
-      }
-    ]);
+    const useDefault = await confirm({
+      message: `Use the default model loaded in ${providerName}?`,
+      initialValue: true
+    });
 
-    if (useDefault.useDefault) {
+    if (useDefault) {
       return 'default';
     }
 
@@ -251,23 +243,17 @@ export async function showModelSelector(options) {
   // Build choices
   const choices = buildModelChoices(models, { allowCustom, currentModel });
 
-  const answer = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'model',
-      message: 'Choose a model:',
-      choices,
-      pageSize: 15,
-      loop: false
-    }
-  ]);
+  const model = await select({
+    message: 'Choose a model:',
+    choices
+  });
 
   // Handle custom selection
-  if (answer.model === '__custom__') {
+  if (model === '__custom__') {
     return promptCustomModel({ defaultValue: currentModel });
   }
 
-  return answer.model;
+  return model;
 }
 
 /**

@@ -13,6 +13,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require("js-yaml");
 const os = require('os');
+const { normalizeLineEndings } = require('../../../../normalize-line-endings.cjs');
 
 class BMADConfigurationManager {
     constructor(options = {}) {
@@ -233,7 +234,7 @@ class BMADConfigurationManager {
         try {
             const userConfigPath = path.join(os.homedir(), '.bmad', 'user-config.yaml');
             if (fs.existsSync(userConfigPath)) {
-                const userConfig = yaml.parse(fs.readFileSync(userConfigPath, 'utf8'));
+                const userConfig = yaml.parse(normalizeLineEndings(fs.readFileSync(userConfigPath, 'utf8')));
 
                 if (userConfig.variables) {
                     for (const [key, value] of Object.entries(userConfig.variables)) {
@@ -624,7 +625,7 @@ class BMADConfigurationManager {
      * Finalize configuration with validation and cleanup
      */
     async finalizeConfiguration(config, context) {
-        let finalConfig = { ...config };
+        const finalConfig = { ...config };
 
         // Remove internal metadata
         delete finalConfig._environment;
@@ -684,7 +685,7 @@ class BMADConfigurationManager {
                 const networkInterfaces = os.networkInterfaces();
                 const primaryInterface = Object.values(networkInterfaces)
                     .flat()
-                    .find(interface => !interface.internal && interface.family === 'IPv4');
+                    .find(iface => !iface.internal && iface.family === 'IPv4');
 
                 if (primaryInterface) {
                     networkVars.LOCAL_IP = primaryInterface.address;

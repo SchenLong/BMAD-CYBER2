@@ -7,23 +7,23 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import {
-  INSTALL_INSTRUCTIONS,
-  DEFAULT_COMMAND_TIMEOUT,
+  checkGpgCapability,
   checkGpgInstalled,
+  DEFAULT_COMMAND_TIMEOUT,
+  formatGpgCapability,
   getGpgVersion,
   getInstallInstructions,
-  parseKeyListing,
+  INSTALL_INSTRUCTIONS,
   listExistingKeys,
   listSecretKeys,
-  checkGpgCapability,
-  formatGpgCapability
+  parseKeyListing
 } from './gpg-checker.js';
 
 const __filename = fileURLToPath(import.meta.url);

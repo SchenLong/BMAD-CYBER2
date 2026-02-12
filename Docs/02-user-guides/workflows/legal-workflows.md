@@ -34,6 +34,7 @@ Legal analysis workflows for contract review, corporate formation, dispute strat
 | **Legal Matter Intake** | `/legal-matter-intake` | 8 | Matter brief with routing |
 
 **Legal Matter Intake** serves as the entry point for all legal matters:
+
 - Initial case assessment
 - Jurisdiction analysis
 - Complexity evaluation
@@ -53,6 +54,7 @@ Legal analysis workflows for contract review, corporate formation, dispute strat
 
 **Contract Review**
 Comprehensive contract analysis across jurisdictions:
+
 - Structure and organization review
 - Substantive terms analysis
 - Risk allocation assessment (warranties, indemnities, liability)
@@ -61,6 +63,7 @@ Comprehensive contract analysis across jurisdictions:
 - Prioritized modification recommendations
 
 **Workflow Steps**:
+
 1. Contract upload and classification
 2. Governing law identification
 3. Structure review (organization, definitions)
@@ -73,6 +76,7 @@ Comprehensive contract analysis across jurisdictions:
 
 **Contract Drafting**
 Create jurisdiction-appropriate contracts from requirements:
+
 - Requirements gathering
 - Template selection or custom drafting
 - Clause-by-clause development
@@ -90,6 +94,7 @@ Create jurisdiction-appropriate contracts from requirements:
 
 **Corporate Formation**
 Multi-jurisdictional entity formation guidance:
+
 - Entity type selection
 - Jurisdiction comparison
 - Formation requirements checklist
@@ -97,6 +102,7 @@ Multi-jurisdictional entity formation guidance:
 - Ongoing obligations summary
 
 **Supported Jurisdictions**:
+
 - USA (Federal and State)
 - EU (Member state specific)
 - Spain (National and autonomous communities)
@@ -104,6 +110,7 @@ Multi-jurisdictional entity formation guidance:
 
 **Tax Planning**
 Tax optimization and compliance planning:
+
 - Cross-jurisdictional tax analysis
 - Structure optimization
 - Compliance calendar
@@ -120,6 +127,7 @@ Tax optimization and compliance planning:
 
 **Dispute Strategy**
 Analysis and resolution strategy development:
+
 - Dispute assessment
 - Strength/weakness analysis
 - Resolution options evaluation
@@ -137,6 +145,7 @@ Analysis and resolution strategy development:
 
 **Cross-Border Matter**
 Multi-jurisdictional legal matter coordination:
+
 - Jurisdiction identification
 - Conflict of laws analysis
 - Regulatory coordination
@@ -177,24 +186,28 @@ The legal-team module includes 13 specialized agents covering multiple jurisdict
 ## Jurisdictions Covered
 
 ### United States
+
 - Federal corporate law
 - State-specific requirements (Delaware, California, etc.)
 - Contract law
 - Civil litigation
 
 ### European Union
+
 - EU-wide regulations and directives
 - GDPR compliance
 - Cross-border transactions
 - Digital services regulations
 
 ### Spain
+
 - National corporate law
 - Autonomous community variations
 - Civil Code matters
 - Employment law
 
 ### Estonia
+
 - e-Residency program
 - Digital business formation
 - EU digital regulations
@@ -207,16 +220,19 @@ The legal-team module includes 13 specialized agents covering multiple jurisdict
 Legal-Team workflows are designed to provide legal perspective when other modules require legal input:
 
 ### With Cybersec-Team
+
 - Compliance considerations during security assessments
 - Data breach notification requirements
 - Regulatory implications of security findings
 
 ### With Intel-Team
+
 - Contractual implications in corporate intelligence
 - Due diligence legal considerations
 - Evidence handling requirements
 
 ### With Strategy-Team
+
 - Regulatory concerns in executive strategy sessions
 - M&A legal considerations
 - Contract negotiation support
@@ -229,12 +245,14 @@ Legal-Team workflows are designed to provide legal perspective when other module
 ### Starting a Workflow
 
 1. **Via Counsel Agent**:
+
    ```bash
    /legal-team:counsel
    # Select from menu for proper routing
    ```
 
 2. **Direct Workflow**:
+
    ```bash
    /legal-team:workflows:contract-review
    ```
@@ -242,6 +260,7 @@ Legal-Team workflows are designed to provide legal perspective when other module
 ### Standard Disclaimers
 
 All legal workflows include:
+
 - Professional legal advice disclaimer
 - Jurisdiction limitations notice
 - Currency of law warnings
@@ -250,6 +269,7 @@ All legal workflows include:
 ### Output Artifacts
 
 Legal workflows generate:
+
 - Matter briefs with jurisdiction analysis
 - Contract review reports with risk ratings
 - Compliance checklists
@@ -260,22 +280,26 @@ Legal workflows generate:
 ## Common Use Cases
 
 ### Contract Review Process
+
 1. Submit contract via **Contract Review** workflow
 2. System identifies governing law and routes to appropriate specialist
 3. Nine-step analysis covering structure, terms, risk, and compliance
 4. Receive prioritized recommendations report
 
 ### New Business Formation
+
 1. Start with **Legal Matter Intake** for assessment
 2. Use **Corporate Formation** for entity setup guidance
 3. Follow up with **Tax Planning** for structure optimization
 
 ### Cross-Border Transaction
+
 1. Begin with **Cross-Border Matter** for coordination
 2. Engage jurisdiction-specific agents as needed
 3. Compile compliance requirements across jurisdictions
 
 ### Dispute Resolution
+
 1. Start with **Dispute Strategy** for assessment
 2. Evaluate resolution options
 3. Develop negotiation or litigation approach

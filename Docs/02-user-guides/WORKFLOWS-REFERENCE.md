@@ -81,6 +81,7 @@ The BMAD system provides **55 specialized workflows** organized across four prof
 HUMINT operation planning for target engagement covering psychological vulnerability identification (MICE framework), social entry point mapping, physical access analysis, and cover story development.
 
 **Steps:**
+
 1. Target Assessment - MICE analysis, vulnerability identification, recruitment potential
 2. Social Entry Point Mapping - Social network analysis, interests, events, communities
 3. Physical Access Analysis - Location patterns, frequented venues, travel patterns
@@ -99,6 +100,7 @@ HUMINT operation planning for target engagement covering psychological vulnerabi
 Rigorous threat actor attribution using multiple intelligence sources for APT attribution, criminal actor identification, campaign attribution, and false flag detection.
 
 **Steps:**
+
 1. Indicator Collection - IOC gathering, TTP documentation
 2. Infrastructure Attribution - Domain/IP actor correlation
 3. Technical Attribution - Malware and tooling analysis
@@ -119,6 +121,7 @@ Rigorous threat actor attribution using multiple intelligence sources for APT at
 Comprehensive breach and data exposure history analysis including credential exposure assessment, breach database analysis, historical leak identification, and exposure timeline construction.
 
 **Steps:**
+
 1. Target Setup - Identifier validation, search preparation
 2. Breach Database Search - HIBP, breach databases
 3. Paste Site Analysis - Paste/dump discovery
@@ -137,6 +140,7 @@ Comprehensive breach and data exposure history analysis including credential exp
 Specialized OSINT campaign planning targeting AI entities including AI companies, models, applications, infrastructure, and researchers.
 
 **Steps:**
+
 1. Campaign Initialization - AI-specific intelligence requirements
 2. Technical Intelligence - Model analysis, infrastructure, code research
 3. Digital Infrastructure - Domains, API endpoints, cloud footprint
@@ -159,6 +163,7 @@ Specialized OSINT campaign planning targeting AI entities including AI companies
 Comprehensive organizational intelligence campaign for corporate due diligence, competitor intelligence, threat actor profiling, and M&A support.
 
 **Steps:**
+
 1. Target Definition - Organization validation, requirements
 2. Infrastructure Mapping - Domain/network reconnaissance
 3. Technology Stack - Technology identification
@@ -182,6 +187,7 @@ Comprehensive organizational intelligence campaign for corporate due diligence, 
 Full intelligence campaign against individual targets for person of interest investigations, background investigations, threat actor attribution, and due diligence.
 
 **Steps:**
+
 1. Target Profile - Identity validation, collection requirements
 2. Pivot Mapping - Digital infrastructure connections
 3. Social Footprint - Social media presence analysis
@@ -201,6 +207,7 @@ Full intelligence campaign against individual targets for person of interest inv
 Turn intelligence capabilities inward to assess organizational exposure and operational security gaps.
 
 **Steps:**
+
 1. Physical Security Assessment - Facility exposure, personnel identification risk
 2. Electronic Security Assessment - Communications security, RF emissions, network security
 3. Digital Footprint Assessment - Corporate social presence, employee exposure
@@ -221,6 +228,7 @@ Turn intelligence capabilities inward to assess organizational exposure and oper
 Recover deleted, historical, or obscured digital presence through archive discovery, social archaeology, and timeline assembly.
 
 **Steps:**
+
 1. Archive Discovery - Wayback Machine, cached content
 2. Social Archaeology - Deleted posts, old profiles
 3. Breach History - Historical breach exposure
@@ -239,6 +247,7 @@ Recover deleted, historical, or obscured digital presence through archive discov
 Detect and analyze fake, impersonation, or sock puppet accounts through behavioral, technical, and psychological analysis.
 
 **Steps:**
+
 1. Behavioral Analysis - Posting patterns, engagement analysis
 2. Technical Analysis - Image forensics, metadata analysis
 3. Location Analysis - Geographic consistency verification
@@ -257,6 +266,7 @@ Detect and analyze fake, impersonation, or sock puppet accounts through behavior
 Rapid 15-minute OSINT triage for time-critical intelligence requirements, initial assessments, and incident response support.
 
 **Steps:**
+
 1. Triage Coordination - Validate identifiers, dispatch parallel collection
 2. Parallel Collection - Simultaneous data gathering across disciplines
 3. Synthesis - Integrate findings, produce rapid assessment
@@ -274,6 +284,7 @@ Rapid 15-minute OSINT triage for time-critical intelligence requirements, initia
 Complete preparation package for physical/field operations including surveillance, site surveys, and operational planning.
 
 **Steps:**
+
 1. Operation Framework - Mission definition, success criteria, risk tolerance
 2. Site Analysis - Satellite imagery, terrain, entry/exit points
 3. Electronic Environment - TSCM considerations, communication plan
@@ -293,6 +304,7 @@ Complete preparation package for physical/field operations including surveillanc
 Trace infrastructure ownership and changes over time including domain ownership history, IP allocation tracking, and hosting changes.
 
 **Steps:**
+
 1. Ownership Archaeology - WHOIS history, registrant tracking
 2. Technical Evolution - IP history, technology changes
 3. Corporate Ownership - Entity ownership chain
@@ -312,6 +324,7 @@ Trace infrastructure ownership and changes over time including domain ownership 
 Full spectrum target package using all 11 intelligence agents in coordinated sequence. The flagship comprehensive workflow.
 
 **Steps:**
+
 1. Target Definition & Collection Planning - Requirements, collection plan, tasking
 2. Digital Footprint - Domain/IP recon, infrastructure mapping
 3. Social Presence - Platform enumeration, account correlation
@@ -335,6 +348,7 @@ Full spectrum target package using all 11 intelligence agents in coordinated seq
 Behavioral analysis and prediction through multi-source pattern analysis for operational planning.
 
 **Steps:**
+
 1. Digital Behavior Patterns - Posting time analysis, platform usage, content themes
 2. Physical Movement Patterns - Location check-ins, photo geolocation, travel patterns
 3. Communication Patterns - Active hours, communication frequency, contact network
@@ -353,6 +367,7 @@ Behavioral analysis and prediction through multi-source pattern analysis for ope
 SIGINT opportunity mapping and communications analysis including protocol identification and vulnerability assessment.
 
 **Steps:**
+
 1. Communications Mapping - Channel identification, protocol analysis
 2. Technical Vulnerability - Encryption assessment, weaknesses
 3. Infrastructure Signals - DNS/network signal analysis
@@ -371,6 +386,7 @@ SIGINT opportunity mapping and communications analysis including protocol identi
 Network relationship mapping and affiliation analysis including corporate relationships, beneficial ownership chains, and influence networks.
 
 **Steps:**
+
 1. Seed Analysis - Initial entity analysis
 2. Expansion - Network node discovery
 3. Correlation - Relationship validation
@@ -389,6 +405,7 @@ Network relationship mapping and affiliation analysis including corporate relati
 Multi-source intelligence fusion for unified assessments with correlation, conflict resolution, and confidence assessment.
 
 **Steps:**
+
 1. Input Cataloging - Inventory sources, assess reliability, identify overlaps
 2. Correlation Analysis - Cross-reference findings, identify corroboration
 3. Confidence Assessment - Apply confidence framework, document evidence basis
@@ -407,6 +424,7 @@ Multi-source intelligence fusion for unified assessments with correlation, confl
 Map the complete ecosystem around a threat actor including relationships, infrastructure clustering, campaign correlation, and evolution tracking.
 
 **Steps:**
+
 1. Actor Profile - Known actor documentation
 2. Infrastructure Cluster - Related infrastructure discovery
 3. Underground Network - Forum/marketplace connections
@@ -426,6 +444,7 @@ Map the complete ecosystem around a threat actor including relationships, infras
 Configure comprehensive monitoring for target changes with alerting thresholds and notification rules.
 
 **Steps:**
+
 1. Monitoring Strategy - Objectives, priorities, thresholds, notification workflow
 2. Infrastructure Monitoring - Domain changes, DNS, certificates, subdomains
 3. Corporate Monitoring - Officer changes, status updates, M&A activity
@@ -467,6 +486,7 @@ Configure comprehensive monitoring for target changes with alerting thresholds a
 Create jurisdiction-appropriate contracts from scratch or modify existing templates based on requirements.
 
 **Contract Types Supported:**
+
 - Service agreements
 - Sales/purchase agreements
 - NDAs/Confidentiality agreements
@@ -499,6 +519,7 @@ Comprehensive contract analysis identifying risks, gaps, and recommended modific
 Guide users through entity setup across US, EU, Spain, and Estonia with appropriate structure recommendations.
 
 **Jurisdictions Covered:**
+
 - **United States:** Delaware LLC/Corp, Wyoming LLC, state considerations
 - **Spain:** Sociedad Limitada (S.L.), Sociedad Anónima (S.A.), Sucursal
 - **Estonia:** Osaühing (OÜ), e-Residency pathway
@@ -517,6 +538,7 @@ Guide users through entity setup across US, EU, Spain, and Estonia with appropri
 Multi-jurisdictional legal matter coordination for cross-border transactions, disputes, and compliance.
 
 **Coverage:**
+
 - International contracts and transactions
 - Multi-jurisdictional dispute resolution
 - Cross-border corporate structures
@@ -537,6 +559,7 @@ Multi-jurisdictional legal matter coordination for cross-border transactions, di
 Pre-litigation analysis and planning for civil disputes including settlement strategy and litigation preparation.
 
 **Dispute Types Covered:**
+
 - Contract disputes
 - Business/commercial disputes
 - Property disputes
@@ -557,6 +580,7 @@ Pre-litigation analysis and planning for civil disputes including settlement str
 Initial case assessment and routing workflow serving as the entry point for all legal matters.
 
 **Steps:**
+
 1. Welcome and context gathering
 2. Matter type classification
 3. Jurisdiction identification
@@ -579,11 +603,13 @@ Initial case assessment and routing workflow serving as the entry point for all 
 Cross-jurisdiction tax optimization for businesses and individuals with operations in US, EU, Spain, and Estonia.
 
 **Tax Areas Covered:**
+
 - **Corporate Tax:** Entity selection, holding structures, profit repatriation
 - **International Tax:** Transfer pricing, permanent establishment, CFC rules
 - **Personal Tax:** Residency planning, income sourcing, estate planning
 
 **Jurisdiction Specifics:**
+
 - USA: Federal/state optimization, pass-through vs. C-corp, GILTI/FDII
 - Spain: ETVE regime, patent box
 - Estonia: Retained earnings advantage, distribution timing
@@ -628,6 +654,7 @@ Cross-jurisdiction tax optimization for businesses and individuals with operatio
 Prepare compelling board presentations with strategic messaging and comprehensive Q&A preparation.
 
 **Coverage:**
+
 - Audience analysis (board composition, priorities, concerns)
 - Narrative structure (story arc, key messages, call-to-action)
 - Evidence compilation (data points, benchmarks)
@@ -645,6 +672,7 @@ Prepare compelling board presentations with strategic messaging and comprehensiv
 Develop and maintain effective board relationships with governance improvement.
 
 **Use Cases:**
+
 - New executive onboarding with board
 - Board relationship improvement
 - Pre-meeting preparation
@@ -661,6 +689,7 @@ Develop and maintain effective board relationships with governance improvement.
 Strategic competitive warfare planning for high-stakes business battles using military strategy principles.
 
 **Strategic Frameworks:**
+
 - Sun Tzu's Art of War principles
 - Porter's Competitive Strategy
 - OODA Loop (Observe, Orient, Decide, Act)
@@ -678,6 +707,7 @@ Strategic competitive warfare planning for high-stakes business battles using mi
 Navigate workplace conflicts with structured mediation and resolution strategies.
 
 **Conflict Types:**
+
 - Interpersonal conflicts
 - Team dynamics issues
 - Cross-departmental disputes
@@ -695,6 +725,7 @@ Navigate workplace conflicts with structured mediation and resolution strategies
 Navigate internal corporate politics with comprehensive political strategy.
 
 **Coverage:**
+
 - Power mapping (formal and informal structures)
 - Alliance analysis (allies, opponents, fence-sitters)
 - Political landscape (decision-making, gatekeepers)
@@ -711,6 +742,7 @@ Navigate internal corporate politics with comprehensive political strategy.
 Develop crisis communication and response strategies.
 
 **Crisis Types:**
+
 - Reputational crises
 - Operational failures
 - Leadership crises
@@ -730,6 +762,7 @@ Develop crisis communication and response strategies.
 Navigate complex ethical dilemmas through structured multi-perspective analysis.
 
 **Ethical Frameworks Applied:**
+
 - Utilitarian analysis (greatest good)
 - Deontological ethics (duty-based)
 - Virtue ethics (character-based)
@@ -747,6 +780,7 @@ Navigate complex ethical dilemmas through structured multi-perspective analysis.
 Develop personal leadership philosophy through dialogue with historical leader archetypes.
 
 **Historical Archetypes:**
+
 - Niccolo (The Realist), Charles (The Liberator), Maximilien (The Revolutionary)
 - Burke (The Conservative), Lee (The Technocrat), Musashi (The Warrior)
 - Sun (The Strategist), Jean-Luc (The Commander)
@@ -761,6 +795,7 @@ Develop personal leadership philosophy through dialogue with historical leader a
 Plan and execute leadership transitions ensuring smooth handovers.
 
 **Transition Types:**
+
 - Planned succession (retirement, term completion)
 - Unexpected departure (resignation, termination, health)
 - Organizational restructuring
@@ -777,6 +812,7 @@ Plan and execute leadership transitions ensuring smooth handovers.
 Comprehensive merger and acquisition evaluation using strategic advisors.
 
 **Coverage:**
+
 - Deal thesis and strategic rationale
 - Strategic fit analysis
 - Financial assessment and valuation
@@ -796,6 +832,7 @@ Comprehensive merger and acquisition evaluation using strategic advisors.
 Prepare executive performance reviews with balanced assessments and development focus.
 
 **Review Types:**
+
 - Annual performance reviews
 - Mid-year check-ins
 - Probation assessments
@@ -813,6 +850,7 @@ Prepare executive performance reviews with balanced assessments and development 
 Develop internal policies with evidence-based analysis and ethics review.
 
 **Policy Types:**
+
 - HR policies
 - Operational policies
 - Governance policies
@@ -830,6 +868,7 @@ Develop internal policies with evidence-based analysis and ethics review.
 Evaluate political risks in strategic decisions and initiatives.
 
 **Risk Categories:**
+
 - Regulatory/policy changes
 - Leadership transitions
 - Stakeholder opposition
@@ -847,6 +886,7 @@ Evaluate political risks in strategic decisions and initiatives.
 Prepare comprehensive negotiation playbooks.
 
 **Negotiation Types:**
+
 - Contract negotiations
 - Partnership agreements
 - M&A discussions
@@ -878,6 +918,7 @@ Multi-perspective strategic decision analysis for high-stakes decisions requirin
 Long-term strategic planning incorporating diverse strategic philosophies.
 
 **Strategic Philosophies Applied:**
+
 - Sun Tzu (strategic positioning)
 - Clausewitz (concentration of force)
 - Porter (competitive strategy)
@@ -923,6 +964,7 @@ Audit blockchain applications, smart contracts, DeFi protocols, and Web3 infrast
 **Platforms:** Ethereum, Polygon, Arbitrum, Optimism, Base, BSC, Avalanche, Solana
 
 **Coverage:**
+
 - Smart contract security (reentrancy, overflow, access control)
 - Access control and centralization risks
 - Economic security and tokenomics
@@ -940,6 +982,7 @@ Audit blockchain applications, smart contracts, DeFi protocols, and Web3 infrast
 Comprehensive cloud security assessment across AWS, Azure, and GCP.
 
 **Coverage:**
+
 - IAM security (root accounts, MFA, least privilege)
 - Network security (VPC, security groups, WAF)
 - Data protection (encryption, key management, secrets)
@@ -958,6 +1001,7 @@ Comprehensive cloud security assessment across AWS, Azure, and GCP.
 Prepare for compliance audits supporting 20+ frameworks.
 
 **Supported Frameworks:**
+
 - **Global:** NIST 800-53, ISO 27001, CIS Controls v8
 - **US:** SOC 2, PCI-DSS, HIPAA, FedRAMP, CMMC
 - **EU:** GDPR, NIS2, CRA, CSA, DORA, AI Act
@@ -979,6 +1023,7 @@ Dual-mode workflow for playbook creation (Mode A) and guided incident execution 
 **Compliance:** GDPR (72-hour), PCI-DSS, HIPAA (60-day), SOC 2
 
 **Coverage:**
+
 - Preparation (IR team, tools, communication)
 - Detection & Analysis (alert triage, IOC identification)
 - Containment (short-term, long-term strategies)
@@ -995,6 +1040,7 @@ Dual-mode workflow for playbook creation (Mode A) and guided incident execution 
 Infrastructure security assessment following CIS benchmarks.
 
 **Coverage:**
+
 - Server hardening (CIS benchmarks for Linux/Windows)
 - Container security (image scanning, Dockerfile, runtime)
 - Kubernetes (RBAC, pod security, network policies)
@@ -1016,6 +1062,7 @@ Infrastructure security assessment following CIS benchmarks.
 Mobile application security testing for iOS and Android.
 
 **Coverage:**
+
 - Static analysis (binary protections, hardcoded secrets)
 - Dynamic analysis (runtime hooking, cert pinning bypass)
 - Data storage (Keychain/Keystore, local databases)
@@ -1037,6 +1084,7 @@ Mobile application security testing for iOS and Android.
 Network penetration testing covering internal and external assessment.
 
 **Coverage:**
+
 - Reconnaissance (DNS, topology, host identification)
 - Scanning (TCP/UDP, service enumeration, OS fingerprinting)
 - Vulnerability assessment (automated scanning, manual verification)
@@ -1057,6 +1105,7 @@ Network penetration testing covering internal and external assessment.
 STRIDE threat modeling and security control assessment with zero-trust validation.
 
 **Steps:**
+
 1. Initialization & Context Gathering
 2. STRIDE Threat Modeling
 3. Security Control Assessment
@@ -1078,6 +1127,7 @@ STRIDE threat modeling and security control assessment with zero-trust validatio
 Develop comprehensive security awareness training programs.
 
 **Coverage:**
+
 - Human risk assessment (threats, high-risk populations)
 - Training content development (role-based tracks)
 - Phishing simulation strategy
@@ -1097,6 +1147,7 @@ Develop comprehensive security awareness training programs.
 Systematic STRIDE threat modeling for applications, systems, and architectures.
 
 **STRIDE Categories:**
+
 - **S**poofing (Authentication)
 - **T**ampering (Integrity)
 - **R**epudiation (Non-repudiation)
@@ -1115,6 +1166,7 @@ Systematic STRIDE threat modeling for applications, systems, and architectures.
 Complete vCISO engagement lifecycle for security consultants.
 
 **Deliverables:**
+
 1. Engagement overview and RACI
 2. Budget and resource plan (3-year projection)
 3. Current state assessment (maturity scoring)
@@ -1137,6 +1189,7 @@ Complete vCISO engagement lifecycle for security consultants.
 Establish comprehensive vulnerability management program.
 
 **Coverage:**
+
 - Asset inventory with criticality ratings
 - Scanning strategy and schedules
 - Vulnerability assessment and validation
@@ -1157,6 +1210,7 @@ Establish comprehensive vulnerability management program.
 Web application penetration testing covering OWASP Top 10.
 
 **OWASP Top 10 Coverage:**
+
 - A01: Broken Access Control
 - A02: Cryptographic Failures
 - A03: Injection (SQL, XSS, Command)
@@ -1177,6 +1231,7 @@ Web application penetration testing covering OWASP Top 10.
 ### Invocation Methods
 
 #### 1. Slash Command Invocation
+
 ```bash
 /bmad:<module>:workflows:<workflow-name>
 
@@ -1188,7 +1243,9 @@ Web application penetration testing covering OWASP Top 10.
 ```
 
 #### 2. Agent Menu Selection
+
 Most workflows can be accessed through the primary agent's action menu:
+
 ```bash
 # Start the agent
 /bmad:<module>:agents:<agent-name>
@@ -1197,8 +1254,9 @@ Most workflows can be accessed through the primary agent's action menu:
 ```
 
 #### 3. Direct Workflow Loading
+
 ```bash
-Load and execute: src/<module>/workflows/<workflow-name>/workflow.md
+Load and follow: src/<module>/workflows/<workflow-name>/workflow.md
 ```
 
 ### Multi-Session Support
@@ -1213,6 +1271,7 @@ All workflows support pausing and resuming:
 ### Output Locations
 
 Workflows generate output documents in configured locations:
+
 ```
 {output_folder}/
 ├── intelligence/     # Intel team outputs
@@ -1251,7 +1310,7 @@ Each workflow follows a consistent architecture:
 3. **WAIT FOR INPUT:** Halt at menus and wait for user selection
 4. **CHECK CONTINUATION:** Only proceed when user confirms
 5. **SAVE STATE:** Update `stepsCompleted` before loading next step
-6. **LOAD NEXT:** When directed, load and execute next step file
+6. **LOAD NEXT:** When directed, load and follow next step file
 
 ### Collaboration Tools
 

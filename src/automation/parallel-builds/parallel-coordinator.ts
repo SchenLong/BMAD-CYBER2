@@ -698,9 +698,10 @@ export class ParallelCoordinator extends EventEmitter {
           const taskB = this.tasks.get(b);
           return (taskA?.estimatedDuration || 0) - (taskB?.estimatedDuration || 0);
         });
-      case 'critical-path':
+      case 'critical-path': {
         const plan = this.createExecutionPlan(taskIds);
         return plan.phases.flatMap(p => p.tasks);
+      }
       default:
         return taskIds;
     }

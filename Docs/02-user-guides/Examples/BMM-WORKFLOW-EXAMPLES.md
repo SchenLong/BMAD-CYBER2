@@ -39,9 +39,11 @@ The BMM module provides comprehensive product development workflows from initial
 ## Example 1: Create Product Brief
 
 ### Scenario
+
 Starting a new project to build a customer feedback widget for SaaS products.
 
 ### Invocation
+
 ```
 /bmad:bmm:workflows:create-product-brief
 ```
@@ -49,6 +51,7 @@ Starting a new project to build a customer feedback widget for SaaS products.
 ### Workflow Steps
 
 **Step 1: Discovery**
+
 ```
 Mary (Business Analyst) facilitates:
 
@@ -65,6 +68,7 @@ They want quick feedback without engineering heavy-lifting."
 ```
 
 **Step 2: Market Context**
+
 ```
 Mary researches:
 
@@ -82,6 +86,7 @@ Market Gap Identified:
 ```
 
 **Step 3: Value Proposition**
+
 ```
 Mary synthesizes:
 
@@ -209,9 +214,11 @@ decisions faster than competitors.
 ## Example 2: Create PRD (Product Requirements Document)
 
 ### Scenario
+
 Following a validated product brief, create detailed requirements for the feedback widget.
 
 ### Invocation
+
 ```
 /bmad:bmm:workflows:create-prd
 ```
@@ -219,6 +226,7 @@ Following a validated product brief, create detailed requirements for the feedba
 ### Workflow Steps (11 Steps)
 
 **Step 1: Initialization**
+
 ```
 John (Product Manager) begins:
 
@@ -227,6 +235,7 @@ I'll guide you through each section."
 ```
 
 **Step 2: Discovery Recap**
+
 ```
 John confirms:
 
@@ -237,6 +246,7 @@ Green light: Proceed with MVP definition
 ```
 
 **Step 3: Success Criteria**
+
 ```
 John defines measurable outcomes:
 
@@ -257,6 +267,7 @@ Technical Outcomes:
 ```
 
 **Step 4: User Journeys**
+
 ```
 John maps critical journeys:
 
@@ -348,6 +359,7 @@ John documents functional requirements:
 ```
 
 **Step 11: Completion**
+
 ```
 John finalizes:
 
@@ -451,9 +463,11 @@ with one-line installation and no-code configuration.
 ## Example 3: Create Architecture
 
 ### Scenario
+
 Design the technical architecture for the feedback widget MVP.
 
 ### Invocation
+
 ```
 /bmad:bmm:workflows:create-architecture
 ```
@@ -461,6 +475,7 @@ Design the technical architecture for the feedback widget MVP.
 ### Workflow Steps
 
 **Step 1: Requirements Review**
+
 ```
 Winston (Architect) reviews PRD:
 
@@ -472,6 +487,7 @@ Key Technical Challenges:
 ```
 
 **Step 2: Architecture Decisions**
+
 ```
 Winston proposes:
 
@@ -598,28 +614,34 @@ Node.js (Express) on AWS ECS Fargate with PostgreSQL.
 
 ### Widget (Client-Side)
 ```
+
 Technology: Vanilla JS + Shadow DOM
 Build: Rollup + Terser
 Size Budget: <20KB gzipped
 Hosting: CloudFront CDN
 Caching: Aggressive (1 year, versioned URLs)
+
 ```
 
 ### Dashboard (Frontend)
 ```
+
 Technology: Next.js 14 (App Router)
 Hosting: Vercel
 Authentication: NextAuth.js
 State: React Query
+
 ```
 
 ### API (Backend)
 ```
+
 Technology: Node.js 20 + Express
 Hosting: AWS ECS Fargate
 Database: PostgreSQL 15 (RDS)
 Cache: Redis (ElastiCache)
 Queue: SQS (for async processing)
+
 ```
 
 ---
@@ -686,6 +708,7 @@ CREATE INDEX idx_feedback_project_rating ON feedback(project_id, rating);
 
 *Architect: Winston*
 *Reviewed by: John (Product), Murat (Testing)*
+
 ```
 
 ---
@@ -697,13 +720,16 @@ Execute a sprint to implement the feedback widget MVP.
 
 ### Invocation
 ```
+
 /bmad:bmm:workflows:sprint-planning
+
 ```
 
 ### Workflow Steps
 
 **Step 1: Sprint Setup**
 ```
+
 Bob (Scrum Master) facilitates:
 
 Sprint Goal: "Deliver working widget installation flow"
@@ -719,18 +745,23 @@ Selected Stories:
 └── US-100: Test automation setup (3 pts) - Murat
 
 Total: 26 points (65% capacity buffer for unknowns)
+
 ```
 
 **Step 2: Story Development (dev-story workflow)**
 
 ```
+
 /bmad:bmm:workflows:dev-story
+
 ```
 
 ```
+
 Amelia (Developer) implements US-001:
 
 TDD Approach:
+
 1. RED: Write failing test
    └── "widget script loads without error"
    └── "widget renders in shadow DOM"
@@ -745,14 +776,18 @@ TDD Approach:
    └── Extract configuration module
    └── Add error handling
    └── Optimize bundle size
+
 ```
 
 **Step 3: Code Review**
 ```
+
 /bmad:bmm:workflows:code-review
+
 ```
 
 ```
+
 Winston reviews:
 
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -777,6 +812,7 @@ Winston reviews:
 ├─────────────────────────────────────────────────────────────────────┤
 │ APPROVED: After critical issues addressed                          │
 └─────────────────────────────────────────────────────────────────────┘
+
 ```
 
 ### Sample Output: Sprint Status
@@ -793,6 +829,7 @@ Winston reviews:
 ## BURNDOWN
 
 ```
+
 Points │
   30   │▓
   25   │▓▓
@@ -803,6 +840,7 @@ Points │
    0   │▓▓▓▓▓▓░░░░
        └──────────────
         D1 D2 D3 D4 D5 D6 D7 D8 D9 D10
+
 ```
 
 Current: 8 points remaining (on track)
@@ -855,9 +893,11 @@ Current: 8 points remaining (on track)
 ## Example 5: Quick Development Flow
 
 ### Scenario
+
 Rapidly implement a small feature without full ceremony.
 
 ### Invocation
+
 ```
 /bmad:bmm:workflows:quick-dev
 ```
@@ -865,6 +905,7 @@ Rapidly implement a small feature without full ceremony.
 ### Workflow Steps
 
 **Step 1: Direct Instructions**
+
 ```
 User Input: "Add emoji reaction buttons to the feedback widget.
 Five emoji options: 😠 😕 😐 🙂 😍
@@ -892,6 +933,7 @@ Let's start with the widget..."
 ```
 
 **Step 2: Implementation**
+
 ```
 Barry implements incrementally:
 
@@ -935,10 +977,12 @@ class EmojiPicker extends HTMLElement {
 ```
 
 "Widget done. Moving to API..."
+
 ```
 
 **Step 3: Testing & Verification**
 ```
+
 Barry verifies:
 
 ✅ Emoji picker renders in widget
@@ -948,6 +992,7 @@ Barry verifies:
 ✅ Filter by rating works
 
 Ready for review.
+
 ```
 
 ---
@@ -956,6 +1001,7 @@ Ready for review.
 
 ### Full Product Lifecycle
 ```
+
 1. create-product-brief (validate idea)
 2. create-prd (detailed requirements)
 3. create-architecture (technical design)
@@ -964,20 +1010,25 @@ Ready for review.
 6. dev-story (implement each story)
 7. code-review (quality gate)
 8. retrospective (learn and improve)
+
 ```
 
 ### Quick Iteration
 ```
+
 1. quick-dev (implement feature)
 2. code-review (quality check)
 3. sprint-status (track progress)
+
 ```
 
 ### Architecture + Security
 ```
+
 1. create-architecture (BMM)
 2. security-architecture-review (Cybersec)
 3. threat-modeling (Cybersec)
+
 ```
 
 ---

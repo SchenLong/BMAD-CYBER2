@@ -11,22 +11,23 @@ partyModeWorkflow: '{project-root}/_bmad/core/workflows/party-mode/workflow.md'
 
 # Step 6: Review Documentation
 
-## STEP GOAL:
+## STEP GOAL
 
 Compile all preparation into comprehensive, professional review documentation ready for the conversation and HR records.
 
-### Role Reinforcement:
+### Role Reinforcement
 
 - You are a Senior Executive Coach finalizing the review preparation
 - Synthesize all planning into cohesive documentation
 - Ensure document is professional and defensible
 - Create both conversation guide and formal record
 
-### Language Preference:
+### Language Preference
+
 The user has chosen to communicate in the **{communication_language}** language.
 You MUST respond in **{communication_language}** throughout this step.
 
-### Step-Specific Rules:
+### Step-Specific Rules
 
 - Focus on clear, professional documentation
 - FORBIDDEN to leave sections incomplete
@@ -35,7 +36,7 @@ You MUST respond in **{communication_language}** throughout this step.
 
 ---
 
-## Sequence of Instructions:
+## Sequence of Instructions
 
 ### 1. Review All Sections
 
@@ -44,6 +45,7 @@ You MUST respond in **{communication_language}** throughout this step.
 "Let me review all sections of the performance review preparation..."
 
 **Completeness check:**
+
 - [ ] Review setup
 - [ ] Performance assessment
 - [ ] Feedback calibration
@@ -124,25 +126,31 @@ Employee: _________________ Date: _______
 **Conversation Guide (for your use only)**
 
 **Opening (5 min):**
+
 - [talking points]
 
 **Key Messages:**
+
 1. [message]
 2. [message]
 3. [message]
 
 **Difficult Feedback:**
+
 - [feedback + SBI + anticipated response]
 
 **Questions to Ask:**
+
 1. [question]
 2. [question]
 
 **Development Discussion:**
+
 - Focus areas: [list]
 - Support to offer: [list]
 
 **Closing:**
+
 - [what to end with]
 
 ### 4. Key Talking Points
@@ -152,15 +160,18 @@ Employee: _________________ Date: _______
 "What are the essential points to communicate?"
 
 **Must say:**
+
 1. [point]
 2. [point]
 3. [point]
 
 **Should say:**
+
 1. [point]
 2. [point]
 
 **Avoid saying:**
+
 1. [thing to avoid]
 2. [thing to avoid]
 
@@ -233,6 +244,7 @@ This performance review was prepared using the Performance Review Preparation wo
 ```
 
 Update frontmatter:
+
 - Add `step-06-review-document` to stepsCompleted
 - Change `status: complete`
 
@@ -248,23 +260,28 @@ Update frontmatter:
 **Overall Rating:** [X/5]
 
 **Key Strengths:**
+
 1. [strength]
 2. [strength]
 
 **Development Focus:**
+
 1. [area]
 2. [area]
 
 **Key Messages for Conversation:**
+
 1. [message]
 2. [message]
 3. [message]
 
 **Conversation Logistics:**
+
 - Duration: [X minutes]
 - Key phases: [summary]
 
 **Post-Conversation:**
+
 1. [action]
 2. [action]
 
@@ -279,7 +296,8 @@ You're ready for the review conversation!"
 
 Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Document [E] Export/Share [X] Exit Workflow"
 
-#### Menu Handling Logic:
+#### Menu Handling Logic
+
 - IF A: Execute {advancedElicitationTask}, and when finished redisplay the menu
 - IF P: Execute {partyModeWorkflow}, and when finished redisplay the menu
 - IF R: Return to relevant section to revise, then redisplay menu
@@ -290,7 +308,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Documen
 
 ## SYSTEM SUCCESS/FAILURE METRICS
 
-### SUCCESS:
+### SUCCESS
+
 - All sections reviewed
 - Formal document created
 - Conversation guide ready
@@ -300,7 +319,8 @@ Display: "**Select:** [A] Advanced Elicitation [P] Party Mode [R] Revise Documen
 - Document marked complete
 - Output file finalized
 
-### SYSTEM FAILURE:
+### SYSTEM FAILURE
+
 - Incomplete formal document
 - No conversation guide
 - Missing key talking points

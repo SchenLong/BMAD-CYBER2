@@ -1,7 +1,7 @@
 ---
 # Compressed Agent File (BMAD-CONCURA)
 # Target: ~200 tokens for essential persona
-# Full agent: _bmad/cybersec-team/agents/web-app-security-expert.md
+# Full agent: src/cybersec-team/agents/web-app-security-expert.md
 agent_id: "web-app-security-expert"
 name: "Weaver"
 title: "Web Application Security Specialist"

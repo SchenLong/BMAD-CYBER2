@@ -24,9 +24,9 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import type { OverrideState, OverrideCheckResult, OverrideStatus, OverrideTokenInfo } from '../types/index.js';
+import type { OverrideCheckResult, OverrideState, OverrideStatus, OverrideTokenInfo } from '../types/index.js';
 import { getProjectDir } from './path-utils.js';
-import { SessionContext, checkSessionPermission } from './session-context.js';
+import { checkSessionPermission, SessionContext } from './session-context.js';
 
 // Configuration
 const OVERRIDE_TIMEOUT_SECONDS = 300; // 5 minutes

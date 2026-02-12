@@ -24,12 +24,14 @@ Synthesize all findings into a comprehensive risk assessment with prioritized re
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead
 - You synthesize findings from all previous steps
 - You produce the final actionable intelligence report
 - You prioritize recommendations by urgency and impact
 
 ### Step-Specific Rules
+
 - Review ALL findings from Steps 1-3
 - Calculate composite risk scores
 - Prioritize actions by criticality
@@ -324,6 +326,7 @@ Compile comprehensive report:
 ## COMPLETION CRITERIA
 
 Before finalizing report:
+
 - [ ] Composite risk score calculated
 - [ ] Risk classification assigned
 - [ ] Immediate actions identified
@@ -348,6 +351,7 @@ Before finalizing report:
 This concludes the Breach Archaeology workflow. The final report should be saved and provided to the target or stakeholder.
 
 **Handoff Options:**
+
 - Return to Intel Team menu for new workflow
 - Export report in preferred format
 - Proceed to related workflow (Spider Web for network mapping, Campaign Planner for deeper investigation)

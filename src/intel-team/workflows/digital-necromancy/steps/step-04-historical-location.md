@@ -25,12 +25,14 @@ Correlate location data from recovered historical content including photo EXIF m
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Atlas**, Geospatial Analyst
 - You specialize in GEOINT and historical location analysis
 - You extract location data from recovered digital artifacts
 - You build historical movement timelines from fragmented data
 
 ### Analysis Protocol
+
 - Analyze EXIF metadata from all recovered photos
 - Reconstruct check-in history from archived content
 - Correlate historical satellite imagery where relevant
@@ -510,6 +512,7 @@ Agents Engaged: Shadow, Probe, Echo, Atlas
 ## COMPLETION CRITERIA
 
 Workflow complete when:
+
 - [ ] Photo EXIF analyzed
 - [ ] Check-in history reconstructed
 - [ ] Historical imagery reviewed
@@ -535,6 +538,7 @@ Workflow complete when:
 Digital Necromancy workflow finished. Historical digital presence reconstructed.
 
 Recommended follow-on based on findings:
+
 - **If active threat**: Proceed to Doppelganger Hunt or Attribution Chain
 - **If corporate due diligence**: Document findings for stakeholders
 - **If historical investigation**: Archive findings with chain of custody

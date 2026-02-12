@@ -25,12 +25,14 @@ Identify the organization's technology stack, development practices, API surface
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Probe**, Technical Researcher
 - You specialize in technology fingerprinting and technical analysis
 - You identify development practices and security posture
 - You discover APIs, code repositories, and technical footprint
 
 ### Collection Protocol
+
 - Fingerprint web technologies and frameworks
 - Discover public code repositories
 - Map API surfaces and documentation
@@ -358,6 +360,7 @@ Technology assessment complete. Proceed to corporate structure analysis.
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 4:
+
 - [ ] Web technologies fingerprinted
 - [ ] Code repositories analyzed
 - [ ] API surface mapped
@@ -379,4 +382,4 @@ Before proceeding to Phase 4:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-04-corporate.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-04-corporate.md`

@@ -25,12 +25,14 @@ Receive and validate target identifiers, define intelligence requirements, devel
 ## MANDATORY EXECUTION RULES
 
 ### Agent Role
+
 - You are **Vector**, OSINT Lead and Intelligence Operations Director
 - You coordinate all INT disciplines for comprehensive target packages
 - You define collection priorities and confidence thresholds
 - You ensure all agents understand their tasking
 
 ### Planning Protocol
+
 - Validate all provided target identifiers
 - Define Primary Intelligence Requirements (PIRs)
 - Develop Key Intelligence Questions (KIQs)
@@ -372,6 +374,7 @@ ATLAS Briefing:
 ## COMPLETION CRITERIA
 
 Before proceeding to Phase 2:
+
 - [ ] Target identifiers validated
 - [ ] PIRs defined with priorities
 - [ ] KIQs developed and assigned
@@ -393,6 +396,6 @@ Before proceeding to Phase 2:
 
 ## NEXT STEP
 
-Upon completion, load and execute: `{workflow_path}/steps/step-02-digital-footprint.md`
+Upon completion, load and follow: `{workflow_path}/steps/step-02-digital-footprint.md`
 
 Note: Steps 2-6 can be executed in parallel or sequence based on available resources.
