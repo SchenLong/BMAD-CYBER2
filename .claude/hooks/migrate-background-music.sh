@@ -256,7 +256,7 @@ if [[ -f "$CONFIG_FILE" ]]; then
         fi
 
         # Create timestamped backup
-        local config_backup="$BACKUP_DIR/audio-effects.cfg.backup"
+        config_backup="$BACKUP_DIR/audio-effects.cfg.backup"
         cp -p "$CONFIG_FILE" "$config_backup"
 
         # Verify backup

@@ -523,6 +523,24 @@ BMAD-CYBER2 implements comprehensive OWASP Top 10 for LLM Applications coverage:
 
 ---
 
+## CI-Enforced Security Invariants
+
+Three security invariants are enforced automatically in the CI quality gate via the integration test suite (`npm run test:integration`). These invariants act as ratchets — they can only become stricter, never weaker.
+
+| ID | Invariant | Test File | Enforces |
+|----|-----------|-----------|----------|
+| INV-11 | No eval()/Function() | `tests/security/no-eval-audit.test.js` | Zero `eval()`, `new Function()`, or dynamic `require()` in hooks, validators, scripts, and security modules |
+| INV-12 | Path containment | `tests/security/path-containment.test.js` | All path resolution functions reject traversal attacks (`../`, absolute paths, null bytes) and stay within project root |
+| INV-13 | Hook count non-decrease | `tests/security/hook-count-invariant.test.js` | Minimum 55 hook commands (5 SessionStart + 2 UserPromptSubmit + 48 PreToolUse), 12 matchers, no accidental removals |
+
+**INV-11** scans `.claude/hooks/`, `.claude/validators-node/src/`, `scripts/`, and `src/core/security/` for dangerous patterns including `eval()`, `new Function()`, `source <()`, and dynamic `require()` with variable arguments.
+
+**INV-12** tests `agentPathResolver()` against traversal payloads (`../../../etc/passwd`, absolute paths, null/undefined, special characters) and audits extractor and downloader source code for path safety checks and SSRF protection.
+
+**INV-13** parses `.claude/settings.json` and asserts minimum hook counts per event type, validates all 12 PreToolUse matchers are present, checks command integrity (`CLAUDE_PROJECT_DIR` references, no duplicates), and verifies critical validators (prompt-injection, jailbreak, session-init, token-validator).
+
+---
+
 ## Related Documentation
 
 ### Detailed Security Documentation

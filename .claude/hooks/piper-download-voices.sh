@@ -155,8 +155,8 @@ for voice in "${NEED_DOWNLOAD[@]}"; do
 
   if download_voice "$voice"; then
     ((DOWNLOADED++))
-    local voice_path="$VOICE_DIR/${voice}.onnx"
-    local file_size=$(du -h "$voice_path" 2>/dev/null | cut -f1)
+    voice_path="$VOICE_DIR/${voice}.onnx"
+    file_size=$(du -h "$voice_path" 2>/dev/null | cut -f1)
     echo "   ✓ Downloaded: $voice"
     echo "   📁 Path: $voice_path"
     echo "   📦 Size: $file_size"
@@ -172,8 +172,8 @@ echo "📊 Download Summary:"
 echo ""
 echo "Installed voices:"
 for voice in "${ALREADY_DOWNLOADED_LIST[@]}"; do
-  local voice_path="$VOICE_DIR/${voice}.onnx"
-  local file_size=$(du -h "$voice_path" 2>/dev/null | cut -f1)
+  voice_path="$VOICE_DIR/${voice}.onnx"
+  file_size=$(du -h "$voice_path" 2>/dev/null | cut -f1)
   echo "   ✓ $voice ($file_size)"
   echo "     $voice_path"
 done
@@ -182,9 +182,9 @@ if [[ $DOWNLOADED -gt 0 ]]; then
   echo ""
   echo "Just downloaded:"
   for voice in "${NEED_DOWNLOAD[@]}"; do
-    local voice_path="$VOICE_DIR/${voice}.onnx"
+    voice_path="$VOICE_DIR/${voice}.onnx"
     if [[ -f "$voice_path" ]]; then
-      local file_size=$(du -h "$voice_path" 2>/dev/null | cut -f1)
+      file_size=$(du -h "$voice_path" 2>/dev/null | cut -f1)
       echo "   ✓ $voice ($file_size)"
       echo "     $voice_path"
     fi
@@ -195,7 +195,7 @@ if [[ $FAILED -gt 0 ]]; then
   echo ""
   echo "Failed downloads:"
   for voice in "${NEED_DOWNLOAD[@]}"; do
-    local voice_path="$VOICE_DIR/${voice}.onnx"
+    voice_path="$VOICE_DIR/${voice}.onnx"
     if [[ ! -f "$voice_path" ]]; then
       echo "   ✗ $voice"
     fi

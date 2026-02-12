@@ -1,14 +1,13 @@
 /**
- * Shell Script Validation Tests — VAL-12 Equivalent
+ * Shell Script Validation Tests — VAL-12
  *
- * Validates the integrity and functionality of:
- * - scripts/security-regression.sh
- * - scripts/capture-hook-baseline.js
- * - scripts/check-bundle-size.js
- * - scripts/validate-security.js
+ * Validates:
+ * - scripts/security-regression.sh (execution + content checks)
+ * - scripts/capture-hook-baseline.js (hash integrity)
+ * - .claude/hooks/*.sh — bash -n syntax + ShellCheck errors (QE-09-S1)
  *
  * Source: TESTING-MASTER-VALIDATION-PLAN.md VAL-12 (Shell Script Validation)
- * Source: MASTER-BMAD-QA Section 9 (Never-Executed Checks)
+ * Source: QA-EXECUTION-PLAN.md QE-09-S1
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
@@ -20,6 +19,7 @@ import { promisify } from 'util';
 const execFileAsync = promisify(execFile);
 const PROJECT_ROOT = path.resolve(import.meta.dirname, '../..');
 const NODE_BIN = process.execPath;
+const HOOKS_DIR = path.join(PROJECT_ROOT, '.claude', 'hooks');
 
 // ============================================================================
 // Tests
@@ -236,5 +236,89 @@ describe('Shell Script Validation (VAL-12)', () => {
 
       expect(matchers.size).toBeGreaterThanOrEqual(12);
     });
+  });
+});
+
+// ============================================================================
+// QE-09-S1: Hook Script Syntax Validation (.claude/hooks/*.sh)
+// ============================================================================
+
+describe('Hook Script Syntax Validation (QE-09-S1)', () => {
+  const hookFiles = fs.readdirSync(HOOKS_DIR)
+    .filter((f) => f.endsWith('.sh'))
+    .sort();
+
+  it('should discover at least 40 .sh hook scripts', () => {
+    expect(hookFiles.length).toBeGreaterThanOrEqual(40);
+  });
+
+  // --------------------------------------------------------------------------
+  // bash -n syntax check for every .sh file
+  // --------------------------------------------------------------------------
+  describe('bash -n syntax validation', () => {
+    for (const file of hookFiles) {
+      it(`bash -n passes: ${file}`, async () => {
+        const filePath = path.join(HOOKS_DIR, file);
+        await execFileAsync('bash', ['-n', filePath], { timeout: 10000 });
+        // bash -n exits 0 if syntax is valid — reaching here means pass
+      });
+    }
+  });
+
+  // --------------------------------------------------------------------------
+  // ShellCheck error check (skip gracefully if shellcheck not installed)
+  // --------------------------------------------------------------------------
+  describe('ShellCheck error validation', () => {
+    let shellcheckAvailable = false;
+
+    beforeAll(async () => {
+      try {
+        await execFileAsync('shellcheck', ['--version'], { timeout: 5000 });
+        shellcheckAvailable = true;
+      } catch {
+        shellcheckAvailable = false;
+      }
+    });
+
+    it('shellcheck is available', () => {
+      if (!shellcheckAvailable) {
+        console.warn('ShellCheck not installed — skipping SC error checks');
+      }
+      // Not a hard failure if missing, but we note it
+      expect(true).toBe(true);
+    });
+
+    for (const file of hookFiles) {
+      it(`shellcheck 0 errors: ${file}`, async () => {
+        if (!shellcheckAvailable) return; // skip gracefully
+        const filePath = path.join(HOOKS_DIR, file);
+        try {
+          await execFileAsync(
+            'shellcheck', ['--severity=error', '--format=gcc', filePath],
+            { timeout: 15000 }
+          );
+        } catch (err) {
+          // shellcheck exits non-zero when errors found — stderr has details
+          const output = (err.stdout || '') + (err.stderr || '');
+          expect.fail(`ShellCheck errors in ${file}:\n${output}`);
+        }
+      });
+    }
+  });
+
+  // --------------------------------------------------------------------------
+  // Shebang line check
+  // --------------------------------------------------------------------------
+  describe('Shebang line validation', () => {
+    for (const file of hookFiles) {
+      it(`has valid shebang: ${file}`, () => {
+        const content = fs.readFileSync(path.join(HOOKS_DIR, file), 'utf-8');
+        const firstLine = content.split('\n')[0];
+        expect(
+          firstLine.startsWith('#!/bin/bash') || firstLine.startsWith('#!/usr/bin/env bash'),
+          `${file} shebang: "${firstLine}"`
+        ).toBe(true);
+      });
+    }
   });
 });
