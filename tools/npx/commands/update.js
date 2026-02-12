@@ -17,6 +17,9 @@ const PRESERVE_FILES = [
   '_bmad/_config/',
   '.claude/settings.json',
   '.claude/settings.local.json',
+  '.claude/hooks/',
+  '.claude/validators-node/',
+  '.claude/commands/',
   '.env',
   '.env.local'
 ];

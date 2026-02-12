@@ -15,6 +15,25 @@ import os from 'os';
 // Since it's TypeScript, we import the compiled behavior via dynamic import
 // The audit-logger.ts uses createSign which we've replaced with createHmac
 
+/**
+ * Deterministic JSON stringify — matches TamperEvidentAuditLogger.deterministicStringify()
+ * Sorts object keys recursively to ensure identical hashes regardless of key insertion order.
+ */
+function deterministicStringify(obj) {
+  if (obj === null || obj === undefined) return JSON.stringify(obj);
+  if (typeof obj !== 'object') return JSON.stringify(obj);
+  if (obj instanceof Date) return JSON.stringify(obj);
+  if (Array.isArray(obj)) {
+    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+  }
+  const sortedKeys = Object.keys(obj).sort();
+  const pairs = sortedKeys.map(key => {
+    const value = deterministicStringify(obj[key]);
+    return JSON.stringify(key) + ':' + value;
+  });
+  return '{' + pairs.join(',') + '}';
+}
+
 describe('Audit Signature Verification (QE-06-S1)', () => {
   const TEST_KEY = 'test-hmac-secret-key-at-least-32-chars-long!!';
   let tmpDir;
@@ -45,7 +64,7 @@ describe('Audit Signature Verification (QE-06-S1)', () => {
       blockIndex
     };
 
-    const dataToHash = JSON.stringify(entryData) + previousHash;
+    const dataToHash = deterministicStringify(entryData) + previousHash;
     const hash = crypto.createHash('sha256').update(dataToHash).digest('hex');
     const signature = crypto.createHmac('sha256', privateKey).update(dataToHash).digest('hex');
 
@@ -64,7 +83,7 @@ describe('Audit Signature Verification (QE-06-S1)', () => {
     if (!privateKey || !entry.signature) return false;
 
     const { hash, previousHash, signature, merkleRoot, ...entryData } = entry;
-    const dataToVerify = JSON.stringify(entryData) + previousHash;
+    const dataToVerify = deterministicStringify(entryData) + previousHash;
     const expectedSignature = crypto.createHmac('sha256', privateKey)
       .update(dataToVerify).digest('hex');
 
@@ -85,7 +104,7 @@ describe('Audit Signature Verification (QE-06-S1)', () => {
 
       // Hash verification
       const { hash, previousHash: _ph, signature, merkleRoot, ...entryData } = entry;
-      const dataToHash = JSON.stringify(entryData) + previousHash;
+      const dataToHash = deterministicStringify(entryData) + previousHash;
       const expectedHash = crypto.createHash('sha256').update(dataToHash).digest('hex');
       if (entry.hash !== expectedHash) return false;
 

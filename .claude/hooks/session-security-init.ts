@@ -2,6 +2,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import * as crypto from 'crypto';
 
 const PROJECT_DIR = process.env.CLAUDE_PROJECT_DIR || process.cwd();
 const VALIDATORS_DIR = path.join(PROJECT_DIR, '.claude', 'validators-node', 'src');
@@ -131,6 +132,34 @@ function validateAuthentication() {
     }
 }
 
+function writeExecutionReceipt(status: string, validatorCount: number, issuesCount: number): void {
+    const receiptPath = path.join(LOGS_DIR, 'hook-execution-receipt.json');
+    const signingKey = process.env.AUDIT_PRIVATE_KEY || 'bmad-default-hook-key';
+
+    const receiptData = {
+        hookName: 'session-security-init',
+        sessionId: process.env.CLAUDE_SESSION_ID || 'unknown',
+        executedAt: new Date().toISOString(),
+        status,
+        validatorCount,
+        issuesFound: issuesCount,
+    };
+
+    const dataToSign = JSON.stringify(receiptData);
+    const hmac = crypto.createHmac('sha256', signingKey).update(dataToSign).digest('hex');
+
+    const receipt = {
+        ...receiptData,
+        hmac,
+    };
+
+    try {
+        fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2));
+    } catch {
+        // Receipt write failure must not block session start
+    }
+}
+
 function main(): void {
     const issues: string[] = [];
     const warnings: string[] = [];
@@ -225,6 +254,7 @@ function main(): void {
     console.error(`    - Jailbreak attempts`);
     console.error(`${'='.repeat(60)}\n`);
 
+    writeExecutionReceipt(status, REQUIRED_VALIDATORS.length, issues.length);
     logSessionStart(status, [...issues, ...warnings]);
     process.exit(0);
 }

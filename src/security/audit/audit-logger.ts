@@ -99,6 +99,17 @@ export interface RotationResult {
   lastHash?: string;
 }
 
+// PII patterns for audit log sanitization (R-012 remediation)
+// Matches common PII formats to prevent sensitive data from persisting in logs
+const PII_PATTERNS: Array<{ pattern: RegExp; replacement: string }> = [
+  { pattern: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g, replacement: "[REDACTED-EMAIL]" },
+  { pattern: /\b\d{3}[-.]?\d{2}[-.]?\d{4}\b/g, replacement: "[REDACTED-SSN]" },
+  { pattern: /\b(?:\+?1[-.\s]?)?\(?[2-9]\d{2}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g, replacement: "[REDACTED-PHONE]" },
+  { pattern: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g, replacement: "[REDACTED-IP]" },
+  { pattern: /\b[0-9a-fA-F]{1,4}(?::[0-9a-fA-F]{1,4}){7}\b/g, replacement: "[REDACTED-IPV6]" },
+  { pattern: /\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b/g, replacement: "[REDACTED-CC]" },
+];
+
 export class TamperEvidentAuditLogger {
   private logPath: string;
   private privateKey: string;
@@ -107,6 +118,27 @@ export class TamperEvidentAuditLogger {
   private logBuffer: AuditLogEntry[] = [];
   private readonly maxBufferSize = 100;
   private rotationSizeThreshold: number = DEFAULT_ROTATION_SIZE;
+  private siemIntegration: { sendEvent(event: Record<string, unknown>): Promise<boolean> } | null = null;
+
+  /**
+   * Deterministic JSON serialization with recursively sorted keys.
+   * Ensures hash chain integrity is not affected by key order variations.
+   * R-017 remediation: Non-deterministic JSON in hash chain.
+   */
+  static deterministicStringify(obj: unknown): string {
+    if (obj === null || obj === undefined) return JSON.stringify(obj);
+    if (typeof obj !== "object") return JSON.stringify(obj);
+    if (obj instanceof Date) return JSON.stringify(obj);
+    if (Array.isArray(obj)) {
+      return `[${obj.map(item => TamperEvidentAuditLogger.deterministicStringify(item)).join(",")}]`;
+    }
+    const sortedKeys = Object.keys(obj as Record<string, unknown>).sort();
+    const pairs = sortedKeys.map(key => {
+      const value = TamperEvidentAuditLogger.deterministicStringify((obj as Record<string, unknown>)[key]);
+      return `${JSON.stringify(key)}:${value}`;
+    });
+    return `{${pairs.join(",")}}`;
+  }
 
   constructor(logPath: string, privateKey: string) {
     if (!privateKey || privateKey.trim().length === 0) {
@@ -118,6 +150,14 @@ export class TamperEvidentAuditLogger {
     this.logPath = logPath;
     this.privateKey = privateKey;
     this.initializeLogger();
+  }
+
+  /**
+   * Set the SIEM integration instance for event forwarding.
+   * Call after construction when SIEM_ENDPOINT/SIEM_PROVIDER env vars are available.
+   */
+  public setSiemIntegration(siem: { sendEvent(event: Record<string, unknown>): Promise<boolean> }): void {
+    this.siemIntegration = siem;
   }
 
   private async initializeLogger(): Promise<void> {
@@ -154,18 +194,54 @@ export class TamperEvidentAuditLogger {
     }
   }
 
+  /**
+   * Sanitize PII from a string value using predefined patterns.
+   * R-012 remediation: PII data persisting in audit logs.
+   */
+  static sanitizePII(value: string): string {
+    if (!value || typeof value !== "string") return value;
+    let result = value;
+    for (const { pattern, replacement } of PII_PATTERNS) {
+      // Reset regex lastIndex for global patterns
+      pattern.lastIndex = 0;
+      result = result.replace(pattern, replacement);
+    }
+    return result;
+  }
+
+  /**
+   * Recursively sanitize PII from an object's string values.
+   */
+  private static sanitizeObject(obj: unknown): unknown {
+    if (obj === null || obj === undefined) return obj;
+    if (typeof obj === "string") return TamperEvidentAuditLogger.sanitizePII(obj);
+    if (typeof obj !== "object") return obj;
+    if (obj instanceof Date) return obj;
+    if (Array.isArray(obj)) {
+      return obj.map(item => TamperEvidentAuditLogger.sanitizeObject(item));
+    }
+    const result: Record<string, unknown> = {};
+    for (const [key, val] of Object.entries(obj as Record<string, unknown>)) {
+      result[key] = TamperEvidentAuditLogger.sanitizeObject(val);
+    }
+    return result;
+  }
+
   private async createLogEntry(event: AuditEvent): Promise<AuditLogEntry> {
+    // Sanitize PII from event fields before creating log entry (R-012)
+    const sanitizedEvent = TamperEvidentAuditLogger.sanitizeObject(event) as AuditEvent;
+
     const entryData = {
-      ...event,
+      ...sanitizedEvent,
       id: crypto.randomUUID(),
       timestamp: new Date(),
       blockIndex: this.blockIndex++
     };
 
-    // Create hash chain
-    const dataToHash = JSON.stringify(entryData) + this.currentHash;
+    // Create hash chain (deterministic serialization for R-017)
+    const dataToHash = TamperEvidentAuditLogger.deterministicStringify(entryData) + this.currentHash;
     const hash = crypto.createHash("sha256").update(dataToHash).digest("hex");
-    
+
     // Create digital signature
     const signature = this.signData(dataToHash);
     
@@ -213,11 +289,27 @@ export class TamperEvidentAuditLogger {
     }
   }
 
-  private async forwardToSiem(_entry: AuditLogEntry): Promise<void> {
-    // SIEM forwarding would be implemented here
-    // For now, this is a stub - actual implementation would use SiemIntegration
-    // with proper configuration
-    console.log("SIEM forwarding: Would forward audit entry to SIEM");
+  /**
+   * Forward high/critical audit events to SIEM integration.
+   * R-013 remediation: SIEM forwarding stub replaced with real delegation.
+   * Closes GAP-SOC2-01, GAP-ISO-02.
+   *
+   * SIEM integration is activated when SIEM_ENDPOINT and SIEM_PROVIDER env vars are set.
+   * Failure to forward does NOT block audit logging (graceful degradation).
+   */
+  private async forwardToSiem(entry: AuditLogEntry): Promise<void> {
+    if (!this.siemIntegration) return;
+
+    try {
+      await this.siemIntegration.sendEvent({
+        ...entry,
+        eventId: entry.id,
+        eventType: entry.action,
+      });
+    } catch {
+      // SIEM failure must not block audit logging
+      // Error already logged by SiemIntegration internally
+    }
   }
 
   public async verifyIntegrity(startDate?: Date, endDate?: Date): Promise<boolean> {
@@ -235,7 +327,7 @@ export class TamperEvidentAuditLogger {
         // Reconstruct hash the same way as createLogEntry:
         // entryData = { ...event, id, timestamp, blockIndex } (no hash/previousHash/signature/merkleRoot)
         const { hash, previousHash: _prevHash, signature, merkleRoot, ...entryData } = entry;
-        const dataToHash = JSON.stringify(entryData) + previousHash;
+        const dataToHash = TamperEvidentAuditLogger.deterministicStringify(entryData) + previousHash;
         const expectedHash = crypto.createHash("sha256")
           .update(dataToHash)
           .digest("hex");
@@ -273,7 +365,7 @@ export class TamperEvidentAuditLogger {
       // Reconstruct the data exactly as it was signed in createLogEntry:
       // entryData = { ...event, id, timestamp, blockIndex } (no hash/previousHash/signature/merkleRoot)
       const { hash, previousHash, signature, merkleRoot, ...entryData } = entry;
-      const dataToVerify = JSON.stringify(entryData) + previousHash;
+      const dataToVerify = TamperEvidentAuditLogger.deterministicStringify(entryData) + previousHash;
 
       const expectedSignature = crypto.createHmac("sha256", this.privateKey)
         .update(dataToVerify).digest("hex");

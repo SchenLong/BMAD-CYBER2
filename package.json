@@ -124,10 +124,8 @@
   "bundledDependencies": [
     "@clack/core",
     "@clack/prompts",
-    "chalk",
     "commander",
-    "picocolors",
-    "zod"
+    "picocolors"
   ],
   "devDependencies": {
     "@eslint/js": "^9.39.2",
@@ -172,13 +170,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "bundleDependencies": [
-    "@clack/core",
-    "@clack/prompts",
-    "chalk",
-    "commander",
-    "picocolors",
-    "zod"
-  ]
+  }
 }

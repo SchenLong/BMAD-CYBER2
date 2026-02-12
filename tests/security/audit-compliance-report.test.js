@@ -14,6 +14,25 @@ import os from 'os';
 
 const TEST_KEY = 'test-hmac-secret-key-at-least-32-chars-long!!';
 
+/**
+ * Deterministic JSON stringify — matches TamperEvidentAuditLogger.deterministicStringify()
+ * Sorts object keys recursively to ensure identical hashes regardless of key insertion order.
+ */
+function deterministicStringify(obj) {
+  if (obj === null || obj === undefined) return JSON.stringify(obj);
+  if (typeof obj !== 'object') return JSON.stringify(obj);
+  if (obj instanceof Date) return JSON.stringify(obj);
+  if (Array.isArray(obj)) {
+    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+  }
+  const sortedKeys = Object.keys(obj).sort();
+  const pairs = sortedKeys.map(key => {
+    const value = deterministicStringify(obj[key]);
+    return JSON.stringify(key) + ':' + value;
+  });
+  return '{' + pairs.join(',') + '}';
+}
+
 describe('Audit Compliance Report (QE-06-S3)', () => {
   let tmpDir;
   let logPath;
@@ -42,7 +61,7 @@ describe('Audit Compliance Report (QE-06-S3)', () => {
       blockIndex
     };
 
-    const dataToHash = JSON.stringify(entryData) + previousHash;
+    const dataToHash = deterministicStringify(entryData) + previousHash;
     const hash = crypto.createHash('sha256').update(dataToHash).digest('hex');
     const signature = crypto.createHmac('sha256', TEST_KEY).update(dataToHash).digest('hex');
 

@@ -11,6 +11,34 @@ const fs = require('fs');
 const path = require('path');
 
 // ============================================================================
+// RBAC Decision Audit Logging (R-008 remediation)
+// ============================================================================
+
+/**
+ * Append an RBAC decision to the audit log.
+ * Writes JSONL to .claude/logs/rbac-decisions.log.
+ * Silent failure — logging must never block authorization.
+ */
+function logRbacDecision(decision) {
+  try {
+    const logDir = path.join(process.cwd(), '.claude', 'logs');
+    const logFile = path.join(logDir, 'rbac-decisions.log');
+    const entry = {
+      timestamp: new Date().toISOString(),
+      sessionId: process.env.CLAUDE_SESSION_ID || 'unknown',
+      ...decision
+    };
+    // Ensure log directory exists (sync to keep it simple in CJS hook)
+    if (!fs.existsSync(logDir)) {
+      fs.mkdirSync(logDir, { recursive: true });
+    }
+    fs.appendFileSync(logFile, `${JSON.stringify(entry)}\n`);
+  } catch {
+    // Silent failure — never block authorization
+  }
+}
+
+// ============================================================================
 // YAML Parser (simple implementation for config files)
 // ============================================================================
 
@@ -302,31 +330,38 @@ class AuthorizationManager {
         restriction.require_roles.includes(r)
       );
       if (!hasRequiredRole) {
-        return {
+        const result = {
           allowed: false,
           reason: `Module '${moduleName}' requires one of these roles: ${restriction.require_roles.join(', ')}`,
           warning: restriction.warning_message
         };
+        logRbacDecision({ type: 'module', resource: moduleName, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
 
       if (restriction.require_credential_verification && !user.credentialVerified) {
-        return {
+        const result = {
           allowed: false,
           reason: `Module '${moduleName}' requires verified credentials`
         };
+        logRbacDecision({ type: 'module', resource: moduleName, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
     }
 
     const permissions = this.getEffectivePermissions(user.roles);
     if (!this.matchesPattern(moduleName, permissions.modules)) {
       if (this.config.deny_by_default) {
-        return {
+        const result = {
           allowed: false,
           reason: `Your roles (${user.roles.join(', ')}) do not grant access to module '${moduleName}'`
         };
+        logRbacDecision({ type: 'module', resource: moduleName, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
     }
 
+    logRbacDecision({ type: 'module', resource: moduleName, userRoles: user.roles, allowed: true, auditLevel: restriction?.audit_level });
     return {
       allowed: true,
       audit_level: restriction?.audit_level,
@@ -365,31 +400,38 @@ class AuthorizationManager {
         agentRestriction.require_roles.includes(r)
       );
       if (!hasRequiredRole) {
-        return {
+        const result = {
           allowed: false,
           reason: `Agent '${normalizedPath}' requires one of these roles: ${agentRestriction.require_roles.join(', ')}`,
           warning: agentRestriction.warning_message
         };
+        logRbacDecision({ type: 'agent', resource: normalizedPath, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
 
       if (agentRestriction.require_credential_verification && !user.credentialVerified) {
-        return {
+        const result = {
           allowed: false,
           reason: `Agent '${normalizedPath}' requires verified credentials`
         };
+        logRbacDecision({ type: 'agent', resource: normalizedPath, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
     }
 
     const permissions = this.getEffectivePermissions(user.roles);
     if (!this.matchesPattern(normalizedPath, permissions.agents)) {
       if (this.config.deny_by_default) {
-        return {
+        const result = {
           allowed: false,
           reason: `Your roles (${user.roles.join(', ')}) do not grant access to agent '${normalizedPath}'`
         };
+        logRbacDecision({ type: 'agent', resource: normalizedPath, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
     }
 
+    logRbacDecision({ type: 'agent', resource: normalizedPath, userRoles: user.roles, allowed: true, auditLevel: moduleResult.audit_level });
     return {
       allowed: true,
       warning: moduleResult.warning || agentRestriction?.warning_message,
@@ -408,21 +450,26 @@ class AuthorizationManager {
         restriction.require_roles.includes(r)
       );
       if (!hasRequiredRole) {
-        return {
+        const result = {
           allowed: false,
           reason: `Workflow '${workflowName}' requires one of these roles: ${restriction.require_roles.join(', ')}`,
           warning: restriction.warning_message
         };
+        logRbacDecision({ type: 'workflow', resource: workflowName, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
 
       if (restriction.require_credential_verification && !user.credentialVerified) {
-        return {
+        const result = {
           allowed: false,
           reason: `Workflow '${workflowName}' requires verified credentials`
         };
+        logRbacDecision({ type: 'workflow', resource: workflowName, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
 
       if (restriction.require_approval) {
+        logRbacDecision({ type: 'workflow', resource: workflowName, userRoles: user.roles, allowed: true, requiresApproval: true, auditLevel: restriction.audit_level });
         return {
           allowed: true,
           requires_approval: true,
@@ -435,21 +482,26 @@ class AuthorizationManager {
     const permissions = this.getEffectivePermissions(user.roles);
 
     if (!permissions.actions.includes('execute') && !permissions.actions.includes('*')) {
-      return {
+      const result = {
         allowed: false,
         reason: `Your roles (${user.roles.join(', ')}) do not grant workflow execution permission`
       };
+      logRbacDecision({ type: 'workflow', resource: workflowName, userRoles: user.roles, allowed: false, reason: result.reason });
+      return result;
     }
 
     if (!this.matchesPattern(workflowName, permissions.workflows)) {
       if (this.config.deny_by_default) {
-        return {
+        const result = {
           allowed: false,
           reason: `Your roles (${user.roles.join(', ')}) do not grant access to workflow '${workflowName}'`
         };
+        logRbacDecision({ type: 'workflow', resource: workflowName, userRoles: user.roles, allowed: false, reason: result.reason });
+        return result;
       }
     }
 
+    logRbacDecision({ type: 'workflow', resource: workflowName, userRoles: user.roles, allowed: true, auditLevel: restriction?.audit_level });
     return {
       allowed: true,
       warning: restriction?.warning_message,
@@ -603,7 +655,8 @@ module.exports = {
   AuthorizationManager,
   getAuthorizationManager,
   resetAuthorizationManager,
-  agentPathResolver
+  agentPathResolver,
+  logRbacDecision
 };
 
 // ============================================================================

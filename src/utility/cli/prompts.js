@@ -16,6 +16,20 @@ import pc from 'picocolors';
 let _silent = false;
 
 /**
+ * Strip ANSI escape sequences from a string to prevent terminal escape injection.
+ * Covers SGR (colors/styles), CSI (cursor/screen control), and OSC (terminal title) sequences.
+ * R-022 remediation: Terminal escape injection via unsanitized user input.
+ *
+ * @param {string} str - Input string potentially containing ANSI escapes
+ * @returns {string} Cleaned string with ANSI sequences removed
+ */
+export function stripAnsi(str) {
+  if (typeof str !== 'string') return str;
+  // eslint-disable-next-line no-control-regex
+  return str.replace(/\x1B(?:\[[0-9;]*[a-zA-Z]|\].*?(?:\x07|\x1B\\)|\([A-Za-z0-9])/g, '');
+}
+
+/**
  * Enable or disable silent mode for automation/testing
  * @param {boolean} silent - Whether to suppress output
  */
@@ -302,7 +316,7 @@ export async function text(options) {
 
   const result = await prompt.prompt();
   handleCancel(result);
-  return result;
+  return typeof result === 'string' ? stripAnsi(result) : result;
 }
 
 /**
@@ -319,7 +333,7 @@ export async function password(options) {
   });
 
   handleCancel(result);
-  return result;
+  return typeof result === 'string' ? stripAnsi(result) : result;
 }
 
 /**

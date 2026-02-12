@@ -1,0 +1,76 @@
+# .npmignore — Defense-in-depth exclusion list
+# Primary gating: package.json "files" allowlist
+# This file provides secondary protection if "files" is ever removed
+
+# Test files
+tests/
+*.test.*
+*.spec.*
+
+# Development tools
+dev-tools/
+scripts/
+
+# Build artifacts and output
+_bmad-output/
+_output/
+coverage/
+dist/
+
+# Documentation (internal)
+Docs/
+sme-reviews/
+
+# Source files (only dist/ ships)
+src/
+_bmad/
+!_bmad/framework/dist/**/*
+
+# CI/CD
+.github/
+
+# Configuration files (dev only)
+.eslintrc*
+eslint.config.*
+.markdownlint*
+.prettierrc*
+.prettierignore
+tsconfig*.json
+typedoc.json
+vitest.config.*
+
+# Claude Code settings (validators ship via dist/)
+.claude/
+!.claude/validators-node/dist/**/*
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Source maps (optional exclusion for leaner package)
+*.map
+
+# Misc
+*.bak
+*.backup
+*.old
+*.orig
+*.log
+*.tmp
+*.temp
+README.md.new
+CLAUDE.md
+privateproject/

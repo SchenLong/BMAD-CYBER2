@@ -135,8 +135,9 @@ export async function downloadRelease(options = {}) {
     const checksumAsset = release.assets.find(a => a.name.endsWith('.sha256'));
 
     if (!tarballAsset) {
-      // Fallback to source tarball
-      logger.info('No release tarball found, using source archive');
+      // Fallback to source tarball — no checksum available
+      logger.warn('Security: No release tarball found. Falling back to source archive WITHOUT checksum verification.');
+      logger.warn('Use --from-git for a verified clone if integrity is a concern.');
       return await downloadSourceTarball(release.tarball_url, release.tag_name);
     }
 

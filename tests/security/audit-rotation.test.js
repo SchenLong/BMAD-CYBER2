@@ -24,6 +24,25 @@ const RETENTION_DAYS = {
 
 const TEST_KEY = 'test-hmac-secret-key-at-least-32-chars-long!!';
 
+/**
+ * Deterministic JSON stringify — matches TamperEvidentAuditLogger.deterministicStringify()
+ * Sorts object keys recursively to ensure identical hashes regardless of key insertion order.
+ */
+function deterministicStringify(obj) {
+  if (obj === null || obj === undefined) return JSON.stringify(obj);
+  if (typeof obj !== 'object') return JSON.stringify(obj);
+  if (obj instanceof Date) return JSON.stringify(obj);
+  if (Array.isArray(obj)) {
+    return '[' + obj.map(item => deterministicStringify(item)).join(',') + ']';
+  }
+  const sortedKeys = Object.keys(obj).sort();
+  const pairs = sortedKeys.map(key => {
+    const value = deterministicStringify(obj[key]);
+    return JSON.stringify(key) + ':' + value;
+  });
+  return '{' + pairs.join(',') + '}';
+}
+
 describe('Audit Log Rotation (QE-06-S2)', () => {
   let tmpDir;
   let logPath;
@@ -52,7 +71,7 @@ describe('Audit Log Rotation (QE-06-S2)', () => {
       blockIndex
     };
 
-    const dataToHash = JSON.stringify(entryData) + previousHash;
+    const dataToHash = deterministicStringify(entryData) + previousHash;
     const hash = crypto.createHash('sha256').update(dataToHash).digest('hex');
     const signature = crypto.createHmac('sha256', TEST_KEY).update(dataToHash).digest('hex');
 
@@ -191,7 +210,7 @@ describe('Audit Log Rotation (QE-06-S2)', () => {
       // Verify the new entry's hash incorporates the last hash
       const { hash, previousHash, signature, merkleRoot, ...entryData } = newEntry;
       const expectedHash = crypto.createHash('sha256')
-        .update(JSON.stringify(entryData) + lastHash)
+        .update(deterministicStringify(entryData) + lastHash)
         .digest('hex');
       expect(hash).toBe(expectedHash);
     });
@@ -384,7 +403,7 @@ describe('Audit Log Rotation (QE-06-S2)', () => {
       // Verify hash is computed correctly with the chain link
       const { hash, previousHash, signature, merkleRoot, ...entryData } = newEntry;
       const expectedHash = crypto.createHash('sha256')
-        .update(JSON.stringify(entryData) + lastOldHash)
+        .update(deterministicStringify(entryData) + lastOldHash)
         .digest('hex');
       expect(hash).toBe(expectedHash);
     });
@@ -417,7 +436,7 @@ describe('Audit Log Rotation (QE-06-S2)', () => {
         // Verify hash
         const { hash, previousHash: _ph, signature, merkleRoot, ...entryData } = entry;
         const expectedHash = crypto.createHash('sha256')
-          .update(JSON.stringify(entryData) + chainPrevHash)
+          .update(deterministicStringify(entryData) + chainPrevHash)
           .digest('hex');
         expect(hash).toBe(expectedHash);
 
