@@ -54,7 +54,7 @@ jobs:
           VERSION=${{ steps.version.outputs.VERSION }}
 
           # Create a staging directory
-          STAGING_DIR="bmad-cyber-${VERSION}"
+          STAGING_DIR="bmad-cybersec-${VERSION}"
           mkdir -p "${STAGING_DIR}"
 
           # Copy included files/directories
@@ -95,19 +95,19 @@ jobs:
           find "${STAGING_DIR}" -name ".env.local" -delete 2>/dev/null || true
 
           # Create tarball from staging directory
-          tar -czvf "bmad-cyber-${VERSION}.tar.gz" "${STAGING_DIR}"
+          tar -czvf "bmad-cybersec-${VERSION}.tar.gz" "${STAGING_DIR}"
 
           # Cleanup staging
           rm -rf "${STAGING_DIR}"
 
-          echo "Created bmad-cyber-${VERSION}.tar.gz"
-          ls -la bmad-cyber-${VERSION}.tar.gz
+          echo "Created bmad-cybersec-${VERSION}.tar.gz"
+          ls -la bmad-cybersec-${VERSION}.tar.gz
 
       - name: Generate checksum
         run: |
           VERSION=${{ steps.version.outputs.VERSION }}
-          sha256sum "bmad-cyber-${VERSION}.tar.gz" > "bmad-cyber-${VERSION}.tar.gz.sha256"
-          cat "bmad-cyber-${VERSION}.tar.gz.sha256"
+          sha256sum "bmad-cybersec-${VERSION}.tar.gz" > "bmad-cybersec-${VERSION}.tar.gz.sha256"
+          cat "bmad-cybersec-${VERSION}.tar.gz.sha256"
 
       - name: Generate SBOM (VAL-09-008-002)
         run: |
@@ -117,20 +117,20 @@ jobs:
 
           # Generate SBOM if package.json exists
           if [ -f "package.json" ]; then
-            npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file "bmad-cyber-${VERSION}.sbom.json" 2>/dev/null || \
-            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cyber","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cyber-${VERSION}.sbom.json"
+            npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file "bmad-cybersec-${VERSION}.sbom.json" 2>/dev/null || \
+            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cybersec","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cybersec-${VERSION}.sbom.json"
           else
-            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cyber","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cyber-${VERSION}.sbom.json"
+            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cybersec","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cybersec-${VERSION}.sbom.json"
           fi
-          echo "SBOM generated: bmad-cyber-${VERSION}.sbom.json"
+          echo "SBOM generated: bmad-cybersec-${VERSION}.sbom.json"
 
       - name: Sign artifacts with Sigstore (VAL-09-008-001)
         uses: sigstore/gh-action-sigstore-python@a5caf349bc536fbef3668a10ed7f5cd309a4b53d # v3.2.0
         with:
           inputs: |
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.sbom.json
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.sbom.json
 
       - name: Generate changelog
         id: changelog
@@ -164,12 +164,12 @@ jobs:
         uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
         with:
           files: |
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.sbom.json
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sigstore.json
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.tar.gz.sha256.sigstore.json
-            bmad-cyber-${{ steps.version.outputs.VERSION }}.sbom.json.sigstore.json
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.sbom.json
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sigstore.json
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sha256.sigstore.json
+            bmad-cybersec-${{ steps.version.outputs.VERSION }}.sbom.json.sigstore.json
           body_path: CHANGELOG.txt
           prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
           generate_release_notes: true
