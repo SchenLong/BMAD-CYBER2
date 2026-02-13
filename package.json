@@ -1,6 +1,6 @@
 {
   "name": "bmad-cyber2-framework",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
   "main": "./_bmad/framework/dist/index.js",
