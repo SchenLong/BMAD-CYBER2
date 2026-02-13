@@ -24,7 +24,7 @@ import {
   parseArgs,
   runWizard,
   VERSION
-} from './setup-wizard.js';
+} from './setup-wizard.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -645,7 +645,7 @@ describe('Setup Wizard Entry Point - INST-034', () => {
   describe('ESM Compatibility', () => {
     it('should use ES Module syntax (no CommonJS)', () => {
       const moduleContent = fs.readFileSync(
-        path.join(__dirname, 'setup-wizard.js'),
+        path.join(__dirname, 'setup-wizard.mjs'),
         'utf8'
       );
 
@@ -655,7 +655,7 @@ describe('Setup Wizard Entry Point - INST-034', () => {
 
     it('should use import statements', () => {
       const moduleContent = fs.readFileSync(
-        path.join(__dirname, 'setup-wizard.js'),
+        path.join(__dirname, 'setup-wizard.mjs'),
         'utf8'
       );
 
@@ -664,7 +664,7 @@ describe('Setup Wizard Entry Point - INST-034', () => {
 
     it('should have shebang for CLI execution', () => {
       const moduleContent = fs.readFileSync(
-        path.join(__dirname, 'setup-wizard.js'),
+        path.join(__dirname, 'setup-wizard.mjs'),
         'utf8'
       );
 
@@ -672,7 +672,7 @@ describe('Setup Wizard Entry Point - INST-034', () => {
     });
 
     it('should export default object with all functions', async () => {
-      const module = await import('./setup-wizard.js');
+      const module = await import('./setup-wizard.mjs');
       const defaultExport = module.default;
 
       expect(defaultExport).toBeDefined();
@@ -684,7 +684,7 @@ describe('Setup Wizard Entry Point - INST-034', () => {
     });
 
     it('should export named functions', async () => {
-      const module = await import('./setup-wizard.js');
+      const module = await import('./setup-wizard.mjs');
 
       expect(typeof module.main).toBe('function');
       expect(typeof module.isCI).toBe('function');
@@ -694,7 +694,7 @@ describe('Setup Wizard Entry Point - INST-034', () => {
     });
 
     it('should export constants', async () => {
-      const module = await import('./setup-wizard.js');
+      const module = await import('./setup-wizard.mjs');
 
       expect(module.VERSION).toBeDefined();
       expect(module.CI_ENV_VARS).toBeDefined();
