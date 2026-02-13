@@ -1,7 +1,7 @@
 import * as tar from 'tar';
 import { existsSync, promises as fs, realpathSync } from 'fs';
 import { basename, dirname, join, normalize, relative, resolve } from 'path';
-import { createSpinner, isCancel, select } from '../../../src/utility/cli/prompts.js';
+import { createSpinner, isCancel, select } from './prompts.js';
 import { logger } from './logger.js';
 
 /**

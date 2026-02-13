@@ -1,6 +1,6 @@
 import { existsSync, promises as fs } from 'fs';
 import { join } from 'path';
-import { confirm, isCancel, log } from '../../../src/utility/cli/prompts.js';
+import { confirm, isCancel, log } from './prompts.js';
 import pc from 'picocolors';
 import { logger } from './logger.js';
 
