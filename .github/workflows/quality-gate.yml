@@ -87,6 +87,9 @@ jobs:
       - name: Lint markdown
         run: npm run lint:md
 
+      - name: Check OWASP coverage
+        run: npm run test:coverage:owasp -- --minimum 60
+
   security-scan:
     name: Security Analysis
     runs-on: ubuntu-latest

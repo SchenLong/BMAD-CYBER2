@@ -63,6 +63,7 @@
     "security:verify-validators": "node src/security/verify-validators.js",
     "security:generate-checksums": "node src/security/generate-validator-checksums.js",
     "check:bundle-size": "node scripts/check-bundle-size.js",
+    "test:coverage:owasp": "node scripts/owasp-coverage.js",
     "validate:exports": "node scripts/validate-exports.js",
     "docs:generate": "typedoc --options typedoc.json",
     "docs:validate": "node scripts/validate-docs.js",

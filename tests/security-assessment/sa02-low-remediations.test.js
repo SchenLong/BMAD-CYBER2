@@ -300,13 +300,14 @@ describe('S2 LOW: pii/patterns.ts US_Passport regex', () => {
 });
 
 // ════════════════════════════════════════════════════════════════════════
-// S2 LOW: prompt-injection.ts — base64 min length
+// S2 LOW: pattern-engine.ts (extracted from prompt-injection.ts) — base64 min length
 // ════════════════════════════════════════════════════════════════════════
 
 describe('S2 LOW: prompt-injection.ts base64 minimum length', () => {
   it('base64 encoded content pattern uses 30 char minimum', () => {
+    // Patterns extracted to pattern-engine.ts in TPI-09 (P1-3)
     const content = readFileSync(
-      join(ROOT, '.claude/validators-node/src/ai-safety/prompt-injection.ts'), 'utf8'
+      join(ROOT, '.claude/validators-node/src/ai-safety/pattern-engine.ts'), 'utf8'
     );
     expect(content).toContain('SA-02 LOW');
     // Pattern should have {30,} not {50,}

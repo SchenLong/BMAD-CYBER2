@@ -17,9 +17,9 @@ Workflows support both **short commands** and **full paths**:
 
 - **Short command**: `/threat-modeling` (resolves via alias registry)
 - **Full path**: `/bmad:cybersec-team:workflows:threat-modeling` (direct invocation)
-- **Module-prefixed**: `/game:code-review` or `/bmm:code-review` (for disambiguating conflicts)
+- **Module-prefixed**: `/cybersec:threat-modeling` (for disambiguating conflicts)
 
-Short commands are resolved through the slash command router (`_bmad/core/routing/slash-command-router.js`) which provides:
+Short commands are resolved through the slash command router (`src/core/routing/slash-command-router.js`) which provides:
 
 - Input validation (prevents command injection)
 - RBAC enforcement (role-based access control)
@@ -40,19 +40,6 @@ Core workflows provide fundamental project management and orchestration capabili
 |----------|-------------|
 | `brainstorming` | Facilitate interactive brainstorming sessions using diverse creative techniques and ideation methods |
 | `party-mode` | Orchestrates group discussions between all installed BMAD agents, enabling natural multi-agent conversations |
-| `select-preset` | Select a pre-configured cross-module agent group for Party Mode |
-| `create-project` | Initialize a new project under Abdul's management with module selection and folder structure |
-| `whats-next` | Analyze project state and recommend next action with appropriate agent |
-| `cross-module` | Identify and invoke cross-module expertise for current context |
-| `project-status` | Generate comprehensive project status dashboard |
-| `assign-task` | Delegate task to appropriate agent with context |
-| `select-template` | Select and invoke a team orchestration template for multi-module projects |
-| `secure-software` | Security-aware software development with integrated threat modeling, compliance checks, and security gates |
-| `incident-response` | Coordinated multi-team incident response with attribution, legal compliance, and communications |
-| `strategic-decision` | Multi-perspective strategic decision making with legal risk assessment |
-| `compliance-first` | Regulated industry software development with compliance-driven architecture |
-| `phase-gate` | Validate phase gate requirements before project phase transitions |
-| `conflict-resolution` | Resolve conflicts between modules or teams during orchestration |
 
 ### BMB (BMAD Module Builder)
 
@@ -64,6 +51,7 @@ Workflows for creating and managing BMAD modules, agents, and workflows.
 | `create-module` | Interactive workflow to build complete BMAD modules with agents, workflows, and installation infrastructure |
 | `create-workflow` | Create structured standalone workflows using markdown-based step architecture |
 | `edit-workflow` | Intelligent workflow editor that helps modify existing workflows while following best practices |
+| `meal-prep-nutrition` | Creates personalized meal prep and nutrition plans |
 | `workflow-compliance-check` | Systematic validation of workflows against BMAD standards with adversarial analysis and detailed reporting |
 
 ### BMM (BMAD Method for Software Development)
@@ -140,7 +128,6 @@ Game development workflows from preproduction through production.
 | **Quick Flow** | |
 | `create-tech-spec` | Conversational spec engineering for games |
 | `quick-dev` | Flexible game development with game-specific considerations |
-| `quick-prototype` | Rapid game prototyping to quickly test gameplay ideas and mechanics |
 | **Game Testing** | |
 | `gametest-automate` | Generate automated game tests for Unity, Unreal, or Godot |
 | `gametest-performance` | Design performance testing strategy for frame rate, memory, and loading times |
@@ -197,29 +184,6 @@ Cybersecurity assessment and compliance workflows.
 | `network-assessment` | Network penetration testing covering reconnaissance, vulnerability assessment, and segmentation |
 | `infrastructure-security-testing` | Infrastructure security assessment for servers, containers, Kubernetes, CI/CD, and cloud |
 
-### Strategy Team
-
-Executive strategy and decision-making workflows.
-
-| Workflow | Description |
-|----------|-------------|
-| `board-presentation-prep` | Prepare compelling board presentations with evidence, narrative, and Q&A preparation |
-| `competitive-warfare` | Maximum competitive intensity strategy for existential threats or winner-take-all situations |
-| `conflict-resolution` | Navigate interpersonal or organizational conflicts toward constructive resolution |
-| `corporate-political-game` | Navigate complex internal politics, power dynamics, and organizational maneuvering |
-| `crisis-response-planning` | Develop crisis communication and response strategies for high-stakes situations |
-| `ethical-dilemma-resolution` | Navigate complex ethical dilemmas with structured multi-perspective analysis |
-| `leadership-philosophy` | Develop personal leadership philosophy through dialogue with historical archetypes |
-| `policy-development` | Develop internal policies with evidence, ethics review, and implementation planning |
-| `political-risk-assessment` | Evaluate political risks in strategic decisions with systematic analysis |
-| `stakeholder-negotiation-prep` | Prepare for critical negotiations with stakeholder analysis and strategy development |
-| `strategic-decision-workshop` | Multi-perspective strategic decision analysis using all 14 executive advisors |
-| `strategic-planning-session` | Long-term strategic planning with diverse strategic philosophies |
-| `board-relations-management` | Comprehensive board engagement strategy and relationship management |
-| `leadership-transition-planning` | Comprehensive succession and leadership handover planning |
-| `ma-due-diligence` | Comprehensive merger and acquisition evaluation using strategic advisors |
-| `performance-review-preparation` | Executive performance review preparation with balanced assessments |
-
 ### Intel Team
 
 Intelligence collection and analysis workflows.
@@ -246,6 +210,46 @@ Intelligence collection and analysis workflows.
 | `threat-constellation` | Map complete threat actor ecosystem - relationships, shared infrastructure, evolution |
 | `tripwire` | Alerting & Monitoring Configuration - Configure comprehensive monitoring for target changes |
 
+### Strategy Team
+
+Executive strategy and decision-making workflows.
+
+| Workflow | Description |
+|----------|-------------|
+| `board-presentation-prep` | Prepare compelling board presentations with evidence, narrative, and Q&A preparation |
+| `competitive-warfare` | Maximum competitive intensity strategy for existential threats or winner-take-all situations |
+| `conflict-resolution` | Navigate interpersonal or organizational conflicts toward constructive resolution |
+| `corporate-political-game` | Navigate complex internal politics, power dynamics, and organizational maneuvering |
+| `crisis-response-planning` | Develop crisis communication and response strategies for high-stakes situations |
+| `ethical-dilemma-resolution` | Navigate complex ethical dilemmas with structured multi-perspective analysis |
+| `leadership-philosophy` | Develop personal leadership philosophy through dialogue with historical archetypes |
+| `leadership-transition-planning` | Comprehensive succession and leadership handover planning |
+| `policy-development` | Develop internal policies with evidence, ethics review, and implementation planning |
+| `political-risk-assessment` | Evaluate political risks in strategic decisions with systematic analysis |
+| `stakeholder-negotiation-prep` | Prepare for critical negotiations with stakeholder analysis and strategy development |
+| `strategic-decision-workshop` | Multi-perspective strategic decision analysis using all 14 executive advisors |
+| `strategic-planning-session` | Long-term strategic planning with diverse strategic philosophies |
+| `board-relations-management` | Comprehensive board engagement strategy and relationship management |
+| `ma-due-diligence` | Comprehensive merger and acquisition evaluation using strategic advisors |
+| `performance-review-preparation` | Executive performance review preparation with balanced assessments |
+
+---
+
+## Workflow Statistics
+
+| Module | Workflow Count |
+|---------|----------------|
+| Core | 2 |
+| BMB | 6 |
+| BMM | 35+ |
+| BMGD | 18+ |
+| CIS | 4 |
+| Legal Team | 7 |
+| Cybersec Team | 13 |
+| Intel Team | 19 |
+| Strategy Team | 16 |
+| **Total** | **~120** |
+
 ---
 
 ## How to Invoke Workflows
@@ -267,7 +271,7 @@ Workflows can also be invoked programmatically using the Skill tool:
 ```
 skill: "create-prd"
 skill: "flash-assessment"
-skill: "bmm:workflows:create-architecture"
+skill: "cybersec:threat-modeling"
 ```
 
 ### Method 3: Fully Qualified Names
@@ -297,3 +301,8 @@ For explicit module targeting, use the fully qualified name:
 - [CLI Command Reference](./02-user-guides/CLI-COMMAND-REFERENCE.md) - Complete command reference
 - [Getting Started](./02-user-guides/GETTING-STARTED.md) - Initial setup guide
 - Module Setup Guides in `./02-user-guides/ModuleSetup/` - Module-specific configuration
+
+---
+
+*Last Updated: February 2026*
+*BMAD Framework v2.2.0*

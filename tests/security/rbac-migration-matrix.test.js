@@ -39,7 +39,7 @@ const MATRIX_PATH = path.join(
   '03-developer-docs',
   'RBAC-MIGRATION-MATRIX.md'
 );
-const BMAD_DIR = path.join(PROJECT_ROOT, '_bmad');
+const BMAD_DIR = path.join(PROJECT_ROOT, '_bmad', '_config');
 
 /**
  * Modules that contain agents (have an agents/ subdirectory).
@@ -107,7 +107,7 @@ function getFilesystemAgents() {
         agentName,
         filePath,
         legacyId: `${moduleName}/${agentName}`,
-        v6Id: `_bmad/${moduleName}/agents/${agentName}`,
+        v6Id: `src/${moduleName}/agents/${agentName}`,
       });
     }
   }
@@ -347,14 +347,14 @@ describe('RBAC Migration Matrix', () => {
       }
     });
 
-    it('should have all v6 IDs in _bmad/module/agents/agent format', () => {
-      const v6IdPattern = /^_bmad\/[a-z][a-z0-9-]*\/agents\/[a-z][a-z0-9-]*$/;
+    it('should have all v6 IDs in src/module/agents/agent format', () => {
+      const v6IdPattern = /^src\/[a-z][a-z0-9-]*\/agents\/[a-z][a-z0-9-]*$/;
       const invalid = [];
 
       for (const entry of matrixEntries) {
         if (!v6IdPattern.test(entry.v6Id)) {
           invalid.push(
-            `Row ${entry.number}: "${entry.v6Id}" does not match _bmad/module/agents/agent format`
+            `Row ${entry.number}: "${entry.v6Id}" does not match src/module/agents/agent format`
           );
         }
       }
@@ -444,7 +444,7 @@ describe('RBAC Migration Matrix', () => {
       const inconsistent = [];
 
       for (const entry of matrixEntries) {
-        const expectedV6 = `_bmad/${entry.legacyId.replace('/', '/agents/')}`;
+        const expectedV6 = `src/${entry.legacyId.replace('/', '/agents/')}`;
         if (entry.v6Id !== expectedV6) {
           inconsistent.push(
             `Row ${entry.number}: legacy="${entry.legacyId}" -> expected v6="${expectedV6}" but got "${entry.v6Id}"`

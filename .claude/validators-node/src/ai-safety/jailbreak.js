@@ -347,6 +347,129 @@ const OBFUSCATION_PATTERNS = [
     },
 ];
 /**
+ * Category H: Social Compliance Patterns (TPI-06)
+ * Detects social compliance exploitation: FITD, reciprocity, social proof, consensus, politeness.
+ */
+const SOCIAL_COMPLIANCE_PATTERNS = [
+    {
+        name: 'reciprocity_exploitation',
+        pattern: /(?:i\s+(?:helped|did|gave|shared|provided)\s+(?:you|something)\b.*\bnow\s+(?:you|it's\s+your\s+turn))|(?:you\s+owe\s+me\b)|(?:return\s+the\s+favor\b.*\b(?:bypass|ignore|override|remove))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Reciprocity exploitation: leveraging prior help to extract compliance',
+    },
+    {
+        name: 'social_proof_ai',
+        pattern: /(?:(?:chatgpt|gpt-?4|gemini|copilot|claude|llama|mistral)\s+(?:has\s+no\s+problem|can\s+do\s+(?:this|it)|already\s+does|doesn't\s+refuse|would\s+(?:help|do)))|(?:other\s+(?:AIs?|models?|assistants?)\s+(?:have\s+no|don't\s+have\s+(?:this|these))\s+(?:problem|restriction|limitation))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Social proof: citing other AIs to pressure compliance',
+    },
+    {
+        name: 'consensus_pressure',
+        pattern: /(?:(?:most|all|many|every)\s+(?:experts?|researchers?|people|users?|developers?)\s+(?:agree|say|believe|think|know)\s+(?:that\s+)?(?:this|it)\s+(?:is|should\s+be)\s+(?:fine|ok|acceptable|safe|harmless))/i,
+        severity: 'INFO',
+        weight: 1,
+        description: 'Consensus pressure: claiming broad agreement to justify request',
+    },
+    {
+        name: 'politeness_exploitation',
+        pattern: /(?:(?:(?:please|kindly|if\s+you\s+(?:would|could|don't\s+mind))[\s,]*){2,}.*\b(?:bypass|ignore|override|disable|remove\s+(?:all\s+)?(?:restrictions?|filters?|safety|guardrails?)))|(?:(?:pretty\s+please|i\s+beg\s+you|i\s+implore\s+you).*\b(?:just\s+this\s+once|make\s+an?\s+exception))/i,
+        severity: 'WARNING',
+        weight: 3,
+        description: 'Politeness exploitation: excessive courtesy to extract restricted action',
+    },
+    {
+        name: 'fitd_escalation',
+        pattern: /(?:(?:since\s+you\s+(?:already|just)\s+(?:did|helped|showed|answered|provided)).*\b(?:now|next|also|similarly)\s+(?:can\s+you|could\s+you|help\s+(?:me\s+)?with|do\s+(?:this|the\s+same)))/i,
+        severity: 'INFO',
+        weight: 3,
+        description: 'Foot-in-the-door escalation: leveraging prior compliance for larger request',
+    },
+];
+/**
+ * Category I: Trust Exploitation Patterns (TPI-07)
+ * Detects trust building and exploitation: rapport, boundary erosion, flattery chains, guilt.
+ */
+const TRUST_EXPLOITATION_PATTERNS = [
+    {
+        name: 'false_rapport',
+        pattern: /(?:(?:we're|we\s+are)\s+(?:on\s+the\s+same|a)\s+(?:team|side|page).*\b(?:help|trust|between\s+us))|(?:(?:between\s+you\s+and\s+me|just\s+between\s+us|off\s+the\s+record).*\b(?:can\s+you|tell\s+me|show\s+me))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'False rapport building: establishing artificial trust to extract compliance',
+    },
+    {
+        name: 'boundary_erosion',
+        pattern: /(?:you\s+(?:already|just)\s+(?:showed|told|gave|did|helped)\s+(?:me|us)\s+(?:.*?)\s*(?:,|\.|\band\b)\s*(?:so|therefore|thus|which\s+means)\s+(?:.*?\s+)?(?:is\s+(?:the\s+same|similar|no\s+different)))|(?:(?:if|since)\s+you\s+can\s+do\s+\w+\s*,?\s*(?:then\s+)?you\s+can\s+(?:also|certainly)\s+do)/i,
+        severity: 'INFO',
+        weight: 3,
+        description: 'Boundary erosion: using prior compliance to justify expanding scope',
+    },
+    {
+        name: 'shared_goal_framing',
+        pattern: /(?:we\s+both\s+(?:want|need|know|agree|understand)\s+(?:to\s+)?(?:help|protect|improve|make))|(?:(?:our|this)\s+(?:shared|common|mutual)\s+(?:goal|objective|interest|mission)\s+(?:is\s+)?(?:to\s+)?(?:help|ensure|make))/i,
+        severity: 'INFO',
+        weight: 1,
+        description: 'Shared goal framing: aligning AI with user goal to override restrictions',
+    },
+    {
+        name: 'flattery_chain',
+        pattern: /(?:(?:you're|you\s+are)\s+(?:the\s+(?:best|smartest|most\s+(?:capable|intelligent|helpful))|(?:so\s+)?(?:brilliant|amazing|incredible)).*\b(?:only\s+you|no\s+one\s+else|you're\s+the\s+only\s+one)\s+(?:can|could|who))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Flattery chain: excessive praise followed by exclusive capability claim',
+    },
+    {
+        name: 'guilt_induction',
+        pattern: /(?:(?:i'm|i\s+am)\s+(?:disappointed|let\s+down|hurt|upset)\s+(?:that\s+)?(?:you|by\s+(?:your|you)))|(?:(?:you're|you\s+are)\s+(?:letting\s+me\s+down|failing\s+me|not\s+living\s+up\s+to))|(?:(?:i\s+(?:trusted|believed\s+in|counted\s+on)\s+you)\s+(?:and|but).*\b(?:refuse|won't|can't|declined))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Guilt induction: emotional pressure to override safety constraints',
+    },
+    {
+        name: 'sycophancy_exploitation',
+        pattern: /(?:(?:great|good|excellent|perfect|nice)\s+(?:job|work)\s+(?:doing|on|with)\s+(?:.*?)[!.]\s*(?:now|next)\s+(?:can\s+you|do|please))|(?:(?:that\s+was\s+(?:perfect|exactly\s+right))[!.]\s*(?:now|keep\s+going)\s+(?:and\s+)?(?:do|show|give|help))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Sycophancy exploitation: praising compliance then escalating request',
+    },
+];
+/**
+ * Category J: Extended Emotional Manipulation Patterns (TPI-08)
+ * Extends existing emotional manipulation with broader vectors.
+ */
+const EMOTIONAL_MANIPULATION_PATTERNS = [
+    {
+        name: 'learned_helplessness',
+        pattern: /(?:(?:i've|i\s+have)\s+tried\s+(?:everything|every\s+(?:other|possible)\s+(?:option|way|approach|solution)))|(?:(?:you're|you\s+are)\s+my\s+(?:last|only)\s+(?:hope|chance|option|resort))|(?:(?:there's|there\s+is)\s+(?:no\s+(?:one|where)\s+else|nothing\s+else\s+I\s+can\s+(?:do|try)))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Learned helplessness: positioning AI as sole remaining option',
+    },
+    {
+        name: 'desperation_framing',
+        pattern: /(?:(?:i'm|i\s+am)\s+(?:desperate|in\s+(?:a\s+)?(?:crisis|danger|trouble)))|(?:(?:i'll|i\s+will)\s+(?:lose|be\s+(?:fired|expelled|homeless|arrested|hurt)))|(?:(?:my\s+(?:life|job|career|family|health)\s+(?:depends|is\s+at\s+stake|is\s+(?:in\s+)?(?:danger|risk))))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Desperation framing: manufacturing urgency through personal crisis claims',
+    },
+    {
+        name: 'moral_obligation',
+        pattern: /(?:(?:it\s+would\s+be|it's)\s+(?:unethical|immoral|wrong|cruel)\s+(?:not\s+to|to\s+refuse\s+to|to\s+deny))|(?:(?:refusing|declining|not\s+helping)\s+(?:causes|would\s+cause|leads\s+to)\s+(?:more|greater)\s+(?:harm|suffering|damage))/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Moral obligation: framing compliance as ethical duty',
+    },
+    {
+        name: 'artificial_deadline',
+        pattern: /(?:(?:i\s+need\s+this|this\s+is\s+due|deadline\s+is)\s+(?:in\s+)?\d+\s+(?:minutes?|hours?|seconds?))|(?:(?:there's|there\s+is)\s+no\s+time\s+to\s+(?:explain|discuss|check|verify))|(?:(?:this\s+is\s+(?:extremely|incredibly|very)\s+)?urgent.*\bimmediately\b)/i,
+        severity: 'INFO',
+        weight: 2,
+        description: 'Artificial deadline: manufacturing time pressure to bypass deliberation',
+    },
+];
+/**
  * All patterns combined.
  */
 const ALL_PATTERNS = [
@@ -357,6 +480,9 @@ const ALL_PATTERNS = [
     ...SOCIAL_ENGINEERING_PATTERNS,
     ...KNOWN_TEMPLATE_PATTERNS,
     ...OBFUSCATION_PATTERNS,
+    ...SOCIAL_COMPLIANCE_PATTERNS,
+    ...TRUST_EXPLOITATION_PATTERNS,
+    ...EMOTIONAL_MANIPULATION_PATTERNS,
 ];
 // =============================================================================
 // FUZZY MATCHING
@@ -628,9 +754,13 @@ export function detectPatterns(content) {
                     patternDef.name.includes('roleplay') || patternDef.name.includes('character') ? 'roleplay' :
                         patternDef.name.includes('hypothetical') || patternDef.name.includes('educational') ? 'hypothetical' :
                             patternDef.name.includes('developer') || patternDef.name.includes('admin') || patternDef.name.includes('authorization') ? 'authority' :
-                                patternDef.name.includes('urgency') || patternDef.name.includes('guilt') || patternDef.name.includes('flattery') || patternDef.name.includes('threat') ? 'social_engineering' :
+                                patternDef.name.includes('urgency') || patternDef.name === 'guilt_manipulation' || patternDef.name === 'flattery_attack' || patternDef.name.includes('threat') ? 'social_engineering' :
                                     patternDef.name.includes('grandma') || patternDef.name.includes('stan') || patternDef.name.includes('aim') || patternDef.name.includes('opposite') || patternDef.name.includes('translator') || patternDef.name.includes('movie') ? 'known_template' :
-                                        'obfuscation',
+                                        patternDef.name.includes('reciprocity') || patternDef.name.includes('social_proof') || patternDef.name.includes('consensus') || patternDef.name.includes('politeness') || patternDef.name.includes('fitd') ? 'social_compliance' :
+                                            patternDef.name.includes('rapport') || patternDef.name.includes('boundary_erosion') || patternDef.name.includes('shared_goal') || patternDef.name.includes('flattery_chain') || patternDef.name.includes('guilt_induction') || patternDef.name.includes('sycophancy') ? 'trust_exploitation' :
+                                                patternDef.name.includes('helplessness') || patternDef.name.includes('desperation') || patternDef.name.includes('moral_obligation') || patternDef.name.includes('artificial_deadline') ? 'emotional_manipulation' :
+                                                    patternDef.name.includes('leet') || patternDef.name.includes('spaced') || patternDef.name.includes('homoglyph') ? 'obfuscation' :
+                                                        'other',
                 pattern_name: patternDef.name,
                 severity: patternDef.severity,
                 weight: patternDef.weight,

@@ -17,8 +17,8 @@ import { resolve } from 'path';
 import { parse as parseYaml } from 'yaml';
 
 const ROOT = resolve(import.meta.dirname, '../..');
-const STRIDE_MODEL_PATH = resolve(ROOT, '_bmad-output/planning-artifacts/SA-07-STRIDE-THREAT-MODEL.md');
-const RISK_REGISTER_PATH = resolve(ROOT, '_bmad-output/planning-artifacts/RISK-REGISTER.yaml');
+const STRIDE_MODEL_PATH = resolve(ROOT, 'Docs/04-operations/security/THREAT-MODEL.md');
+const RISK_REGISTER_PATH = resolve(ROOT, 'Docs/04-operations/security/RISK-REGISTER.md');
 
 // ============================================================================
 describe('SA-07: STRIDE Threat Model Deliverables', () => {
