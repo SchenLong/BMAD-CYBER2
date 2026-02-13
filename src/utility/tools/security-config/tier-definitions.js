@@ -18,41 +18,41 @@ import { fileURLToPath } from 'url';
  * @type {Object<string, string|string[]>}
  */
 export const FEATURE_TO_VALIDATOR = {
-  'auth': 'src/core/security/authorization.js',
+  'auth': '_bmad/framework/dist/src/core/security/authorization.js',
   'validators-6': [
-    '.claude/validators-node/src/guards/bash-safety.js',
-    '.claude/validators-node/src/guards/env-protection.js',
-    '.claude/validators-node/src/guards/outside-repo.js',
-    '.claude/validators-node/src/guards/production.js',
-    '.claude/validators-node/src/guards/secret.js',
-    '.claude/validators-node/src/guards/pii/index.js'
+    '.claude/validators-node/dist/src/guards/bash-safety.js',
+    '.claude/validators-node/dist/src/guards/env-protection.js',
+    '.claude/validators-node/dist/src/guards/outside-repo.js',
+    '.claude/validators-node/dist/src/guards/production.js',
+    '.claude/validators-node/dist/src/guards/secret.js',
+    '.claude/validators-node/dist/src/guards/pii/index.js'
   ],
-  'bash-safety': '.claude/validators-node/src/guards/bash-safety.js',
-  'env-protection': '.claude/validators-node/src/guards/env-protection.js',
-  'outside-repo': '.claude/validators-node/src/guards/outside-repo.js',
-  'production-guard': '.claude/validators-node/src/guards/production.js',
-  'secret-detection': '.claude/validators-node/src/guards/secret.js',
-  'pii-protection': '.claude/validators-node/src/guards/pii/index.js',
-  'rbac': 'src/core/security/rbac-config.yaml',
-  'session-management': 'src/core/security/session-manager.js',
+  'bash-safety': '.claude/validators-node/dist/src/guards/bash-safety.js',
+  'env-protection': '.claude/validators-node/dist/src/guards/env-protection.js',
+  'outside-repo': '.claude/validators-node/dist/src/guards/outside-repo.js',
+  'production-guard': '.claude/validators-node/dist/src/guards/production.js',
+  'secret-detection': '.claude/validators-node/dist/src/guards/secret.js',
+  'pii-protection': '.claude/validators-node/dist/src/guards/pii/index.js',
+  'rbac': '_bmad/framework/dist/src/core/security/rbac-config.yaml',
+  'session-management': '_bmad/framework/dist/src/core/security/session-manager.js',
   'token-management': [
-    'src/core/security/generate-token.js',
-    'src/core/security/validate-token.js',
-    'src/core/security/check-authorization.js'
+    '_bmad/framework/dist/src/core/security/generate-token.js',
+    '_bmad/framework/dist/src/core/security/validate-token.js',
+    '_bmad/framework/dist/src/core/security/check-authorization.js'
   ],
   'audit-logging': '_bmad/framework/dist/audit/index.js',
   'integrity-verification': [
-    'src/core/security/verify-integrity.sh',
-    'src/core/security/MANIFEST.sha256',
-    'src/core/security/sign-manifest.sh'
+    '_bmad/framework/dist/src/core/security/verify-integrity.sh',
+    '_bmad/framework/dist/src/core/security/MANIFEST.sha256',
+    '_bmad/framework/dist/src/core/security/sign-manifest.sh'
   ],
   'pii-advanced': [
-    '.claude/validators-node/src/guards/pii/patterns.js',
-    '.claude/validators-node/src/guards/pii/validators.js'
+    '_bmad/framework/dist/src/core/security/pii/patterns.js',
+    '_bmad/framework/dist/src/core/security/pii/validators.js'
   ],
-  'threat-modeling': 'src/core/security/OWASP-AI-SECURITY-CHECKLIST.md',
-  'plugin-isolation': 'src/core/security/PLUGIN-ISOLATION-RESEARCH.md',
-  'owasp-remediation': 'src/core/security/OWASP-REMEDIATION-PLAN.md'
+  'threat-modeling': '_bmad/framework/dist/src/core/security/OWASP-AI-SECURITY-CHECKLIST.md',
+  'plugin-isolation': '_bmad/framework/dist/src/core/security/PLUGIN-ISOLATION-RESEARCH.md',
+  'owasp-remediation': '_bmad/framework/dist/src/core/security/OWASP-REMEDIATION-PLAN.md'
 };
 
 /**

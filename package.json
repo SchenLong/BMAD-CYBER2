@@ -1,6 +1,6 @@
 {
   "name": "bmad-cybersec",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
   "main": "./_bmad/framework/dist/index.js",
@@ -70,7 +70,7 @@
     "docs:check-readme": "node scripts/check-readme.js",
     "clean": "rm -rf dist _bmad/framework/dist .claude/validators-node/dist",
     "prepack": "npm run clean && npm run build",
-    "postinstall": "npm run build",
+    "postinstall": "node -e \"console.log('✓ BMAD-CYBERSEC installed. Framework is pre-built and ready to use.')\"",
     "quality:check": "npm run lint && npm run type-check && npm run test:coverage",
     "ci:quality": "npm run quality:check && npm run security:scan && npm run build",
     "setup": "node src/utility/tools/installer/bin/setup-wizard.mjs",
@@ -162,7 +162,7 @@
     "tools/cli/**/*",
     "src/utility/cli/**/*",
     "src/utility/tools/**/*",
-    "src/normalize-line-endings.js"
+    "src/utility/normalize-line-endings.js"
   ],
   "repository": {
     "type": "git",
