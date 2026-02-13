@@ -25,6 +25,9 @@ sme-reviews/
 src/
 _bmad/
 !_bmad/framework/dist/**/*
+!src/utility/cli/**/*
+!src/utility/tools/**/*
+!src/normalize-line-endings.js
 
 # CI/CD
 .github/
