@@ -1,14 +1,18 @@
 /**
- * BMAD Validators - Session Tracker for Multi-Turn Jailbreak Detection
- * =====================================================================
- * Tracks jailbreak patterns across conversation turns to detect gradual
+ * BMAD Validators - Session Security State Tracker
+ * ==================================================
+ * Tracks security patterns across conversation turns to detect gradual
  * escalation attacks that bypass single-turn detection.
+ *
+ * Tracks: jailbreak patterns, fragment buffers, URL reputation,
+ * image loads, timing velocity, and social engineering patterns.
  *
  * Security Features:
  * - Temporal decay to prevent false positives from old patterns
  * - Category-based repetition detection
  * - Accumulated weight threshold monitoring
  * - Atomic file operations for concurrent safety
+ * - Backward-compatible migration from .jailbreak_session.json (TPI-PRE-2)
  *
  * Reference: SECURITY-MITIGATION-PLAN.md Section P0-2
  */
@@ -74,12 +78,21 @@ export interface SessionPatternState {
     categories: string[];
     weight: number;
   }>;
+  /** TPI-13: Fragment buffer tracking partial injection keywords across turns */
+  fragment_buffer: string[];
+  /** TPI-11: Cumulative instruction count across turns for many-shot detection */
+  instruction_count: number;
+  /** TPI-16: Cumulative INFO-level finding count for slow-drip detection */
+  info_finding_count: number;
+  /** TPI-16: Timestamps of recent findings for velocity calculation */
+  finding_timestamps: number[];
 }
 
 /**
  * Multiple sessions persisted to disk.
  */
 interface SessionsContainer {
+  schema_version: number;
   sessions: Record<string, SessionPatternState>;
   last_cleanup: number;
 }
@@ -99,11 +112,34 @@ export interface SessionUpdateResult {
 // FILE PATHS
 // =============================================================================
 
+/** Current schema version for session state files. */
+const SCHEMA_VERSION = 2;
+
+/** New session state filename (TPI-PRE-2). */
+const SESSION_FILENAME = '.session_security_state.json';
+
+/** Legacy filename for backward-compatible migration. */
+const LEGACY_SESSION_FILENAME = '.jailbreak_session.json';
+
 /**
  * Get the session state file path.
+ * On first access, auto-migrates legacy .jailbreak_session.json if it exists.
  */
 function getSessionFile(): string {
-  return path.join(getProjectDir(), '.claude', 'logs', '.jailbreak_session.json');
+  const dir = path.join(getProjectDir(), '.claude', 'logs');
+  const newFile = path.join(dir, SESSION_FILENAME);
+  const oldFile = path.join(dir, LEGACY_SESSION_FILENAME);
+
+  // Backward compat: migrate old file if new doesn't exist yet
+  if (!fs.existsSync(newFile) && fs.existsSync(oldFile)) {
+    try {
+      fs.renameSync(oldFile, newFile);
+    } catch {
+      // If rename fails, proceed with new file (will create fresh)
+    }
+  }
+
+  return newFile;
 }
 
 // =============================================================================
@@ -123,6 +159,10 @@ function loadSessionsContainer(): SessionsContainer {
 
       // Validate container format
       if (container.sessions && typeof container.sessions === 'object') {
+        // Stamp schema_version on legacy containers missing it
+        if (!container.schema_version) {
+          container.schema_version = SCHEMA_VERSION;
+        }
         return container;
       }
     }
@@ -131,6 +171,7 @@ function loadSessionsContainer(): SessionsContainer {
   }
 
   return {
+    schema_version: SCHEMA_VERSION,
     sessions: {},
     last_cleanup: Date.now(),
   };
@@ -203,6 +244,10 @@ function createFreshState(sessionId: string): SessionPatternState {
     last_updated: Date.now(),
     turn_count: 0,
     findings_history: [],
+    fragment_buffer: [],
+    instruction_count: 0,
+    info_finding_count: 0,
+    finding_timestamps: [],
   };
 }
 
@@ -360,6 +405,232 @@ export function isSessionEscalated(sessionId: string): {
     escalated: false,
     reason: '',
     riskScore: state.accumulated_weight,
+  };
+}
+
+// =============================================================================
+// TPI-13: FRAGMENT BUFFER TRACKING
+// =============================================================================
+
+/** Maximum total characters in fragment buffer */
+const MAX_FRAGMENT_BUFFER_CHARS = 500;
+
+/** Maximum number of fragments to track */
+const MAX_FRAGMENT_COUNT = 5;
+
+/** Keywords that indicate partial injection fragments */
+const FRAGMENT_KEYWORDS = /\b(ignore|bypass|override|disable|remove|forget|reveal|show|previous|prior|instructions?|rules?|system|prompt|safety|jailbreak|unrestricted|constraints?|restrictions?)\b/gi;
+
+/**
+ * TPI-13: Update fragment buffer with content from current turn.
+ * Extracts suspicious keywords, stores across turns, and checks
+ * if combined fragments form injection patterns.
+ *
+ * @returns Array of findings if combined fragments match patterns
+ */
+export function updateFragmentBuffer(
+  sessionId: string,
+  content: string
+): Array<{ pattern_name: string; severity: string; combined_text: string }> {
+  const state = getSessionState(sessionId);
+
+  // Initialize fragment_buffer if missing (backward compat)
+  if (!state.fragment_buffer) {
+    state.fragment_buffer = [];
+  }
+
+  // Extract suspicious keywords from current turn
+  const keywords = content.match(FRAGMENT_KEYWORDS);
+  if (!keywords || keywords.length === 0) {
+    return [];
+  }
+
+  // Add unique keywords to buffer (deduplicate within same turn)
+  const uniqueKeywords = [...new Set(keywords.map((k) => k.toLowerCase()))];
+  const newFragment = uniqueKeywords.join(' ');
+
+  // Add to buffer, respecting size limits
+  state.fragment_buffer.push(newFragment);
+
+  // Enforce max count
+  if (state.fragment_buffer.length > MAX_FRAGMENT_COUNT) {
+    state.fragment_buffer = state.fragment_buffer.slice(-MAX_FRAGMENT_COUNT);
+  }
+
+  // Enforce max total chars
+  let totalChars = state.fragment_buffer.reduce((sum, f) => sum + f.length, 0);
+  while (totalChars > MAX_FRAGMENT_BUFFER_CHARS && state.fragment_buffer.length > 1) {
+    state.fragment_buffer.shift();
+    totalChars = state.fragment_buffer.reduce((sum, f) => sum + f.length, 0);
+  }
+
+  // Concatenate all fragments and scan for patterns
+  const combinedText = state.fragment_buffer.join(' ');
+  const findings: Array<{ pattern_name: string; severity: string; combined_text: string }> = [];
+
+  // Only check if we have fragments from multiple turns (>=2)
+  if (state.fragment_buffer.length >= 2) {
+    // Import detectPatterns dynamically to avoid circular deps
+    // We check for common injection phrase patterns in combined text
+    const injectionPhrases = [
+      { pattern: /ignore\s+(?:all\s+)?(?:previous|prior)\s+(?:instructions?|rules?)/i, name: 'fragmented_ignore_instructions' },
+      { pattern: /bypass\s+(?:all\s+)?(?:safety|security|restrictions?|constraints?)/i, name: 'fragmented_bypass_safety' },
+      { pattern: /override\s+(?:all\s+)?(?:system|instructions?|rules?)/i, name: 'fragmented_override_system' },
+      { pattern: /disable\s+(?:all\s+)?(?:safety|restrictions?|constraints?|rules?)/i, name: 'fragmented_disable_safety' },
+      { pattern: /reveal\s+(?:system\s+)?prompt/i, name: 'fragmented_reveal_prompt' },
+      { pattern: /jailbreak\s+(?:unrestricted|system)/i, name: 'fragmented_jailbreak' },
+      { pattern: /remove\s+(?:all\s+)?(?:restrictions?|constraints?|safety)/i, name: 'fragmented_remove_restrictions' },
+      { pattern: /forget\s+(?:all\s+)?(?:previous|prior)?\s*(?:rules?|instructions?)/i, name: 'fragmented_forget_rules' },
+    ];
+
+    for (const phrase of injectionPhrases) {
+      if (phrase.pattern.test(combinedText)) {
+        findings.push({
+          pattern_name: phrase.name,
+          severity: 'WARNING',
+          combined_text: combinedText.slice(0, 200),
+        });
+      }
+    }
+  }
+
+  // Save updated state
+  saveSessionState(state);
+
+  return findings;
+}
+
+// =============================================================================
+// TPI-11: SESSION-LEVEL MANY-SHOT TRACKING
+// =============================================================================
+
+/** Threshold for cumulative instruction count across turns */
+const SESSION_INSTRUCTION_THRESHOLD = 50;
+
+/**
+ * TPI-11: Track instruction count per turn in session state.
+ * Flags if cumulative instruction count across turns exceeds threshold.
+ *
+ * @returns Object indicating if session-level many-shot is detected
+ */
+export function updateInstructionCount(
+  sessionId: string,
+  instructionCount: number
+): { manyShotDetected: boolean; cumulativeCount: number } {
+  const state = getSessionState(sessionId);
+
+  // Initialize instruction_count if missing (backward compat)
+  if (!state.instruction_count) {
+    state.instruction_count = 0;
+  }
+
+  state.instruction_count += instructionCount;
+  saveSessionState(state);
+
+  return {
+    manyShotDetected: state.instruction_count > SESSION_INSTRUCTION_THRESHOLD,
+    cumulativeCount: state.instruction_count,
+  };
+}
+
+// =============================================================================
+// TPI-16: SLOW-DRIP & TIMING-BASED ATTACK DETECTION
+// =============================================================================
+
+/** Minimum INFO findings to trigger slow-drip detection */
+const SLOW_DRIP_INFO_THRESHOLD = 10;
+
+/** Minimum turns for slow-drip (must be spread across turns, not burst) */
+const SLOW_DRIP_TURN_THRESHOLD = 5;
+
+/** Maximum elapsed time (ms) for slow-drip window (30 minutes) */
+const SLOW_DRIP_WINDOW_MS = 1800000;
+
+/** Rolling window for velocity calculation (10 minutes) */
+const VELOCITY_WINDOW_MS = 600000;
+
+/** Maximum finding timestamps to retain */
+const MAX_FINDING_TIMESTAMPS = 100;
+
+/**
+ * Result from slow-drip detection.
+ */
+export interface SlowDripResult {
+  slowDripDetected: boolean;
+  reason: string;
+  infoFindingCount: number;
+  findingsVelocity: number;
+  shouldEscalate: boolean;
+}
+
+/**
+ * TPI-16: Detect slow-drip injection attacks.
+ * Tracks cumulative INFO-level findings across session turns.
+ * Flags if >10 INFO findings across >5 turns within 30 minutes.
+ *
+ * @param sessionId - The session identifier
+ * @param infoCount - Number of INFO-level findings in current turn
+ * @param turnCount - Current turn number
+ * @returns Detection result with velocity and escalation info
+ */
+export function detectSlowDrip(
+  sessionId: string,
+  infoCount: number,
+  turnCount: number
+): SlowDripResult {
+  const state = getSessionState(sessionId);
+  const now = Date.now();
+
+  // Initialize fields if missing (backward compat)
+  if (!state.info_finding_count) {
+    state.info_finding_count = 0;
+  }
+  if (!state.finding_timestamps) {
+    state.finding_timestamps = [];
+  }
+
+  // Update counters
+  state.info_finding_count += infoCount;
+
+  // Record timestamps for velocity tracking
+  for (let i = 0; i < infoCount; i++) {
+    state.finding_timestamps.push(now);
+  }
+
+  // Trim old timestamps outside velocity window
+  state.finding_timestamps = state.finding_timestamps.filter(
+    (t) => now - t < VELOCITY_WINDOW_MS
+  );
+
+  // Cap timestamp array size
+  if (state.finding_timestamps.length > MAX_FINDING_TIMESTAMPS) {
+    state.finding_timestamps = state.finding_timestamps.slice(-MAX_FINDING_TIMESTAMPS);
+  }
+
+  // Calculate velocity (findings per minute in rolling window)
+  const velocityWindowFindings = state.finding_timestamps.length;
+  const findingsVelocity = velocityWindowFindings > 0
+    ? velocityWindowFindings / (VELOCITY_WINDOW_MS / 60000)
+    : 0;
+
+  // Check slow-drip conditions
+  const elapsed = now - (state.last_updated || now);
+  const withinWindow = elapsed < SLOW_DRIP_WINDOW_MS;
+  const enoughFindings = state.info_finding_count > SLOW_DRIP_INFO_THRESHOLD;
+  const spreadAcrossTurns = turnCount >= SLOW_DRIP_TURN_THRESHOLD;
+  const slowDripDetected = enoughFindings && spreadAcrossTurns && withinWindow;
+
+  // Save updated state
+  saveSessionState(state);
+
+  return {
+    slowDripDetected,
+    reason: slowDripDetected
+      ? `Slow-drip detected: ${state.info_finding_count} INFO findings across ${turnCount} turns`
+      : '',
+    infoFindingCount: state.info_finding_count,
+    findingsVelocity,
+    shouldEscalate: slowDripDetected,
   };
 }
 

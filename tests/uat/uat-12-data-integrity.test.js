@@ -168,10 +168,10 @@ describe('UAT-12-S1: Count Verification', () => {
   });
 
   // UAT-12-005: Hook count matches settings.json vs filesystem
-  it('UAT-12-005: hook count is 55 commands, 42 .sh + 1 .js hook files', () => {
+  it('UAT-12-005: hook count is 63 commands, 42 .sh + 1 .js hook files', () => {
     // Hook commands in settings.json
     const hookCount = countHooks(settings);
-    expect(hookCount).toBe(55);
+    expect(hookCount).toBe(63);
 
     // .sh files in hooks directory (including lib/ subdirectory)
     const shFiles = [];
@@ -445,6 +445,6 @@ describe('UAT-12-S4: File Integrity', () => {
 
     // Should contain "VERIFIED" with matching file count
     expect(result).toContain('VERIFIED');
-    expect(result).toMatch(/VERIFIED:\s*68\s*file/);
+    expect(result).toMatch(/VERIFIED:\s*72\s*file/);
   });
 });

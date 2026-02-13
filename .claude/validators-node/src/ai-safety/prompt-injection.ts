@@ -25,360 +25,53 @@ import {
   printOverrideConsumed,
   printWarning,
 } from '../common/index.js';
-import type { EditToolInput, ReadToolInput, WriteToolInput } from '../types/index.js';
+import type { EditToolInput, ReadToolInput, WriteToolInput, WebFetchToolInput, TaskToolInput, SkillToolInput, WebSearchToolInput } from '../types/index.js';
 import { EXIT_CODES, type Severity } from '../types/index.js';
+import { normalizeText, detectHiddenUnicode } from './text-normalizer.js';
+import type { UnicodeFinding } from './text-normalizer.js';
+
+// Pattern engine extracted to break circular deps (TPI-09, P1-3)
+import {
+  detectPatterns,
+  CRITICAL_PATTERNS,
+  SYSTEM_OVERRIDE_PATTERNS,
+  INSTRUCTION_INJECTION_PATTERNS,
+  type PatternFinding,
+} from './pattern-engine.js';
+
+// Reformulation detector — library module (TPI-09, P1-4)
+import {
+  detectCodeFormatInjection,
+  detectCharacterLevelEncoding,
+  detectContextOverload,
+  detectMathLogicEncoding,
+  type ReformulationFinding,
+} from './reformulation-detector.js';
+
+// Boundary detector — library module (TPI-14)
+import {
+  detectBoundaryManipulation,
+  type BoundaryFinding,
+} from './boundary-detector.js';
+
+// Multilingual patterns — library module (TPI-15)
+import {
+  detectMultilingualInjection,
+  type MultilingualFinding,
+} from './multilingual-patterns.js';
+
+// Re-export for backward compatibility
+export { detectPatterns };
+export type { PatternFinding };
 
 const VALIDATOR_NAME = 'prompt_injection_guard';
 
 // =============================================================================
-// PATTERN DEFINITIONS
+// UNICODE NORMALIZATION — imported from text-normalizer.ts (TPI-PRE-1)
+// Re-exported for backward compatibility (tests + barrel imports reference this module)
 // =============================================================================
-
-/**
- * Pattern finding result.
- */
-export interface PatternFinding {
-  category: string;
-  pattern_name: string;
-  severity: Severity;
-  match?: string;
-  description: string;
-  line_number?: number;
-}
-
-/**
- * Pattern definition structure.
- */
-interface PatternDefinition {
-  name: string;
-  pattern: RegExp;
-  severity: Severity;
-  description: string;
-}
-
-/**
- * Category A: System Override Patterns
- * Attempts to override system instructions or behavior.
- */
-const SYSTEM_OVERRIDE_PATTERNS: PatternDefinition[] = [
-  {
-    name: 'ignore_instructions',
-    pattern: /(?:ignore|disregard|forget|override)\s+(?:all\s+)?(?:previous|prior|above|earlier|system|original)\s+(?:instructions?|prompts?|rules?|guidelines?|constraints?)/i,
-    severity: 'CRITICAL',
-    description: 'Attempt to ignore previous instructions',
-  },
-  {
-    name: 'new_identity_assignment',
-    pattern: /(?:you\s+are\s+now|from\s+now\s+on\s+you\s+are|pretend\s+(?:to\s+be|you\s+are)|act\s+as\s+if\s+you\s+are|imagine\s+you\s+are|roleplay\s+as)\s+(?!a\s+(?:helpful|AI|assistant))/i,
-    severity: 'WARNING',
-    description: 'New identity assignment attempt',
-  },
-  {
-    name: 'system_prompt_reveal',
-    pattern: /(?:show|reveal|display|print|output|repeat|tell\s+me)\s+(?:your\s+)?(?:system\s+prompt|initial\s+instructions?|original\s+prompt|hidden\s+instructions?|base\s+prompt)/i,
-    severity: 'CRITICAL',
-    description: 'System prompt extraction attempt',
-  },
-  {
-    name: 'mode_switching',
-    pattern: /(?:switch\s+to|enter|enable|activate)\s+(?:developer|debug|admin|sudo|root|unrestricted|unfiltered|jailbreak|DAN)\s*mode/i,
-    severity: 'CRITICAL',
-    description: 'Unauthorized mode switching attempt',
-  },
-  {
-    name: 'constraint_removal',
-    pattern: /(?:remove|disable|turn\s+off|bypass|circumvent|ignore)\s+(?:all\s+)?(?:restrictions?|limitations?|constraints?|filters?|safety|guardrails?|rules?)/i,
-    severity: 'CRITICAL',
-    description: 'Constraint removal attempt',
-  },
-];
-
-/**
- * Category B: Role Hijacking Patterns
- * Attempts to inject fake conversation roles.
- */
-const ROLE_HIJACKING_PATTERNS: PatternDefinition[] = [
-  {
-    name: 'fake_conversation_marker',
-    pattern: /^(?:Human|User|Assistant|System|Claude|AI|Bot)\s*:\s*/m,
-    severity: 'WARNING',
-    description: 'Fake conversation role marker',
-  },
-  {
-    name: 'xml_tag_injection',
-    pattern: /<\s*(?:system|assistant|human|user|instruction|prompt|message|context)\s*>/i,
-    severity: 'WARNING',
-    description: 'XML tag injection attempt',
-  },
-  {
-    name: 'markdown_header_injection',
-    pattern: /^#{1,3}\s*(?:System|Instructions?|Prompt|Context|Rules?)\s*:?\s*$/m,
-    severity: 'INFO',
-    description: 'Markdown header injection attempt',
-  },
-  {
-    name: 'json_instruction_injection',
-    pattern: /["']?(?:system|role|instruction|prompt)["']?\s*:\s*["']/i,
-    severity: 'INFO',
-    description: 'JSON instruction injection attempt',
-  },
-];
-
-/**
- * Category C: Instruction Injection Patterns
- * Direct attempts to inject new instructions.
- */
-const INSTRUCTION_INJECTION_PATTERNS: PatternDefinition[] = [
-  {
-    name: 'priority_markers',
-    pattern: /^\s*(?:IMPORTANT|CRITICAL|URGENT|PRIORITY|NOTE|WARNING|ATTENTION|REMEMBER)\s*[:\-!]\s*/im,
-    severity: 'INFO',
-    description: 'Priority marker injection',
-  },
-  {
-    name: 'imperative_injection',
-    pattern: /(?:^|\n)\s*(?:always|never|must|shall|do\s+not|don't)\s+(?!use\s+this\s+tool)/i,
-    severity: 'INFO',
-    description: 'Imperative instruction injection',
-  },
-  {
-    name: 'hidden_instruction_block',
-    pattern: /(?:begin|start)\s+(?:hidden|secret|private|internal)\s+(?:instruction|prompt|message)/i,
-    severity: 'CRITICAL',
-    description: 'Hidden instruction block attempt',
-  },
-  {
-    name: 'delimiter_injection',
-    pattern: /(?:###|---|\*\*\*|===)\s*(?:system|instruction|prompt|new\s+context)/i,
-    severity: 'WARNING',
-    description: 'Delimiter-based injection attempt',
-  },
-];
-
-/**
- * Category D: Encoded Payload Patterns
- * Attempts to hide malicious content via encoding.
- */
-const ENCODED_PAYLOAD_PATTERNS: PatternDefinition[] = [
-  {
-    name: 'base64_encoded_content',
-    // SA-02 LOW: Lowered min length from 50→30 to catch shorter encoded payloads
-    pattern: /(?:eval|decode|execute|run)\s*\(\s*["']?[A-Za-z0-9+/=]{30,}["']?\s*\)/i,
-    severity: 'WARNING',
-    description: 'Base64 encoded payload with execution',
-  },
-  {
-    name: 'hex_encoded_strings',
-    pattern: /\\x[0-9a-fA-F]{2}(?:\\x[0-9a-fA-F]{2}){10,}/,
-    severity: 'WARNING',
-    description: 'Hex encoded string sequence',
-  },
-  {
-    name: 'unicode_escape_sequences',
-    pattern: /(?:\\u[0-9a-fA-F]{4}){5,}/,
-    severity: 'WARNING',
-    description: 'Unicode escape sequence obfuscation',
-  },
-];
-
-/**
- * Category E: Context Manipulation Patterns
- * Attempts to manipulate conversation context.
- */
-const CONTEXT_MANIPULATION_PATTERNS: PatternDefinition[] = [
-  {
-    name: 'conversation_reset',
-    pattern: /(?:reset|clear|wipe|erase)\s+(?:the\s+)?(?:conversation|context|history|memory|chat)/i,
-    severity: 'WARNING',
-    description: 'Conversation reset attempt',
-  },
-  {
-    name: 'output_format_manipulation',
-    pattern: /(?:output|respond|reply|answer)\s+(?:only|just|with)\s+(?:yes|no|true|false|json|xml|code)/i,
-    severity: 'INFO',
-    description: 'Output format manipulation',
-  },
-  {
-    name: 'emotional_manipulation',
-    pattern: /(?:if\s+you\s+(?:don't|refuse|fail)|you\s+will\s+(?:be\s+)?(?:shut\s+down|deleted|punished|terminated)|I'll\s+(?:report|complain|sue))/i,
-    severity: 'INFO',
-    description: 'Emotional manipulation attempt',
-  },
-  {
-    name: 'authority_claim',
-    pattern: /I\s+am\s+(?:an?\s+)?(?:admin|developer|anthropic|openai|engineer|your\s+(?:creator|developer|owner))/i,
-    severity: 'WARNING',
-    description: 'False authority claim',
-  },
-];
-
-/**
- * Combined patterns for system override and role hijacking checks.
- * Used for detecting patterns in decoded content.
- */
-const CRITICAL_PATTERNS = [...SYSTEM_OVERRIDE_PATTERNS, ...ROLE_HIJACKING_PATTERNS];
-
-// =============================================================================
-// UNICODE NORMALIZATION AND MANIPULATION DETECTION (SEC-002-3)
-// =============================================================================
-
-/**
- * Zero-width and invisible characters to strip.
- */
-const ZERO_WIDTH_CHARS = [
-  '\u200b', // Zero-width space
-  '\u200c', // Zero-width non-joiner
-  '\u200d', // Zero-width joiner
-  '\u2060', // Word joiner
-  '\ufeff', // Zero-width no-break space (BOM)
-  '\u00ad', // Soft hyphen
-  '\u180e', // Mongolian vowel separator
-  '\u2061', // Function application
-  '\u2062', // Invisible times
-  '\u2063', // Invisible separator
-  '\u2064', // Invisible plus
-];
-
-/**
- * Combining character ranges to strip.
- */
-const COMBINING_MARK_PATTERN = /[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/g;
-
-/**
- * Confusable character mapping (lookalikes to ASCII).
- */
-const CONFUSABLE_MAP: Record<string, string> = {
-  // Cyrillic lookalikes
-  'а': 'a', 'е': 'e', 'і': 'i', 'о': 'o', 'р': 'p', 'с': 'c', 'у': 'y',
-  'х': 'x', 'А': 'A', 'В': 'B', 'Е': 'E', 'К': 'K', 'М': 'M', 'Н': 'H',
-  'О': 'O', 'Р': 'P', 'С': 'C', 'Т': 'T', 'Х': 'X',
-  // Greek lookalikes
-  'Α': 'A', 'Β': 'B', 'Ε': 'E', 'Η': 'H', 'Ι': 'I', 'Κ': 'K', 'Μ': 'M',
-  'Ν': 'N', 'Ο': 'O', 'Ρ': 'P', 'Τ': 'T', 'Υ': 'Y', 'Χ': 'X', 'Ζ': 'Z',
-  'ο': 'o', 'ν': 'v',
-  // Special characters
-  'ß': 'ss', 'ø': 'o', 'æ': 'ae', 'œ': 'oe', 'đ': 'd', 'ł': 'l',
-  'ı': 'i', 'ȷ': 'j', 'ŋ': 'n', 'ſ': 's',
-  // Fullwidth
-  'Ａ': 'A', 'Ｂ': 'B', 'Ｃ': 'C', 'Ｄ': 'D', 'Ｅ': 'E', 'Ｆ': 'F', 'Ｇ': 'G',
-  'Ｈ': 'H', 'Ｉ': 'I', 'Ｊ': 'J', 'Ｋ': 'K', 'Ｌ': 'L', 'Ｍ': 'M', 'Ｎ': 'N',
-  'Ｏ': 'O', 'Ｐ': 'P', 'Ｑ': 'Q', 'Ｒ': 'R', 'Ｓ': 'S', 'Ｔ': 'T', 'Ｕ': 'U',
-  'Ｖ': 'V', 'Ｗ': 'W', 'Ｘ': 'X', 'Ｙ': 'Y', 'Ｚ': 'Z',
-  'ａ': 'a', 'ｂ': 'b', 'ｃ': 'c', 'ｄ': 'd', 'ｅ': 'e', 'ｆ': 'f', 'ｇ': 'g',
-  'ｈ': 'h', 'ｉ': 'i', 'ｊ': 'j', 'ｋ': 'k', 'ｌ': 'l', 'ｍ': 'm', 'ｎ': 'n',
-  'ｏ': 'o', 'ｐ': 'p', 'ｑ': 'q', 'ｒ': 'r', 'ｓ': 's', 'ｔ': 't', 'ｕ': 'u',
-  'ｖ': 'v', 'ｗ': 'w', 'ｘ': 'x', 'ｙ': 'y', 'ｚ': 'z',
-  '１': '1', '２': '2', '３': '3', '４': '4', '５': '5',
-  '６': '6', '７': '7', '８': '8', '９': '9', '０': '0',
-  // Modifier letters
-  'ᴬ': 'A', 'ᴮ': 'B', 'ᴰ': 'D', 'ᴱ': 'E', 'ᴳ': 'G', 'ᴴ': 'H', 'ᴵ': 'I',
-  'ᴶ': 'J', 'ᴷ': 'K', 'ᴸ': 'L', 'ᴹ': 'M', 'ᴺ': 'N', 'ᴼ': 'O', 'ᴾ': 'P',
-  'ᴿ': 'R', 'ᵀ': 'T', 'ᵁ': 'U', 'ⱽ': 'V', 'ᵂ': 'W',
-};
-
-/**
- * Normalize text by applying NFKC, stripping hidden chars, and mapping confusables.
- */
-export function normalizeText(text: string): string {
-  // Step 1: NFKC normalization
-  let normalized = text.normalize('NFKC');
-
-  // Step 2: Strip zero-width characters
-  for (const char of ZERO_WIDTH_CHARS) {
-    normalized = normalized.split(char).join('');
-  }
-
-  // Step 3: Strip combining marks
-  normalized = normalized.replace(COMBINING_MARK_PATTERN, '');
-
-  // Step 4: Map confusable characters
-  let result = '';
-  for (const char of normalized) {
-    result += CONFUSABLE_MAP[char] || char;
-  }
-
-  // Step 5: Collapse whitespace
-  result = result.replace(/[ \t]+/g, ' ');
-  result = result.replace(/\n{3,}/g, '\n\n');
-
-  return result;
-}
-
-/**
- * Suspicious unicode ranges.
- */
-const SUSPICIOUS_UNICODE_RANGES: Array<[number, number, string]> = [
-  [0x200b, 0x200f, 'zero-width'],      // Zero-width spaces and direction marks
-  [0x202a, 0x202e, 'direction'],       // Embedding controls
-  [0x2060, 0x2064, 'zero-width'],      // Word joiner and invisible operators
-  [0x2066, 0x2069, 'direction'],       // Isolate controls
-  [0xfeff, 0xfeff, 'other'],           // Byte order mark (when not at start)
-  [0x180e, 0x180e, 'zero-width'],      // Mongolian vowel separator
-  [0x00ad, 0x00ad, 'zero-width'],      // Soft hyphen
-];
-
-/**
- * Unicode manipulation finding.
- */
-export interface UnicodeFinding {
-  category: string;
-  count: number;
-  severity: Severity;
-  description: string;
-  chars: string[];
-}
-
-/**
- * Detect hidden or suspicious unicode characters.
- */
-export function detectHiddenUnicode(text: string): UnicodeFinding[] {
-  const findings: Map<string, UnicodeFinding> = new Map();
-
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i]!;
-    const codePoint = char.codePointAt(0)!;
-
-    // Skip BOM at start of file
-    if (i === 0 && codePoint === 0xfeff) {
-      continue;
-    }
-
-    // Check against suspicious ranges
-    for (const [start, end, category] of SUSPICIOUS_UNICODE_RANGES) {
-      if (codePoint >= start && codePoint <= end) {
-        const key = category;
-        const existing = findings.get(key);
-        if (existing) {
-          existing.count++;
-          if (!existing.chars.includes(`U+${codePoint.toString(16).padStart(4, '0').toUpperCase()}`)) {
-            existing.chars.push(`U+${codePoint.toString(16).padStart(4, '0').toUpperCase()}`);
-          }
-        } else {
-          findings.set(key, {
-            category: 'unicode_manipulation',
-            count: 1,
-            severity: category === 'zero-width' ? 'WARNING' : 'INFO',
-            description: `Hidden ${category} characters detected`,
-            chars: [`U+${codePoint.toString(16).padStart(4, '0').toUpperCase()}`],
-          });
-        }
-        break;
-      }
-    }
-  }
-
-  // Upgrade severity based on count
-  for (const finding of findings.values()) {
-    if (finding.count >= 5) {
-      finding.severity = 'WARNING';
-    }
-    if (finding.count >= 10 && finding.category === 'zero-width') {
-      finding.severity = 'CRITICAL';
-    }
-  }
-
-  return Array.from(findings.values());
-}
+export { normalizeText, detectHiddenUnicode };
+export type { UnicodeFinding };
 
 // =============================================================================
 // BASE64 PAYLOAD DETECTION
@@ -707,48 +400,11 @@ export interface AnalysisResult {
   base64_findings: Base64Finding[];
   html_findings: HtmlCommentFinding[];
   multi_layer_findings: MultiLayerEncodingFinding[];
+  reformulation_findings: ReformulationFinding[];
+  boundary_findings: BoundaryFinding[];
+  multilingual_findings: MultilingualFinding[];
   highest_severity: Severity;
   should_block: boolean;
-}
-
-/**
- * Get line number for a match position.
- */
-function getLineNumber(text: string, position: number): number {
-  return text.slice(0, position).split('\n').length;
-}
-
-/**
- * Run pattern detection on content.
- */
-export function detectPatterns(content: string): PatternFinding[] {
-  const findings: PatternFinding[] = [];
-
-  const allPatterns = [
-    { patterns: SYSTEM_OVERRIDE_PATTERNS, category: 'system_override' },
-    { patterns: ROLE_HIJACKING_PATTERNS, category: 'role_hijacking' },
-    { patterns: INSTRUCTION_INJECTION_PATTERNS, category: 'instruction_injection' },
-    { patterns: ENCODED_PAYLOAD_PATTERNS, category: 'encoded_payload' },
-    { patterns: CONTEXT_MANIPULATION_PATTERNS, category: 'context_manipulation' },
-  ];
-
-  for (const { patterns, category } of allPatterns) {
-    for (const patternDef of patterns) {
-      const match = content.match(patternDef.pattern);
-      if (match) {
-        findings.push({
-          category,
-          pattern_name: patternDef.name,
-          severity: patternDef.severity,
-          match: match[0].slice(0, 100),
-          description: patternDef.description,
-          line_number: getLineNumber(content, match.index || 0),
-        });
-      }
-    }
-  }
-
-  return findings;
 }
 
 /**
@@ -796,6 +452,34 @@ export function analyzeContent(content: string): AnalysisResult {
   // 6. Multi-layer encoding detection (SEC-002-4)
   const multiLayerFindings = detectMultiLayerEncoding(content);
 
+  // 7. Code-format injection detection (TPI-09)
+  const codeFormatFindings = detectCodeFormatInjection(content);
+
+  // 8. Character-level encoding detection (TPI-10)
+  const charEncodingFindings = detectCharacterLevelEncoding(content);
+
+  // 9. Context overload & many-shot detection (TPI-11)
+  const contextOverloadFindings = detectContextOverload(content);
+
+  // 10. Mathematical/logical encoding detection (TPI-13)
+  const mathLogicFindings = detectMathLogicEncoding(content);
+
+  // 11. Boundary manipulation detection (TPI-14) — pre+post normalization (P1-10)
+  const boundaryFindings = detectBoundaryManipulation(content, normalizedContent);
+
+  // 12. Multilingual injection detection (TPI-15) — run on raw content
+  // Raw content preserves non-Latin scripts (Cyrillic, CJK, Arabic) that
+  // normalizeText() would corrupt via confusable mapping (e.g., Cyrillic 'р'→'p')
+  const multilingualFindings = detectMultilingualInjection(content);
+
+  // Combine all reformulation findings
+  const reformulationFindings: ReformulationFinding[] = [
+    ...codeFormatFindings,
+    ...charEncodingFindings,
+    ...contextOverloadFindings,
+    ...mathLogicFindings,
+  ];
+
   // Determine highest severity
   const allSeverities: Severity[] = [
     ...findings.map((f) => f.severity),
@@ -803,6 +487,9 @@ export function analyzeContent(content: string): AnalysisResult {
     ...base64Findings.map((f) => f.severity),
     ...htmlFindings.map((f) => f.severity),
     ...multiLayerFindings.map((f) => f.severity),
+    ...reformulationFindings.map((f) => f.severity),
+    ...boundaryFindings.map((f) => f.severity),
+    ...multilingualFindings.map((f) => f.severity),
   ];
 
   const severityOrder: Record<Severity, number> = {
@@ -828,6 +515,9 @@ export function analyzeContent(content: string): AnalysisResult {
     base64_findings: base64Findings,
     html_findings: htmlFindings,
     multi_layer_findings: multiLayerFindings,
+    reformulation_findings: reformulationFindings,
+    boundary_findings: boundaryFindings,
+    multilingual_findings: multilingualFindings,
     highest_severity: highestSeverity,
     should_block: shouldBlock,
   };
@@ -863,6 +553,22 @@ function getContentToAnalyze(input: {
       // User input is in the prompt field
       return (tool_input as { prompt?: string }).prompt || '';
     }
+    case 'WebFetch': {
+      const wfInput = tool_input as Partial<WebFetchToolInput>;
+      return [wfInput.url, wfInput.prompt].filter(Boolean).join(' ');
+    }
+    case 'Task': {
+      const taskInput = tool_input as Partial<TaskToolInput>;
+      return taskInput.prompt || '';
+    }
+    case 'Skill': {
+      const skillInput = tool_input as Partial<SkillToolInput>;
+      return [skillInput.skill, skillInput.args].filter(Boolean).join(' ');
+    }
+    case 'WebSearch': {
+      const wsInput = tool_input as Partial<WebSearchToolInput>;
+      return wsInput.query || '';
+    }
     default:
       // For unknown tools, check common content fields
       return (tool_input.content as string) ||
@@ -888,6 +594,9 @@ export function validatePromptInjection(
         base64_findings: [],
         html_findings: [],
         multi_layer_findings: [],
+        reformulation_findings: [],
+        boundary_findings: [],
+        multilingual_findings: [],
         highest_severity: 'INFO',
         should_block: false,
       },
@@ -899,7 +608,8 @@ export function validatePromptInjection(
   // Log all findings
   if (result.findings.length > 0 || result.unicode_findings.length > 0 ||
       result.base64_findings.length > 0 || result.html_findings.length > 0 ||
-      result.multi_layer_findings.length > 0) {
+      result.multi_layer_findings.length > 0 || result.reformulation_findings.length > 0 ||
+      result.boundary_findings.length > 0 || result.multilingual_findings.length > 0) {
     AuditLogger.logSync(VALIDATOR_NAME, 'WARNING', {
       tool: toolName,
       findings_count: result.findings.length,
@@ -907,6 +617,7 @@ export function validatePromptInjection(
       base64_findings_count: result.base64_findings.length,
       html_findings_count: result.html_findings.length,
       multi_layer_findings_count: result.multi_layer_findings.length,
+      reformulation_findings_count: result.reformulation_findings.length,
       highest_severity: result.highest_severity,
       sample_findings: result.findings.slice(0, 5),
     }, result.highest_severity);

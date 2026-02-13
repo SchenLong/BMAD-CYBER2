@@ -223,10 +223,10 @@ describe('UAT-06-S2: Validator & Hook Enforcement', () => {
     }
   });
 
-  // UAT-06-015: Settings.json integrity — 55 hooks, 12 matchers
-  it('UAT-06-015: settings.json has 55 hook commands and 12 matchers', () => {
+  // UAT-06-015: Settings.json integrity — 63 hooks, 12 PreToolUse matchers
+  it('UAT-06-015: settings.json has 63 hook commands and 12 PreToolUse matchers', () => {
     const hookCount = countHooks(settings);
-    expect(hookCount).toBe(55);
+    expect(hookCount).toBe(63);
 
     const matcherCount = getMatchers(settings).size;
     expect(matcherCount).toBe(12);

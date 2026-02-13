@@ -58,10 +58,15 @@ const REQUIRED_MATCHERS = [
 ];
 
 // Expected event types
-const REQUIRED_EVENTS = ['SessionStart', 'UserPromptSubmit', 'PreToolUse'];
+const REQUIRED_EVENTS = ['SessionStart', 'UserPromptSubmit', 'PreToolUse', 'PostToolUse'];
+
+// Expected PostToolUse matchers that must be present
+const REQUIRED_POSTTOOLUSE_MATCHERS = [
+  'WebFetch', 'Task', 'Skill', 'WebSearch'
+];
 
 // Minimum hook count from baseline (safety floor)
-const MIN_HOOK_COUNT = 54;
+const MIN_HOOK_COUNT = 63;
 
 function validate() {
   const errors = [];
@@ -111,6 +116,21 @@ function validate() {
   for (const matcher of REQUIRED_MATCHERS) {
     if (!foundMatchers.has(matcher)) {
       errors.push(`Missing required PreToolUse matcher: "${matcher}"`);
+    }
+  }
+
+  // Step 5b: Check PostToolUse matchers
+  const postToolUseHandlers = settings.hooks.PostToolUse || [];
+  const foundPostMatchers = new Set();
+  for (const handler of postToolUseHandlers) {
+    if (handler.matcher) {
+      foundPostMatchers.add(handler.matcher);
+    }
+  }
+
+  for (const matcher of REQUIRED_POSTTOOLUSE_MATCHERS) {
+    if (!foundPostMatchers.has(matcher)) {
+      errors.push(`Missing required PostToolUse matcher: "${matcher}"`);
     }
   }
 
@@ -294,4 +314,4 @@ function main() {
 // Run if invoked directly
 main();
 
-export { validate, updateBaseline, REQUIRED_MATCHERS, REQUIRED_EVENTS, MIN_HOOK_COUNT, HASH_BASELINE_PATH };
+export { validate, updateBaseline, REQUIRED_MATCHERS, REQUIRED_POSTTOOLUSE_MATCHERS, REQUIRED_EVENTS, MIN_HOOK_COUNT, HASH_BASELINE_PATH };
