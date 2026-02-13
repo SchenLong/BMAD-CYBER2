@@ -234,7 +234,7 @@ async function runSetupWizard(preselect) {
   // Import and run setup wizard from extracted files
   try {
     const { runWizard } = await import(
-      join(process.cwd(), 'src/utility/tools/installer/bin/setup-wizard.js')
+      join(process.cwd(), 'src/utility/tools/installer/bin/setup-wizard.mjs')
     );
     await runWizard(preselect);
   } catch (error) {

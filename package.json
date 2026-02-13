@@ -1,6 +1,6 @@
 {
-  "name": "bmad-cyber2-framework",
-  "version": "2.3.2",
+  "name": "bmad-cybersec",
+  "version": "3.0.1",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
   "main": "./_bmad/framework/dist/index.js",
@@ -73,7 +73,7 @@
     "postinstall": "npm run build",
     "quality:check": "npm run lint && npm run type-check && npm run test:coverage",
     "ci:quality": "npm run quality:check && npm run security:scan && npm run build",
-    "setup": "node src/utility/tools/installer/bin/setup-wizard.js",
+    "setup": "node src/utility/tools/installer/bin/setup-wizard.mjs",
     "modules": "node src/utility/tools/module-selector/index.js",
     "modules:offline": "node src/utility/tools/module-selector/index.js --offline",
     "install:offline": "npm install --offline",
