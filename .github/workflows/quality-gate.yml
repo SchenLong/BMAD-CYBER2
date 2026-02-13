@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main, develop]
   # Allow this workflow to be called by other workflows (e.g., release.yml)
-  workflow_call:
+  workflow_call: {}
 
 env:
   NODE_VERSION: '20'
