@@ -176,6 +176,9 @@ Thumbs.db
 .cache/
 .version-check-cache
 
+# Root-level logs directory
+logs/
+
 # ===================
 # Environment Files
 # ===================

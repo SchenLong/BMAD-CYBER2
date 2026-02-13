@@ -1,14 +1,14 @@
 # BMAD-METHOD vs BMAD-CYBERSEC Feature Matrix
 
 **Purpose:** Feature comparison for potential BMAD-METHOD PR integration
-**Date:** 2026-01-29
-**Status:** Ready for Review
+**Date:** 2026-02-13
+**Status:** Updated for v2.2.0
 
 ---
 
 ## Executive Summary
 
-BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** (4 operational teams), **55+ domain-specific workflows**, enterprise-grade security infrastructure, and production-ready compliance frameworks. The additions fall into three categories:
+BMAD-CYBERSEC extends the BMAD-METHOD foundation with **47 specialized agents** (4 operational teams), **55+ domain-specific workflows**, enterprise-grade security infrastructure, and production-ready compliance frameworks. The additions fall into three categories:
 
 1. **High-Value PR Candidates** - Universal applicability, low integration risk
 2. **Specialized Extensions** - Domain-specific, modular installation
@@ -16,10 +16,10 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 
 ### Quick Stats Comparison
 
-| Metric | BMAD-METHOD | BMAD-CYBERSEC | Delta |
-|--------|-------------|---------------|-------|
-| **Total Agents** | ~21 | 80 | +59 |
-| **Total Workflows** | ~50 | 143 | +93 |
+| Metric | BMAD-METHOD | BMAD-CYBERSEC v2.2.0 | Delta |
+|--------|---------------|-------------------------|-------|
+| **Total Agents** | ~21 | 68 | +47 |
+| **Total Workflows** | ~50 | 105+ | +55+ |
 | **Modules** | 5 | 9+ | +4+ |
 | **Compliance Frameworks** | - | 20+ | +20 |
 | **Security Validators** | - | 139+ | +139 |
@@ -35,33 +35,27 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 
 | Component | Description | Agents | Workflows |
 |-----------|-------------|--------|-----------|
-| **Core Security** | Enterprise security operations | 6 | 13 |
-| **Extended Security** | Specialized domains | 9 | - |
+| **Core Security** | Enterprise security operations | 11 | 13 |
 
-#### Core Security Agents (6)
+#### Core Security Agents (11)
 
 | Agent | Role | Key Capabilities |
 |-------|------|------------------|
-| **Bastion** | Security Architect | Zero-trust design, STRIDE threat modeling, cloud security (AWS/Azure/GCP), IAM architecture |
-| **Cipher** | Threat Intel Analyst | MITRE ATT&CK mapping, APT tracking, TTP analysis, threat hunting |
-| **Ghost** | Penetration Tester | Attack surface analysis, exploit chain mapping, red team ops |
-| **Phoenix** | Incident Commander | PICERL methodology, crisis management, containment strategy |
-| **Sentinel** | Compliance Guardian | Multi-framework compliance (NIST/SOC2/PCI/HIPAA/GDPR), gap assessments |
-| **Trace** | Forensic Investigator | Disk/memory/network forensics, timeline reconstruction, evidence preservation |
-
-#### Extended Security Agents (9)
-
-| Agent | Role | Specialty |
-|-------|------|-----------|
-| **Watchman** | SOC Analyst | SIEM management, EDR/XDR, detection engineering |
-| **Nimbus** | Cloud Security | Multi-cloud posture, CSPM, container/serverless security |
-| **Ledger** | Blockchain Security | Smart contract auditing (Solidity/Vyper/Rust), DeFi security |
-| **Weaver** | Web App Security | OWASP Top 10, secure SDLC integration |
-| **Gateway** | API Security | REST/GraphQL/gRPC security, OAuth/OIDC review |
-| **Oracle** | LLM/AI Security | Prompt injection defense, AI governance, adversarial ML |
-| **Shield** | Blue Team Lead | Detection engineering, purple team ops, security automation |
-| **Phantom** | Mobile Security | iOS/Android testing, OWASP MSTG methodology |
-| **Specter** | Social Engineer | Phishing campaigns, vishing, security awareness design |
+| **Security Architect** | Security Architecture | Zero-trust design, STRIDE threat modeling, cloud security (AWS/Azure/GCP), IAM architecture |
+| **Threat Analyst** | Threat Intel Analyst | MITRE ATT&CK mapping, APT tracking, TTP analysis, threat hunting |
+| **Penetration Tester** | Penetration Tester | Attack surface analysis, exploit chain mapping, red team ops |
+| **Incident Commander** | Incident Commander | PICERL methodology, crisis management, containment strategy |
+| **Compliance Guardian** | Compliance Guardian | Multi-framework compliance (NIST/SOC2/PCI/HIPAA/GDPR), gap assessments |
+| **Forensic Investigator** | Forensic Investigator | Disk/memory/network forensics, timeline reconstruction, evidence preservation |
+| **SOC Analyst** | SOC Analyst | SIEM management, EDR/XDR, detection engineering |
+| **Cloud Security Specialist** | Cloud Security | Multi-cloud posture, CSPM, container/serverless security |
+| **Blockchain Security Expert** | Blockchain Security | Smart contract auditing (Solidity/Vyper/Rust), DeFi security |
+| **Web App Security Expert** | Web App Security | OWASP Top 10, secure SDLC integration |
+| **API Security Expert** | API Security | REST/GraphQL/gRPC security, OAuth/OIDC review |
+| **LLM AI Security Expert** | LLM/AI Security | Prompt injection defense, AI governance, adversarial ML |
+| **Mobile Security Expert** | Mobile Security | iOS/Android testing, OWASP MSTG methodology |
+| **Blue Team Lead** | Blue Team Lead | Detection engineering, purple team ops, security automation |
+| **Social Engineer** | Social Engineer | Phishing campaigns, vishing, security awareness design |
 
 #### Cybersec Workflows (13)
 
@@ -93,24 +87,23 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 
 | Component | Description | Agents | Workflows |
 |-----------|-------------|--------|-----------|
-| **Core Intelligence** | OSINT & analysis | 8 | 19 |
-| **Extended Disciplines** | Field operations | 3 | - |
+| **Core Intelligence** | OSINT & analysis | 9 | 19 |
 
-#### Intelligence Agents (11)
+#### Intelligence Agents (9)
 
 | Codename | Title | Specialty |
 |----------|-------|-----------|
-| **Vector** | Intel Operations Director | All-source coordination, collection management |
-| **Resolver** | Domain Intel Specialist | DNS analysis, infrastructure mapping |
-| **Echo** | Social Media Analyst | Platform analysis, influence ops detection |
-| **Shadow** | Dark Web Analyst | Tor/I2P navigation, crypto tracing |
-| **Atlas** | Geospatial Analyst | Imagery analysis, geolocation |
-| **Probe** | Technical Researcher | Technology fingerprinting, TECHINT |
-| **Dossier** | Threat Actor Profiler | APT attribution, MITRE ATT&CK |
-| **Proxy** | Corporate Intel Specialist | Business registries, beneficial ownership |
-| **Viper** | HUMINT Specialist | Elicitation, source assessment |
-| **Sigil** | SIGINT Specialist | RF reconnaissance, TSCM |
-| **Specter** | Field Operative | Surveillance, site reconnaissance |
+| **OSINT Lead** | Intel Operations Director | All-source coordination, collection management |
+| **Domain Intel Specialist** | Domain Intel Specialist | DNS analysis, infrastructure mapping |
+| **Social Media Analyst** | Social Media Analyst | Platform analysis, influence ops detection |
+| **Dark Web Analyst** | Dark Web Analyst | Tor/I2P navigation, crypto tracing |
+| **Geospatial Analyst** | Geospatial Analyst | Imagery analysis, geolocation |
+| **Technical Researcher** | Technical Researcher | Technology fingerprinting, TECHINT |
+| **Threat Actor Profiler** | Threat Actor Profiler | APT attribution, MITRE ATT&CK |
+| **Corporate Intel Specialist** | Corporate Intel Specialist | Business registries, beneficial ownership |
+| **HUMINT Specialist** | HUMINT Specialist | Elicitation, source assessment |
+| **SIGINT Specialist** | SIGINT Specialist | RF reconnaissance, TSCM |
+| **Field Operative** | Field Operative | Surveillance, site reconnaissance |
 
 #### Intel Workflows (19)
 
@@ -138,31 +131,31 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 | Component | Description | Agents | Workflows |
 |-----------|-------------|--------|-----------|
 | **Modern Advisors** | Professional experts | 6 | 16 |
-| **Historical Archetypes** | Strategic perspectives | 8 | 17 presets |
+| **Historical Archetypes** | Strategic perspectives | 8 | 16 presets |
 
 #### Modern Professional Advisors (6)
 
 | Agent | Name | Specialty |
 |-------|------|-----------|
-| policy-analyst | Augustus | Evidence-based policy |
-| political-strategist | Magnus | Campaign & political strategy |
-| debate-coach | Cicero | Argumentation & rhetoric |
-| stakeholder-mediator | Geneva | Negotiation & consensus |
-| ethics-advisor | Sophia | Political ethics & values |
-| communications-director | Giuseppe | Public messaging & media |
+| policy-analyst | Policy Analyst | Evidence-based policy |
+| political-strategist | Political Strategist | Campaign & political strategy |
+| debate-coach | Debate Coach | Argumentation & rhetoric |
+| stakeholder-mediator | Stakeholder Mediator | Negotiation & consensus |
+| ethics-advisor | Ethics Advisor | Political ethics & values |
+| communications-director | Communications Director | Public messaging & media |
 
 #### Historical Archetype Advisors (8)
 
 | Agent | Name | Archetype |
 |-------|------|-----------|
-| the-realist | Niccolo | Machiavelli/Bismarck - Realpolitik |
-| the-liberator | Charles | Lincoln/de Gaulle - Moral Transformer |
-| the-revolutionary | Maximilien | Robespierre - Agent of Change |
-| the-conservative | Burke | Burke/Metternich - Tradition Guardian |
-| the-technocrat | Lee | Lee Kuan Yew/Deng - System Builder |
-| the-strategist-warrior | Musashi | Miyamoto Musashi - Master of Timing |
-| the-master-strategist | Sun | Sun Tzu - Supreme Strategist |
-| the-principled-commander | Jean-Luc | Picard - Diplomat Captain |
+| the-realist | The Realist | Niccolo Machiavelli/Bismarck - Realpolitik |
+| the-liberator | The Liberator | Lincoln/de Gaulle - Moral Transformer |
+| the-revolutionary | The Revolutionary | Maximilien Robespierre - Agent of Change |
+| the-conservative | The Conservative | Burke/Metternich - Tradition Guardian |
+| the-technocrat | The Technocrat | Lee Kuan Yew/Deng - System Builder |
+| the-strategist-warrior | The Strategist Warrior | Miyamoto Musashi - Master of Timing |
+| the-master-strategist | The Master Strategist | Sun Tzu - Supreme Strategist |
+| the-principled-commander | The Principled Commander | Jean-Luc Picard - Diplomat Captain |
 
 #### Strategy Workflows (16)
 
@@ -185,7 +178,7 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 | board-relations-management | Board relations plan |
 | performance-review-preparation | Performance review |
 
-**Party Mode Presets (17):** Pre-configured multi-agent combinations for strategic scenarios
+**Party Mode Presets (16):** Pre-configured multi-agent combinations for strategic scenarios
 
 **Integration Effort:** Low-Medium
 **Dependencies:** None (standalone module)
@@ -200,7 +193,6 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 | Component | Description | Agents | Workflows |
 |-----------|-------------|--------|-----------|
 | **Core Legal** | General counsel | 7 | 7 |
-| **Extended Legal** | Specialized domains | 6 | - |
 
 #### Legal Agents (13)
 
@@ -434,7 +426,7 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 |-------------|-------------|
 | **Structured Docs** | 7-section hierarchy (getting-started → archive) |
 | **AGENTS.md** | Complete agent reference (387 lines) |
-| **WORKFLOWS.md** | Complete workflow reference (551 lines) |
+| **WORKFLOWS.md** | Complete workflow reference (300+ lines) |
 | **Documentation Index** | Searchable documentation index |
 | **Access Guidelines** | Role-based documentation access |
 
@@ -506,7 +498,7 @@ BMAD-CYBERSEC extends the BMAD-METHOD foundation with **53 specialized agents** 
 ```
 src/
 ├── intel-team/
-│   ├── agents/           # 11 intelligence agents
+│   ├── agents/           # 9 intelligence agents
 │   ├── workflows/        # 19 intel workflows
 │   └── module.yaml
 ├── security/
@@ -521,7 +513,7 @@ _bmad/
 │   ├── agents/           # Core agents (Abdul, bmad-master)
 │   └── workflows/        # Core orchestration workflows
 ├── cybersec-team/
-│   ├── agents/           # 15 security agents
+│   ├── agents/           # 11 security agents
 │   └── workflows/        # 13 security workflows
 ├── strategy-team/
 │   ├── agents/           # 14 strategy agents
@@ -550,7 +542,7 @@ _bmad/
 ### Breaking Changes
 
 - None anticipated for modular PR approach
-- Security validators require Node.js 18+ (Node.js 20+ recommended)
+- Security validators require Node.js 20+ (Node.js 20+ required)
 - Framework components use TypeScript (compiled to JavaScript)
 
 ### Migration Path
@@ -561,5 +553,5 @@ _bmad/
 
 ---
 
-*Document generated for BMAD-METHOD PR consideration*
-*Contact: BMAD-CYBERSEC maintainers for integration support*
+*Document updated for BMAD-CYBERSEC v2.2.0*
+*Last Updated: February 2026*
