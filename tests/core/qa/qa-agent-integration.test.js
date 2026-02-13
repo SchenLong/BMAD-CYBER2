@@ -3,6 +3,7 @@
  * ===========================
  * Tests for Phase 2 - Story 10: QA Agent Integration.
  *
+ */
  * Test coverage:
  * - QA agent file existence and structure
  * - QA agent manifest registration
