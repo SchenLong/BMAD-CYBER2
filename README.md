@@ -17,7 +17,7 @@
 
 ## What is BMAD?
 
-BMAD CYBERCOMMAND is a production-ready framework that brings together **79 specialized AI agents** organized into expert teams. Each agent has deep domain knowledge and can collaborate with others through coordinated workflows.
+BMAD CYBERCOMMAND is a production-ready framework that brings together **81 specialized AI agents** organized into expert teams. Each agent has deep domain knowledge and can collaborate with others through coordinated workflows.
 
 **Abdul**, the Master Project Manager, orchestrates everything — routing your requests to the right specialists and coordinating multi-team operations.
 
@@ -31,11 +31,11 @@ You → Abdul → Right Team → Expert Agent(s) → Results
 
 **Hybrid v6 Upgrade** — cherry-picked the best features from BMAD v6 while preserving our security infrastructure.
 
-- **Slash Command Invocation** — invoke any workflow directly with `/workflow-name` (112 aliases mapped to 138 workflows)
+- **Slash Command Invocation** — invoke any workflow directly with `/workflow-name` (112 aliases mapped to 200+ workflows)
 - **AI-Powered Help** — run `/bmad-help` for interactive discovery of modules, agents, workflows, and commands with fuzzy search
 - **Node.js 20** — upgraded runtime with verified crypto compatibility and updated CI/CD pipelines
 - **Bug Fixes Backport** — path sanitization hardening, YAML CRLF normalization, cross-file reference validation
-- **1,387 tests passing**, 101 new tests, zero regressions
+- **2,938+ tests passing** across 351 test files, zero regressions
 
 See [CHANGELOG.md](CHANGELOG.md) for full details.
 
@@ -132,7 +132,7 @@ That's it. Abdul will guide you from there.
 | Feature | Description |
 |---------|-------------|
 | **Multi-Agent Orchestration** | Abdul coordinates specialists across teams for complex operations |
-| **138 Production Workflows** | Battle-tested automations for real scenarios |
+| **201 Production Workflows** | Battle-tested automations for real scenarios |
 | **Direct Slash Commands** | Invoke any workflow with `/workflow-name` — 112 aliases with fuzzy matching |
 | **AI-Powered Help** | `/bmad-help` for interactive discovery with natural language search |
 | **Security-First Design** | OWASP AI compliant, zero-trust architecture, tamper-evident audit logs |
@@ -146,9 +146,9 @@ That's it. Abdul will guide you from there.
 | Guide | Description |
 |-------|-------------|
 | [Getting Started](Docs/02-user-guides/GETTING-STARTED.md) | Full setup and first workflow |
-| [Agents Reference](Docs/02-user-guides/AGENTS-REFERENCE.md) | All 79 agents by team |
+| [Agents Reference](Docs/02-user-guides/AGENTS-REFERENCE.md) | All 81 agents by team |
 | [Slash Command Reference](Docs/02-user-guides/SLASH-COMMAND-REFERENCE.md) | Direct invocation guide |
-| [Workflows Reference](Docs/02-user-guides/WORKFLOWS-REFERENCE.md) | All 138 workflows |
+| [Workflows Reference](Docs/02-user-guides/WORKFLOWS-REFERENCE.md) | All 200+ workflows |
 | [Security Overview](Docs/02-user-guides/SECURITY-OVERVIEW.md) | Security architecture and hardening |
 | [Troubleshooting](Docs/02-user-guides/TROUBLESHOOTING.md) | Common issues and solutions |
 
