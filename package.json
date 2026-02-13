@@ -1,6 +1,6 @@
 {
   "name": "bmad-cybersec",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
   "main": "./_bmad/framework/dist/index.js",
@@ -159,7 +159,10 @@
     "LICENSE",
     "CHANGELOG.md",
     "_bmad/framework/README.md",
-    "tools/cli/**/*"
+    "tools/cli/**/*",
+    "src/utility/cli/**/*",
+    "src/utility/tools/**/*",
+    "src/normalize-line-endings.js"
   ],
   "repository": {
     "type": "git",
