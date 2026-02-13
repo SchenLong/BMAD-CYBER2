@@ -19,6 +19,7 @@ const ALLOWED_HOSTS = [
   'github.com',
   'objects.githubusercontent.com',
   'github-releases.githubusercontent.com',
+  'release-assets.githubusercontent.com',
   'codeload.github.com'
 ];
 
