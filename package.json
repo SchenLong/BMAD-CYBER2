@@ -73,6 +73,7 @@
     "postinstall": "npm run build",
     "quality:check": "npm run lint && npm run type-check && npm run test:coverage",
     "ci:quality": "npm run quality:check && npm run security:scan && npm run build",
+    "setup": "node src/utility/tools/installer/bin/setup-wizard.js",
     "modules": "node src/utility/tools/module-selector/index.js",
     "modules:offline": "node src/utility/tools/module-selector/index.js --offline",
     "install:offline": "npm install --offline",

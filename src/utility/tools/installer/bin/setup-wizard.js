@@ -159,9 +159,24 @@ export function parseArgs(args = process.argv.slice(2)) {
  */
 export async function runWizard(options = {}) {
   try {
-    // Try to import the wizard orchestrator
-    const orchestratorPath = path.join(__dirname, '../lib/wizard-orchestrator.js');
-    const orchestrator = await import(orchestratorPath);
+    // Try to import the wizard orchestrator (try .mjs, .js, and .cjs)
+    let orchestrator;
+    let lastError;
+    for (const ext of ['.mjs', '.js', '.cjs']) {
+      try {
+        const orchestratorPath = path.join(__dirname, `../lib/wizard-orchestrator${ext}`);
+        orchestrator = await import(orchestratorPath);
+        break; // Success - stop trying extensions
+      } catch (e) {
+        lastError = e;
+        if (e.code !== 'ERR_MODULE_NOT_FOUND') {
+          throw e; // Re-throw non-import errors
+        }
+      }
+    }
+    if (!orchestrator) {
+      throw lastError || new Error('Wizard orchestrator not found');
+    }
 
     if (typeof orchestrator.runWizard === 'function') {
       return await orchestrator.runWizard(options);
