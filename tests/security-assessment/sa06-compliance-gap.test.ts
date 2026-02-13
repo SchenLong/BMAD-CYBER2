@@ -45,9 +45,9 @@ import { execSync } from 'child_process';
 import { load as yamlLoad } from 'js-yaml';
 
 const ROOT = resolve(import.meta.dirname, '../..');
-const readText = (p) => readFileSync(join(ROOT, p), 'utf8');
-const readJson = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
-const fileExists = (p) => existsSync(join(ROOT, p));
+const readText = (p) => readFileSync(p.startsWith('/') ? p : join(ROOT, p), 'utf8');
+const readJson = (p) => JSON.parse(readFileSync(p.startsWith('/') ? p : join(ROOT, p), 'utf8'));
+const fileExists = (p) => existsSync(p.startsWith('/') ? p : join(ROOT, p));
 
 // ============================================================================
 // NIST CSF Controls
@@ -199,7 +199,7 @@ describe('SA-06: NIST CSF Compliance', () => {
 
     it('should have jailbreak on UserPromptSubmit', () => {
       const settings = readJson('.claude/settings.json');
-      const promptHooks = settings.UserPromptSubmit?.hooks || [];
+      const promptHooks = settings.hooks?.UserPromptSubmit || [];
       const allCommands = promptHooks.flatMap(g => g.hooks || []).map(h => h.command || '');
       const hasJailbreak = allCommands.some(cmd => cmd.includes('jailbreak'));
       expect(hasJailbreak).toBe(true);
@@ -347,7 +347,7 @@ describe('SA-06: NIST CSF Compliance', () => {
       it('should use HMAC-SHA256 for audit signing', () => {
         const source = readText('src/security/audit/audit-logger.ts');
         expect(source).toContain('createHmac');
-        expect(source).toContain('SHA256');
+        expect(source).toContain('sha256');
       });
 
     it('should have Ed25519 public key for package signing', () => {
@@ -424,6 +424,8 @@ describe('SA-06: NIST CSF Compliance', () => {
       });
   });
 
+  }); // End of SLSA Compliance
+
   // Evidence & Documentation
   // ============================================================================
   describe('SA-06: Evidence & Documentation', () => {
@@ -482,4 +484,4 @@ describe('SA-06: NIST CSF Compliance', () => {
     });
   });
 });
-
+}); // End of SA-06: NIST CSF Compliance
