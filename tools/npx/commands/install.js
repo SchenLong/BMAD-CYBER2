@@ -234,11 +234,15 @@ async function runSetupWizard(preselect) {
   // Import and run setup wizard from extracted files
   try {
     const { runWizard } = await import(
-      join(process.cwd(), 'src/utility/tools/setup-wizard/index.js')
+      join(process.cwd(), 'src/utility/tools/installer/bin/setup-wizard.js')
     );
     await runWizard(preselect);
   } catch (error) {
-    logger.warn('Setup wizard not available. Run `npm run bmad:setup` later.');
+    logger.warn('Setup wizard not available. Configure manually with:');
+    logger.warn('  npm run modules         - Select active modules');
+    logger.warn('  npm run security:config  - Configure security tier');
+    logger.warn('  npm run llm:setup        - Configure LLM provider');
+    logger.warn('  npm run pgp:setup        - Configure PGP keys');
   }
 }
 
@@ -292,9 +296,9 @@ function showQuickStart(isDryRun) {
   console.log('');
   console.log(chalk.white.bold('Useful Commands:'));
   console.log('');
-  console.log('  npm run bmad:modules   - Select active modules');
-  console.log('  npm run bmad:security  - Configure security tier');
-  console.log('  npm run bmad:health    - Run system health check');
+  console.log('  npm run modules         - Select active modules');
+  console.log('  npm run security:config  - Configure security tier');
+  console.log('  npm run health           - Run system health check');
   console.log('');
   console.log(chalk.dim('Documentation: https://github.com/SchenLong/BMAD-CYBERSEC'));
   console.log('');
