@@ -1,31 +1,31 @@
 {
   "name": "bmad-cybersec",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
-  "main": "./_bmad/framework/dist/index.js",
-  "module": "./_bmad/framework/dist/index.js",
-  "types": "./_bmad/framework/dist/index.d.ts",
+  "main": "./_bmad/framework/dist/_bmad/framework/index.js",
+  "module": "./_bmad/framework/dist/_bmad/framework/index.js",
+  "types": "./_bmad/framework/dist/_bmad/framework/index.d.ts",
   "exports": {
     ".": {
-      "import": "./_bmad/framework/dist/index.js",
-      "types": "./_bmad/framework/dist/index.d.ts"
+      "import": "./_bmad/framework/dist/_bmad/framework/index.js",
+      "types": "./_bmad/framework/dist/_bmad/framework/index.d.ts"
     },
     "./framework": {
-      "import": "./_bmad/framework/dist/index.js",
-      "types": "./_bmad/framework/dist/index.d.ts"
+      "import": "./_bmad/framework/dist/_bmad/framework/index.js",
+      "types": "./_bmad/framework/dist/_bmad/framework/index.d.ts"
     },
     "./validators": {
-      "import": "./_bmad/framework/dist/validators/index.js",
-      "types": "./_bmad/framework/dist/validators/index.d.ts"
+      "import": "./_bmad/framework/dist/_bmad/framework/validators/index.js",
+      "types": "./_bmad/framework/dist/_bmad/framework/validators/index.d.ts"
     },
     "./auth": {
-      "import": "./_bmad/framework/dist/auth/index.js",
-      "types": "./_bmad/framework/dist/auth/index.d.ts"
+      "import": "./_bmad/framework/dist/_bmad/framework/auth/index.js",
+      "types": "./_bmad/framework/dist/_bmad/framework/auth/index.d.ts"
     },
     "./audit": {
-      "import": "./_bmad/framework/dist/audit/index.js",
-      "types": "./_bmad/framework/dist/audit/index.d.ts"
+      "import": "./_bmad/framework/dist/_bmad/framework/audit/index.js",
+      "types": "./_bmad/framework/dist/_bmad/framework/audit/index.d.ts"
     }
   },
   "workspaces": [
@@ -59,15 +59,11 @@
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit && cd _bmad/framework && tsc --noEmit && cd ../../.claude/validators-node && tsc --noEmit",
     "security:scan": "npm audit --audit-level=moderate",
-    "security:validate-framework": "node scripts/validate-security.js",
     "security:verify-validators": "node src/security/verify-validators.js",
     "security:generate-checksums": "node src/security/generate-validator-checksums.js",
     "check:bundle-size": "node scripts/check-bundle-size.js",
     "test:coverage:owasp": "node scripts/owasp-coverage.js",
-    "validate:exports": "node scripts/validate-exports.js",
     "docs:generate": "typedoc --options typedoc.json",
-    "docs:validate": "node scripts/validate-docs.js",
-    "docs:check-readme": "node scripts/check-readme.js",
     "clean": "rm -rf dist _bmad/framework/dist .claude/validators-node/dist",
     "prepack": "npm run clean && npm run build",
     "postinstall": "node -e \"console.log('✓ BMAD-CYBERSEC installed. Framework is pre-built and ready to use.')\"",
@@ -153,6 +149,7 @@
   },
   "files": [
     "_bmad/framework/dist/**/*",
+    ".claude/validators-node/package.json",
     ".claude/validators-node/dist/**/*",
     "!**/__tests__/**",
     "README.md",

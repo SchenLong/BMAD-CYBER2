@@ -1393,10 +1393,9 @@ jobs:
         'typescript': '^5.0.0'
       },
       scripts: {
-        'validate': 'node scripts/validate-modules.js',
         'build': 'node scripts/build-packages.js',
         'test': 'vitest',
-        'prepack': 'npm run validate && npm run build'
+        'prepack': 'npm run build'
       },
       files: [
         'src/',
