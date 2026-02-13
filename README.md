@@ -514,13 +514,13 @@ BMAD CYBERSEC aligns with 20+ global security standards and compliance framework
 
 ## 📜 License
 
-[MIT](LICENSE) — Built with **BMAD Method** — **A BlackUnicorn Open Source Project** 🦄
+[MIT](LICENSE) — BMAD-CYBERSEC **A BlackUnicorn Open Source Project** 🦄
 
 ---
 
 <div align="center">
 
-**🦄 Built with BMAD-METHOD**
+**Built with BMAD-METHOD**
 
 *BMAD CYBERSEC extends the BMAD-METHOD framework with specialized cybersecurity operations, intelligence gathering, legal counsel, and strategic planning capabilities while maintaining full compatibility with the original development, creative, and business workflows.*
 
