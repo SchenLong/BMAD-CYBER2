@@ -2,7 +2,7 @@ import { existsSync, promises as fs } from 'fs';
 import { dirname, join } from 'path';
 import { promisify } from 'util';
 import { exec } from 'child_process';
-import { confirm, createSpinner, isCancel } from '../../../src/utility/cli/prompts.js';
+import { confirm, createSpinner, isCancel } from '../lib/prompts.js';
 import pc from 'picocolors';
 import { downloadRelease } from '../lib/downloader.js';
 import { extractFramework } from '../lib/extractor.js';

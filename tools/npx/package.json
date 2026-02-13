@@ -1,6 +1,6 @@
 {
   "name": "bmad-cybersec",
-  "version": "2.3.0",
+  "version": "2.3.2",
   "description": "Install BMAD-CYBERSEC operations framework",
   "type": "module",
   "bin": {
@@ -20,10 +20,12 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "commander": "^12.0.0",
+    "@clack/prompts": "^0.8.0",
     "chalk": "^5.3.0",
-    "ora": "^8.0.0",
+    "commander": "^12.0.0",
     "inquirer": "^9.2.0",
+    "ora": "^8.0.0",
+    "picocolors": "^1.1.0",
     "tar": "^7.5.7"
   },
   "devDependencies": {
