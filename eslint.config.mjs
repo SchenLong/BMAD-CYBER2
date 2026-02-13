@@ -25,6 +25,7 @@ export default tseslint.config(
       'examples/',
       'dev-tools/',
       'coverage/',
+      'team/',
       // Separate workspaces — lint independently with their own config
       '.claude/validators-node/',
       '_bmad/framework/',

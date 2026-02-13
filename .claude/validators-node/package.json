@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "BMAD Security Validators for Claude Code hooks (TypeScript)",
   "type": "module",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "engines": {
     "node": ">=20.0.0"
   },
