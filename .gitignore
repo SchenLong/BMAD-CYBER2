@@ -168,6 +168,11 @@ Thumbs.db
 *.sublime-project
 
 # ===================
+# Claude AI Configuration
+# ===================
+CLAUDE.md
+
+# ===================
 # Logs and Temp Files
 # ===================
 *.log

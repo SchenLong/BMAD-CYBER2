@@ -199,8 +199,8 @@ describe('SA-06: NIST CSF Compliance', () => {
 
     it('should have jailbreak on UserPromptSubmit', () => {
       const settings = readJson('.claude/settings.json');
-      const promptGroups = settings.hooks?.UserPromptSubmit || [];
-      const allCommands = promptGroups.flatMap(g => g.hooks || []).map(h => h.command || ''));
+      const promptHooks = settings.UserPromptSubmit?.hooks || [];
+      const allCommands = promptHooks.flatMap(g => g.hooks || []).map(h => h.command || '');
       const hasJailbreak = allCommands.some(cmd => cmd.includes('jailbreak'));
       expect(hasJailbreak).toBe(true);
     });
@@ -482,3 +482,4 @@ describe('SA-06: NIST CSF Compliance', () => {
     });
   });
 });
+

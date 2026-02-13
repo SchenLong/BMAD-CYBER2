@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-13T01:28:31.277Z",
+  "generated": "2026-02-13T15:24:12.223Z",
   "algorithm": "sha256",
   "version": "1.0.0",
   "description": "Integrity baseline for validator files",
@@ -42,7 +42,7 @@
     ".claude/validators-node/src/common/path-utils.js": "07053082d6e3bef9d77f5fc2c81d916e22f71dd3173119ee16a59577b63cf62c",
     ".claude/validators-node/src/common/safe-regex.js": "3043e746db0123b8fcd7ec7822ea27d63ac28aa881be3cd607f3547bfd0ce719",
     ".claude/validators-node/src/common/stdin-parser.js": "58811cc582b257cd54a7084673b8fb46a63c041582f2027595d0a755ec934690",
-    ".claude/validators-node/src/guards/bash-safety.js": "f10273008d3c313b300da0ade5877388238671cbfa6b7d94e869e34f94fd6c66",
+    ".claude/validators-node/src/guards/bash-safety.js": "255e062e168b6f0a04c635e9c5f4b34c8d0581e6a86b3f084d7a5b1fead0517b",
     ".claude/validators-node/src/guards/env-protection.js": "040c2ba5e6a5cbacf1cae2bf377a23219342a24ed71a075645c9cd6313933ff6",
     ".claude/validators-node/src/guards/index.js": "e02a00d906a8900d568eb4f7aafb87973d4e130c351cf2de37cb671e13a3a3fa",
     ".claude/validators-node/src/guards/outside-repo.js": "557a5506582a0a26aaf269cf742784bb67cbfd2761522a0acb4c881a7556200f",

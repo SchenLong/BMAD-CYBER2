@@ -49,8 +49,8 @@ const FRAMEWORKS = {
   owasp_asvs: {
     name: 'OWASP ASVS v4.0',
     short: 'ASVS',
-    total_controls: 192,
-    categories: ['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14']
+    total_controls: 47,
+    categories: ['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20']
   },
   owasp_llm_top_10: {
     name: 'OWASP LLM Top 10 (2024)',
@@ -395,7 +395,9 @@ function saveBaseline(results, baselinePath) {
 
 // Format coverage bar
 function formatCoverageBar(coverage, width = 30) {
-  const filled = Math.round((coverage / 100) * width);
+  // Clamp coverage between 0-100 to prevent negative values
+  const clampedCoverage = Math.max(0, Math.min(100, coverage));
+  const filled = Math.round((clampedCoverage / 100) * width);
   const empty = width - filled;
 
   let bar = '';
@@ -407,9 +409,9 @@ function formatCoverageBar(coverage, width = 30) {
     bar += '\x1b[31m'; // Red
   }
 
-  bar += '█'.repeat(filled);
+  bar += '█'.repeat(Math.max(0, filled));
   bar += '\x1b[90m'; // Dark gray
-  bar += '░'.repeat(empty);
+  bar += '░'.repeat(Math.max(0, empty));
   bar += '\x1b[0m'; // Reset
 
   return bar;
