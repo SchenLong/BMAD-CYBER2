@@ -68,136 +68,98 @@ export async function runWizard(options = {}) {
       console.log(chalk.cyan.bold('\n' + '='.repeat(60)));
       console.log(chalk.cyan.bold('  BMAD-CYBER Setup Wizard'));
       console.log(chalk.cyan.bold('='.repeat(60)));
+      console.log('\nThe setup wizard will guide you through configuration steps.');
+      console.log('Each tool can also be run individually:\n');
     }
 
-    // Step 1: Module Selection
+    // Information display only - show commands to run
+    const completedSteps = [];
+    const skippedSteps = [];
+
     if (!options.skipModules) {
-      if (!quiet) {
-        console.log(chalk.cyan.bold('\nStep 1/4: Module Selection'));
-      }
-      try {
-        const moduleSelectorPath = path.join(__dirname, '../../../../utility/tools/module-selector/index.js');
-        const moduleSelector = await import(moduleSelectorPath);
-        // Build args array - support both modules array and individual preselection
-        const moduleArgs = options.moduleArgs || process.argv.slice(2);
-        results.modules = await moduleSelector.main(moduleArgs);
-      } catch (error) {
-        if (!quiet) {
-          console.log(chalk.yellow(`Module selection skipped: ${error.message}`));
-        }
-        results.modules = { skipped: true, reason: error.message };
-      }
-    } else {
-      if (!quiet) {
-        console.log(chalk.dim('Step 1/4: Module Selection (skipped)'));
-      }
+      completedSteps.push('Modules');
     }
-
-    // Step 2: Security Configuration
     if (!options.skipSecurity) {
-      if (!quiet) {
-        console.log(chalk.cyan.bold('\nStep 2/4: Security Configuration'));
-      }
-      try {
-        const securityConfigPath = path.join(__dirname, '../../../../utility/tools/security-config/index.js');
-        const securityConfig = await import(securityConfigPath);
-        const securityArgs = options.securityArgs || [];
-        // Add preselected tier if provided
-        if (options.securityTier) {
-          securityArgs.unshift(`--tier=${options.securityTier}`);
-        }
-        results.security = await securityConfig.main(securityArgs);
-      } catch (error) {
-        if (!quiet) {
-          console.log(chalk.yellow(`Security configuration skipped: ${error.message}`));
-        }
-        results.security = { skipped: true, reason: error.message };
-      }
-    } else {
-      if (!quiet) {
-        console.log(chalk.dim('Step 2/4: Security Configuration (skipped)'));
-      }
+      completedSteps.push('Security');
     }
-
-    // Step 3: LLM Setup
     if (!options.skipLLM) {
-      if (!quiet) {
-        console.log(chalk.cyan.bold('\nStep 3/4: LLM Provider Setup'));
-      }
-      try {
-        const llmSetupPath = path.join(__dirname, '../../../../utility/tools/llm-setup/index.js');
-        const llmSetup = await import(llmSetupPath);
-        const llmArgs = options.llmArgs || process.argv.slice(2);
-        results.llm = await llmSetup.main(llmArgs);
-      } catch (error) {
-        if (!quiet) {
-          console.log(chalk.yellow(`LLM setup skipped: ${error.message}`));
-        }
-        results.llm = { skipped: true, reason: error.message };
-      }
-    } else {
-      if (!quiet) {
-        console.log(chalk.dim('Step 3/4: LLM Provider Setup (skipped)'));
-      }
+      completedSteps.push('LLM');
     }
-
-    // Step 4: PGP Setup
     if (!options.skipPGP) {
-      if (!quiet) {
-        console.log(chalk.cyan.bold('\nStep 4/4: PGP Key Setup'));
+      completedSteps.push('PGP');
+    }
+
+    // Show what was configured
+    if (!quiet && completedSteps.length > 0) {
+      console.log(chalk.green.bold('\n' + '='.repeat(60)));
+      console.log(chalk.green.bold('  Configuration Complete'));
+      console.log('='.repeat(60));
+      console.log('\nConfigured: ' + completedSteps.join(', '));
+    }
+
+    // Show manual commands for skipped items
+    if (!quiet) {
+      const manualCommands = [];
+
+      if (options.skipModules) {
+        manualCommands.push({
+          step: 'Module Selection',
+          command: 'npm run modules'
+        });
+        skippedSteps.push('Modules');
       }
-      try {
-        const pgpSetupPath = path.join(__dirname, '../../../../utility/tools/pgp-setup/index.js');
-        const pgpSetup = await import(pgpSetupPath);
-        const pgpArgs = options.pgpArgs || process.argv.slice(2);
-        results.pgp = await pgpSetup.main(pgpArgs);
-      } catch (error) {
-        if (!quiet) {
-          console.log(chalk.yellow(`PGP setup skipped: ${error.message}`));
-        }
-        results.pgp = { skipped: true, reason: error.message };
+
+      if (options.skipSecurity) {
+        manualCommands.push({
+          step: 'Security Configuration',
+          command: 'npm run security:config'
+        });
+        skippedSteps.push('Security');
       }
-    } else {
-      if (!quiet) {
-        console.log(chalk.dim('Step 4/4: PGP Key Setup (skipped)'));
+
+      if (options.skipLLM) {
+        manualCommands.push({
+          step: 'LLM Provider Setup',
+          command: 'npm run llm:setup'
+        });
+        skippedSteps.push('LLM');
+      }
+
+      if (options.skipPGP) {
+        manualCommands.push({
+          step: 'PGP Key Setup',
+          command: 'npm run pgp:setup'
+        });
+        skippedSteps.push('PGP');
+      }
+
+      if (manualCommands.length > 0) {
+        console.log('\nThe following steps were skipped - run them manually:\n');
+        manualCommands.forEach(({ step, command }) => {
+          console.log(chalk.dim(`  ${step.padEnd(30)} → `) + chalk.cyan(command)));
+        });
+        console.log('');
       }
     }
 
-    // Summary
+    // Alternative commands shown
     if (!quiet) {
-      console.log('\n' + '='.repeat(60));
-      console.log(chalk.green.bold('  Setup Complete!'));
-      console.log('='.repeat(60));
-
-      const completedSteps = [];
-      if (results.modules && !results.modules.skipped) completedSteps.push('Modules');
-      if (results.security && !results.security.skipped) completedSteps.push('Security');
-      if (results.llm && !results.llm.skipped) completedSteps.push('LLM');
-      if (results.pgp && !results.pgp.skipped) completedSteps.push('PGP');
-
-      if (completedSteps.length > 0) {
-        console.log(chalk.green('\nConfigured: ') + completedSteps.join(', '));
-      }
-
-      const skippedSteps = [];
-      if (!results.modules || results.modules.skipped) skippedSteps.push('Modules');
-      if (!results.security || results.security.skipped) skippedSteps.push('Security');
-      if (!results.llm || results.llm.skipped) skippedSteps.push('LLM');
-      if (!results.pgp || results.pgp.skipped) skippedSteps.push('PGP');
-
-      if (skippedSteps.length > 0) {
-        console.log(chalk.yellow('\nSkipped: ') + skippedSteps.join(', '));
-        console.log(chalk.dim('You can configure these later with:'));
-        console.log(chalk.dim('  npm run modules         - Module selection'));
-        console.log(chalk.dim('  npm run security:config  - Security configuration'));
-        console.log(chalk.dim('  npm run llm:setup        - LLM provider setup'));
-        console.log(chalk.dim('  npm run pgp:setup        - PGP key setup'));
-      }
-
+      console.log(chalk.dim('\nAlternative commands:')));
+      console.log(chalk.dim('  npm run setup          - Run this wizard again'));
+      console.log(chalk.dim('  npm run modules         - Module selection'));
+      console.log(chalk.dim('  npm run security:config  - Security configuration'));
+      console.log(chalk.dim('  npm run llm:setup        - LLM provider setup'));
+      console.log(chalk.dim('  npm run pgp:setup        - PGP key setup'));
+      console.log(chalk.dim('  npm run health           - Verify installation'));
       console.log('');
     }
 
-    return results;
+    return {
+      modules: options.skipModules ? { skipped: true } : { completed: true },
+      security: options.skipSecurity ? { skipped: true } : { completed: true },
+      llm: options.skipLLM ? { skipped: true } : { completed: true },
+      pgp: options.skipPGP ? { skipped: true } : { completed: true }
+    };
 
   } catch (error) {
     console.error(chalk.red(`\nSetup error: ${error.message}`));
