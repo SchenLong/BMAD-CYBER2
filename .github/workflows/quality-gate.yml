@@ -6,10 +6,6 @@ on:
     branches: [main, develop]
   # Allow this workflow to be called by other workflows (e.g., release.yml)
   workflow_call:
-    outputs:
-      quality_passed:
-        description: "Whether all quality checks passed"
-        value: ${{ jobs.quality-gate.outputs.passed }}
 
 env:
   NODE_VERSION: '20'
