@@ -97,6 +97,7 @@ describe('SSRF Allowlist Prevention - P3-15', () => {
       'github.com',
       'objects.githubusercontent.com',
       'github-releases.githubusercontent.com',
+      'release-assets.githubusercontent.com',
       'codeload.github.com'
     ];
 
@@ -254,6 +255,7 @@ describe('SSRF Allowlist Prevention - P3-15', () => {
       'github.com',
       'objects.githubusercontent.com',
       'github-releases.githubusercontent.com',
+      'release-assets.githubusercontent.com',
       'codeload.github.com'
     ];
 
@@ -312,6 +314,12 @@ describe('SSRF Allowlist Prevention - P3-15', () => {
 
     it('should ACCEPT redirect to objects.githubusercontent.com (exact match)', () => {
       const redirectTarget = 'https://objects.githubusercontent.com/v4/asset';
+      const result = validateDownloadUrl(redirectTarget);
+      expect(result.valid).toBe(true);
+    });
+
+    it('should ACCEPT redirect to release-assets.githubusercontent.com (exact match)', () => {
+      const redirectTarget = 'https://release-assets.githubusercontent.com/v1/asset.tar.gz';
       const result = validateDownloadUrl(redirectTarget);
       expect(result.valid).toBe(true);
     });
