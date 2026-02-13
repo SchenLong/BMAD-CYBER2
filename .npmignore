@@ -27,7 +27,7 @@ _bmad/
 !_bmad/framework/dist/**/*
 !src/utility/cli/**/*
 !src/utility/tools/**/*
-!src/normalize-line-endings.js
+!src/utility/normalize-line-endings.js
 
 # CI/CD
 .github/
@@ -44,6 +44,7 @@ vitest.config.*
 
 # Claude Code settings (validators ship via dist/)
 .claude/
+!.claude/validators-node/package.json
 !.claude/validators-node/dist/**/*
 
 # Environment and secrets

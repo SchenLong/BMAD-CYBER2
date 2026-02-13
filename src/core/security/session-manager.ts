@@ -8,7 +8,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
-import { TokenClaims, TokenGenerator } from './generate-token';
+import { TokenClaims, TokenGenerator } from './generate-token.js';
 
 // ============================================================================
 // Types

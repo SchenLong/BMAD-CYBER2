@@ -40,7 +40,8 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "../../../src/core/security/*.ts"
   ],
   "exclude": [
     "node_modules",

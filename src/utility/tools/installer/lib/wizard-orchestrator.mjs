@@ -65,7 +65,7 @@ export async function runWizard(options = {}) {
 
   try {
     if (!quiet) {
-      console.log(chalk.cyan.bold('\n' + '='.repeat(60)));
+      console.log(chalk.cyan.bold(`\n${'='.repeat(60)}`));
       console.log(chalk.cyan.bold('  BMAD-CYBER Setup Wizard'));
       console.log(chalk.cyan.bold('='.repeat(60)));
       console.log('\nThe setup wizard will guide you through configuration steps.');
@@ -91,10 +91,10 @@ export async function runWizard(options = {}) {
 
     // Show what was configured
     if (!quiet && completedSteps.length > 0) {
-      console.log(chalk.green.bold('\n' + '='.repeat(60)));
+      console.log(chalk.green.bold(`\n${'='.repeat(60)}`));
       console.log(chalk.green.bold('  Configuration Complete'));
       console.log('='.repeat(60));
-      console.log('\nConfigured: ' + completedSteps.join(', '));
+      console.log(`\nConfigured: ${completedSteps.join(', ')}`);
     }
 
     // Show manual commands for skipped items
@@ -136,7 +136,7 @@ export async function runWizard(options = {}) {
       if (manualCommands.length > 0) {
         console.log('\nThe following steps were skipped - run them manually:\n');
         manualCommands.forEach(({ step, command }) => {
-          console.log(chalk.dim(`  ${step.padEnd(30)} → `) + chalk.cyan(command)));
+          console.log(chalk.dim(`  ${step.padEnd(30)} → `) + chalk.cyan(command));
         });
         console.log('');
       }
@@ -144,7 +144,7 @@ export async function runWizard(options = {}) {
 
     // Alternative commands shown
     if (!quiet) {
-      console.log(chalk.dim('\nAlternative commands:')));
+      console.log(chalk.dim('\nAlternative commands:'));
       console.log(chalk.dim('  npm run setup          - Run this wizard again'));
       console.log(chalk.dim('  npm run modules         - Module selection'));
       console.log(chalk.dim('  npm run security:config  - Security configuration'));
