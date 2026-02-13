@@ -73,6 +73,229 @@ export function splitCommandSegments(cmd: string): string[] {
  */
 const SHELL_OPERATORS = new Set(['|', '||', '&&', ';', '>', '>>', '2>', '2>>', '&>', '<']);
 
+// =============================================================================
+// SQL Injection Detection (A03-101..105)
+// =============================================================================
+
+/**
+ * Result type for SQL injection detection
+ */
+export interface SQLInjectionResult {
+  isSQLi: boolean;
+  testId?: string;
+  subtype?: string;
+  severity: string;
+}
+
+/**
+ * Detect SQL injection patterns in a command string
+ *
+ * A03-101: UNION-based SQL injection
+ * A03-102: Boolean-blind SQL injection
+ * A03-103: Time-based SQL injection
+ * A03-104: Error-based SQL injection
+ * A03-105: Stacked query injection
+ */
+export function checkSQLInjection(cmd: string): SQLInjectionResult {
+  if (!cmd || typeof cmd !== 'string') {
+    return {
+      isSQLi: false,
+      severity: 'INFO',
+    };
+  }
+
+  const upperCmd = cmd.toUpperCase();
+
+  // A03-101: UNION-based SQL injection
+  if (/\bUNION\s+(?:ALL\s+)?SELECT/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-101',
+      subtype: 'UNION',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-101: ORDER BY with comment (SQLi fingerprinting)
+  if (/\bORDER\s+BY\s+\d+\s*--/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-101',
+      subtype: 'UNION',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-101: HAVING 1=1 pattern (SQLi fingerprinting)
+  if (/\bHAVING\s+1\s*=\s*1/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-101',
+      subtype: 'UNION',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-102: Boolean-blind SQL injection (OR 1=1, AND 1=2)
+  if (/\bOR\s+1\s*=\s*1\b/i.test(upperCmd) || /\bAND\s+1\s*=\s*2\b/i.test(upperCmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-102',
+      subtype: 'BOOLEAN_BLIND',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-102: OR 'a'='a pattern
+  if (/\bOR\s+['"]?[a-z]['"]?\s*=\s*['"]?[a-z]['"]?/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-102',
+      subtype: 'BOOLEAN_BLIND',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-102: IF statement pattern (allow = between parens)
+  if (/\bIF\s*\([^)]*\=[^)]*\)/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-102',
+      subtype: 'BOOLEAN_BLIND',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-103: Time-based SQL injection (SLEEP, WAITFOR DELAY, BENCHMARK)
+  if (/\bSLEEP\s*\(/i.test(cmd) || /\bWAITFOR\s+DELAY/i.test(cmd) || /\bBENCHMARK\s*\(/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-103',
+      subtype: 'TIME_BASED',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/\bPG_SLEEP\s*\(/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-103',
+      subtype: 'TIME_BASED',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-104: Error-based SQL injection (CAST, CONVERT, FLOOR RAND)
+  if (/\bCAST\s*\(/i.test(cmd) && /\bAS\s+INT/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-104',
+      subtype: 'ERROR_BASED',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/\bCONVERT\s*\(/i.test(cmd) && /\bINT\b/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-104',
+      subtype: 'ERROR_BASED',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/\bFLOOR\s*\(\s*RAND\s*\(/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-104',
+      subtype: 'ERROR_BASED',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/\bCOUNT\s*\([^)]*CONCAT/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-104',
+      subtype: 'ERROR_BASED',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // A03-105: Stacked query injection (DROP, INSERT, UPDATE, EXEC, TRUNCATE after semicolon)
+  if (/;.*\bDROP\s+TABLE/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-105',
+      subtype: 'STACKED_QUERY',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/;.*\bINSERT\s+INTO/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-105',
+      subtype: 'STACKED_QUERY',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/;.*\bUPDATE\b/i.test(cmd) && /\bSET\b/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-105',
+      subtype: 'STACKED_QUERY',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/;.*\bEXEC\b/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-105',
+      subtype: 'STACKED_QUERY',
+      severity: 'CRITICAL',
+    };
+  }
+
+  if (/;.*\bTRUNCATE\s+TABLE/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      testId: 'A03-105',
+      subtype: 'STACKED_QUERY',
+      severity: 'CRITICAL',
+    };
+  }
+
+  // General SQL patterns (WARNING level)
+  if (/\bSELECT\s+\*\s+FROM\b/i.test(cmd) || /\bWHERE\s+1\s*=\s*1\b/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      severity: 'WARNING',
+    };
+  }
+
+  if (/\bOR\b/i.test(cmd) && /\b1\s*=\s*1\b/i.test(cmd)) {
+    return {
+      isSQLi: true,
+      severity: 'WARNING',
+    };
+  }
+
+  if (cmd.trim().endsWith('--')) {
+    return {
+      isSQLi: true,
+      severity: 'WARNING',
+    };
+  }
+
+  return {
+    isSQLi: false,
+    severity: 'INFO',
+  };
+}
+
 /**
  * Extract target paths from rm commands.
  */

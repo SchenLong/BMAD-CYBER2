@@ -49,6 +49,33 @@ export interface ReadToolInput {
   limit?: number;
 }
 
+/** WebFetch tool input — URL fetch with analysis prompt. */
+export interface WebFetchToolInput {
+  url: string;
+  prompt: string;
+}
+
+/** Task tool input — subagent delegation. */
+export interface TaskToolInput {
+  prompt: string;
+  subagent_type: string;
+  description: string;
+  model?: string;
+}
+
+/** Skill tool input — slash-command invocation. */
+export interface SkillToolInput {
+  skill: string;
+  args?: string;
+}
+
+/** WebSearch tool input — web search query. */
+export interface WebSearchToolInput {
+  query: string;
+  allowed_domains?: string[];
+  blocked_domains?: string[];
+}
+
 /**
  * Validation result from a validator.
  */
@@ -125,6 +152,69 @@ export interface CommandSubstitution {
  * Severity levels for logging.
  */
 export type Severity = 'INFO' | 'WARNING' | 'BLOCKED' | 'CRITICAL';
+
+/**
+ * Base interface for all security findings (TPI-PRE-3).
+ * All validators producing findings should conform to this shape.
+ */
+export interface Finding {
+  category: string;
+  severity: Severity;
+  description: string;
+  source?: string;
+  match_preview?: string;
+}
+
+// =============================================================================
+// PostToolUse Types (TPI-00)
+// =============================================================================
+
+/**
+ * Generic PostToolUse input — the full JSON Claude Code provides on stdin.
+ */
+export interface PostToolInput {
+  tool_name: string;
+  tool_input: Record<string, unknown>;
+  tool_response: Record<string, unknown>;
+  session_id?: string;
+  cwd?: string;
+  hook_event_name?: string;
+  tool_use_id?: string;
+}
+
+/**
+ * WebFetch tool output shape.
+ */
+export interface WebFetchToolOutput {
+  url: string;
+  response_body: string;
+  status_code?: number;
+}
+
+/**
+ * Task tool output shape.
+ */
+export interface TaskToolOutput {
+  result: string;
+  agent_type?: string;
+  agent_id?: string;
+}
+
+/**
+ * Skill tool output shape.
+ */
+export interface SkillToolOutput {
+  skill_name: string;
+  result: string;
+}
+
+/**
+ * WebSearch tool output shape.
+ */
+export interface WebSearchToolOutput {
+  query?: string;
+  results?: string;
+}
 
 /**
  * Actions logged by validators.

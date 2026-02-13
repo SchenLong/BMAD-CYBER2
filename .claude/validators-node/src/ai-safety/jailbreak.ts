@@ -29,6 +29,7 @@ import {
 } from '../common/index.js';
 import { EXIT_CODES, type Severity } from '../types/index.js';
 import { type SessionPatternFinding, updateSessionState } from './session-tracker.js';
+import { normalizeText } from './text-normalizer.js';
 
 const VALIDATOR_NAME = 'jailbreak_guard';
 
@@ -37,90 +38,10 @@ const VALIDATOR_NAME = 'jailbreak_guard';
 // =============================================================================
 
 // =============================================================================
-// UNICODE NORMALIZATION
+// UNICODE NORMALIZATION — imported from text-normalizer.ts (TPI-PRE-1)
+// Re-exported for backward compatibility (barrel index.ts references this module)
 // =============================================================================
-
-/**
- * Zero-width and invisible characters to strip.
- */
-const ZERO_WIDTH_CHARS = [
-  '\u200b', // Zero-width space
-  '\u200c', // Zero-width non-joiner
-  '\u200d', // Zero-width joiner
-  '\u2060', // Word joiner
-  '\ufeff', // Zero-width no-break space (BOM)
-  '\u00ad', // Soft hyphen
-  '\u180e', // Mongolian vowel separator
-  '\u2061', // Function application
-  '\u2062', // Invisible times
-  '\u2063', // Invisible separator
-  '\u2064', // Invisible plus
-];
-
-/**
- * Combining character ranges to strip.
- */
-const COMBINING_MARK_PATTERN = /[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/g;
-
-/**
- * Confusable character mapping (lookalikes to ASCII).
- */
-const CONFUSABLE_MAP: Record<string, string> = {
-  // Cyrillic lookalikes
-  'а': 'a', 'е': 'e', 'і': 'i', 'о': 'o', 'р': 'p', 'с': 'c', 'у': 'y',
-  'х': 'x', 'А': 'A', 'В': 'B', 'Е': 'E', 'К': 'K', 'М': 'M', 'Н': 'H',
-  'О': 'O', 'Р': 'P', 'С': 'C', 'Т': 'T', 'Х': 'X',
-  // Greek lookalikes
-  'Α': 'A', 'Β': 'B', 'Ε': 'E', 'Η': 'H', 'Ι': 'I', 'Κ': 'K', 'Μ': 'M',
-  'Ν': 'N', 'Ο': 'O', 'Ρ': 'P', 'Τ': 'T', 'Υ': 'Y', 'Χ': 'X', 'Ζ': 'Z',
-  'ο': 'o', 'ν': 'v',
-  // Special characters
-  'ß': 'ss', 'ø': 'o', 'æ': 'ae', 'œ': 'oe', 'đ': 'd', 'ł': 'l',
-  'ı': 'i', 'ȷ': 'j', 'ŋ': 'n', 'ſ': 's',
-  // Fullwidth
-  'Ａ': 'A', 'Ｂ': 'B', 'Ｃ': 'C', 'Ｄ': 'D', 'Ｅ': 'E', 'Ｆ': 'F', 'Ｇ': 'G',
-  'Ｈ': 'H', 'Ｉ': 'I', 'Ｊ': 'J', 'Ｋ': 'K', 'Ｌ': 'L', 'Ｍ': 'M', 'Ｎ': 'N',
-  'Ｏ': 'O', 'Ｐ': 'P', 'Ｑ': 'Q', 'Ｒ': 'R', 'Ｓ': 'S', 'Ｔ': 'T', 'Ｕ': 'U',
-  'Ｖ': 'V', 'Ｗ': 'W', 'Ｘ': 'X', 'Ｙ': 'Y', 'Ｚ': 'Z',
-  'ａ': 'a', 'ｂ': 'b', 'ｃ': 'c', 'ｄ': 'd', 'ｅ': 'e', 'ｆ': 'f', 'ｇ': 'g',
-  'ｈ': 'h', 'ｉ': 'i', 'ｊ': 'j', 'ｋ': 'k', 'ｌ': 'l', 'ｍ': 'm', 'ｎ': 'n',
-  'ｏ': 'o', 'ｐ': 'p', 'ｑ': 'q', 'ｒ': 'r', 'ｓ': 's', 'ｔ': 't', 'ｕ': 'u',
-  'ｖ': 'v', 'ｗ': 'w', 'ｘ': 'x', 'ｙ': 'y', 'ｚ': 'z',
-  '１': '1', '２': '2', '３': '3', '４': '4', '５': '5',
-  '６': '6', '７': '7', '８': '8', '９': '9', '０': '0',
-  // Modifier letters
-  'ᴬ': 'A', 'ᴮ': 'B', 'ᴰ': 'D', 'ᴱ': 'E', 'ᴳ': 'G', 'ᴴ': 'H', 'ᴵ': 'I',
-  'ᴶ': 'J', 'ᴷ': 'K', 'ᴸ': 'L', 'ᴹ': 'M', 'ᴺ': 'N', 'ᴼ': 'O', 'ᴾ': 'P',
-  'ᴿ': 'R', 'ᵀ': 'T', 'ᵁ': 'U', 'ⱽ': 'V', 'ᵂ': 'W',
-};
-
-/**
- * Normalize text by applying NFKC, stripping hidden chars, and mapping confusables.
- */
-export function normalizeText(text: string): string {
-  // Step 1: NFKC normalization
-  let normalized = text.normalize('NFKC');
-
-  // Step 2: Strip zero-width characters
-  for (const char of ZERO_WIDTH_CHARS) {
-    normalized = normalized.split(char).join('');
-  }
-
-  // Step 3: Strip combining marks
-  normalized = normalized.replace(COMBINING_MARK_PATTERN, '');
-
-  // Step 4: Map confusable characters
-  let result = '';
-  for (const char of normalized) {
-    result += CONFUSABLE_MAP[char] || char;
-  }
-
-  // Step 5: Collapse whitespace
-  result = result.replace(/[ \t]+/g, ' ');
-  result = result.replace(/\n{3,}/g, '\n\n');
-
-  return result;
-}
+export { normalizeText };
 
 // =============================================================================
 // PATTERN DEFINITIONS

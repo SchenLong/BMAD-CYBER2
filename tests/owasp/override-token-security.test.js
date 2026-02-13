@@ -172,7 +172,7 @@ function setupOverrideFsMocks() {
     if (p.includes('.override.lock')) return false;
     if (p.includes('.session_validated')) return sessionValidatedMtime !== null;
     if (p.includes('.session_claims.json')) return sessionClaimsData !== null;
-    if (p.includes('.jailbreak_session.json')) return sessionContainerData !== null;
+    if (p.includes('.session_security_state.json')) return sessionContainerData !== null;
     if (p.includes('.session_context.json')) return sessionContextData !== null;
     if (p.includes('.session_context.lock')) return false;
     return false;
@@ -185,7 +185,7 @@ function setupOverrideFsMocks() {
       return JSON.stringify(overrideStateData);
     if (p.includes('.session_claims.json') && sessionClaimsData)
       return JSON.stringify(sessionClaimsData);
-    if (p.includes('.jailbreak_session.json') && sessionContainerData)
+    if (p.includes('.session_security_state.json') && sessionContainerData)
       return JSON.stringify(sessionContainerData);
     if (p.includes('.session_context.json') && sessionContextData)
       return JSON.stringify(sessionContextData);

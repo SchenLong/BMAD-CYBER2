@@ -6,6 +6,7 @@ logs/*.json
 logs/.chain_state.json
 logs/.anomaly_baseline.json
 logs/.jailbreak_session.json
+logs/.session_security_state.json
 logs/.session_risk.json
 .*_state.json
 .override_state.json

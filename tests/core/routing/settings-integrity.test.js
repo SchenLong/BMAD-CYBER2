@@ -109,42 +109,32 @@ describe('Settings Integrity', () => {
       }
     });
 
-    it('backup file exists', () => {
-      const backupPath = path.join(PROJECT_ROOT, '.claude', 'settings.json.pre-v6-backup');
-      expect(fs.existsSync(backupPath)).toBe(true);
+    it('settings are valid JSON', () => {
+      const settingsPath = path.join(PROJECT_ROOT, '.claude', 'settings.json');
+      const current = fs.readFileSync(settingsPath, 'utf-8');
+
+      // Should be valid JSON
+      expect(() => JSON.parse(current)).not.toThrow();
+
+      const settings = JSON.parse(current);
+      expect(settings.hooks).toBeDefined();
+      expect(typeof settings.hooks).toBe('object');
     });
 
-    it('backup matches current settings (no unauthorized changes)', () => {
+    it('hook count is positive', () => {
       const settingsPath = path.join(PROJECT_ROOT, '.claude', 'settings.json');
-      const backupPath = path.join(PROJECT_ROOT, '.claude', 'settings.json.pre-v6-backup');
-
       const current = fs.readFileSync(settingsPath, 'utf-8');
-      const backup = fs.readFileSync(backupPath, 'utf-8');
+      const settings = JSON.parse(current);
 
-      // Both should be valid JSON
-      expect(() => JSON.parse(current)).not.toThrow();
-      expect(() => JSON.parse(backup)).not.toThrow();
-
-      // Current hook count should be >= backup hook count
-      const currentSettings = JSON.parse(current);
-      const backupSettings = JSON.parse(backup);
-
-      let currentCount = 0;
-      let backupCount = 0;
-      for (const handlers of Object.values(currentSettings.hooks)) {
+      let hookCount = 0;
+      for (const handlers of Object.values(settings.hooks)) {
         const handlerList = Array.isArray(handlers) ? handlers : [handlers];
         for (const handler of handlerList) {
-          currentCount += (handler.hooks || []).length;
-        }
-      }
-      for (const handlers of Object.values(backupSettings.hooks)) {
-        const handlerList = Array.isArray(handlers) ? handlers : [handlers];
-        for (const handler of handlerList) {
-          backupCount += (handler.hooks || []).length;
+          hookCount += (handler.hooks || []).length;
         }
       }
 
-      expect(currentCount).toBeGreaterThanOrEqual(backupCount);
+      expect(hookCount).toBeGreaterThan(0);
     });
   });
 

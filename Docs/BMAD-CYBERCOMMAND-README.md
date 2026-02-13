@@ -1,29 +1,29 @@
-# BMAD CYBERCOMMAND Multi-Module Distribution v2.0.0
+# BMAD CYBERCOMMAND Multi-Module Distribution v2.2.0
 
 > **Complete extraction and packaging of all 4 BMAD specialized team modules**
-> Ready-to-deploy NPM package containing 53 agents and 57 workflows
+> Ready-to-deploy distribution containing 47 agents and 81 workflows
 
 ## 🚀 Overview
 
-This comprehensive multi-module package represents the culmination of Story 5.1 - the complete extraction, conversion, and packaging of all BMAD specialized teams into a production-ready distribution format.
+This comprehensive multi-module package represents a production-ready distribution of BMAD specialized teams converted to the v6 architecture.
 
 ### What's Included
 
 | Team Module | Agents | Workflows | Specialization |
 |-------------|---------|-----------|----------------|
-| **🔒 Cybersec Team** | 15 | 13 | Complete security operations: pentesting, forensics, incident response |
-| **🕵️ Intel Team** | 11 | 19 | Full spectrum intelligence: OSINT, HUMINT, SIGINT, analysis |
-| **⚖️ Legal Team** | 13 | 8 | Multi-jurisdictional legal counsel: US, EU, Spain, Estonia |
-| **🎯 Strategy Team** | 14 | 17 | Strategic planning and executive decision support |
-| **📊 Total** | **53** | **57** | **Enterprise-ready specialized operations** |
+| **🔒 Cybersec Team** | 11 | 13 | Complete security operations: pentesting, forensics, incident response |
+| **🕵️ Intel Team** | 9 | 19 | Full spectrum intelligence: OSINT, HUMINT, SIGINT, analysis |
+| **⚖️ Legal Team** | 13 | 7 | Multi-jurisdictional legal counsel: US, EU, Spain, Estonia |
+| **🎯 Strategy Team** | 14 | 16 | Strategic planning and executive decision support |
+| **📊 Total** | **47** | **55** | **Enterprise-ready specialized operations** |
 
 ## 📦 Installation
 
 ### Prerequisites
 
-- BMAD core v2.0.0 or higher
+- BMAD core v2.2.0 or higher
 - Node.js v20+
-- NPM v8+
+- NPM v10+
 
 ### Quick Installation
 
@@ -56,7 +56,6 @@ npm run install
 ```
 BMAD-CYBERCOMMAND/
 ├── package.json                 # NPM package configuration
-├── bmad-multi-module.yaml      # Main multi-module metadata
 ├── README.md                   # This documentation
 │
 ├── src/                        # Source team modules
@@ -119,7 +118,7 @@ npm run validate
 
 **Validation Checks:**
 
-- ✅ Source structure integrity (53 agents, 57 workflows)
+- ✅ Source structure integrity (47 agents, 55 workflows)
 - ✅ Agent conversion accuracy (MD → YAML → functional)
 - ✅ Workflow preservation (bmad-builder format maintained)
 - ✅ Metadata consistency across all modules
@@ -128,7 +127,7 @@ npm run validate
 
 ## 🎯 Agent Inventory
 
-### 🔒 Cybersecurity Team (15 Agents)
+### 🔒 Cybersecurity Team (11 Agents)
 
 | Agent | Specialization | Complexity |
 |-------|----------------|------------|
@@ -142,13 +141,11 @@ npm run validate
 | LLM AI Security Expert | AI/ML Security | Expert |
 | Mobile Security Expert | Mobile Security | Advanced |
 | Penetration Tester | Penetration Testing | Advanced |
-| Security Architect | Security Architecture | Expert |
-| SOC Analyst | Security Operations | Intermediate |
 | Social Engineer | Social Engineering | Advanced |
 | Threat Analyst | Threat Intelligence | Advanced |
 | Web App Security Expert | Web Application Security | Advanced |
 
-### 🕵️ Intelligence Team (11 Agents)
+### 🕵️ Intelligence Team (9 Agents)
 
 | Agent | Specialization | Complexity |
 |-------|----------------|------------|
@@ -241,7 +238,7 @@ npm run validate
 - Threat Constellation (Threat Actor Ecosystem)
 - Tripwire (Monitoring & Alerting)
 
-### ⚖️ Legal Workflows (8)
+### ⚖️ Legal Workflows (7)
 
 - Contract Drafting
 - Contract Review
@@ -250,9 +247,8 @@ npm run validate
 - Dispute Strategy
 - Legal Matter Intake
 - Tax Planning
-- Shared Legal Resources
 
-### 🎯 Strategy Workflows (17)
+### 🎯 Strategy Workflows (16)
 
 - Board Presentation Prep
 - Board Relations Management
@@ -270,13 +266,12 @@ npm run validate
 - Stakeholder Negotiation Prep
 - Strategic Decision Workshop
 - Strategic Planning Session
-- Shared Strategy Resources
 
 ## 🔗 Integration & Dependencies
 
 ### Core Dependencies
 
-- **bmad:core** (≥2.0.0) - Required
+- **bmad:core** (≥2.2.0) - Required
   - Agents: abdul, bmad-master
   - Workflows: party-mode, cross-module, incident-response
 
@@ -300,7 +295,7 @@ Teams can work independently or in coordination based on specific use cases.
 
    ```bash
    # Verify BMAD core installation
-   bmad --version  # Should be ≥2.0.0
+   bmad --version  # Should be ≥2.2.0
 
    # Create deployment directory
    mkdir -p /opt/bmad/specialized-teams
@@ -330,14 +325,14 @@ Teams can work independently or in coordination based on specific use cases.
    npm run validate
 
    # Test core functionality
-   bmad list-agents  # Should show all 53 agents
-   bmad list-workflows  # Should show all 57 workflows
+   bmad list-agents  # Should show all 47 agents
+   bmad list-workflows  # Should show all 55 workflows
    ```
 
 ### Docker Deployment
 
 ```dockerfile
-FROM bmad/core:2.0.0
+FROM bmad/core:2.2.0
 
 # Install specialized teams
 COPY BMAD-CYBERCOMMAND /opt/bmad/specialized-teams
@@ -382,7 +377,7 @@ bmad run strategic-decision-workshop
 
 ## 📊 Quality Metrics
 
-- **✅ Zero Functional Regression** - All 53 agents and 57 workflows function identically
+- **✅ Zero Functional Regression** - All 47 agents and 55 workflows function identically
 - **✅ 100% Agent Conversion** - MD → YAML → MD round-trip verified
 - **✅ 100% Workflow Preservation** - bmad-builder format maintained
 - **✅ Production Ready** - Comprehensive testing and validation
@@ -416,19 +411,18 @@ npm run validate
 
 MIT License - see LICENSE file for details.
 
-## 🏆 Achievement: Story 5.1 Complete
+## 🏆 Achievement: v2.2.0 Complete
 
-This multi-module package represents the successful completion of **Epic 5, Story 5.1** - the comprehensive extraction and packaging of all 4 BMAD specialized teams:
+This multi-module package represents the current state of BMAD CYBERCOMMAND:
 
-- ✅ **42 Story Points** delivered
-- ✅ **53 Agents** extracted and converted
-- ✅ **57 Workflows** preserved and packaged
-- ✅ **Zero Functional Regression** achieved
-- ✅ **Production-Ready** distribution created
+- ✅ **v2.2.0** - Latest version with Node.js 20+ requirement
+- ✅ **47 Agents** across 4 specialized teams
+- ✅ **55 Workflows** for domain-specific operations
+- ✅ **Production-Ready** distribution
 
 **Ready for enterprise deployment with confidence!** 🚀
 
 ---
 
-*Generated by Story 5.1 Multi-Module Extraction Pipeline*
-*BMAD Development Team - January 2026*
+*BMAD CYBERCOMMAND v2.2.0*
+*Last Updated: February 2026*

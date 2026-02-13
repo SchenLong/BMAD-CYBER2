@@ -45,6 +45,7 @@ data/legal-holds/active-holds.json
 .claude/logs/.chain_state.json
 .claude/logs/.anomaly_baseline.json
 .claude/logs/.jailbreak_session.json
+.claude/logs/.session_security_state.json
 .claude/logs/.session_risk.json
 
 # Validator state
@@ -167,6 +168,11 @@ Thumbs.db
 *.sublime-project
 
 # ===================
+# Claude AI Configuration
+# ===================
+CLAUDE.md
+
+# ===================
 # Logs and Temp Files
 # ===================
 *.log
@@ -174,6 +180,9 @@ Thumbs.db
 *.temp
 .cache/
 .version-check-cache
+
+# Root-level logs directory
+logs/
 
 # ===================
 # Environment Files

@@ -131,6 +131,8 @@ Complete catalog of all documentation organized by category and audience.
 - **[threat-monitoring.md](./04-operations/security/threat-monitoring.md)** - Threat detection
 - **[incident-response.md](./04-operations/security/incident-response.md)** - Security incident procedures
 - **[vulnerability-management.md](./04-operations/security/vulnerability-management.md)** - Vulnerability scanning
+- **[owasp-controls.yaml](./04-operations/security/owasp-controls.yaml)** - OWASP control inventory (testable controls)
+- **[OWASP-TESTING-PLAN.md](./04-operations/security/OWASP-TESTING-PLAN.md)** - OWASP testing documentation
 
 ### Compliance
 
@@ -285,6 +287,19 @@ Complete catalog of all documentation organized by category and audience.
 
 ---
 
+## 📄 Core Documentation Files
+
+| File | Purpose |
+|------|---------|
+| **[BMAD-CYBERCOMMAND-README.md](./BMAD-CYBERCOMMAND-README.md)** | Multi-module distribution overview |
+| **[BMAD-METHOD-vs-CYBERSEC-Feature-Matrix.md](./BMAD-METHOD-vs-CYBERSEC-Feature-Matrix.md)** | Feature comparison and PR recommendations |
+| **[WORKFLOWS.md](./WORKFLOWS.md)** | Complete workflow reference |
+| **[UPGRADE.md](./UPGRADE.md)** | Upgrade and migration guide |
+| **[README.md](../README.md)** | Project root README |
+
+---
+
 *This index provides comprehensive access to all BMAD CYBERCOMMAND documentation. Use browser search (Ctrl/Cmd+F) to find specific topics quickly.*
 
-> **Last Updated:** 2026-01-26
+> **Last Updated:** February 2026
+> **Version:** 2.2.0

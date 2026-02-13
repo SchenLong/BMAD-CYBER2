@@ -55,13 +55,13 @@ describe('SA-01-S2 Check 1: All hook command files exist on disk', () => {
     expect(existsSync(SETTINGS_PATH)).toBe(true);
   });
 
-  it('should have exactly 55 hook commands', () => {
+  it('should have exactly 63 hook commands', () => {
     const settings = loadSettings();
     const hooks = extractAllHooks(settings);
-    expect(hooks.length).toBe(55);
+    expect(hooks.length).toBe(63);
   });
 
-  it('should have all 55 hook command files existing on disk', () => {
+  it('should have all 63 hook command files existing on disk', () => {
     const settings = loadSettings();
     const hooks = extractAllHooks(settings);
     const missing = [];
@@ -137,10 +137,11 @@ describe('SA-01-S2 Check 3: Hook execution order', () => {
     expect(settings.hooks.PreToolUse.length).toBeGreaterThan(0);
   });
 
-  it('should not have PostToolUse event (security hooks are pre-execution only)', () => {
+  it('should have PostToolUse event with output validation hooks (TPI-00)', () => {
     const settings = loadSettings();
-    // PostToolUse should not exist — all security hooks run before the tool
-    expect(settings.hooks.PostToolUse).toBeUndefined();
+    expect(settings.hooks.PostToolUse).toBeDefined();
+    expect(Array.isArray(settings.hooks.PostToolUse)).toBe(true);
+    expect(settings.hooks.PostToolUse.length).toBe(4);
   });
 
   it('should have SessionStart hooks (initialization)', () => {
@@ -155,10 +156,10 @@ describe('SA-01-S2 Check 3: Hook execution order', () => {
     expect(settings.hooks.UserPromptSubmit.length).toBeGreaterThan(0);
   });
 
-  it('should have exactly 3 event types: SessionStart, UserPromptSubmit, PreToolUse', () => {
+  it('should have exactly 4 event types: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse', () => {
     const settings = loadSettings();
     const eventTypes = Object.keys(settings.hooks);
-    expect(eventTypes.sort()).toEqual(['PreToolUse', 'SessionStart', 'UserPromptSubmit']);
+    expect(eventTypes.sort()).toEqual(['PostToolUse', 'PreToolUse', 'SessionStart', 'UserPromptSubmit']);
   });
 });
 
