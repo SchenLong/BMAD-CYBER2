@@ -212,6 +212,9 @@ logs/
 dist/
 build/
 
+# Exception: validators-node dist is used by tests (bin files import from dist)
+!.claude/validators-node/dist/
+
 # Source maps - generated during TypeScript compilation
 *.map
 
