@@ -4,7 +4,7 @@
 #
 # Tier: Enterprise
 # Features: 8
-# Last updated: 2026-02-14T21:27:16.248Z
+# Last updated: 2026-02-14T22:18:35.839Z
 #
 
 version: 1.0.0
@@ -72,6 +72,6 @@ validators:
     category: Validators
 metadata:
   created_at: '2026-02-14T15:37:23.990Z'
-  updated_at: '2026-02-14T21:27:16.248Z'
+  updated_at: '2026-02-14T22:18:35.839Z'
   configured_by: paultinp
   is_custom: false
