@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-14T22:30:22.559Z",
+  "generated": "2026-02-14T22:38:08.542Z",
   "algorithm": "sha256",
   "version": "1.0.0",
   "description": "Integrity baseline for validator files",
@@ -34,7 +34,7 @@
     ".claude/validators-node/src/ai-safety/boundary-detector.js": "dfc1d65fc6571df6d546b522735cbb2b68a5f4328f411c8a0d4dbee20ffde89d",
     ".claude/validators-node/src/ai-safety/context-integrity.js": "2ee0730db4f3829d74558e72d19d368d9506baee4bea46571223e9794287b975",
     ".claude/validators-node/src/ai-safety/index.js": "fc202ddf07df4f8c00d4d9e4b957eaf97faabf3044d7001b66a64ee56d88a8ab",
-    ".claude/validators-node/src/ai-safety/jailbreak.js": "f5ec3d1d830398b08c4934a70555bcb85e139d59ab80488df83cb35483c9f202",
+    ".claude/validators-node/src/ai-safety/jailbreak.js": "76c272a41393c579d297c2ff20ae7d84a04cad84c35d20cbbd5c164239612707",
     ".claude/validators-node/src/ai-safety/media-validator.js": "0c89d0d251c2de37b08516f0295f0c04f885b93cecf00b73907d6eea4d390091",
     ".claude/validators-node/src/ai-safety/multilingual-patterns.js": "8f290a0159809002f4a60174071f530ef4a9ec671965190d2f4dd4bb5fefc51b",
     ".claude/validators-node/src/ai-safety/output-validator.js": "04edc76a05d32c3d10a297c167b9227f6f20628c9ece3725e332238b3bf44226",
