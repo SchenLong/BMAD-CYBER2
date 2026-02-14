@@ -326,7 +326,7 @@ export class SiemIntegration extends EventEmitter {
    * Check correlation rules against event
    */
   private async checkCorrelationRules(event: SiemEvent): Promise<{ alertTriggered: boolean; correlationId?: string | undefined }> {
-    for (const rule of this.correlationRules.values()) {
+    for (const rule of Array.from(this.correlationRules.values())) {
       if (!rule.enabled) continue;
 
       const matchingEvents = this.findMatchingEvents(event, rule);

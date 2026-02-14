@@ -213,7 +213,7 @@ export class SegregationOfDutiesService {
     const now = new Date();
     const active: SoDOverride[] = [];
 
-    for (const override of this.overrides.values()) {
+    for (const override of Array.from(this.overrides.values())) {
       if (override.expiresAt > now) {
         active.push(override);
       }
@@ -229,7 +229,7 @@ export class SegregationOfDutiesService {
     const now = new Date();
     let cleaned = 0;
 
-    for (const [key, override] of this.overrides.entries()) {
+    for (const [key, override] of Array.from(this.overrides.entries())) {
       if (override.expiresAt <= now) {
         this.overrides.delete(key);
         cleaned++;

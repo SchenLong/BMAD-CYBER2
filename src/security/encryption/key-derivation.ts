@@ -1,5 +1,5 @@
 // PBKDF2 Key Derivation Functions
-import crypto from "crypto";
+import * as crypto from "crypto";
 import { CRYPTO_CONFIG, CryptoError, generateSecureRandom } from "./crypto-utils";
 
 export interface DerivedKey {

@@ -424,7 +424,7 @@ export class Epic1SecurityInfrastructure {
     }
 
     // Shutdown components gracefully
-    for (const [_name, component] of this.components) {
+    for (const [_name, component] of Array.from(this.components.entries())) {
       if (component && typeof component.shutdown === 'function') {
         await component.shutdown();
       }

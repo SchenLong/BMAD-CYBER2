@@ -218,10 +218,10 @@ async function interactiveGeneration(): Promise<void> {
     'guest': ['core']
   };
 
-  const modules = [...new Set(roles.flatMap(r => {
+  const modules = Array.from(new Set(roles.flatMap(r => {
     const mappedModules = moduleMap[r];
     return mappedModules !== undefined ? mappedModules : ['core'];
-  }))];
+  })));
 
   const expiresHours = await question('\nToken validity in hours (default 168 = 7 days): ');
   const hours = parseInt(expiresHours) || 168;

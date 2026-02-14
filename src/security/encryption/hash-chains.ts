@@ -1,5 +1,5 @@
 // SHA-256 Hash Chain Implementation
-import crypto from "crypto";
+import * as crypto from "crypto";
 import { CRYPTO_CONFIG } from "./crypto-utils";
 
 export interface HashChainLink {

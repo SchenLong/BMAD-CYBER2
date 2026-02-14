@@ -43,4 +43,4 @@ export type {
   DependencyCycle,
   VersionRange,
   SemverVersion
-} from '../interfaces/package-types';
+} from '../../registry/interfaces/package-types';

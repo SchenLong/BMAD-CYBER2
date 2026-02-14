@@ -360,10 +360,10 @@ export class AuthorizationManager {
    */
   private mergePermissions(a: Permission, b: Permission): Permission {
     return {
-      agents: [...new Set([...a.agents, ...b.agents])],
-      workflows: [...new Set([...a.workflows, ...b.workflows])],
-      modules: [...new Set([...a.modules, ...b.modules])],
-      actions: [...new Set([...a.actions, ...b.actions])]
+      agents: Array.from(new Set([...a.agents, ...b.agents])),
+      workflows: Array.from(new Set([...a.workflows, ...b.workflows])),
+      modules: Array.from(new Set([...a.modules, ...b.modules])),
+      actions: Array.from(new Set([...a.actions, ...b.actions]))
     };
   }
 

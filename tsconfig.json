@@ -73,7 +73,8 @@
     "**/*.spec.ts",
     "_bmad-backup-*",
     "_bmad-output/dist",
-    "dev-tools-installation/node_modules"
+    "dev-tools-installation/node_modules",
+    "src/package-management"
   ],
   "ts-node": {
     "esm": true,

@@ -2,9 +2,9 @@
 // Epic 1 - Story 1.4: Complete Audit Logging Implementation
 // Cryptographically secure audit trail with tamper detection
 
-import crypto from "crypto";
-import fs from "fs/promises";
-import path from "path";
+import * as crypto from "crypto";
+import * as fs from "fs/promises";
+import * as path from "path";
 
 // Export SecurityLevel enum used by dependent modules
 export enum SecurityLevel {

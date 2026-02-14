@@ -1,7 +1,7 @@
 // AES-256-GCM Encryption System
 // SECURITY FIX (BLOCK-002): Replaced deprecated createCipher/createDecipher with createCipheriv/createDecipheriv
 // Using proper IV generation with crypto.randomBytes(16) for AES-256-GCM
-import crypto from "crypto";
+import * as crypto from "crypto";
 import { CRYPTO_CONFIG, CryptoError, generateSecureRandom } from "./crypto-utils";
 
 export interface EncryptedData {

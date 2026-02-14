@@ -1,5 +1,5 @@
 // BMAD Crypto Utilities - Core encryption configuration and utilities
-import crypto from "crypto";
+import * as crypto from "crypto";
 
 export const CRYPTO_CONFIG = {
   algorithm: "aes-256-gcm",
