@@ -224,3 +224,7 @@ __pycache__/
 .Python
 venv/
 .venv/
+
+# Backup files - NEVER commit
+team/backups/*.tar
+team/backups/*.tar.gz
