@@ -1,0 +1,183 @@
+# Artifact Metadata Schema
+# Standard metadata block for all BMAD cross-module artifacts
+# Include this at the end of any artifact that may be consumed by other modules
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "bmad://schemas/artifact-metadata/1.0"
+title: "BMAD Artifact Metadata"
+description: "Standard metadata for cross-module artifact linking and traceability"
+
+type: object
+required:
+  - source_workflow
+  - source_module
+  - created_at
+
+properties:
+
+  # Source identification
+  source_workflow:
+    type: string
+    description: "Workflow that created this artifact"
+    examples:
+      - "create-architecture"
+      - "stride-threat-model"
+      - "incident-response-playbook"
+
+  source_module:
+    type: string
+    enum: ["bmm", "bmgd", "bmb", "core", "strategy-team", "cybersec-team", "intel-team", "legal-team"]
+    description: "Module that owns the source workflow"
+
+  source_agent:
+    type: string
+    description: "Agent that executed the workflow"
+    examples:
+      - "architect"
+      - "security-architect"
+      - "counsel"
+
+  # Timing
+  created_at:
+    type: string
+    format: date-time
+    description: "When artifact was created"
+
+  updated_at:
+    type: string
+    format: date-time
+    description: "When artifact was last modified"
+
+  expires_at:
+    type: string
+    format: date-time
+    description: "When artifact should be reviewed/refreshed (optional)"
+
+  # Project context
+  project_id:
+    type: string
+    description: "Project identifier from registry"
+
+  project_phase:
+    type: string
+    enum: ["discovery", "planning", "solutioning", "implementation", "release"]
+    description: "Project phase when artifact was created"
+
+  # Versioning
+  version:
+    type: string
+    default: "1.0"
+    description: "Artifact version"
+
+  supersedes:
+    type: string
+    description: "Path to previous version (if this is an update)"
+
+  # Traceability links
+  links:
+    type: array
+    description: "Relationships to other artifacts"
+    items:
+      type: object
+      required:
+        - relation
+        - target_artifact
+      properties:
+        relation:
+          type: string
+          enum:
+            - "derives_from"      # This artifact is derived from target
+            - "implements"        # This artifact implements target
+            - "validates"         # This artifact validates target
+            - "supersedes"        # This artifact replaces target
+            - "relates_to"        # General relationship
+            - "requires"          # This artifact requires target
+            - "informs"           # This artifact provides input to target
+            - "extracted_from"    # This artifact was extracted from target
+        target_artifact:
+          type: string
+          description: "Path or ID of related artifact"
+        description:
+          type: string
+          description: "Optional description of the relationship"
+
+  # Tags for discovery
+  tags:
+    type: array
+    items:
+      type: string
+    description: "Tags for artifact categorization and search"
+    examples:
+      - ["security", "architecture", "review"]
+      - ["compliance", "gdpr", "requirements"]
+      - ["incident", "iocs", "attribution"]
+
+  # Quality indicators
+  status:
+    type: string
+    enum: ["draft", "review", "approved", "superseded", "archived"]
+    default: "draft"
+
+  confidence:
+    type: string
+    enum: ["High", "Medium", "Low"]
+    description: "Confidence level in artifact accuracy (for intel/analysis)"
+
+  approvals:
+    type: array
+    description: "Signoffs collected for this artifact"
+    items:
+      type: object
+      properties:
+        role:
+          type: string
+        agent:
+          type: string
+        date:
+          type: string
+          format: date-time
+        comment:
+          type: string
+
+  # Orchestration context
+  orchestration:
+    type: object
+    description: "If created as part of team orchestration"
+    properties:
+      template:
+        type: string
+        description: "Orchestration template used"
+        examples:
+          - "secure-software"
+          - "incident-response"
+          - "compliance-first"
+      phase:
+        type: string
+        description: "Orchestration phase"
+      handoff_to:
+        type: array
+        items:
+          type: string
+        description: "Modules/workflows this artifact is handed off to"
+
+# Example usage (to include at end of any YAML artifact):
+#
+# _bmad_metadata:
+#   source_workflow: "stride-threat-model"
+#   source_module: "cybersec-team"
+#   source_agent: "threat-analyst"
+#   created_at: "2025-01-11T14:30:00Z"
+#   project_id: "proj-001"
+#   project_phase: "solutioning"
+#   version: "1.0"
+#   links:
+#     - relation: "derives_from"
+#       target_artifact: "architecture.md"
+#     - relation: "informs"
+#       target_artifact: "epics-and-stories.md"
+#   tags: ["security", "threats", "stride"]
+#   status: "approved"
+#   approvals:
+#     - role: "security-architect"
+#       agent: "security-architect"
+#       date: "2025-01-11T15:00:00Z"

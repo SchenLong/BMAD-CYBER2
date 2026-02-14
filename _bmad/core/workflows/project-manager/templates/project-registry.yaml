@@ -1,0 +1,31 @@
+# BMAD Project Registry
+# Local to workspace - tracks all projects managed by Abdul
+# Location: {output_folder}/project-registry.yaml
+
+registry_version: "1.0"
+last_updated: "{date}"
+active_project: null  # ID of currently selected project
+
+projects: []
+# Each project entry follows this structure:
+# - id: "unique-slug"
+#   name: "Project Display Name"
+#   description: "Brief project description"
+#   path: "/absolute/path/to/project"
+#   type: "greenfield"  # greenfield | brownfield
+#   modules_used:
+#     - bmm
+#     - cybersec-team
+#   llm_provider: "claude"  # claude | ollama | vllm | lmstudio | llamacpp
+#   status: "new"  # new | planning | development | maintenance | archived
+#   current_phase: "discovery"  # discovery | planning | solutioning | implementation | review
+#   created: "2026-01-11T10:00:00Z"
+#   last_accessed: "2026-01-11T10:00:00Z"
+#   folder_structure:
+#     planning: "_bmad-output/planning-artifacts"
+#     implementation: "_bmad-output/implementation-artifacts"
+#     docs: "docs"
+#   workflow_status_files:
+#     bmm: "_bmad-output/planning-artifacts/bmm-workflow-status.yaml"
+#     bmgd: null
+#   notes: "Optional notes about the project"

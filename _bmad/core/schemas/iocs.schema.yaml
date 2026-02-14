@@ -1,0 +1,211 @@
+# Indicators of Compromise (IOC) Schema
+# Standard format for intel/cybersec handoff
+# Used by: Cybersec-Team ↔ Intel-Team
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "bmad://schemas/iocs/1.0"
+title: "BMAD Indicators of Compromise"
+description: "Standard IOC format for cross-module threat intelligence exchange"
+
+type: object
+required:
+  - metadata
+  - indicators
+
+properties:
+
+  metadata:
+    type: object
+    required:
+      - incident_id
+      - created_by
+      - created_at
+    properties:
+      incident_id:
+        type: string
+        description: "Related incident identifier"
+      created_by:
+        type: string
+        description: "Agent that extracted these IOCs"
+      created_at:
+        type: string
+        format: date-time
+      classification:
+        type: string
+        enum: ["TLP:CLEAR", "TLP:GREEN", "TLP:AMBER", "TLP:AMBER+STRICT", "TLP:RED"]
+        default: "TLP:AMBER"
+        description: "Traffic Light Protocol classification"
+      source_type:
+        type: string
+        enum: ["incident", "threat_hunt", "external_feed", "osint", "malware_analysis"]
+      confidence_baseline:
+        type: string
+        enum: ["High", "Medium", "Low"]
+        description: "Default confidence for indicators without explicit confidence"
+
+  indicators:
+    type: array
+    items:
+      type: object
+      required:
+        - type
+        - value
+      properties:
+        type:
+          type: string
+          enum:
+            - "ip"
+            - "ipv6"
+            - "domain"
+            - "url"
+            - "email"
+            - "hash_md5"
+            - "hash_sha1"
+            - "hash_sha256"
+            - "file_path"
+            - "file_name"
+            - "registry_key"
+            - "mutex"
+            - "user_agent"
+            - "certificate_hash"
+            - "asn"
+            - "cidr"
+        value:
+          type: string
+          description: "The indicator value"
+        first_seen:
+          type: string
+          format: date-time
+        last_seen:
+          type: string
+          format: date-time
+        confidence:
+          type: string
+          enum: ["High", "Medium", "Low"]
+          default: "Medium"
+        context:
+          type: string
+          description: "Context where IOC was observed"
+        tags:
+          type: array
+          items:
+            type: string
+          description: "Classification tags (e.g., 'c2', 'exfil', 'persistence')"
+        mitre_techniques:
+          type: array
+          items:
+            type: string
+            pattern: "^T[0-9]{4}(\\.[0-9]{3})?$"
+          description: "Related MITRE ATT&CK techniques"
+        source:
+          type: string
+          description: "Workflow/agent that discovered this IOC"
+        related_iocs:
+          type: array
+          items:
+            type: string
+          description: "References to related IOCs by value or ID"
+        defanged:
+          type: boolean
+          default: false
+          description: "Whether the value has been defanged for safe handling"
+        notes:
+          type: string
+
+  enrichment:
+    type: object
+    description: "Enrichment data from external sources"
+    properties:
+      whois:
+        type: array
+        items:
+          type: object
+          properties:
+            indicator:
+              type: string
+            registrar:
+              type: string
+            creation_date:
+              type: string
+            registrant_org:
+              type: string
+      geolocation:
+        type: array
+        items:
+          type: object
+          properties:
+            indicator:
+              type: string
+            country:
+              type: string
+            city:
+              type: string
+            asn:
+              type: string
+            org:
+              type: string
+      reputation:
+        type: array
+        items:
+          type: object
+          properties:
+            indicator:
+              type: string
+            source:
+              type: string
+            score:
+              type: number
+            categories:
+              type: array
+              items:
+                type: string
+
+  summary:
+    type: object
+    properties:
+      total_count:
+        type: integer
+      by_type:
+        type: object
+        additionalProperties:
+          type: integer
+      by_confidence:
+        type: object
+        properties:
+          high:
+            type: integer
+          medium:
+            type: integer
+          low:
+            type: integer
+      unique_ips:
+        type: integer
+      unique_domains:
+        type: integer
+      unique_hashes:
+        type: integer
+
+  _bmad_metadata:
+    type: object
+    properties:
+      source_workflow:
+        type: string
+      source_module:
+        type: string
+      source_agent:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      project_id:
+        type: string
+      links:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+              enum: ["derives_from", "extracted_from", "relates_to"]
+            target_artifact:
+              type: string

@@ -1,0 +1,308 @@
+# Cross-Module Workflow Chains
+# Pre-defined workflow sequences for complex multi-module scenarios
+# Enables seamless escalation and coordination between workflows
+
+name: workflow-chains
+version: "1.0"
+description: "Predefined workflow chains for cross-module coordination"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WORKFLOW CHAIN DEFINITIONS
+# ═══════════════════════════════════════════════════════════════════════════
+
+chains:
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # CRISIS TO LITIGATION CHAIN
+  # When a crisis escalates to legal dispute
+  # ─────────────────────────────────────────────────────────────────────────
+  crisis-to-litigation:
+    name: "Crisis to Litigation Escalation"
+    description: "When crisis response identifies litigation risk, seamlessly transition to dispute strategy"
+
+    trigger_conditions:
+      - "Litigation threat identified during crisis"
+      - "Regulatory enforcement action initiated"
+      - "Third-party claims arising from crisis"
+
+    workflow_sequence:
+      - step: 1
+        workflow: "strategy-team/crisis-response-planning"
+        description: "Initial crisis response and communications"
+        outputs_to_next:
+          - "crisis-assessment.md"
+          - "stakeholder-communications.md"
+          - "timeline.md"
+        handoff_point: "Step 6 - Recovery Path OR when litigation trigger identified"
+
+      - step: 2
+        workflow: "legal-team/legal-matter-intake"
+        description: "Formal legal matter intake with crisis context"
+        inputs_from_previous:
+          - "crisis-assessment.md → matter context"
+          - "timeline.md → evidence timeline"
+        cross_module_step: "step-06b-cross-module-assessment"
+        outputs_to_next:
+          - "matter-brief.md"
+          - "routing-recommendation.md"
+
+      - step: 3
+        workflow: "legal-team/dispute-strategy"
+        description: "Full dispute strategy development"
+        inputs_from_previous:
+          - "matter-brief.md"
+          - "crisis timeline and evidence"
+        party_mode_preset: "litigation-war-room"
+
+    coordination:
+      shared_timeline: true
+      shared_artifact_folder: "{output_folder}/crisis-litigation-{incident_id}/"
+      sync_cadence: "As needed during active phase"
+
+    escalation_triggers:
+      - condition: "Formal legal demand received"
+        action: "Immediate transition to dispute-strategy"
+      - condition: "Regulatory investigation opened"
+        action: "Parallel legal and crisis tracks"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # INCIDENT TO CRISIS TO NOTIFICATION CHAIN
+  # Security incident requiring public notification
+  # ─────────────────────────────────────────────────────────────────────────
+  incident-to-crisis-notification:
+    name: "Incident Response with Crisis and Notification"
+    description: "Full coordination from technical incident through crisis communications and regulatory notification"
+
+    trigger_conditions:
+      - "Data breach affecting personal data"
+      - "Security incident requiring public disclosure"
+      - "Regulatory notification required (GDPR, HIPAA, etc.)"
+
+    workflow_sequence:
+      - step: 1
+        workflow: "cybersec-team/incident-response-playbook"
+        mode: "B - Guided Execution"
+        description: "Technical incident containment and investigation"
+        cross_module_step: "step-03b-cross-module"
+        outputs_to_next:
+          - "incident-report.md"
+          - "iocs.yaml"
+          - "data-impact-assessment.md"
+        handoff_point: "Data impact confirmed OR notification threshold met"
+
+      - step: 2
+        workflow: "strategy-team/crisis-response-planning"
+        parallel_with: "step 1 (continues)"
+        description: "Crisis communications planning"
+        inputs_from_previous:
+          - "incident scope from step 1"
+          - "timeline from step 1"
+        cross_module_step: "step-02a-cross-module"
+        party_mode_preset: "crisis-response-party"
+        outputs_to_next:
+          - "communications-plan.md"
+          - "stakeholder-notifications.md"
+
+      - step: 3
+        workflow: "legal-team/legal-matter-intake"
+        parallel_with: "step 2"
+        description: "Regulatory notification assessment"
+        inputs_from_previous:
+          - "data-impact-assessment.md"
+          - "timeline.md"
+        outputs_to_next:
+          - "notification-requirements.md"
+          - "notification-drafts.md"
+
+    coordination:
+      shared_timeline: "{output_folder}/incident-{incident_id}/timeline.md"
+      war_room_log: "{output_folder}/incident-{incident_id}/war-room-log.md"
+      sync_cadence: "Every 2-4 hours during active incident"
+
+    timeline_constraints:
+      - regulation: "GDPR Art.33"
+        deadline: "72 hours from awareness"
+        owner: "Legal (Covenant)"
+      - regulation: "HIPAA Breach"
+        deadline: "60 days"
+        owner: "Legal (Covenant)"
+      - regulation: "PCI-DSS"
+        deadline: "Immediate to card brands"
+        owner: "Cybersec (Sentinel)"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # STRATEGIC DECISION TO IMPLEMENTATION CHAIN
+  # Major decision through to secure implementation
+  # ─────────────────────────────────────────────────────────────────────────
+  strategic-decision-to-implementation:
+    name: "Strategic Decision to Secure Implementation"
+    description: "From strategic decision workshop through secure software development"
+
+    trigger_conditions:
+      - "Major product or technology decision"
+      - "Build vs buy decision with implementation"
+      - "Strategic initiative requiring development"
+
+    workflow_sequence:
+      - step: 1
+        workflow: "strategy-team/strategic-decision-workshop"
+        description: "Multi-perspective strategic decision making"
+        cross_module_step: "step-05b-risk-validation"
+        party_mode_preset: "strategic-decision-validated"
+        outputs_to_next:
+          - "decision-brief.md"
+          - "implementation-roadmap.md"
+
+      - step: 2
+        workflow: "core/team-orchestration/secure-software"
+        description: "Secure software development orchestration"
+        inputs_from_previous:
+          - "decision-brief.md → product requirements"
+          - "risk-validation.md → security requirements"
+        modules_involved:
+          - bmm
+          - cybersec-team
+          - legal-team
+
+    coordination:
+      phase_gate: "pre-architecture"
+      shared_requirements: true
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # NEGOTIATION TO CONTRACT CHAIN
+  # M&A or major negotiation through contract execution
+  # ─────────────────────────────────────────────────────────────────────────
+  negotiation-to-contract:
+    name: "Negotiation Intelligence to Contract Execution"
+    description: "From negotiation preparation through contract review and execution"
+
+    trigger_conditions:
+      - "M&A negotiation"
+      - "Major partnership negotiation"
+      - "Strategic vendor selection"
+
+    workflow_sequence:
+      - step: 1
+        workflow: "strategy-team/stakeholder-negotiation-prep"
+        description: "Negotiation strategy and intelligence gathering"
+        party_mode_preset: "negotiation-intelligence-party"
+        outputs_to_next:
+          - "negotiation-strategy.md"
+          - "counterpart-profile.md"
+          - "batna-analysis.md"
+
+      - step: 2
+        workflow: "legal-team/contract-review"
+        description: "Contract review with negotiation context"
+        inputs_from_previous:
+          - "negotiation-strategy.md → negotiation points"
+          - "counterpart-profile.md → risk assessment"
+        cross_module_step: "step-05b-compliance-validation"
+        party_mode_preset: "contract-review-party"
+        outputs_to_next:
+          - "contract-review.md"
+          - "negotiation-points.md"
+
+      - step: 3
+        workflow: "legal-team/contract-drafting"
+        description: "Contract modifications and finalization"
+        inputs_from_previous:
+          - "negotiation-points.md"
+          - "contract-review.md"
+
+    coordination:
+      sync_with_negotiation: true
+      legal_approval_required: true
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # THREAT INTELLIGENCE TO DEFENSE CHAIN
+  # Intelligence gathering through defensive implementation
+  # ─────────────────────────────────────────────────────────────────────────
+  threat-intel-to-defense:
+    name: "Threat Intelligence to Defense Implementation"
+    description: "From threat ecosystem analysis through security controls implementation"
+
+    trigger_conditions:
+      - "Emerging threat to organization"
+      - "Industry-specific threat campaign"
+      - "Post-incident defense enhancement"
+
+    workflow_sequence:
+      - step: 1
+        workflow: "intel-team/threat-constellation"
+        description: "Threat ecosystem mapping"
+        party_mode_preset: "threat-ecosystem-party"
+        outputs_to_next:
+          - "threat-constellation.yaml"
+          - "threat-actor-profiles.md"
+
+      - step: 2
+        workflow: "cybersec-team/threat-modeling"
+        description: "Threat modeling against organizational assets"
+        inputs_from_previous:
+          - "threat-constellation.yaml → threat context"
+          - "threat-actor-profiles.md → TTPs"
+        outputs_to_next:
+          - "threat-model.md"
+          - "mitigations.md"
+
+      - step: 3
+        workflow: "cybersec-team/security-architecture-review"
+        description: "Security architecture review and enhancement"
+        inputs_from_previous:
+          - "threat-model.md"
+          - "mitigations.md → required controls"
+
+    coordination:
+      threat_intelligence_feed: true
+      continuous_monitoring: true
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CHAIN EXECUTION PROTOCOL
+# ═══════════════════════════════════════════════════════════════════════════
+
+execution_protocol:
+
+  initialization:
+    - "Identify chain trigger condition"
+    - "Load chain definition"
+    - "Create shared artifact folder structure"
+    - "Initialize shared timeline"
+    - "Notify all involved agents"
+
+  step_transition:
+    - "Complete current step outputs"
+    - "Validate outputs meet next step requirements"
+    - "Hand off context to next workflow"
+    - "Update chain status in project registry"
+    - "Notify next workflow lead"
+
+  parallel_coordination:
+    - "Establish war room log for real-time updates"
+    - "Define sync cadence"
+    - "Create shared decision log"
+    - "Track timeline constraints across all parallel workflows"
+
+  completion:
+    - "All workflow steps completed"
+    - "Cross-module outputs consolidated"
+    - "Lessons learned captured"
+    - "Chain archived with full audit trail"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CHAIN INDEX FOR ABDUL
+# ═══════════════════════════════════════════════════════════════════════════
+
+chain_index:
+  by_trigger:
+    data_breach: "incident-to-crisis-notification"
+    litigation_risk: "crisis-to-litigation"
+    major_decision: "strategic-decision-to-implementation"
+    negotiation: "negotiation-to-contract"
+    threat_emerging: "threat-intel-to-defense"
+
+  by_modules:
+    strategy_legal: ["crisis-to-litigation", "negotiation-to-contract"]
+    cybersec_strategy_legal: ["incident-to-crisis-notification"]
+    strategy_bmm_cybersec: ["strategic-decision-to-implementation"]
+    intel_cybersec: ["threat-intel-to-defense"]
