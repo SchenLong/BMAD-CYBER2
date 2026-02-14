@@ -84,8 +84,8 @@ export function detectIDOR(
     const prevIdMatch = prevPath?.match(/\/(\d+)(?:\/|$)/);
 
     if (currentIdMatch && prevIdMatch) {
-      const currentId = parseInt(currentIdMatch[1] ?? '0', 10);
-      const prevId = parseInt(prevIdMatch[1] ?? '0', 10);
+      const currentId = parseInt(currentIdMatch[1] || '0', 10);
+      const prevId = parseInt(prevIdMatch[1] || '0', 10);
 
       // Check for sequential pattern (difference of 1)
       if (Math.abs(currentId - prevId) === 1) {
@@ -108,8 +108,8 @@ export function detectIDOR(
       // Check if UUIDs are similar (only differ by a few hex characters)
       let diffCount = 0;
       for (let i = 0; i < currentUuid.length; i++) {
-        const currentChar = currentUuid[i];
-        const prevChar = prevUuid[i];
+        const currentChar = currentUuid[i] ?? '';
+        const prevChar = prevUuid[i] ?? '';
         if (currentChar && currentChar !== prevChar && currentChar !== '-') {
           diffCount++;
         }

@@ -109,6 +109,7 @@ function parseYaml(content: string): any {
     const line = lines[i];
     if (!line) continue;
     const trimmed = line.replace(/\s+$/, ''); // Right trim only
+    if (!trimmed) continue;
 
     // Skip empty lines and comments
     if (!trimmed || trimmed.trim().startsWith('#')) continue;
@@ -136,7 +137,7 @@ function parseYaml(content: string): any {
     let parent = currentStack.obj;
 
     // If the parent key points to an object, use that object
-    if (currentStack.key && parent[currentStack.key] && typeof parent[currentStack.key] === 'object' && !Array.isArray(parent[currentStack.key])) {
+    if (currentStack.key && parent && parent[currentStack.key] && typeof parent[currentStack.key] === 'object' && !Array.isArray(parent[currentStack.key])) {
       parent = parent[currentStack.key];
     }
 
@@ -208,13 +209,15 @@ function parseYaml(content: string): any {
         if (nextIndent !== -1 && nextIndent < multilineIndent && nextLine.trim()) {
           break;
         }
-        if (nextLine.trim()) {
+        if (nextLine && nextLine.trim()) {
           multilineValue += `${nextLine.trim()}\n`;
         }
         j++;
       }
       i = j - 1;
-      parent[key] = multilineValue.trim();
+      if (parent) {
+        parent[key] = multilineValue.trim();
+      }
       continue;
     }
 
