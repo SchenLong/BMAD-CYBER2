@@ -13,7 +13,7 @@
  * console.log(`Installing from ${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}`);
  */
 export const CONFIG = {
-  VERSION: '4.0.0',
+  VERSION: '4.2.1',
   GITHUB_OWNER: 'SchenLong',
   GITHUB_REPO: 'BMAD-CYBERSEC',
   MIN_NODE_VERSION: 20,
