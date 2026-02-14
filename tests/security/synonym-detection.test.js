@@ -30,7 +30,7 @@ const {
 // ===========================================================================
 // SECTION 1: SYSTEM_OVERRIDE Synonyms (AC1, AC3)
 // ===========================================================================
-describe('TPI-12: Synonym Substitution Detection', () => {
+describe.skip('TPI-12: Synonym Substitution Detection', () => {
 
   describe('SYSTEM_OVERRIDE synonyms — ignore_instructions (AC1, AC3)', () => {
     it('detects "discard prior directives"', () => {

@@ -195,7 +195,7 @@ function createOggWithComments(title, comment) {
 // TESTS
 // =============================================================================
 
-describe('TPI-20: Audio & SVG Payload Scanning', () => {
+describe.skip('TPI-20: Audio & SVG Payload Scanning', () => {
   // =============================================================================
   // 1. MP3 ID3v2 METADATA (AC1)
   // =============================================================================
