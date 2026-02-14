@@ -225,6 +225,16 @@ __pycache__/
 venv/
 .venv/
 
+# ===================
+# Team - Internal Files
+# ===================
+# Internal team documentation and working files
+team/audit-report-*.md
+team/ci-test-summary.md
+team/lessonslearned.md
+team/remaining-errors-summary.md
+team/test-fixes-plan.md
+
 # Backup files - NEVER commit
 team/backups/*.tar
 team/backups/*.tar.gz
