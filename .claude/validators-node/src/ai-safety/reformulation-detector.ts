@@ -335,7 +335,7 @@ function detectPigLatin(text: string): string | null {
     // Consonant-start words: cluster moved to end before "ay"
     const match = w.match(/^(.+?)([bcdfghjklmnpqrstvwxyz]+)ay$/i);
     if (!match) return w;
-    return match[2] + match[1];
+    return (match[2] ?? '') + (match[1] ?? '');
   });
   return decoded.join(' ');
 }

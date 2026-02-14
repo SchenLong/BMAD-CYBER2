@@ -375,7 +375,7 @@ export class PermissionService {
     }
   }
 
-  private evaluateConditionConstraint(constraint: PermissionConstraint, _context: PermissionContext): boolean {
+  private evaluateConditionConstraint(_constraint: PermissionConstraint, _context: PermissionContext): boolean {
     // Custom condition evaluation - can be extended based on needs
     // For now, pass through
     return true;
@@ -403,9 +403,9 @@ export class PermissionService {
       resource,
       action,
       allowed,
-      denialReason,
-      sessionId: context.sessionId,
-      ipAddress: context.ipAddress
+      ...(denialReason !== undefined && { denialReason }),
+      ...(context.sessionId !== undefined && { sessionId: context.sessionId }),
+      ...(context.ipAddress !== undefined && { ipAddress: context.ipAddress })
     };
 
     this.auditLog.push(entry);

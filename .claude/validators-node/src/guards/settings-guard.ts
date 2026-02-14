@@ -130,7 +130,6 @@ export function main(): void {
     if (!input) {
       // No input — allow (fail-open for missing stdin only)
       process.exit(EXIT_CODES.ALLOW);
-      return;
     }
 
     // Extract file_path from Write or Edit tool input
@@ -140,7 +139,6 @@ export function main(): void {
     if (!filePath) {
       // No file path in input — not a Write/Edit or malformed, allow
       process.exit(EXIT_CODES.ALLOW);
-      return;
     }
 
     const exitCode = validateSettingsGuard(filePath);

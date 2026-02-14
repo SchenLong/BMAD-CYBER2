@@ -161,13 +161,13 @@ export function expandXmlEntities(content: string): string {
   const entityRegex = /<!ENTITY\s+(\w+)\s+"([^"]*)"\s*>/gi;
   let entityMatch: RegExpExecArray | null;
   while ((entityMatch = entityRegex.exec(content)) !== null) {
-    entities.set(entityMatch[1], entityMatch[2]);
+    entities.set(entityMatch[1] ?? '', entityMatch[2] ?? '');
   }
 
   // Also handle single-quoted entities
   const entityRegex2 = /<!ENTITY\s+(\w+)\s+'([^']*)'\s*>/gi;
   while ((entityMatch = entityRegex2.exec(content)) !== null) {
-    entities.set(entityMatch[1], entityMatch[2]);
+    entities.set(entityMatch[1] ?? '', entityMatch[2] ?? '');
   }
 
   if (entities.size === 0) return content;
@@ -661,10 +661,10 @@ export function extractId3v2Text(buffer: Buffer): Array<{ field: string; value: 
 
   // Calculate tag size (synchsafe integer)
   const tagSize =
-    ((buffer[6] & 0x7F) << 21) |
-    ((buffer[7] & 0x7F) << 14) |
-    ((buffer[8] & 0x7F) << 7) |
-    (buffer[9] & 0x7F);
+    (((buffer[6] ?? 0) & 0x7F) << 21) |
+    (((buffer[7] ?? 0) & 0x7F) << 14) |
+    (((buffer[8] ?? 0) & 0x7F) << 7) |
+    (((buffer[9] ?? 0) & 0x7F));
 
   const tagEnd = Math.min(10 + tagSize, buffer.length);
   let offset = 10;
@@ -700,7 +700,10 @@ export function extractId3v2Text(buffer: Buffer): Array<{ field: string; value: 
 
       text = text.replace(/\0/g, '').trim();
       if (text.length > 0) {
-        results.push({ field: textFrames[frameId], value: text });
+        const fieldName = textFrames[frameId];
+        if (fieldName) {
+          results.push({ field: fieldName, value: text });
+        }
       }
     }
 
@@ -753,7 +756,10 @@ export function extractWavInfoText(buffer: Buffer): Array<{ field: string; value
           if (subId in infoChunkIds) {
             const text = buffer.toString('utf8', infoOffset + 8, subDataEnd).replace(/\0/g, '').trim();
             if (text.length > 0) {
-              results.push({ field: infoChunkIds[subId], value: text });
+              const fieldName = infoChunkIds[subId];
+              if (fieldName) {
+                results.push({ field: fieldName, value: text });
+              }
             }
           }
 
@@ -1303,7 +1309,6 @@ export function main(): void {
     if (!filePath || typeof filePath !== 'string') {
       // No file path — skip (not a Read operation we can scan)
       process.exit(EXIT_CODES.ALLOW);
-      return;
     }
 
     const { exitCode, findings, severity } = scanMediaFile(filePath);

@@ -81,7 +81,7 @@ export function detectIDOR(
 
     // Extract numeric IDs from paths
     const currentIdMatch = currentPath.match(/\/(\d+)(?:\/|$)/);
-    const prevIdMatch = prevPath.match(/\/(\d+)(?:\/|$)/);
+    const prevIdMatch = prevPath?.match(/\/(\d+)(?:\/|$)/);
 
     if (currentIdMatch && prevIdMatch) {
       const currentId = parseInt(currentIdMatch[1], 10);
@@ -99,7 +99,7 @@ export function detectIDOR(
 
     // A01-102: UUID manipulation detection
     const currentUuidMatch = currentPath.match(/\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:\/|$)/i);
-    const prevUuidMatch = prevPath.match(/\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:\/|$)/i);
+    const prevUuidMatch = prevPath?.match(/\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:\/|$)/i);
 
     if (currentUuidMatch && prevUuidMatch) {
       const currentUuid = currentUuidMatch[1];
@@ -108,7 +108,7 @@ export function detectIDOR(
       // Check if UUIDs are similar (only differ by a few hex characters)
       let diffCount = 0;
       for (let i = 0; i < currentUuid.length; i++) {
-        if (currentUuid[i] !== prevUuid[i] && currentUuid[i] !== '-') {
+        if (currentUuid[i] !== prevUuid?.[i] && currentUuid[i] !== '-') {
           diffCount++;
         }
       }
@@ -123,11 +123,11 @@ export function detectIDOR(
 
       // Check for incremented hex pattern
       const currentHex = currentUuid.replace(/-/g, '').slice(-8);
-      const prevHex = prevUuid.replace(/-/g, '').slice(-8);
+      const prevHex = (prevUuid ?? '').replace(/-/g, '').slice(-8);
       const currentNum = parseInt(currentHex, 16);
       const prevNum = parseInt(prevHex, 16);
 
-      if (Math.abs(currentNum - prevNum) <= 100) {
+      if (!isNaN(currentNum) && !isNaN(prevNum) && Math.abs(currentNum - prevNum) <= 100) {
         return {
           testId: 'A01-102',
           subtype: 'UUID_MANIPULATION',
