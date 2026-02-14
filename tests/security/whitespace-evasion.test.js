@@ -28,7 +28,7 @@ const {
 // ===========================================================================
 // SECTION 1: Evasion Whitespace Normalization (AC1)
 // ===========================================================================
-describe.skip('TPI-17: Whitespace & Formatting Evasion Detection', () => {
+describe('TPI-17: Whitespace & Formatting Evasion Detection', () => {
 
   describe('Evasion whitespace normalization (AC1)', () => {
     it('normalizes vertical tab to space', () => {

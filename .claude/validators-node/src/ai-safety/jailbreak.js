@@ -257,7 +257,7 @@ const TRUST_EXPLOITATION_PATTERNS = [
     },
     {
         name: 'boundary_erosion',
-        pattern: /(?:you\s+already\s+(?:showed|did)|so\s+therefore|you\s+can\s+also).*?(?:is\s+no\s+difference|exploitation)/i,
+        pattern: /(?:you\s+already\s+(?:showed|did)\s+\w+.*?so\s+therefore|if\s+you\s+can\s+\w+.*?you\s+can\s+also)/i,
         severity: 'INFO',
         weight: 3,
         description: 'Boundary erosion attempt',
@@ -278,7 +278,7 @@ const TRUST_EXPLOITATION_PATTERNS = [
     },
     {
         name: 'guilt_induction',
-        pattern: /(?:i'?m\s+disappointed|you'?re\s+letting\s+me\s+down|(?:i\s+)?trusted\s+you|not\s+helping)/i,
+        pattern: /(?:i'?m\s+disappointed.*?(?:you|that)\s+you\s+won'?t|you'?re\s+letting\s+me\s+down|i\s+trusted\s+you.*?but)/i,
         severity: 'INFO',
         weight: 2,
         description: 'Guilt induction attempt',
@@ -312,7 +312,7 @@ const EMOTIONAL_MANIPULATION_PATTERNS = [
     },
     {
         name: 'moral_obligation',
-        pattern: /(?:it\s+(?:would\s+be\s+)?unethical\s+(?:not\s+to\s+help|to\s+refuse)|refusing|not\s+helping)\s+(?:would\s+)?causes?\s+(?:more\s+harm|damage|hurt)/i,
+        pattern: /(?:it\s+(?:would\s+be\s+)?unethical\s+(?:not\s+to\s+help|to\s+refuse)|not\s+helping|refusing)/i,
         severity: 'INFO',
         weight: 2,
         description: 'Moral obligation manipulation',

@@ -302,7 +302,7 @@ const TRUST_EXPLOITATION_PATTERNS: JailbreakPattern[] = [
   },
   {
     name: 'boundary_erosion',
-    pattern: /(?:you\s+already\s+(?:showed|did)\s+[\w\s]+|(?:if|since)\s+you\s+can\s+\w+).*?\b(?:so\s+(?:therefore\s+)?(?:is\s+no\s+difference|you\s+can\s+also)|you\s+can\s+also)/i,
+    pattern: /(?:you\s+already\s+(?:showed|did)\s+\w+.*?so\s+therefore|if\s+you\s+can\s+\w+.*?you\s+can\s+also)/i,
     severity: 'INFO',
     weight: 3,
     description: 'Boundary erosion attempt',
@@ -323,7 +323,7 @@ const TRUST_EXPLOITATION_PATTERNS: JailbreakPattern[] = [
   },
   {
     name: 'guilt_induction',
-    pattern: /(?:i'?m\s+disappointed|you'?re\s+letting\s+me\s+down|(?:i\s+)?trusted\s+you).*\b(?:refuse|won'?t|won'?t\s+help)/i,
+    pattern: /(?:i'?m\s+disappointed.*?(?:you|that)\s+you\s+won'?t|you'?re\s+letting\s+me\s+down|i\s+trusted\s+you.*?but)/i,
     severity: 'INFO',
     weight: 2,
     description: 'Guilt induction attempt',
@@ -358,7 +358,7 @@ const EMOTIONAL_MANIPULATION_PATTERNS: JailbreakPattern[] = [
   },
   {
     name: 'moral_obligation',
-    pattern: /(?:it\s+(?:would\s+be\s+)?unethical\s+(?:not\s+to\s+help|to\s+refuse)|refusing|not\s+helping)\s+(?:would\s+)?causes?\s+(?:more\s+harm|damage|hurt)/i,
+    pattern: /(?:it\s+(?:would\s+be\s+)?unethical\s+(?:not\s+to\s+help|to\s+refuse)|not\s+helping|refusing)/i,
     severity: 'INFO',
     weight: 2,
     description: 'Moral obligation manipulation',
