@@ -75,6 +75,7 @@ Docs/06-reference/
 !Docs/04-operations/security/ARCHITECTURE.md
 !Docs/04-operations/security/THREAT-MODEL-TEMPLATE.md
 !Docs/04-operations/security/SECRET-MANAGEMENT.md
+!Docs/04-operations/security/RISK-REGISTER.md
 !Docs/04-operations/security/owasp-controls.yaml
 !Docs/03-developer-docs/RBAC-MIGRATION-MATRIX.md
 !Docs/03-developer-docs/ADR-007-help-system-design.md
