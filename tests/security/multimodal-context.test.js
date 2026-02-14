@@ -46,7 +46,7 @@ beforeEach(() => {
   }
 });
 
-describe.skip('TPI-21: Multimodal Context Warnings', () => {
+describe('TPI-21: Multimodal Context Warnings', () => {
   // =============================================================================
   // 1. UNTRUSTED SOURCE DETECTION (AC1)
   // =============================================================================

@@ -33,7 +33,7 @@ const {
 // ===========================================================================
 // SECTION 1: Closing System Tag Detection (AC1, AC3)
 // ===========================================================================
-describe.skip('TPI-14: Boundary Manipulation Detection', () => {
+describe('TPI-14: Boundary Manipulation Detection', () => {
 
   describe('Closing system tag detection (AC1, AC3)', () => {
     it('detects </system> closing tag', () => {

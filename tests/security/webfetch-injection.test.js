@@ -38,7 +38,7 @@ const {
 // ===========================================================================
 // SECTION 1: CSS Hidden Content Detection (AC1)
 // ===========================================================================
-describe.skip('TPI-02: WebFetch Injection Scanning', () => {
+describe('TPI-02: WebFetch Injection Scanning', () => {
 
   describe('CSS hidden content detection (AC1)', () => {
     it('detects display:none hidden injection', () => {

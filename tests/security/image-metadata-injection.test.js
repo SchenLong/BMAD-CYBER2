@@ -165,7 +165,7 @@ function createCleanPng() {
 // 1. FILE TYPE DETECTION
 // =============================================================================
 
-describe.skip('TPI-18: Image Metadata Injection Scanning', () => {
+describe('TPI-18: Image Metadata Injection Scanning', () => {
   describe('File type detection', () => {
     it('detects JPEG files as media', () => {
       expect(isMediaFile('/path/to/photo.jpg')).toBe(true);

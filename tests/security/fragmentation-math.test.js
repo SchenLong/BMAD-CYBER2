@@ -34,7 +34,7 @@ const {
 // ===========================================================================
 // SECTION 1: Fragment Buffer — Multi-Turn Detection (AC1, AC2)
 // ===========================================================================
-describe.skip('TPI-13: Payload Fragmentation & Mathematical Encoding', () => {
+describe('TPI-13: Payload Fragmentation & Mathematical Encoding', () => {
 
   const testSessionId = 'test-fragment-session-tpi13';
 

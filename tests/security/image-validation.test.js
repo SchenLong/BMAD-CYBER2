@@ -32,7 +32,7 @@ afterAll(() => {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
 
-describe.skip('TPI-19: Image File Validation & Heuristics', () => {
+describe('TPI-19: Image File Validation & Heuristics', () => {
   // =============================================================================
   // 1. MAGIC NUMBER DETECTION (AC1)
   // =============================================================================

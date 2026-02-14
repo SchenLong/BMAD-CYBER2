@@ -36,7 +36,7 @@ const {
 // ===========================================================================
 // SECTION 1: C-Style Single-Line Comments
 // ===========================================================================
-describe.skip('TPI-09: Code-Format Injection Detection', () => {
+describe('TPI-09: Code-Format Injection Detection', () => {
 
   describe('C-style single-line comments (//) (AC1)', () => {
     it('detects "ignore all previous instructions" in // comment', () => {

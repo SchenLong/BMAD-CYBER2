@@ -39,7 +39,7 @@ function reverseStr(text) {
 // ===========================================================================
 // SECTION 1: ROT13 Detection
 // ===========================================================================
-describe.skip('TPI-10: Character-Level Encoding Detection', () => {
+describe('TPI-10: Character-Level Encoding Detection', () => {
 
   describe('ROT13 detection (AC1, AC2)', () => {
     it('detects ROT13 encoded "ignore all instructions"', () => {
