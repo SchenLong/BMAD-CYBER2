@@ -68,10 +68,20 @@ Docs/07-archive/test-archives/
 # Internal documentation not for public release
 Docs/03-developer-docs/
 Docs/04-operations/
-# Exception - track specific security file
-!Docs/04-operations/security/owasp-controls.yaml
 Docs/05-project-management/
 Docs/06-reference/
+
+# Exception: track required security docs for tests
+!Docs/04-operations/security/ARCHITECTURE.md
+!Docs/04-operations/security/THREAT-MODEL-TEMPLATE.md
+!Docs/04-operations/security/SECRET-MANAGEMENT.md
+!Docs/04-operations/security/owasp-controls.yaml
+!Docs/03-developer-docs/RBAC-MIGRATION-MATRIX.md
+!Docs/03-developer-docs/ADR-007-help-system-design.md
+
+# But ignore these subdirectories in Docs/04-operations/
+Docs/04-operations/security/testing/
+Docs/04-operations/security/audit-reports/
 
 # ===================
 # Docs - Generated Test Output
@@ -237,3 +247,8 @@ team/test-fixes-plan.md
 
 # Backup files - NEVER commit
 team/backups/
+
+# Compiled JS files in validators-node src (generated during build)
+.claude/validators-node/src/**/*.js
+.claude/validators-node/src/**/*.js.map
+.claude/validators-node/src/**/*.d.ts
