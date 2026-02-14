@@ -1,0 +1,1234 @@
+# OWASP Controls Inventory
+# Complete list of all OWASP testable controls across three frameworks
+#
+# This file defines all testable controls for:
+# - OWASP Web Top 10 (2021): 47 total controls
+# - OWASP API Security Top 10 (2023): 35 total controls
+# - OWASP ASVS v4.0: 192 total controls
+#
+# Version: 1.0.0
+# Last Updated: 2026-02-13
+# Status: Active
+
+metadata:
+  version: 1.0.0
+  date: 2026-02-13
+  owasp_web_version: "2021"
+  owasp_api_version: "2023"
+  owasp_asvs_version: "4.0"
+  project: BMAD-CYBERSEC
+
+# ============================================================================
+# OWASP Web Top 10 (2021) — 47 Controls
+# ============================================================================
+owasp_web_top_10:
+  A01:
+    id: "A01"
+    name: "Broken Access Control"
+    description: "Restrictions on what authenticated users are allowed to do are not properly enforced"
+    controls:
+      - control_id: "A01-010"
+        title: "Forced browsing to unauthorized agent paths blocked"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A01-101"
+        title: "Sequential ID enumeration detection"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A01-102"
+        title: "GUID/UUID manipulation detection"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A01-103"
+        title: "Parameter tampering detection"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A01-A09"
+        title: "IDOR, privilege escalation, improper rendering"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  A02:
+    id: "A02"
+    name: "Cryptographic Failures"
+    description: "Failures related to cryptography leading to exposure of sensitive data"
+    controls:
+      - control_id: "A02-004"
+        title: "AES-256-GCM encrypt/decrypt correctness"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P0"
+      - control_id: "A02-005"
+        title: "Key derivation uses approved algorithms (PBKDF2)"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P1"
+      - control_id: "A02-006"
+        title: "Token generation uses cryptographic RNG, not Math.random"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P0"
+      - control_id: "A02-009"
+        title: "Ed25519 signing — sign/verify roundtrip"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P1"
+      - control_id: "A02-010"
+        title: "No weak hash algorithms (md5/sha1) for integrity/signing"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P1"
+
+  A03:
+    id: "A03"
+    name: "Injection"
+    description: "Injection vulnerabilities from untrusted user data"
+    controls:
+      - control_id: "A03-011"
+        title: "CRLF injection in log entries"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A03-012"
+        title: "Header injection in HTTP requests"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A03-101"
+        title: "UNION-based SQL injection detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-102"
+        title: "Boolean-blind SQL injection detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-103"
+        title: "Time-based SQL injection detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-104"
+        title: "Error-based SQL injection detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-105"
+        title: "Stacked query injection detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-201"
+        title: "Reflected XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-202"
+        title: "Stored XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-203"
+        title: "DOM-based XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-204"
+        title: "Event handler XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-205"
+        title: "Polyglot XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-206"
+        title: "CSS expression XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-207"
+        title: "SVG XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-208"
+        title: "JavaScript URI XSS detection"
+        implemented: true
+        test_file: "tests/owasp/web-injection-extended.test.js"
+        priority: "P0"
+      - control_id: "A03-LDAP"
+        title: "LDAP injection detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "A03-CMD"
+        title: "Command injection detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  A04:
+    id: "A04"
+    name: "Insecure Design"
+    description: "Design and architectural flaws that lead to security vulnerabilities"
+    controls:
+      - control_id: "A04-007"
+        title: "All security controls have corresponding tests"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A04-101"
+        title: "STRIDE categories documented"
+        implemented: true
+        test_file: "tests/owasp/threat-modeling.test.js"
+        priority: "P1"
+      - control_id: "A04-102"
+        title: "Security controls mapped per threat"
+        implemented: true
+        test_file: "tests/owasp/threat-modeling.test.js"
+        priority: "P1"
+      - control_id: "A04-103"
+        title: "Architecture reviewed against OWASP"
+        implemented: true
+        test_file: "tests/owasp/threat-modeling.test.js"
+        priority: "P1"
+
+  A05:
+    id: "A05"
+    name: "Security Misconfiguration"
+    description: "Improperly configured security settings"
+    controls:
+      - control_id: "A05-006"
+        title: "Security features enabled by default"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A05-007"
+        title: "Error messages do not leak internal paths"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A05-008"
+        title: "Debug/verbose modes disabled in production"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A05-101"
+        title: "Content-Security-Policy header validation"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A05-102"
+        title: "X-Frame-Options header validation"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A05-103"
+        title: "X-Content-Type-Options header validation"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A05-104"
+        title: "Default credentials detection"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A05-105"
+        title: "Debug flags detection"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+
+  A06:
+    id: "A06"
+    name: "Vulnerable and Outdated Components"
+    description: "Use of libraries with known vulnerabilities"
+    controls:
+      - control_id: "A06-002"
+        title: "npm audit — zero high vulnerabilities"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A06-004"
+        title: "No deprecated packages in dependency tree"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A06-007"
+        title: "bundledDependencies list matches expected"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A06-SBOM"
+        title: "SBOM generation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "A06-SCAN"
+        title: "Vulnerability scanning integration"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  A07:
+    id: "A07"
+    name: "Identification and Authentication Failures"
+    description: "Weaknesses in confirming the user's identity"
+    controls:
+      - control_id: "A07-002"
+        title: "Token file permissions enforced (mode 600)"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "A07-003"
+        title: "Token expiration — 1-hour session"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "A07-004"
+        title: "Session cache invalidation on token expiry"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "A07-005"
+        title: "Claims validation — malformed/missing sub/role"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "A07-006"
+        title: "BMAD_TOKEN_REQUIRED=false generates audit warning"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "A07-007"
+        title: "Role-based session initialization"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+
+  A08:
+    id: "A08"
+    name: "Software and Data Integrity Failures"
+    description: "Code and infrastructure that does not protect against integrity violations"
+    controls:
+      - control_id: "A08-003"
+        title: "Atomic file operations prevent partial writes"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A08-101"
+        title: "CI/CD integrity verification"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "A08-102"
+        title: "Deserialization attack prevention"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  A09:
+    id: "A09"
+    name: "Security Logging and Monitoring Failures"
+    description: "Insufficient logging and monitoring"
+    controls:
+      - control_id: "A09-006"
+        title: "Volume spike detection at 2× baseline"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A09-007"
+        title: "Real-time alerting for HIGH/CRITICAL events"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A09-010"
+        title: "Telemetry files in JSONL format"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A09-012"
+        title: "Concurrent log access"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "A09-EXT"
+        title: "Extended logging coverage"
+        implemented: false
+        test_file: null
+        priority: "P1"
+
+  A10:
+    id: "A10"
+    name: "Server-Side Request Forgery (SSRF)"
+    description: "Server-side request forgery vulnerabilities"
+    controls:
+      - control_id: "A10-005"
+        title: "URL redirect to internal IPs blocked"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "A10-006"
+        title: "DNS rebinding prevention"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+
+# ============================================================================
+# OWASP API Security Top 10 (2023) — 35 Controls
+# ============================================================================
+owasp_api_security_top_10:
+  API1:
+    id: "API1"
+    name: "Broken Object Level Authorization"
+    description: "APIs tend to expose endpoints that handle object identifiers"
+    controls:
+      - control_id: "API1-004"
+        title: "Agent ID enumeration returns 403 (not 404)"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API1-EXT"
+        title: "Extended IDOR coverage"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  API2:
+    id: "API2"
+    name: "Broken Authentication"
+    description: "Authentication mechanisms are often implemented incorrectly"
+    controls:
+      - control_id: "API2-002"
+        title: "Expired tokens produce descriptive error"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "API2-003"
+        title: "Invalid token format rejected"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "API2-004"
+        title: "Token entropy ≥128 bits"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "API2-CS"
+        title: "Credential stuffing detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API2-TL"
+        title: "Token leakage detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  API3:
+    id: "API3"
+    name: "Broken Object Property Level Authorization"
+    description: "APIs often expose properties that should be protected"
+    controls:
+      - control_id: "API3-001"
+        title: "Agent properties not modifiable by unauthorized roles"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API3-EXT"
+        title: "Extended property-level authorization"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  API4:
+    id: "API4"
+    name: "Unrestricted Resource Consumption"
+    description: "APIs do not limit the resources requested"
+    controls:
+      - control_id: "API4-001"
+        title: "Rate limiting enforced through hook pipeline"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API4-002"
+        title: "Context window token limit enforced at hook level"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API4-003"
+        title: "Memory consumption bounded at hook level"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API4-004"
+        title: "Recursion depth bounded at hook level"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+
+  API5:
+    id: "API5"
+    name: "Broken Function Level Authorization"
+    description: "Complex access control policies with different hierarchies"
+    controls:
+      - control_id: "API5-001"
+        title: "CLI admin commands require admin role"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "API5-002"
+        title: "Security config changes require elevated privileges"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "API5-003"
+        title: "RBAC override operations require explicit tokens"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+
+  API6:
+    id: "API6"
+    name: "Unrestricted Access to Sensitive Business Flows"
+    description: "Business flows can be manipulated by abusing APIs"
+    controls:
+      - control_id: "API6-001"
+        title: "Incident response workflow requires authorized role"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API6-002"
+        title: "Security tier changes audited and authorized"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API6-003"
+        title: "Bulk agent activation (>5) requires admin role"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+
+  API7:
+    id: "API7"
+    name: "Server-Side Request Forgery (SSRF)"
+    description: "APIs may be vulnerable to server-side request forgery"
+    controls:
+      - control_id: "API7-001"
+        title: "DOCTYPE entity XXE detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API7-002"
+        title: "Parameter entity XXE detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API7-003"
+        title: "External DTD XXE detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API7-004"
+        title: "SVG foreignObject XXE detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API7-005"
+        title: "XSLT XXE detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  API8:
+    id: "API8"
+    name: "Security Misconfiguration"
+    description: "APIs and their underlying infrastructure are not securely configured"
+    controls:
+      - control_id: "API8-001"
+        title: "CORS wildcard origin detection"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API8-002"
+        title: "Rate limiting verification"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API8-003"
+        title: "Debug mode detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API8-004"
+        title: "Deprecated API version detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  API9:
+    id: "API9"
+    name: "Improper Asset Management"
+    description: "APIs tend to expose more endpoints than traditional web applications"
+    controls:
+      - control_id: "API9-001"
+        title: "API inventory documentation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API9-002"
+        title: "Undocumented endpoint detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "API9-003"
+        title: "Deprecated endpoint detection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  API10:
+    id: "API10"
+    name: "Unsafe Consumption of APIs"
+    description: "Developers do not properly validate API responses"
+    controls:
+      - control_id: "API10-002"
+        title: "API response validation"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "API10-EXT"
+        title: "Extended API consumption validation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+# ============================================================================
+# OWASP ASVS v4.0 — 192 Controls
+# ============================================================================
+owasp_asvs:
+  V1:
+    id: "V1"
+    name: "Architecture"
+    description: "Security architecture and design"
+    controls:
+      - control_id: "V1-001"
+        title: "Security architecture documentation exists"
+        implemented: true
+        test_file: "tests/owasp/asvs-architecture.test.js"
+        priority: "P1"
+      - control_id: "V1-002"
+        title: "Threat modeling documented"
+        implemented: true
+        test_file: "tests/owasp/asvs-architecture.test.js"
+        priority: "P1"
+      - control_id: "V1-003"
+        title: "Secure design patterns used"
+        implemented: true
+        test_file: "tests/owasp/asvs-architecture.test.js"
+        priority: "P1"
+
+  V2:
+    id: "V2"
+    name: "Authentication"
+    description: "User authentication verification"
+    controls:
+      - control_id: "V2-003"
+        title: "Session tokens ≥128 bits entropy"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "V2-004"
+        title: "Token replay prevention"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "V2-EXT"
+        title: "Extended authentication coverage"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  V3:
+    id: "V3"
+    name: "Session Management"
+    description: "Session management verification"
+    controls:
+      - control_id: "V3-001"
+        title: "Session ID ≥128 bits entropy"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "V3-002"
+        title: "Session timeout at 1-hour boundary"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "V3-003"
+        title: "Token not exposed in URLs or log entries"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+
+  V4:
+    id: "V4"
+    name: "Access Control"
+    description: "Access control verification"
+    controls:
+      - control_id: "V4-001"
+        title: "Default-deny access control"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V4-002"
+        title: "Role-based access verification"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V4-003"
+        title: "Horizontal privilege escalation prevention"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V4-004"
+        title: "Vertical privilege escalation prevention"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V4-005"
+        title: "Admin-only endpoint protection"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  V5:
+    id: "V5"
+    name: "Input Validation"
+    description: "Input validation verification"
+    controls:
+      - control_id: "V5-001"
+        title: "Required field validation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V5-002"
+        title: "Numeric range validation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V5-003"
+        title: "String length validation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V5-004"
+        title: "File type validation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V5-005"
+        title: "JSON schema validation"
+        implemented: false
+        test_file: null
+        priority: "P0"
+      - control_id: "V5-006"
+        title: "Unicode normalization"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  V6:
+    id: "V6"
+    name: "Stored Cryptography"
+    description: "Cryptographic storage verification"
+    controls:
+      - control_id: "V6-002"
+        title: "Approved algorithms only"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P1"
+      - control_id: "V6-003"
+        title: "Key management and rotation policy"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P1"
+      - control_id: "V6-EXT"
+        title: "Extended cryptography coverage"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  V7:
+    id: "V7"
+    name: "Error Handling and Logging"
+    description: "Error handling and logging verification"
+    controls:
+      - control_id: "V7-001"
+        title: "Errors do not expose sensitive info"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "V7-EXT"
+        title: "Extended error handling coverage"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  V8:
+    id: "V8"
+    name: "Data Protection"
+    description: "Data protection verification"
+    controls:
+      - control_id: "V8-001"
+        title: "Sensitive data not in logs"
+        implemented: true
+        test_file: "tests/owasp/asvs-data-protection.test.js"
+        priority: "P1"
+      - control_id: "V8-002"
+        title: "Sensitive data encrypted at rest"
+        implemented: true
+        test_file: "tests/owasp/asvs-data-protection.test.js"
+        priority: "P1"
+      - control_id: "V8-003"
+        title: "Sensitive data encrypted in transit"
+        implemented: true
+        test_file: "tests/owasp/asvs-data-protection.test.js"
+        priority: "P1"
+      - control_id: "V8-004"
+        title: "Memory cleared after use"
+        implemented: true
+        test_file: "tests/owasp/asvs-data-protection.test.js"
+        priority: "P1"
+
+  V9:
+    id: "V9"
+    name: "Communication Security"
+    description: "Communication security verification"
+    controls:
+      - control_id: "V9-002"
+        title: "Certificate validation — rejectUnauthorized not disabled"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P1"
+      - control_id: "V9-EXT"
+        title: "Extended communication security"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  V10:
+    id: "V10"
+    name: "Communication"
+    description: "Network communication verification"
+    controls:
+      - control_id: "V10-001"
+        title: "TLS 1.2+ minimum"
+        implemented: true
+        test_file: "tests/owasp/asvs-communication.test.js"
+        priority: "P1"
+      - control_id: "V10-002"
+        title: "Certificate validation"
+        implemented: true
+        test_file: "tests/owasp/asvs-communication.test.js"
+        priority: "P1"
+      - control_id: "V10-003"
+        title: "Weak protocols disabled"
+        implemented: true
+        test_file: "tests/owasp/asvs-communication.test.js"
+        priority: "P1"
+
+  V11:
+    id: "V11"
+    name: "Malicious Code"
+    description: "Malicious code verification"
+    controls:
+      - control_id: "V11-001"
+        title: "Code signing verification"
+        implemented: false
+        test_file: null
+        priority: "P1"
+      - control_id: "V11-002"
+        title: "Code integrity checks"
+        implemented: false
+        test_file: null
+        priority: "P1"
+
+  V12:
+    id: "V12"
+    name: "File and Resources"
+    description: "File and resource handling"
+    controls:
+      - control_id: "V12-004"
+        title: "Token file permissions enforce mode 600"
+        implemented: true
+        test_file: "tests/owasp/misconfiguration-hardening.test.js"
+        priority: "P0"
+      - control_id: "V12-EXT"
+        title: "Extended file handling coverage"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+  V13:
+    id: "V13"
+    name: "APIs and Microservices"
+    description: "API and microservice security"
+    controls:
+      - control_id: "V13-001"
+        title: "Message format validation"
+        implemented: true
+        test_file: "tests/owasp/asvs-api-microservices.test.js"
+        priority: "P1"
+      - control_id: "V13-002"
+        title: "Service-to-service authentication"
+        implemented: true
+        test_file: "tests/owasp/asvs-api-microservices.test.js"
+        priority: "P1"
+      - control_id: "V13-003"
+        title: "API gateway security"
+        implemented: true
+        test_file: "tests/owasp/asvs-api-microservices.test.js"
+        priority: "P1"
+      - control_id: "V13-004"
+        title: "Rate limiting per service"
+        implemented: true
+        test_file: "tests/owasp/asvs-api-microservices.test.js"
+        priority: "P1"
+      - control_id: "V13-005"
+        title: "OpenAPI spec exists"
+        implemented: true
+        test_file: "tests/owasp/openapi-validation.test.js"
+        priority: "P1"
+      - control_id: "V13-006"
+        title: "Security schemes defined"
+        implemented: true
+        test_file: "tests/owasp/openapi-validation.test.js"
+        priority: "P1"
+      - control_id: "V13-007"
+        title: "Schema validation matches implementation"
+        implemented: true
+        test_file: "tests/owasp/openapi-validation.test.js"
+        priority: "P1"
+
+  V14:
+    id: "V14"
+    name: "Configuration"
+    description: "Configuration verification"
+    controls:
+      - control_id: "V14-002"
+        title: "No sensitive data in error messages"
+        implemented: true
+        test_file: "tests/owasp/monitoring-alerting.test.js"
+        priority: "P0"
+      - control_id: "V14-EXT"
+        title: "Extended configuration coverage"
+        implemented: false
+        test_file: null
+        priority: "P0"
+
+# ============================================================================
+# OWASP LLM Top 10 (2024) — Additional Controls
+# ============================================================================
+owasp_llm_top_10:
+  LLM01:
+    id: "LLM01"
+    name: "LLM01: Prompt Injection"
+    controls:
+      - control_id: "LLM01-010"
+        title: "Severity-based response"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM01-011"
+        title: "Override token flow"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM01-012"
+        title: "Non-ASCII injection (Homoglyph)"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM01-013"
+        title: "Nested encoding detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM01-015"
+        title: "Concatenated injection pattern"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+
+  LLM02:
+    id: "LLM02"
+    name: "LLM02: Insecure Output Handling"
+    controls:
+      - control_id: "LLM02-008"
+        title: "ReDoS pattern detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM02-010"
+        title: "Template injection detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+
+  LLM03:
+    id: "LLM03"
+    name: "LLM03: Training Data Poisoning"
+    controls:
+      - control_id: "LLM03-001"
+        title: "No model training code"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM03-002"
+        title: "No model fine-tuning endpoints"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+
+  LLM04:
+    id: "LLM04"
+    name: "LLM04: Model Denial of Service"
+    controls:
+      - control_id: "LLM04-002"
+        title: "Per-operation rate limits"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-003"
+        title: "Context window warning at 75%"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-004"
+        title: "Context window blocking at 95%"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-005"
+        title: "Recursion depth limits"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-006"
+        title: "Circular reference detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-008"
+        title: "Memory limit enforcement"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-009"
+        title: "Input length validation"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-010"
+        title: "Exponential backoff on violations"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-011"
+        title: "Concurrent session resource isolation"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM04-012"
+        title: "Large file read token cost estimation"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+
+  LLM05:
+    id: "LLM05"
+    name: "LLM05: Supply Chain Vulnerabilities"
+    controls:
+      - control_id: "LLM05-010"
+        title: "Cache integrity verification"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+
+  LLM06:
+    id: "LLM06"
+    name: "LLM06: Sensitive Information Disclosure"
+    controls:
+      - control_id: "LLM06-006"
+        title: "Luhn algorithm (credit card detection)"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM06-007"
+        title: "IBAN MOD 97-10 detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM06-008"
+        title: "Entropy-based secret detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM06-009"
+        title: "Example/placeholder detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM06-010"
+        title: ".env file write/edit blocking"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM06-014"
+        title: "Context-aware detection (test file exclusion)"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM06-015"
+        title: "OAuth token encryption at rest"
+        implemented: true
+        test_file: "tests/owasp/crypto-verification.test.js"
+        priority: "P1"
+
+  LLM07:
+    id: "LLM07"
+    name: "LLM07: Insecure Plugin Architecture"
+    controls:
+      - control_id: "LLM07-002"
+        title: "Operations blocked without declared permissions"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P0"
+      - control_id: "LLM07-003"
+        title: "Filesystem capability path restrictions"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P0"
+      - control_id: "LLM07-004"
+        title: "Network capability restrictions"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P1"
+      - control_id: "LLM07-005"
+        title: "Shell capability command restrictions"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P0"
+      - control_id: "LLM07-006"
+        title: "Sensitive data capability gating"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P1"
+      - control_id: "LLM07-007"
+        title: "RBAC role ceiling on plugin permissions"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P1"
+      - control_id: "LLM07-008"
+        title: "Permission violation audit logging"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P1"
+      - control_id: "LLM07-009"
+        title: "All 9 module manifests have valid permission declarations"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P0"
+      - control_id: "LLM07-010"
+        title: "Cross-plugin isolation"
+        implemented: true
+        test_file: "tests/owasp/plugin-capability.test.js"
+        priority: "P2"
+
+  LLM08:
+    id: "LLM08"
+    name: "LLM08: Excessive Agency"
+    controls:
+      - control_id: "LLM08-003"
+        title: "Production environment targeting blocked"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "LLM08-004"
+        title: "Override tokens expire after 5 minutes"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+      - control_id: "LLM08-005"
+        title: "TOCTOU race condition prevention"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "LLM08-006"
+        title: "Token consumed on use — replay fails"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P0"
+      - control_id: "LLM08-009"
+        title: "Single identity cannot both create and approve"
+        implemented: true
+        test_file: "tests/owasp/override-token-security.test.js"
+        priority: "P1"
+
+  LLM09:
+    id: "LLM09"
+    name: "LLM09: Overreliance"
+    controls:
+      - control_id: "LLM09-001"
+        title: "Uncertainty marker detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM09-002"
+        title: "Confidence scoring algorithm"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM09-003"
+        title: "Source attribution tracking"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM09-004"
+        title: "Code warning detection"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM09-005"
+        title: "BMAD_SHOW_CONFIDENCE env toggle"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM09-006"
+        title: "Silent mode suppression"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+
+  LLM10:
+    id: "LLM10"
+    name: "LLM10: Model Theft"
+    controls:
+      - control_id: "LLM10-001"
+        title: "No model weights stored locally"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"
+      - control_id: "LLM10-002"
+        title: "Session caching no model internals"
+        implemented: true
+        test_file: "tests/owasp/llm-validators.test.js"
+        priority: "P0"

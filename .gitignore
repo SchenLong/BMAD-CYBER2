@@ -68,6 +68,8 @@ Docs/07-archive/test-archives/
 # Internal documentation not for public release
 Docs/03-developer-docs/
 Docs/04-operations/
+# Exception - track specific security file
+!Docs/04-operations/security/owasp-controls.yaml
 Docs/05-project-management/
 Docs/06-reference/
 
