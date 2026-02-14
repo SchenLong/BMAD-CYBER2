@@ -59,11 +59,6 @@ describe('Installation Verification', () => {
       const validatorsDir = path.join(PROJECT_ROOT, '.claude/validators-node');
       expect(fs.existsSync(validatorsDir)).toBe(true);
     });
-
-    it('should have dev-tools/config directory', () => {
-      const configDir = path.join(PROJECT_ROOT, 'dev-tools/config');
-      expect(fs.existsSync(configDir)).toBe(true);
-    });
   });
 
   describe('Framework Source Files', () => {
@@ -95,13 +90,6 @@ describe('Installation Verification', () => {
 
       const hasConfig = fs.existsSync(tsconfigPath) || fs.existsSync(frameworkTsconfigPath);
       expect(hasConfig).toBe(true);
-    });
-
-    it('should have vitest configuration files in dev-tools/config', () => {
-      const configDir = path.join(PROJECT_ROOT, 'dev-tools/config');
-      const configs = fs.readdirSync(configDir);
-
-      expect(configs.some(f => f.startsWith('vitest.config'))).toBe(true);
     });
   });
 });

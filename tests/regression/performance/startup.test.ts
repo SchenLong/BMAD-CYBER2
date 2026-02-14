@@ -183,24 +183,6 @@ describe('Configuration Loading Performance', () => {
       expect(stats.size).toBeLessThan(10 * 1024);
     });
   });
-
-  describe('Dev Tools Config', () => {
-    it('should read all vitest configs quickly', () => {
-      const startTime = performance.now();
-
-      const configDir = path.join(PROJECT_ROOT, 'dev-tools/config');
-      const configs = fs.readdirSync(configDir);
-
-      for (const config of configs) {
-        if (config.endsWith('.ts')) {
-          fs.readFileSync(path.join(configDir, config), 'utf-8');
-        }
-      }
-
-      const elapsed = performance.now() - startTime;
-      expect(elapsed).toBeLessThan(THRESHOLDS.FILE_READ_TIME * 5); // Allow 5x for multiple files
-    });
-  });
 });
 
 describe('Source File Count', () => {

@@ -22,14 +22,12 @@ const PROJECT_ROOT = path.resolve(import.meta.dirname, '../..');
 /**
  * All known vitest config files relative to PROJECT_ROOT.
  * If a new config is added but not listed here, the discovery test will fail.
+ *
+ * Note: The dev-tools/config/ configs were removed in the public release
+ * (commit d7637fdf). Only configs that exist in the repository should be listed.
  */
 const KNOWN_CONFIGS = [
   'vitest.config.ts',
-  'dev-tools/config/vitest.config.unit.ts',
-  'dev-tools/config/vitest.config.integration.ts',
-  'dev-tools/config/vitest.config.performance.ts',
-  'dev-tools/config/vitest.config.regression.ts',
-  'dev-tools/config/vitest.config.regression-critical.ts',
   '.claude/validators-node/vitest.config.ts',
 ];
 
@@ -39,7 +37,6 @@ const KNOWN_CONFIGS = [
  */
 const CONFIGS_WITHOUT_POOL = [
   '.claude/validators-node/vitest.config.ts',
-  'dev-tools/config/vitest.config.performance.ts',
 ];
 
 /**
