@@ -1,6 +1,6 @@
 {
   "name": "bmad-cybersec",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "Production-ready BMAD security and automation framework with comprehensive validation, authentication, and audit capabilities",
   "type": "module",
   "main": "./_bmad/framework/dist/_bmad/framework/index.js",
