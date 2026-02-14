@@ -236,5 +236,4 @@ team/remaining-errors-summary.md
 team/test-fixes-plan.md
 
 # Backup files - NEVER commit
-team/backups/*.tar
-team/backups/*.tar.gz
+team/backups/
