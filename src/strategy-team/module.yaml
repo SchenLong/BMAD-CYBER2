@@ -61,10 +61,10 @@ module_version:
 
 # STATIC: Module paths
 agents_path:
-  result: "{project-root}/_bmad/strategy-team/agents"
+  result: "{project-root}/src/strategy-team/agents"
 
 workflows_path:
-  result: "{project-root}/_bmad/strategy-team/workflows"
+  result: "{project-root}/src/strategy-team/workflows"
 
 # STATIC: Automatic subdirectory configuration
 decisions:
