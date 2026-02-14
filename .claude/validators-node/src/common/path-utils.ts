@@ -87,9 +87,17 @@ export function isPathInRepo(
     repoResolved = path.resolve(projectDir);
   }
 
-  // Check if resolved path starts with repo path
+  // Also resolve the projectDir without realpath for comparison with non-existent files
+  const repoResolvedNoLink = path.resolve(projectDir);
+
+  // Check if resolved path starts with repo path (with or without symlink resolution)
   // Must be either equal to repo or within repo (with path separator)
-  return resolved === repoResolved || resolved.startsWith(repoResolved + path.sep);
+  return (
+    resolved === repoResolved ||
+    resolved.startsWith(repoResolved + path.sep) ||
+    resolved === repoResolvedNoLink ||
+    resolved.startsWith(repoResolvedNoLink + path.sep)
+  );
 }
 
 /**
