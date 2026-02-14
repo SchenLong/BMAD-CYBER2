@@ -280,7 +280,7 @@ export class APIGateway {
       console.log('✅ Connected to Redis');
     });
 
-    this.redis.on('error', (error) => {
+    this.redis.on('error', (error?: Error) => {
       console.error('❌ Redis connection error:', error);
     });
   }

@@ -252,9 +252,9 @@ describe('SA-04: Supply Chain Audit', () => {
     });
 
     it('postinstall should only be build (not fetch/download)', () => {
-      // postinstall runs npm run build which compiles TS — this is OK for dev
+      // postinstall is a simple console.log — framework is pre-built in dist/
       // Published package ships dist/ so consumers don't need postinstall
-      expect(pkg.scripts.postinstall).toBe('npm run build');
+      expect(pkg.scripts.postinstall).toBe('node -e "console.log(\'✓ BMAD-CYBERSEC installed. Framework is pre-built and ready to use.\')"');
     });
   });
 

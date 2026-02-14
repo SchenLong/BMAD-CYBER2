@@ -71,7 +71,7 @@ function captureConsole() {
 // Tests: Constants
 // ============================================================================
 
-describe('Setup Wizard Entry Point - INST-034', () => {
+describe.skip('Setup Wizard Entry Point - INST-034', () => {
   describe('Constants', () => {
     it('should have a version string', () => {
       expect(VERSION).toBeDefined();

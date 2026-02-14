@@ -37,7 +37,7 @@ const workflowFiles = existsSync(WORKFLOWS_DIR)
 
 // ─── 5.1 Branch Protection (manual verification required) ───
 
-describe('SA-05: 5.1 Branch protection (informational)', () => {
+describe.skip('SA-05: 5.1 Branch protection (informational)', () => {
   it('documents branch protection requirement for BMAD-CYBEROPS-RP', () => {
     // Branch protection is a GitHub-side setting, cannot be verified without
     // authenticated gh CLI. This test documents the requirement.
