@@ -90,12 +90,14 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
 
       - name: Run integration tests
         run: |
           echo "🔄 Running comprehensive integration tests"
-          npm run test:integration
+          NODE_OPTIONS=--max-old-space-size=8192 npm run test:integration
 
       - name: Validate 90% coverage target
         run: |
@@ -142,12 +144,14 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
 
       - name: Run performance benchmarks
         run: |
           echo "⚡ Running performance tests and benchmarks"
-          npm run test:performance
+          NODE_OPTIONS=--max-old-space-size=8192 npm run test:performance
 
       - name: Run performance test suite
         run: |
