@@ -52,12 +52,18 @@ jobs:
             cat "$file.sha256"
           done
 
+      - name: Generate SBOM
+        run: |
+          npm install --save-dev @cyclonedx/cyclonedx-node-module
+          npx @cyclonedx/cyclonedx-node-module --output-format json --output-file sbom.json --no-collect-lockfile
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@e798e6a1ede8d07b74ac4cdac6bdfa4cc1653907 # v2.5.0
         with:
           files: |
             *.tgz
             *.sha256
+            sbom.json
           prerelease: ${{ steps.version.outputs.PRERELEASE }}
           fail_on_unmatched_files: false
           generate_release_notes: true
