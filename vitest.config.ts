@@ -63,14 +63,15 @@ export default defineConfig({
     setupFiles: ['./tests/vitest-setup.js'],
     // VAL-11-001: Use separate forks per test file to prevent OOM from memory accumulation
     // With memory.test.ts excluded, 179 files stay within 4GB heap comfortably.
+    // Using singleFork: true to avoid worker pool issues with E2E tests spawning subprocesses
     pool: 'forks',
     poolOptions: {
       forks: {
-        singleFork: false,
+        singleFork: true,
         execArgv: ['--max-old-space-size=8192']
       }
     },
-    isolate: true,
+    isolate: false,
     maxConcurrency: 1,
     minWorkers: 1,
     maxWorkers: 1
