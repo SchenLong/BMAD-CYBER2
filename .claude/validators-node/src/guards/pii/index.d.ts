@@ -51,4 +51,3 @@ export declare function validatePiiGuard(content: string, filePath: string): num
 export declare function main(): void;
 export * from './validators.js';
 export * from './patterns.js';
-//# sourceMappingURL=index.d.ts.map

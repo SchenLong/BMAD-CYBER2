@@ -247,8 +247,3 @@ team/test-fixes-plan.md
 
 # Backup files - NEVER commit
 team/backups/
-
-# Compiled JS files in validators-node src (generated during build)
-.claude/validators-node/src/**/*.js
-.claude/validators-node/src/**/*.js.map
-.claude/validators-node/src/**/*.d.ts

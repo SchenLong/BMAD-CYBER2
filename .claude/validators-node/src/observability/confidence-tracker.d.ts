@@ -120,4 +120,3 @@ export declare function analyzeToolOutput(): number;
  * CLI main function.
  */
 export declare function main(): void;
-//# sourceMappingURL=confidence-tracker.d.ts.map

@@ -103,4 +103,3 @@ export declare function resetBaseline(): void;
  * CLI main function.
  */
 export declare function main(): void;
-//# sourceMappingURL=anomaly-detector.d.ts.map

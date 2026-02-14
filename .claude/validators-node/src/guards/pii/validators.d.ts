@@ -60,4 +60,3 @@ export declare function validatePortugueseNif(nif: string): boolean;
  * 10 digits (after removing separator) validated with Luhn.
  */
 export declare function validateSwedishPersonnummer(pn: string): boolean;
-//# sourceMappingURL=validators.d.ts.map

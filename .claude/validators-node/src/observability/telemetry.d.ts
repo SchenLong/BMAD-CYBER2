@@ -183,4 +183,3 @@ export declare function recordAnomalySignal(params: AnomalySignalParams): boolea
  * CLI main function.
  */
 export declare function main(): void;
-//# sourceMappingURL=telemetry.d.ts.map

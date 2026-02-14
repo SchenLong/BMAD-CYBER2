@@ -23,4 +23,3 @@ export declare const SENSITIVE_CONTEXT_PATTERNS: RegExp[];
 export declare const FAKE_DATA_INDICATORS: RegExp[];
 /** Path indicators for test files */
 export declare const TEST_FILE_INDICATORS: string[];
-//# sourceMappingURL=patterns.d.ts.map

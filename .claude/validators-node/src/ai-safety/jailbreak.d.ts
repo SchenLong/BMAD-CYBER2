@@ -19,10 +19,8 @@
  * See lessonlearned.md - NEVER use destructive commands in test strings.
  */
 import { type Severity } from '../types/index.js';
-/**
- * Normalize text by applying NFKC, stripping hidden chars, and mapping confusables.
- */
-export declare function normalizeText(text: string): string;
+import { normalizeText } from './text-normalizer.js';
+export { normalizeText };
 /**
  * Jailbreak finding result.
  */
@@ -114,4 +112,3 @@ export declare function validateJailbreak(content: string, toolName: string, ses
  * CLI entry point.
  */
 export declare function main(): void;
-//# sourceMappingURL=jailbreak.d.ts.map

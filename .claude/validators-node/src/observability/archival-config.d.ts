@@ -17,7 +17,7 @@ import type { ArchivalConfig } from './log-archiver.js';
  */
 export interface ConfigValidationResult {
     isValid: boolean;
-    config?: ArchivalConfig;
+    config?: ArchivalConfig | undefined;
     errors: string[];
     warnings: string[];
     recommendations: string[];
@@ -40,11 +40,11 @@ export interface S3BucketStatus {
 export interface GPGKeyInfo {
     valid: boolean;
     keyId: string;
-    name?: string;
-    email?: string;
-    fingerprint?: string;
-    expires?: string;
-    error?: string;
+    name?: string | undefined;
+    email?: string | undefined;
+    fingerprint?: string | undefined;
+    expires?: string | undefined;
+    error?: string | undefined;
 }
 /**
  * Schedule validation result.
@@ -127,4 +127,3 @@ export declare function createConfigManager(): ArchivalConfigManager;
  * Quick configuration check for CLI usage.
  */
 export declare function checkConfiguration(): Promise<void>;
-//# sourceMappingURL=archival-config.d.ts.map

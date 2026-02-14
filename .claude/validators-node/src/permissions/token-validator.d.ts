@@ -149,4 +149,3 @@ export declare function printAuthFailure(error: string): void;
  * Main entry point for SessionStart hook.
  */
 export declare function main(): void;
-//# sourceMappingURL=token-validator.d.ts.map

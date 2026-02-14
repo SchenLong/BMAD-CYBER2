@@ -31,4 +31,3 @@ export declare function validateEnvProtection(filePath: string): number;
  * CLI entry point.
  */
 export declare function main(): void;
-//# sourceMappingURL=env-protection.d.ts.map

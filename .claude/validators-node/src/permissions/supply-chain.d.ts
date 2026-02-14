@@ -43,13 +43,13 @@ export interface VerificationResult {
     /** Path to the file being verified */
     filePath: string;
     /** Expected hash from the manifest */
-    expectedHash?: string;
+    expectedHash?: string | undefined;
     /** Actual computed hash */
-    actualHash?: string;
+    actualHash?: string | undefined;
     /** Whether the GPG signature is valid */
-    signatureValid?: boolean;
+    signatureValid?: boolean | undefined;
     /** ID of the GPG signer */
-    signerId?: string;
+    signerId?: string | undefined;
     /** ISO timestamp of the verification */
     timestamp: string;
 }
@@ -212,4 +212,3 @@ export declare function validateSupplyChain(): number;
  */
 export declare function main(): void;
 export {};
-//# sourceMappingURL=supply-chain.d.ts.map

@@ -24,7 +24,7 @@ export interface ContextStatus {
     tokensUsed: number;
     tokensRemaining: number;
     maxTokens: number;
-    message?: string;
+    message?: string | undefined;
 }
 export interface OperationRecord {
     tool: string;
@@ -109,11 +109,14 @@ export declare function checkContextCapacity(): [string, number, string | undefi
 export declare function estimateOperationCost(toolName: string, toolInput: Record<string, unknown>): [number, string];
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates context capacity.
+ * Reads tool input from stdin (sync) and validates context capacity.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export declare function validateContextCapacity(): Promise<number>;
+export declare function validateContextCapacity(): number;
 /**
  * CLI entry point for bin/ invocation.
  */
 export declare function main(): void;
-//# sourceMappingURL=context-manager.d.ts.map

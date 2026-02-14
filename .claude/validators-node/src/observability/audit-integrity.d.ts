@@ -93,4 +93,3 @@ export declare function getIntegrityStatus(): Record<string, unknown>;
  * This is a lower priority feature that requires external dependencies.
  */
 export declare function main(): void;
-//# sourceMappingURL=audit-integrity.d.ts.map

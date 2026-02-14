@@ -135,4 +135,3 @@ export declare function clearKeyCache(): void;
  * Cleanup encryption module resources
  */
 export declare function cleanup(): void;
-//# sourceMappingURL=audit-encryption.d.ts.map

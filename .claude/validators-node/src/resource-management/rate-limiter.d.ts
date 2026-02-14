@@ -11,6 +11,11 @@
  * - Exponential backoff on violations
  * - Whitelist bypass for critical operations
  * - Persistent state across validator invocations
+ *
+ * Session-Aware Rate Limiting (NEW):
+ * - Rate limits are shared across all agents in a session
+ * - Subagents count against the same session-level limits
+ * - Configurable multiplier for parallel execution (BMAD_RATE_LIMIT_MULTIPLIER)
  */
 export interface RequestRecord {
     timestamp: number;
@@ -123,11 +128,14 @@ export declare function recordOperation(operation: string, target?: string): voi
 export declare function getRateStatus(): RateLimitStatus;
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates rate limits.
+ * Reads tool input from stdin (sync) and validates rate limits.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export declare function validateRateLimit(): Promise<number>;
+export declare function validateRateLimit(): number;
 /**
  * CLI entry point for bin/ invocation.
  */
 export declare function main(): void;
-//# sourceMappingURL=rate-limiter.d.ts.map

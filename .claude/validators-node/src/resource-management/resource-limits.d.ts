@@ -128,11 +128,14 @@ export declare function checkResourceLimits(): [boolean, string];
 export declare function checkMemoryAvailable(estimatedMb: number): [boolean, string];
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates resource limits.
+ * Reads tool input from stdin (sync) and validates resource limits.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export declare function validateResourceLimits(): Promise<number>;
+export declare function validateResourceLimits(): number;
 /**
  * CLI entry point for bin/ invocation.
  */
 export declare function main(): void;
-//# sourceMappingURL=resource-limits.d.ts.map

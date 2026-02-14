@@ -17,35 +17,16 @@
  * See lessonlearned.md - NEVER use destructive commands in test strings.
  */
 import { type Severity } from '../types/index.js';
-/**
- * Pattern finding result.
- */
-export interface PatternFinding {
-    category: string;
-    pattern_name: string;
-    severity: Severity;
-    match?: string;
-    description: string;
-    line_number?: number;
-}
-/**
- * Normalize text by applying NFKC, stripping hidden chars, and mapping confusables.
- */
-export declare function normalizeText(text: string): string;
-/**
- * Unicode manipulation finding.
- */
-export interface UnicodeFinding {
-    category: string;
-    count: number;
-    severity: Severity;
-    description: string;
-    chars: string[];
-}
-/**
- * Detect hidden or suspicious unicode characters.
- */
-export declare function detectHiddenUnicode(text: string): UnicodeFinding[];
+import { normalizeText, detectHiddenUnicode } from './text-normalizer.js';
+import type { UnicodeFinding } from './text-normalizer.js';
+import { detectPatterns, type PatternFinding } from './pattern-engine.js';
+import { type ReformulationFinding } from './reformulation-detector.js';
+import { type BoundaryFinding } from './boundary-detector.js';
+import { type MultilingualFinding } from './multilingual-patterns.js';
+export { detectPatterns };
+export type { PatternFinding };
+export { normalizeText, detectHiddenUnicode };
+export type { UnicodeFinding };
 /**
  * Base64 finding.
  */
@@ -100,13 +81,12 @@ export interface AnalysisResult {
     base64_findings: Base64Finding[];
     html_findings: HtmlCommentFinding[];
     multi_layer_findings: MultiLayerEncodingFinding[];
+    reformulation_findings: ReformulationFinding[];
+    boundary_findings: BoundaryFinding[];
+    multilingual_findings: MultilingualFinding[];
     highest_severity: Severity;
     should_block: boolean;
 }
-/**
- * Run pattern detection on content.
- */
-export declare function detectPatterns(content: string): PatternFinding[];
 /**
  * Analyze content for prompt injection attempts.
  */
@@ -122,4 +102,3 @@ export declare function validatePromptInjection(content: string, toolName: strin
  * CLI entry point.
  */
 export declare function main(): void;
-//# sourceMappingURL=prompt-injection.d.ts.map

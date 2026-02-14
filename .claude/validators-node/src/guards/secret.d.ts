@@ -51,4 +51,3 @@ export declare function validateSecretGuard(content: string, filePath: string): 
  */
 export declare function main(): void;
 export {};
-//# sourceMappingURL=secret.d.ts.map

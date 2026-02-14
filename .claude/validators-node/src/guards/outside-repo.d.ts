@@ -59,4 +59,3 @@ export declare function validateOutsideRepo(input: ToolInput): number;
  */
 export declare function main(): void;
 export {};
-//# sourceMappingURL=outside-repo.d.ts.map

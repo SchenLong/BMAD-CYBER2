@@ -58,8 +58,8 @@ interface PluginManifest {
     name: string;
     version: string;
     permissions: PluginPermissions;
-    signature?: string;
-    checksum?: string;
+    signature?: string | undefined;
+    checksum?: string | undefined;
 }
 /**
  * Result of a permission check.
@@ -238,4 +238,3 @@ export declare function validatePluginPermission(): number;
 export declare function main(): void;
 export { PluginPermissionChecker, CAPABILITIES, DEFAULT_PERMISSIONS, RBAC_PERMISSIONS, DANGEROUS_COMMANDS, CAPABILITY_MAPPING, };
 export type { PluginManifest, PermissionCheck, PluginInfo, PluginPermissions, FilesystemPermissions, ShellPermissions, RBACPermissions, CapabilityDefinition, };
-//# sourceMappingURL=plugin-permissions.d.ts.map

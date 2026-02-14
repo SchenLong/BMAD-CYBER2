@@ -49,14 +49,14 @@ export declare class GPGSigningError extends ArchivalError {
  */
 export interface ArchivalConfig {
     bucket: string;
-    prefix?: string;
-    region?: string;
-    retentionDays?: number;
-    gpgSigningKey?: string;
-    scheduleExpression?: string;
-    enableObjectLock?: boolean;
-    encryptionType?: 'SSE-S3' | 'SSE-KMS';
-    kmsKeyId?: string;
+    prefix?: string | undefined;
+    region?: string | undefined;
+    retentionDays?: number | undefined;
+    gpgSigningKey?: string | undefined;
+    scheduleExpression?: string | undefined;
+    enableObjectLock?: boolean | undefined;
+    encryptionType?: 'SSE-S3' | 'SSE-KMS' | undefined;
+    kmsKeyId?: string | undefined;
 }
 /**
  * Archive metadata for tracking and verification.
@@ -68,8 +68,8 @@ export interface ArchiveMetadata {
     totalSize: number;
     compressedSize: number;
     sha256Hash: string;
-    previousArchiveHash?: string;
-    gpgSignature?: string;
+    previousArchiveHash?: string | undefined;
+    gpgSignature?: string | undefined;
     s3ObjectKey: string;
     retentionUntil: string;
     encryptionEnabled: boolean;
@@ -155,7 +155,7 @@ export declare class LogArchiver {
      */
     verifyArchiveIntegrity(archiveId: string): Promise<{
         isValid: boolean;
-        error?: string;
+        error?: string | undefined;
     }>;
     /**
      * List all archives with metadata.
@@ -166,12 +166,12 @@ export declare class LogArchiver {
      */
     getConfigurationStatus(): {
         configured: boolean;
-        bucket?: string;
-        region?: string;
-        retentionDays?: number;
-        objectLockEnabled?: boolean;
-        gpgSigningEnabled?: boolean;
-        issues?: string[];
+        bucket?: string | undefined;
+        region?: string | undefined;
+        retentionDays?: number | undefined;
+        objectLockEnabled?: boolean | undefined;
+        gpgSigningEnabled?: boolean | undefined;
+        issues?: string[] | undefined;
     };
     /**
      * Create S3 client (exposed for testing)
@@ -195,4 +195,3 @@ export declare function runDailyArchival(): Promise<ArchiveResult>;
  * Alias for archiver.archiveLogs() to match test expectations.
  */
 export declare function archiveLogsInDateRange(startDate: Date, endDate?: Date): Promise<ArchiveResult>;
-//# sourceMappingURL=log-archiver.d.ts.map

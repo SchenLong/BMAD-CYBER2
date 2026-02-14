@@ -1,14 +1,18 @@
 /**
- * BMAD Validators - Session Tracker for Multi-Turn Jailbreak Detection
- * =====================================================================
- * Tracks jailbreak patterns across conversation turns to detect gradual
+ * BMAD Validators - Session Security State Tracker
+ * ==================================================
+ * Tracks security patterns across conversation turns to detect gradual
  * escalation attacks that bypass single-turn detection.
+ *
+ * Tracks: jailbreak patterns, fragment buffers, URL reputation,
+ * image loads, timing velocity, and social engineering patterns.
  *
  * Security Features:
  * - Temporal decay to prevent false positives from old patterns
  * - Category-based repetition detection
  * - Accumulated weight threshold monitoring
  * - Atomic file operations for concurrent safety
+ * - Backward-compatible migration from .jailbreak_session.json (TPI-PRE-2)
  *
  * Reference: SECURITY-MITIGATION-PLAN.md Section P0-2
  */
@@ -56,6 +60,14 @@ export interface SessionPatternState {
         categories: string[];
         weight: number;
     }>;
+    /** TPI-13: Fragment buffer tracking partial injection keywords across turns */
+    fragment_buffer: string[];
+    /** TPI-11: Cumulative instruction count across turns for many-shot detection */
+    instruction_count: number;
+    /** TPI-16: Cumulative INFO-level finding count for slow-drip detection */
+    info_finding_count: number;
+    /** TPI-16: Timestamps of recent findings for velocity calculation */
+    finding_timestamps: number[];
 }
 /**
  * Result from session state update.
@@ -95,6 +107,49 @@ export declare function isSessionEscalated(sessionId: string): {
     riskScore: number;
 };
 /**
+ * TPI-13: Update fragment buffer with content from current turn.
+ * Extracts suspicious keywords, stores across turns, and checks
+ * if combined fragments form injection patterns.
+ *
+ * @returns Array of findings if combined fragments match patterns
+ */
+export declare function updateFragmentBuffer(sessionId: string, content: string): Array<{
+    pattern_name: string;
+    severity: string;
+    combined_text: string;
+}>;
+/**
+ * TPI-11: Track instruction count per turn in session state.
+ * Flags if cumulative instruction count across turns exceeds threshold.
+ *
+ * @returns Object indicating if session-level many-shot is detected
+ */
+export declare function updateInstructionCount(sessionId: string, instructionCount: number): {
+    manyShotDetected: boolean;
+    cumulativeCount: number;
+};
+/**
+ * Result from slow-drip detection.
+ */
+export interface SlowDripResult {
+    slowDripDetected: boolean;
+    reason: string;
+    infoFindingCount: number;
+    findingsVelocity: number;
+    shouldEscalate: boolean;
+}
+/**
+ * TPI-16: Detect slow-drip injection attacks.
+ * Tracks cumulative INFO-level findings across session turns.
+ * Flags if >10 INFO findings across >5 turns within 30 minutes.
+ *
+ * @param sessionId - The session identifier
+ * @param infoCount - Number of INFO-level findings in current turn
+ * @param turnCount - Current turn number
+ * @returns Detection result with velocity and escalation info
+ */
+export declare function detectSlowDrip(sessionId: string, infoCount: number, turnCount: number): SlowDripResult;
+/**
  * Get session statistics for debugging/monitoring.
  */
 export declare function getSessionStats(sessionId: string): {
@@ -104,4 +159,3 @@ export declare function getSessionStats(sessionId: string): {
     lastUpdated: number;
     isExpired: boolean;
 };
-//# sourceMappingURL=session-tracker.d.ts.map

@@ -94,8 +94,8 @@ export declare class ArchivalScheduler {
         healthy: boolean;
         issues: string[];
         recommendations: string[];
-        lastArchival?: string;
-        nextArchival?: string;
+        lastArchival?: string | undefined;
+        nextArchival?: string | undefined;
     }>;
     /**
      * Calculate next archival time based on schedule.
@@ -135,4 +135,3 @@ export declare function getArchivalStatus(): Promise<{
     health: Awaited<ReturnType<ArchivalScheduler['healthCheck']>>;
     recentJobs: ArchivalJobResult[];
 }>;
-//# sourceMappingURL=archival-scheduler.d.ts.map

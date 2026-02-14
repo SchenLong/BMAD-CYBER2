@@ -110,11 +110,14 @@ export declare function checkRecursionLimit(type: string, depth: number, target?
 export declare function checkCircularReference(operation: string, target: string): [boolean, string];
 /**
  * Pre-tool hook validator entry point.
- * Reads tool input from stdin and validates recursion limits.
+ * Reads tool input from stdin (sync) and validates recursion limits.
+ *
+ * NOTE: Uses synchronous stdin reading to prevent hangs in hook execution.
+ * The async `for await (process.stdin)` pattern can hang indefinitely if
+ * stdin doesn't properly close/send EOF.
  */
-export declare function validateRecursion(): Promise<number>;
+export declare function validateRecursion(): number;
 /**
  * CLI entry point for bin/ invocation.
  */
 export declare function main(): void;
-//# sourceMappingURL=recursion-guard.d.ts.map
