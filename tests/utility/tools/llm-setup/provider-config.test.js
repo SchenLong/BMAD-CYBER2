@@ -16,6 +16,7 @@ import { fileURLToPath } from 'url';
 import {
   API_KEY_ENV_VARS,
   backupConfigs,
+  cleanupOldBackups,
   getApiKeyEnvVar,
   updateProviderSettings,
   validateConfig,
@@ -106,6 +107,61 @@ describe('Provider Config Writer - INST-017', () => {
       const backups = backupConfigs(tempDir);
 
       expect(backups.yaml).toContain('backup-');
+    });
+
+    it('should skip backup if content unchanged (deduplication)', () => {
+      const yamlDir = path.join(tempDir, '_bmad/_config');
+      fs.mkdirSync(yamlDir, { recursive: true });
+      const yamlPath = path.join(yamlDir, 'llm-config.yaml');
+      const content = 'active_provider: claude\n';
+      fs.writeFileSync(yamlPath, content);
+
+      // First backup should create
+      const first = backupConfigs(tempDir);
+      expect(first.yaml).toBeDefined();
+      expect(first.skipped?.yaml).toBe(false);
+
+      // Second backup with same content should skip
+      const second = backupConfigs(tempDir);
+      expect(second.yaml).toBeUndefined();
+      expect(second.skipped?.yaml).toBe(true);
+    });
+  });
+
+  describe('cleanupOldBackups', () => {
+    it('should keep only the specified number of backups', () => {
+      const yamlDir = path.join(tempDir, '_bmad/_config');
+      fs.mkdirSync(yamlDir, { recursive: true });
+      const yamlPath = path.join(yamlDir, 'llm-config.yaml');
+      const content = 'active_provider: claude\n';
+      fs.writeFileSync(yamlPath, content);
+
+      // Create multiple backups with different timestamps
+      const timestamps = [
+        '2026-02-14T20-21-41-800Z',
+        '2026-02-14T20-22-19-000Z',
+        '2026-02-14T20-22-19-100Z',
+        '2026-02-14T20-22-19-200Z',
+        '2026-02-14T20-22-19-300Z'
+      ];
+
+      timestamps.forEach(ts => {
+        fs.copyFileSync(yamlPath, `${yamlPath}.backup-${ts}`);
+      });
+
+      // Keep only 2 most recent
+      const result = cleanupOldBackups(tempDir, 2);
+
+      expect(result.yaml).toBe(3); // Should remove 3 backups
+      const remaining = fs.readdirSync(yamlDir)
+        .filter(f => f.startsWith('llm-config.yaml.backup-'));
+      expect(remaining.length).toBe(2);
+    });
+
+    it('should not fail when no backups exist', () => {
+      const result = cleanupOldBackups(tempDir, 3);
+      expect(result.yaml).toBe(0);
+      expect(result.txt).toBe(0);
     });
   });
 

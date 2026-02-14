@@ -14,6 +14,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
+import { createHash } from 'crypto';
 
 import {
   CONFIG_PATHS,
@@ -62,32 +63,167 @@ export function getApiKeyEnvVar(provider) {
 }
 
 /**
- * Creates a backup of existing config files
+ * Computes content hash for deduplication
+ *
+ * @param {string} content - File content
+ * @returns {string} SHA256 hash
+ */
+function contentHash(content) {
+  return createHash('sha256').update(content).digest('hex');
+}
+
+/**
+ * Gets the most recent backup file path for a given config file
+ *
+ * @param {string} configPath - Path to the config file
+ * @returns {string|null} Path to most recent backup or null
+ */
+function getLatestBackup(configPath) {
+  const configDir = path.dirname(configPath);
+  const configBasename = path.basename(configPath);
+  const parentDir = path.dirname(configPath);
+
+  try {
+    const files = fs.readdirSync(parentDir);
+    const backupPattern = new RegExp(`^${configBasename}\\.backup-\\d{4}-\\d{2}-\\d{2}T`);
+
+    const backups = files
+      .filter(f => backupPattern.test(f))
+      .map(f => ({
+        path: path.join(parentDir, f),
+        time: fs.statSync(path.join(parentDir, f)).mtime.getTime()
+      }))
+      .sort((a, b) => b.time - a.time);
+
+    return backups.length > 0 ? backups[0].path : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Gets hash of the most recent backup
+ *
+ * @param {string} configPath - Path to the config file
+ * @returns {string|null} Hash of latest backup content or null
+ */
+function getLatestBackupHash(configPath) {
+  const latestBackup = getLatestBackup(configPath);
+  if (!latestBackup) {
+    return null;
+  }
+
+  try {
+    const content = fs.readFileSync(latestBackup, 'utf8');
+    return contentHash(content);
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Creates a backup of existing config files (with deduplication)
+ *
+ * Only creates a new backup if the content has changed since the last backup.
+ * This prevents accumulating duplicate backup files when the configuration
+ * hasn't actually changed between multiple writeConfigs() calls.
  *
  * @param {string} projectRoot - Project root directory
- * @returns {Object} Backup info
+ * @returns {Object} Backup info with skipped flag
+ * @property {string} [yaml] - Path to created yaml backup (if created)
+ * @property {string} [txt] - Path to created txt backup (if created)
+ * @property {Object} skipped - Deduplication status
+ * @property {boolean} skipped.yaml - True if yaml backup was skipped (unchanged)
+ * @property {boolean} skipped.txt - True if txt backup was skipped (unchanged)
  */
 export function backupConfigs(projectRoot) {
   const backups = {};
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  let skipped = { yaml: false, txt: false };
 
   // Backup yaml config
   const yamlPath = path.join(projectRoot, CONFIG_PATHS.yamlConfig);
   if (fs.existsSync(yamlPath)) {
-    const backupPath = `${yamlPath}.backup-${timestamp}`;
-    fs.copyFileSync(yamlPath, backupPath);
-    backups.yaml = backupPath;
+    const currentContent = fs.readFileSync(yamlPath, 'utf8');
+    const currentHash = contentHash(currentContent);
+    const latestBackupHash = getLatestBackupHash(yamlPath);
+
+    if (latestBackupHash === currentHash) {
+      // Content unchanged, skip backup
+      skipped.yaml = true;
+    } else {
+      const backupPath = `${yamlPath}.backup-${timestamp}`;
+      fs.copyFileSync(yamlPath, backupPath);
+      backups.yaml = backupPath;
+    }
   }
 
   // Backup txt config
   const txtPath = path.join(projectRoot, CONFIG_PATHS.txtConfig);
   if (fs.existsSync(txtPath)) {
-    const backupPath = `${txtPath}.backup-${timestamp}`;
-    fs.copyFileSync(txtPath, backupPath);
-    backups.txt = backupPath;
+    const currentContent = fs.readFileSync(txtPath, 'utf8');
+    const currentHash = contentHash(currentContent);
+    const latestBackupHash = getLatestBackupHash(txtPath);
+
+    if (latestBackupHash === currentHash) {
+      // Content unchanged, skip backup
+      skipped.txt = true;
+    } else {
+      const backupPath = `${txtPath}.backup-${timestamp}`;
+      fs.copyFileSync(txtPath, backupPath);
+      backups.txt = backupPath;
+    }
   }
 
-  return backups;
+  return { ...backups, skipped };
+}
+
+/**
+ * Removes old backup files, keeping only the most recent ones
+ *
+ * Useful for cleanup operations to prevent excessive backup accumulation.
+ * Combined with deduplication in backupConfigs(), this ensures only
+ * a small number of unique backups are retained.
+ *
+ * @param {string} projectRoot - Project root directory
+ * @param {number} [keep=3] - Number of most recent backups to keep
+ * @returns {Object} Cleanup result with removed count
+ * @property {number} yaml - Number of yaml backups removed
+ * @property {number} txt - Number of txt backups removed
+ */
+export function cleanupOldBackups(projectRoot, keep = 3) {
+  const removed = { yaml: 0, txt: 0 };
+
+  const cleanupConfigBackups = (configPath, key) => {
+    const parentDir = path.dirname(path.join(projectRoot, configPath));
+    const configBasename = path.basename(configPath);
+    const backupPattern = new RegExp(`^${configBasename}\\.backup-\\d{4}-\\d{2}-\\d{2}T`);
+
+    try {
+      const files = fs.readdirSync(parentDir);
+      const backups = files
+        .filter(f => backupPattern.test(f))
+        .map(f => ({
+          path: path.join(parentDir, f),
+          time: fs.statSync(path.join(parentDir, f)).mtime.getTime()
+        }))
+        .sort((a, b) => b.time - a.time);
+
+      // Remove all but the N most recent
+      const toRemove = backups.slice(keep);
+      for (const backup of toRemove) {
+        fs.unlinkSync(backup.path);
+        removed[key]++;
+      }
+    } catch (e) {
+      // Directory doesn't exist or other error - skip
+    }
+  };
+
+  cleanupConfigBackups(CONFIG_PATHS.yamlConfig, 'yaml');
+  cleanupConfigBackups(CONFIG_PATHS.txtConfig, 'txt');
+
+  return removed;
 }
 
 /**
@@ -208,9 +344,11 @@ export function writeConfigs(config, options = {}) {
       }
     }
 
-    // Create backups
+    // Create backups (with deduplication)
     if (createBackup) {
-      backupConfigs(projectRoot);
+      const backupResult = backupConfigs(projectRoot);
+      // backupResult now contains { yaml?, txt?, skipped: { yaml, txt } }
+      // We don't need to do anything with it - backups are created or skipped
     }
 
     // Write to txt file first (quick override)

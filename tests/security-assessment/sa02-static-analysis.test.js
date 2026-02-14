@@ -45,6 +45,10 @@ describe('SA-02-S1: Automated Static Analysis', () => {
       expect(config).toMatch(/MUST PRESERVE.*DO NOT DOWNGRADE/);
     });
 
+    // SKIP: ESLINT-VIOLATIONS
+    // STATUS: PENDING - Codebase has 78 ESLint violations (76 errors, 2 warnings) to be resolved
+    // LAST_REVIEWED: 2026-02-14
+    // TRACKING: See team/test-skips.md for full breakdown
     it.skip('npx eslint src/ exits with 0 (no violations)', () => {
       const result = execSync('npx eslint src/', {
         cwd: ROOT,

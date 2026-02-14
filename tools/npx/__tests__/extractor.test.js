@@ -137,6 +137,11 @@ describe('extractor', () => {
   });
 
   describe('detectConflicts', () => {
+    // SKIP: MOCK-INFASTRUCTURE-ISSUE
+    // STATUS: PENDING - Tests timeout because select prompt mock doesn't prevent actual prompts
+    // TEST-TIMEOUT: 30000ms - Tests wait for actual user input
+    // LAST_REVIEWED: 2026-02-14
+    // ISSUE: vi.mock() on select doesn't prevent real prompts, need to fix mock setup
     it.skip('detects existing files', async () => {
       // Mock select to return 'cancel' when conflicts found
       select.mockResolvedValue('cancel');
@@ -272,6 +277,11 @@ describe('extractor', () => {
   });
 
   describe('overwrite handling', () => {
+    // SKIP: MOCK-INFASTRUCTURE-ISSUE
+    // STATUS: PENDING - Tests timeout because select prompt mock doesn't prevent actual prompts
+    // TEST-TIMEOUT: 30000ms - Tests wait for actual user input
+    // LAST_REVIEWED: 2026-02-14
+    // ISSUE: vi.mock() on select doesn't prevent real prompts, need to fix mock setup
     it.skip('prompts user when conflicts exist and force is false', async () => {
       // Create existing file
       const existingDir = join(targetDir, '_bmad');
@@ -298,6 +308,11 @@ describe('extractor', () => {
       );
     });
 
+    // SKIP: MOCK-INFASTRUCTURE-ISSUE
+    // STATUS: PENDING - Tests timeout because select prompt mock doesn't prevent actual prompts
+    // TEST-TIMEOUT: 30000ms - Tests wait for actual user input
+    // LAST_REVIEWED: 2026-02-14
+    // ISSUE: vi.mock() on select doesn't prevent real prompts, need to fix mock setup
     it.skip('overwrites files when user selects overwrite', async () => {
       // Create existing file
       const existingDir = join(targetDir, '_bmad');
@@ -317,6 +332,11 @@ describe('extractor', () => {
       expect(content).toBe('new content');
     });
 
+    // SKIP: MOCK-INFASTRUCTURE-ISSUE
+    // STATUS: PENDING - Tests timeout because select prompt mock doesn't prevent actual prompts
+    // TEST-TIMEOUT: 30000ms - Tests wait for actual user input
+    // LAST_REVIEWED: 2026-02-14
+    // ISSUE: vi.mock() on select doesn't prevent real prompts, need to fix mock setup
     it.skip('cancels extraction when user selects cancel', async () => {
       // Create existing file
       const existingDir = join(targetDir, '_bmad');

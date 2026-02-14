@@ -316,7 +316,7 @@ describe('Vitest Config Validation', () => {
     it('should not have untracked vitest config files in the project', () => {
       const allConfigs = globSync('**/vitest.config*.ts', {
         cwd: PROJECT_ROOT,
-        ignore: ['node_modules/**', 'dist/**', '_bmad-output/**'],
+        ignore: ['node_modules/**', 'dist/**', '_bmad-output/**', 'team/backups/**'],
         dot: true,
       });
 
@@ -334,7 +334,7 @@ describe('Vitest Config Validation', () => {
     it('should have the expected number of config files', () => {
       const allConfigs = globSync('**/vitest.config*.ts', {
         cwd: PROJECT_ROOT,
-        ignore: ['node_modules/**', 'dist/**', '_bmad-output/**'],
+        ignore: ['node_modules/**', 'dist/**', '_bmad-output/**', 'team/backups/**'],
         dot: true,
       });
 

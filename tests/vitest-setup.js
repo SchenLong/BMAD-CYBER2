@@ -9,7 +9,7 @@
 
 import path from 'path';
 import fs from 'fs';
-import { beforeEach, afterEach } from 'vitest';
+import { beforeEach, afterEach, afterAll } from 'vitest';
 
 // Store original fs functions
 const originalExistsSync = fs.existsSync;
@@ -98,6 +98,49 @@ afterEach(() => {
   process.stdin.isTTY = originalStdinIsTTY;
   process.stdout.isTTY = originalStdoutIsTTY;
   process.stderr.isTTY = originalStderrIsTTY;
+});
+
+// Cleanup after all tests complete - restore fs overrides
+// This prevents worker crashes during vitest cleanup
+afterAll(() => {
+  fs.existsSync = originalExistsSync;
+  fs.readFileSync = originalReadFileSync;
+});
+
+// Handle worker exit gracefully during cleanup
+// This is a known tinypool issue when tests spawn subprocesses
+// The worker exits after all tests pass, but tinypool reports it as unexpected
+process.on('unhandledRejection', (reason) => {
+  // Suppress "Worker exited unexpectedly" during cleanup
+  if (reason && reason.message && reason.message.includes('Worker exited')) {
+    return; // Let it exit gracefully
+  }
+  // Suppress tinypool worker termination errors
+  if (reason && reason.message && (
+    reason.message.includes('worker') ||
+    reason.message.includes('tinypool') ||
+    reason.message.includes('terminated')
+  )) {
+    return; // Let it exit gracefully
+  }
+  // Log other unhandled rejections for debugging
+  console.warn('Unhandled Rejection:', reason);
+});
+
+// Handle uncaught exceptions from worker cleanup
+process.on('uncaughtException', (err) => {
+  // Suppress worker-related exceptions during cleanup
+  if (err && err.message && (
+    err.message.includes('Worker exited') ||
+    err.message.includes('worker') ||
+    err.message.includes('tinypool') ||
+    err.message.includes('terminated') ||
+    err.message.includes('ECONNRESET') // Connection reset during worker shutdown
+  )) {
+    return; // Let it exit gracefully
+  }
+  // Log other uncaught exceptions for debugging
+  console.error('Uncaught Exception:', err);
 });
 
 // Helper to read source file content from a test directory

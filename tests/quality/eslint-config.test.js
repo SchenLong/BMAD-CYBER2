@@ -363,6 +363,10 @@ describe('ESLint Config — Node.js Globals', () => {
 // ═══════════════════════════════════════════════════════════════════════════════
 // 8. CLEAN LINT PASS
 // ═══════════════════════════════════════════════════════════════════════════════
+// SKIP: ESLINT-VIOLATIONS
+// STATUS: PENDING - Codebase has 78 ESLint violations (76 errors, 2 warnings) to be resolved
+// LAST_REVIEWED: 2026-02-14
+// TRACKING: See team/test-skips.md for full breakdown
 describe('ESLint Config — Clean Lint Pass', () => {
   it.skip('npm run lint exits with 0 (no errors, no warnings)', () => {
     let exitCode = 0;

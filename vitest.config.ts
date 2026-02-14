@@ -29,6 +29,8 @@ export default defineConfig({
       'dev-tools/performance/performance-lessons-12-15-jest.test.js',       // Strict thresholds, run separately
       // Memory stress test deliberately pushes heap past limits — causes worker OOM
       'tests/performance/memory.test.ts',
+      // Backup directories - excluded to prevent duplicate tests
+      'team/backups/**',
     ],
     coverage: {
       provider: 'v8',
@@ -128,5 +130,8 @@ export default defineConfig({
   ],
   esbuild: {
     target: 'node18'
-  }
+  },
+  // Suppress source map warnings for validators-node src files
+  // Source maps are generated in dist/ during build, tests run from src/
+  sourcemap: 'false'
 });
