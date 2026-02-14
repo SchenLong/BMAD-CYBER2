@@ -159,6 +159,7 @@
     "CHANGELOG.md",
     "_bmad/framework/README.md",
     "tools/cli/**/*",
+    "src/**/*",
     "src/utility/cli/**/*",
     "src/utility/tools/**/*",
     "src/utility/normalize-line-endings.js"
