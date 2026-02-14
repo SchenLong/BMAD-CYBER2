@@ -120,12 +120,13 @@ function parseYaml(content: string): any {
     const content_part = trimmed.trim();
 
     // Pop stack to find the right parent level
-    while (stack.length > 1 && stack[stack.length - 1].indent >= indent) {
+    while (stack.length > 1 && stack[stack.length - 1]?.indent >= indent) {
       stack.pop();
     }
 
     // Get the current context
     const currentStack = stack[stack.length - 1];
+    if (!currentStack) continue;
     let parent = currentStack.obj;
 
     // If the parent key points to an object, use that object
@@ -164,7 +165,7 @@ function parseYaml(content: string): any {
         if (!Array.isArray(currentStack.obj[parentKey])) {
           currentStack.obj[parentKey] = [];
         }
-        targetArray = currentStack.obj[parentKey];
+        targetArray = currentStack.obj[parentKey] ?? [];
       } else {
         // This shouldn't happen with well-formed YAML
         continue;

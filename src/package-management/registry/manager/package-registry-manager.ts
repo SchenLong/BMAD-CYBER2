@@ -16,9 +16,8 @@ import { EventEmitter } from 'events';
 import { performance } from 'perf_hooks';
 
 // Import Epic 1 Security Infrastructure
-import { epic1Security, SecurityStatus } from '../../../security/epic1-integration';
-import { AuditLogger } from '../../../security/audit/audit-logger';
-import { CryptoUtils } from '../../../security/encryption/crypto-utils';
+import { epic1Security } from '../../../security/epic1-integration';
+import { TamperEvidentAuditLogger } from '../../../security/audit/audit-logger';
 
 // Package Management Interfaces
 export interface PackageMetadata {
@@ -221,8 +220,8 @@ export class PackageRegistryManager extends EventEmitter {
   private config: RegistryConfiguration;
   private registries: Map<string, PackageRegistry> = new Map();
   private packageCache: Map<string, PackageMetadata> = new Map();
-  private auditLogger: AuditLogger;
-  private cryptoUtils: CryptoUtils;
+  private _auditLogger: TamperEvidentAuditLogger;
+  // private _cryptoUtils: any; // TODO: Add CryptoUtils when available
   private healthCheckInterval: NodeJS.Timeout | null = null;
   private isInitialized = false;
   private metrics: RegistryManagerMetrics;
@@ -230,8 +229,9 @@ export class PackageRegistryManager extends EventEmitter {
   constructor(config: Partial<RegistryConfiguration> = {}) {
     super();
     this.config = this.mergeWithDefaults(config);
-    this.auditLogger = epic1Security.getComponent<AuditLogger>('auditLogger') || new AuditLogger();
-    this.cryptoUtils = epic1Security.getComponent<CryptoUtils>('cryptoUtils') || new CryptoUtils();
+    this._auditLogger = epic1Security.getComponent<TamperEvidentAuditLogger>('auditLogger') ||
+      new TamperEvidentAuditLogger('./audit.log', process.env.AUDIT_PRIVATE_KEY || 'default-key');
+    // this._cryptoUtils = epic1Security.getComponent<any>('cryptoUtils');
     this.metrics = this.initializeMetrics();
   }
 
@@ -264,7 +264,7 @@ export class PackageRegistryManager extends EventEmitter {
       console.log('✅ Package Registry Manager initialized successfully');
 
       // Log initialization
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'REGISTRY_MANAGER_INITIALIZED',
         resource: 'package_registry_manager',
@@ -283,7 +283,7 @@ export class PackageRegistryManager extends EventEmitter {
       this.emit('initialized');
     } catch (error) {
       console.error('❌ Failed to initialize Package Registry Manager:', error);
-      throw new Error(`Package registry manager initialization failed: ${error.message}`);
+      throw new Error(`Package registry manager initialization failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -317,7 +317,7 @@ export class PackageRegistryManager extends EventEmitter {
     await this.validateRegistryConnection(registryId);
 
     // Log registry registration
-    await this.auditLogger.logEvent({
+    await this._auditLogger.logEvent({
       id: crypto.randomUUID(),
       action: 'REGISTRY_REGISTERED',
       resource: 'package_registry',
@@ -387,7 +387,7 @@ export class PackageRegistryManager extends EventEmitter {
       this.metrics.totalStorageUsed += packageData.length;
 
       // Log package publication
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_PUBLISHED',
         resource: 'package',
@@ -413,8 +413,9 @@ export class PackageRegistryManager extends EventEmitter {
 
     } catch (error) {
       this.metrics.publishErrors++;
+      const errorMessage = error instanceof Error ? error.message : String(error);
 
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_PUBLISH_FAILED',
         resource: 'package',
@@ -422,7 +423,7 @@ export class PackageRegistryManager extends EventEmitter {
         details: {
           name: metadata.name,
           version: metadata.version,
-          error: error.message,
+          error: errorMessage,
           registryId: registryId || 'default'
         },
         severity: 'high',
@@ -430,7 +431,7 @@ export class PackageRegistryManager extends EventEmitter {
         timestamp: new Date()
       });
 
-      throw new Error(`Package publication failed: ${error.message}`);
+      throw new Error(`Package publication failed: ${errorMessage}`);
     }
   }
 
@@ -470,7 +471,7 @@ export class PackageRegistryManager extends EventEmitter {
       };
 
       // Log search query (non-sensitive parts)
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_SEARCH',
         resource: 'package_registry',
@@ -490,14 +491,15 @@ export class PackageRegistryManager extends EventEmitter {
 
     } catch (error) {
       this.metrics.searchErrors++;
+      const errorMessage = error instanceof Error ? error.message : String(error);
 
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_SEARCH_FAILED',
         resource: 'package_registry',
         outcome: 'failure',
         details: {
-          error: error.message,
+          error: errorMessage,
           query: query.query ? '[REDACTED]' : undefined
         },
         severity: 'medium',
@@ -505,7 +507,7 @@ export class PackageRegistryManager extends EventEmitter {
         timestamp: new Date()
       });
 
-      throw new Error(`Package search failed: ${error.message}`);
+      throw new Error(`Package search failed: ${errorMessage}`);
     }
   }
 
@@ -549,7 +551,7 @@ export class PackageRegistryManager extends EventEmitter {
       this.metrics.averageDownloadTime = (this.metrics.averageDownloadTime + downloadTime) / 2;
 
       // Log package download
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_DOWNLOADED',
         resource: 'package',
@@ -571,8 +573,9 @@ export class PackageRegistryManager extends EventEmitter {
 
     } catch (error) {
       this.metrics.downloadErrors++;
+      const errorMessage = error instanceof Error ? error.message : String(error);
 
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_DOWNLOAD_FAILED',
         resource: 'package',
@@ -580,14 +583,14 @@ export class PackageRegistryManager extends EventEmitter {
         details: {
           packageId,
           version: version || 'latest',
-          error: error.message
+          error: errorMessage
         },
         severity: 'medium',
         category: 'data_access',
         timestamp: new Date()
       });
 
-      throw new Error(`Package download failed: ${error.message}`);
+      throw new Error(`Package download failed: ${errorMessage}`);
     }
   }
 
@@ -637,7 +640,7 @@ export class PackageRegistryManager extends EventEmitter {
       this.metrics.packagesDeleted++;
 
       // Log package deletion
-      await this.auditLogger.logEvent({
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_DELETED',
         resource: 'package',
@@ -658,7 +661,8 @@ export class PackageRegistryManager extends EventEmitter {
       this.emit('package.deleted', { packageId, metadata, reason, userId });
 
     } catch (error) {
-      await this.auditLogger.logEvent({
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      await this._auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_DELETE_FAILED',
         resource: 'package',
@@ -666,7 +670,7 @@ export class PackageRegistryManager extends EventEmitter {
         details: {
           packageId,
           reason,
-          error: error.message,
+          error: errorMessage,
           userId
         },
         severity: 'high',
@@ -675,7 +679,7 @@ export class PackageRegistryManager extends EventEmitter {
         userId
       });
 
-      throw new Error(`Package deletion failed: ${error.message}`);
+      throw new Error(`Package deletion failed: ${errorMessage}`);
     }
   }
 
@@ -738,7 +742,8 @@ export class PackageRegistryManager extends EventEmitter {
       this.emit('health.check.complete', { status: 'healthy' });
 
     } catch (error) {
-      this.emit('health.check.failed', { error: error.message });
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.emit('health.check.failed', { error: errorMessage });
       throw error;
     }
   }
@@ -757,7 +762,7 @@ export class PackageRegistryManager extends EventEmitter {
     const oldConfig = { ...this.config };
     this.config = this.mergeWithDefaults(newConfig);
 
-    await this.auditLogger.logEvent({
+    await this._auditLogger.logEvent({
       id: crypto.randomUUID(),
       action: 'REGISTRY_CONFIG_UPDATED',
       resource: 'package_registry_manager',
@@ -789,7 +794,7 @@ export class PackageRegistryManager extends EventEmitter {
 
     this.isInitialized = false;
 
-    await this.auditLogger.logEvent({
+    await this._auditLogger.logEvent({
       id: crypto.randomUUID(),
       action: 'REGISTRY_MANAGER_SHUTDOWN',
       resource: 'package_registry_manager',
@@ -924,7 +929,7 @@ export class PackageRegistryManager extends EventEmitter {
   // Additional private methods would continue here...
   // For brevity, I'll include placeholder implementations
 
-  private async validatePackageSecurity(packageData: Buffer, metadata: any): Promise<void> {
+  private async validatePackageSecurity(_packageData: Buffer, _metadata: any): Promise<void> {
     // Security validation implementation
   }
 
@@ -940,7 +945,7 @@ export class PackageRegistryManager extends EventEmitter {
     };
   }
 
-  private async scanPackageSecurity(packageData: Buffer, metadata: any): Promise<PackageSecurity> {
+  private async scanPackageSecurity(_packageData: Buffer, _metadata: any): Promise<PackageSecurity> {
     return {
       vulnerabilities: [],
       riskLevel: 'low',
@@ -958,11 +963,11 @@ export class PackageRegistryManager extends EventEmitter {
     await fs.writeFile(packagePath, packageData);
   }
 
-  private async indexPackage(metadata: PackageMetadata): Promise<void> {
+  private async indexPackage(_metadata: PackageMetadata): Promise<void> {
     // Index package metadata for search
   }
 
-  private async validateRegistryConnection(registryId: string): Promise<void> {
+  private async validateRegistryConnection(_registryId: string): Promise<void> {
     // Validate registry connectivity
   }
 
@@ -972,7 +977,7 @@ export class PackageRegistryManager extends EventEmitter {
     }
   }
 
-  private async executeSearch(query: PackageSearchQuery): Promise<PackageMetadata[]> {
+  private async executeSearch(_query: PackageSearchQuery): Promise<PackageMetadata[]> {
     // Execute search against indexing engine
     return [];
   }
@@ -985,7 +990,7 @@ export class PackageRegistryManager extends EventEmitter {
     return packages.filter(pkg => pkg.security.riskLevel !== 'critical');
   }
 
-  private async generateSearchFacets(packages: PackageMetadata[]): Promise<any> {
+  private async generateSearchFacets(_packages: PackageMetadata[]): Promise<any> {
     // Generate search facets
     return undefined;
   }
@@ -1006,11 +1011,11 @@ export class PackageRegistryManager extends EventEmitter {
     return hash === integrity.hash;
   }
 
-  private async updatePackageMetadata(metadata: PackageMetadata): Promise<void> {
+  private async updatePackageMetadata(_metadata: PackageMetadata): Promise<void> {
     // Update package metadata in storage and index
   }
 
-  private async loadPackageMetadata(packageId: string, version?: string): Promise<PackageMetadata | null> {
+  private async loadPackageMetadata(_packageId: string, _version?: string): Promise<PackageMetadata | null> {
     // Load package metadata from storage
     return null;
   }
@@ -1020,7 +1025,7 @@ export class PackageRegistryManager extends EventEmitter {
     await fs.unlink(packagePath);
   }
 
-  private async removeFromIndex(packageId: string): Promise<void> {
+  private async removeFromIndex(_packageId: string): Promise<void> {
     // Remove package from search index
   }
 
@@ -1114,13 +1119,3 @@ export async function initializePackageRegistry(config?: Partial<RegistryConfigu
   await manager.initialize();
   return manager;
 }
-
-// Export types for external use
-export type {
-  PackageMetadata,
-  PackageRegistry,
-  PackageSearchQuery,
-  PackageSearchResult,
-  RegistryConfiguration,
-  PackageRegistryEvent
-};

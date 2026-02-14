@@ -230,7 +230,6 @@ export function main(): void {
     if (!filePath || typeof filePath !== 'string') {
       // No file path — skip (not a Read operation we can scan)
       process.exit(EXIT_CODES.ALLOW);
-      return;
     }
 
     const { exitCode, findingCount, severity } = scanContextFile(filePath);

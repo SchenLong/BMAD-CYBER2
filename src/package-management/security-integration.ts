@@ -15,26 +15,25 @@ import { performance } from 'perf_hooks';
 
 // Import Epic 1 Security Infrastructure
 import {
-  ComponentStatus,
+  // ComponentStatus,
   epic1Security,
-  Epic1SecurityInfrastructure,
-  SecurityStatus
+  Epic1SecurityInfrastructure
 } from '../security/epic1-integration';
 import { AuditLogger } from '../security/audit/audit-logger';
-import { AESEncryption } from '../security/encryption/aes-encryption';
-import { CryptoUtils } from '../security/encryption/crypto-utils';
-import { SecurityMonitor } from '../security/monitoring/security-monitor';
+// import { AESEncryption } from '../security/encryption/aes-encryption';
+// import { CryptoUtils } from '../security/encryption/crypto-utils';
+// import { SecurityMonitor } from '../security/monitoring/security-monitor';
 import { PermissionService } from '../security/rbac/permissions/permission-service';
 
 // Import Package Management Types
 import {
-  PackageIdentifier,
-  PackageIntegrity,
+  // PackageIdentifier,
+  // PackageIntegrity,
   PackageMetadata,
-  PackageRegistry,
-  PackageSecurity,
-  SecurityRestriction,
-  SecurityVulnerability
+  // PackageRegistry,
+  // PackageSecurity,
+  // SecurityRestriction,
+  // SecurityVulnerability
 } from './registry/interfaces';
 
 /**
@@ -320,9 +319,9 @@ export interface ResponseAction {
 export class PackageSecurityIntegration extends EventEmitter {
   private epic1Security: Epic1SecurityInfrastructure;
   private auditLogger: AuditLogger;
-  private encryption: AESEncryption;
-  private cryptoUtils: CryptoUtils;
-  private securityMonitor: SecurityMonitor;
+  // private encryption: AESEncryption;
+  // private cryptoUtils: CryptoUtils;
+  // private securityMonitor: SecurityMonitor;
   private permissionService: PermissionService;
 
   private securityPolicies: Map<string, PackageSecurityPolicy> = new Map();
@@ -335,11 +334,15 @@ export class PackageSecurityIntegration extends EventEmitter {
   constructor() {
     super();
     this.epic1Security = epic1Security;
-    this.auditLogger = this.epic1Security.getComponent<AuditLogger>('auditLogger');
-    this.encryption = this.epic1Security.getComponent<AESEncryption>('encryption');
-    this.cryptoUtils = this.epic1Security.getComponent<CryptoUtils>('cryptoUtils');
-    this.securityMonitor = this.epic1Security.getComponent<SecurityMonitor>('securityMonitor');
-    this.permissionService = this.epic1Security.getComponent<PermissionService>('permissionService');
+    const auditLogger = this.epic1Security.getComponent<AuditLogger>('auditLogger');
+    if (!auditLogger) throw new Error('AuditLogger not found in Epic1Security');
+    this.auditLogger = auditLogger;
+    // this.encryption = this.epic1Security.getComponent<AESEncryption>('encryption');
+    // this.cryptoUtils = this.epic1Security.getComponent<CryptoUtils>('cryptoUtils');
+    // this.securityMonitor = this.epic1Security.getComponent<SecurityMonitor>('securityMonitor');
+    const permissionService = this.epic1Security.getComponent<PermissionService>('permissionService');
+    if (!permissionService) throw new Error('PermissionService not found in Epic1Security');
+    this.permissionService = permissionService;
 
     this.metrics = this.initializeMetrics();
   }
@@ -393,8 +396,9 @@ export class PackageSecurityIntegration extends EventEmitter {
 
       this.emit('initialized');
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       console.error('❌ Failed to initialize Package Security Integration:', error);
-      throw new Error(`Security integration initialization failed: ${error.message}`);
+      throw new Error(`Security integration initialization failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -506,6 +510,7 @@ export class PackageSecurityIntegration extends EventEmitter {
       return result;
 
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       this.metrics.validationErrors++;
 
       await this.auditLogger.logEvent({
@@ -517,7 +522,7 @@ export class PackageSecurityIntegration extends EventEmitter {
           validationId,
           packageName: metadata.name,
           packageVersion: metadata.version,
-          error: error.message,
+          error: errorMessage,
           publisherId
         },
         severity: 'critical',
@@ -526,7 +531,7 @@ export class PackageSecurityIntegration extends EventEmitter {
         userId: publisherId
       });
 
-      throw new Error(`Package security validation failed: ${error.message}`);
+      throw new Error(`Package security validation failed: ${errorMessage}`);
     }
   }
 
@@ -547,13 +552,12 @@ export class PackageSecurityIntegration extends EventEmitter {
       }
 
       // Check user permissions
-      const hasPermission = await this.permissionService.checkPermission(
-        userId,
-        'package:download',
-        { packageId }
+      const permissionResult = this.permissionService.enforcePermission(
+        { userId, roles: [], permissions: [] },
+        'package:download'
       );
 
-      if (!hasPermission) {
+      if (!permissionResult.allowed) {
         throw new Error(`User ${userId} does not have permission to download ${packageId}`);
       }
 
@@ -586,6 +590,7 @@ export class PackageSecurityIntegration extends EventEmitter {
       };
 
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       await this.auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'PACKAGE_DOWNLOAD_DENIED',
@@ -595,7 +600,7 @@ export class PackageSecurityIntegration extends EventEmitter {
           validationId,
           packageId,
           userId,
-          error: error.message,
+          error: errorMessage,
           context
         },
         severity: 'medium',
@@ -608,7 +613,7 @@ export class PackageSecurityIntegration extends EventEmitter {
         validationId,
         authorized: false,
         restrictions: ['access_denied'],
-        reason: error.message,
+        reason: errorMessage,
         monitoring: ['failed_download_attempt']
       };
     }
@@ -675,6 +680,7 @@ export class PackageSecurityIntegration extends EventEmitter {
       return assessment;
 
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       await this.auditLogger.logEvent({
         id: crypto.randomUUID(),
         action: 'SECURITY_ASSESSMENT_FAILED',
@@ -684,14 +690,14 @@ export class PackageSecurityIntegration extends EventEmitter {
           assessmentId,
           packageId,
           assessmentType,
-          error: error.message
+          error: errorMessage
         },
         severity: 'high',
         category: 'security',
         timestamp: new Date()
       });
 
-      throw new Error(`Security assessment failed: ${error.message}`);
+      throw new Error(`Security assessment failed: ${errorMessage}`);
     }
   }
 
@@ -742,8 +748,9 @@ export class PackageSecurityIntegration extends EventEmitter {
       return policyResult;
 
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       policyResult.applied = false;
-      policyResult.error = error.message;
+      policyResult.error = errorMessage;
       return policyResult;
     }
   }
@@ -911,13 +918,12 @@ export class PackageSecurityIntegration extends EventEmitter {
 
   private async validatePublisherPermissions(publisherId: string, metadata: PackageMetadata): Promise<void> {
     // Validate publisher has permission to publish this package
-    const hasPermission = await this.permissionService.checkPermission(
-      publisherId,
-      'package:publish',
-      { packageName: metadata.name }
+    const permissionResult = this.permissionService.enforcePermission(
+      { userId: publisherId, roles: [], permissions: [] },
+      'package:publish'
     );
 
-    if (!hasPermission) {
+    if (!permissionResult.allowed) {
       throw new Error(`Publisher ${publisherId} does not have permission to publish ${metadata.name}`);
     }
   }
@@ -938,7 +944,7 @@ export class PackageSecurityIntegration extends EventEmitter {
     return { status: 'passed', message: 'Package integrity verified' };
   }
 
-  private async scanForVulnerabilities(packageData: Buffer, metadata: PackageMetadata): Promise<ValidationResult> {
+  private async scanForVulnerabilities(_packageData: Buffer, metadata: PackageMetadata): Promise<ValidationResult> {
     // Scan package for known vulnerabilities
     const vulnerabilities = metadata.security?.vulnerabilities || [];
     const criticalVulns = vulnerabilities.filter(v => v.severity === 'critical');
@@ -954,7 +960,7 @@ export class PackageSecurityIntegration extends EventEmitter {
     return { status: 'passed', message: 'No critical vulnerabilities detected' };
   }
 
-  private async scanForMalware(packageData: Buffer): Promise<ValidationResult> {
+  private async scanForMalware(_packageData: Buffer): Promise<ValidationResult> {
     // Scan package for malware signatures
     // This is a simplified implementation
     return { status: 'passed', message: 'No malware detected' };
@@ -994,7 +1000,7 @@ export class PackageSecurityIntegration extends EventEmitter {
     return { status: 'passed', message: 'All security policies satisfied' };
   }
 
-  private async checkOWASPCompliance(packageData: Buffer, metadata: PackageMetadata): Promise<ValidationResult> {
+  private async checkOWASPCompliance(_packageData: Buffer, _metadata: PackageMetadata): Promise<ValidationResult> {
     // Check OWASP Top 10 compliance
     const owaspChecks = [
       'injection_prevention',
@@ -1045,12 +1051,12 @@ export class PackageSecurityIntegration extends EventEmitter {
     return recommendations;
   }
 
-  private async applyRateLimiting(userId: string, operation: string): Promise<void> {
+  private async applyRateLimiting(_userId: string, _operation: string): Promise<void> {
     // Apply rate limiting for package operations
     // This is a simplified implementation
   }
 
-  private async performSecurityAnalysis(packageId: string, assessmentType: AssessmentType): Promise<SecurityFinding[]> {
+  private async performSecurityAnalysis(_packageId: string, _assessmentType: AssessmentType): Promise<SecurityFinding[]> {
     // Perform comprehensive security analysis
     return [];
   }
@@ -1065,12 +1071,12 @@ export class PackageSecurityIntegration extends EventEmitter {
     return 'low';
   }
 
-  private async checkCompliance(packageId: string, findings: SecurityFinding[]): Promise<ComplianceResult[]> {
+  private async checkCompliance(_packageId: string, _findings: SecurityFinding[]): Promise<ComplianceResult[]> {
     // Check compliance against various frameworks
     return [];
   }
 
-  private async generateAssessmentRecommendations(findings: SecurityFinding[]): Promise<SecurityRecommendation[]> {
+  private async generateAssessmentRecommendations(_findings: SecurityFinding[]): Promise<SecurityRecommendation[]> {
     // Generate security recommendations based on findings
     return [];
   }
@@ -1102,23 +1108,23 @@ export class PackageSecurityIntegration extends EventEmitter {
   }
 
   private async evaluateSecurityRule(
-    rule: SecurityRule,
-    packageId: string,
-    operation: string,
-    context: SecurityContext
+    _rule: SecurityRule,
+    _packageId: string,
+    _operation: string,
+    _context: SecurityContext
   ): Promise<RuleEvaluationResult> {
     // Evaluate security rule against package
     return { violated: false, description: '' };
   }
 
   private async executeRuleAction(
-    action: RuleAction,
-    packageId: string,
-    context: SecurityContext
+    _action: RuleAction,
+    _packageId: string,
+    _context: SecurityContext
   ): Promise<ActionResult> {
     // Execute security rule action
     return {
-      action: action.type,
+      action: _action.type,
       result: 'success',
       timestamp: new Date(),
       details: ''

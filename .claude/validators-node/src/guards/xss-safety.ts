@@ -187,6 +187,7 @@ export function detectXSS(content: string, context?: string): XSSDetectionResult
   // Check each line for XSS patterns
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    if (!line) continue;
 
     // Skip if line looks like safe content
     if (isLineSafe(line, context)) {
@@ -196,7 +197,7 @@ export function detectXSS(content: string, context?: string): XSSDetectionResult
     // Check each XSS category
     for (const [category, patterns] of Object.entries(XSS_PATTERNS)) {
       for (const pattern of patterns as RegExp[]) {
-        if (pattern.test(line)) {
+        if (pattern.source && pattern.test(line)) {
           const testId = getTestIdForCategory(category);
           detected.push({
             pattern: pattern.source,
