@@ -35,6 +35,12 @@ describe('E2E Hook Chain Integrity - P3-17', () => {
   let settings;
   let allHookEntries; // Array of { event, matcher, command, scriptPath }
 
+  // Reset environment before each test to prevent cross-test pollution
+  beforeEach(() => {
+    // Ensure CLAUDE_PROJECT_DIR is set correctly for validator tests
+    process.env.CLAUDE_PROJECT_DIR = projectRoot;
+  });
+
   beforeAll(() => {
     const raw = fs.readFileSync(settingsPath, 'utf-8');
     settings = JSON.parse(raw);

@@ -54,8 +54,11 @@ export function isSilent() {
 export function handleCancel(value, message = 'Operation cancelled') {
   if (p.isCancel(value)) {
     p.cancel(message);
-     
-    process.exit(0);
+    // Only exit if NOT in CI environment
+    // This prevents killing the test runner during automated testing
+    if (process.env.CI !== 'true') {
+      process.exit(0);
+    }
   }
   return false;
 }
@@ -496,8 +499,10 @@ export async function group(prompts, options = {}) {
   const result = await p.group(prompts, {
     onCancel: () => {
       p.cancel('Operation cancelled');
-       
-      process.exit(0);
+      // Only exit if NOT in CI environment
+      if (process.env.CI !== 'true') {
+        process.exit(0);
+      }
     },
     ...options,
   });

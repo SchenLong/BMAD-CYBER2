@@ -9,6 +9,7 @@
 
 import path from 'path';
 import fs from 'fs';
+import { beforeEach, afterEach } from 'vitest';
 
 // Store original fs functions
 const originalExistsSync = fs.existsSync;
@@ -77,6 +78,27 @@ globalThis.getSourcePath = function(testDir, filename) {
 
   return path.join(sourcePath, filename);
 };
+
+// Store original TTY state before any tests modify it
+const originalStdinIsTTY = process.stdin.isTTY;
+const originalStdoutIsTTY = process.stdout.isTTY;
+const originalStderrIsTTY = process.stderr.isTTY;
+
+// Reset global state before each test to prevent cross-test pollution
+beforeEach(() => {
+  // Reset TTY state to original values
+  process.stdin.isTTY = originalStdinIsTTY;
+  process.stdout.isTTY = originalStdoutIsTTY;
+  process.stderr.isTTY = originalStderrIsTTY;
+});
+
+// Ensure cleanup after each test
+afterEach(() => {
+  // Reset TTY state to original values
+  process.stdin.isTTY = originalStdinIsTTY;
+  process.stdout.isTTY = originalStdoutIsTTY;
+  process.stderr.isTTY = originalStderrIsTTY;
+});
 
 // Helper to read source file content from a test directory
 globalThis.readSourceFile = function(testDir, filename) {
