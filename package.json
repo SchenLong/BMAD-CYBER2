@@ -30,7 +30,8 @@
   },
   "workspaces": [
     "_bmad/framework",
-    ".claude/validators-node"
+    ".claude/validators-node",
+    "tools/npx"
   ],
   "bin": {
     "bmad-cybersec": "tools/cli/bmad-cli.js",

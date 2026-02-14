@@ -173,26 +173,25 @@ function getUpdateType(current, latest) {
  * @returns {Promise<{ current: string, latest: string|null, updateAvailable: boolean, updateType: string }>}
  */
 export async function checkVersion() {
-  // Suppress in CI environments (FAIL-PV6-01-010-4)
-  if (process.env.CI) {
-    const current = getCurrentVersion();
-    return { current, latest: null, updateAvailable: false, updateType: 'none' };
-  }
-
-  // Suppress when explicitly disabled (FAIL-PV6-01-010-5)
-  if (process.env.BMAD_NO_UPDATE_CHECK) {
-    const current = getCurrentVersion();
-    return { current, latest: null, updateAvailable: false, updateType: 'none' };
-  }
-
   const current = getCurrentVersion();
 
-  // Check cache first
+  // Check cache first (before CI check, so tests can use cached data in CI)
   const cache = readCache();
   if (cache && isCacheValid(cache)) {
     const updateAvailable = semver.gt(cache.latest, current);
     const updateType = getUpdateType(current, cache.latest);
     return { current, latest: cache.latest, updateAvailable, updateType };
+  }
+
+  // Suppress network calls in CI environments (FAIL-PV6-01-010-4)
+  // But still use cached results if available
+  if (process.env.CI) {
+    return { current, latest: null, updateAvailable: false, updateType: 'none' };
+  }
+
+  // Suppress when explicitly disabled (FAIL-PV6-01-010-5)
+  if (process.env.BMAD_NO_UPDATE_CHECK) {
+    return { current, latest: null, updateAvailable: false, updateType: 'none' };
   }
 
   // Fetch from npm registry

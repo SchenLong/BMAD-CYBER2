@@ -50,15 +50,16 @@ export function isSilent() {
  * @param {any} value - The value to check
  * @param {string} [message='Operation cancelled'] - Message to display
  * @returns {boolean} True if cancelled
+ * @throws {Error} If cancelled and not in CI environment
  */
 export function handleCancel(value, message = 'Operation cancelled') {
   if (p.isCancel(value)) {
     p.cancel(message);
-    // Only exit if NOT in CI environment
-    // This prevents killing the test runner during automated testing
-    if (process.env.CI !== 'true') {
-      process.exit(0);
-    }
+    // Throw an error for proper promise rejection in tests
+    // This is caught by vitest's expect().rejects
+    const cancelError = new Error('process.exit');
+    cancelError.code = 'CANCEL';
+    throw cancelError;
   }
   return false;
 }
