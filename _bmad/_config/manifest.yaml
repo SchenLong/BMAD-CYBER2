@@ -1,7 +1,7 @@
 installation:
   version: 6.0.0-alpha.22
   installDate: '2026-01-08T17:39:34.328Z'
-  lastUpdated: '2026-02-14T22:18:35.839Z'
+  lastUpdated: '2026-02-14T23:02:38.466Z'
 modules:
   - core
   - bmb
@@ -22,7 +22,7 @@ enabled_modules:
   - intel-team
   - legal-team
   - strategy-team
-last_modified: '2026-02-14T22:18:35.839Z'
+last_modified: '2026-02-14T23:02:38.466Z'
 installed_by: paultinp
 wizard_version: 2.0.0
 ides:
