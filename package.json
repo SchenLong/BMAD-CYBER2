@@ -153,7 +153,6 @@
     "_bmad/framework/dist/**/*",
     ".claude/validators-node/package.json",
     ".claude/validators-node/dist/**/*",
-    "!**/__tests__/**",
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
@@ -162,7 +161,8 @@
     "src/**/*",
     "src/utility/cli/**/*",
     "src/utility/tools/**/*",
-    "src/utility/normalize-line-endings.js"
+    "src/utility/normalize-line-endings.js",
+    "!**/__tests__/**"
   ],
   "repository": {
     "type": "git",
