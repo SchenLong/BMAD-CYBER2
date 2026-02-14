@@ -1,0 +1,13 @@
+tactic,tactic_id,technique_example,technique_id,description,common_indicators
+Initial Access,TA0001,Phishing,T1566,Adversary gains initial foothold via spearphishing or drive-by compromise,"Suspicious emails, malicious attachments, credential harvesting sites, exploit kits"
+Execution,TA0002,Command and Scripting Interpreter,T1059,Adversary executes malicious code on victim system,"PowerShell execution, command-line activity, script execution, suspicious process creation"
+Persistence,TA0003,Create or Modify System Process,T1543,Adversary maintains foothold across reboots and credential changes,"New services, scheduled tasks, registry run keys, startup folder modifications, backdoors"
+Privilege Escalation,TA0004,Exploitation for Privilege Escalation,T1068,Adversary gains higher-level permissions,"UAC bypass, kernel exploits, sudo abuse, token manipulation, DLL hijacking"
+Defense Evasion,TA0005,Obfuscated Files or Information,T1027,Adversary avoids detection by security controls,"Process injection, file deletion, log clearing, rootkits, AV disabling, masquerading"
+Credential Access,TA0006,OS Credential Dumping,T1003,Adversary steals account credentials,"LSASS dumping, password spraying, keylogging, credential files access, hash cracking"
+Discovery,TA0007,System Information Discovery,T1082,Adversary explores environment and gathers information,"Network scanning, user enumeration, file/directory discovery, system info queries"
+Lateral Movement,TA0008,Remote Services,T1021,Adversary moves through the environment,"RDP usage, PSExec, WMI, pass-the-hash, stolen credentials, SMB connections"
+Collection,TA0009,Data from Local System,T1005,Adversary gathers data of interest,"File staging, clipboard data, screen capture, audio/video capture, email collection"
+Command and Control,TA0011,Application Layer Protocol,T1071,Adversary communicates with compromised systems,"Beaconing to external IPs, DNS tunneling, encrypted channels, web protocols abuse"
+Exfiltration,TA0010,Exfiltration Over C2 Channel,T1041,Adversary steals data from the environment,"Large outbound transfers, unusual protocols, data compression, cloud storage uploads"
+Impact,TA0040,Data Encrypted for Impact,T1486,Adversary disrupts availability or integrity of systems/data,"Ransomware encryption, data destruction, service stop, defacement, DoS"

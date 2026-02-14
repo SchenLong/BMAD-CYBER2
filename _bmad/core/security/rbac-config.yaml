@@ -1,0 +1,546 @@
+# =============================================================================
+# BMAD ROLE-BASED ACCESS CONTROL CONFIGURATION
+# =============================================================================
+# This file defines roles, permissions, and access restrictions for the
+# BMAD framework. Modify with caution - incorrect configuration may lock
+# out users or expose sensitive workflows.
+#
+# Part of Phase 2 Security Implementation.
+
+rbac:
+  # Enable/disable RBAC (default: true)
+  enabled: true
+
+  # Default role for authenticated users without explicit role assignment
+  default_role: viewer
+
+  # Deny access by default if no permission explicitly grants it
+  deny_by_default: true
+
+  # ---------------------------------------------------------------------------
+  # ROLE DEFINITIONS
+  # ---------------------------------------------------------------------------
+  roles:
+    # =========================================================================
+    # ADMINISTRATIVE ROLES
+    # =========================================================================
+    admin:
+      description: "Full system administrator with unrestricted access"
+      inherits: []
+      permissions:
+        agents:
+          - "*"                           # All agents in all modules
+        workflows:
+          - "*"                           # All workflows
+        modules:
+          - "*"                           # All modules
+        actions:
+          - "read"
+          - "write"
+          - "execute"
+          - "admin"                       # Can modify RBAC config
+
+    # =========================================================================
+    # SECURITY TEAM ROLES
+    # =========================================================================
+    security_lead:
+      description: "Security team lead - manages security operations"
+      inherits:
+        - security_analyst                # Inherits all analyst permissions
+      permissions:
+        agents:
+          - "cybersec-team/*"             # All cybersec agents
+          - "intel-team/*"                # All intel agents
+          - "core/*"                      # Core agents (Abdul, BMAD Master)
+        workflows:
+          - "incident-*"                  # Incident response workflows
+          - "threat-*"                    # Threat modeling/analysis
+          - "security-*"                  # Security assessments
+          - "compliance-*"                # Compliance workflows
+          - "vulnerability-*"             # Vulnerability management
+          - "campaign-*"                  # OSINT campaigns
+          - "operation-*"                 # Intelligence operations
+          - "secure-*"                    # Secure development
+          - "counter-*"                   # Counter-intelligence
+          - "attribution-*"              # Attribution workflows
+          - "doppelganger-*"             # Impersonator detection
+        modules:
+          - "cybersec-team"
+          - "intel-team"
+          - "core"
+        actions:
+          - "read"
+          - "write"
+          - "execute"
+
+    security_analyst:
+      description: "Security analyst - performs security assessments"
+      inherits: []
+      permissions:
+        agents:
+          - "cybersec-team/security-architect"
+          - "cybersec-team/threat-analyst"
+          - "cybersec-team/penetration-tester"
+          - "cybersec-team/soc-analyst"
+          - "cybersec-team/web-app-security-expert"
+          - "cybersec-team/cloud-security-specialist"
+          - "cybersec-team/appsec-engineer"
+          - "cybersec-team/devsecops-engineer"
+          - "cybersec-team/red-team-operator"
+          - "cybersec-team/grc-specialist"
+          - "core/abdul"
+          - "core/bmad-master"
+        workflows:
+          - "threat-modeling"
+          - "security-architecture-review"
+          - "web-app-security-testing"
+          - "cloud-security-assessment"
+          - "vulnerability-management"
+          - "compliance-audit-prep"
+          - "secure-software"
+          - "compliance-first"
+        modules:
+          - "cybersec-team"
+          - "core"
+        actions:
+          - "read"
+          - "execute"
+
+    # =========================================================================
+    # INTELLIGENCE TEAM ROLES
+    # =========================================================================
+    intel_analyst:
+      description: "Intelligence analyst - OSINT and threat intelligence"
+      inherits: []
+      permissions:
+        agents:
+          - "intel-team/*"                # All intel agents
+          - "core/*"
+        workflows:
+          - "flash-*"                     # Flash assessments
+          - "campaign-*"                  # Campaign planning
+          - "spider-*"                    # Network mapping
+          - "breach-*"                    # Breach archaeology
+          - "pattern-*"                   # Pattern of life
+          - "infrastructure-*"            # Infrastructure analysis
+          - "signal-*"                    # SIGINT mapping
+          - "digital-*"                   # Digital necromancy
+          - "tripwire*"                   # Monitoring config
+          - "ground-*"                    # Field prep
+          - "the-synthesis"               # Multi-source fusion
+          - "threat-constellation"        # Threat ecosystem mapping
+        modules:
+          - "intel-team"
+          - "core"
+        actions:
+          - "read"
+          - "execute"
+      requires:
+        credential_verification: true     # Must verify professional status
+
+    # =========================================================================
+    # LEGAL TEAM ROLES
+    # =========================================================================
+    legal_counsel:
+      description: "Legal team member - legal matters and compliance"
+      inherits: []
+      permissions:
+        agents:
+          - "legal-team/*"                # All legal agents
+          - "core/*"
+        workflows:
+          - "legal-*"                     # Legal matter workflows
+          - "contract-*"                  # Contract workflows
+          - "corporate-*"                 # Corporate formation
+          - "dispute-*"                   # Dispute resolution
+          - "tax-*"                       # Tax planning
+          - "cross-border-*"              # Cross-border matters
+        modules:
+          - "legal-team"
+          - "core"
+        actions:
+          - "read"
+          - "write"
+          - "execute"
+      special:
+        privileged: true                  # Attorney-client privilege flag
+
+    # =========================================================================
+    # DEVELOPMENT TEAM ROLES
+    # =========================================================================
+    developer:
+      description: "Software developer - development and implementation"
+      inherits: []
+      permissions:
+        agents:
+          - "bmm/*"                       # All BMM agents
+          - "bmgd/*"                      # All game dev agents
+          - "bmb/*"                       # Module builder agents
+          - "cis/*"                       # Creative/innovation agents
+          - "core/*"
+        workflows:
+          - "create-*"                    # Creation workflows
+          - "dev-*"                       # Development workflows
+          - "sprint-*"                    # Sprint management
+          - "code-*"                      # Code review
+          - "quick-*"                     # Quick flow
+          - "workflow-*"                  # Workflow status
+          - "testarch-*"                  # Testing workflows
+          - "brainstorm*"                 # Brainstorming
+          - "design-*"                    # Design workflows
+          - "research"                    # Research workflow
+          - "check-*"                     # Check implementation
+          - "index-*"                     # Index docs
+          - "whats-next"                  # Next action
+          - "project-status"              # Project status
+          - "assign-task"                 # Task assignment
+          - "phase-gate"                  # Phase validation
+          - "select-*"                    # Template/preset selection
+          - "party-mode"                  # Multi-agent discussions
+          - "cross-module"                # Cross-module expertise
+          - "conflict-resolution"         # Conflict resolution
+        modules:
+          - "bmm"
+          - "bmgd"
+          - "bmb"
+          - "cis"
+          - "core"
+        actions:
+          - "read"
+          - "write"
+          - "execute"
+
+    product_manager:
+      description: "Product manager - product planning and requirements"
+      inherits: []
+      permissions:
+        agents:
+          - "bmm/pm"
+          - "bmm/analyst"
+          - "bmm/ux-designer"
+          - "bmm/architect"
+          - "cis/*"
+          - "core/*"
+        workflows:
+          - "create-prd"
+          - "create-product-brief"
+          - "create-ux-design"
+          - "create-architecture"
+          - "create-epics-and-stories"
+          - "create-story"
+          - "research"
+          - "brainstorm*"
+          - "design-thinking"
+          - "innovation-*"
+          - "storytelling"
+          - "whats-next"
+          - "project-status"
+          - "check-implementation-readiness"
+        modules:
+          - "bmm"
+          - "cis"
+          - "core"
+        actions:
+          - "read"
+          - "write"
+          - "execute"
+
+    # =========================================================================
+    # STRATEGY TEAM ROLES
+    # =========================================================================
+    strategist:
+      description: "Strategic advisor - strategy and decision making"
+      inherits: []
+      permissions:
+        agents:
+          - "strategy-team/*"             # All strategy agents
+          - "core/*"
+        workflows:
+          - "strategic-*"                 # Strategic workflows
+          - "board-*"                     # Board-related
+          - "competitive-*"               # Competitive analysis
+          - "crisis-*"                    # Crisis management
+          - "ethical-*"                   # Ethics workflows
+          - "leadership-*"                # Leadership workflows
+          - "policy-*"                    # Policy development
+          - "political-*"                 # Political risk
+          - "stakeholder-*"               # Stakeholder management
+          - "conflict-*"                  # Conflict resolution
+          - "ma-*"                        # M&A workflows
+          - "performance-*"               # Performance reviews
+        modules:
+          - "strategy-team"
+          - "core"
+        actions:
+          - "read"
+          - "execute"
+
+    # =========================================================================
+    # LIMITED ACCESS ROLES
+    # =========================================================================
+    viewer:
+      description: "Read-only access to core functionality"
+      inherits: []
+      permissions:
+        agents:
+          - "core/abdul"                  # Project manager only
+          - "core/bmad-master"            # BMAD master
+        workflows: []                     # Cannot execute workflows
+        modules:
+          - "core"
+        actions:
+          - "read"                        # Read-only
+
+    guest:
+      description: "Minimal guest access"
+      inherits: []
+      permissions:
+        agents:
+          - "core/abdul"
+        workflows: []
+        modules:
+          - "core"
+        actions:
+          - "read"
+      restrictions:
+        session_timeout_minutes: 60       # Shorter session
+        max_requests_per_hour: 100        # Rate limited
+
+  # ---------------------------------------------------------------------------
+  # MODULE-LEVEL RESTRICTIONS
+  # ---------------------------------------------------------------------------
+  # These restrictions apply to entire modules regardless of role permissions.
+  # A user must satisfy BOTH role permissions AND module restrictions.
+
+  module_restrictions:
+    intel-team:
+      description: "Intelligence operations require verified credentials"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      require_credential_verification: true
+      audit_level: full
+      warning_message: |
+        Intel-team contains sensitive intelligence gathering capabilities.
+        Access is restricted to verified intelligence professionals.
+
+    legal-team:
+      description: "Legal team requires legal counsel role"
+      require_roles:
+        - legal_counsel
+        - admin
+      privileged: true
+      audit_level: full
+      warning_message: |
+        Legal-team workflows may involve privileged legal matters.
+        Access is restricted to authorized legal personnel.
+
+    cybersec-team:
+      description: "Security operations require security roles"
+      require_roles:
+        - security_analyst
+        - security_lead
+        - admin
+      audit_level: standard
+
+    strategy-team:
+      description: "Strategy requires strategist or admin role"
+      require_roles:
+        - strategist
+        - admin
+      audit_level: standard
+
+    bmm:
+      description: "Development methodology module"
+      require_roles:
+        - developer
+        - product_manager
+        - admin
+      audit_level: minimal
+
+    bmgd:
+      description: "Game development module"
+      require_roles:
+        - developer
+        - admin
+      audit_level: minimal
+
+    cis:
+      description: "Creative and innovation module"
+      require_roles:
+        - developer
+        - product_manager
+        - strategist
+        - admin
+      audit_level: minimal
+
+  # ---------------------------------------------------------------------------
+  # WORKFLOW-LEVEL RESTRICTIONS
+  # ---------------------------------------------------------------------------
+  # Fine-grained restrictions for specific sensitive workflows.
+
+  workflow_restrictions:
+    # Critical security workflows
+    incident-response:
+      description: "Incident response requires security lead"
+      require_roles:
+        - security_lead
+        - admin
+      require_approval: false
+      audit_level: full
+
+    # Full-spectrum intelligence
+    operation-mosaic:
+      description: "Full-spectrum intelligence requires senior analyst"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      require_credential_verification: true
+      audit_level: full
+      warning_message: |
+        Operation Mosaic deploys all 11 intelligence agents for
+        comprehensive target analysis. Ensure you have authorization
+        for this level of collection.
+
+    # Approach vector (HUMINT planning)
+    approach-vector:
+      description: "HUMINT operation planning is highly sensitive"
+      require_roles:
+        - intel_analyst
+        - admin
+      require_credential_verification: true
+      audit_level: full
+
+    # Competitive warfare
+    competitive-warfare:
+      description: "Maximum competitive intensity strategy"
+      require_roles:
+        - strategist
+        - admin
+      require_approval: true
+      audit_level: full
+
+    # Counter-intelligence audit
+    counter-intel-audit:
+      description: "Internal security audit capabilities"
+      require_roles:
+        - security_lead
+        - admin
+      audit_level: full
+
+    # Ground truth (field operations)
+    ground-truth:
+      description: "Field operation preparation"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      require_credential_verification: true
+      audit_level: full
+
+    # Doppelganger hunt
+    doppelganger-hunt:
+      description: "Fake account and impersonator detection"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      audit_level: full
+
+    # Attribution chain
+    attribution-chain:
+      description: "Evidence-based actor attribution"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      audit_level: full
+
+  # ---------------------------------------------------------------------------
+  # AGENT-LEVEL RESTRICTIONS
+  # ---------------------------------------------------------------------------
+  # Restrictions for specific sensitive agents.
+
+  agent_restrictions:
+    # Field operative (physical operations)
+    intel-team/field-operative:
+      description: "Field operations specialist"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      require_credential_verification: true
+      warning_message: |
+        Field operative provides tactical intelligence collection
+        guidance. Use only with proper authorization.
+
+    # HUMINT specialist
+    intel-team/humint-specialist:
+      description: "Human intelligence specialist"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      require_credential_verification: true
+      warning_message: |
+        HUMINT techniques must be used ethically and only
+        with proper authorization and legal guidance.
+
+    # Dark web analyst
+    intel-team/dark-web-analyst:
+      description: "Dark web intelligence analyst"
+      require_roles:
+        - intel_analyst
+        - security_lead
+        - admin
+      require_credential_verification: true
+
+    # Red team operator
+    cybersec-team/red-team-operator:
+      description: "Offensive security testing"
+      require_roles:
+        - security_analyst
+        - security_lead
+        - admin
+      warning_message: |
+        Red team operations must be authorized and scoped
+        appropriately before execution.
+
+    # Social engineer (if exists)
+    cybersec-team/social-engineer:
+      description: "Social engineering requires careful oversight"
+      require_roles:
+        - security_analyst
+        - security_lead
+        - admin
+      warning_message: |
+        Social engineering techniques must be used ethically
+        and only with proper authorization.
+
+# =============================================================================
+# PERMISSION PATTERNS REFERENCE
+# =============================================================================
+#
+# Wildcards:
+#   "*"              - Match everything
+#   "module/*"       - Match all items in module
+#   "prefix-*"       - Match all items starting with prefix
+#
+# Inheritance:
+#   Roles can inherit from other roles using 'inherits' array.
+#   Inherited permissions are merged (union).
+#   Explicit permissions override inherited ones.
+#
+# Action Types:
+#   "read"    - Can view/list agents and workflows
+#   "execute" - Can invoke workflows and activate agents
+#   "write"   - Can create/modify outputs
+#   "admin"   - Can modify RBAC configuration
+#
+# Special Flags:
+#   require_credential_verification - Must verify professional credentials
+#   require_approval - Requires explicit approval before execution
+#   privileged - Marks privileged/confidential content
+#   audit_level - "minimal", "standard", "full"

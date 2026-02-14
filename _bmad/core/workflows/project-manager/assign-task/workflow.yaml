@@ -1,0 +1,22 @@
+# Assign Task Workflow
+name: assign-task
+description: "Delegate task to appropriate agent with context"
+author: "BMad"
+
+# Critical variables from config
+config_source: "{project-root}/_bmad/core/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Workflow components
+installed_path: "{project-root}/_bmad/core/workflows/project-manager/assign-task"
+instructions: "{installed_path}/instructions.md"
+
+# Resources for task matching
+expertise_map: "{project-root}/_bmad/core/workflows/project-manager/data/module-expertise-map.yaml"
+agent_manifest: "{project-root}/_bmad/_config/agent-manifest.csv"
+workflow_manifest: "{project-root}/_bmad/_config/workflow-manifest.csv"
+
+standalone: true

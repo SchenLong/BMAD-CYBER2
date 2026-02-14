@@ -1,0 +1,81 @@
+# Intelligence Operations Team Module Configuration
+# This file defines installation questions and module configuration values
+
+code: "intel-team"
+name: "Intelligence Operations Team"
+default_selected: false
+
+# Welcome message shown during installation
+prompt:
+  - "🎯 Installing Intelligence Operations Team Module"
+  - ""
+  - "This module provides 11 specialized intelligence agents:"
+  - ""
+  - "  Core Intelligence Team:"
+  - "  - Vector (Intelligence Operations Director)"
+  - "  - Resolver (Domain Intelligence Specialist)"
+  - "  - Echo (Social Media Intelligence Analyst)"
+  - "  - Shadow (Dark Web Intelligence Analyst)"
+  - "  - Atlas (Geospatial Intelligence Analyst)"
+  - "  - Probe (Technical Reconnaissance Specialist)"
+  - "  - Dossier (Threat Actor Profiler)"
+  - "  - Proxy (Corporate Intelligence Specialist)"
+  - ""
+  - "  Extended Intelligence Disciplines:"
+  - "  - Viper (Human Intelligence Specialist)"
+  - "  - Sigil (Signals Intelligence Specialist)"
+  - "  - Specter (Field Operations Specialist)"
+  - ""
+  - "Multi-discipline intelligence operations for accredited professionals."
+  - "All agents coordinate via Party Mode for multi-INT fusion."
+
+# Core config values are automatically inherited from installer:
+## user_name
+## communication_language
+## document_output_language
+
+# ============================================================================
+# CONFIGURATION FIELDS
+# ============================================================================
+# Each field can be:
+# 1. INTERACTIVE (has 'prompt' - asks user during installation)
+# 2. STATIC (no 'prompt' - just uses 'result' value)
+# ============================================================================
+
+# INTERACTIVE: Primary output location
+output_folder:
+  prompt: "Where should intel-team save intelligence reports and outputs?"
+  default: "_bmad-output/intel-team"
+  result: "{project-root}/{value}"
+
+# STATIC: Module identification
+module_code:
+  result: "intel-team"
+
+module_version:
+  result: "1.1.0"
+
+# STATIC: Module paths
+agents_path:
+  result: "{project-root}/_bmad/intel-team/agents"
+
+workflows_path:
+  result: "{project-root}/_bmad/intel-team/workflows"
+
+data_path:
+  result: "{project-root}/_bmad/intel-team/data"
+
+# STATIC: Automatic subdirectory configuration
+# These are derived from output_folder and created automatically by agents
+collection_artifacts:
+  result: "{output_folder}/collection"
+
+analysis_artifacts:
+  result: "{output_folder}/analysis"
+
+reports:
+  result: "{output_folder}/reports"
+
+# User operational authorization context
+user_context:
+  result: "accredited_professional"

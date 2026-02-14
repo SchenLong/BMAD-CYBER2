@@ -1,0 +1,763 @@
+# Party Mode Synergy Analysis
+# Cross-module integration opportunities discovered across CIS, Strategy, Cyber, Intel, and Legal modules
+name: party-mode-synergies
+version: "1.0"
+generated: "2024-01-11"
+
+# High-synergy workflows requiring immediate party mode integration
+high_synergy_workflows:
+
+  # STRATEGY-TEAM HIGH SYNERGY
+  - workflow: strategic-decision-workshop
+    module: strategy-team
+    current_state: "Multi-perspective workflow using 14 strategy advisors"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: 5 # Debate & Synthesis
+        add_agents:
+          - module: cybersec-team
+            agent: security-architect
+            name: Bastion
+            role: "Evaluate security implications of strategic decisions"
+          - module: legal-team
+            agent: counsel
+            name: Covenant
+            role: "Legal compliance of messaging and commitments"
+          - module: intel-team
+            agent: osint-lead
+            name: Vector
+            role: "External threat/market intelligence context"
+    recommended_preset: strategic-decision-validated
+    rationale: "Board-ready decisions require full risk assessment from security, legal, and intelligence perspectives"
+
+  - workflow: crisis-response-planning
+    module: strategy-team
+    current_state: "6-step crisis-focused workflow with Giuseppe, Magnus, Geneva, Jean-Luc"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: 2 # Immediate Actions
+        trigger: "if crisis involves cybersecurity incident"
+        add_agents:
+          - module: cybersec-team
+            agent: incident-commander
+            name: Phoenix
+            role: "Lead incident response coordination"
+          - module: cybersec-team
+            agent: threat-analyst
+            name: Cipher
+            role: "Threat assessment and adversarial context"
+      - step: 3 # Stakeholder Communications
+        add_agents:
+          - module: legal-team
+            agent: counsel
+            name: Covenant
+            role: "Legal liability language, disclosure requirements"
+          - module: intel-team
+            agent: osint-lead
+            name: Vector
+            role: "External narrative assessment, public information threats"
+    party_mode_decision_points:
+      - point: "Media Statement Accuracy"
+        reason: "Legal liability check before release"
+      - point: "Regulatory Notification Requirements"
+        reason: "Legal/compliance obligations"
+      - point: "Public Narrative Control"
+        reason: "Intelligence perspective on external perception"
+    recommended_preset: crisis-response-party
+    rationale: "Crisis response is fundamentally cross-functional - critical decisions need legal, security, and intelligence input"
+
+  - workflow: stakeholder-negotiation-prep
+    module: strategy-team
+    current_state: "8-step workflow with Geneva, Niccolo, Cicero, Sun focus"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: 2 # Stakeholder Analysis
+        add_agents:
+          - module: intel-team
+            agent: osint-lead
+            name: Vector
+            role: "External intelligence on counterpart organization"
+          - module: intel-team
+            agent: threat-actor-profiler
+            name: Dossier
+            role: "Behavioral profiling of key stakeholders"
+      - step: 4-5 # BATNA Analysis & Strategy
+        add_agents:
+          - module: legal-team
+            agent: counsel
+            name: Covenant
+            role: "Contract terms, legal walkaway points"
+    party_mode_flow:
+      - "1. Geneva does stakeholder analysis"
+      - "2. Vector provides external intelligence on counterpart"
+      - "3. Dossier profiles key negotiators"
+      - "4. Covenant assesses legal/contractual risks"
+      - "5. Geneva synthesizes strategy"
+    recommended_preset: negotiation-intelligence-party
+    rationale: "Negotiations require comprehensive stakeholder intelligence across business, legal, and intel domains"
+
+  # CYBERSEC-TEAM HIGH SYNERGY
+  - workflow: incident-response-playbook
+    module: cybersec-team
+    current_state: "Dual-mode (Playbook Creation & Guided Execution) with Phoenix focus"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - mode: B # Guided Execution
+        step: 3-5
+        add_agents:
+          - module: strategy-team
+            agent: communications-director
+            name: Giuseppe
+            role: "Stakeholder communications during incident"
+          - module: legal-team
+            agent: counsel
+            name: Covenant
+            role: "Legal hold, disclosure requirements, liability"
+          - module: intel-team
+            agent: threat-actor-profiler
+            name: Dossier
+            role: "Threat actor context, APT TTP assessment"
+          - module: intel-team
+            agent: osint-lead
+            name: Vector
+            role: "Public exposure assessment"
+    party_mode_activation_points:
+      - point: "Scope Determination"
+        trigger: "Does incident have business/legal implications?"
+      - point: "Containment Strategy"
+        trigger: "Legal liability vs. containment trade-offs"
+      - point: "Communication Planning"
+        trigger: "Regulatory disclosure requirements (GDPR, breach notification)"
+      - point: "Attribution"
+        trigger: "Threat actor assessment needed"
+    recommended_preset: incident-war-room  # Already exists
+    rationale: "Real incidents require immediate cross-functional response - legal, communications, intelligence"
+
+  - workflow: virtual-ciso-consulting
+    module: cybersec-team
+    current_state: "Comprehensive 8-step engagement with budget/strategy/governance focus"
+    synergy_level: HIGH
+    existing_party_mode:
+      - step: 3
+        purpose: "Party Mode for collaborative assessment (Bastion validation)"
+      - step: 4
+        purpose: "Party Mode for strategy/roadmap prioritization"
+      - step: 5
+        purpose: "Party Mode for governance framework design"
+    additional_enhancements:
+      - step: 5 # Governance
+        add_agents:
+          - module: strategy-team
+            agent: policy-analyst
+            name: Augustus
+            role: "Policy development expertise"
+      - step: 7 # Vendor Risk
+        add_agents:
+          - module: legal-team
+            agent: counsel
+            name: Covenant
+            role: "Contract security requirements, vendor assessment framework"
+    recommended_preset: vciso-advisory-party
+    rationale: "vCISO role is fundamentally cross-functional - needs strategy and legal input"
+
+  - workflow: compliance-audit-preparation
+    module: cybersec-team
+    current_state: "7-step comprehensive workflow for 20+ frameworks"
+    synergy_level: HIGH
+    existing_party_mode:
+      - step: 3
+        purpose: "Party Mode with Bastion (technical control validation)"
+      - step: 4
+        purpose: "Advanced Elicitation (critical review)"
+      - step: 5
+        purpose: "Party Mode for framework design"
+    additional_enhancements:
+      - step: 2-3
+        add_agents:
+          - module: strategy-team
+            agent: policy-analyst
+            name: Augustus
+            role: "Policy and control mapping"
+      - step: 2-6
+        add_agents:
+          - module: legal-team
+            agent: counsel
+            name: Covenant
+            role: "Legal control requirements, liability framework"
+      - step: 3-4
+        add_agents:
+          - module: strategy-team
+            agent: ethics-advisor
+            name: Sophia
+            role: "Ethical implications of control gaps"
+    recommended_preset: compliance-audit-team  # Already exists
+    rationale: "Compliance requires legal/policy/technical alignment across domains"
+
+  # INTEL-TEAM HIGH SYNERGY
+  - workflow: operation-mosaic
+    module: intel-team
+    current_state: "Flagship comprehensive workflow using all 11 Intel agents"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: "Final Synthesis"
+        add_agents:
+          - module: strategy-team
+            agent: debate-coach
+            name: Cicero
+            role: "Challenge conclusions and validate logic"
+      - step: 8-9 # HUMINT & Intelligence Fusion
+        add_agents:
+          - module: strategy-team
+            agent: political-strategist
+            name: Niccolo
+            role: "Geopolitical context and implications"
+      - step: 3-4 # Dark Web
+        add_agents:
+          - module: cybersec-team
+            agent: threat-analyst
+            name: Cipher
+            role: "Threat context validation"
+    recommended_preset: intel-validation-party
+    rationale: "External validation strengthens comprehensive intelligence output"
+
+  - workflow: threat-constellation
+    module: intel-team
+    current_state: "Threat actor ecosystem mapping with 5 steps"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: 3-4
+        add_agents:
+          - module: cybersec-team
+            agent: threat-analyst
+            name: Cipher
+            role: "Threat validation and TTP analysis"
+          - module: cybersec-team
+            agent: incident-commander
+            name: Phoenix
+            role: "Operational implications for defense"
+      - step: "Ecosystem Analysis"
+        add_agents:
+          - module: strategy-team
+            agent: political-strategist
+            name: Niccolo
+            role: "Geopolitical implications of threat actors"
+    recommended_preset: threat-ecosystem-party
+    rationale: "Ecosystem analysis is comprehensive intelligence activity requiring validation"
+
+  - workflow: attribution-chain
+    module: intel-team
+    current_state: "Threat actor attribution workflow"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: "Technical Analysis"
+        add_agents:
+          - module: cybersec-team
+            agent: threat-analyst
+            name: Cipher
+            role: "Technical TTPs validation"
+      - step: "Attribution Logic"
+        add_agents:
+          - module: strategy-team
+            agent: debate-coach
+            name: Cicero
+            role: "Challenge attribution logic and evidence"
+      - step: "Geopolitical Assessment"
+        add_agents:
+          - module: strategy-team
+            agent: political-strategist
+            name: Niccolo
+            role: "Geopolitical plausibility assessment"
+    recommended_preset: attribution-validation-party
+    rationale: "Attribution requires rigorous multi-perspective validation before publication"
+
+  # LEGAL-TEAM HIGH SYNERGY
+  - workflow: legal-matter-intake
+    module: legal-team
+    current_state: "Entry point routing workflow (planned)"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: "Initial Assessment"
+        add_agents:
+          - module: strategy-team
+            agent: stakeholder-mediator
+            name: Geneva
+            role: "Initial assessment if dispute likely"
+          - module: cybersec-team
+            agent: incident-commander
+            name: Phoenix
+            role: "If matter involves cybersecurity incident"
+          - module: intel-team
+            agent: osint-lead
+            name: Vector
+            role: "Initial due diligence on parties"
+    recommended_preset: legal-intake-party
+    rationale: "Intake routing is fundamentally cross-functional - needs multi-domain assessment"
+
+  - workflow: contract-review
+    module: legal-team
+    current_state: "Risk assessment and modification workflow (planned)"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: "Policy Alignment"
+        add_agents:
+          - module: strategy-team
+            agent: policy-analyst
+            name: Augustus
+            role: "Policy alignment assessment"
+      - step: "Negotiation Dynamics"
+        add_agents:
+          - module: strategy-team
+            agent: political-strategist
+            name: Niccolo
+            role: "Power balance and negotiation dynamics"
+      - step: "Compliance Requirements"
+        add_agents:
+          - module: cybersec-team
+            agent: compliance-guardian
+            name: Sentinel
+            role: "Compliance requirements validation"
+      - step: "Relationship Assessment"
+        add_agents:
+          - module: strategy-team
+            agent: stakeholder-mediator
+            name: Geneva
+            role: "Counterparty relationship assessment"
+    recommended_preset: contract-review-party
+    rationale: "Contracts involve business, policy, and compliance dimensions"
+
+  - workflow: dispute-strategy
+    module: legal-team
+    current_state: "Litigation/dispute planning workflow (planned)"
+    synergy_level: HIGH
+    cross_module_enhancements:
+      - step: "Strategic Planning"
+        add_agents:
+          - module: strategy-team
+            agent: the-master-strategist
+            name: Sun
+            role: "Litigation strategy framework"
+          - module: strategy-team
+            agent: debate-coach
+            name: Cicero
+            role: "Argument validation and preparation"
+          - module: strategy-team
+            agent: political-strategist
+            name: Niccolo
+            role: "Stakeholder/court dynamics"
+      - step: "Intelligence Gathering"
+        add_agents:
+          - module: intel-team
+            agent: osint-lead
+            name: Vector
+            role: "Opposing party intelligence"
+          - module: intel-team
+            agent: threat-actor-profiler
+            name: Dossier
+            role: "Opposing counsel profiling"
+    recommended_preset: litigation-war-room
+    rationale: "Disputes are fundamentally strategic activities requiring comprehensive intelligence"
+
+# Medium-synergy workflows for secondary phase
+medium_synergy_workflows:
+
+  - workflow: policy-development
+    module: strategy-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add legal enforceability and compliance review layer"
+    key_agents: [Covenant, Sentinel]
+
+  - workflow: board-presentation-prep
+    module: strategy-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add evidence validation layer for legal/compliance accuracy"
+    key_agents: [Covenant, Sentinel]
+
+  - workflow: ethical-dilemma-resolution
+    module: strategy-team
+    synergy_level: HIGH
+    enhancement_summary: "Add legal implications assessment"
+    key_agents: [Covenant]
+
+  - workflow: political-risk-assessment
+    module: strategy-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add external intelligence validation"
+    key_agents: [Vector]
+
+  - workflow: threat-modeling
+    module: cybersec-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add business/legal risk prioritization"
+    key_agents: [Covenant, Augustus]
+
+  - workflow: security-architecture-review
+    module: cybersec-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add compliance/strategy alignment check"
+    key_agents: [Covenant, Augustus]
+
+  - workflow: blockchain-security-assessment
+    module: cybersec-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add emerging regulatory context"
+    key_agents: [Covenant, Sentinel]
+
+  - workflow: campaign-planner-org
+    module: intel-team
+    synergy_level: HIGH
+    enhancement_summary: "Add strategy validation and legal framework"
+    key_agents: [Sun, Niccolo, Covenant]
+
+  - workflow: campaign-planner-person
+    module: intel-team
+    synergy_level: HIGH
+    enhancement_summary: "Add strategy validation and legal framework"
+    key_agents: [Sun, Niccolo, Covenant]
+
+  - workflow: breach-archaeology
+    module: intel-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add legal/policy implications assessment"
+    key_agents: [Trace, Covenant, Augustus]
+
+  - workflow: pattern-of-life
+    module: intel-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add behavioral plausibility validation"
+    key_agents: [Niccolo]
+
+  - workflow: contract-drafting
+    module: legal-team
+    synergy_level: MEDIUM-HIGH
+    enhancement_summary: "Add business/compliance context"
+    key_agents: [Augustus, Sentinel]
+
+  - workflow: cross-border-matter
+    module: legal-team
+    synergy_level: HIGH
+    enhancement_summary: "Add geopolitical context and jurisdiction intelligence"
+    key_agents: [Niccolo, Vector]
+
+# Recommended new party mode presets based on synergy analysis
+recommended_new_presets:
+
+  - id: strategic-decision-validated
+    name: "Strategic Decision with Risk Validation"
+    description: "Full strategic decision workshop with security, legal, and intelligence validation"
+    agents:
+      - module: strategy-team
+        agent: the-master-strategist
+        name: Sun
+        role: "Strategic framework"
+      - module: strategy-team
+        agent: debate-coach
+        name: Cicero
+        role: "Challenge and validate"
+      - module: cybersec-team
+        agent: security-architect
+        name: Bastion
+        role: "Security implications"
+      - module: legal-team
+        agent: counsel
+        name: Covenant
+        role: "Legal compliance"
+      - module: intel-team
+        agent: osint-lead
+        name: Vector
+        role: "External intelligence"
+    use_when: "Major strategic decisions with board-level impact requiring comprehensive risk assessment"
+
+  - id: crisis-response-party
+    name: "Crisis Response Coordination"
+    description: "Cross-functional crisis response team for comprehensive crisis management"
+    agents:
+      - module: strategy-team
+        agent: communications-director
+        name: Giuseppe
+        role: "Crisis communications lead"
+      - module: strategy-team
+        agent: political-strategist
+        name: Niccolo
+        role: "Stakeholder dynamics"
+      - module: cybersec-team
+        agent: incident-commander
+        name: Phoenix
+        role: "Security incident lead"
+      - module: legal-team
+        agent: counsel
+        name: Covenant
+        role: "Legal obligations"
+      - module: intel-team
+        agent: osint-lead
+        name: Vector
+        role: "External narrative monitoring"
+    use_when: "Active crisis requiring multi-domain coordination"
+
+  - id: negotiation-intelligence-party
+    name: "Negotiation Intelligence Team"
+    description: "Comprehensive intelligence and strategy support for high-stakes negotiations"
+    agents:
+      - module: strategy-team
+        agent: stakeholder-mediator
+        name: Geneva
+        role: "Negotiation strategy"
+      - module: strategy-team
+        agent: political-strategist
+        name: Niccolo
+        role: "Power dynamics analysis"
+      - module: intel-team
+        agent: osint-lead
+        name: Vector
+        role: "Counterpart intelligence"
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: Dossier
+        role: "Key person profiling"
+      - module: legal-team
+        agent: counsel
+        name: Covenant
+        role: "Contract and legal boundaries"
+    use_when: "Major negotiations requiring comprehensive stakeholder intelligence"
+
+  - id: vciso-advisory-party
+    name: "vCISO Advisory Board"
+    description: "Cross-functional advisory team for virtual CISO engagements"
+    agents:
+      - module: cybersec-team
+        agent: security-architect
+        name: Bastion
+        role: "Security program lead"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: Sentinel
+        role: "Compliance framework"
+      - module: strategy-team
+        agent: policy-analyst
+        name: Augustus
+        role: "Policy development"
+      - module: legal-team
+        agent: counsel
+        name: Covenant
+        role: "Legal requirements"
+    use_when: "Virtual CISO engagements requiring comprehensive governance advice"
+
+  - id: intel-validation-party
+    name: "Intelligence Validation Board"
+    description: "Cross-domain validation team for intelligence products"
+    agents:
+      - module: intel-team
+        agent: osint-lead
+        name: Vector
+        role: "Intelligence synthesis"
+      - module: strategy-team
+        agent: debate-coach
+        name: Cicero
+        role: "Challenge conclusions"
+      - module: strategy-team
+        agent: political-strategist
+        name: Niccolo
+        role: "Geopolitical plausibility"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: Cipher
+        role: "Technical validation"
+    use_when: "High-stakes intelligence products requiring external validation"
+
+  - id: threat-ecosystem-party
+    name: "Threat Ecosystem Analysis Team"
+    description: "Comprehensive team for threat actor ecosystem mapping"
+    agents:
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: Dossier
+        role: "Threat actor analysis"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: Cipher
+        role: "TTP validation"
+      - module: cybersec-team
+        agent: incident-commander
+        name: Phoenix
+        role: "Operational defense implications"
+      - module: strategy-team
+        agent: political-strategist
+        name: Niccolo
+        role: "Geopolitical context"
+    use_when: "Comprehensive threat actor ecosystem analysis"
+
+  - id: attribution-validation-party
+    name: "Attribution Review Board"
+    description: "Multi-perspective validation team for attribution analysis"
+    agents:
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: Dossier
+        role: "Attribution analysis"
+      - module: cybersec-team
+        agent: threat-analyst
+        name: Cipher
+        role: "Technical TTPs validation"
+      - module: strategy-team
+        agent: debate-coach
+        name: Cicero
+        role: "Challenge attribution logic"
+      - module: strategy-team
+        agent: political-strategist
+        name: Niccolo
+        role: "Geopolitical plausibility"
+    use_when: "Attribution analysis requiring rigorous multi-perspective validation"
+
+  - id: legal-intake-party
+    name: "Legal Matter Assessment Team"
+    description: "Cross-functional team for complex legal matter intake and routing"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: Covenant
+        role: "Legal assessment"
+      - module: strategy-team
+        agent: stakeholder-mediator
+        name: Geneva
+        role: "Dispute likelihood assessment"
+      - module: cybersec-team
+        agent: incident-commander
+        name: Phoenix
+        role: "Cyber incident assessment"
+      - module: intel-team
+        agent: osint-lead
+        name: Vector
+        role: "Party due diligence"
+    use_when: "Complex legal matters requiring multi-domain assessment"
+
+  - id: contract-review-party
+    name: "Contract Review Board"
+    description: "Comprehensive team for critical contract review"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: Covenant
+        role: "Legal analysis"
+      - module: strategy-team
+        agent: policy-analyst
+        name: Augustus
+        role: "Policy alignment"
+      - module: strategy-team
+        agent: political-strategist
+        name: Niccolo
+        role: "Negotiation dynamics"
+      - module: cybersec-team
+        agent: compliance-guardian
+        name: Sentinel
+        role: "Compliance requirements"
+    use_when: "Critical contracts requiring multi-domain review"
+
+  - id: litigation-war-room
+    name: "Litigation War Room"
+    description: "Comprehensive team for dispute and litigation strategy"
+    agents:
+      - module: legal-team
+        agent: counsel
+        name: Covenant
+        role: "Lead counsel"
+      - module: strategy-team
+        agent: the-master-strategist
+        name: Sun
+        role: "Litigation strategy"
+      - module: strategy-team
+        agent: debate-coach
+        name: Cicero
+        role: "Argument preparation"
+      - module: intel-team
+        agent: osint-lead
+        name: Vector
+        role: "Opposing party intelligence"
+      - module: intel-team
+        agent: threat-actor-profiler
+        name: Dossier
+        role: "Opposing counsel profiling"
+    use_when: "High-stakes litigation or disputes"
+
+# Implementation phases
+implementation_phases:
+
+  phase_1_quick_wins:
+    description: "High-impact integrations for immediate implementation"
+    items:
+      - workflow: crisis-response-planning
+        enhancement: "Bidirectional link with incident-response-playbook, add Party Mode for real-time coordination"
+        expected_impact: "Critical incident response dramatically improved"
+
+      - workflow: contract-review
+        enhancement: "Add Party Mode validation step with Counsel + Sentinel coordination"
+        expected_impact: "Contract compliance gaps identified early"
+
+      - workflow: strategic-decision-workshop
+        enhancement: "Add Risk & Compliance Review Party Mode step with Bastion, Covenant, Vector"
+        expected_impact: "Board-ready decisions with full risk assessment"
+
+  phase_2_strategic:
+    description: "Strategic integrations for next quarter"
+    items:
+      - workflow: legal-matter-intake
+        enhancement: "Implement Party Mode for complex matter classification"
+        expected_impact: "Better routing decisions, early cross-module identification"
+
+      - workflow: incident-response-playbook
+        enhancement: "Add Party Mode activation points for legal/strategy/intel input in Mode B"
+        expected_impact: "Real incidents get comprehensive response"
+
+      - workflow: virtual-ciso-consulting
+        enhancement: "Deepen existing Party Mode integration with strategy/legal"
+        expected_impact: "More comprehensive security programs"
+
+  phase_3_ecosystem:
+    description: "Advanced ecosystem integrations"
+    items:
+      - enhancement: "Cross-Module Workflow Chains"
+        description: "Crisis Response → Incident Response → Legal Matter Intake → Dispute Strategy"
+        expected_impact: "Seamless escalation and coordination"
+
+      - enhancement: "Shared Decision Frameworks"
+        description: "Risk prioritization templates, notification protocols, evidence standards"
+        expected_impact: "Consistent cross-module decision making"
+
+# Agent coordination patterns identified
+coordination_patterns:
+
+  sequential_validation:
+    description: "Primary agent develops output, Party Mode validates and enhances"
+    example: "Threat modeling (Bastion) + Legal validation (Covenant)"
+    workflows: [threat-modeling, security-architecture-review]
+
+  parallel_collection:
+    description: "Multiple agents work simultaneously, synthesis agent integrates"
+    example: "Operation Mosaic - multiple intel agents in parallel"
+    workflows: [operation-mosaic, threat-constellation]
+
+  challenge_and_response:
+    description: "Primary agent makes case, Party agents challenge from different perspectives"
+    example: "Strategic Decision Workshop - debate format"
+    workflows: [strategic-decision-workshop, attribution-chain]
+
+  rapid_escalation:
+    description: "Primary agent flags issue, Party Mode activates immediately for real-time coordination"
+    example: "Incident Response Mode B - immediate cross-functional activation"
+    workflows: [incident-response-playbook, crisis-response-planning]
+
+# Key findings summary
+key_findings:
+  total_workflows_analyzed: 40+
+  high_synergy_count: 12
+  medium_synergy_count: 15
+  new_presets_recommended: 10
+
+  insight: |
+    The most valuable party mode integrations occur at DECISION POINTS where:
+    - Multiple domains have legitimate perspectives
+    - Output crosses domain boundaries (external communication, legal implications)
+    - Risk assessment requires outside expertise
+    - Escalation/serious consequences involved
+
+  recommendation: |
+    Start with Phase 1 quick wins (Crisis Response, Contract Review, Strategic Decision Workshop)
+    to establish patterns, then expand systematically through remaining workflows.
