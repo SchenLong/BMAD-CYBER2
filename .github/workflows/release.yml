@@ -1,4 +1,4 @@
-name: Create Release
+name: Release
 
 on:
   push:
@@ -7,181 +7,47 @@ on:
 
 permissions:
   contents: write
-  id-token: write  # Required for Sigstore signing
+  id-token: write
 
 jobs:
-  # Run quality gate checks before allowing release
-  quality-gate:
-    name: Quality Gate
-    uses: ./.github/workflows/quality-gate.yml
-
   release:
     name: Create Release
     runs-on: ubuntu-latest
-    # Run release regardless of quality gate result (CI can be flaky)
-    # Quality gate still runs but won't block releases
-    needs: [quality-gate]
-    if: always()
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-        with:
-          fetch-depth: 0  # Full history for changelog
+      - name: Checkout
+        uses: actions/checkout@11bd # v4.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@v4 # v4.1.0
         with:
           node-version: '20'
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+        continue-on-error: false
+
       - name: Get version from tag
         id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
-      - name: Set reproducible build timestamp
-        id: build_time
         run: |
-          # Use SOURCE_DATE_EPOCH for reproducible builds (VAL-09-005)
-          export SOURCE_DATE_EPOCH=$(date +%s)
-          echo "SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH}" >> $GITHUB_ENV
-          echo "build_date=$(date -u -d @${SOURCE_DATE_EPOCH} +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -r ${SOURCE_DATE_EPOCH} +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_OUTPUT
+          VERSION=${GITHUB_REF#refs/tags/}
+          VERSION=${VERSION#v}  # Remove 'v' prefix
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "PRERELEASE=$( [[ "$VERSION" == *"-"* ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
-      - name: Create version.json
-        run: |
-          mkdir -p _bmad
-          echo "{\"version\": \"${{ steps.version.outputs.VERSION }}\", \"buildDate\": \"${{ steps.build_time.outputs.build_date }}\", \"reproducible\": true}" > _bmad/version.json
-
-      - name: Create tarball
-        run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
-
-          # Create a staging directory
-          STAGING_DIR="bmad-cybersec-${VERSION}"
-          mkdir -p "${STAGING_DIR}"
-
-          # Copy included files/directories
-          # Core framework
-          if [ -d "_bmad" ]; then
-            cp -r _bmad "${STAGING_DIR}/"
-          fi
-
-          # Claude configuration
-          if [ -d ".claude" ]; then
-            cp -r .claude "${STAGING_DIR}/"
-          fi
-
-          # Utility tools
-          if [ -d "src/utility/tools" ]; then
-            mkdir -p "${STAGING_DIR}/src/utility"
-            cp -r src/utility/tools "${STAGING_DIR}/src/utility/"
-          fi
-
-          # Root files
-          [ -f "CLAUDE.md" ] && cp CLAUDE.md "${STAGING_DIR}/"
-          [ -f "package.json" ] && cp package.json "${STAGING_DIR}/"
-          [ -f "tsconfig.json" ] && cp tsconfig.json "${STAGING_DIR}/"
-          [ -f "README.md" ] && cp README.md "${STAGING_DIR}/"
-
-          # Remove excluded patterns from staging
-          find "${STAGING_DIR}" -name "node_modules" -type d -exec rm -rf {} + 2>/dev/null || true
-          find "${STAGING_DIR}" -name ".git" -type d -exec rm -rf {} + 2>/dev/null || true
-          find "${STAGING_DIR}" -name ".github" -type d -exec rm -rf {} + 2>/dev/null || true
-          find "${STAGING_DIR}" -name "*.test.js" -delete 2>/dev/null || true
-          find "${STAGING_DIR}" -name "*.test.ts" -delete 2>/dev/null || true
-          find "${STAGING_DIR}" -name "*.spec.js" -delete 2>/dev/null || true
-          find "${STAGING_DIR}" -name "*.spec.ts" -delete 2>/dev/null || true
-          find "${STAGING_DIR}" -name "coverage" -type d -exec rm -rf {} + 2>/dev/null || true
-          find "${STAGING_DIR}" -name ".nyc_output" -type d -exec rm -rf {} + 2>/dev/null || true
-          find "${STAGING_DIR}" -name "__tests__" -type d -exec rm -rf {} + 2>/dev/null || true
-          find "${STAGING_DIR}" -name ".env" -delete 2>/dev/null || true
-          find "${STAGING_DIR}" -name ".env.local" -delete 2>/dev/null || true
-
-          # Create tarball from staging directory
-          tar -czvf "bmad-cybersec-${VERSION}.tar.gz" "${STAGING_DIR}"
-
-          # Cleanup staging
-          rm -rf "${STAGING_DIR}"
-
-          echo "Created bmad-cybersec-${VERSION}.tar.gz"
-          ls -la bmad-cybersec-${VERSION}.tar.gz
-
-      - name: Generate checksum
-        run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
-          sha256sum "bmad-cybersec-${VERSION}.tar.gz" > "bmad-cybersec-${VERSION}.tar.gz.sha256"
-          cat "bmad-cybersec-${VERSION}.tar.gz.sha256"
-
-      - name: Generate SBOM (VAL-09-008-002)
-        run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
-          # Install cyclonedx for SBOM generation
-          npm install -g @cyclonedx/cyclonedx-npm 2>/dev/null || true
-
-          # Generate SBOM if package.json exists
-          if [ -f "package.json" ]; then
-            npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file "bmad-cybersec-${VERSION}.sbom.json" 2>/dev/null || \
-            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cybersec","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cybersec-${VERSION}.sbom.json"
-          else
-            echo '{"bomFormat":"CycloneDX","specVersion":"1.4","version":1,"metadata":{"component":{"name":"bmad-cybersec","version":"'"${VERSION}"'"}},"components":[]}' > "bmad-cybersec-${VERSION}.sbom.json"
-          fi
-          echo "SBOM generated: bmad-cybersec-${VERSION}.sbom.json"
-
-      - name: Sign artifacts with Sigstore (VAL-09-008-001)
-        uses: sigstore/gh-action-sigstore-python@a5caf349bc536fbef3668a10ed7f5cd309a4b53d # v3.2.0
-        with:
-          inputs: |
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.sbom.json
-
-      - name: Generate changelog
-        id: changelog
-        run: |
-          # Get previous tag
-          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
-
-          if [ -n "$PREV_TAG" ]; then
-            echo "Generating changelog from $PREV_TAG to ${{ steps.version.outputs.VERSION }}"
-            CHANGELOG=$(git log --pretty=format:"- %s (%h)" "$PREV_TAG"..HEAD)
-          else
-            echo "First release, using recent commits"
-            CHANGELOG=$(git log --pretty=format:"- %s (%h)" -10)
-          fi
-
-          # Save to file for multiline output
-          echo "$CHANGELOG" > CHANGELOG.txt
-          echo "changelog_file=CHANGELOG.txt" >> $GITHUB_OUTPUT
-
-      - name: Determine pre-release status
-        id: prerelease
-        run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
-          if [[ "$VERSION" == *"-alpha"* ]] || [[ "$VERSION" == *"-beta"* ]] || [[ "$VERSION" == *"-rc"* ]]; then
-            echo "is_prerelease=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_prerelease=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Create Release
-        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2 # v2.5.0
         with:
           files: |
             bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz
             bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
             bmad-cybersec-${{ steps.version.outputs.VERSION }}.sbom.json
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sigstore.json
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sha256.sigstore.json
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.sbom.json.sigstore.json
-          body_path: CHANGELOG.txt
-          prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
-          generate_release_notes: true
+          prerelease: ${{ steps.version.outputs.PRERELEASE }}
           fail_on_unmatched_files: false
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Notify on success (optional)
-        if: success() && vars.DISCORD_WEBHOOK_URL != ''
-        run: |
-          curl -X POST "${{ vars.DISCORD_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d "{\"content\": \"New BMAD-CYBER release: ${{ steps.version.outputs.VERSION }}\"}"
