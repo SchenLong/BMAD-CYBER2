@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-14T22:38:08.542Z",
+  "generated": "2026-02-14T22:40:38.821Z",
   "algorithm": "sha256",
   "version": "1.0.0",
   "description": "Integrity baseline for validator files",
@@ -51,7 +51,7 @@
     ".claude/validators-node/src/common/block-message.js": "42e0a665f56c6cd2e3a35a9aa2d37fa17f5b975fe79719d7be48fe325395c865",
     ".claude/validators-node/src/common/index.js": "d9d2cf7614bd2a112a9be0576a458c601898de31c5cc9aef80c04734f81eed35",
     ".claude/validators-node/src/common/override-manager.js": "cf8a0b2a56cf0e22f6f9b3cdc280c66afbb838018f714f0c0e5ae894fa547c5d",
-    ".claude/validators-node/src/common/path-utils.js": "96f8ff2ed29a74c66545cf23763fd4d7fe0d6910930f6bf4ffa72b085b80cc06",
+    ".claude/validators-node/src/common/path-utils.js": "e1b1090faa4da0994aaef929bbb8f1a6e9d804af48d6ecd646ce7fad5186d849",
     ".claude/validators-node/src/common/safe-regex.js": "3043e746db0123b8fcd7ec7822ea27d63ac28aa881be3cd607f3547bfd0ce719",
     ".claude/validators-node/src/common/session-context.js": "1b2d967f0d0b9b73fb04dc0924a85644c4bacf9b12fd301373253ddc57a59b69",
     ".claude/validators-node/src/common/stdin-parser.js": "58811cc582b257cd54a7084673b8fb46a63c041582f2027595d0a755ec934690",

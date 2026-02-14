@@ -65,6 +65,8 @@ export function isPathInRepo(inputPath, cwd, projectDir = getProjectDir()) {
         return true;
     }
     const resolved = resolvePath(inputPath, cwd);
+    // Resolve the repo path the same way as input paths (with realpathSync)
+    // This ensures consistency when checking if paths are within the repo
     let repoResolved;
     try {
         repoResolved = fs.realpathSync(projectDir);
@@ -72,9 +74,16 @@ export function isPathInRepo(inputPath, cwd, projectDir = getProjectDir()) {
     catch {
         repoResolved = path.resolve(projectDir);
     }
-    // Check if resolved path starts with repo path
+    // Also resolve the projectDir without realpath for comparison with non-existent files
+    const repoResolvedNoLink = path.resolve(projectDir);
+    // Check if resolved path starts with repo path (with or without symlink resolution)
     // Must be either equal to repo or within repo (with path separator)
-    return resolved === repoResolved || resolved.startsWith(repoResolved + path.sep);
+    return (
+        resolved === repoResolved ||
+        resolved.startsWith(repoResolved + path.sep) ||
+        resolved === repoResolvedNoLink ||
+        resolved.startsWith(repoResolvedNoLink + path.sep)
+    );
 }
 /**
  * Normalize a path for consistent comparison.
