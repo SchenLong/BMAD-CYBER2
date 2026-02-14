@@ -175,7 +175,8 @@ export class DependencyEngine {
       };
 
     } catch (error) {
-      throw new Error(`Comprehensive dependency resolution failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      throw new Error(`Comprehensive dependency resolution failed: ${errorMessage}`);
     }
   }
 

@@ -107,6 +107,7 @@ function parseYaml(content: string): any {
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+    if (!line) continue;
     const trimmed = line.replace(/\s+$/, ''); // Right trim only
 
     // Skip empty lines and comments
@@ -120,8 +121,13 @@ function parseYaml(content: string): any {
     const content_part = trimmed.trim();
 
     // Pop stack to find the right parent level
-    while (stack.length > 1 && stack[stack.length - 1]?.indent >= indent) {
-      stack.pop();
+    while (stack.length > 1) {
+      const top = stack[stack.length - 1];
+      if (top && top.indent >= indent) {
+        stack.pop();
+      } else {
+        break;
+      }
     }
 
     // Get the current context
@@ -197,12 +203,13 @@ function parseYaml(content: string): any {
       let j = i + 1;
       while (j < lines.length) {
         const nextLine = lines[j];
+        if (!nextLine) break;
         const nextIndent = nextLine.search(/\S/);
         if (nextIndent !== -1 && nextIndent < multilineIndent && nextLine.trim()) {
           break;
         }
         if (nextLine.trim()) {
-          multilineValue += `${nextLine.trim()  }\n`;
+          multilineValue += `${nextLine.trim()}\n`;
         }
         j++;
       }
@@ -264,11 +271,15 @@ export function agentPathResolver(agentId: string): AgentPathResult {
   // Also handle legacy _bmad/{module}/agents/{name} for backward compatibility
   if (agentId.startsWith('src/') || agentId.startsWith('_bmad/')) {
     const parts = agentId.split('/');
-    return { module: parts[1] || '', agent: parts[3] || '', format: 'v6' };
+    return { module: parts[1] ?? '', agent: parts[3] ?? '', format: 'v6' };
   }
   // Handle legacy format: {module}/{name} or single segment
   const parts = agentId.split('/');
-  return { module: parts[0], agent: parts[1] || parts[0], format: parts.length > 1 ? 'legacy' : 'single' };
+  return {
+    module: parts[0] ?? '',
+    agent: parts[1] ?? parts[0] ?? '',
+    format: parts.length > 1 ? 'legacy' : 'single'
+  };
 }
 
 // ============================================================================
@@ -424,11 +435,14 @@ export class AuthorizationManager {
         restriction.require_roles.includes(r)
       );
       if (!hasRequiredRole) {
-        return {
+        const result: AuthorizationResult = {
           allowed: false,
-          reason: `Module '${moduleName}' requires one of these roles: ${restriction.require_roles.join(', ')}`,
-          warning: restriction.warning_message
+          reason: `Module '${moduleName}' requires one of these roles: ${restriction.require_roles.join(', ')}`
         };
+        if (restriction.warning_message) {
+          result.warning = restriction.warning_message;
+        }
+        return result;
       }
 
       // Check credential verification
@@ -451,11 +465,14 @@ export class AuthorizationManager {
       }
     }
 
-    return {
-      allowed: true,
-      audit_level: restriction?.audit_level,
-      warning: restriction?.warning_message
-    };
+    const result: AuthorizationResult = { allowed: true };
+    if (restriction?.audit_level) {
+      result.audit_level = restriction.audit_level;
+    }
+    if (restriction?.warning_message) {
+      result.warning = restriction.warning_message;
+    }
+    return result;
   }
 
   /**
@@ -495,11 +512,14 @@ export class AuthorizationManager {
         agentRestriction.require_roles.includes(r)
       );
       if (!hasRequiredRole) {
-        return {
+        const result: AuthorizationResult = {
           allowed: false,
-          reason: `Agent '${normalizedPath}' requires one of these roles: ${agentRestriction.require_roles.join(', ')}`,
-          warning: agentRestriction.warning_message
+          reason: `Agent '${normalizedPath}' requires one of these roles: ${agentRestriction.require_roles.join(', ')}`
         };
+        if (agentRestriction.warning_message) {
+          result.warning = agentRestriction.warning_message;
+        }
+        return result;
       }
 
       if (agentRestriction.require_credential_verification && !user.credentialVerified) {
@@ -521,11 +541,15 @@ export class AuthorizationManager {
       }
     }
 
-    return {
-      allowed: true,
-      warning: moduleResult.warning || agentRestriction?.warning_message,
-      audit_level: moduleResult.audit_level
-    };
+    const result: AuthorizationResult = { allowed: true };
+    const warningValue = moduleResult.warning ?? agentRestriction?.warning_message;
+    if (warningValue !== undefined) {
+      result.warning = warningValue;
+    }
+    if (moduleResult.audit_level) {
+      result.audit_level = moduleResult.audit_level;
+    }
+    return result;
   }
 
   /**
@@ -544,11 +568,14 @@ export class AuthorizationManager {
         restriction.require_roles.includes(r)
       );
       if (!hasRequiredRole) {
-        return {
+        const result: AuthorizationResult = {
           allowed: false,
-          reason: `Workflow '${workflowName}' requires one of these roles: ${restriction.require_roles.join(', ')}`,
-          warning: restriction.warning_message
+          reason: `Workflow '${workflowName}' requires one of these roles: ${restriction.require_roles.join(', ')}`
         };
+        if (restriction.warning_message) {
+          result.warning = restriction.warning_message;
+        }
+        return result;
       }
 
       // Check credential verification
@@ -561,12 +588,17 @@ export class AuthorizationManager {
 
       // Check if approval is required
       if (restriction.require_approval) {
-        return {
+        const result: AuthorizationResult = {
           allowed: true,
-          requires_approval: true,
-          warning: restriction.warning_message,
-          audit_level: restriction.audit_level
+          requires_approval: true
         };
+        if (restriction.warning_message) {
+          result.warning = restriction.warning_message;
+        }
+        if (restriction.audit_level) {
+          result.audit_level = restriction.audit_level;
+        }
+        return result;
       }
     }
 
@@ -591,11 +623,14 @@ export class AuthorizationManager {
       }
     }
 
-    return {
-      allowed: true,
-      warning: restriction?.warning_message,
-      audit_level: restriction?.audit_level
-    };
+    const result: AuthorizationResult = { allowed: true };
+    if (restriction?.warning_message) {
+      result.warning = restriction.warning_message;
+    }
+    if (restriction?.audit_level) {
+      result.audit_level = restriction.audit_level;
+    }
+    return result;
   }
 
   /**

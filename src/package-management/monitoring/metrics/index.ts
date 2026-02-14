@@ -87,27 +87,6 @@ export type {
 
 // Specialized Metrics Collectors
 export { SystemMetricsCollector } from './collectors/system-metrics';
-export { ApplicationMetricsCollector } from './collectors/application-metrics';
-export { DatabaseMetricsCollector } from './collectors/database-metrics';
-export { NetworkMetricsCollector } from './collectors/network-metrics';
-export { SecurityMetricsCollector } from './collectors/security-metrics';
-
-// Metrics Aggregators and Analyzers
-export { MetricsAggregator } from './aggregators/metrics-aggregator';
-export { AnomalyDetector } from './analyzers/anomaly-detector';
-export { TrendAnalyzer } from './analyzers/trend-analyzer';
-export { BaselineCalculator } from './analyzers/baseline-calculator';
-
-// Metrics Exporters
-export { PrometheusExporter } from './exporters/prometheus-exporter';
-export { InfluxDBExporter } from './exporters/influxdb-exporter';
-export { JSONExporter } from './exporters/json-exporter';
-export { CSVExporter } from './exporters/csv-exporter';
-
-// Utilities
-export { MetricsValidator } from './utils/metrics-validator';
-export { MetricsFormatter } from './utils/metrics-formatter';
-export { MetricsCache } from './utils/metrics-cache';
 
 // Constants
 export const METRICS_CONSTANTS = {

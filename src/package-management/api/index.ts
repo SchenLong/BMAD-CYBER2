@@ -10,42 +10,48 @@
  */
 
 // Main API Components
-export {
+export type {
   PackageRegistryAPI,
-  APIConfig,
-  APIResponse,
-  PaginationMeta,
-  AuthenticatedRequest,
   createPackageRegistryAPI,
   defaultAPIConfig
 } from './package-registry-api';
+export type {
+  APIConfig,
+  APIResponse,
+  PaginationMeta,
+  AuthenticatedRequest
+} from './package-registry-api';
 
 // SDK Generator
-export {
+export type {
   SDKGenerator,
-  SDKConfig,
-  SDKLanguage,
-  GeneratedSDK,
-  SDKFile,
   createSDKGenerator,
   generateAllSDKs
 } from './sdk-generator';
+export type {
+  SDKConfig,
+  SDKLanguage,
+  GeneratedSDK,
+  SDKFile
+} from './sdk-generator';
 
 // API Gateway
-export {
+export type {
   APIGateway,
+  createAPIGateway,
+  defaultGatewayConfig
+} from './api-gateway';
+export type {
   GatewayConfig,
   ServiceInstance,
   ServiceDefinition,
   GatewayMetrics,
   ErrorMetrics,
-  CircuitBreaker,
-  createAPIGateway,
-  defaultGatewayConfig
+  CircuitBreaker
 } from './api-gateway';
 
 // OpenAPI Specification
-export {
+export type {
   generateOpenAPISpec,
   generateVersionedSpec,
   generateSDKSpec,

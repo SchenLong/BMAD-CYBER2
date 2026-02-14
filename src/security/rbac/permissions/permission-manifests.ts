@@ -1,5 +1,5 @@
 /**
- * Permission Manifests 
+ * Permission Manifests
  * Defines the 9 core permission manifests
  */
 
@@ -16,7 +16,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
       description: "View user profiles and basic information"
     },
     {
-      id: "user.write", 
+      id: "user.write",
       type: PermissionType.WRITE,
       resource: "users",
       description: "Create, update, delete user accounts"
@@ -24,7 +24,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
     {
       id: "user.admin",
       type: PermissionType.ADMIN,
-      resource: "users", 
+      resource: "users",
       description: "Full administrative control over users"
     }
   ],
@@ -39,7 +39,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
     },
     {
       id: "data.write",
-      type: PermissionType.WRITE, 
+      type: PermissionType.WRITE,
       resource: "data_streams",
       description: "Create and modify health data"
     },
@@ -51,7 +51,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
     }
   ],
 
-  // 3. System Configuration  
+  // 3. System Configuration
   SYSTEM_CONFIG: [
     {
       id: "system.read",
@@ -62,7 +62,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
     {
       id: "system.write",
       type: PermissionType.WRITE,
-      resource: "system", 
+      resource: "system",
       description: "Modify system configuration"
     },
     {
@@ -76,7 +76,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
   // 4. Security Controls
   SECURITY_CONTROLS: [
     {
-      id: "security.read", 
+      id: "security.read",
       type: PermissionType.READ,
       resource: "security",
       description: "View security logs and audit trails"
@@ -98,7 +98,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
       description: "Read-only API access"
     },
     {
-      id: "api.write", 
+      id: "api.write",
       type: PermissionType.WRITE,
       resource: "api",
       description: "Write API access for data modification"
@@ -106,7 +106,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
     {
       id: "api.execute",
       type: PermissionType.EXECUTE,
-      resource: "api", 
+      resource: "api",
       description: "Execute API operations and integrations"
     }
   ],
@@ -131,7 +131,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
   INTEGRATIONS: [
     {
       id: "integrations.read",
-      type: PermissionType.READ, 
+      type: PermissionType.READ,
       resource: "integrations",
       description: "View connected services and integrations"
     },
@@ -142,7 +142,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
       description: "Connect and configure integrations"
     },
     {
-      id: "integrations.admin", 
+      id: "integrations.admin",
       type: PermissionType.ADMIN,
       resource: "integrations",
       description: "Full administrative control over integrations"
@@ -159,7 +159,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
     },
     {
       id: "audit.execute",
-      type: PermissionType.EXECUTE, 
+      type: PermissionType.EXECUTE,
       resource: "audit",
       description: "Execute audit procedures and compliance checks"
     }
@@ -176,7 +176,7 @@ export const PERMISSION_MANIFESTS: Record<string, Permission[]> = {
     {
       id: "emergency.admin",
       type: PermissionType.ADMIN,
-      resource: "emergency", 
+      resource: "emergency",
       description: "Emergency administrative override access"
     }
   ]

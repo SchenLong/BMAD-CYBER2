@@ -84,8 +84,8 @@ export function detectIDOR(
     const prevIdMatch = prevPath?.match(/\/(\d+)(?:\/|$)/);
 
     if (currentIdMatch && prevIdMatch) {
-      const currentId = parseInt(currentIdMatch[1], 10);
-      const prevId = parseInt(prevIdMatch[1], 10);
+      const currentId = parseInt(currentIdMatch[1] ?? '0', 10);
+      const prevId = parseInt(prevIdMatch[1] ?? '0', 10);
 
       // Check for sequential pattern (difference of 1)
       if (Math.abs(currentId - prevId) === 1) {
@@ -102,13 +102,15 @@ export function detectIDOR(
     const prevUuidMatch = prevPath?.match(/\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:\/|$)/i);
 
     if (currentUuidMatch && prevUuidMatch) {
-      const currentUuid = currentUuidMatch[1];
-      const prevUuid = prevUuidMatch[1];
+      const currentUuid = currentUuidMatch[1] ?? '';
+      const prevUuid = prevUuidMatch[1] ?? '';
 
       // Check if UUIDs are similar (only differ by a few hex characters)
       let diffCount = 0;
       for (let i = 0; i < currentUuid.length; i++) {
-        if (currentUuid[i] !== prevUuid?.[i] && currentUuid[i] !== '-') {
+        const currentChar = currentUuid[i];
+        const prevChar = prevUuid[i];
+        if (currentChar && currentChar !== prevChar && currentChar !== '-') {
           diffCount++;
         }
       }
@@ -123,7 +125,7 @@ export function detectIDOR(
 
       // Check for incremented hex pattern
       const currentHex = currentUuid.replace(/-/g, '').slice(-8);
-      const prevHex = (prevUuid ?? '').replace(/-/g, '').slice(-8);
+      const prevHex = prevUuid.replace(/-/g, '').slice(-8);
       const currentNum = parseInt(currentHex, 16);
       const prevNum = parseInt(prevHex, 16);
 

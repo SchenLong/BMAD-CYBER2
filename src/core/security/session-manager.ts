@@ -206,8 +206,8 @@ export class SessionManager {
       .digest('hex');
 
     return {
-      ipAddress,
-      userAgent,
+      ipAddress: ipAddress || '',
+      userAgent: userAgent || '',
       fingerprintHash
     };
   }

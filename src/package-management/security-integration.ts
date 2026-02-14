@@ -396,9 +396,9 @@ export class PackageSecurityIntegration extends EventEmitter {
 
       this.emit('initialized');
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      const _errorMessage = error instanceof Error ? error.message : String(error);
       console.error('❌ Failed to initialize Package Security Integration:', error);
-      throw new Error(`Security integration initialization failed: ${error instanceof Error ? error.message : String(error)}`);
+      throw new Error(`Security integration initialization failed: ${_errorMessage}`);
     }
   }
 
