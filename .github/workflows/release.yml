@@ -28,26 +28,43 @@ jobs:
 
       - name: Run tests
         run: npm test --if-present
-        continue-on-error: false
 
       - name: Get version from tag
         id: version
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
-          VERSION=${VERSION#v}  # Remove 'v' prefix
+          VERSION=${VERSION#v}
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "TAG_NAME=v$VERSION" >> $GITHUB_OUTPUT
           echo "PRERELEASE=$( [[ "$VERSION" == *"-"* ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+
+      - name: Create tarball
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          mkdir -p dist
+
+          # Follow package.json files list - build tarball with same structure
+          npm pack --dry-run | head -1
+
+          # Actually create the tarball that npm pack would create
+          npm pack
+
+          # List what we created
+          echo "Tarball created:"
+          ls -la *.tgz
+
+      - name: Generate checksums
+        run: |
+          for file in *.tgz; do
+            sha256sum "$file" > "$file.sha256"
+            cat "$file.sha256"
+          done
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2 # v2.5.0
         with:
           files: |
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.tar.gz.sha256
-            bmad-cybersec-${{ steps.version.outputs.VERSION }}.sbom.json
+            *.tgz
+            *.sha256
           prerelease: ${{ steps.version.outputs.PRERELEASE }}
-          fail_on_unmatched_files: false
           generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
