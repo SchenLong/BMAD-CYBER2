@@ -445,6 +445,6 @@ describe('UAT-12-S4: File Integrity', () => {
 
     // Should contain "VERIFIED" with matching file count
     expect(result).toContain('VERIFIED');
-    expect(result).toMatch(/VERIFIED:\s*72\s*file/);
+    expect(result).toMatch(/VERIFIED:\s*90\s*file/);
   });
 });

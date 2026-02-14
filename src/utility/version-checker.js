@@ -183,12 +183,6 @@ export async function checkVersion() {
     return { current, latest: cache.latest, updateAvailable, updateType };
   }
 
-  // Suppress network calls in CI environments (FAIL-PV6-01-010-4)
-  // But still use cached results if available
-  if (process.env.CI) {
-    return { current, latest: null, updateAvailable: false, updateType: 'none' };
-  }
-
   // Suppress when explicitly disabled (FAIL-PV6-01-010-5)
   if (process.env.BMAD_NO_UPDATE_CHECK) {
     return { current, latest: null, updateAvailable: false, updateType: 'none' };
