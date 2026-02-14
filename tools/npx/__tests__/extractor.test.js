@@ -138,6 +138,9 @@ describe('extractor', () => {
 
   describe('detectConflicts', () => {
     it('detects existing files', async () => {
+      // Mock select to return 'cancel' when conflicts found
+      select.mockResolvedValue('cancel');
+
       // Create existing file in target
       const existingDir = join(targetDir, '_bmad');
       mkdirSync(existingDir, { recursive: true });
@@ -147,9 +150,6 @@ describe('extractor', () => {
         { path: '_bmad/existing.yml', content: 'new content' },
         { path: '_bmad/new.yml', content: 'brand new file' }
       ]);
-
-      // Mock select to return 'cancel' when conflicts found
-      select.mockResolvedValue('cancel');
 
       const result = await extractFramework(tarballPath, targetDir, { force: false });
 
