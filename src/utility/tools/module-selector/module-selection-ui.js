@@ -138,11 +138,34 @@ function truncateDescription(description, maxLength) {
  * Displays the module selection checkbox prompt
  * @param {import('./module-loader.js').ModuleMetadata[]} modules - Array of module metadata
  * @param {string} [userRole='admin'] - User's selected role
+ * @param {Object} [options={}] - Options for the selector
+ * @param {boolean} [options.autoAccept=false] - Auto-accept all recommended modules (non-interactive)
  * @returns {Promise<string[]>} Array of selected module codes
  */
-export async function showModuleSelector(modules, userRole = 'admin') {
+export async function showModuleSelector(modules, userRole = 'admin', options = {}) {
+  const { autoAccept = false } = options;
+
   // Build choices with section grouping
   const choices = buildModuleChoices(modules, userRole);
+
+  // Auto-accept mode: select all recommended and required modules
+  if (autoAccept) {
+    const requiredCodes = modules.filter(m => m.required).map(m => m.code);
+    const recommendedCodes = modules.filter(m => m.recommended).map(m => m.code);
+    const selectedCodes = [...new Set([...requiredCodes, ...recommendedCodes])];
+
+    if (!options.silent) {
+      console.log(chalk.dim('Auto-accept mode: selecting recommended modules...\n'));
+    }
+
+    // Still show the summary
+    const summary = calculateSelectionSummary(selectedCodes, modules);
+    if (!options.silent) {
+      displaySelectionSummary(summary, selectedCodes, modules);
+    }
+
+    return selectedCodes;
+  }
 
   // Show the multi-select prompt
   console.log(''); // Empty line before prompt

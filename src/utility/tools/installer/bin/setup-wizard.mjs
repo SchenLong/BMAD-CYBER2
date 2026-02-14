@@ -260,7 +260,10 @@ export async function main(args = process.argv.slice(2), env = process.env) {
     await runWizard({
       verbose: options.verbose,
       quiet: options.quiet,
-      force: options.force
+      force: options.force,
+      yes: options.force, // Use force as yes flag for auto-accept
+      skipConfig: true, // Skip module configuration in non-interactive mode
+      skipPrompts: options.force // Skip prompts in force mode
     });
 
     if (!options.quiet) {

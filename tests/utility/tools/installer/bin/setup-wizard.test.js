@@ -544,10 +544,11 @@ describe('Setup Wizard Entry Point - INST-034', () => {
     });
 
     it('should run wizard in CI with --force flag', async () => {
-      // This will fail because orchestrator doesn't exist, but proves force works
+      // Force should override CI detection and run wizard successfully
       const exitCode = await main(['--force'], { CI: 'true' });
       expect(exitCode).toBe(0);
-      expect(captured.error.join('')).toContain('wizard');
+      // Wizard should complete successfully now
+      expect(captured.log.join('')).toContain('Setup completed successfully');
     });
   });
 
@@ -582,13 +583,6 @@ describe('Setup Wizard Entry Point - INST-034', () => {
       await main([], {});
       expect(captured.log.join('')).toContain('interactive terminal');
     });
-
-    describe.skip('should run with --force in non-TTY', async () => {
-      // Will fail but proves force works
-      const exitCode = await main(['--force'], {});
-      expect(exitCode).toBe(0);
-      expect(captured.error.join('')).toContain('wizard');
-    });
   });
 
   // ============================================================================
@@ -617,24 +611,33 @@ describe('Setup Wizard Entry Point - INST-034', () => {
       expect(exitCode).toBe(0);
     });
 
-    describe.skip('should show error message on failure', async () => {
+    // Note: The following tests are skipped because the setup wizard now succeeds
+    // in force mode instead of failing. These tests were expecting failure scenarios.
+
+    it.skip('should show error message on failure', async () => {
+      const localCaptured = captureConsole();
       await main(['--force'], {});
-      expect(captured.error.join('')).toContain('wizard');
+      expect(localCaptured.error.join('')).toContain('wizard');
+      localCaptured.restore();
     });
 
-    describe.skip('should provide manual configuration guidance on error', async () => {
+    it.skip('should provide manual configuration guidance on error', async () => {
+      const localCaptured = captureConsole();
       await main(['--force'], {});
-      const output = captured.log.join('');
+      const output = localCaptured.log.join('');
       expect(output).toContain('npm run modules');
       expect(output).toContain('npm run security:config');
       expect(output).toContain('npm run llm:setup');
       expect(output).toContain('npm run health');
+      localCaptured.restore();
     });
 
-    describe.skip('should be quiet on error when --quiet is used', async () => {
+    it.skip('should be quiet on error when --quiet is used', async () => {
+      const localCaptured = captureConsole();
       await main(['--force', '--quiet'], {});
-      expect(captured.log.length).toBe(0);
-      expect(captured.error.length).toBe(0);
+      expect(localCaptured.log.length).toBe(0);
+      expect(localCaptured.error.length).toBe(0);
+      localCaptured.restore();
     });
   });
 
@@ -717,21 +720,24 @@ describe('Setup Wizard Entry Point - INST-034', () => {
       expect(captured.log.join('')).toContain('BMAD Setup Wizard');
     });
 
-    describe.skip('should handle CI with force flag', async () => {
+    // Note: This test is skipped because the wizard now succeeds in force mode
+    // The test was expecting an error that no longer occurs
+    it.skip('should handle CI with force flag', async () => {
       const captured = captureConsole();
       const originalIsTTY = process.stdin.isTTY;
       // @ts-ignore
       process.stdin.isTTY = true;
 
-      // Force should override CI detection
+      // Force should override CI detection and run wizard
       await main(['--force'], { GITHUB_ACTIONS: 'true' });
 
       // @ts-ignore
       process.stdin.isTTY = originalIsTTY;
       captured.restore();
 
-      // Should have attempted to run wizard (and failed since orchestrator doesn't exist)
-      expect(captured.error.join('')).toContain('wizard');
+      // Wizard should have run successfully (no error expected)
+      const output = captured.log.join('');
+      expect(output).toContain('Setup completed successfully');
     });
 
     it('should work with default process.env', async () => {

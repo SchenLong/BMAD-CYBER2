@@ -1,7 +1,7 @@
 installation:
   version: 6.0.0-alpha.22
-  installDate: 2026-01-08T17:39:34.328Z
-  lastUpdated: 2026-01-08T17:39:34.328Z
+  installDate: '2026-01-08T17:39:34.328Z'
+  lastUpdated: '2026-02-14T18:16:52.032Z'
 modules:
   - core
   - bmb
@@ -9,9 +9,22 @@ modules:
   - bmm
   - cis
   - cybersec-team
-  - strategy-team
   - intel-team
   - legal-team
+  - strategy-team
+enabled_modules:
+  - core
+  - bmb
+  - bmgd
+  - bmm
+  - cis
+  - cybersec-team
+  - intel-team
+  - legal-team
+  - strategy-team
+last_modified: '2026-02-14T18:16:52.032Z'
+installed_by: paultinp
+wizard_version: 2.0.0
 ides:
   - claude-code
 config_files:

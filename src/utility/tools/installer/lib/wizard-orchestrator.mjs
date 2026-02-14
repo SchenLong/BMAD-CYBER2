@@ -209,8 +209,14 @@ export async function runWizard(options = {}) {
         displayStepHeader(step.name, stepNum, steps.length);
       }
 
-      // Build options for this tool
-      const toolOptions = {};
+      // Build options for this tool - pass through autoAccept and other flags
+      const toolOptions = {
+        yes: autoAccept,
+        autoAccept,
+        force: options.force || false,
+        skipConfig: options.skipConfig || false,
+        skipPrompts: options.skipPrompts || false
+      };
 
       const stepResult = await runTool(
         step.name,

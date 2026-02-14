@@ -158,6 +158,10 @@ function formatRoleName(role) {
  * @param {string} [options.projectRoot=process.cwd()] - Project root directory
  * @param {boolean} [options.skipConfig=false] - Skip per-module configuration
  * @param {boolean} [options.silent=false] - Suppress banner output
+ * @param {boolean} [options.yes=false] - Auto-accept all prompts (non-interactive mode)
+ * @param {boolean} [options.autoAccept=false] - Alias for yes (non-interactive mode)
+ * @param {boolean} [options.force=false] - Force mode (implies yes)
+ * @param {boolean} [options.skipPrompts=false] - Skip all prompts (non-interactive mode)
  * @returns {Promise<{selectedModules: string[], configuredModules: string[]}>}
  */
 export async function runModuleSelector(options = {}) {
@@ -166,8 +170,15 @@ export async function runModuleSelector(options = {}) {
     role: presetRole,
     projectRoot = process.cwd(),
     skipConfig = false,
-    silent = false
+    silent = false,
+    yes = false,
+    autoAccept = false,
+    force = false,
+    skipPrompts = false
   } = options;
+
+  // Combine all "auto accept" flags
+  const shouldAutoAccept = yes || autoAccept || force || skipPrompts;
 
   // Display banner unless silent mode
   if (!silent) {
@@ -190,7 +201,15 @@ export async function runModuleSelector(options = {}) {
   // Step 2: Get user role (from options or prompt)
   let userRole = presetRole;
   if (!userRole || !isValidRole(userRole)) {
-    userRole = await promptForRole();
+    if (shouldAutoAccept) {
+      // Use default role (admin) in non-interactive mode
+      userRole = 'admin';
+      if (!silent) {
+        console.log(chalk.dim(`Auto-accept mode: using default role 'admin'\n`));
+      }
+    } else {
+      userRole = await promptForRole();
+    }
   }
 
   console.log(chalk.dim(`\nUsing role: ${formatRoleName(userRole)}\n`));
@@ -200,7 +219,10 @@ export async function runModuleSelector(options = {}) {
   const sortedModules = sortModulesByRecommendation(modules);
 
   // Step 4: Show module selection UI
-  const selectedModuleCodes = await showModuleSelector(sortedModules, userRole);
+  const selectedModuleCodes = await showModuleSelector(sortedModules, userRole, {
+    autoAccept: shouldAutoAccept,
+    silent
+  });
 
   // Step 5: Validate selection
   const validation = validateSelection(selectedModuleCodes, modules);
@@ -227,12 +249,16 @@ export async function runModuleSelector(options = {}) {
   console.log(chalk.bold('═══════════════════════════════════════════════════════════════\n'));
 
   // Step 7: Confirm selection
-  const confirmResult = await confirm({
-    message: 'Proceed with this selection?',
-    initialValue: true
-  });
+  let shouldProceed = true;
+  if (!shouldAutoAccept) {
+    const confirmResult = await confirm({
+      message: 'Proceed with this selection?',
+      initialValue: true
+    });
+    shouldProceed = confirmResult;
+  }
 
-  if (!confirmResult) {
+  if (!shouldProceed) {
     console.log(chalk.yellow('\nSelection cancelled. Run `npm run modules` to try again.\n'));
     return { selectedModules: [], configuredModules: [] };
   }
@@ -270,13 +296,22 @@ export async function runModuleSelector(options = {}) {
       }
       console.log();
 
-      // Prompt to configure now
-      const configureResult = await confirm({
-        message: 'Would you like to configure these modules now?',
-        initialValue: true
-      });
+      // Prompt to configure now (skip in autoAccept mode)
+      let shouldConfigure = false;
+      if (shouldAutoAccept) {
+        shouldConfigure = false; // Skip configuration in CI/auto mode
+        if (!silent) {
+          console.log(chalk.dim('Auto-accept mode: skipping module configuration.\n'));
+        }
+      } else {
+        const configureResult = await confirm({
+          message: 'Would you like to configure these modules now?',
+          initialValue: true
+        });
+        shouldConfigure = configureResult;
+      }
 
-      if (configureResult) {
+      if (shouldConfigure) {
         const selectedModuleObjects = selectedModuleCodes.map(code => findModuleByCode(modules, code)).filter(Boolean);
         const unconfiguredModules = selectedModuleObjects.filter(m =>
           configStatus.unconfigured.includes(m.code)

@@ -111,6 +111,9 @@ export function showCurrentConfiguration(projectRoot = process.cwd()) {
  * @param {boolean} [options.advanced=false] - Go directly to advanced mode
  * @param {string} [options.projectRoot=process.cwd()] - Project root directory
  * @param {boolean} [options.silent=false] - Suppress banner output
+ * @param {boolean} [options.yes=false] - Auto-accept all prompts (non-interactive mode)
+ * @param {boolean} [options.autoAccept=false] - Alias for yes (non-interactive mode)
+ * @param {boolean} [options.force=false] - Force mode (implies yes)
  * @returns {Promise<{success: boolean, tier?: string, features?: string[], error?: string}>}
  */
 export async function runSecurityConfig(options = {}) {
@@ -119,8 +122,14 @@ export async function runSecurityConfig(options = {}) {
     tier: presetTier,
     advanced = false,
     projectRoot = process.cwd(),
-    silent = false
+    silent = false,
+    yes = false,
+    autoAccept = false,
+    force = false
   } = options;
+
+  // Combine all "auto accept" flags
+  const shouldAutoAccept = yes || autoAccept || force;
 
   // Display banner unless silent mode
   if (!silent) {
@@ -142,27 +151,33 @@ export async function runSecurityConfig(options = {}) {
     showCurrentConfig(previousTier);
   }
 
-  // Direct tier application (--tier flag)
-  if (presetTier) {
-    if (!isValidTierId(presetTier)) {
-      console.log(chalk.red(`Invalid tier: ${presetTier}`));
+  // Direct tier application (--tier flag) or auto-accept mode
+  if (presetTier || shouldAutoAccept) {
+    // Get default tier object if no preset
+    const defaultTierObj = getDefaultTier();
+    const tierToApply = presetTier || (defaultTierObj ? defaultTierObj.id : 'standard');
+
+    if (!isValidTierId(tierToApply)) {
+      console.log(chalk.red(`Invalid tier: ${tierToApply}`));
       console.log(chalk.dim(`Valid tiers: ${getAllTierIds().join(', ')}`));
-      return { success: false, error: `Invalid tier: ${presetTier}` };
+      return { success: false, error: `Invalid tier: ${tierToApply}` };
     }
 
     // Show comparison if changing tiers
-    if (previousTier && previousTier !== presetTier) {
-      showTierComparison(previousTier, presetTier);
+    if (previousTier && previousTier !== tierToApply) {
+      showTierComparison(previousTier, tierToApply);
     }
 
     // Apply tier
-    const result = applySecurityTier(presetTier, { projectRoot });
+    const result = applySecurityTier(tierToApply, { projectRoot });
 
     if (result.success) {
-      const tier = getTierById(presetTier);
-      console.log(chalk.green(`\n Security configured to ${tier.name} tier.`));
-      console.log(chalk.dim(`  Config written to: ${result.path}\n`));
-      return { success: true, tier: presetTier, features: tier.features };
+      const tier = getTierById(tierToApply);
+      if (!silent) {
+        console.log(chalk.green(`\n Security configured to ${tier.name} tier.`));
+        console.log(chalk.dim(`  Config written to: ${result.path}\n`));
+      }
+      return { success: true, tier: tierToApply, features: tier.features };
     } else {
       console.log(chalk.red(`\n Failed to apply configuration: ${result.error}\n`));
       return { success: false, error: result.error };

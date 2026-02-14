@@ -291,6 +291,9 @@ export async function confirmReplaceKey() {
  * @param {boolean} [options.sign] - Skip to config signing
  * @param {boolean} [options.status] - Show status only
  * @param {boolean} [options.silent] - Suppress banner output
+ * @param {boolean} [options.yes=false] - Auto-accept all prompts (non-interactive mode)
+ * @param {boolean} [options.autoAccept=false] - Alias for yes (non-interactive mode)
+ * @param {boolean} [options.force=false] - Force mode (implies yes)
  * @returns {Promise<{success: boolean, action: string, result: object|null, error: string|null}>}
  */
 export async function runPgpSetup(options = {}) {
@@ -299,8 +302,27 @@ export async function runPgpSetup(options = {}) {
     generate = false,
     sign = false,
     status = false,
-    silent = false
+    silent = false,
+    yes = false,
+    autoAccept = false,
+    force = false
   } = options;
+
+  // Combine all "auto accept" flags
+  const shouldAutoAccept = yes || autoAccept || force;
+
+  // In auto-accept mode, skip PGP setup (not needed for CI)
+  if (shouldAutoAccept && !generate && !sign && !status) {
+    if (!silent) {
+      console.log(chalk.dim('Auto-accept mode: skipping PGP key setup (not needed for CI).\n'));
+    }
+    return {
+      success: true,
+      action: 'skipped',
+      result: null,
+      error: null
+    };
+  }
 
   // Display banner unless silent mode
   if (!silent) {

@@ -154,6 +154,9 @@ async function promptForApiKey(provider) {
  * @param {string} [options.projectRoot=process.cwd()] - Project root
  * @param {boolean} [options.silent=false] - Suppress banner
  * @param {boolean} [options.skipTest=false] - Skip connection test
+ * @param {boolean} [options.yes=false] - Auto-accept all prompts (non-interactive mode)
+ * @param {boolean} [options.autoAccept=false] - Alias for yes (non-interactive mode)
+ * @param {boolean} [options.force=false] - Force mode (implies yes)
  * @returns {Promise<Object>} Configuration result
  */
 export async function runLlmSetup(options = {}) {
@@ -163,8 +166,14 @@ export async function runLlmSetup(options = {}) {
     provider: preselectedProvider,
     projectRoot = process.cwd(),
     silent = false,
-    skipTest = false
+    skipTest = false,
+    yes = false,
+    autoAccept = false,
+    force = false
   } = options;
+
+  // Combine all "auto accept" flags
+  const shouldAutoAccept = yes || autoAccept || force;
 
   // Display banner
   if (!silent) {
@@ -214,16 +223,25 @@ export async function runLlmSetup(options = {}) {
   let endpoint = null;
   let apiKey = null;
 
-  if (preselectedProvider) {
-    const providerInfo = getProviderByCode(preselectedProvider);
+  if (preselectedProvider || shouldAutoAccept) {
+    const providerCode = preselectedProvider || currentProvider || 'claude';
+    const providerInfo = getProviderByCode(providerCode);
     if (!providerInfo) {
-      console.log(chalk.red(`\nUnknown provider: ${preselectedProvider}`));
+      console.log(chalk.red(`\nUnknown provider: ${providerCode}`));
       const allProviders = [...CLOUD_PROVIDERS, ...LOCAL_PROVIDER_DEFS].map(p => p.code);
       console.log(chalk.dim(`Available providers: ${  allProviders.join(', ')  }\n`));
       return { success: false, error: 'Unknown provider' };
     }
-    selectedProvider = preselectedProvider;
-    console.log(chalk.dim(`\nUsing pre-selected provider: ${providerInfo.name}\n`));
+    selectedProvider = providerCode;
+    if (!silent) {
+      if (preselectedProvider) {
+        console.log(chalk.dim(`\nUsing pre-selected provider: ${providerInfo.name}\n`));
+      } else if (currentProvider) {
+        console.log(chalk.dim(`\nAuto-accept mode: using current provider: ${providerInfo.name}\n`));
+      } else {
+        console.log(chalk.dim(`\nAuto-accept mode: using default provider: ${providerInfo.name}\n`));
+      }
+    }
   } else {
     selectedProvider = await showProviderSelector({
       detectedProviders,
@@ -245,19 +263,33 @@ export async function runLlmSetup(options = {}) {
     if (providerGroup === 'local') {
       const detected = detectedProviders.find(p => p.code === selectedProvider);
       if (detected && detected.models && detected.models.length > 0 && detected.models[0] !== 'default') {
-        model = await showModelSelector({
-          provider: selectedProvider,
-          availableModels: detected.models
-        });
+        if (shouldAutoAccept) {
+          // Use first available model in auto-accept mode
+          model = detected.models[0];
+          if (!silent) {
+            console.log(chalk.dim(`Auto-accept mode: using model '${model}'\n`));
+          }
+        } else {
+          model = await showModelSelector({
+            provider: selectedProvider,
+            availableModels: detected.models
+          });
+        }
       }
     } else if (providerGroup === 'cloud' && selectedProvider !== 'claude') {
-      // Get API key for non-Claude cloud providers
-      apiKey = await promptForApiKey(selectedProvider);
+      // Get API key for non-Claude cloud providers (skip in auto-accept mode)
+      if (!shouldAutoAccept) {
+        apiKey = await promptForApiKey(selectedProvider);
+      } else {
+        if (!silent) {
+          console.log(chalk.dim(`Auto-accept mode: skipping API key prompt for ${selectedProvider}\n`));
+        }
+      }
     }
   }
 
-  // Step 7: Test connection (unless skipped)
-  if (!skipTest) {
+  // Step 7: Test connection (unless skipped or in auto-accept mode)
+  if (!skipTest && !shouldAutoAccept) {
     console.log('');
     console.log(chalk.bold('Testing connection...'));
     console.log('');
@@ -270,15 +302,30 @@ export async function runLlmSetup(options = {}) {
     });
 
     if (!testResult.success) {
-      const continueAnyway = await confirm({
-        message: 'Connection test failed. Save configuration anyway?',
-        initialValue: false
-      });
+      let shouldContinue = false;
+      if (shouldAutoAccept) {
+        // In auto-accept mode, don't save on connection failure
+        shouldContinue = false;
+        if (!silent) {
+          console.log(chalk.yellow('\nAuto-accept mode: connection test failed, not saving configuration.\n'));
+        }
+        return { success: false, action: 'skipped', reason: 'connection_failed' };
+      } else {
+        shouldContinue = await confirm({
+          message: 'Connection test failed. Save configuration anyway?',
+          initialValue: false
+        });
+      }
 
-      if (!continueAnyway) {
+      if (!shouldContinue) {
         console.log(chalk.yellow('\nConfiguration cancelled.\n'));
         return { success: false, action: 'cancelled', reason: 'connection_failed' };
       }
+    }
+  } else if (shouldAutoAccept) {
+    // In auto-accept mode with skipTest, we should still validate the config
+    if (!silent) {
+      console.log(chalk.dim('Auto-accept mode: skipping connection test.\n'));
     }
   }
 
