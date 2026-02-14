@@ -252,8 +252,8 @@ function loadControls() {
       continue;
     }
 
-    // Match control_id lines
-    const controlMatch = trimmed.match(/control_id:\s*["']?([A-Z]+\d{0,2}-\d{3})/);
+    // Match control_id lines (V##-### or V##-EXT format)
+    const controlMatch = trimmed.match(/control_id:\s*["']?([A-Z]+\d{0,2}-\d{3}|[A-Z]+\d{0,2}-EXT|[A-Z]+\d{0,2}-[A-Z]+)/);
     if (controlMatch) {
       const controlId = controlMatch[1];
       if (currentFramework && controls[currentFramework] !== undefined) {
@@ -494,6 +494,7 @@ function displayJson(results) {
   for (const [key, framework] of Object.entries(results.frameworks)) {
     output.frameworks[key] = {
       name: framework.name,
+      short: framework.short,
       implemented: framework.implemented,
       total: framework.total,
       coverage: framework.coverage
