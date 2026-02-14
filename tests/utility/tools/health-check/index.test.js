@@ -377,7 +377,7 @@ describe('Health Check Entry Point - INST-024', () => {
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
       expect(packageJson.scripts.health).toBeDefined();
-      expect(packageJson.scripts.health).toContain('health-check/index.js');
+      expect(packageJson.scripts.health).toBe('bmad health');
     });
   });
 });

@@ -20,7 +20,7 @@ describe('Installation Verification', () => {
       expect(fs.existsSync(packageJsonPath)).toBe(true);
 
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-      expect(packageJson.name).toBe('bmad-cyber2-framework');
+      expect(packageJson.name).toBe('bmad-cybersec');
     });
 
     it('should have required dependencies defined', () => {
