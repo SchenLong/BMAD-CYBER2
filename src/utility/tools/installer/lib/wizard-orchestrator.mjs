@@ -16,6 +16,7 @@
 
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { pathToFileURL } from 'url';
 
 // Dynamic chalk import to handle ESM
 let chalk;
@@ -37,22 +38,128 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
+ * Tool paths relative to project root
+ */
+const TOOL_PATHS = {
+  modules: 'src/utility/tools/module-selector/index.js',
+  security: 'src/utility/tools/security-config/index.js',
+  llm: 'src/utility/tools/llm-setup/index.js',
+  pgp: 'src/utility/tools/pgp-setup/index.js'
+};
+
+/**
+ * Import a tool module dynamically
+ */
+async function importTool(toolPath, projectRoot) {
+  const absolutePath = path.resolve(projectRoot, toolPath);
+  const toolUrl = pathToFileURL(absolutePath).href;
+
+  try {
+    const module = await import(toolUrl);
+    return module;
+  } catch (error) {
+    if (error.code === 'ERR_MODULE_NOT_FOUND') {
+      return null;
+    }
+    throw error;
+  }
+}
+
+/**
+ * Run a setup tool and return result
+ */
+async function runTool(toolName, toolPath, runFunctionName, options, projectRoot, silent) {
+  const toolStartTime = Date.now();
+
+  try {
+    const module = await importTool(toolPath, projectRoot);
+
+    if (!module) {
+      return {
+        success: false,
+        skipped: true,
+        result: null,
+        error: 'Tool not found at ' + toolPath
+      };
+    }
+
+    // Find the run function
+    const runFunction = module[runFunctionName] || module.default?.[runFunctionName];
+
+    if (typeof runFunction !== 'function') {
+      return {
+        success: false,
+        skipped: true,
+        result: null,
+        error: 'Tool does not export ' + runFunctionName
+      };
+    }
+
+    // Run the tool with silent mode to avoid duplicate banners
+    const result = await runFunction({
+      ...options,
+      silent,
+      projectRoot
+    });
+
+    const duration = Date.now() - toolStartTime;
+
+    return {
+      success: true,
+      skipped: false,
+      result,
+      error: null,
+      duration
+    };
+
+  } catch (error) {
+    const duration = Date.now() - toolStartTime;
+
+    return {
+      success: false,
+      skipped: false,
+      result: null,
+      error: error.message,
+      duration
+    };
+  }
+}
+
+/**
+ * Display step header
+ */
+function displayStepHeader(stepName, stepNum, totalSteps) {
+  console.log('');
+  console.log(chalk.cyan.bold('┌─ Step ' + stepNum + '/' + totalSteps + ': ' + stepName + ' ' + '─'.repeat(40)));
+  console.log(chalk.cyan.bold('│'));
+}
+
+/**
+ * Display step result
+ */
+function displayStepResult(stepName, stepResult) {
+  console.log(chalk.cyan.bold('│'));
+  console.log(chalk.cyan.bold('└' + '─'.repeat(59)));
+
+  if (stepResult.skipped) {
+    console.log(chalk.yellow('  ⊘ ' + stepName + ': Skipped (' + stepResult.error + ')'));
+  } else if (stepResult.success) {
+    const duration = stepResult.duration ? ' (' + Math.round(stepResult.duration) + 'ms)' : '';
+    console.log(chalk.green('  ✓ ' + stepName + ': Complete' + duration));
+  } else {
+    console.log(chalk.red('  ✗ ' + stepName + ': Failed - ' + stepResult.error));
+  }
+}
+
+/**
  * Run the complete setup wizard
- * @param {object} options - Options for the wizard
- * @param {string[]} [options.moduleArgs] - Args for module selector
- * @param {string} [options.securityTier] - Preselected security tier
- * @param {string[]} [options.securityArgs] - Args for security config
- * @param {string[]} [options.llmArgs] - Args for LLM setup
- * @param {string[]} [options.pgpArgs] - Args for PGP setup
- * @param {boolean} [options.skipModules] - Skip module selection
- * @param {boolean} [options.skipSecurity] - Skip security configuration
- * @param {boolean} [options.skipLLM] - Skip LLM setup
- * @param {boolean} [options.skipPGP] - Skip PGP setup
- * @param {boolean} [options.verbose] - Enable verbose output
- * @param {boolean} [options.quiet] - Suppress non-error output
- * @returns {Promise<object>} Results from each setup step
  */
 export async function runWizard(options = {}) {
+  const projectRoot = options.projectRoot || process.cwd();
+  const verbose = options.verbose || false;
+  const quiet = options.quiet || false;
+  const autoAccept = options.yes || options.force || false;
+
   const results = {
     modules: null,
     security: null,
@@ -60,109 +167,119 @@ export async function runWizard(options = {}) {
     pgp: null
   };
 
-  const verbose = options.verbose || false;
-  const quiet = options.quiet || false;
+  const steps = [];
+  if (!options.skipModules) steps.push({ name: 'Module Selection', key: 'modules', path: TOOL_PATHS.modules, func: 'runModuleSelector' });
+  if (!options.skipSecurity) steps.push({ name: 'Security Configuration', key: 'security', path: TOOL_PATHS.security, func: 'runSecurityConfig' });
+  if (!options.skipLLM) steps.push({ name: 'LLM Provider Setup', key: 'llm', path: TOOL_PATHS.llm, func: 'runLlmSetup' });
+  if (!options.skipPGP) steps.push({ name: 'PGP Key Setup', key: 'pgp', path: TOOL_PATHS.pgp, func: 'runPgpSetup' });
+
+  // Skip if nothing to run
+  if (steps.length === 0) {
+    if (!quiet) {
+      console.log(chalk.yellow('\nNo setup steps enabled. All skipped.\n'));
+    }
+    return results;
+  }
 
   try {
     if (!quiet) {
-      console.log(chalk.cyan.bold(`\n${'='.repeat(60)}`));
+      console.log(chalk.cyan.bold('\n' + '='.repeat(60)));
       console.log(chalk.cyan.bold('  BMAD-CYBER Setup Wizard'));
       console.log(chalk.cyan.bold('='.repeat(60)));
-      console.log('\nThe setup wizard will guide you through configuration steps.');
-      console.log('Each tool can also be run individually:\n');
+
+      if (autoAccept) {
+        console.log(chalk.yellow('\n  Running in non-interactive mode (--yes/--force)'));
+        console.log(chalk.yellow('  Default values will be used for all prompts.\n'));
+      } else {
+        console.log('\nThe setup wizard will guide you through configuration steps.');
+        console.log('Each tool can also be run individually:\n');
+        console.log(chalk.dim('  npm run modules        - Module selection'));
+        console.log(chalk.dim('  npm run security:config - Security configuration'));
+        console.log(chalk.dim('  npm run llm:setup      - LLM provider setup'));
+        console.log(chalk.dim('  npm run pgp:setup        - PGP key setup'));
+      }
     }
 
-    // Information display only - show commands to run
-    const completedSteps = [];
-    const skippedSteps = [];
+    // Run each step
+    for (let i = 0; i < steps.length; i++) {
+      const step = steps[i];
+      const stepNum = i + 1;
 
-    if (!options.skipModules) {
-      completedSteps.push('Modules');
-    }
-    if (!options.skipSecurity) {
-      completedSteps.push('Security');
-    }
-    if (!options.skipLLM) {
-      completedSteps.push('LLM');
-    }
-    if (!options.skipPGP) {
-      completedSteps.push('PGP');
+      if (!quiet) {
+        displayStepHeader(step.name, stepNum, steps.length);
+      }
+
+      // Build options for this tool
+      const toolOptions = {};
+
+      const stepResult = await runTool(
+        step.name,
+        step.path,
+        step.func,
+        toolOptions,
+        projectRoot,
+        quiet
+      );
+
+      results[step.key] = stepResult;
+
+      if (!quiet) {
+        displayStepResult(step.name, stepResult);
+      }
+
+      // Continue on non-critical failures
+      if (!stepResult.success && !stepResult.skipped) {
+        if (!quiet) {
+          console.log(chalk.yellow('  Continuing with remaining steps...\n'));
+        }
+      }
     }
 
-    // Show what was configured
-    if (!quiet && completedSteps.length > 0) {
-      console.log(chalk.green.bold(`\n${'='.repeat(60)}`));
-      console.log(chalk.green.bold('  Configuration Complete'));
-      console.log('='.repeat(60));
-      console.log(`\nConfigured: ${completedSteps.join(', ')}`);
-    }
-
-    // Show manual commands for skipped items
+    // Summary
     if (!quiet) {
-      const manualCommands = [];
+      const completed = Object.entries(results).filter(([_, r]) => r?.success === true);
+      const skipped = Object.entries(results).filter(([_, r]) => r?.skipped === true);
+      const failed = Object.entries(results).filter(([_, r]) => r?.success === false && r?.skipped !== true);
 
-      if (options.skipModules) {
-        manualCommands.push({
-          step: 'Module Selection',
-          command: 'npm run modules'
-        });
-        skippedSteps.push('Modules');
+      console.log('');
+      console.log(chalk.bold('═════════════════════════════════════════════════════════════'));
+      console.log(chalk.bold('                         Setup Summary'));
+      console.log(chalk.bold('═════════════════════════════════════════════════════════════'));
+      console.log('');
+
+      if (completed.length > 0) {
+        console.log(chalk.green('  Completed (' + completed.length + '): ' + completed.map(([k]) => k).join(', ')));
+      }
+      if (skipped.length > 0) {
+        console.log(chalk.yellow('  Skipped (' + skipped.length + '): ' + skipped.map(([k]) => k).join(', ')));
+      }
+      if (failed.length > 0) {
+        console.log(chalk.red('  Failed (' + failed.length + '): ' + failed.map(([k]) => k).join(', ')));
       }
 
-      if (options.skipSecurity) {
-        manualCommands.push({
-          step: 'Security Configuration',
-          command: 'npm run security:config'
-        });
-        skippedSteps.push('Security');
-      }
+      console.log('');
 
-      if (options.skipLLM) {
-        manualCommands.push({
-          step: 'LLM Provider Setup',
-          command: 'npm run llm:setup'
-        });
-        skippedSteps.push('LLM');
-      }
-
-      if (options.skipPGP) {
-        manualCommands.push({
-          step: 'PGP Key Setup',
-          command: 'npm run pgp:setup'
-        });
-        skippedSteps.push('PGP');
-      }
-
-      if (manualCommands.length > 0) {
-        console.log('\nThe following steps were skipped - run them manually:\n');
-        manualCommands.forEach(({ step, command }) => {
-          console.log(chalk.dim(`  ${step.padEnd(30)} → `) + chalk.cyan(command));
-        });
+      if (failed.length > 0 || skipped.length > 0) {
+        console.log(chalk.dim('You can run individual tools later:'));
+        for (const [key, result] of Object.entries(results)) {
+          if (result?.skipped || (!result?.success && result?.skipped !== true)) {
+            const commands = {
+              modules: 'npm run modules',
+              security: 'npm run security:config',
+              llm: 'npm run llm:setup',
+              pgp: 'npm run pgp:setup'
+            };
+            console.log(chalk.dim('  ' + commands[key]));
+          }
+        }
         console.log('');
       }
     }
 
-    // Alternative commands shown
-    if (!quiet) {
-      console.log(chalk.dim('\nAlternative commands:'));
-      console.log(chalk.dim('  npm run setup          - Run this wizard again'));
-      console.log(chalk.dim('  npm run modules         - Module selection'));
-      console.log(chalk.dim('  npm run security:config  - Security configuration'));
-      console.log(chalk.dim('  npm run llm:setup        - LLM provider setup'));
-      console.log(chalk.dim('  npm run pgp:setup        - PGP key setup'));
-      console.log(chalk.dim('  npm run health           - Verify installation'));
-      console.log('');
-    }
-
-    return {
-      modules: options.skipModules ? { skipped: true } : { completed: true },
-      security: options.skipSecurity ? { skipped: true } : { completed: true },
-      llm: options.skipLLM ? { skipped: true } : { completed: true },
-      pgp: options.skipPGP ? { skipped: true } : { completed: true }
-    };
+    return results;
 
   } catch (error) {
-    console.error(chalk.red(`\nSetup error: ${error.message}`));
+    console.error(chalk.red('\nSetup error: ' + error.message));
     if (verbose) {
       console.error(chalk.red(error.stack));
     }
@@ -177,14 +294,16 @@ async function main() {
   const args = process.argv.slice(2);
   const options = {
     verbose: args.includes('--verbose') || args.includes('-v'),
-    quiet: args.includes('--quiet') || args.includes('-q')
+    quiet: args.includes('--quiet') || args.includes('-q'),
+    yes: args.includes('--yes') || args.includes('-y'),
+    force: args.includes('--force') || args.includes('-f')
   };
 
   try {
     await runWizard(options);
     return 0;
   } catch (error) {
-    console.error(chalk.red(`Wizard failed: ${error.message}`));
+    console.error(chalk.red('Wizard failed: ' + error.message));
     return 1;
   }
 }
