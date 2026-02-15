@@ -2,7 +2,7 @@
  * Version Checker with Update Notification
  *
  * Compares the local package version against the npm registry
- * for the published `bmad-cybersec` package. Caches results for
+ * for the published `@blackunicorn/bmad-cybersec` package. Caches results for
  * 24 hours to avoid excessive network calls.
  *
  * @module utility/version-checker
@@ -28,10 +28,10 @@ const __dirname = dirname(__filename);
  */
 const _config = {
   /** The npm package name to check against the registry. */
-  NPM_PACKAGE_NAME: 'bmad-cybersec',
+  NPM_PACKAGE_NAME: '@blackunicorn/bmad-cybersec',
 
   /** npm registry URL for fetching package metadata. */
-  NPM_REGISTRY_URL: 'https://registry.npmjs.org/bmad-cybersec/latest',
+  NPM_REGISTRY_URL: 'https://registry.npmjs.org/@blackunicorn/bmad-cybersec/latest',
 
   /** How long to cache results (24 hours in milliseconds). */
   CACHE_TTL_MS: 24 * 60 * 60 * 1000,

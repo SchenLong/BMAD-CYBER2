@@ -26,7 +26,7 @@ function resolveToolPath(toolPath) {
   if (!existsSync(absolutePath)) {
     console.error(`Error: Tool not found at ${absolutePath}`);
     console.error('This may indicate a corrupted installation. Try reinstalling:');
-    console.error('  npm uninstall bmad-cybersec && npm install bmad-cybersec');
+    console.error('  npm uninstall @blackunicorn/bmad-cybersec && npm install @blackunicorn/bmad-cybersec');
     process.exit(1);
   }
   return absolutePath;

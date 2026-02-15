@@ -309,7 +309,7 @@ describe('Version Checker', () => {
       const output = capturedOutput.join('\n');
       expect(output).toContain('1.0.0');
       expect(output).toContain('2.0.0');
-      expect(output).toContain('bmad-cybersec');
+      expect(output).toContain('@blackunicorn/bmad-cybersec');
     });
 
     it('should not display anything when no update is available', async () => {
@@ -374,13 +374,13 @@ describe('Version Checker', () => {
   // ============================================================================
 
   describe('Constants', () => {
-    it('should target bmad-cybersec as the npm package', () => {
-      expect(_internals._config.NPM_PACKAGE_NAME).toBe('bmad-cybersec');
+    it('should target @blackunicorn/bmad-cybersec as the npm package', () => {
+      expect(_internals._config.NPM_PACKAGE_NAME).toBe('@blackunicorn/bmad-cybersec');
     });
 
     it('should use the npm registry URL', () => {
       expect(_internals._config.NPM_REGISTRY_URL).toContain('registry.npmjs.org');
-      expect(_internals._config.NPM_REGISTRY_URL).toContain('bmad-cybersec');
+      expect(_internals._config.NPM_REGISTRY_URL).toContain('@blackunicorn/bmad-cybersec');
     });
 
     it('should have a 24-hour cache TTL', () => {

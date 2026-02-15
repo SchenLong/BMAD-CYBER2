@@ -20,7 +20,7 @@ export async function statusCommand() {
   if (!isBmadInstalled(targetDir)) {
     console.log(`  Installation:      ${pc.yellow('Not installed')}`);
     console.log('');
-    console.log(pc.dim('  Run `npx bmad-cybersec install` to install.'));
+    console.log(pc.dim('  Run `npx @blackunicorn/bmad-cybersec install` to install.'));
     return;
   }
 

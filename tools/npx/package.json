@@ -1,5 +1,5 @@
 {
-  "name": "bmad-cybersec",
+  "name": "@blackunicorn/bmad-cybersec",
   "version": "3.0.0",
   "description": "Install BMAD-CYBERSEC operations framework",
   "type": "module",

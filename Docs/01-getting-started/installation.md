@@ -42,7 +42,7 @@ The simplest way to install BMAD-CYBER using the NPX installer:
 cd your-project
 
 # Run the installer
-npx bmad-cybersec install
+npx @blackunicorn/bmad-cybersec install
 ```
 
 The installer will:
@@ -75,7 +75,7 @@ npm run security:config
 
 ## Installation Options Reference
 
-The `npx bmad-cybersec install` command supports the following options:
+The `npx @blackunicorn/bmad-cybersec install` command supports the following options:
 
 | Option | Description | Default |
 |--------|-------------|---------|
@@ -96,25 +96,25 @@ The `npx bmad-cybersec install` command supports the following options:
 
 ```bash
 # Install with default settings
-npx bmad-cybersec install
+npx @blackunicorn/bmad-cybersec install
 
 # Install a specific version
-npx bmad-cybersec install --version v2.0.0
+npx @blackunicorn/bmad-cybersec install --version v2.0.0
 
 # Install from a specific branch
-npx bmad-cybersec install --from-git --branch develop
+npx @blackunicorn/bmad-cybersec install --from-git --branch develop
 
 # Non-interactive installation with pre-selected modules
-npx bmad-cybersec install -y --modules cybersec-team,intel-team --security-tier standard
+npx @blackunicorn/bmad-cybersec install -y --modules cybersec-team,intel-team --security-tier standard
 
 # Preview installation without making changes
-npx bmad-cybersec install --dry-run
+npx @blackunicorn/bmad-cybersec install --dry-run
 
 # Install with documentation and dev tools
-npx bmad-cybersec install --with-docs --with-dev
+npx @blackunicorn/bmad-cybersec install --with-docs --with-dev
 
 # Force reinstall over existing files
-npx bmad-cybersec install --force
+npx @blackunicorn/bmad-cybersec install --force
 ```
 
 ---
@@ -139,7 +139,7 @@ npx bmad-cybersec install --force
 3. **Run BMAD-CYBER installer:**
 
    ```bash
-   npx bmad-cybersec install
+   npx @blackunicorn/bmad-cybersec install
    ```
 
 4. **Follow the setup wizard:**
@@ -158,7 +158,7 @@ npx bmad-cybersec install --force
 2. **Run the installer:**
 
    ```bash
-   npx bmad-cybersec install
+   npx @blackunicorn/bmad-cybersec install
    ```
 
    The installer will:
@@ -179,10 +179,10 @@ For automated deployments and CI/CD pipelines:
 
 ```bash
 # Full non-interactive install with all defaults
-npx bmad-cybersec install -y
+npx @blackunicorn/bmad-cybersec install -y
 
 # Non-interactive with specific configuration
-npx bmad-cybersec install -y \
+npx @blackunicorn/bmad-cybersec install -y \
   --modules cybersec-team,intel-team \
   --security-tier standard \
   --skip-wizard
@@ -192,7 +192,7 @@ npx bmad-cybersec install -y \
 
 ```yaml
 - name: Install BMAD-CYBER
-  run: npx bmad-cybersec install -y --skip-wizard
+  run: npx @blackunicorn/bmad-cybersec install -y --skip-wizard
 ```
 
 ---
@@ -286,7 +286,7 @@ The health check verifies:
 Check if a newer version is available without installing:
 
 ```bash
-npx bmad-cybersec update --check
+npx @blackunicorn/bmad-cybersec update --check
 ```
 
 ### Update to Latest Version
@@ -294,7 +294,7 @@ npx bmad-cybersec update --check
 Update your installation to the latest version:
 
 ```bash
-npx bmad-cybersec update
+npx @blackunicorn/bmad-cybersec update
 ```
 
 The update process:
@@ -320,16 +320,16 @@ The update process:
 
 ```bash
 # Check for available updates
-npx bmad-cybersec update --check
+npx @blackunicorn/bmad-cybersec update --check
 
 # Update to latest version
-npx bmad-cybersec update
+npx @blackunicorn/bmad-cybersec update
 
 # Update to a specific version
-npx bmad-cybersec update --version v2.1.0
+npx @blackunicorn/bmad-cybersec update --version v2.1.0
 
 # Force reinstall current version
-npx bmad-cybersec update --force
+npx @blackunicorn/bmad-cybersec update --force
 ```
 
 ### Preserved During Updates

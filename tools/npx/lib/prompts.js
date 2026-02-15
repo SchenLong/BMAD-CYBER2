@@ -1,7 +1,7 @@
 /**
  * @clack/prompts wrapper for BMAD CLI (NPX package version)
  *
- * Minimal prompts interface for the bmad-cybersec npm package.
+ * Minimal prompts interface for the @blackunicorn/bmad-cybersec npm package.
  * Extracted from src/utility/cli/prompts.js to keep the NPX package self-contained.
  *
  * @module prompts

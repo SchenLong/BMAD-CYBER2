@@ -29,7 +29,7 @@ Abdul is the Master Project Manager - a cross-team orchestrator agent that coord
 **Option A: NPX Install (Recommended)**
 
 ```bash
-npx bmad-cybersec install
+npx @blackunicorn/bmad-cybersec install
 ```
 
 **Option B: Clone Repository**
@@ -42,7 +42,7 @@ git checkout BMAD-CYBEROPS-RP
 
 ### Can I install BMAD in an existing project?
 
-Yes! The NPX installer is designed for this use case. Run `npx bmad-cybersec install` in your existing project directory.
+Yes! The NPX installer is designed for this use case. Run `npx @blackunicorn/bmad-cybersec install` in your existing project directory.
 
 ---
 

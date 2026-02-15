@@ -77,7 +77,7 @@ You → Abdul → Right Team → Expert Agent(s) → Results
 ### Install via NPX (Recommended)
 
 ```bash
-npx bmad-cybersec install
+npx @blackunicorn/bmad-cybersec install
 ```
 
 ### Or Clone Repository

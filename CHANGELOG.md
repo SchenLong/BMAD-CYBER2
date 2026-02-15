@@ -333,7 +333,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 53 AI agents across all teams with role-based capabilities
 - 55 workflows with step-by-step execution guides
 - Abdul Master Project Manager for cross-team orchestration
-- NPX installer (`npx bmad-cybersec`) for easy deployment
+- NPX installer (`npx @blackunicorn/bmad-cybersec`) for easy deployment
 
 #### Testing Framework
 - 232 test suites covering unit, integration, and e2e scenarios
