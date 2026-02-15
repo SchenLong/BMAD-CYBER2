@@ -105,6 +105,10 @@ afterEach(() => {
 afterAll(() => {
   fs.existsSync = originalExistsSync;
   fs.readFileSync = originalReadFileSync;
+  // Force garbage collection to free memory before worker cleanup
+  if (global.gc) {
+    global.gc();
+  }
 });
 
 // Handle worker exit gracefully during cleanup
