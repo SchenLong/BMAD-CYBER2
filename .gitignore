@@ -155,6 +155,7 @@ id_rsa*
 # Editor and manual backup files - NEVER commit
 *.bak
 *.backup
+*.backup-*
 *.old
 *.orig
 
@@ -216,7 +217,9 @@ build/
 *.tgz
 *.tar.gz
 *.sha256
+*.sha256.asc
 *.sbom.json
+src/security/validator-checksums.json
 
 # Exception: validators-node dist is used by tests (bin files import from dist)
 !.claude/validators-node/dist/
