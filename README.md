@@ -11,7 +11,7 @@
 <div align="center">
 
 <!-- Version & Compatibility -->
-[![Version: 2.3.0](https://img.shields.io/badge/version-2.3.0-blue.svg)](CHANGELOG.md)
+[![Version: 4.7.0](https://img.shields.io/badge/version-4.7.0-blue.svg)](CHANGELOG.md)
 [![Node.js 20+](https://img.shields.io/badge/node-20%2B-brightgreen.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/typescript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![ES Module](https://img.shields.io/badge/module-ES%20Module-yellow.svg)](https://nodejs.org/api/esm.html)
@@ -423,6 +423,19 @@ BMAD CYBERSEC aligns with 20+ global security standards and compliance framework
 
 ## 📝 Changelog
 
+### v4.7.0 (2026-02-15)
+
+**🧹 Repository Cleanup**
+- Remove generated and internal files from git tracking
+- Update .gitignore for cleaner repository state
+
+**🔧 CI/CD Improvements**
+- Remove SBOM from release assets (non-blocking generation)
+- Fix tinypool worker error handling in release workflow
+- Resolve OOM issues by excluding memory-intensive tests
+- Use multi-worker pool with improved error handling
+- Install cyclonedx-npm globally to avoid dependency corruption
+
 ### v2.3.0 (2026-02-13)
 
 **🛡️ TPI-CrowdStrike Prompt Injection Taxonomy**
@@ -504,8 +517,8 @@ BMAD CYBERSEC aligns with 20+ global security standards and compliance framework
 | **CYBERSEC Agents** | 53 |
 | **BMAD-METHOD Workflows** | 99+ |
 | **Security Validators** | 139+ |
-| **Test Files** | 351 |
-| **Passing Tests** | 2,938+ |
+| **Test Files** | 208 |
+| **Passing Tests** | 7,117+ |
 | **Compliance Frameworks** | 20+ |
 | **OWASP LLM Score** | 95/100 |
 | **TPI-CrowdStrike** | Compliant |
