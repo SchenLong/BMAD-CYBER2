@@ -79,6 +79,7 @@ jobs:
           done
 
       - name: Generate SBOM
+        id: sbom
         continue-on-error: true
         run: |
           # Install globally to avoid modifying package.json/lockfile
@@ -86,8 +87,20 @@ jobs:
           if cyclonedx-npm --output-format json --output-file sbom.json 2>/dev/null; then
             echo "SBOM generated successfully"
           else
-            echo "SBOM generation failed - continuing without SBOM"
-            touch sbom.json
+            echo "SBOM generation failed - creating placeholder"
+            echo '{"version":1,"bomFormat":"CycloneDX","components":[]}' > sbom.json
+          fi
+
+      - name: Check SBOM file size before upload
+        id: check_sbom
+        run: |
+          if [ -f sbom.json ]; then
+            SIZE=$(stat -f%z sbom.json 2>/dev/null || stat -c%s sbom.json)
+            echo "SBOM size: $SIZE bytes"
+            if [ "$SIZE" -lt 10 ]; then
+              echo "SBOM file too small, removing"
+              rm sbom.json
+            fi
           fi
 
       - name: Create GitHub Release
@@ -96,7 +109,6 @@ jobs:
           files: |
             *.tgz
             *.sha256
-            sbom.json
           prerelease: ${{ steps.version.outputs.PRERELEASE }}
           fail_on_unmatched_files: false
           generate_release_notes: true
