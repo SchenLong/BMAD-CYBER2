@@ -60,7 +60,7 @@ For development or when you need full repository access:
 
 ```bash
 # Clone the repository
-git clone https://github.com/SchenLong/BMAD-CYBER2.git
+git clone https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC.git
 cd BMAD-CYBER2
 
 # Install dependencies

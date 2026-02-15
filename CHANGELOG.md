@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- No unreleased features (current release: v2.3.0)
+- No unreleased features (current release: v4.7.2)
 
 ### Changed
 - None
@@ -18,6 +18,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 - None
+
+## [4.7.2] - 2026-02-15
+
+### Changed
+- **Repository Migration**: Updated all GitHub repository URLs from `SchenLong/BMAD-CYBERSEC` to `BlackUnicornSecurity/BMAD-CYBERSEC`
+- Updated NPX installer configuration to point to new repository location
+- Updated all documentation references to new repository URL
+- Updated package.json repository URLs for npm publication
+
+### Files Modified
+- `tools/npx/package.json` - Repository URLs
+- `tools/npx/lib/config.js` - GitHub owner configuration
+- `tools/npx/commands/install.js` - Documentation links
+- `tools/npx/__tests__/downloader.test.js` - Test URLs
+- `tools/npx/__tests__/fixtures/mock-release.json` - Mock data
+- `tools/cli/lib/config.js` - GitHub owner configuration
+- `tools/cli/commands/install.js` - Documentation links
+- `README.md` - Clone URLs and issue tracker links
+- `Docs/01-getting-started/README.md` - Installation instructions
+- `Docs/01-getting-started/installation.md` - Clone URLs
+- `Docs/02-user-guides/FAQ.md` - Repository references
+- `Docs/02-user-guides/USER-ONBOARDING-JOURNEY.md` - Installation instructions
+- `Docs/02-user-guides/GETTING-STARTED.md` - Clone URLs
+
+## [4.7.1] - 2026-02-15
+
+### Changed
+- Published npm package under @blackunicorn scope
+
+## [4.7.0] - 2026-02-15
+
+### Added
+- Repository cleanup for cleaner git state
 
 ## [2.3.0] - 2026-02-13
 

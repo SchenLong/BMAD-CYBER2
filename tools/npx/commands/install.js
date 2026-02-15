@@ -300,6 +300,6 @@ function showQuickStart(isDryRun) {
   console.log('  npm run security:config  - Configure security tier');
   console.log('  npm run health           - Run system health check');
   console.log('');
-  console.log(chalk.dim('Documentation: https://github.com/SchenLong/BMAD-CYBERSEC'));
+  console.log(chalk.dim('Documentation: https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC'));
   console.log('');
 }

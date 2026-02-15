@@ -31,16 +31,16 @@ describe('downloader', () => {
   // Mock release data
   const mockRelease = {
     tag_name: 'v2.0.0',
-    tarball_url: 'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/tarball/v2.0.0',
+    tarball_url: 'https://api.github.com/repos/BlackUnicornSecurity/BMAD-CYBERSEC/tarball/v2.0.0',
     assets: [
       {
         name: 'bmad-cyber-v2.0.0.tar.gz',
-        browser_download_url: 'https://github.com/SchenLong/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
+        browser_download_url: 'https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
         size: 1024,
       },
       {
         name: 'bmad-cyber-v2.0.0.tar.gz.sha256',
-        browser_download_url: 'https://github.com/SchenLong/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
+        browser_download_url: 'https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz.sha256',
       },
     ],
   };
@@ -121,7 +121,7 @@ describe('downloader', () => {
 
       // Verify fetch was called with correct URL for latest release
       expect(global.fetch).toHaveBeenCalledWith(
-        'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/releases/latest',
+        'https://api.github.com/repos/BlackUnicornSecurity/BMAD-CYBERSEC/releases/latest',
         expect.objectContaining({
           headers: expect.objectContaining({
             'Accept': 'application/vnd.github.v3+json',
@@ -161,7 +161,7 @@ describe('downloader', () => {
 
       // Verify fetch was called with correct URL for specific version
       expect(global.fetch).toHaveBeenCalledWith(
-        'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/releases/tags/v1.5.0',
+        'https://api.github.com/repos/BlackUnicornSecurity/BMAD-CYBERSEC/releases/tags/v1.5.0',
         expect.any(Object)
       );
     });
@@ -280,7 +280,7 @@ describe('downloader', () => {
 
       // Verify tarball download was attempted
       expect(global.fetch).toHaveBeenCalledWith(
-        'https://github.com/SchenLong/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
+        'https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
         expect.any(Object)
       );
     });
@@ -352,7 +352,7 @@ describe('downloader', () => {
     it('falls back to source tarball when no release assets found', async () => {
       const releaseWithNoAssets = {
         tag_name: 'v2.0.0',
-        tarball_url: 'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/tarball/v2.0.0',
+        tarball_url: 'https://api.github.com/repos/BlackUnicornSecurity/BMAD-CYBERSEC/tarball/v2.0.0',
         assets: [],
       };
 
@@ -379,7 +379,7 @@ describe('downloader', () => {
 
       // Verify source tarball URL was used
       expect(global.fetch).toHaveBeenCalledWith(
-        'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/tarball/v2.0.0',
+        'https://api.github.com/repos/BlackUnicornSecurity/BMAD-CYBERSEC/tarball/v2.0.0',
         expect.any(Object)
       );
     });
@@ -485,11 +485,11 @@ describe('downloader', () => {
     it('handles release without checksum file - throws security error', async () => {
       const releaseWithoutChecksum = {
         tag_name: 'v2.0.0',
-        tarball_url: 'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/tarball/v2.0.0',
+        tarball_url: 'https://api.github.com/repos/BlackUnicornSecurity/BMAD-CYBERSEC/tarball/v2.0.0',
         assets: [
           {
             name: 'bmad-cyber-v2.0.0.tar.gz',
-            browser_download_url: 'https://github.com/SchenLong/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
+            browser_download_url: 'https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/releases/download/v2.0.0/bmad-cyber-v2.0.0.tar.gz',
             size: 1024,
           },
           // No .sha256 file - security requires checksum verification
@@ -519,7 +519,7 @@ describe('downloader', () => {
     it('handles empty release assets array', async () => {
       const emptyRelease = {
         tag_name: 'v2.0.0',
-        tarball_url: 'https://api.github.com/repos/SchenLong/BMAD-CYBERSEC/tarball/v2.0.0',
+        tarball_url: 'https://api.github.com/repos/BlackUnicornSecurity/BMAD-CYBERSEC/tarball/v2.0.0',
         assets: [],
       };
 

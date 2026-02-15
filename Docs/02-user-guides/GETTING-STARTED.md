@@ -31,7 +31,7 @@ npx bmad-cybersec install --dry-run
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+git clone https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC.git
 cd BMAD-CYBERSEC && git checkout BMAD-CYBEROPS-RP
 
 # The modules are ready to use!

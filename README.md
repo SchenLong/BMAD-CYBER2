@@ -83,7 +83,7 @@ npx @blackunicorn/bmad-cybersec install
 ### Or Clone Repository
 
 ```bash
-git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+git clone https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC.git
 cd BMAD-CYBERSEC && git checkout BMAD-CYBEROPS-RP
 ```
 

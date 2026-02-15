@@ -22,7 +22,7 @@ Before starting, ensure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/SchenLong/BMAD-CYBER2.git
+git clone https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC.git
 cd BMAD-CYBER2
 
 # The platform is ready to use immediately!
@@ -134,7 +134,7 @@ cp _bmad/core/configs/security/secure-defaults.yaml .claude/config.yaml
 
 - **User Issues** → [Troubleshooting Guide](../02-user-guides/TROUBLESHOOTING.md)
 - **Security Questions** → [Security Documentation](../02-user-guides/SECURITY-OVERVIEW.md)
-- **Technical Issues** → [GitHub Issues](https://github.com/SchenLong/BMAD-CYBER2/issues)
+- **Technical Issues** → [GitHub Issues](https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/issues)
 
 ---
 

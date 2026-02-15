@@ -165,7 +165,7 @@ Error: Release v99.99.99 not found
 
 **Solution:**
 
-1. Check available releases: <https://github.com/SchenLong/BMAD-CYBERSEC/releases>
+1. Check available releases: <https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/releases>
 2. Use `latest` or omit version flag for latest release
 3. Verify the version tag format (e.g., `v2.0.0` not `2.0.0`)
 
@@ -506,7 +506,7 @@ tools/npx/
 For issues with the NPX installer:
 
 1. Check this troubleshooting guide
-2. Search existing issues: <https://github.com/SchenLong/BMAD-CYBERSEC/issues>
+2. Search existing issues: <https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/issues>
 3. Create a new issue with:
    - Node.js version (`node --version`)
    - npm version (`npm --version`)

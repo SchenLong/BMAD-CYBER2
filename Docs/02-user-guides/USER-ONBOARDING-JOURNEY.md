@@ -47,7 +47,7 @@ Day 1          Week 1           Week 2-4         Ongoing
 
 ```bash
 # Clone the repository
-git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+git clone https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC.git
 cd BMAD-CYBERSEC
 
 # Install dependencies (optional - for framework development)

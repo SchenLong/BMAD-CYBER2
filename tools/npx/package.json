@@ -1,6 +1,6 @@
 {
   "name": "@blackunicorn/bmad-cybersec",
-  "version": "3.0.0",
+  "version": "4.7.2",
   "description": "Install BMAD-CYBERSEC operations framework",
   "type": "module",
   "bin": {
@@ -48,11 +48,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SchenLong/BMAD-CYBERSEC.git"
+    "url": "git+https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC.git"
   },
-  "homepage": "https://github.com/SchenLong/BMAD-CYBERSEC#readme",
+  "homepage": "https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC#readme",
   "bugs": {
-    "url": "https://github.com/SchenLong/BMAD-CYBERSEC/issues"
+    "url": "https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/issues"
   },
   "publishConfig": {
     "access": "public"

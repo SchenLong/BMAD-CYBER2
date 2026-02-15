@@ -35,7 +35,7 @@ npx @blackunicorn/bmad-cybersec install
 **Option B: Clone Repository**
 
 ```bash
-git clone https://github.com/SchenLong/BMAD-CYBERSEC.git
+git clone https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC.git
 cd BMAD-CYBERSEC
 git checkout BMAD-CYBEROPS-RP
 ```
@@ -134,7 +134,7 @@ See [Security Overview](SECURITY-OVERVIEW.md) for comprehensive security informa
 
 1. Check [Troubleshooting Guide](TROUBLESHOOTING.md)
 2. Review [Getting Started](GETTING-STARTED.md)
-3. Open an issue on [GitHub](https://github.com/SchenLong/BMAD-CYBERSEC/issues)
+3. Open an issue on [GitHub](https://github.com/BlackUnicornSecurity/BMAD-CYBERSEC/issues)
 
 ### How do I report a bug?
 
