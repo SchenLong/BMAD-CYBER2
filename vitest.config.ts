@@ -141,7 +141,11 @@ export default defineConfig({
   },
   // Suppress source map warnings for validators-node src files
   // Source maps are generated in dist/ during build, tests run from src/
-  sourcemap: 'false',
+  sourcemap: false,
   // Don't fail on unhandled errors - worker exit from E2E subprocesses is expected
-  failOnUnhandledErrors: false
+  failOnUnhandledErrors: false,
+  // Disable server-side source map handling to prevent warnings
+  server: {
+    sourcemap: false
+  }
 });
