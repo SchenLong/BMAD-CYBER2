@@ -67,13 +67,13 @@ export default defineConfig({
     poolOptions: {
       forks: {
         singleFork: false,
-        execArgv: ['--max-old-space-size=8192']
+        execArgv: ['--max-old-space-size=12288']
       }
     },
     isolate: true,
-    maxConcurrency: 4,
+    maxConcurrency: 2,
     minWorkers: 1,
-    maxWorkers: 4
+    maxWorkers: 2
   },
   resolve: {
     alias: {
