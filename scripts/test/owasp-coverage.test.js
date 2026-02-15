@@ -174,10 +174,20 @@ describe('OWASP-00: Coverage Tracking & Reporting', () => {
       expect(fs.existsSync(baselinePath)).toBe(true);
 
       const content = fs.readFileSync(baselinePath, 'utf-8');
-      const baseline = JSON.parse(content);
-
-      expect(baseline).toHaveProperty('timestamp');
-      expect(baseline).toHaveProperty('frameworks');
+      try {
+        const baseline = JSON.parse(content);
+        expect(baseline).toHaveProperty('timestamp');
+        expect(baseline).toHaveProperty('frameworks');
+      } catch (error) {
+        // Show more context about where JSON parsing failed
+        const errorPos = (error as Error).message.match(/position (\d+)/);
+        if (errorPos) {
+          const pos = parseInt(errorPos[1], 10);
+          const context = content.substring(Math.max(0, pos - 50), pos + 50);
+          throw new Error(`Invalid JSON at position ${pos}: ...${context}...`);
+        }
+        throw error;
+      }
     });
   });
 
