@@ -136,10 +136,6 @@ export default defineConfig({
       }
     }
   ],
-  // Optimize dependencies to ignore validators-node dist
-  optimizeDeps: {
-    exclude: ['@bmad/validators']
-  },
   esbuild: {
     target: 'node18'
   },
