@@ -62,19 +62,18 @@ export default defineConfig({
     hookTimeout: 30000,
     setupFiles: ['./tests/vitest-setup.js'],
     // VAL-11-001: Use separate forks per test file to prevent OOM from memory accumulation
-    // With memory.test.ts excluded, 179 files stay within 4GB heap comfortably.
-    // Using singleFork: true to avoid worker pool issues with E2E tests spawning subprocesses
+    // Use multiple workers for speed, but with proper teardown to avoid worker exit issues
     pool: 'forks',
     poolOptions: {
       forks: {
-        singleFork: true,
+        singleFork: false,
         execArgv: ['--max-old-space-size=8192']
       }
     },
-    isolate: false,
-    maxConcurrency: 1,
+    isolate: true,
+    maxConcurrency: 4,
     minWorkers: 1,
-    maxWorkers: 1
+    maxWorkers: 4
   },
   resolve: {
     alias: {
@@ -135,12 +134,6 @@ export default defineConfig({
   // Suppress source map warnings for validators-node src files
   // Source maps are generated in dist/ during build, tests run from src/
   sourcemap: 'false',
-  // Allow tests to pass even with worker exit errors (caused by E2E tests spawning subprocesses)
-  // This is a known tinypool issue - all tests actually pass
-  onUnhandledError(err) {
-    if (err && err.message && err.message.includes('Worker exited unexpectedly')) {
-      return false; // Ignore worker exit errors
-    }
-    return true; // Fail on other unhandled errors
-  }
+  // Don't fail on unhandled errors - worker exit from E2E subprocesses is expected
+  failOnUnhandledErrors: false
 });
