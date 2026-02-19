@@ -298,6 +298,7 @@ export function checkApiRateLimitWithBypass(
   isEnterprise?: boolean
 ): ApiRateLimitResult {
   // Enterprise bypass for rate limiting
+  let authType: AuthTokenType;
   if (isEnterprise || userRole === UserRole.SUPERADMIN || userRole === UserRole.ADMIN) {
     authType = AuthTokenType.API_KEY_ENTERPRISE;
   } else if (tokenType === 'session') {

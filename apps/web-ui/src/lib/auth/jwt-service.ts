@@ -142,17 +142,19 @@ export async function verifyApiToken(token: string): Promise<JwtPayload | null> 
   try {
     const { payload } = await jwtVerify(token, secret);
 
-    // Validate required fields
-    if (!payload.sub || !payload.type) {
+    // Validate required fields - cast to unknown first to allow type narrowing
+    const typedPayload = payload as unknown as JwtPayload;
+
+    if (!typedPayload.sub || !typedPayload.type) {
       return null;
     }
 
     // Ensure type is valid
-    if (payload.type !== TokenType.SESSION && payload.type !== TokenType.API_KEY) {
+    if (typedPayload.type !== TokenType.SESSION && typedPayload.type !== TokenType.API_KEY) {
       return null;
     }
 
-    return payload as JwtPayload;
+    return typedPayload;
   } catch (error) {
     // Token is invalid or expired
     return null;

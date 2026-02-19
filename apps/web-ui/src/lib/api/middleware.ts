@@ -10,13 +10,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { validateSession } from '@/lib/auth/session';
 import { apiUnauthorized, apiForbidden, apiRateLimited } from './response';
-import { checkRateLimit } from '@/middleware/rate-limit';
+import { rateLimitStore } from '@/middleware/rate-limit';
 
 /**
  * Rate limit result (copied here to avoid circular dependency)
  */
 export interface RateLimitResult {
-  isAllowed: boolean;
+  allowed: boolean;
   limit: number;
   remaining: number;
   reset: number;
@@ -188,7 +188,7 @@ export async function checkApiRateLimit(
   const config = user ? RATE_LIMITS[user.role] || DEFAULT_RATE_LIMIT : DEFAULT_RATE_LIMIT;
 
   // Check rate limit
-  return checkRateLimit(identifier, config.requestsPerMinute, config.requestsPerHour);
+  return rateLimitStore.checkMinuteAndHour(identifier, config.requestsPerMinute, config.requestsPerHour);
 }
 
 /**
@@ -261,7 +261,8 @@ export function withApiMiddleware<T extends any[]>(
 
     // Call the handler
     try {
-      return await handler(request, user ? { user, ...(params || {}) } : params);
+      const context = user ? { user, ...(params || {}) } : params;
+      return await handler(request, context);
     } catch (error) {
       console.error('API route error:', error);
       throw error;
