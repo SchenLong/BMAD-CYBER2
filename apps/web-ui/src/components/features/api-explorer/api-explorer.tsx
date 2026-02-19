@@ -44,9 +44,17 @@ export function ApiExplorer() {
         .filter((e) => e.tags.includes(category))
         .map((e) => {
           // Convert OpenAPI ParameterDef to store ParameterDef
-          const convertParam = (p: typeof e.parameters extends (infer T)[] ? T[number] : never): ParameterDef => ({
+          const convertParam = (p: {
+            name: string;
+            in: string;
+            type: string;
+            required: boolean;
+            description: string;
+            enum?: string[];
+            default?: string | number;
+          }): ParameterDef => ({
             name: p.name,
-            in: p.in,
+            in: p.in as 'query' | 'path' | 'header',
             type: p.type,
             required: p.required,
             description: p.description,
