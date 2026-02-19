@@ -7,7 +7,7 @@
  * - Section reordering logic
  */
 
-import { describe, it, expect, beforeEach, vi } from '@jest/globals';
+import { describe, it, expect, beforeEach } from '@jest/globals';
 import { arrayMove } from '@dnd-kit/sortable';
 
 describe('Template Canvas Drag-and-Drop', () => {

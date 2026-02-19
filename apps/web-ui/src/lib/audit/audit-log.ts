@@ -27,6 +27,7 @@ export type {
 } from '../security/audit-logger';
 
 export { AuditAction, AuditSeverity } from '../security/audit-logger';
+export type { AuditAction as AuditActionType } from '../security/audit-logger';
 
 // Re-export retention management
 export {
@@ -65,7 +66,7 @@ export enum LegacyAuditAction {
  * @deprecated Use AuditLogEntry from the comprehensive audit logger instead
  */
 export interface LegacyAuditLogEntry {
-  action: AuditAction | string;
+  action: string | 'user_created' | 'user_updated' | 'user_deleted' | 'user_role_changed' | 'user_login' | 'user_logout' | 'user_mfa_enabled' | 'user_mfa_disabled' | 'project_created' | 'project_deleted' | 'permission_granted' | 'permission_revoked';
   actorId: string;
   actorEmail: string;
   targetId?: string;

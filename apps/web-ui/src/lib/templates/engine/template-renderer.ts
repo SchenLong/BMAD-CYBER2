@@ -263,12 +263,14 @@ export class TemplateRenderer {
    * Normalize agent output data
    */
   private normalizeData(output: AgentOutput): AgentOutput {
+    // Preserve existing duration if available
+    const existingDuration = output.metadata?.duration
     return {
       ...output,
       metadata: output.metadata || {
         timestamp: new Date().toISOString(),
         agent: output.agent,
-        duration: output.metadata?.duration,
+        ...(existingDuration !== undefined && { duration: existingDuration }),
       },
     }
   }
@@ -348,7 +350,7 @@ export class TemplateRenderer {
   /**
    * Get file extension for format
    */
-  private getFileExtension(format: ExportFormat): string {
+  private getFileExtension(format: 'pdf' | 'docx' | 'markdown'): string {
     switch (format) {
       case 'pdf':
         return '.pdf'

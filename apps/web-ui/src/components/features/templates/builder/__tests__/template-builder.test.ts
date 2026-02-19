@@ -9,7 +9,7 @@
  */
 
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { useTemplateBuilderStore, TemplateState, BuiltInSectionType } from '@/stores/template-builder-store';
+import { useTemplateBuilderStore, TemplateState, BuiltInSectionType, FieldDataType, TemplateFont } from '@/stores/template-builder-store';
 
 describe('Template Builder Store', () => {
   // Reset state before each test to avoid cross-test contamination
@@ -27,7 +27,7 @@ describe('Template Builder Store', () => {
     });
     // Reset branding
     state.setHeaderColor('#1e40af');
-    state.setFont('inter');
+    state.setFont(TemplateFont.INTER);
     state.setLogoUrl('');
     state.setCoverImage('');
     state.setFooterText('');
@@ -70,14 +70,14 @@ describe('Template Builder Store', () => {
         description: 'First',
         required: false,
         builtInType: BuiltInSectionType.EXECUTIVE_SUMMARY,
-        fields: [{ id: 'f1', label: 'Field 1', type: 'text', required: true }],
+        fields: [{ id: 'f1', label: 'Field 1', type: FieldDataType.TEXT, required: true }],
       });
       addSection({
         type: 'custom',
         name: 'Duplicate Section',
         description: 'Second',
         required: false,
-        fields: [{ id: 'f2', label: 'Field 2', type: 'text', required: true }],
+        fields: [{ id: 'f2', label: 'Field 2', type: FieldDataType.TEXT, required: true }],
       });
       const result = validateTemplate();
       expect(result.valid).toBe(false);
@@ -94,7 +94,7 @@ describe('Template Builder Store', () => {
         description: '',
         required: true,
         builtInType: BuiltInSectionType.EXECUTIVE_SUMMARY,
-        fields: [{ id: 'f1', label: 'Field', type: 'text', required: true }],
+        fields: [{ id: 'f1', label: 'Field', type: FieldDataType.TEXT, required: true }],
       });
       const result = validateTemplate();
       expect(result.valid).toBe(false);
@@ -111,7 +111,7 @@ describe('Template Builder Store', () => {
         description: '',
         required: true,
         builtInType: BuiltInSectionType.EXECUTIVE_SUMMARY,
-        fields: [{ id: 'f1', label: 'Overview', type: 'textarea', required: true }],
+        fields: [{ id: 'f1', label: 'Overview', type: FieldDataType.TEXTAREA, required: true }],
       });
       const result = validateTemplate();
       expect(result.valid).toBe(true);
@@ -128,7 +128,7 @@ describe('Template Builder Store', () => {
         description: 'Test description',
         required: false,
         builtInType: BuiltInSectionType.METHODOLOGY,
-        fields: [{ id: 'f1', label: 'Field 1', type: 'text', required: true }],
+        fields: [{ id: 'f1', label: 'Field 1', type: FieldDataType.TEXT, required: true }],
       });
       const { template } = useTemplateBuilderStore.getState();
       expect(template.sections).toHaveLength(1);
@@ -242,7 +242,7 @@ describe('Template Builder Store', () => {
       addFieldToSection(sectionId, {
         id: 'field-1',
         label: 'Test Field',
-        type: 'text',
+        type: FieldDataType.TEXT,
         required: true,
       });
       ({ template } = useTemplateBuilderStore.getState());
@@ -265,13 +265,13 @@ describe('Template Builder Store', () => {
       addFieldToSection(sectionId, {
         id: 'field-1',
         label: 'Field 1',
-        type: 'text',
+        type: FieldDataType.TEXT,
         required: true,
       });
       addFieldToSection(sectionId, {
         id: 'field-2',
         label: 'Field 2',
-        type: 'text',
+        type: FieldDataType.TEXT,
         required: false,
       });
       removeFieldFromSection(sectionId, 'field-1');
@@ -295,7 +295,7 @@ describe('Template Builder Store', () => {
       addFieldToSection(sectionId, {
         id: 'field-1',
         label: 'Original Label',
-        type: 'text',
+        type: FieldDataType.TEXT,
         required: true,
       });
       updateFieldInSection(sectionId, 'field-1', { label: 'Updated Label' });
@@ -314,7 +314,7 @@ describe('Template Builder Store', () => {
 
     it('should set font', () => {
       const { setFont } = useTemplateBuilderStore.getState();
-      setFont('roboto');
+      setFont(TemplateFont.ROBOTO);
       const { template } = useTemplateBuilderStore.getState();
       expect(template.branding.font).toBe('roboto');
     });
@@ -399,12 +399,12 @@ describe('Template Builder Store', () => {
             description: '',
             required: true,
             position: 0,
-            fields: [{ id: 'f1', label: 'Field', type: 'text', required: true }],
+            fields: [{ id: 'f1', label: 'Field', type: FieldDataType.TEXT, required: true }],
           },
         ],
         branding: {
           headerColor: '#123456',
-          font: 'lato',
+          font: TemplateFont.LATO,
           logoUrl: 'https://example.com/logo.png',
         },
       };

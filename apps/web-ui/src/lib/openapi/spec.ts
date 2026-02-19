@@ -129,10 +129,18 @@ const API_ENDPOINTS: EndpointMetadata[] = [
         status: 200,
         description: 'API is healthy',
         schema: {
-          status: 'healthy',
-          version: '1.0.0',
-          timestamp: '2024-01-01T00:00:00Z',
-          database: { connected: true },
+          type: 'object',
+          properties: {
+            status: { type: 'string', example: 'healthy' },
+            version: { type: 'string', example: '1.0.0' },
+            timestamp: { type: 'string', format: 'date-time' },
+            database: {
+              type: 'object',
+              properties: {
+                connected: { type: 'boolean' },
+              },
+            },
+          },
         },
       },
     ],
@@ -661,7 +669,7 @@ function endpointToOperation(endpoint: EndpointMetadata): OpenAPIOperation {
         [endpoint.requestBody.contentType]: {
           schema: {
             type: 'object',
-            properties: endpoint.requestBody.schema,
+            properties: endpoint.requestBody.schema as Record<string, OpenAPISchema>,
           },
         },
       },

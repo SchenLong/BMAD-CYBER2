@@ -166,7 +166,7 @@ export function extractRiskLevel(output: AgentOutput): 'critical' | 'high' | 'me
 
     const severities = output.findings
       .map(f => f.severity)
-      .filter((s): s is string => s !== undefined)
+      .filter((s): s is NonNullable<typeof s> => s !== undefined)
 
     if (severities.length > 0) {
       // Get highest severity

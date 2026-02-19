@@ -19,12 +19,15 @@ describe('Security Headers', () => {
   const originalEnv = process.env.NODE_ENV;
 
   afterEach(() => {
-    process.env.NODE_ENV = originalEnv;
+    // Use a workaround for readonly NODE_ENV
+    const env = process.env as { [key: string]: string | undefined };
+    env.NODE_ENV = originalEnv;
   });
 
   describe('getSecurityHeaders (via applySecurityHeaders)', () => {
     it('should return production headers when NODE_ENV=production', () => {
-      process.env.NODE_ENV = 'production';
+      const env = process.env as { [key: string]: string | undefined };
+      env.NODE_ENV = 'production';
 
       const response = new NextResponse(null, { status: 200 });
       const secured = applySecurityHeaders(response);
@@ -37,7 +40,8 @@ describe('Security Headers', () => {
     });
 
     it('should return development headers when NODE_ENV != production', () => {
-      process.env.NODE_ENV = 'development';
+      const env = process.env as { [key: string]: string | undefined };
+      env.NODE_ENV = 'development';
 
       const response = new NextResponse(null, { status: 200 });
       const secured = applySecurityHeaders(response);
@@ -52,7 +56,8 @@ describe('Security Headers', () => {
     });
 
     it('should not override existing headers', () => {
-      process.env.NODE_ENV = 'production';
+      const env = process.env as { [key: string]: string | undefined };
+      env.NODE_ENV = 'production';
 
       const response = new NextResponse(null, { status: 200 });
       response.headers.set('X-Frame-Options', 'SAMEORIGIN');

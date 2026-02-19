@@ -304,21 +304,7 @@ export const OUTPUT_PATTERNS = {
 export type OutputPatternCategory = keyof typeof OUTPUT_PATTERNS
 
 /**
- * Default filter configuration
- */
-export const DEFAULT_FILTER_CONFIG = {
-  blockCritical: true,
-  blockHigh: true,
-  warnMedium: true,
-  logLow: true,
-  maxOutputLength: 10000, // Maximum characters to check (for performance)
-  truncateLogLength: 500, // Characters to show in logs
-  allowlist: [] as string[],
-  agentSpecificRules: {} as Record<string, Partial<typeof DEFAULT_FILTER_CONFIG>>,
-}
-
-/**
- * Filter configuration type
+ * Filter configuration type (defined before DEFAULT_FILTER_CONFIG to avoid circular reference)
  */
 export interface OutputFilterConfig {
   blockCritical: boolean
@@ -328,7 +314,21 @@ export interface OutputFilterConfig {
   maxOutputLength: number
   truncateLogLength: number
   allowlist: string[]
-  agentSpecificRules: Record<string, Partial<typeof DEFAULT_FILTER_CONFIG>>
+  agentSpecificRules: Record<string, Partial<OutputFilterConfig>>
+}
+
+/**
+ * Default filter configuration
+ */
+export const DEFAULT_FILTER_CONFIG: OutputFilterConfig = {
+  blockCritical: true,
+  blockHigh: true,
+  warnMedium: true,
+  logLow: true,
+  maxOutputLength: 10000, // Maximum characters to check (for performance)
+  truncateLogLength: 500, // Characters to show in logs
+  allowlist: [],
+  agentSpecificRules: {},
 }
 
 /**

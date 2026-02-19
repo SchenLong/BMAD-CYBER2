@@ -7,7 +7,7 @@
  * Includes role claim and distinguishes from session auth
  */
 
-import { SignJWT } from 'jose';
+import { SignJWT, JWTPayload } from 'jose';
 import { UserRole } from '@prisma/client';
 
 // Get JWT secret from environment
@@ -20,14 +20,12 @@ if (!JWT_SECRET) {
 /**
  * JWT payload for API key authentication
  */
-export interface APIKeyJWTPayload {
+export interface APIKeyJWTPayload extends JWTPayload {
   sub: string; // user_id
   type: 'api_key';
   key_id: string; // api_key_id
   role: UserRole;
   scopes: string[];
-  iat: number;
-  exp: number;
 }
 
 /**
@@ -101,7 +99,7 @@ export async function generateAPIKeyJWT(
     key_id: apiKeyId,
     role,
     scopes,
-  } as unknown as APIKeyJWTPayload)
+  } as APIKeyJWTPayload)
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
     .setExpirationTime(expiresIn)

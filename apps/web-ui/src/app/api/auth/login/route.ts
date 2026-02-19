@@ -10,9 +10,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { loginSchema } from '@/lib/auth/validation';
 import { verifyPassword } from '@/lib/auth/password';
-import { createSession } from '@/lib/auth/session';
+import { createSession, generateJWT } from '@/lib/auth/session';
 import { prisma } from '@/lib/prisma';
 import type { RequestMetadata } from '@/lib/auth/types';
+import { SignJWT } from 'jose';
 
 /**
  * Extract request metadata from the NextRequest
@@ -129,8 +130,23 @@ export async function POST(request: NextRequest) {
     // Create session with metadata (Story 1.6)
     await createSession(user.id, metadata);
 
-    // Return user data (excluding sensitive info)
-    return NextResponse.json({
+    // Generate middleware auth token (JWT for Edge Runtime compatibility)
+    // This token is used by middleware to verify authentication without DB access
+    // Includes onboarding status to avoid database lookups in middleware
+    const middlewareSecret = new TextEncoder().encode(process.env.JWT_SECRET || process.env.SESSION_SECRET);
+    const middlewareToken = await new SignJWT({
+      userId: user.id,
+      email: user.email,
+      role: user.role,
+      onboardingCompleted: user.onboardingCompleted?.toISOString() || null,
+    })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime('15d') // Match session duration
+      .sign(middlewareSecret);
+
+    // Create response with user data and set middleware auth token cookie
+    const response = NextResponse.json({
       user: {
         id: user.id,
         email: user.email,
@@ -138,6 +154,17 @@ export async function POST(request: NextRequest) {
         role: user.role,
       },
     });
+
+    // Set middleware auth token cookie (HttpOnly for security)
+    response.cookies.set('middleware_auth', middlewareToken, {
+      httpOnly: true,
+      secure: process.env.COOKIE_SECURE === 'true',
+      sameSite: (process.env.COOKIE_SAMESITE as 'strict' | 'lax' | 'none') || 'lax',
+      maxAge: 15 * 24 * 60 * 60, // 15 days
+      path: '/',
+    });
+
+    return response;
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(

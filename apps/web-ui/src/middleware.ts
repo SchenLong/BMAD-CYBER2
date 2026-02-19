@@ -24,8 +24,42 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/../auth';
 import { needsOnboarding } from '@/lib/auth/onboarding';
 import { promptInjectionMiddleware } from '@/middleware/prompt-injection-middleware';
+import { jwtVerify } from 'jose';
 
 const MFA_VERIFIED_COOKIE = 'mfa_verified';
+const MIDDLEWARE_AUTH_COOKIE = 'middleware_auth';
+
+/**
+ * Verify middleware auth token (JWT)
+ * This provides Edge Runtime compatible authentication for password-based logins
+ * The JWT is created during login and contains user ID and onboarding status
+ */
+async function verifyMiddlewareToken(request: NextRequest): Promise<{
+  userId: string;
+  email: string;
+  role: string;
+  onboardingCompleted: string | null;
+} | null> {
+  try {
+    const token = request.cookies.get(MIDDLEWARE_AUTH_COOKIE)?.value;
+
+    if (!token) {
+      return null;
+    }
+
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET || process.env.SESSION_SECRET);
+    const { payload } = await jwtVerify(token, secret);
+
+    return {
+      userId: payload.userId as string,
+      email: payload.email as string,
+      role: payload.role as string,
+      onboardingCompleted: payload.onboardingCompleted as string | null,
+    };
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Check if a route is public (doesn't require authentication)
@@ -143,11 +177,15 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // For protected routes, check for session using Auth.js
+  // For protected routes, check for session using Auth.js OR middleware auth token
   if (isProtectedRoute(pathname)) {
-    const session = await auth();
+    const authSession = await auth();
+    const middlewareAuth = await verifyMiddlewareToken(request);
 
-    if (!session || !session.user) {
+    // Check both Auth.js session (OAuth) and middleware token (password login)
+    const isAuthenticated = (authSession?.user) || middlewareAuth;
+
+    if (!isAuthenticated) {
       // No session - redirect to login with return URL
       const url = request.nextUrl.clone();
       url.pathname = '/login';
@@ -156,7 +194,10 @@ export async function middleware(request: NextRequest) {
     }
 
     // Story 1.4: Check if MFA verification is required
-    const needsMfa = await requiresMfaVerification(request, session);
+    // Use authSession if available, otherwise get user ID from middleware token
+    const customUserId = middlewareAuth?.userId;
+    const sessionForMfa = authSession || { user: { id: customUserId || undefined } };
+    const needsMfa = await requiresMfaVerification(request, sessionForMfa);
 
     if (needsMfa) {
       // Redirect to MFA verification page
@@ -167,11 +208,19 @@ export async function middleware(request: NextRequest) {
     }
 
     // Story 2.1: Check if onboarding is required
-    // Optimized: Use direct DB lookup instead of API call (reduces latency)
+    // Optimized: Use JWT token data for password login, DB lookup for OAuth
     const pathnameLower = pathname.toLowerCase();
     if (!pathnameLower.includes('/onboarding') && !pathnameLower.startsWith('/api/')) {
       try {
-        const onboardingNeeded = await needsOnboarding(session.user.id);
+        let onboardingNeeded = false;
+
+        if (middlewareAuth && !authSession?.user) {
+          // For password login: use onboarding status from JWT (no DB call needed)
+          onboardingNeeded = !middlewareAuth.onboardingCompleted;
+        } else if (authSession?.user?.id) {
+          // For OAuth: use DB lookup via needsOnboarding function
+          onboardingNeeded = await needsOnboarding(authSession.user.id);
+        }
 
         if (onboardingNeeded) {
           // Redirect to onboarding page

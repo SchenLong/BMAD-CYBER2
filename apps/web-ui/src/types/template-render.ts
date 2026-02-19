@@ -8,6 +8,9 @@
 
 import type { Template, TemplateFormat } from './template'
 
+// Re-export Template for convenience
+export type { Template, TemplateFormat }
+
 /**
  * Supported output formats for rendering
  */

@@ -103,8 +103,8 @@ export async function POST(req: NextRequest) {
     // Determine content disposition
     const contentDisposition = `attachment; filename="${result.filename}"`
 
-    // Return file response
-    return new NextResponse(result.content, {
+    // Return file response - cast content to BodyInit to handle Buffer/Uint8Array
+    return new NextResponse(result.content as BodyInit, {
       status: 200,
       headers: {
         'Content-Type': result.contentType,

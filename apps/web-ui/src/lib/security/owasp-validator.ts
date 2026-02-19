@@ -405,9 +405,9 @@ export function sanitizeUserInput(input: string): string {
     .replace(/['";\\]/g, '') // Remove quotes and backslashes
     .replace(/\s+/g, ' ') // Collapse multiple spaces to single space
     .trim()
-    .replace(/\$\{.*?\}/g, '') // Template literal injection
-    .replace(/\{\{.*?\}\}/g, '') // Handlebars injection
-    .replace(/<script.*?>.*?<\/script>/gis, '') // XSS
+    .replace(/\$\{[^}]*\}/g, '') // Template literal injection
+    .replace(/\{\{[^}]*\}\}/g, '') // Handlebars injection
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '') // XSS (use [\s\S] instead of . with s flag)
     .replace(/javascript:/gi, '')
     .replace(/on\w+\s*=/gi, '') // Event handler injection
     .replace(/--/g, '') // SQL comment

@@ -116,7 +116,9 @@ class ReviewQueue {
     // Enforce max entries limit (FIFO eviction)
     if (this.entries.size >= this.maxEntries) {
       const oldestKey = this.entries.keys().next().value
-      this.entries.delete(oldestKey)
+      if (oldestKey) {
+        this.entries.delete(oldestKey)
+      }
     }
 
     const id = `review-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`

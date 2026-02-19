@@ -41,7 +41,7 @@ describe('AgentEventEmitter', () => {
       expect(broadcastMock).toHaveBeenCalledWith('agent-1', expect.any(Object));
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent).toEqual(expect.objectContaining({
         type: AgentEventType.STEP_START,
@@ -69,7 +69,7 @@ describe('AgentEventEmitter', () => {
       expect(broadcastMock).toHaveBeenCalledWith('agent-1', expect.any(Object));
 
       // The event object should contain the data field
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as { data?: unknown };
 
       expect(broadcastedEvent.data).toEqual({ foo: 'bar' });
     });
@@ -91,7 +91,7 @@ describe('AgentEventEmitter', () => {
       expect(broadcastMock).toHaveBeenCalledWith('agent-1', expect.any(Object));
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent).toEqual(expect.objectContaining({
         type: AgentEventType.STEP_COMPLETE,
@@ -121,7 +121,7 @@ describe('AgentEventEmitter', () => {
       expect(broadcastMock).toHaveBeenCalledWith('agent-1', expect.any(Object));
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent).toEqual(expect.objectContaining({
         type: AgentEventType.STEP_ERROR,
@@ -153,7 +153,7 @@ describe('AgentEventEmitter', () => {
       );
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent.data).toEqual(expect.objectContaining({
         stack: expect.stringContaining('Test error'),
@@ -172,11 +172,11 @@ describe('AgentEventEmitter', () => {
       );
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       // Data should contain recovery and details, but not stack
       expect(broadcastedEvent.data).toBeDefined();
-      expect(broadcastedEvent.data?.stack).toBeUndefined();
+      expect((broadcastedEvent.data as Record<string, unknown>)?.stack).toBeUndefined();
     });
   });
 
@@ -191,7 +191,7 @@ describe('AgentEventEmitter', () => {
       expect(broadcastMock).toHaveBeenCalledWith('agent-1', expect.any(Object));
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent).toEqual(expect.objectContaining({
         type: AgentEventType.MESSAGE,
@@ -210,7 +210,7 @@ describe('AgentEventEmitter', () => {
       );
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent.data).toEqual(expect.objectContaining({
         level: 'warning',
@@ -226,7 +226,7 @@ describe('AgentEventEmitter', () => {
       );
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent.data).toEqual(expect.objectContaining({
         level: 'success',
@@ -244,7 +244,7 @@ describe('AgentEventEmitter', () => {
       );
 
       // The broadcast function is called with agentId and SSEEvent object
-      const broadcastedEvent = broadcastMock.mock.calls[0][1];
+      const broadcastedEvent = broadcastMock.mock.calls[0][1] as Record<string, unknown>;
 
       expect(broadcastedEvent).toEqual(expect.objectContaining({
         type: AgentEventType.DONE,
@@ -364,7 +364,7 @@ describe('executeAgentWithEvents', () => {
 
     // Should have broadcast an error event
     const errorCalls = broadcastMock.mock.calls.filter(call =>
-      call[1]?.type === 'step_error'
+      (call[1] as Record<string, unknown> | undefined)?.type === 'step_error'
     );
     expect(errorCalls.length).toBeGreaterThan(0);
   });
@@ -386,9 +386,9 @@ describe('executeAgentWithEvents', () => {
 
     // Should have broadcast a done event
     const doneCalls = broadcastMock.mock.calls.filter(call =>
-      call[1]?.type === 'done'
+      (call[1] as Record<string, unknown> | undefined)?.type === 'done'
     );
     expect(doneCalls.length).toBeGreaterThan(0);
-    expect(doneCalls[0][1].progress).toBe(100);
+    expect((doneCalls[0][1] as Record<string, unknown>).progress).toBe(100);
   });
 });

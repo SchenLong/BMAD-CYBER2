@@ -57,7 +57,7 @@ const mockJoseModule = {
     setProtectedHeader: jest.fn().mockReturnThis(),
     setIssuedAt: jest.fn().mockReturnThis(),
     setExpirationTime: jest.fn().mockReturnThis(),
-    sign: jest.fn().mockResolvedValue('mock-jwt-token'),
+    sign: jest.fn().mockResolvedValue('mock-jwt-token' as never),
   })),
   jwtVerify: jest.fn(),
 };
@@ -79,7 +79,7 @@ describe('Session Management', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mockCookiesModule.cookies.mockResolvedValue(mockCookies);
+    (mockCookiesModule.cookies as jest.Mock).mockResolvedValue(mockCookies as never);
 
     // Set default environment variables
     process.env.SESSION_SECRET = 'test-secret-key';
@@ -102,10 +102,10 @@ describe('Session Management', () => {
       const { createSession } = await import('../auth/session');
 
       // Mock $transaction to execute the callback
-      (prisma.$transaction as jest.Mock).mockImplementation(async (callback) => {
-        const tx = {
+      (prisma.$transaction as jest.Mock).mockImplementation(async (callback: any) => {
+        const tx: any = {
           session: {
-            count: jest.fn().mockResolvedValue(0),
+            count: jest.fn().mockResolvedValue(0 as never),
             findFirst: jest.fn().mockResolvedValue(null),
             delete: jest.fn(),
             create: jest.fn().mockResolvedValue({}),
@@ -134,8 +134,8 @@ describe('Session Management', () => {
       };
 
       // Mock $transaction to execute the callback
-      (prisma.$transaction as jest.Mock).mockImplementation(async (callback) => {
-        const tx = {
+      (prisma.$transaction as jest.Mock).mockImplementation(async (callback: any) => {
+        const tx: any = {
           session: {
             count: jest.fn().mockResolvedValue(5), // At limit
             findFirst: jest.fn().mockResolvedValue(mockOldestSession),
@@ -183,8 +183,8 @@ describe('Session Management', () => {
         },
       };
 
-      (prisma.session.findUnique as jest.Mock).mockResolvedValue(expiredSession);
-      (prisma.session.delete as jest.Mock).mockResolvedValue({});
+      (prisma.session.findUnique as jest.Mock).mockResolvedValue(expiredSession as never);
+      (prisma.session.delete as jest.Mock).mockResolvedValue({} as never);
 
       const result = await validateSession();
 
@@ -211,8 +211,8 @@ describe('Session Management', () => {
         },
       };
 
-      (prisma.session.findUnique as jest.Mock).mockResolvedValue(validSession);
-      (prisma.session.update as jest.Mock).mockResolvedValue({});
+      (prisma.session.findUnique as jest.Mock).mockResolvedValue(validSession as never);
+      (prisma.session.update as jest.Mock).mockResolvedValue({} as never);
 
       const result = await validateSession();
 
@@ -251,8 +251,8 @@ describe('Session Management', () => {
         },
       };
 
-      (prisma.session.findUnique as jest.Mock).mockResolvedValue(mockSession);
-      (prisma.session.update as jest.Mock).mockResolvedValue({});
+      (prisma.session.findUnique as jest.Mock).mockResolvedValue(mockSession as never);
+      (prisma.session.update as jest.Mock).mockResolvedValue({} as never);
 
       const result = await refreshSession();
 
@@ -272,7 +272,7 @@ describe('Session Management', () => {
       const { destroySession } = await import('../auth/session');
 
       mockCookies.get.mockReturnValue({ value: mockSessionToken });
-      (prisma.session.deleteMany as jest.Mock).mockResolvedValue({ count: 1 });
+      (prisma.session.deleteMany as jest.Mock).mockResolvedValue({ count: 1 } as never);
 
       await destroySession();
 
@@ -298,7 +298,7 @@ describe('Session Management', () => {
       const { verifyRefreshToken } = await import('../auth/session');
       const { jwtVerify } = await import('jose');
 
-      (jwtVerify as jest.Mock).mockRejectedValue(new Error('Invalid token'));
+      (jwtVerify as jest.Mock).mockRejectedValue(new Error('Invalid token') as never);
 
       const result = await verifyRefreshToken('invalid-token');
 
@@ -311,7 +311,7 @@ describe('Session Management', () => {
 
       (jwtVerify as jest.Mock).mockResolvedValue({
         payload: { type: 'access', userId: 'user-1' },
-      });
+      } as never);
 
       const result = await verifyRefreshToken('access-token');
 

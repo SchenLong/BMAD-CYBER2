@@ -217,7 +217,7 @@ export function getRateLimitMeta(result: RateLimitResult | null) {
 export function withApiMiddleware<T extends any[]>(
   handler: (
     request: NextRequest,
-    context?: { user: AuthResult; params?: Record<string, string> }
+    context?: { user: AuthResult | undefined; params?: Record<string, string> }
   ) => Promise<NextResponse>,
   options: {
     requireAuth?: boolean;
@@ -262,7 +262,11 @@ export function withApiMiddleware<T extends any[]>(
 
     // Call the handler
     try {
-      const context = user ? { user, ...(params || {}) } : params;
+      // Always pass an object with consistent structure
+      const context: { user: AuthResult | undefined; params?: Record<string, string> } = {
+        user,
+        ...params,
+      };
       return await handler(request, context);
     } catch (error) {
       console.error('API route error:', error);
