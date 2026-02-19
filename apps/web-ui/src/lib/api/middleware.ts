@@ -14,13 +14,13 @@ import { rateLimitStore } from '@/middleware/rate-limit';
 
 /**
  * Rate limit result (copied here to avoid circular dependency)
+ * Matches the RateLimitResult from @/middleware/rate-limit
  */
 export interface RateLimitResult {
   allowed: boolean;
-  isAllowed: boolean;
   limit: number;
   remaining: number;
-  reset: number;
+  resetTime: number;
   retryAfter?: number;
 }
 
@@ -203,7 +203,7 @@ export function getRateLimitMeta(result: RateLimitResult | null) {
   return {
     limit: result.limit,
     remaining: result.remaining,
-    reset: result.reset,
+    reset: result.resetTime,
   };
 }
 

@@ -44,7 +44,7 @@ export function ApiExplorer() {
         .filter((e) => e.tags.includes(category))
         .map((e) => {
           // Convert OpenAPI ParameterDef to store ParameterDef
-          const convertParam = (p: typeof e.parameters[number]): ParameterDef => ({
+          const convertParam = (p: typeof e.parameters extends (infer T)[] ? T[number] : never): ParameterDef => ({
             name: p.name,
             in: p.in,
             type: p.type,
