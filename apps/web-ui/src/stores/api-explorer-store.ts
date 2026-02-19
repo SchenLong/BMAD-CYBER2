@@ -8,7 +8,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 // Types
-export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+export type HTTPMethod = 'get' | 'post' | 'put' | 'delete' | 'patch' | 'head' | 'options' | 'trace';
 
 export interface ParameterDef {
   name: string;
@@ -222,7 +222,7 @@ export const useApiExplorerStore = create<ExplorerState>()(
           };
 
           // Add body for methods that support it
-          if (['POST', 'PUT', 'PATCH'].includes(state.selectedEndpoint.method) && state.body) {
+          if (['post', 'put', 'patch'].includes(state.selectedEndpoint.method) && state.body) {
             // Validate JSON for application/json content type
             if (state.headers['Content-Type'] === 'application/json') {
               try {

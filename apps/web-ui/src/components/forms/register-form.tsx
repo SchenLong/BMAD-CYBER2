@@ -12,7 +12,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -74,8 +73,14 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
     handleSubmit,
     watch,
     formState: { errors },
+    setError: setFieldError,
   } = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      name: '',
+    },
   });
 
   const password = watch('password', '');
@@ -101,6 +106,18 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
 
   const onSubmit = async (data: RegisterFormValues) => {
     setError(null);
+
+    // Manual validation with Zod
+    const result = registerSchema.safeParse(data);
+    if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+      if (fieldErrors.email) setFieldError('email', { type: 'manual', message: fieldErrors.email[0] });
+      if (fieldErrors.password) setFieldError('password', { type: 'manual', message: fieldErrors.password[0] });
+      if (fieldErrors.confirmPassword) setFieldError('confirmPassword', { type: 'manual', message: fieldErrors.confirmPassword[0] });
+      if (fieldErrors.name) setFieldError('name', { type: 'manual', message: fieldErrors.name[0] });
+      return;
+    }
+
     setIsLoading(true);
 
     try {

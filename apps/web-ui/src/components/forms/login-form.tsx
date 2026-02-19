@@ -12,7 +12,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -42,12 +41,26 @@ export function LoginForm({ redirectUrl = '/dashboard', onSuccess }: LoginFormPr
     register,
     handleSubmit,
     formState: { errors },
+    setError: setFieldError,
   } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   const onSubmit = async (data: LoginFormValues) => {
     setError(null);
+
+    // Manual validation with Zod
+    const result = loginSchema.safeParse(data);
+    if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+      if (fieldErrors.email) setFieldError('email', { type: 'manual', message: fieldErrors.email[0] });
+      if (fieldErrors.password) setFieldError('password', { type: 'manual', message: fieldErrors.password[0] });
+      return;
+    }
+
     setIsLoading(true);
 
     try {

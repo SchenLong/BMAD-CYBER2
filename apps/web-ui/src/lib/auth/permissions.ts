@@ -78,6 +78,7 @@ export enum Permission {
 export const ROLE_HIERARCHY_LEVELS: Record<UserRole, number> = {
   SUPERADMIN: 100,
   ADMIN: 75,
+  DEVELOPER: 60,
   USER: 50,
   READONLY: 25,
   API: 50, // API is separate from hierarchy, has specific permissions
@@ -96,6 +97,31 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
 
   // Enterprise template customization is available to SUPERADMIN and ADMIN
   // TEMPLATE_CUSTOMIZE is included in the full permission list above
+
+  DEVELOPER: [
+    Permission.PROJECT_CREATE,
+    Permission.PROJECT_READ,
+    Permission.PROJECT_UPDATE,
+    Permission.PROJECT_ARCHIVE,
+    Permission.WORKFLOW_CREATE,
+    Permission.WORKFLOW_READ,
+    Permission.WORKFLOW_EXECUTE,
+    Permission.WORKFLOW_CANCEL,
+    Permission.AGENT_INVOKE,
+    Permission.AGENT_CONFIGURE,
+    Permission.ARTIFACT_CREATE,
+    Permission.ARTIFACT_READ,
+    Permission.ARTIFACT_UPDATE,
+    Permission.ARTIFACT_DOWNLOAD,
+    Permission.ARTIFACT_UPLOAD,
+    Permission.EVIDENCE_UPLOAD,
+    Permission.EVIDENCE_READ,
+    Permission.TEMPLATE_READ,
+    Permission.TEMPLATE_CREATE,
+    Permission.TEMPLATE_UPDATE,
+    Permission.SECURITY_SCAN,
+    Permission.SECURITY_REPORT,
+  ],
 
   USER: [
     Permission.PROJECT_CREATE,
@@ -182,6 +208,7 @@ export const PERMISSION_DESCRIPTIONS: Record<Permission, string> = {
 export const ROLE_DESCRIPTIONS: Record<UserRole, string> = {
   SUPERADMIN: 'Full system access including user impersonation',
   ADMIN: 'Administrative access without impersonation privileges',
+  DEVELOPER: 'Developer access with extended API and configuration capabilities',
   USER: 'Standard user access for daily operations',
   READONLY: 'Read-only access for viewing purposes',
   API: 'Programmatic access with rate limiting',

@@ -12,6 +12,9 @@ export const metadata = {
   description: 'Interactive API explorer for testing BMAD endpoints',
 };
 
+// Force dynamic rendering - this page uses client-side features
+export const dynamic = 'force-dynamic';
+
 export default function ApiExplorerPage() {
   return (
     <div className="h-full">
