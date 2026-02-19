@@ -172,6 +172,8 @@ export interface OpenAPISchema {
   externalDocs?: OpenAPIExternalDocumentation;
   example?: unknown;
   $ref?: string;
+  nullable?: boolean; // OpenAPI 3.0 nullable property
+  status?: string; // For response status codes
 }
 
 /**

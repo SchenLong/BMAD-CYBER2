@@ -240,6 +240,7 @@ export function getRoleDisplayName(role: UserRole): string {
   const displayNames: Record<UserRole, string> = {
     [UserRole.SUPERADMIN]: 'Super Administrator',
     [UserRole.ADMIN]: 'Administrator',
+    [UserRole.DEVELOPER]: 'Developer',
     [UserRole.USER]: 'User',
     [UserRole.READONLY]: 'Read Only',
     [UserRole.API]: 'API Key',
@@ -301,6 +302,7 @@ export const ROLE_CACHE_TTL = 300; // 5 minutes
 export const ROLE_CATEGORIES: Record<UserRole, string[]> = {
   [UserRole.SUPERADMIN]: ['project', 'agent', 'workflow', 'intel', 'security'],
   [UserRole.ADMIN]: ['project', 'agent', 'workflow', 'intel', 'security'],
+  [UserRole.DEVELOPER]: ['project', 'agent', 'workflow', 'intel', 'security'],
   [UserRole.USER]: ['project', 'agent', 'workflow', 'intel'],
   [UserRole.READONLY]: ['project', 'workflow'],
   [UserRole.API]: ['project', 'agent', 'workflow'],

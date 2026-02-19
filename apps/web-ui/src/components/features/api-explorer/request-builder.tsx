@@ -8,7 +8,7 @@
 
 "use client"
 
-import { useApiExplorerStore } from '@/stores/api-explorer-store';
+import { useApiExplorerStore, type EndpointMetadata } from '@/stores/api-explorer-store';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -18,22 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChevronRight, FileText } from 'lucide-react';
 
 interface RequestBuilderProps {
-  endpoint: {
-    id: string;
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-    path: string;
-    category: string;
-    description: string;
-    parameters?: {
-      path?: { name: string; type: string; required: boolean; description: string; enum?: string[] }[];
-      query?: { name: string; type: string; required: boolean; description: string; enum?: string[] }[];
-    };
-    requestBody?: {
-      contentType: string;
-      schema: Record<string, { type: string; description: string; required?: boolean }>;
-      description: string;
-    };
-  };
+  endpoint: EndpointMetadata;
 }
 
 export function RequestBuilder({ endpoint }: RequestBuilderProps) {
@@ -54,7 +39,7 @@ export function RequestBuilder({ endpoint }: RequestBuilderProps) {
   });
 
   // Check if endpoint has body
-  const hasBody = ['POST', 'PUT', 'PATCH'].includes(endpoint.method);
+  const hasBody = ['post', 'put', 'patch'].includes(endpoint.method);
 
   return (
     <div className="space-y-6">
@@ -63,7 +48,7 @@ export function RequestBuilder({ endpoint }: RequestBuilderProps) {
         <CardHeader className="pb-3">
           <div className="flex items-center gap-2 mb-1">
             <Badge className="bg-green-500/10 text-green-500 border-green-500/20">
-              {endpoint.method}
+              {endpoint.method.toUpperCase()}
             </Badge>
             <code className="text-sm font-mono text-muted-foreground bg-muted px-2 py-1 rounded">
               /v1{displayPath}
@@ -82,7 +67,7 @@ export function RequestBuilder({ endpoint }: RequestBuilderProps) {
           </h3>
           <Card className="bg-muted/30">
             <CardContent className="pt-4 space-y-3">
-              {endpoint.parameters.path.map((param) => (
+              {endpoint.parameters.path?.map((param) => (
                 <div key={param.name}>
                   <Label htmlFor={`path-${param.name}`} className="text-xs">
                     {param.name}
@@ -111,7 +96,7 @@ export function RequestBuilder({ endpoint }: RequestBuilderProps) {
           </h3>
           <Card className="bg-muted/30">
             <CardContent className="pt-4 space-y-3">
-              {endpoint.parameters.query.map((param) => (
+              {endpoint.parameters.query?.map((param) => (
                 <div key={param.name}>
                   <Label htmlFor={`query-${param.name}`} className="text-xs">
                     {param.name}

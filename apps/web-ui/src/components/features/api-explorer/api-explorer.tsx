@@ -9,8 +9,8 @@
 "use client"
 
 import { useEffect } from 'react';
-import { useApiExplorerStore, EndpointMetadata } from '@/stores/api-explorer-store';
-import { getAllEndpoints, type ParameterDef } from '@/lib/openapi/spec';
+import { useApiExplorerStore, EndpointMetadata, type ParameterDef } from '@/stores/api-explorer-store';
+import { getAllEndpoints } from '@/lib/openapi/spec';
 import { EndpointList } from './endpoint-list';
 import { RequestBuilder } from './request-builder';
 import { ResponseViewer } from './response-viewer';
@@ -42,24 +42,37 @@ export function ApiExplorer() {
       category,
       endpoints: openApiEndpoints
         .filter((e) => e.tags.includes(category))
-        .map((e) => ({
-          id: `${e.method}-${e.path}`,
-          method: e.method,
-          path: e.path,
-          category,
-          description: e.summary,
-          parameters: {
-            query: (e.parameters?.filter((p) => p.in === 'query') ?? []) as ParameterDef[],
-            path: (e.parameters?.filter((p) => p.in === 'path') ?? []) as ParameterDef[],
-          },
-          requestBody: e.requestBody
-            ? {
-                contentType: e.requestBody.contentType,
-                schema: e.requestBody.schema,
-                description: e.requestBody.description,
-              }
-            : undefined,
-        })),
+        .map((e) => {
+          // Convert OpenAPI ParameterDef to store ParameterDef
+          const convertParam = (p: typeof e.parameters[number]): ParameterDef => ({
+            name: p.name,
+            in: p.in,
+            type: p.type,
+            required: p.required,
+            description: p.description,
+            enum: p.enum,
+            default: typeof p.default === 'number' ? String(p.default) : p.default,
+          });
+
+          return {
+            id: `${e.method}-${e.path}`,
+            method: e.method,
+            path: e.path,
+            category,
+            description: e.summary,
+            parameters: {
+              query: e.parameters?.filter((p) => p.in === 'query').map(convertParam) ?? [],
+              path: e.parameters?.filter((p) => p.in === 'path').map(convertParam) ?? [],
+            },
+            requestBody: e.requestBody
+              ? {
+                  contentType: e.requestBody.contentType,
+                  schema: e.requestBody.schema as Record<string, { type: string; description: string; required?: boolean }>,
+                  description: e.requestBody.description,
+                }
+              : undefined,
+          };
+        }),
     }));
 
     // Store endpoints for the list component

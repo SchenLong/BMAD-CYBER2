@@ -17,7 +17,7 @@ export interface ParameterDef {
   required: boolean;
   description: string;
   enum?: string[];
-  default?: string;
+  default?: string | number;
 }
 
 export interface EndpointMetadata {

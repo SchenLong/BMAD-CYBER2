@@ -22,7 +22,7 @@ interface HistoryItem {
   method: string;
   path: string;
   status?: number;
-  success: boolean;
+  success?: boolean;
 }
 
 const methodColors: Record<string, string> = {
@@ -34,7 +34,7 @@ const methodColors: Record<string, string> = {
 };
 
 export function HistoryPanel() {
-  const { history, clearHistory, replayRequest } = useApiExplorerStore();
+  const { history, clearHistory, loadRequest } = useApiExplorerStore();
 
   if (history.length === 0) {
     return (
@@ -78,7 +78,7 @@ export function HistoryPanel() {
               <HistoryEntry
                 key={item.id}
                 item={item}
-                onReplay={() => replayRequest(item.id)}
+                onReplay={() => loadRequest(item)}
               />
             ))}
           </div>
