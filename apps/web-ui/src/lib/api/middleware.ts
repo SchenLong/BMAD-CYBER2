@@ -17,6 +17,7 @@ import { rateLimitStore } from '@/middleware/rate-limit';
  */
 export interface RateLimitResult {
   allowed: boolean;
+  isAllowed: boolean;
   limit: number;
   remaining: number;
   reset: number;
@@ -251,7 +252,7 @@ export function withApiMiddleware<T extends any[]>(
     if (checkRateLimitOption) {
       const rateLimitResult = await checkApiRateLimit(request, user);
 
-      if (rateLimitResult && !rateLimitResult.isAllowed) {
+      if (rateLimitResult && !rateLimitResult.allowed) {
         return apiRateLimited(rateLimitResult.retryAfter);
       }
     }

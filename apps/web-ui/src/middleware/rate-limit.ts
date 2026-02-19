@@ -195,7 +195,7 @@ class RateLimitStore {
 }
 
 // Global rate limit store instance
-const rateLimitStore = new RateLimitStore();
+export const rateLimitStore = new RateLimitStore();
 
 /**
  * Rate limit tiers for different user roles
