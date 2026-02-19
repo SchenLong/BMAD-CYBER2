@@ -1,0 +1,50 @@
+#!/bin/bash
+# BMAD Pre-push Hook
+# Runs full test suite before pushing to remote
+
+set -e
+
+echo "🚀 Running pre-push checks..."
+
+# ============================================
+# BMAD Web UI Test Suite
+# ============================================
+# Only run if web-ui files were modified in commits being pushed
+WEB_UI_FILES=$(git diff --name-only HEAD@{push} 2>/dev/null | grep -c "^team/bmad-web-ui/" || true)
+
+# Fallback: check if uncommitted changes exist in web-ui
+if [[ "$WEB_UI_FILES" -eq 0 ]]; then
+    WEB_UI_FILES=$(git diff --name-only | grep -c "^team/bmad-web-ui/" || true)
+fi
+
+if [[ "$WEB_UI_FILES" -gt 0 ]] && [[ -d "team/bmad-web-ui" ]]; then
+    echo "📦 BMAD Web UI files changed in push, running test suite..."
+
+    # Change to web-ui directory for commands
+    cd team/bmad-web-ui || exit 1
+
+    # Run the full security + integration test suite
+    echo "🧪 Running test:security..."
+    if ! npm run test:security 2>&1 | tail -20; then
+        echo "❌ Security tests failed!"
+        echo "   Run from web-ui directory: npm run test:security"
+        echo "   Or use: git push --no-verify to bypass (not recommended)"
+        exit 1
+    fi
+    echo "✅ Security tests passed"
+
+    echo "🧪 Running test:integration..."
+    if ! npm run test:integration 2>&1 | tail -20; then
+        echo "❌ Integration tests failed!"
+        echo "   Run from web-ui directory: npm run test:integration"
+        echo "   Or use: git push --no-verify to bypass (not recommended)"
+        exit 1
+    fi
+    echo "✅ Integration tests passed"
+
+    cd ../..
+else
+    echo "ℹ️  No BMAD Web UI changes detected, skipping tests"
+fi
+
+echo "✅ All pre-push checks passed!"

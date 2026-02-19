@@ -31,7 +31,8 @@
   "workspaces": [
     "_bmad/framework",
     ".claude/validators-node",
-    "tools/npx"
+    "tools/npx",
+    "apps/*"
   ],
   "bin": {
     "bmad-cybersec": "tools/cli/bmad-cli.js",
@@ -87,7 +88,8 @@
     "validate:refs": "bmad validate:refs",
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "test:schemas": "node tools/validate-agent-schema.js && node tools/validate-workflow-schema.js && node tools/validate-module-schema.js",
-    "qa": "npm run test:schemas && npm run lint && npm run lint:md && npm test && bash scripts/security-regression.sh"
+    "qa": "npm run test:schemas && npm run lint && npm run lint:md && npm test && bash scripts/security-regression.sh",
+    "prepare": "husky"
   },
   "keywords": [
     "bmad",
@@ -112,14 +114,21 @@
     "fast-xml-parser": "5.3.4",
     "esbuild": ">=0.25.0",
     "glob": "^13.0.3",
-    "markdown-it": "^14.1.1"
+    "markdown-it": "^14.1.1",
+    "ajv": ">=8.18.0",
+    "minimatch": ">=10.2.1",
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": ">=10.2.1"
+    }
   },
   "dependencies": {
     "@bmad/validators": "file:.claude/validators-node",
     "@clack/core": "^1.0.0",
     "@clack/prompts": "^1.0.0",
+    "@typescript-eslint/parser": "6.15.0",
     "chalk": "^5.6.2",
     "commander": "^11.0.0",
+    "eslint-config-next": "12.0.4",
     "fs-extra": "^11.3.3",
     "glob": "^13.0.3",
     "picocolors": "^1.1.1",
@@ -135,6 +144,8 @@
   ],
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@jest/globals": "^30.2.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.10.0",
     "@types/semver": "^7.7.1",
     "@vitest/coverage-v8": "^2.1.0",
@@ -144,12 +155,14 @@
     "eslint-plugin-n": "^17.23.2",
     "eslint-plugin-unicorn": "^62.0.0",
     "eslint-plugin-yml": "^3.1.2",
+    "jest": "^30.2.0",
     "markdownlint-cli2": "^0.20.0",
     "prettier": "^3.1.0",
+    "ts-jest": "^29.4.6",
     "tsx": "^4.6.0",
     "typedoc": "^0.25.0",
     "typescript": "^5.3.0",
-    "typescript-eslint": "^8.55.0",
+    "typescript-eslint": "^8.36.0",
     "vitest": "^2.1.0"
   },
   "peerDependencies": {
@@ -181,5 +194,11 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "bundleDependencies": [
+    "@clack/core",
+    "@clack/prompts",
+    "commander",
+    "picocolors"
+  ]
 }

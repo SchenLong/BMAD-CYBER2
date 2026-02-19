@@ -1,0 +1,70 @@
+#!/bin/bash
+# BMAD Pre-commit Hook
+# Runs security validation and fast quality checks
+
+set -e
+
+echo "🔐 Running pre-commit checks..."
+
+# ============================================
+# Part 1: BMAD Security Validation
+# ============================================
+# Run security validation if script exists
+if [[ -f "security-validation.js" ]]; then
+    if ! node security-validation.js --quiet; then
+        echo "❌ Security validation failed!"
+        echo "   Review security-validation-results.json for details"
+        echo "   Fix security issues before committing"
+        exit 1
+    fi
+fi
+
+# Check for sensitive files
+SENSITIVE_FILES=(".bmad-key" ".bmad-token")
+for file in "${SENSITIVE_FILES[@]}"; do
+    if git diff --cached --name-only | grep -q "^$file$"; then
+        echo "❌ Attempting to commit sensitive file: $file"
+        echo "   Remove from staging area and use environment variables"
+        exit 1
+    fi
+done
+
+echo "✅ BMAD security validation passed"
+
+# ============================================
+# Part 2: BMAD Web UI Quality Checks
+# ============================================
+# Only run if web-ui files are being committed
+WEB_UI_FILES=$(git diff --cached --name-only | grep -c "^team/bmad-web-ui/" || true)
+
+if [[ "$WEB_UI_FILES" -gt 0 ]]; then
+    echo "📦 BMAD Web UI files changed, running quality checks..."
+
+    # Change to web-ui directory for commands
+    cd team/bmad-web-ui || exit 1
+
+    # Run ESLint on staged files
+    echo "🔍 Running ESLint..."
+    if ! npm run lint -- --quiet 2>/dev/null; then
+        echo "❌ ESLint failed!"
+        echo "   From web-ui dir run: npm run lint"
+        echo "   Or use: git commit --no-verify to bypass (not recommended)"
+        exit 1
+    fi
+    echo "✅ ESLint passed"
+
+    # Run security audit for high/critical vulnerabilities
+    echo "🔒 Running security audit..."
+    if ! npm run security:audit --audit-level=high 2>/dev/null; then
+        echo "⚠️  Security audit found high/critical vulnerabilities!"
+        echo "   From web-ui dir run: npm audit fix"
+        echo "   Review with: npm audit"
+        echo "   Or use: git commit --no-verify to bypass (not recommended)"
+        exit 1
+    fi
+    echo "✅ Security audit passed (no high/critical vulnerabilities)"
+
+    cd ../..
+fi
+
+echo "✅ All pre-commit checks passed!"

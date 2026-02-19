@@ -180,7 +180,8 @@ describe('OWASP-00: Coverage Tracking & Reporting', () => {
         expect(baseline).toHaveProperty('frameworks');
       } catch (error) {
         // Show more context about where JSON parsing failed
-        const errorPos = (error as Error).message.match(/position (\d+)/);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        const errorPos = errorMessage.match(/position (\d+)/);
         if (errorPos) {
           const pos = parseInt(errorPos[1], 10);
           const context = content.substring(Math.max(0, pos - 50), pos + 50);

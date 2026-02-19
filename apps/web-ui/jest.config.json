@@ -1,0 +1,35 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "setupFiles": ["<rootDir>/jest.setup.js"],
+  "setupFilesAfterEnv": ["<rootDir>/jest.setup-after-env.ts"],
+  "testMatch": [
+    "**/__tests__/**/*.test.ts",
+    "**/__tests__/**/*.test.tsx"
+  ],
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(?:jose|@prisma|prisma)/)"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/**/*.stories.{ts,tsx}",
+    "!src/**/__tests__/**"
+  ],
+  "maxWorkers": 1,
+  "testTimeout": 10000,
+  "detectOpenHandles": true,
+  "forceExit": true,
+  "logHeapUsage": true,
+  "testPathIgnorePatterns": [
+    "node_modules",
+    "<rootDir>/tests/e2e",
+    "<rootDir>/src/lib/openapi",
+    "<rootDir>/tests/security",
+    "<rootDir>/src/lib/cli-bridge/__tests__/whitelist-validation",
+    "<rootDir>/src/middleware/__tests__/prompt-injection"
+  ]
+}

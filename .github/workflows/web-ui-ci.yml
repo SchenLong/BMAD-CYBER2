@@ -1,0 +1,214 @@
+name: BMAD Web UI CI
+
+on:
+  push:
+    branches: [main, develop, BMAD-CYBEROPS-RP, WEB-UI]
+    paths:
+      - 'apps/web-ui/**'
+      - '.github/workflows/web-ui-ci.yml'
+  pull_request:
+    branches: [main, develop, BMAD-CYBEROPS-RP]
+    paths:
+      - 'apps/web-ui/**'
+      - '.github/workflows/web-ui-ci.yml'
+  workflow_dispatch:
+    inputs:
+      run-e2e:
+        description: 'Run E2E tests (slower)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      run-performance:
+        description: 'Run performance tests'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+env:
+  NODE_VERSION: '20'
+  WORKING_DIR: './apps/web-ui'
+
+defaults:
+  run:
+    working-directory: ${{ env.WORKING_DIR }}
+
+jobs:
+  security:
+    name: Security Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # v4.3.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@d02c89dce7e1ba9ef629ce0680989b3a1cc72edb # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.WORKING_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run security audit
+        run: npm run security:audit
+
+      - name: Run OWASP Top 10 tests
+        run: npm run test:owasp
+
+      - name: Run security tests
+        run: npm run test:security
+
+  test:
+    name: Unit & Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # v4.3.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@d02c89dce7e1ba9ef629ce0680989b3a1cc72edb # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.WORKING_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run integration tests
+        run: npm run test:integration
+
+      - name: Run tests with coverage
+        run: npm run test:ci
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@47309c993abb98030a35d55ef7ff34b7fa1074b5 # v4.6.2
+        with:
+          name: coverage-report
+          path: ${{ env.WORKING_DIR }}/coverage/
+          retention-days: 7
+
+  lint:
+    name: Lint & Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # v4.3.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@d02c89dce7e1ba9ef629ce0680989b3a1cc72edb # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.WORKING_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Build project
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+  # E2E tests (optional - manual trigger or push)
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.event.inputs.run-e2e == 'true' || github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # v4.3.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@d02c89dce7e1ba9ef629ce0680989b3a1cc72edb # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.WORKING_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+        env:
+          CI: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@47309c993abb98030a35d55ef7ff34b7fa1074b5 # v4.6.2
+        if: always()
+        with:
+          name: playwright-report
+          path: ${{ env.WORKING_DIR }}/playwright-report/
+          retention-days: 7
+
+  # Performance tests (optional)
+  performance:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.event.inputs.run-performance == 'true' || github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # v4.3.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@d02c89dce7e1ba9ef629ce0680989b3a1cc72edb # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.WORKING_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install K6
+        run: |
+          curl https://github.com/grafana/k6/releases/download/v1.6.1/k6-v1.6.1-linux-amd64.tar.gz -L | tar xvz
+          sudo mv k6-v1.6.1-linux-amd64/k6 /usr/local/bin/
+
+      - name: Run smoke test
+        run: npm run test:perf:smoke
+
+  quality-gate:
+    name: Quality Gate
+    runs-on: ubuntu-latest
+    needs: [security, test, lint]
+    timeout-minutes: 5
+
+    steps:
+      - name: Quality Gate Passed
+        run: |
+          echo "## BMAD Web UI Quality Gate" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Status: PASSED ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All required checks passed:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Security Tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Unit & Integration Tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Lint & Build" >> $GITHUB_STEP_SUMMARY

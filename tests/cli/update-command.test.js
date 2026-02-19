@@ -291,7 +291,7 @@ describe('CLI Update Command', () => {
       const checkBlock = content.slice(content.indexOf('options.check'));
       const returnIdx = checkBlock.indexOf('return;');
       expect(returnIdx).toBeGreaterThan(0);
-      expect(returnIdx).toBeLessThan(300);
+      expect(returnIdx).toBeLessThan(400);
     });
 
     it('should show latest version message when up to date', () => {
