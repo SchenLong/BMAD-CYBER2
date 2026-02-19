@@ -33,42 +33,60 @@ function isAllowedOrigin(origin: string | null): boolean {
  * Returns the OpenAPI 3.0 specification for BMAD API
  */
 export async function GET() {
-  const spec = generateOpenAPISpec();
+  try {
+    const spec = generateOpenAPISpec();
 
-  // Get origin from request headers
-  const headersList = headers();
-  const origin = headersList.get('origin');
+    // Get origin from request headers
+    const headersList = await headers();
+    const origin = headersList.get('origin');
 
-  // Set CORS headers with origin validation
-  const response = NextResponse.json(spec, {
-    headers: {
-      ...(isAllowedOrigin(origin) && {
-        'Access-Control-Allow-Origin': origin,
-      }),
+    // Build headers object
+    const responseHeaders: Record<string, string> = {
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
-    },
-  });
+    };
 
-  return response;
+    // Only set Access-Control-Allow-Origin if the origin is allowed
+    if (origin && isAllowedOrigin(origin)) {
+      responseHeaders['Access-Control-Allow-Origin'] = origin;
+    }
+
+    const response = NextResponse.json(spec, {
+      headers: responseHeaders,
+    });
+
+    return response;
+  } catch (error) {
+    console.error('Error generating OpenAPI spec:', error);
+    return NextResponse.json(
+      {
+        error: 'Failed to generate OpenAPI specification',
+        message: error instanceof Error ? error.message : 'Unknown error',
+      },
+      { status: 500 }
+    );
+  }
 }
 
 /**
  * OPTIONS handler for CORS preflight
  */
 export async function OPTIONS() {
-  const headersList = headers();
+  const headersList = await headers();
   const origin = headersList.get('origin');
+
+  const responseHeaders: Record<string, string> = {
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
+
+  if (origin && isAllowedOrigin(origin)) {
+    responseHeaders['Access-Control-Allow-Origin'] = origin;
+  }
 
   return new NextResponse(null, {
     status: 204,
-    headers: {
-      ...(isAllowedOrigin(origin) && {
-        'Access-Control-Allow-Origin': origin,
-      }),
-      'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    },
+    headers: responseHeaders,
   });
 }

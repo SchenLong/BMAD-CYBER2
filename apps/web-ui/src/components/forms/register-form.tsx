@@ -28,17 +28,26 @@ const registerSchema = z
       .min(12, 'Password must be at least 12 characters')
       .refine(
         (pwd) => {
-          // Simple entropy check on client side
+          // Require at least 3 of 4 character types
           const hasLower = /[a-z]/.test(pwd);
           const hasUpper = /[A-Z]/.test(pwd);
           const hasNumber = /[0-9]/.test(pwd);
           const hasSymbol = /[^a-zA-Z0-9]/.test(pwd);
           const variety = [hasLower, hasUpper, hasNumber, hasSymbol].filter(Boolean).length;
-          const entropy = pwd.length * Math.log2(variety * 10 || 26);
-          return entropy >= 40;
+          return variety >= 3;
         },
         {
-          message: 'Password is too weak. Use a mix of letters, numbers, and symbols.',
+          message: 'Password must contain at least 3 of: uppercase, lowercase, numbers, or symbols',
+        }
+      )
+      .refine(
+        (pwd) => {
+          // Check for repeated character patterns
+          const uniqueChars = new Set(pwd).size;
+          return uniqueChars >= 4;
+        },
+        {
+          message: 'Password must contain more variety - too many repeated characters',
         }
       ),
     name: z.string().min(2, 'Name must be at least 2 characters').optional(),
@@ -97,13 +106,25 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword: _, ...requestData } = data;
+
+      // Use fetch with proper encoding - JSON.stringify handles escaping automatically
       const response = await fetch('/api/auth/register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
         body: JSON.stringify(requestData),
       });
 
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        // If response is not JSON, get text instead
+        const text = await response.text();
+        setError(`Server error: ${text || 'Unknown error'}`);
+        return;
+      }
 
       if (!response.ok) {
         setError(result.message || 'Registration failed');
@@ -117,8 +138,9 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
         router.push('/dashboard');
         router.refresh();
       }
-    } catch {
-      setError('An unexpected error occurred');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'An unexpected error occurred';
+      setError(message);
     } finally {
       setIsLoading(false);
     }

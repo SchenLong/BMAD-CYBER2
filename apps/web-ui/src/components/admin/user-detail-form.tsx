@@ -37,9 +37,10 @@ export function UserDetailForm({ user, currentUserRole }: UserDetailFormProps) {
   const [success, setSuccess] = useState(false);
 
   // Role hierarchy: higher numbers can modify lower roles
-  const ROLE_HIERARCHY: Record<UserRole, number> = {
+  const ROLE_HIERARCHY: Record<string, number> = {
     SUPERADMIN: 100,
     ADMIN: 75,
+    DEVELOPER: 60,
     USER: 50,
     READONLY: 25,
     API: 50,

@@ -8,17 +8,16 @@
  */
 
 import { NextRequest } from 'next/server';
-import { withApiMiddleware } from '@/lib/api/middleware';
 import {
   apiSuccess,
   apiNotFound,
-  apiForbidden,
+  apiUnauthorized,
   apiValidationError,
 } from '@/lib/api/response';
+import { validateSession } from '@/lib/auth/session';
 import { prisma } from '@/lib/prisma';
 import type {
   APIKeyDetails,
-  UpdateAPIKeyRequest,
 } from '@/lib/api-keys/types';
 import { z } from 'zod';
 
@@ -32,144 +31,157 @@ const updateApiKeySchema = z.object({
  * GET /api/v1/api-keys/:id
  * Get details of a specific API key
  */
-export const GET = withApiMiddleware(
-  async (request, { user, params }) => {
-    const apiKey = await prisma.aPIKey.findFirst({
-      where: {
-        id: params.id,
-        userId: user.userId,
-        deletedAt: null,
-      },
-      select: {
-        id: true,
-        description: true,
-        permissions: true,
-        isActive: true,
-        createdAt: true,
-        expiresAt: true,
-        lastUsedAt: true,
-        usageCount: true,
-      },
-    });
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await validateSession();
+  if (!session) {
+    return apiUnauthorized('Authentication required');
+  }
 
-    if (!apiKey) {
-      return apiNotFound('API key');
-    }
+  const { id } = await params;
 
-    // Parse permissions to extract role
-    let role = 'API';
-    try {
-      const permissions = JSON.parse(apiKey.permissions) as string[];
-      if (permissions.includes('admin')) role = 'ADMIN';
-      else if (permissions.includes('write')) role = 'DEVELOPER';
-      else if (permissions.includes('read')) role = 'READONLY';
-    } catch {
-      role = 'API';
-    }
+  const apiKey = await prisma.aPIKey.findFirst({
+    where: {
+      id,
+      userId: session.user.id,
+      deletedAt: null,
+    },
+    select: {
+      id: true,
+      description: true,
+      permissions: true,
+      isActive: true,
+      createdAt: true,
+      expiresAt: true,
+      lastUsedAt: true,
+      usageCount: true,
+    },
+  });
 
-    const details: APIKeyDetails = {
-      id: apiKey.id,
-      name: apiKey.description,
-      role,
-      isActive: apiKey.isActive,
-      createdAt: apiKey.createdAt,
-      expiresAt: apiKey.expiresAt,
-      lastUsedAt: apiKey.lastUsedAt,
-      usageCount: apiKey.usageCount,
-    };
+  if (!apiKey) {
+    return apiNotFound('API key');
+  }
 
-    return apiSuccess(details);
-  },
-  { requireAuth: true }
-);
+  // Parse permissions to extract role
+  let role = 'API';
+  try {
+    const permissions = JSON.parse(apiKey.permissions) as string[];
+    if (permissions.includes('admin')) role = 'ADMIN';
+    else if (permissions.includes('write')) role = 'DEVELOPER';
+    else if (permissions.includes('read')) role = 'READONLY';
+  } catch {
+    role = 'API';
+  }
+
+  const details: APIKeyDetails = {
+    id: apiKey.id,
+    name: apiKey.description,
+    role,
+    isActive: apiKey.isActive,
+    createdAt: apiKey.createdAt,
+    expiresAt: apiKey.expiresAt,
+    lastUsedAt: apiKey.lastUsedAt,
+    usageCount: apiKey.usageCount,
+  };
+
+  return apiSuccess(details);
+}
 
 /**
  * PATCH /api/v1/api-keys/:id
  * Update an API key (name, active status)
  */
-export const PATCH = withApiMiddleware(
-  async (request, { user, params }) => {
-    const body = await request.json();
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await validateSession();
+  if (!session) {
+    return apiUnauthorized('Authentication required');
+  }
 
-    // Validate request body
-    const validation = updateApiKeySchema.safeParse(body);
-    if (!validation.success) {
-      return apiValidationError(
-        'Invalid request body',
-        validation.error.flatten().fieldErrors
-      );
-    }
+  const { id } = await params;
+  const body = await request.json();
 
-    const data = validation.data;
+  // Validate request body
+  const validation = updateApiKeySchema.safeParse(body);
+  if (!validation.success) {
+    return apiValidationError(
+      'Invalid request body',
+      validation.error.flatten().fieldErrors
+    );
+  }
 
-    // Check ownership
-    const apiKey = await prisma.aPIKey.findFirst({
-      where: {
-        id: params.id,
-        userId: user.userId,
-        deletedAt: null,
-      },
-    });
+  const data = validation.data;
 
-    if (!apiKey) {
-      return apiNotFound('API key');
-    }
+  // Check ownership
+  const apiKey = await prisma.aPIKey.findFirst({
+    where: {
+      id,
+      userId: session.user.id,
+      deletedAt: null,
+    },
+  });
 
-    // Build update data
-    const updateData: {
-      description?: string;
-      isActive?: boolean;
-    } = {};
+  if (!apiKey) {
+    return apiNotFound('API key');
+  }
 
-    if (data.name !== undefined) {
-      updateData.description = data.name;
-    }
-    if (data.isActive !== undefined) {
-      updateData.isActive = data.isActive;
-    }
+  // Build update data
+  const updateData: {
+    description?: string;
+    isActive?: boolean;
+  } = {};
 
-    // Update API key
-    const updatedKey = await prisma.aPIKey.update({
-      where: { id: params.id },
-      data: updateData,
-      select: {
-        id: true,
-        description: true,
-        permissions: true,
-        isActive: true,
-        createdAt: true,
-        expiresAt: true,
-        lastUsedAt: true,
-        usageCount: true,
-      },
-    });
+  if (data.name !== undefined) {
+    updateData.description = data.name;
+  }
+  if (data.isActive !== undefined) {
+    updateData.isActive = data.isActive;
+  }
 
-    // Parse permissions to extract role
-    let role = 'API';
-    try {
-      const permissions = JSON.parse(updatedKey.permissions) as string[];
-      if (permissions.includes('admin')) role = 'ADMIN';
-      else if (permissions.includes('write')) role = 'DEVELOPER';
-      else if (permissions.includes('read')) role = 'READONLY';
-    } catch {
-      role = 'API';
-    }
+  // Update API key
+  const updatedKey = await prisma.aPIKey.update({
+    where: { id },
+    data: updateData,
+    select: {
+      id: true,
+      description: true,
+      permissions: true,
+      isActive: true,
+      createdAt: true,
+      expiresAt: true,
+      lastUsedAt: true,
+      usageCount: true,
+    },
+  });
 
-    const details: APIKeyDetails = {
-      id: updatedKey.id,
-      name: updatedKey.description,
-      role,
-      isActive: updatedKey.isActive,
-      createdAt: updatedKey.createdAt,
-      expiresAt: updatedKey.expiresAt,
-      lastUsedAt: updatedKey.lastUsedAt,
-      usageCount: updatedKey.usageCount,
-    };
+  // Parse permissions to extract role
+  let role = 'API';
+  try {
+    const permissions = JSON.parse(updatedKey.permissions) as string[];
+    if (permissions.includes('admin')) role = 'ADMIN';
+    else if (permissions.includes('write')) role = 'DEVELOPER';
+    else if (permissions.includes('read')) role = 'READONLY';
+  } catch {
+    role = 'API';
+  }
 
-    return apiSuccess(details);
-  },
-  { requireAuth: true }
-);
+  const details: APIKeyDetails = {
+    id: updatedKey.id,
+    name: updatedKey.description,
+    role,
+    isActive: updatedKey.isActive,
+    createdAt: updatedKey.createdAt,
+    expiresAt: updatedKey.expiresAt,
+    lastUsedAt: updatedKey.lastUsedAt,
+    usageCount: updatedKey.usageCount,
+  };
+
+  return apiSuccess(details);
+}
 
 /**
  * DELETE /api/v1/api-keys/:id
@@ -178,34 +190,41 @@ export const PATCH = withApiMiddleware(
  * Story 8.2: Implements soft delete with deletedAt timestamp
  * Keys can be permanently deleted after 30 days
  */
-export const DELETE = withApiMiddleware(
-  async (request, { user, params }) => {
-    // Check ownership
-    const apiKey = await prisma.aPIKey.findFirst({
-      where: {
-        id: params.id,
-        userId: user.userId,
-        deletedAt: null,
-      },
-    });
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await validateSession();
+  if (!session) {
+    return apiUnauthorized('Authentication required');
+  }
 
-    if (!apiKey) {
-      return apiNotFound('API key');
-    }
+  const { id } = await params;
 
-    // Soft delete by setting deletedAt
-    await prisma.aPIKey.update({
-      where: { id: params.id },
-      data: {
-        isActive: false,
-        deletedAt: new Date(),
-      },
-    });
+  // Check ownership
+  const apiKey = await prisma.aPIKey.findFirst({
+    where: {
+      id,
+      userId: session.user.id,
+      deletedAt: null,
+    },
+  });
 
-    return apiSuccess({
-      success: true,
-      message: 'API key revoked successfully',
-    });
-  },
-  { requireAuth: true }
-);
+  if (!apiKey) {
+    return apiNotFound('API key');
+  }
+
+  // Soft delete by setting deletedAt
+  await prisma.aPIKey.update({
+    where: { id },
+    data: {
+      isActive: false,
+      deletedAt: new Date(),
+    },
+  });
+
+  return apiSuccess({
+    success: true,
+    message: 'API key revoked successfully',
+  });
+}

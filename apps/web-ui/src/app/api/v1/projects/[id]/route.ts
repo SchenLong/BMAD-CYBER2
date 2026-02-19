@@ -26,7 +26,7 @@ import { updateProjectSchema } from '@/lib/projects/validation';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await validateSession();
 
@@ -34,7 +34,7 @@ export async function GET(
     return apiUnauthorized();
   }
 
-  const projectId = params.id;
+  const { id: projectId } = await params;
 
   // Check if user is a member of the project
   const membership = await prisma.projectMember.findFirst({
@@ -135,7 +135,7 @@ export async function GET(
  */
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await validateSession();
 
@@ -143,7 +143,7 @@ export async function PUT(
     return apiUnauthorized();
   }
 
-  const projectId = params.id;
+  const { id: projectId } = await params;
 
   // Check if user is owner or lead
   const membership = await prisma.projectMember.findFirst({
@@ -230,7 +230,7 @@ export async function PUT(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await validateSession();
 
@@ -238,7 +238,7 @@ export async function DELETE(
     return apiUnauthorized();
   }
 
-  const projectId = params.id;
+  const { id: projectId } = await params;
 
   // Check if user is owner
   const membership = await prisma.projectMember.findFirst({

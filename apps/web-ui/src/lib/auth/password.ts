@@ -65,7 +65,10 @@ export function calculatePasswordEntropy(password: string): number {
 }
 
 /**
- * Validate password strength based on minimum entropy threshold
+ * Validate password complexity based on character variety and entropy
+ * Enforces minimum requirements for character types to prevent weak passwords
+ * like "aaaaaaaaaaaa" which have high entropy due to length but low complexity.
+ *
  * @param password - Password to validate
  * @param minEntropy - Minimum required entropy bits (default: 40)
  * @returns Object with validation result and reason if failed
@@ -85,12 +88,39 @@ export function validatePasswordStrength(
     };
   }
 
-  // Entropy check
+  // Character variety checks - require at least 3 of 4 character types
+  const hasLower = /[a-z]/.test(password);
+  const hasUpper = /[A-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSymbol = /[^a-zA-Z0-9]/.test(password);
+
+  const varietyCount = [hasLower, hasUpper, hasNumber, hasSymbol].filter(Boolean).length;
+
+  // Require at least 3 of 4 character types (upper, lower, number, symbol)
+  if (varietyCount < 3) {
+    return {
+      valid: false,
+      reason: 'Password must contain at least 3 of: uppercase, lowercase, numbers, or symbols',
+      entropy,
+    };
+  }
+
+  // Entropy check as additional safety measure
   if (entropy < minEntropy) {
     return {
       valid: false,
       reason:
         'Password is too weak. Use a mix of uppercase, lowercase, numbers, and symbols.',
+      entropy,
+    };
+  }
+
+  // Check for repeated character patterns (e.g., "aaaaaaaaaaaa", "abababababab")
+  const uniqueChars = new Set(password).size;
+  if (uniqueChars < 4) {
+    return {
+      valid: false,
+      reason: 'Password must contain more variety - too many repeated characters',
       entropy,
     };
   }

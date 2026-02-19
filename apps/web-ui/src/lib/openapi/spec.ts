@@ -53,12 +53,10 @@ const standardResponseSchema: OpenAPISchema = {
   type: 'object',
   properties: {
     success: { type: 'boolean' },
-    data: { type: 'object', description: 'Response data' },
+    data: { type: 'object', description: 'Response data', nullable: true },
     error: {
-      oneOf: [
-        { type: 'object' },
-        { type: 'null' }
-      ],
+      type: 'object',
+      nullable: true,
       properties: {
         code: { type: 'string' },
         message: { type: 'string' },
@@ -94,7 +92,7 @@ const errorSchema: OpenAPISchema = {
   type: 'object',
   properties: {
     success: { type: 'boolean', example: false },
-    data: { oneOf: [{ type: 'null' }, { type: 'null' as const }] },
+    data: { type: 'object', nullable: true },
     error: {
       type: 'object',
       properties: {

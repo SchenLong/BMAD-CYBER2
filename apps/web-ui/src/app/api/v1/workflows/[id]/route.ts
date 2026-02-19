@@ -16,9 +16,9 @@ import { getWorkflowById } from '@/lib/data/workflows-data';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const workflowId = params.id;
+  const { id: workflowId } = await params;
 
   const workflow = getWorkflowById(workflowId);
 

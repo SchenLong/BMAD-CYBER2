@@ -17,9 +17,9 @@ import { getAgentProfile } from '@/lib/data/agent-profiles';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const agentId = params.id;
+  const { id: agentId } = await params;
 
   const agent = getAgentById(agentId);
 

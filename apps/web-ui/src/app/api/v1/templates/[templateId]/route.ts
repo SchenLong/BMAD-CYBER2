@@ -22,9 +22,9 @@ import { getBuiltinTemplates } from '@/lib/templates';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { templateId: string } }
+  { params }: { params: Promise<{ templateId: string }> }
 ) {
-  const templateId = params.templateId;
+  const { templateId } = await params;
 
   // Check if it's a built-in template
   const builtinTemplates = getBuiltinTemplates();

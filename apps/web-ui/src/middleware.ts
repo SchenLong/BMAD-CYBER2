@@ -103,6 +103,29 @@ async function requiresMfaVerification(request: NextRequest, session: SessionUse
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Handle legacy route redirects for backward compatibility
+  // These routes were referenced in testing but are under /dashboard
+  const legacyRedirects: Record<string, string> = {
+    '/teams': '/agents', // Redirect to agents page where users can select teams
+    '/workflows': '/dashboard/workflows',
+    '/templates': '/dashboard/templates',
+    '/docs': '/dashboard/docs/api',
+  };
+
+  // Check for exact match legacy redirects
+  if (legacyRedirects[pathname]) {
+    const url = request.nextUrl.clone();
+    url.pathname = legacyRedirects[pathname];
+    return NextResponse.redirect(url);
+  }
+
+  // Handle /teams/{slug} redirect to /dashboard/teams/{slug}
+  if (pathname.startsWith('/teams/') && pathname !== '/teams') {
+    const url = request.nextUrl.clone();
+    url.pathname = `/dashboard${pathname}`;
+    return NextResponse.redirect(url);
+  }
+
   // Story 9.2: Check for prompt injection first (before auth)
   // This applies to all POST/PUT/PATCH requests
   // Returns: blocking response (400), warning response (with headers),

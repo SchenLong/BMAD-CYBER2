@@ -31,7 +31,7 @@ const invokeAgentSchema = z.object({
  */
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // Check authentication
   const session = await validateSession();
@@ -39,7 +39,7 @@ export async function POST(
     return apiUnauthorized('Authentication required');
   }
 
-  const agentId = params.id;
+  const { id: agentId } = await params;
 
   // Verify agent exists
   const agent = getAgentById(agentId);

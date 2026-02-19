@@ -33,7 +33,7 @@ const executeWorkflowSchema = z.object({
  */
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // Check authentication
   const session = await validateSession();
@@ -41,7 +41,7 @@ export async function POST(
     return apiUnauthorized('Authentication required');
   }
 
-  const workflowId = params.id;
+  const { id: workflowId } = await params;
 
   // Verify workflow exists
   const workflow = getWorkflowById(workflowId);

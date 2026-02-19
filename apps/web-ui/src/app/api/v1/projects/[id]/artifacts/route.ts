@@ -23,7 +23,7 @@ import { prisma } from '@/lib/prisma';
  */
 async function listArtifacts(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await validateSession();
 
@@ -31,7 +31,7 @@ async function listArtifacts(
     return apiUnauthorized();
   }
 
-  const projectId = params.id;
+  const { id: projectId } = await params;
 
   // Verify project exists and user has access
   const project = await prisma.project.findFirst({
@@ -81,7 +81,7 @@ async function listArtifacts(
  */
 async function uploadArtifact(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await validateSession();
 
@@ -89,7 +89,7 @@ async function uploadArtifact(
     return apiUnauthorized();
   }
 
-  const projectId = params.id;
+  const { id: projectId } = await params;
 
   // Verify project exists and user has access
   const membership = await prisma.projectMember.findFirst({
