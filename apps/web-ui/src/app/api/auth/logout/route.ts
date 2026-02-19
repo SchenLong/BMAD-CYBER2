@@ -13,12 +13,24 @@ export async function POST() {
     // Destroy session (clears cookie and deletes from database)
     await destroySession();
 
-    return NextResponse.json(
+    // Create response and also clear the middleware_auth cookie
+    const response = NextResponse.json(
       {
         message: 'Logged out successfully',
       },
       { status: 200 }
     );
+
+    // Clear middleware auth token cookie
+    response.cookies.set('middleware_auth', '', {
+      httpOnly: true,
+      secure: process.env.COOKIE_SECURE === 'true',
+      sameSite: (process.env.COOKIE_SAMESITE as 'strict' | 'lax' | 'none') || 'lax',
+      maxAge: 0,
+      path: '/',
+    });
+
+    return response;
   } catch (error) {
     console.error('Logout error:', error);
     return NextResponse.json(

@@ -33,6 +33,9 @@ const MIDDLEWARE_AUTH_COOKIE = 'middleware_auth';
  * Verify middleware auth token (JWT)
  * This provides Edge Runtime compatible authentication for password-based logins
  * The JWT is created during login and contains user ID and onboarding status
+ *
+ * Security: Uses JWT_SECRET for JWT verification (separate from SESSION_SECRET)
+ * Logs verification failures for security monitoring without exposing token data
  */
 async function verifyMiddlewareToken(request: NextRequest): Promise<{
   userId: string;
@@ -40,14 +43,22 @@ async function verifyMiddlewareToken(request: NextRequest): Promise<{
   role: string;
   onboardingCompleted: string | null;
 } | null> {
+  const token = request.cookies.get(MIDDLEWARE_AUTH_COOKIE)?.value;
+
+  if (!token) {
+    return null;
+  }
+
+  // SECURITY: JWT_SECRET must be explicitly set - no fallback to SESSION_SECRET
+  // This prevents security boundary crossing between JWT and session token secrets
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) {
+    console.error('[Middleware] JWT_SECRET not configured - middleware auth disabled');
+    return null;
+  }
+
   try {
-    const token = request.cookies.get(MIDDLEWARE_AUTH_COOKIE)?.value;
-
-    if (!token) {
-      return null;
-    }
-
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET || process.env.SESSION_SECRET);
+    const secret = new TextEncoder().encode(jwtSecret);
     const { payload } = await jwtVerify(token, secret);
 
     return {
@@ -56,7 +67,17 @@ async function verifyMiddlewareToken(request: NextRequest): Promise<{
       role: payload.role as string,
       onboardingCompleted: payload.onboardingCompleted as string | null,
     };
-  } catch {
+  } catch (error) {
+    // Log verification failures for security monitoring (without exposing token content)
+    if (error instanceof Error) {
+      if (error.name === 'JWTExpired') {
+        console.error('[Middleware] JWT verification failed: token expired');
+      } else if (error.name === 'JWTInvalid') {
+        console.error('[Middleware] JWT verification failed: invalid token');
+      } else {
+        console.error('[Middleware] JWT verification error:', error.name);
+      }
+    }
     return null;
   }
 }

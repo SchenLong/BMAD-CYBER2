@@ -57,6 +57,18 @@ function extractRequestMetadata(request: NextRequest): RequestMetadata {
 
 export async function POST(request: NextRequest) {
   try {
+    // Validate Content-Type header
+    const contentType = request.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      return NextResponse.json(
+        {
+          error: 'Unsupported Media Type',
+          message: 'Content-Type must be application/json',
+        },
+        { status: 415 }
+      );
+    }
+
     // Parse and validate request body
     const body = await request.json();
     const validationResult = loginSchema.safeParse(body);
@@ -133,7 +145,19 @@ export async function POST(request: NextRequest) {
     // Generate middleware auth token (JWT for Edge Runtime compatibility)
     // This token is used by middleware to verify authentication without DB access
     // Includes onboarding status to avoid database lookups in middleware
-    const middlewareSecret = new TextEncoder().encode(process.env.JWT_SECRET || process.env.SESSION_SECRET);
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      console.error('[Login] JWT_SECRET not configured');
+      return NextResponse.json(
+        {
+          error: 'Configuration error',
+          message: 'Authentication service not properly configured',
+        },
+        { status: 500 }
+      );
+    }
+
+    const middlewareSecret = new TextEncoder().encode(jwtSecret);
     const middlewareToken = await new SignJWT({
       userId: user.id,
       email: user.email,
@@ -155,11 +179,16 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Set middleware auth token cookie (HttpOnly for security)
+    // SECURITY: Set middleware auth token cookie with strict security defaults
+    // - httpOnly: Prevents JavaScript access (XSS protection)
+    // - secure: Only send over HTTPS in production
+    // - sameSite: 'strict' provides best CSRF protection
+    // - path: '/' ensures cookie is available on all routes
+    const isProduction = process.env.NODE_ENV === 'production';
     response.cookies.set('middleware_auth', middlewareToken, {
       httpOnly: true,
-      secure: process.env.COOKIE_SECURE === 'true',
-      sameSite: (process.env.COOKIE_SAMESITE as 'strict' | 'lax' | 'none') || 'lax',
+      secure: isProduction || process.env.COOKIE_SECURE === 'true',
+      sameSite: (process.env.COOKIE_SAMESITE as 'strict' | 'lax' | 'none') || 'strict',
       maxAge: 15 * 24 * 60 * 60, // 15 days
       path: '/',
     });
