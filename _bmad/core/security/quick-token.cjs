@@ -62,7 +62,7 @@ class TokenGenerator {
     const authTag = cipher.getAuthTag();
 
     const combined = Buffer.concat([iv, authTag, encrypted]);
-    return 'bmad.v1.' + combined.toString('base64url');
+    return `bmad.v1.${  combined.toString('base64url')}`;
   }
 
   generateToken(name, roles, modules, expiresInHours = 168) {
@@ -189,7 +189,7 @@ function main() {
 
   // Warn about privileged role generation
   if (hasConfirmAdmin) {
-    console.warn('\n[WARNING] Generating token with privileged role(s): ' + roles.filter(r => PRIVILEGED_ROLES.includes(r)).join(', '));
+    console.warn(`\n[WARNING] Generating token with privileged role(s): ${  roles.filter(r => PRIVILEGED_ROLES.includes(r)).join(', ')}`);
     console.warn('         Ensure this is authorized and logged appropriately.\n');
   }
 
@@ -232,7 +232,7 @@ function main() {
   fs.writeFileSync(tokenPath, result.token);
   fs.chmodSync(tokenPath, 0o600);
 
-  console.log('\n' + '='.repeat(60));
+  console.log(`\n${  '='.repeat(60)}`);
   console.log('            Token Generated Successfully');
   console.log('='.repeat(60));
   console.log(`  Name:    ${result.claims.name}`);

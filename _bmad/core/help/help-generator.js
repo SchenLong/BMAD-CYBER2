@@ -15,7 +15,7 @@
  */
 
 import { readFile } from 'node:fs/promises';
-import { join, dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { normalizeLineEndings } from '../../../src/utility/normalize-line-endings.js';
@@ -549,7 +549,7 @@ export class HelpGenerator {
       modAgents.length > 0
         ? modAgents.map(
             (a) =>
-              `- **${a.displayName || a.name}** (${a.name})${a.icon ? ' ' + a.icon : ''} — ${a.title || a.role || 'No description'}`
+              `- **${a.displayName || a.name}** (${a.name})${a.icon ? ` ${  a.icon}` : ''} — ${a.title || a.role || 'No description'}`
           )
         : ['- _No agents in this module_'];
 
@@ -738,7 +738,7 @@ export class HelpGenerator {
       .slice(0, 5);
 
     const contentParts = [
-      `# Agent: ${agent.displayName || agent.name}${agent.icon ? ' ' + agent.icon : ''}`,
+      `# Agent: ${agent.displayName || agent.name}${agent.icon ? ` ${  agent.icon}` : ''}`,
       ``,
       `**Name:** ${agent.name}`,
       `**Module:** ${agent.module}`,
@@ -869,44 +869,44 @@ export class HelpGenerator {
 
     if (matchedModules.length > 0) {
       sections.push(
-        `## Modules (${matchedModules.length})\n\n` +
-          matchedModules.map((m) => `- **${m}**`).join('\n')
+        `## Modules (${matchedModules.length})\n\n${ 
+          matchedModules.map((m) => `- **${m}**`).join('\n')}`
       );
     }
 
     if (matchedAgents.length > 0) {
       sections.push(
-        `## Agents (${matchedAgents.length})\n\n` +
+        `## Agents (${matchedAgents.length})\n\n${ 
           matchedAgents
             .map(
               (a) =>
                 `- **${a.displayName || a.name}** (${a.name}) [${a.module}] — ${a.title || a.role || 'No description'}`
             )
-            .join('\n')
+            .join('\n')}`
       );
     }
 
     if (matchedWorkflows.length > 0) {
       sections.push(
-        `## Workflows (${matchedWorkflows.length})\n\n` +
+        `## Workflows (${matchedWorkflows.length})\n\n${ 
           matchedWorkflows
             .map(
               (w) =>
                 `- **${w.name}** [${w.module}] — ${w.description || 'No description'}`
             )
-            .join('\n')
+            .join('\n')}`
       );
     }
 
     if (matchedTasks.length > 0) {
       sections.push(
-        `## Tasks (${matchedTasks.length})\n\n` +
+        `## Tasks (${matchedTasks.length})\n\n${ 
           matchedTasks
             .map(
               (t) =>
                 `- **${t.displayName || t.name}** (${t.name}) [${t.module}] — ${t.description || 'No description'}`
             )
-            .join('\n')
+            .join('\n')}`
       );
     }
 
@@ -967,7 +967,7 @@ export class HelpGenerator {
         lines.push('**Agents:**');
         for (const a of modAgents) {
           lines.push(
-            `- ${a.displayName || a.name} (${a.name})${a.icon ? ' ' + a.icon : ''}`
+            `- ${a.displayName || a.name} (${a.name})${a.icon ? ` ${  a.icon}` : ''}`
           );
         }
       }

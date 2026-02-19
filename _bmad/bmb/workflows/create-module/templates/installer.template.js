@@ -12,7 +12,7 @@
  * @returns {boolean} - true if successful, false to abort installation
  */
 async function install(options) {
-  // eslint-disable-next-line no-unused-vars
+   
   const { projectRoot, config, installedIDEs, logger } = options;
 
   logger.log('Installing {module_display_name}...');
@@ -43,5 +43,5 @@ async function install(options) {
   }
 }
 
-// eslint-disable-next-line unicorn/prefer-module
+ 
 module.exports = { install };

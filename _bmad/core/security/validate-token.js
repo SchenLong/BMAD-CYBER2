@@ -61,9 +61,9 @@ function runValidation() {
   const keyPath = path.join(projectRoot, '.bmad-key');
   const tokenPath = path.join(projectRoot, '.bmad-token');
 
-  console.log('\n' + '='.repeat(70));
+  console.log(`\n${  '='.repeat(70)}`);
   console.log('              BMAD Token Validation Test');
-  console.log('='.repeat(70) + '\n');
+  console.log(`${'='.repeat(70)  }\n`);
 
   const results = [];
 
@@ -204,7 +204,7 @@ function runValidation() {
   printResults(results);
 
   // Print token details
-  console.log('\n' + '-'.repeat(70));
+  console.log(`\n${  '-'.repeat(70)}`);
   console.log('  Token Details');
   console.log('-'.repeat(70));
   console.log(`  User ID:    ${claims.sub}`);
@@ -237,7 +237,7 @@ function printResults(results) {
     else failed++;
   }
 
-  console.log('\n' + '-'.repeat(70));
+  console.log(`\n${  '-'.repeat(70)}`);
   console.log(`  Summary: ${passed} passed, ${failed} failed`);
 
   if (failed === 0) {

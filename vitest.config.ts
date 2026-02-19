@@ -10,6 +10,7 @@ export default defineConfig({
     exclude: [
       'node_modules/**',
       'dist/**',
+      'apps/**',                             // Apps have their own test frameworks (Jest for web-ui)
       'dev-tools/archive/**',              // Archived/deprecated tests
       '_bmad-output/**',                   // Output directory
       'dev-tools-installation/**',         // Installation tests - run separately

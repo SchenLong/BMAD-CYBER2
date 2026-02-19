@@ -139,7 +139,7 @@ function getLatestBackupHash(configPath) {
 export function backupConfigs(projectRoot) {
   const backups = {};
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-  let skipped = { yaml: false, txt: false };
+  const skipped = { yaml: false, txt: false };
 
   // Backup yaml config
   const yamlPath = path.join(projectRoot, CONFIG_PATHS.yamlConfig);

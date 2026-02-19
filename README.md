@@ -288,6 +288,70 @@ BMAD CYBERSEC aligns with 20+ global security standards and compliance framework
 
 ---
 
+## 🧪 Testing & Quality Assurance
+
+BMAD CYBERSEC maintains comprehensive test coverage across all modules. For detailed testing documentation, see [team/bmad-web-ui/docs/testing/](team/bmad-web-ui/docs/testing/).
+
+### Test Coverage
+
+| Category | Test Files | Tests | Status |
+|----------|------------|-------|--------|
+| Unit Tests | 33 | 782 | ✅ Passing |
+| Integration Tests | 6 | 51 | ✅ Passing |
+| Security Tests | 37 | 823 | ✅ Passing |
+| OWASP Tests | 1 | 41 | ✅ Passing |
+| E2E Tests | 2 | 20 | ✅ Passing |
+| **TOTAL** | **79** | **1,717** | **✅ 100% Pass** |
+
+### Running Tests
+
+```bash
+# Navigate to the web-ui project
+cd team/bmad-web-ui
+
+# Run all tests
+npm test
+
+# Run security tests only
+npm run test:security
+
+# Run OWASP compliance tests
+npm run test:owasp
+
+# Run with coverage
+npm run test:coverage
+
+# Run E2E tests
+npm run test:e2e
+```
+
+### Security Testing
+
+**OWASP Top 10 Coverage** — 100% compliant across all categories:
+- A01: Broken Access Control ✅
+- A02: Cryptographic Failures ✅
+- A03: Injection ✅
+- A04: Insecure Design ✅
+- A05: Security Misconfiguration ✅
+- A06: Vulnerable Components ✅
+- A07: Authentication Failures ✅
+- A08: Data Integrity Failures ✅
+- A09: Logging Failures ✅
+- A10: SSRF ✅
+
+### Testing Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [Test Execution Guide](team/bmad-web-ui/docs/testing/TEST-EXECUTION-GUIDE.md) | How to run tests |
+| [Testing Strategy](team/bmad-web-ui/docs/testing/COMPREHENSIVE-TESTING-STRATEGY.md) | Overall approach |
+| [Onboarding Guide](team/bmad-web-ui/docs/testing/ONBOARDING.md) | New developer setup |
+| [Pre-Release Checklist](team/bmad-web-ui/docs/testing/PRE-RELEASE-CHECKLIST.md) | Release validation |
+| [Maintenance Guide](team/bmad-web-ui/docs/testing/MAINTENANCE.md) | Test maintenance |
+| [Performance Baselines](team/bmad-web-ui/docs/testing/PERFORMANCE-BASELINES.md) | Benchmarks |
+
+---
+
 ## 👥 Specialized Teams
 
 <table>

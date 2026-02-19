@@ -1,0 +1,105 @@
+/**
+ * BMAD Custom Theme Extensions
+ *
+ * This file contains custom theme extensions that complement
+ * the base Tailwind CSS configuration in globals.css.
+ *
+ * Design System Reference: ../05-ui-design-system.md
+ */
+
+/* Terminal CSS Variables - Story 5.4 */
+:root {
+  --terminal-bg: #0a0a0a;
+  --terminal-fg: #e0e0e0;
+  --terminal-header-bg: #1a1a1a;
+  --terminal-border: #333;
+  --terminal-command: #10b981;
+  --terminal-error: #ef4444;
+  --terminal-warning: #f59e0b;
+  --terminal-muted: #6b7280;
+}
+
+/* Custom animations not included in tw-animate-css */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom utility classes */
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background-base));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--border-default));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--border-strong));
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgb(var(--accent-primary) / 0.3);
+  color: rgb(var(--text-primary));
+}
+
+/* Focus visible improvements */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent-primary));
+  outline-offset: 2px;
+}

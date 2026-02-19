@@ -68,7 +68,9 @@
   },
   "dependencies": {
     "@bmad/validators": "file:../../.claude/validators-node",
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "eslint-config-next": "12.0.4",
+    "typescript-eslint": "8.36.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

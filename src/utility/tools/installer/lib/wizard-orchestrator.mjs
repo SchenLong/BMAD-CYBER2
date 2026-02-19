@@ -79,7 +79,7 @@ async function runTool(toolName, toolPath, runFunctionName, options, projectRoot
         success: false,
         skipped: true,
         result: null,
-        error: 'Tool not found at ' + toolPath
+        error: `Tool not found at ${  toolPath}`
       };
     }
 
@@ -91,7 +91,7 @@ async function runTool(toolName, toolPath, runFunctionName, options, projectRoot
         success: false,
         skipped: true,
         result: null,
-        error: 'Tool does not export ' + runFunctionName
+        error: `Tool does not export ${  runFunctionName}`
       };
     }
 
@@ -130,7 +130,7 @@ async function runTool(toolName, toolPath, runFunctionName, options, projectRoot
  */
 function displayStepHeader(stepName, stepNum, totalSteps) {
   console.log('');
-  console.log(chalk.cyan.bold('┌─ Step ' + stepNum + '/' + totalSteps + ': ' + stepName + ' ' + '─'.repeat(40)));
+  console.log(chalk.cyan.bold(`┌─ Step ${  stepNum  }/${  totalSteps  }: ${  stepName  } ${  '─'.repeat(40)}`));
   console.log(chalk.cyan.bold('│'));
 }
 
@@ -139,15 +139,15 @@ function displayStepHeader(stepName, stepNum, totalSteps) {
  */
 function displayStepResult(stepName, stepResult) {
   console.log(chalk.cyan.bold('│'));
-  console.log(chalk.cyan.bold('└' + '─'.repeat(59)));
+  console.log(chalk.cyan.bold(`└${  '─'.repeat(59)}`));
 
   if (stepResult.skipped) {
-    console.log(chalk.yellow('  ⊘ ' + stepName + ': Skipped (' + stepResult.error + ')'));
+    console.log(chalk.yellow(`  ⊘ ${  stepName  }: Skipped (${  stepResult.error  })`));
   } else if (stepResult.success) {
-    const duration = stepResult.duration ? ' (' + Math.round(stepResult.duration) + 'ms)' : '';
-    console.log(chalk.green('  ✓ ' + stepName + ': Complete' + duration));
+    const duration = stepResult.duration ? ` (${  Math.round(stepResult.duration)  }ms)` : '';
+    console.log(chalk.green(`  ✓ ${  stepName  }: Complete${  duration}`));
   } else {
-    console.log(chalk.red('  ✗ ' + stepName + ': Failed - ' + stepResult.error));
+    console.log(chalk.red(`  ✗ ${  stepName  }: Failed - ${  stepResult.error}`));
   }
 }
 
@@ -183,7 +183,7 @@ export async function runWizard(options = {}) {
 
   try {
     if (!quiet) {
-      console.log(chalk.cyan.bold('\n' + '='.repeat(60)));
+      console.log(chalk.cyan.bold(`\n${  '='.repeat(60)}`));
       console.log(chalk.cyan.bold('  BMAD-CYBER Setup Wizard'));
       console.log(chalk.cyan.bold('='.repeat(60)));
 
@@ -254,13 +254,13 @@ export async function runWizard(options = {}) {
       console.log('');
 
       if (completed.length > 0) {
-        console.log(chalk.green('  Completed (' + completed.length + '): ' + completed.map(([k]) => k).join(', ')));
+        console.log(chalk.green(`  Completed (${  completed.length  }): ${  completed.map(([k]) => k).join(', ')}`));
       }
       if (skipped.length > 0) {
-        console.log(chalk.yellow('  Skipped (' + skipped.length + '): ' + skipped.map(([k]) => k).join(', ')));
+        console.log(chalk.yellow(`  Skipped (${  skipped.length  }): ${  skipped.map(([k]) => k).join(', ')}`));
       }
       if (failed.length > 0) {
-        console.log(chalk.red('  Failed (' + failed.length + '): ' + failed.map(([k]) => k).join(', ')));
+        console.log(chalk.red(`  Failed (${  failed.length  }): ${  failed.map(([k]) => k).join(', ')}`));
       }
 
       console.log('');
@@ -275,7 +275,7 @@ export async function runWizard(options = {}) {
               llm: 'npm run llm:setup',
               pgp: 'npm run pgp:setup'
             };
-            console.log(chalk.dim('  ' + commands[key]));
+            console.log(chalk.dim(`  ${  commands[key]}`));
           }
         }
         console.log('');
@@ -285,7 +285,7 @@ export async function runWizard(options = {}) {
     return results;
 
   } catch (error) {
-    console.error(chalk.red('\nSetup error: ' + error.message));
+    console.error(chalk.red(`\nSetup error: ${  error.message}`));
     if (verbose) {
       console.error(chalk.red(error.stack));
     }
@@ -309,7 +309,7 @@ async function main() {
     await runWizard(options);
     return 0;
   } catch (error) {
-    console.error(chalk.red('Wizard failed: ' + error.message));
+    console.error(chalk.red(`Wizard failed: ${  error.message}`));
     return 1;
   }
 }

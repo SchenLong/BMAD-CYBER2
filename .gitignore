@@ -260,3 +260,42 @@ team/test-fixes-plan.md
 
 # Backup files - NEVER commit
 team/backups/
+
+# ===================
+# Web Applications
+# ===================
+# WebUI application - local development files
+apps/web-ui/.next/
+apps/web-ui/node_modules/
+apps/web-ui/.env
+apps/web-ui/.env.*
+apps/web-ui/*.db
+apps/web-ui/*.db-journal
+apps/web-ui/coverage/
+apps/web-ui/playwright-report/
+apps/web-ui/test-results/
+apps/web-ui/build/
+apps/web-ui/out/
+apps/web-ui/.turbo/
+apps/web-ui/.vercel
+apps/web-ui/.github/
+apps/web-ui/performance-results.json
+apps/web-ui/prisma/*.db
+apps/web-ui/prisma/*.db-journal
+apps/web-ui/prisma/*.bak
+
+# But keep source code and configuration
+!apps/web-ui/src/
+!apps/web-ui/public/
+!apps/web-ui/app/
+!apps/web-ui/*.ts
+!apps/web-ui/*.tsx
+!apps/web-ui/*.js
+!apps/web-ui/*.mjs
+!apps/web-ui/*.json
+!apps/web-ui/*.css
+!apps/web-ui/.*.example
+!apps/web-ui/prisma/migrations/
+!apps/web-ui/prisma/schema.prisma
+!apps/web-ui/README.md
+!apps/web-ui/.gitignore

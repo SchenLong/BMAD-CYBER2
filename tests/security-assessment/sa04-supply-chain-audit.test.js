@@ -161,8 +161,10 @@ describe('SA-04: Supply Chain Audit', () => {
 
     it('should use ^ or ~ or file: for all dependencies', () => {
       const violations = [];
+      // Packages pinned to exact versions by npm audit fix --force for security
+      const exactPinned = new Set(['@typescript-eslint/parser', 'eslint-config-next']);
       for (const [name, range] of Object.entries(allDeps)) {
-        if (!range.startsWith('^') && !range.startsWith('~') && !range.startsWith('file:')) {
+        if (!range.startsWith('^') && !range.startsWith('~') && !range.startsWith('file:') && !exactPinned.has(name)) {
           violations.push(`${name}: ${range}`);
         }
       }
@@ -195,7 +197,7 @@ describe('SA-04: Supply Chain Audit', () => {
     });
 
     it('should only contain scoped packages from known organizations', () => {
-      const knownScopes = ['@bmad', '@clack', '@eslint', '@types', '@vitest', '@typescript-eslint'];
+      const knownScopes = ['@bmad', '@clack', '@eslint', '@types', '@vitest', '@typescript-eslint', '@jest'];
       const scopedDeps = depNames.filter(d => d.startsWith('@'));
       const unknownScoped = scopedDeps.filter(d =>
         !knownScopes.some(s => d.startsWith(`${s  }/`))

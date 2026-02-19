@@ -1,0 +1,716 @@
+// BMAD Web UI - Authentication Database Schema
+// Story 1.2: Authentication System - Core
+// Story 1.3: Authentication - OAuth Providers
+//
+// Epic 6: Project Management System
+// Story 6.1: Project Data Model & Database
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User roles for RBAC (Story 1.5 will expand this)
+enum UserRole {
+  SUPERADMIN
+  ADMIN
+  USER
+  DEVELOPER // Developer role with API key access (Story 8.2)
+  READONLY
+  API // Role for API key authentication (Story 8.2)
+}
+
+// Onboarding user roles for progressive disclosure (Story 2.1)
+enum OnboardingRole {
+  SOLO_OPERATOR // PI, Consultant, Researcher
+  TEAM_LEAD // Agency Manager, Department Head
+  EXECUTIVE // C-Suite, Director
+  DEVELOPER // API access, Automation
+}
+
+// MFA factor types (Story 1.4: MFA)
+enum MfaFactor {
+  TOTP // Time-based one-time password
+  SMS // SMS verification code
+  EMAIL // Email verification code
+  WEBAUTHN // Hardware security key / Passkey
+  BACKUP_CODE // Recovery codes
+}
+
+// User model - core user data
+model User {
+  id                    String          @id @default(cuid())
+  email                 String          @unique
+  passwordHash          String? // Nullable for OAuth users (Story 1.3)
+  name                  String?
+  role                  UserRole        @default(USER)
+  emailVerified         DateTime? // For OAuth email verification
+  image                 String? // User profile image from OAuth providers
+  mfaEnabled            Boolean         @default(false) // Story 1.4: MFA enabled flag
+  mfaFactors            String? // Story 1.4: JSON array of MfaFactor (SQLite doesn't support enum arrays)
+  // Story 2.1: Onboarding fields
+  onboardingRole        OnboardingRole? // Selected onboarding persona
+  onboardingCompleted   DateTime? // When onboarding was completed
+  // Story 2.5: Advanced mode (Layer 4 Power User)
+  advancedModeEnabled   Boolean         @default(false)
+  advancedModeEnabledAt DateTime?
+  apiKeys               APIKey[]
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  sessions              Session[]
+  accounts              Account[] // OAuth accounts linked to this user
+  mfaCredentials        MfaCredential[] // Story 1.4: MFA credentials
+  // Epic 6: Project Management System relations
+  projectMemberships    ProjectMember[]
+  // Epic 7: Enterprise Templates relations
+  customTemplates       CustomTemplate[]
+  // Organization relations
+  organizationMemberships OrganizationMember[]
+
+  @@index([email])
+}
+
+// Session model - database-backed sessions for security
+// Story 1.6: Enhanced with session metadata for management and revocation
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionToken String   @unique
+  expires      DateTime
+  createdAt    DateTime @default(now())
+
+  // Session metadata (Story 1.6)
+  ipAddress         String?
+  userAgent         String?
+  deviceFingerprint String?
+  lastActivity      DateTime @default(now())
+
+  @@index([userId])
+  @@index([sessionToken])
+  @@index([expires])
+  @@index([userId, expires])
+}
+
+// Account model - OAuth provider accounts (Story 1.3)
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String // "oauth" | "oidc" | "email" | "credentials"
+  provider          String // e.g., "github", "google", "oidc"
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+// VerificationToken model - for email verification and password reset
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// MfaCredential model - MFA credentials for users (Story 1.4)
+model MfaCredential {
+  id           String    @id @default(cuid())
+  userId       String
+  type         MfaFactor
+  secret       String? // Encrypted TOTP secret
+  phoneNumber  String? // For SMS factors
+  verified     Boolean   @default(false)
+  backupCodes  String? // JSON array of encrypted backup codes
+  counter      Int? // For HOTP
+  credentialId String? // For WebAuthn
+  publicKey    String? // For WebAuthn
+
+  createdAt  DateTime  @default(now())
+  lastUsedAt DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("mfa_credentials")
+}
+
+// APIKey model - API key management
+// Story 2.5: Progressive Disclosure - Layer 4 (Power User)
+// Story 8.2: API Key Management - Enhanced with role-based access
+model APIKey {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Key is stored as a hash, only show last 4 chars in preview
+  keyHash    String @unique // SHA-256 hash of the full key
+  keyPreview String // Last 4 characters for identification
+
+  description String
+  permissions String // JSON array of permission strings
+  isActive    Boolean @default(true)
+
+  expiresAt  DateTime?
+  lastUsedAt DateTime?
+  usageCount Int       @default(0)
+
+  // Soft delete support (Story 8.2)
+  deletedAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([keyHash])
+  @@index([isActive])
+  @@map("api_keys")
+}
+
+// ============================================================================
+// Epic 6: Project Management System
+// Story 6.1: Project Data Model & Database
+// ============================================================================
+
+// Project type enumeration
+enum ProjectType {
+  SECURITY_ASSESSMENT // Security assessment projects
+  INCIDENT_RESPONSE // Incident response projects
+  INVESTIGATION // Investigation projects
+  ADVISORY // Advisory projects
+  COMPLIANCE // Compliance audit projects
+  TRAINING // Training projects
+}
+
+// Project status enumeration
+enum ProjectStatus {
+  PLANNING // Project is being planned
+  ACTIVE // Project is active
+  ON_HOLD // Project is on hold
+  COMPLETED // Project is completed
+  ARCHIVED // Project is archived
+}
+
+// Project phase enumeration (common across project types)
+enum ProjectPhase {
+  INITIATION // Project initiation
+  DISCOVERY // Discovery and reconnaissance
+  ANALYSIS // Analysis phase
+  REMEDIATION // Remediation or implementation
+  REPORTING // Reporting phase
+  REVIEW // Review and finalization
+  CLOSED // Project closed
+}
+
+// Project member role enumeration
+enum MemberRole {
+  OWNER // Project owner (full control)
+  LEAD // Project lead
+  MEMBER // Project member
+  VIEWER // Read-only access
+}
+
+// Assessment type for security assessment projects
+enum AssessmentType {
+  PENETRATION_TEST // Penetration test
+  VULNERABILITY_SCAN // Vulnerability scan
+  RED_TEAM // Red team engagement
+  BLUE_TEAM // Blue team assessment
+}
+
+// Finding severity enumeration
+enum FindingSeverity {
+  CRITICAL // Critical severity
+  HIGH // High severity
+  MEDIUM // Medium severity
+  LOW // Low severity
+  INFO // Informational
+}
+
+// Finding status enumeration
+enum FindingStatus {
+  PENDING // Pending review
+  FIXING // Fix in progress
+  TESTING // Testing fix
+  VERIFIED // Verified as fixed
+  FALSE_POSITIVE // False positive
+  RISK_ACCEPTED // Risk accepted
+}
+
+// Pentest phase enumeration
+enum PentestPhase {
+  RECONNAISSANCE // Reconnaissance phase
+  ENUMERATION // Enumeration phase
+  EXPLOITATION // Exploitation phase
+  POST_EXPLOITATION // Post-exploitation phase
+  REPORTING // Reporting phase
+}
+
+// Deliverable status enumeration
+enum DeliverableStatus {
+  PENDING // Pending
+  IN_PROGRESS // In progress
+  REVIEW // Under review
+  COMPLETE // Complete
+  CANCELLED // Cancelled
+}
+
+// Artifact type enumeration
+enum ArtifactType {
+  FINDING // Finding artifact
+  EVIDENCE // Evidence file
+  REPORT // Report
+  SCREENSHOT // Screenshot
+  LOG // Log file
+  CODE // Code snippet
+  CONFIG // Configuration file
+  OTHER // Other
+}
+
+// Incident severity enumeration (for Story 6.6)
+enum IncidentSeverity {
+  CRITICAL // Critical severity
+  HIGH // High severity
+  MEDIUM // Medium severity
+  LOW // Low severity
+}
+
+// Incident phase enumeration (NIST framework - for Story 6.6)
+enum IncidentPhase {
+  IDENTIFICATION // Identification phase
+  CONTAINMENT // Containment phase
+  ERADICATION // Eradication phase
+  RECOVERY // Recovery phase
+  CLOSED // Incident closed
+}
+
+// ============================================================================
+// Core Project Models
+// ============================================================================
+
+// Project model - core project container
+model Project {
+  id                String        @id @default(cuid())
+  projectCode       String        @unique // Human-readable project code (e.g., PRJ-2026-001)
+  name              String
+  description       String?
+  projectType       ProjectType
+  status            ProjectStatus @default(PLANNING)
+  phase             ProjectPhase  @default(INITIATION)
+  completionPercent Int           @default(0) // 0-100
+
+  // Timestamps
+  startDate     DateTime?
+  targetEndDate DateTime?
+  actualEndDate DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  members         ProjectMember[]
+  workflows       Workflow[]
+  artifacts       Artifact[]
+  deliverables    Deliverable[]
+  findings        Finding[]
+  timelineEvents  TimelineEvent[]
+
+  // Incident-specific fields (Story 6.6)
+  incidentId       String?           @unique // Incident ID (e.g., INC-2026-001)
+  incidentSeverity IncidentSeverity?
+  affectedSystems  Int?              @default(0)
+  containedSystems Int?              @default(0)
+
+  // Pentest-specific fields (Story 6.7)
+  assessmentType AssessmentType?
+  pentestId      String?         @unique // Pentest ID (e.g., PT-2026-001)
+  weekNumber     Int?
+  scope          String? // JSON: inScope, outOfScope, exclusions
+  phaseProgress  String? // JSON: phase progress data
+
+  @@index([projectCode])
+  @@index([status])
+  @@index([projectType])
+  @@index([incidentId])
+  @@index([pentestId])
+  @@map("projects")
+}
+
+// ProjectMember model - project team members
+model ProjectMember {
+  id        String     @id @default(cuid())
+  projectId String
+  project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      MemberRole @default(MEMBER)
+
+  // Member metadata
+  joinedAt   DateTime  @default(now())
+  lastSeenAt DateTime?
+
+  @@unique([projectId, userId])
+  @@index([projectId])
+  @@index([userId])
+  @@map("project_members")
+}
+
+// Workflow model - individual workflow executions
+model Workflow {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Workflow details
+  name        String
+  description String?
+  status      String  @default("pending") // pending, running, completed, failed
+  result      String? // JSON result data
+
+  // Workflow execution
+  agentId     String? // Agent that executed/will execute
+  startedAt   DateTime?
+  completedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([status])
+  @@map("workflows")
+}
+
+// Artifact model - project artifacts and evidence
+model Artifact {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Artifact details
+  name        String
+  type        ArtifactType
+  description String?
+  filePath    String? // Storage path
+
+  // File metadata
+  fileSize   Int?
+  mimeType   String?
+  sha256Hash String? @unique // SHA-256 hash for chain of custody
+
+  // Upload metadata
+  uploadedById String? // User who uploaded
+  uploadedAt   DateTime @default(now())
+
+  @@index([projectId])
+  @@index([type])
+  @@index([sha256Hash])
+  @@map("artifacts")
+}
+
+// Deliverable model - project deliverables tracking
+model Deliverable {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Deliverable details
+  name        String
+  description String?
+  status      DeliverableStatus @default(PENDING)
+
+  // Assignment
+  assignedTo String? // User ID
+
+  // Due dates
+  dueDate     DateTime?
+  completedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("deliverables")
+}
+
+// ============================================================================
+// Pentest-Specific Models (Story 6.7)
+// ============================================================================
+
+// Finding model - pentest findings
+model Finding {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Finding details
+  title       String
+  description String
+  severity    FindingSeverity
+  status      FindingStatus   @default(PENDING)
+
+  // CVSS scoring
+  cvssScore     Float?
+  cvssVector    String?
+  cvssBreakdown String? // JSON: CVSS breakdown
+
+  // Affected systems
+  affectedSystems String? // JSON array of affected systems/URLs
+
+  // References
+  owaspCategory String?
+  cweId         String?
+
+  // Remediation
+  remediation String?
+  assignee    String?
+
+  // Discovery metadata
+  discoveredAt DateTime      @default(now())
+  discoveredBy String?
+  phase        PentestPhase?
+
+  // Relations
+  history      FindingHistory[]
+
+  @@index([projectId])
+  @@index([severity])
+  @@index([status])
+  @@map("findings")
+}
+
+// FindingHistory model - finding history/audit trail
+model FindingHistory {
+  id        String   @id @default(cuid())
+  findingId String
+  finding   Finding  @relation(fields: [findingId], references: [id], onDelete: Cascade)
+
+  // Change details
+  field    String // What field changed
+  oldValue String?
+  newValue String?
+
+  // Metadata
+  changedBy String? // User who made the change
+  changedAt DateTime @default(now())
+  notes     String?
+
+  @@index([findingId])
+  @@index([changedAt])
+  @@map("finding_history")
+}
+
+// ============================================================================
+// Incident-Specific Models (Story 6.6)
+// ============================================================================
+
+// TimelineEvent model - incident timeline events
+model TimelineEvent {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Event details
+  phase       IncidentPhase
+  title       String
+  description String?
+  severity    IncidentSeverity?
+
+  // Contributor tracking
+  contributor String? // User who added this event
+
+  createdAt DateTime @default(now())
+
+  @@index([projectId])
+  @@index([phase])
+  @@index([createdAt])
+  @@map("timeline_events")
+}
+
+// ============================================================================
+// Extended User model relations for Epic 6
+// ============================================================================
+
+// Extend User model with Epic 6 relations
+// These are added to the existing User model above
+
+// ============================================================================
+// Organization Model
+// Multi-tenancy support for enterprise features
+// ============================================================================
+
+// Organization model - Enterprise/Team organization
+model Organization {
+  id        String   @id @default(cuid())
+  name      String   // Human-readable organization name
+  slug      String   @unique // URL-friendly identifier
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  members              OrganizationMember[]
+  customTemplates      CustomTemplate[]
+
+  @@index([slug])
+  @@map("organizations")
+}
+
+// Organization member role enumeration
+enum OrganizationRole {
+  OWNER   // Full control over organization
+  ADMIN   // Administrative access
+  MEMBER  // Standard member access
+}
+
+// Organization member - Users belonging to organizations
+model OrganizationMember {
+  id             String           @id @default(cuid())
+  organizationId String
+  organization   Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  role           OrganizationRole @default(MEMBER)
+
+  // Metadata
+  joinedAt       DateTime         @default(now())
+  invitedBy      String?          // User ID who invited this member
+
+  @@unique([organizationId, userId])
+  @@index([organizationId])
+  @@index([userId])
+  @@map("organization_members")
+}
+
+// ============================================================================
+// Epic 7: Enterprise Templates
+// Story 7.4: Custom Template Builder
+// ============================================================================
+
+// Template section field types
+enum TemplateFieldType {
+  TEXT // Single-line text
+  TEXTAREA // Multi-line text
+  NUMBER // Numeric value
+  DATE // Date picker
+  LIST // Bullet point list
+  CODE // Code block with syntax highlighting
+  RICH_TEXT // Rich text editor
+}
+
+// Template section types
+enum TemplateSectionType {
+  BUILT_IN // Predefined section type
+  CUSTOM // User-defined custom section
+}
+
+// Custom template model - user-defined templates
+model CustomTemplate {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Template details
+  name        String
+  description String?
+  version     Int      @default(1)
+
+  // Structure - JSON array of section IDs in order
+  sectionOrder String // JSON array
+
+  // Branding - JSON object
+  branding String // JSON: { logoUrl, headerColor, font, coverImage, footerText }
+
+  // Settings - JSON object
+  settings String // JSON: { onePage, includeToc, includePageNumbers }
+
+  // Organization scoping
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  isPublic       Boolean @default(false) // Shared within organization
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  sections CustomTemplateSection[]
+  versions CustomTemplateVersion[]
+
+  @@index([userId])
+  @@index([organizationId])
+  @@map("custom_templates")
+}
+
+// Custom template section model
+model CustomTemplateSection {
+  id       String                @id @default(cuid())
+  templateId String
+  template CustomTemplate        @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  // Section details
+  type     TemplateSectionType
+  name     String
+  description String?
+  required Boolean @default(false)
+
+  // Position in template
+  position Int
+
+  // For built-in sections, the identifier
+  builtInType String? // e.g., "executive-summary", "methodology"
+
+  // Field definitions - JSON array
+  fieldDefinitions String // JSON: [{ id, label, type, required, defaultValue, validation }]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([templateId, position])
+  @@index([templateId])
+  @@index([builtInType])
+  @@map("custom_template_sections")
+}
+
+// Template version history (for version tracking)
+model CustomTemplateVersion {
+  id        String   @id @default(cuid())
+  templateId String
+  template  CustomTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  version     Int
+  name        String
+  description String?
+
+  // Full template snapshot at version time
+  snapshot    String // JSON of complete template state
+
+  // Metadata
+  changedBy   String? // User who made the change
+  changeNotes String?
+
+  createdAt DateTime @default(now())
+
+  @@index([templateId])
+  @@index([templateId, version])
+  @@map("custom_template_versions")
+}
+
+// Extend CustomTemplate with version history
+// (Update CustomTemplate model above with versions relation)
