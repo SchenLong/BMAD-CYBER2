@@ -112,7 +112,7 @@ export async function validateApiKeyByKeyHash(
       apiKey: {
         id: apiKey.id,
         userId: apiKey.userId,
-        name: apiKey.name || 'Unnamed Key',
+        name: apiKey.description || 'Unnamed Key',
         permissions,
         isActive: apiKey.isActive,
         expiresAt: apiKey.expiresAt,

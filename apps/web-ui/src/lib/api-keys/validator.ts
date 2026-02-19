@@ -67,8 +67,9 @@ export async function validateApiKey(
       id: true,
       userId: true,
       keyHash: true,
-      role: true,
+      permissions: true,
       expiresAt: true,
+      description: true,
     },
   });
 
@@ -88,6 +89,17 @@ export async function validateApiKey(
     return { isValid: false };
   }
 
+  // Extract role from permissions JSON
+  let role: UserRole = UserRole.API;
+  try {
+    const perms = JSON.parse(apiKey.permissions) as string[];
+    if (perms.includes('admin')) role = UserRole.ADMIN;
+    else if (perms.includes('write')) role = UserRole.DEVELOPER;
+    else if (perms.includes('read')) role = UserRole.READONLY;
+  } catch {
+    role = UserRole.API;
+  }
+
   // Update last used timestamp and usage count
   await prisma.aPIKey.update({
     where: { id: apiKey.id },
@@ -101,7 +113,8 @@ export async function validateApiKey(
     isValid: true,
     apiKeyId: apiKey.id,
     userId: apiKey.userId,
-    role: apiKey.role as UserRole,
+    name: apiKey.description,
+    role,
   };
 }
 

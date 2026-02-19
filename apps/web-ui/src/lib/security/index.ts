@@ -46,16 +46,10 @@ export {
   filterOutput,
   wrapFilteredResponse,
   reviewQueue,
-  FilterResult,
-  FilteredResponse,
 } from './output-filter'
 export type {
-  OutputFilterConfig,
-  OutputSeverityLevel,
-  OutputPatternCategory,
-  OutputPatternMatch,
-  ReviewQueueEntry,
-  ReviewQueueStats,
+  FilterResult,
+  FilteredResponse,
 } from './output-filter'
 
 // Output filter patterns

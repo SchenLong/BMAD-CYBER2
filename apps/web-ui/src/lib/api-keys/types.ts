@@ -73,5 +73,6 @@ export interface APIKeyValidationResult {
   isValid: boolean;
   apiKeyId?: string;
   userId?: string;
+  name?: string;
   role?: UserRole;
 }

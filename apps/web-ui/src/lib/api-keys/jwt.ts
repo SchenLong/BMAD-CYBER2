@@ -101,7 +101,9 @@ export async function generateAPIKeyJWT(
     key_id: apiKeyId,
     role,
     scopes,
-  } as APIKeyJWTPayload)
+    iat: undefined,
+    exp: undefined,
+  } as APIKeyJWTPayload & Record<string, unknown>)
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
     .setExpirationTime(expiresIn)
