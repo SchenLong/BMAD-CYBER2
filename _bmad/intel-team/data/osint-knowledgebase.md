@@ -1,7 +1,7 @@
 # Intel Team OSINT Knowledgebase
 
 **Version:** 1.0.0
-**Last Updated:** 2026-01-10
+**Last Updated:** 2026-08-21
 **Classification:** UNCLASSIFIED // FOR OFFICIAL USE ONLY
 
 ---
@@ -162,6 +162,7 @@ The culmination of the intelligence cycle is all-source intelligence, incorporat
 
 **Metadata Extraction:**
 - metadata2go.com - EXIF data viewer
+- [Metadata Remover](https://metadataremover.ai/metadata-viewer) - Browser-local image metadata viewer; corroborate extracted fields before treating them as evidence
 - Online EXIF Viewer
 - Jimpl - EXIF with removal
 - Metadata Interrogator - Desktop offline extractor
